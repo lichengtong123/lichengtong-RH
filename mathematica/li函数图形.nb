@@ -1,0 +1,206 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7839,        198]
+NotebookOptionsPosition[      6564,        171]
+NotebookOutlinePosition[      6974,        188]
+CellTagsIndexPosition[      6931,        185]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["", "Title",
+ CellChangeTimes->{
+  3.995066129683298*^9},ExpressionUUID->"20ba779e-a798-434b-9bdb-\
+616dc7e4fe92"],
+
+Cell["", "Text",
+ CellChangeTimes->{
+  3.99506612224072*^9},ExpressionUUID->"ba2e7a40-f3eb-4191-a9e4-764cc0bcda70"],
+
+Cell["\<\
+
+(* |li(z)| modulus surface; li = LogIntegral; cut [1,+Infinity) *)
+(* gold yellow matches zeta/Gamma modulus surfaces in the book *)
+
+ClearAll[liAbs, plotLiModulus, plotLiContour, plotLiRealAxis, \
+plotLiVsLiOffset, LiOffset];
+
+liAbs[x_?NumericQ, y_?NumericQ] := Module[{z = x + I y}, \
+Abs[LogIntegral[z]]];
+LiOffset[x_?NumericQ] := LogIntegral[x] - LogIntegral[2];
+
+(* Soldner constant: unique real zero of li on (1,+Infinity) *)
+soldnerMu = 1.4513692348833811;
+
+plotLiModulus[xMin_ : -2, xMax_ : 4, yMin_ : -3, yMax_ : 3, n_ : 80, zMax_ : \
+8] :=
+  Module[{surf, marks, mu = soldnerMu, r = 0.08},
+   surf = Plot3D[liAbs[x, y], {x, xMin, xMax}, {y, yMin, yMax},
+     PlotPoints -> n, MaxRecursion -> 3,
+     PlotRange -> {{xMin, xMax}, {yMin, yMax}, {0, zMax}},
+     Axes -> True, Boxed -> False, AxesOrigin -> {0, 0, 0},
+     AxesStyle -> Directive[Black, AbsoluteThickness[0.05]],
+     AxesLabel -> {\"Re z\", \"Im z\", \"|li(z)|\"},
+     PlotLabel -> \"|LogIntegral[z]| = |li(z)|\",
+     PlotStyle -> Directive[RGBColor[1.0, 0.84, 0.0], Opacity[0.80], \
+Specularity[White, 30]],
+     MeshFunctions -> {#1 &, #2 &, #3 &},
+     Mesh -> {28, 28, 16},
+     MeshStyle -> {
+       Directive[GrayLevel[0.35], Opacity[0.90], AbsoluteThickness[0.6]],
+       Directive[GrayLevel[0.35], Opacity[0.90], AbsoluteThickness[0.6]],
+       Directive[GrayLevel[0.25], Opacity[0.95], AbsoluteThickness[0.7]]
+     },
+     Lighting -> \"Neutral\",
+     Exclusions -> {y == 0 && x >= 1}, BoxRatios -> {1, 1, 0.55},
+     ImageSize -> 1000];
+   (* red marks: zero mu on floor; singularity z=1 with vertical dash *)
+   marks = Graphics3D[{
+     Red, Specularity[White, 20],
+     (* zero: Soldner mu, |li|=0 *)
+     Sphere[{mu, 0, 0}, 0.03],
+     Text[Style[
+       \"\:96f6\:70b9  \[Mu] = Soldner \:5e38\:6570 =\" <> \
+ToString[NumberForm[mu, {7, 5}]] <> \"\\nli(\[Mu]) = 0\",
+       11, Red, Bold], {mu, 0, 0.55 zMax}],
+     (* singularity / branch point z=1 *)
+     Sphere[{1, 0, 0}, 0.03],
+     Directive[Red, Opacity[0.55], AbsoluteThickness[0.4]],
+     Line[{{1, 0, 0}, {1, 0, zMax}}],
+     Text[Style[
+       \"\:5947\:70b9  z = 1\\n(\:5206\:652f\:70b9, |li|->Infinity)\",
+       11, Red, Bold], {1, 0.35 (yMax - yMin), 0.72 zMax}]
+     }];
+   Show[surf, marks,
+    PlotRange -> {{xMin, xMax}, {yMin, yMax}, {0, zMax}},
+    Boxed -> False, Axes -> True, AxesOrigin -> {0, 0, 0},
+    BoxRatios -> {1, 1, 0.55}, ImageSize -> 1000]
+   ];
+
+plotLiContour[xMin_ : -2, xMax_ : 4, yMin_ : -3, yMax_ : 3] :=
+  Module[{mu = soldnerMu},
+   ContourPlot[liAbs[x, y], {x, xMin, xMax}, {y, yMin, yMax},
+     PlotPoints -> 100, Contours -> 20,
+     ColorFunction -> (Blend[{RGBColor[1.0, 0.95, 0.55], RGBColor[1.0, 0.84, \
+0.0], RGBColor[0.72, 0.40, 0.02]}, #] &),
+     FrameLabel -> {\"Re z\", \"Im z\"},
+     PlotLabel -> \"|li(z)| contours (red: zero & singularity)\",
+     Epilog -> {
+       Red, Thick, Line[{{1, 0}, {xMax, 0}}],
+       PointSize[0.028],
+       Point[{mu, 0}], Point[{1, 0}],
+       Text[Style[
+         \"zero \[Mu]=\" <> ToString[NumberForm[mu, {6, 4}]], 10, Red, Bold],
+        {mu, 0.22 (yMax - yMin)}, {0, -1}],
+       Text[Style[\"\:5947\:70b9. z=1\", 10, Red, Bold],
+        {1, -0.22 (yMax - yMin)}, {0, 1}]
+       }, ImageSize -> 480]
+   ];
+
+plotLiRealAxis[xMin_ : 1.05, xMax_ : 6] :=
+  Plot[{LogIntegral[x], Abs[LogIntegral[x + 10.^-8 I]], Abs[LogIntegral[x - \
+10.^-8 I]]},
+    {x, xMin, xMax},
+    PlotLegends -> {\"li(x)\", \"|li(x+i0)|\", \"|li(x-i0)|\"},
+    AxesLabel -> {\"x\", None}, ImageSize -> 480];
+
+plotLiVsLiOffset[xMin_ : 1.1, xMax_ : 20] :=
+  Plot[{LogIntegral[x], LiOffset[x]}, {x, xMin, xMax},
+    PlotLegends -> {\"li(x)\", \"Li(x)=li(x)-li(2)\"},
+    AxesLabel -> {\"x\", None}, ImageSize -> 480];
+plotLiModulus[]
+plotLiContour[]\
+\>", "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.99475381195117*^9, 3.994753824938233*^9}, {
+   3.994753954779152*^9, 3.9947539570980263`*^9}, 3.994753992130958*^9, {
+   3.9947540627496223`*^9, 3.994754064435811*^9}, {3.9947541119231043`*^9, 
+   3.994754119207252*^9}, {3.9947542049833717`*^9, 3.994754208782422*^9}, {
+   3.9947543468392763`*^9, 3.994754351074914*^9}, {3.994754386479444*^9, 
+   3.994754427051162*^9}, {3.994754486124865*^9, 3.994754493641683*^9}, {
+   3.994754542625182*^9, 3.994754548079711*^9}, {3.994754684785286*^9, 
+   3.994754701944364*^9}, {3.994754847148262*^9, 3.994754874355736*^9}, {
+   3.9947549339304543`*^9, 3.9947549396073933`*^9}, {3.994754980463284*^9, 
+   3.994755037961514*^9}, {3.994755266382008*^9, 3.994755273424116*^9}, {
+   3.9947553434269257`*^9, 3.994755348192499*^9}, {3.9947555045067463`*^9, 
+   3.994755506886106*^9}, {3.994755551213654*^9, 3.994755564252585*^9}, {
+   3.994829838396029*^9, 3.994829840575507*^9}},
+ CellLabel->
+  "In[1051]:=",ExpressionUUID->"e1b7cbbe-5039-4aed-b059-f670ec6f2d1b"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.995070586741555*^9, 
+  3.9950705867492027`*^9}},ExpressionUUID->"3087e46f-acd6-4e4b-b25c-\
+8d47dca311b5"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.9950705912238894`*^9, 
+  3.995070591230178*^9}},ExpressionUUID->"66e41648-6e94-4206-b439-\
+2dcc91029e4e"],
+
+Cell["", "Input",
+ CellChangeTimes->{
+  3.994753807728154*^9},ExpressionUUID->"e4828d98-bc9a-48a5-b097-\
+7bae15b8f3a0"],
+
+Cell["", "Input",
+ CellChangeTimes->{
+  3.99475382021063*^9},ExpressionUUID->"b5937034-55e8-4b1b-b7eb-6501d91406ef"],
+
+Cell["plotLiRealAxis[]", "Input",ExpressionUUID->"5077b252-b204-4bdb-92de-15af732f994e"],
+
+Cell["plotLiVsLiOffset[]", "Input",ExpressionUUID->"5db1f7c2-1002-4473-a2d4-7da1379956c6"],
+
+Cell["\<\
+(* Export[NotebookDirectory[] <> \"li_modulus_surface.pdf\", \
+plotLiModulus[]]; *)\
+\>", "Input",ExpressionUUID->"6af40e34-816c-41e1-ac8a-83274e8da82d"]
+}, Open  ]]
+},
+WindowSize->{1267, 866},
+WindowMargins->{{Automatic, 213}, {-72, Automatic}},
+FrontEndVersion->"13.0 for Mac OS X ARM (64-bit) \
+(2021\:5e7412\:67082\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2f273d7c-c0e5-4a6d-b658-763921a1a6ec"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 119, 3, 98, "Title",ExpressionUUID->"20ba779e-a798-434b-9bdb-616dc7e4fe92"],
+Cell[702, 27, 115, 2, 35, "Text",ExpressionUUID->"ba2e7a40-f3eb-4191-a9e4-764cc0bcda70"],
+Cell[820, 31, 4823, 109, 1558, "Input",ExpressionUUID->"e1b7cbbe-5039-4aed-b059-f670ec6f2d1b",
+ InitializationCell->True],
+Cell[5646, 142, 154, 3, 30, InheritFromParent,ExpressionUUID->"3087e46f-acd6-4e4b-b25c-8d47dca311b5"],
+Cell[5803, 147, 154, 3, 30, InheritFromParent,ExpressionUUID->"66e41648-6e94-4206-b439-2dcc91029e4e"],
+Cell[5960, 152, 119, 3, 30, "Input",ExpressionUUID->"e4828d98-bc9a-48a5-b097-7bae15b8f3a0"],
+Cell[6082, 157, 116, 2, 30, "Input",ExpressionUUID->"b5937034-55e8-4b1b-b7eb-6501d91406ef"],
+Cell[6201, 161, 88, 0, 30, "Input",ExpressionUUID->"5077b252-b204-4bdb-92de-15af732f994e"],
+Cell[6292, 163, 90, 0, 30, "Input",ExpressionUUID->"5db1f7c2-1002-4473-a2d4-7da1379956c6"],
+Cell[6385, 165, 163, 3, 30, "Input",ExpressionUUID->"6af40e34-816c-41e1-ac8a-83274e8da82d"]
+}, Open  ]]
+}
+]
+*)
+
