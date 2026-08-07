@@ -1,0 +1,1108 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     40987,       1100]
+NotebookOptionsPosition[     40323,       1082]
+NotebookOutlinePosition[     40732,       1099]
+CellTagsIndexPosition[     40689,       1096]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"sMin", "=", 
+   RowBox[{"-", "6"}]}], ";", 
+  RowBox[{"sMax", "=", "6"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"tMin", "=", 
+    RowBox[{"-", "32"}]}], ";", 
+   RowBox[{"tMax", "=", "32"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"zerosT", "=", 
+    RowBox[{"{", 
+     RowBox[{"14.134725", ",", "21.022040", ",", "25.010858"}], "}"}]}], 
+   ";"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{"\:975e\:5e73\:51e1\:96f6\:70b9", "\:ff1a", 
+    RowBox[{"\:6b63\:865a\:90e8\:4e0e\:8d1f\:865a\:90e8", 
+     RowBox[{"\:ff08", "\:5171\:8f6d\:5bf9", "\:ff09"}]}]}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"zeroPoints", "=", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0.5", ",", "t", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "zerosT"}], "}"}]}], "]"}], "~", "Join", "~", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0.5", ",", 
+         RowBox[{"-", "t"}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "zerosT"}], "}"}]}], "]"}]}]}], ";"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+   "\:6807\:7b7e\:4f4d\:7f6e", "\:ff1a", "\:6b63\:865a\:90e8\:4e0a\:65b9", 
+    "\:ff0c", "\:8d1f\:865a\:90e8\:4e0b\:65b9\:9002\:5f53\:504f\:79fb"}], 
+   "*)"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"labelPointsPos", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", "t", ",", "0.45"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "zerosT"}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"labelPointsNeg", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0.5", ",", 
+       RowBox[{"-", "t"}], ",", 
+       RowBox[{"-", "0.45"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "zerosT"}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"labelsPos", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<\[Gamma]\:2081 \[TildeTilde] 14.13\>\"", ",", 
+     "\"\<\[Gamma]\:2082 \[TildeTilde] 21.02\>\"", ",", 
+     "\"\<\[Gamma]\:2083 \[TildeTilde] 25.01\>\""}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"labelsNeg", "=", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<-\[Gamma]\:2081 \[TildeTilde] -14.13\>\"", ",", 
+      "\"\<-\[Gamma]\:2082 \[TildeTilde] -21.02\>\"", ",", 
+      "\"\<-\[Gamma]\:2083 \[TildeTilde] -25.01\>\""}], "}"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"(*", "\:5e95\:5c42\:7070\:8272\:5e95\:9762", "*)"}], 
+  RowBox[{
+   RowBox[{"Plot3D", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"{", 
+      RowBox[{"s", ",", "sMin", ",", "sMax"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "tMin", ",", "tMax"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"GrayLevel", "[", 
+        RowBox[{"0.92", ",", "0.4"}], "]"}], "]"}]}], ",", 
+     RowBox[{"Mesh", "->", "None"}], ",", 
+     RowBox[{"BoundaryStyle", "->", "None"}]}], "]"}], ",", 
+   RowBox[{"(*", "\:4e34\:754c\:5e26\:6295\:5f71", "*)"}], 
+   RowBox[{"Plot3D", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"{", 
+      RowBox[{"s", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "tMin", ",", "tMax"}], "}"}], ",", 
+     RowBox[{"PlotStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"GrayLevel", "[", 
+        RowBox[{"0.97", ",", "0.6"}], "]"}], "]"}]}], ",", 
+     RowBox[{"Mesh", "->", "None"}], ",", 
+     RowBox[{"BoundaryStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"Gray", ",", "Thin", ",", "Dashed"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"(*", 
+    RowBox[{"\:96f6\:7b49\:9ad8\:7ebf\:6295\:5f71", 
+     RowBox[{"\:ff08", 
+      RowBox[{
+       RowBox[{"\:7ea2", "=", 
+        RowBox[{"Re", "=", "0"}]}], ",", 
+       RowBox[{"\:84dd", "=", 
+        RowBox[{"Im", "=", "0"}]}]}], "\:ff09"}]}], "*)"}], 
+   RowBox[{"Plot3D", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"{", 
+      RowBox[{"s", ",", "sMin", ",", "sMax"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "tMin", ",", "tMax"}], "}"}], ",", 
+     RowBox[{"MeshFunctions", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Function", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"s", ",", "t", ",", "z"}], "}"}], ",", 
+          RowBox[{"Re", "[", 
+           RowBox[{"Zeta", "[", 
+            RowBox[{"s", "+", 
+             RowBox[{"I", " ", "t"}]}], "]"}], "]"}]}], "]"}], ",", 
+        RowBox[{"Function", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"s", ",", "t", ",", "z"}], "}"}], ",", 
+          RowBox[{"Im", "[", 
+           RowBox[{"Zeta", "[", 
+            RowBox[{"s", "+", 
+             RowBox[{"I", " ", "t"}]}], "]"}], "]"}]}], "]"}]}], "}"}]}], ",", 
+     RowBox[{"Mesh", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", "0", "}"}], ",", 
+        RowBox[{"{", "0", "}"}]}], "}"}]}], ",", 
+     RowBox[{"MeshStyle", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Directive", "[", 
+         RowBox[{"Red", ",", 
+          RowBox[{"Thickness", "[", "0.001", "]"}]}], "]"}], ",", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"Blue", ",", 
+          RowBox[{"Thickness", "[", "0.0005", "]"}]}], "]"}]}], "}"}]}], ",", 
+     
+     RowBox[{"PlotPoints", "->", "150"}], ",", 
+     RowBox[{"MaxRecursion", "->", "5"}], ",", 
+     RowBox[{"PlotStyle", "->", "None"}], ",", 
+     RowBox[{"BoundaryStyle", "->", "None"}]}], "]"}], ",", 
+   RowBox[{"(*", 
+    RowBox[{"\:53cc\:66f2\:9762", 
+     RowBox[{"\:ff08", 
+      RowBox[{"\:5b9e\:90e8\:7ea2", "\:ff0c", "\:865a\:90e8\:84dd"}], 
+      "\:ff09"}]}], "*)"}], 
+   RowBox[{"Plot3D", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Re", "[", 
+        RowBox[{"Zeta", "[", 
+         RowBox[{"s", "+", 
+          RowBox[{"I", " ", "t"}]}], "]"}], "]"}], ",", 
+       RowBox[{"Im", "[", 
+        RowBox[{"Zeta", "[", 
+         RowBox[{"s", "+", 
+          RowBox[{"I", " ", "t"}]}], "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"s", ",", "sMin", ",", "sMax"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "tMin", ",", "tMax"}], "}"}], ",", 
+     RowBox[{"PlotRange", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "2.5"}], ",", "2.5"}], "}"}]}], ",", 
+     RowBox[{"PlotPoints", "->", "120"}], ",", 
+     RowBox[{"Mesh", "->", "None"}], ",", 
+     RowBox[{"PlotStyle", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"Lighter", "[", 
+           RowBox[{"Red", ",", "0.5"}], "]"}], ",", 
+          RowBox[{"Opacity", "[", "0.25", "]"}], ",", 
+          RowBox[{"Specularity", "[", 
+           RowBox[{"White", ",", "50"}], "]"}]}], "]"}], ",", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"Lighter", "[", 
+           RowBox[{"Blue", ",", "0.5"}], "]"}], ",", 
+          RowBox[{"Opacity", "[", "0.25", "]"}], ",", 
+          RowBox[{"Specularity", "[", 
+           RowBox[{"White", ",", "50"}], "]"}]}], "]"}]}], "}"}]}]}], "]"}], 
+   ",", 
+   RowBox[{"(*", "\:6807\:6ce8\:5c42", "*)"}], 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{"(*", 
+      RowBox[{
+      "\:975e\:5e73\:51e1\:96f6\:70b9\:5c0f\:7403", "\:ff1a", 
+       "\:5168\:90e8\:5171\:8f6d\:5bf9"}], "*)"}], 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Black", ",", 
+        RowBox[{"Sphere", "[", 
+         RowBox[{"zeroPoints", ",", "0.08"}], "]"}]}], "}"}], ",", 
+      RowBox[{
+      "(*", "\:6b63\:865a\:90e8\:96f6\:70b9\:6587\:5b57\:6807\:7b7e", "*)"}], 
+      
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Text", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{
+            RowBox[{"labelsPos", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], ",", "10", ",", "Bold"}], "]"}], 
+          ",", 
+          RowBox[{"labelPointsPos", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{"-", "1"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "3"}], "}"}]}], "]"}], ",", 
+      RowBox[{
+      "(*", "\:8d1f\:865a\:90e8\:96f6\:70b9\:6587\:5b57\:6807\:7b7e", "*)"}], 
+      
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Text", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{
+            RowBox[{"labelsNeg", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], ",", "10", ",", "Bold"}], "]"}], 
+          ",", 
+          RowBox[{"labelPointsNeg", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "1"}], "}"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "3"}], "}"}]}], "]"}], ",", 
+      RowBox[{"(*", 
+       RowBox[{"\:5e73\:51e1\:96f6\:70b9", 
+        RowBox[{"\:ff08", "\:8d1f\:5076\:6570", "\:ff09"}]}], "*)"}], 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", 
+        RowBox[{"Sphere", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "2"}], ",", "0", ",", "0"}], "}"}], ",", "0.08"}], 
+         "]"}], ",", 
+        RowBox[{"Sphere", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "4"}], ",", "0", ",", "0"}], "}"}], ",", "0.08"}], 
+         "]"}], ",", 
+        RowBox[{"Sphere", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "6"}], ",", "0", ",", "0"}], "}"}], ",", "0.08"}], 
+         "]"}]}], "}"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<\:5e73\:51e1\:96f6\:70b9 -2, -4, -6,...\>\"", ",", "10"}], 
+         "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "3.5"}], ",", "1.5", ",", "0.3"}], "}"}]}], "]"}], ",", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"\:6781\:70b9", " ", "s"}], "=", "1"}], "*)"}], 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", 
+        RowBox[{"Sphere", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", "0.08"}], "]"}]}], 
+       "}"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<\:6781\:70b9 s=1\>\"", ",", "10"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1.2", ",", "0", ",", "0.6"}], "}"}]}], "]"}], ",", 
+      RowBox[{
+      "(*", "\:4e34\:754c\:7ebf\:4e0e\:4e34\:754c\:5e26\:6587\:5b57", "*)"}], 
+      
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<\:4e34\:754c\:7ebf Re(s)=0.5\>\"", ",", "12", ",", "Bold", ",", 
+          
+          RowBox[{"Darker", "[", "Green", "]"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.5", ",", "31.5", ",", "0.3"}], "}"}]}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<\:4e34\:754c\:5e26 0<Re(s)<1\>\"", ",", "12", ",", "Bold", ",", 
+          "Gray"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.5", ",", "8.5", ",", "0.3"}], "}"}]}], "]"}]}], "}"}], 
+    "]"}], ",", 
+   RowBox[{"(*", "\:4e34\:754c\:7ebf\:7eff\:8272\:76f4\:7ebf", "*)"}], 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Directive", "[", 
+       RowBox[{"Green", ",", 
+        RowBox[{"Thickness", "[", "0.0015", "]"}]}], "]"}], ",", 
+      RowBox[{"Line", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0.5", ",", "tMin", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0.5", ",", "tMax", ",", "0"}], "}"}]}], "}"}], "]"}]}], 
+     "}"}], "]"}], ",", 
+   RowBox[{"(*", 
+    RowBox[{
+    "\:5750\:6807\:8f74\:8bbe\:7f6e", "\:ff1a", 
+     "\:4e09\:8f74\:4ece\:539f\:70b9\:51fa\:53d1"}], "*)"}], 
+   RowBox[{"Boxed", "->", "False"}], ",", 
+   RowBox[{"Axes", "->", "True"}], ",", 
+   RowBox[{"AxesOrigin", "->", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ",", 
+   RowBox[{"AxesEdge", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", 
+        RowBox[{"-", "1"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", 
+        RowBox[{"-", "1"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", 
+        RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"AxesStyle", "->", 
+    RowBox[{"Directive", "[", 
+     RowBox[{"Black", ",", 
+      RowBox[{"Thickness", "[", "0.001", "]"}]}], "]"}]}], ",", 
+   RowBox[{"AxesLabel", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Re(s)\>\"", ",", "Italic", ",", "13", ",", "Bold"}], 
+       "]"}], ",", 
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Im(s)\>\"", ",", "Italic", ",", "13", ",", "Bold"}], 
+       "]"}], ",", 
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Value\>\"", ",", "Italic", ",", "13", ",", "Bold"}], 
+       "]"}]}], "}"}]}], ",", 
+   RowBox[{"Ticks", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"s", ",", "s"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"s", ",", 
+          RowBox[{"-", "6"}], ",", "6", ",", "2"}], "}"}]}], "]"}], ",", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"t", ",", "t"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", 
+          RowBox[{"-", "30"}], ",", "30", ",", "10"}], "}"}]}], "]"}], ",", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"z", ",", "z"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"z", ",", 
+          RowBox[{"-", "2.5"}], ",", "2.5", ",", "0.5"}], "}"}]}], "]"}]}], 
+     "}"}]}], ",", 
+   RowBox[{"TicksStyle", "->", 
+    RowBox[{"Directive", "[", 
+     RowBox[{"Black", ",", 
+      RowBox[{"FontSize", "->", "9"}]}], "]"}]}], ",", 
+   RowBox[{"BoxRatios", "->", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2", ",", "1"}], "}"}]}], ",", 
+   RowBox[{"ImageSize", "->", "Large"}], ",", 
+   RowBox[{"PlotRangePadding", "->", 
+    RowBox[{"{", 
+     RowBox[{"0.5", ",", "4", ",", "0.5"}], "}"}]}], ",", 
+   RowBox[{"PlotLabel", "->", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "\"\<Riemann Zeta \:51e0\:4f55\:5168\:666f\:5206\:6790 (\:5b9e\:90e8\
+\:7ea2\:9762 / \:865a\:90e8\:84dd\:9762) \[LongDash] \:542b\:5171\:8f6d\:96f6\
+\:70b9\:6807\:6ce8\>\"", ",", "14", ",", "Bold"}], "]"}]}]}], "]"}]}], "Input",\
+
+ CellLabel->
+  "In[526]:=",ExpressionUUID->"10491e64-0966-4e8c-94da-adae26fd3b0e"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.995070636781309*^9, 
+  3.9950706368164186`*^9}},ExpressionUUID->"c93fe893-edbd-44f1-980c-\
+9613df451220"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"\:9ece\:66fc", " ", "zeta", " ", "\:96f6\:8ff9\:7ebf"}], 
+    "\:ff1b", 
+    RowBox[{"Re", " ", "\:6b63\:65b9\:5411\:5411\:4e0b", 
+     RowBox[{"\:ff08", 
+      RowBox[{
+       RowBox[{"\:901a\:8fc7", " ", "u"}], " ", "=", " ", 
+       RowBox[{
+        RowBox[{"-", "Re"}], 
+        RowBox[{"(", "s", ")"}], " ", 
+        "\:5750\:6807\:53d8\:6362\:5b9e\:73b0"}]}], "\:ff09"}]}], "\:ff1b", 
+    RowBox[{"\:6c42\:503c\:672b\:663e\:793a", " ", "g"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"zeta", "[", "s_", "]"}], " ", ":=", " ", 
+     RowBox[{"Zeta", "[", "s", "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:5750\:6807\:7ea6\:5b9a", "\:ff1a", 
+     RowBox[{"\:6c34\:5e73\:8f74", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Im", 
+        RowBox[{"(", "s", ")"}]}], " ", "=", " ", "t"}]}], "\:ff1b", 
+     RowBox[{
+      RowBox[{"\:5782\:76f4\:8f74", " ", "u"}], " ", "=", " ", 
+      RowBox[{
+       RowBox[{"-", "Re"}], 
+       RowBox[{"(", "s", ")"}]}]}], "\:ff0c", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+       "\:4f7f", " ", "Re", " ", "\:6b63\:65b9\:5411\:5411\:4e0b", "\n", 
+        "   ", "Re", 
+        RowBox[{"(", "s", ")"}], " ", 
+        RowBox[{"\:8303\:56f4", " ", "[", 
+         RowBox[{
+          RowBox[{"-", "8"}], ",", " ", "4"}], "]"}]}], " ", "\[RightArrow]", 
+       " ", 
+       RowBox[{"u", " ", 
+        RowBox[{"\:8303\:56f4", " ", "[", 
+         RowBox[{
+          RowBox[{"-", "4"}], ",", " ", "8"}], "]"}], "\n", "   ", 
+        "\:56fe\:5e95\:90e8", " ", "u"}]}], "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "4"}], " ", "\:5bf9\:5e94", " ", "Re"}], "=", "4"}]}], 
+     "\:ff1b", 
+     RowBox[{
+      RowBox[{"\:56fe\:9876\:90e8", " ", "u"}], "=", 
+      RowBox[{
+       RowBox[{"8", " ", "\:5bf9\:5e94", " ", "Re"}], "=", 
+       RowBox[{"-", "8"}]}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"imMin", " ", "=", " ", 
+     RowBox[{"-", "32"}]}], ";", " ", 
+    RowBox[{"imMax", " ", "=", " ", "32"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"reZero", " ", "=", " ", 
+     RowBox[{"ContourPlot", "[", "\n", "  ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Re", "[", 
+         RowBox[{"zeta", "[", 
+          RowBox[{
+           RowBox[{"-", "u"}], " ", "+", " ", 
+           RowBox[{"I", " ", "t"}]}], "]"}], "]"}], " ", "==", " ", "0"}], 
+       ",", "\n", "  ", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", " ", "imMin", ",", " ", "imMax"}], "}"}], ",", " ", 
+       
+       RowBox[{"{", 
+        RowBox[{"u", ",", " ", 
+         RowBox[{"-", "4"}], ",", " ", "8"}], "}"}], ",", "\n", "  ", 
+       RowBox[{"ContourStyle", " ", "->", " ", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"RGBColor", "[", 
+           RowBox[{"0.8", ",", " ", "0.02", ",", " ", "0.02"}], "]"}], ",", 
+          " ", 
+          RowBox[{"Thickness", "[", "0.0012", "]"}]}], "]"}]}], ",", "\n", 
+       "  ", 
+       RowBox[{"Exclusions", " ", "->", " ", "None"}], ",", " ", 
+       RowBox[{"PlotPoints", " ", "->", " ", "250"}], ",", " ", 
+       RowBox[{"MaxRecursion", " ", "->", " ", "7"}], ",", "\n", "  ", 
+       RowBox[{"Background", " ", "->", " ", "None"}], ",", " ", 
+       RowBox[{"Frame", " ", "->", " ", "False"}], ",", " ", 
+       RowBox[{"Axes", " ", "->", " ", "False"}]}], "]"}]}], ";"}], "\n", 
+   "\n", 
+   RowBox[{
+    RowBox[{"imZero", " ", "=", " ", 
+     RowBox[{"ContourPlot", "[", "\n", "  ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Im", "[", 
+         RowBox[{"zeta", "[", 
+          RowBox[{
+           RowBox[{"-", "u"}], " ", "+", " ", 
+           RowBox[{"I", " ", "t"}]}], "]"}], "]"}], " ", "==", " ", "0"}], 
+       ",", "\n", "  ", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", " ", "imMin", ",", " ", "imMax"}], "}"}], ",", " ", 
+       
+       RowBox[{"{", 
+        RowBox[{"u", ",", " ", 
+         RowBox[{"-", "4"}], ",", " ", "8"}], "}"}], ",", "\n", "  ", 
+       RowBox[{"ContourStyle", " ", "->", " ", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"RGBColor", "[", 
+           RowBox[{"0.02", ",", " ", "0.10", ",", " ", "0.8"}], "]"}], ",", 
+          " ", 
+          RowBox[{"Thickness", "[", "0.0012", "]"}]}], "]"}]}], ",", "\n", 
+       "  ", 
+       RowBox[{"Exclusions", " ", "->", " ", "None"}], ",", " ", 
+       RowBox[{"PlotPoints", " ", "->", " ", "250"}], ",", " ", 
+       RowBox[{"MaxRecursion", " ", "->", " ", "7"}], ",", "\n", "  ", 
+       RowBox[{"Background", " ", "->", " ", "None"}], ",", " ", 
+       RowBox[{"Frame", " ", "->", " ", "False"}], ",", " ", 
+       RowBox[{"Axes", " ", "->", " ", "False"}]}], "]"}]}], ";"}], "\n", 
+   "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"\:4e34\:754c\:7ebf", " ", "Re", 
+      RowBox[{"(", "s", ")"}]}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"1", "/", "2"}], " ", "\[RightArrow]", " ", "u"}], " ", "=", 
+      " ", 
+      RowBox[{"-", "0.5"}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"critLine", " ", "=", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Darker", "[", "Green", "]"}], ",", " ", 
+        RowBox[{"Thickness", "[", "0.0005", "]"}], ",", "\n", "  ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"imMin", ",", " ", 
+             RowBox[{"-", "0.5"}]}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"imMax", ",", " ", 
+             RowBox[{"-", "0.5"}]}], "}"}]}], "}"}], "]"}]}], "}"}], "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"zeroT", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{
+      "14.135", ",", " ", "21.022", ",", " ", "25.011", ",", " ", "30.425", 
+       ",", " ", "32.935"}], "}"}]}], ";"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"\:975e\:5e73\:51e1\:96f6\:70b9", " ", "Re"}], "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"1", "/", "2"}], " ", "\[RightArrow]", " ", "u"}], " ", "=", 
+      " ", 
+      RowBox[{"-", "0.5"}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"zeroMarkers", " ", "=", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"RGBColor", "[", 
+         RowBox[{"1.0", ",", " ", "0.75", ",", " ", "0"}], "]"}], ",", " ", 
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"{", 
+          RowBox[{"Black", ",", " ", "Thin"}], "}"}], "]"}], ",", "\n", "  ", 
+        
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Disk", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"t", ",", " ", 
+              RowBox[{"-", "0.5"}]}], "}"}], ",", " ", "0.18"}], "]"}], ",", 
+          " ", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", " ", 
+            RowBox[{"Join", "[", 
+             RowBox[{"zeroT", ",", " ", 
+              RowBox[{"-", "zeroT"}]}], "]"}]}], "}"}]}], "]"}]}], "}"}], 
+      "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:6807\:7b7e\:5728\:6807\:8bb0\:4e0b\:65b9", 
+     RowBox[{"\:ff08", 
+      RowBox[{
+       RowBox[{"u", " ", "\:66f4\:5c0f"}], " ", "=", " ", 
+       RowBox[{"\:5c4f\:5e55\:66f4\:4f4e", " ", "=", " ", 
+        RowBox[{"Re", " ", "\:66f4\:5927"}]}]}], "\:ff09"}]}], " ", "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"zeroLabels", " ", "=", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", "\n", "  ", 
+         RowBox[{
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"Subscript", "[", 
+               RowBox[{"\"\<\[Rho]\>\"", ",", " ", "i"}], "]"}], ",", " ", 
+              "12", ",", " ", "Bold", ",", " ", 
+              RowBox[{"RGBColor", "[", 
+               RowBox[{"0.6", ",", " ", "0.4", ",", " ", "0"}], "]"}]}], 
+             "]"}], ",", "\n", "    ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"zeroT", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+              RowBox[{
+               RowBox[{"-", "0.5"}], " ", "-", " ", "1.0"}]}], "}"}]}], "]"}],
+           ",", "\n", "  ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"OverBar", "[", 
+               RowBox[{"Subscript", "[", 
+                RowBox[{"\"\<\[Rho]\>\"", ",", " ", "i"}], "]"}], "]"}], ",", 
+              " ", "12", ",", " ", "Bold", ",", " ", 
+              RowBox[{"RGBColor", "[", 
+               RowBox[{"0.6", ",", " ", "0.4", ",", " ", "0"}], "]"}]}], 
+             "]"}], ",", "\n", "    ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"zeroT", "[", 
+                RowBox[{"[", "i", "]"}], "]"}]}], ",", " ", 
+              RowBox[{
+               RowBox[{"-", "0.5"}], " ", "-", " ", "1.0"}]}], "}"}]}], 
+           "]"}]}], "\n", "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", " ", 
+          RowBox[{"Length", "[", "zeroT", "]"}]}], "}"}]}], "]"}], "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"trivialZeros", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "2"}], ",", " ", 
+       RowBox[{"-", "4"}], ",", " ", 
+       RowBox[{"-", "6"}], ",", " ", 
+       RowBox[{"-", "8"}]}], "}"}]}], ";"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"\:5e73\:51e1\:96f6\:70b9", " ", "Re"}], "=", 
+     RowBox[{
+      RowBox[{"r", " ", "\[RightArrow]", " ", "u"}], " ", "=", " ", 
+      RowBox[{"-", "r"}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"trivialMarkers", " ", "=", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"RGBColor", "[", 
+         RowBox[{"0.55", ",", " ", "0.0", ",", " ", "0.75"}], "]"}], ",", " ", 
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"{", 
+          RowBox[{"Black", ",", " ", "Thin"}], "}"}], "]"}], ",", "\n", "  ", 
+        
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Disk", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", 
+              RowBox[{"-", "r"}]}], "}"}], ",", " ", "0.18"}], "]"}], ",", 
+          " ", 
+          RowBox[{"{", 
+           RowBox[{"r", ",", " ", "trivialZeros"}], "}"}]}], "]"}]}], "}"}], 
+      "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"trivialLabels", " ", "=", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"Table", "[", "\n", "  ", 
+       RowBox[{
+        RowBox[{"Text", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{
+            RowBox[{"\"\<s=\>\"", " ", "<>", " ", 
+             RowBox[{"ToString", "[", "r", "]"}]}], ",", " ", "9", ",", " ", 
+            "Bold", ",", " ", 
+            RowBox[{"RGBColor", "[", 
+             RowBox[{"0.55", ",", " ", "0.0", ",", " ", "0.75"}], "]"}]}], 
+           "]"}], ",", "\n", "    ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "3.5"}], ",", " ", 
+            RowBox[{
+             RowBox[{"-", "r"}], " ", "-", " ", "0.55"}]}], "}"}]}], "]"}], 
+        ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", " ", "trivialZeros"}], "}"}]}], "]"}], "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+    "lblCrit", " ", "=", " ", "\"\<  \:4e34\:754c\:7ebf Re(s)=1/2  \>\""}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+    "lblNontriv", " ", "=", " ", "\"\<  \:975e\:5e73\:51e1\:96f6\:70b9\>\""}],
+     ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+    "lblTriv", " ", "=", " ", 
+     "\"\<  \:5e73\:51e1\:96f6\:70b9 s=-2,-4,-6,-8\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+    "titleStr", " ", "=", " ", 
+     "\"\<\:9ece\:66fc \[Zeta](s) \:96f6\:8ff9\:7ebf | \:7ea2=Re \[Zeta]=0, \
+\:84dd=Im \[Zeta]=0 (\:542b\:4e34\:754c\:7ebf\:3001\:5e73\:51e1\:96f6\:70b9\
+\:ff1b Re \:6b63\:65b9\:5411\:5411\:4e0b)\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+    "frameRe", " ", "=", " ", 
+     "\"\<Re(s)  (\:6b63\:65b9\:5411\:5411\:4e0b)\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+    "conjNote", " ", "=", " ", 
+     "\"\<    (\[Rho]\:0305_k = 1/2 - i t_k \:4e3a\:5bf9\:5e94\:5171\:8f6d\
+\:96f6\:70b9)\>\""}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"legend", " ", "=", " ", 
+     RowBox[{"Framed", "[", 
+      RowBox[{
+       RowBox[{"Row", "[", 
+        RowBox[{"{", "\n", "  ", 
+         RowBox[{
+          RowBox[{"Graphics", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"RGBColor", "[", 
+               RowBox[{"0.8", ",", " ", "0.02", ",", " ", "0.02"}], "]"}], 
+              ",", " ", 
+              RowBox[{"Thickness", "[", "0.12", "]"}], ",", " ", 
+              RowBox[{"Line", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", " ", ".5"}], "}"}], ",", " ", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", " ", ".5"}], "}"}]}], "}"}], "]"}]}], 
+             "}"}], ",", " ", 
+            RowBox[{"ImageSize", " ", "->", " ", 
+             RowBox[{"{", 
+              RowBox[{"30", ",", " ", "10"}], "}"}]}]}], "]"}], ",", "\n", 
+          "  ", 
+          RowBox[{"Style", "[", 
+           RowBox[{
+           "\"\<  Re \[Zeta]=0  \>\"", ",", " ", "11", ",", " ", "Bold", ",", 
+            " ", 
+            RowBox[{"RGBColor", "[", 
+             RowBox[{"0.8", ",", " ", "0.02", ",", " ", "0.02"}], "]"}]}], 
+           "]"}], ",", " ", 
+          RowBox[{"Spacer", "[", "6", "]"}], ",", "\n", "  ", 
+          RowBox[{"Graphics", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"RGBColor", "[", 
+               RowBox[{"0.02", ",", " ", "0.1", ",", " ", "0.8"}], "]"}], ",",
+               " ", 
+              RowBox[{"Thickness", "[", "0.12", "]"}], ",", " ", 
+              RowBox[{"Line", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", " ", ".5"}], "}"}], ",", " ", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", " ", ".5"}], "}"}]}], "}"}], "]"}]}], 
+             "}"}], ",", " ", 
+            RowBox[{"ImageSize", " ", "->", " ", 
+             RowBox[{"{", 
+              RowBox[{"30", ",", " ", "10"}], "}"}]}]}], "]"}], ",", "\n", 
+          "  ", 
+          RowBox[{"Style", "[", 
+           RowBox[{
+           "\"\<  Im \[Zeta]=0  \>\"", ",", " ", "11", ",", " ", "Bold", ",", 
+            " ", 
+            RowBox[{"RGBColor", "[", 
+             RowBox[{"0.02", ",", " ", "0.1", ",", " ", "0.8"}], "]"}]}], 
+           "]"}], ",", " ", 
+          RowBox[{"Spacer", "[", "6", "]"}], ",", "\n", "  ", 
+          RowBox[{"Graphics", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Darker", "[", "Green", "]"}], ",", " ", 
+              RowBox[{"Dashing", "[", 
+               RowBox[{"{", 
+                RowBox[{"0.15", ",", " ", "0.08"}], "}"}], "]"}], ",", " ", 
+              RowBox[{"Thickness", "[", "0.1", "]"}], ",", " ", 
+              RowBox[{"Line", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", " ", ".5"}], "}"}], ",", " ", 
+                 RowBox[{"{", 
+                  RowBox[{"1", ",", " ", ".5"}], "}"}]}], "}"}], "]"}]}], 
+             "}"}], ",", " ", 
+            RowBox[{"ImageSize", " ", "->", " ", 
+             RowBox[{"{", 
+              RowBox[{"30", ",", " ", "10"}], "}"}]}]}], "]"}], ",", "\n", 
+          "  ", 
+          RowBox[{"Style", "[", 
+           RowBox[{"lblCrit", ",", " ", "11", ",", " ", "Bold", ",", " ", 
+            RowBox[{"Darker", "[", "Green", "]"}]}], "]"}], ",", " ", 
+          RowBox[{"Spacer", "[", "6", "]"}], ",", "\n", "  ", 
+          RowBox[{"Graphics", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"RGBColor", "[", 
+               RowBox[{"1", ",", " ", ".75", ",", " ", "0"}], "]"}], ",", " ", 
+              RowBox[{"EdgeForm", "[", 
+               RowBox[{"{", 
+                RowBox[{"Black", ",", " ", "Thin"}], "}"}], "]"}], ",", " ", 
+              RowBox[{"Disk", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{".5", ",", " ", ".5"}], "}"}], ",", " ", ".35"}], 
+               "]"}]}], "}"}], ",", " ", 
+            RowBox[{"ImageSize", " ", "->", " ", 
+             RowBox[{"{", 
+              RowBox[{"12", ",", " ", "12"}], "}"}]}]}], "]"}], ",", "\n", 
+          "  ", 
+          RowBox[{"Style", "[", 
+           RowBox[{"lblNontriv", ",", " ", "11", ",", " ", "Bold", ",", " ", 
+            RowBox[{"RGBColor", "[", 
+             RowBox[{"0.6", ",", " ", "0.4", ",", " ", "0"}], "]"}]}], "]"}], 
+          ",", " ", 
+          RowBox[{"Spacer", "[", "6", "]"}], ",", "\n", "  ", 
+          RowBox[{"Graphics", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"RGBColor", "[", 
+               RowBox[{"0.55", ",", " ", "0.", ",", " ", "0.75"}], "]"}], ",",
+               " ", 
+              RowBox[{"EdgeForm", "[", 
+               RowBox[{"{", 
+                RowBox[{"Black", ",", " ", "Thin"}], "}"}], "]"}], ",", " ", 
+              RowBox[{"Disk", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{".5", ",", " ", ".5"}], "}"}], ",", " ", ".35"}], 
+               "]"}]}], "}"}], ",", " ", 
+            RowBox[{"ImageSize", " ", "->", " ", 
+             RowBox[{"{", 
+              RowBox[{"12", ",", " ", "12"}], "}"}]}]}], "]"}], ",", "\n", 
+          "  ", 
+          RowBox[{"Style", "[", 
+           RowBox[{"lblTriv", ",", " ", "11", ",", " ", "Bold", ",", " ", 
+            RowBox[{"RGBColor", "[", 
+             RowBox[{"0.55", ",", " ", "0.", ",", " ", "0.75"}], "]"}]}], 
+           "]"}]}], "\n", "}"}], "]"}], ",", " ", 
+       RowBox[{"FrameStyle", " ", "->", " ", "LightGray"}], ",", " ", 
+       RowBox[{"RoundingRadius", " ", "->", " ", "4"}], ",", " ", 
+       RowBox[{"Background", " ", "->", " ", "White"}]}], "]"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{"zeroTable", " ", "=", " ", 
+     RowBox[{"Framed", "[", 
+      RowBox[{
+       RowBox[{"Row", "[", 
+        RowBox[{"{", "\n", "  ", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{
+           "\"\<\[Rho]_k = 1/2 + i t_k ,  k=1..5 :   t_k =\>\"", ",", " ", 
+            "10", ",", " ", "Bold", ",", " ", 
+            RowBox[{"RGBColor", "[", 
+             RowBox[{"0.6", ",", " ", "0.4", ",", " ", "0"}], "]"}]}], "]"}], 
+          ",", "\n", "  ", 
+          RowBox[{"Style", "[", 
+           RowBox[{
+            RowBox[{"\"\<  \>\"", " ", "<>", " ", 
+             RowBox[{"StringRiffle", "[", 
+              RowBox[{
+               RowBox[{"ToString", " ", "/@", " ", "zeroT"}], ",", " ", 
+               "\"\<, \>\""}], "]"}]}], ",", " ", "10", ",", " ", 
+            RowBox[{"RGBColor", "[", 
+             RowBox[{"0.6", ",", " ", "0.4", ",", " ", "0"}], "]"}]}], "]"}], 
+          ",", "\n", "  ", 
+          RowBox[{"Style", "[", 
+           RowBox[{"conjNote", ",", " ", "10", ",", " ", "Bold", ",", " ", 
+            RowBox[{"RGBColor", "[", 
+             RowBox[{"0.6", ",", " ", "0.4", ",", " ", "0"}], "]"}]}], 
+           "]"}]}], "\n", "}"}], "]"}], ",", " ", 
+       RowBox[{"FrameStyle", " ", "->", " ", "LightGray"}], ",", " ", 
+       RowBox[{"RoundingRadius", " ", "->", " ", "4"}], ",", " ", 
+       RowBox[{"Background", " ", "->", " ", "White"}]}], "]"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{"g", " ", "=", " ", 
+     RowBox[{"Show", "[", "\n", "  ", 
+      RowBox[{
+      "reZero", ",", " ", "imZero", ",", " ", "critLine", ",", " ", 
+       "zeroMarkers", ",", " ", "zeroLabels", ",", " ", "trivialMarkers", ",",
+        " ", "trivialLabels", ",", "\n", "  ", 
+       RowBox[{"Frame", " ", "->", " ", "True"}], ",", "\n", "  ", 
+       RowBox[{"FrameLabel", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{"\"\<Im(s)\>\"", ",", " ", "13", ",", " ", "Bold"}], "]"}],
+           ",", " ", 
+          RowBox[{"Style", "[", 
+           RowBox[{"frameRe", ",", " ", "13", ",", " ", "Bold"}], "]"}]}], 
+         "}"}]}], ",", "\n", "  ", 
+       RowBox[{"FrameTicks", " ", "->", " ", 
+        RowBox[{"{", "\n", "    ", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"t", ",", " ", 
+              RowBox[{"ToString", "[", "t", "]"}]}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", " ", 
+              RowBox[{"Range", "[", 
+               RowBox[{
+                RowBox[{"-", "30"}], ",", " ", "30", ",", " ", "10"}], 
+               "]"}]}], "}"}]}], "]"}], ",", "\n", "    ", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "r"}], ",", " ", 
+              RowBox[{"ToString", "[", "r", "]"}]}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"r", ",", " ", 
+              RowBox[{"Range", "[", 
+               RowBox[{"4", ",", " ", 
+                RowBox[{"-", "8"}], ",", " ", 
+                RowBox[{"-", "1"}]}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "    ", "Automatic", ",", " ", "Automatic"}], "}"}]}], ",", "\n", 
+       "  ", 
+       RowBox[{"GridLines", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Range", "[", 
+           RowBox[{
+            RowBox[{"-", "32"}], ",", " ", "32", ",", " ", "10"}], "]"}], ",",
+           " ", 
+          RowBox[{"Range", "[", 
+           RowBox[{
+            RowBox[{"-", "4"}], ",", " ", "8", ",", " ", "1"}], "]"}]}], 
+         "}"}]}], ",", "\n", "  ", 
+       RowBox[{"GridLinesStyle", " ", "->", " ", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"LightGray", ",", " ", 
+          RowBox[{"Dashing", "[", 
+           RowBox[{"{", 
+            RowBox[{"0.005", ",", " ", "0.005"}], "}"}], "]"}]}], "]"}]}], 
+       ",", "\n", "  ", 
+       RowBox[{"PlotRange", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"imMin", ",", " ", "imMax"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "4"}], ",", " ", "8.5"}], "}"}]}], "}"}]}], ",", 
+       "\n", "  ", 
+       RowBox[{"PlotLabel", " ", "->", " ", 
+        RowBox[{"Style", "[", 
+         RowBox[{"titleStr", ",", " ", "13", ",", " ", "Bold"}], "]"}]}], ",",
+        "\n", "  ", 
+       RowBox[{"Epilog", " ", "->", " ", 
+        RowBox[{"{", "\n", "    ", 
+         RowBox[{
+          RowBox[{"Inset", "[", 
+           RowBox[{"legend", ",", " ", 
+            RowBox[{"Scaled", "[", 
+             RowBox[{"{", 
+              RowBox[{"0.5", ",", " ", "0.06"}], "}"}], "]"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"Center", ",", " ", "Bottom"}], "}"}]}], "]"}], ",", 
+          "\n", "    ", 
+          RowBox[{"Inset", "[", 
+           RowBox[{"zeroTable", ",", " ", 
+            RowBox[{"Scaled", "[", 
+             RowBox[{"{", 
+              RowBox[{"0.5", ",", " ", "0.005"}], "}"}], "]"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"Center", ",", " ", "Bottom"}], "}"}]}], "]"}]}], 
+         "}"}]}], ",", "\n", "  ", 
+       RowBox[{"ImageSize", " ", "->", " ", "1100"}], ",", " ", 
+       RowBox[{"AspectRatio", " ", "->", " ", "0.40"}], ",", " ", 
+       RowBox[{"Background", " ", "->", " ", "None"}]}], "]"}]}], ";"}], "\n",
+    "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:5bfc\:51fa", " ", 
+     RowBox[{"PDF", "/", "PNG"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{"\"\</tmp/zeta_zero_traces_re_down.pdf\>\"", ",", " ", "g"}], 
+     "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Export", "[", 
+     RowBox[{
+     "\"\</tmp/zeta_zero_traces_re_down.png\>\"", ",", " ", "g", ",", " ", 
+      RowBox[{"ImageSize", " ", "->", " ", "1100"}]}], "]"}], ";"}], "\n", 
+   "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+     "\:5728", " ", "Notebook", " ", 
+      "\:4e2d\:6c42\:503c\:65f6\:663e\:793a\:56fe\:5f62"}], "\:ff1a", 
+     "\:672b\:884c\:4e0d\:52a0\:5206\:53f7"}], " ", "*)"}], "\n", 
+   "g"}]}]], "Input",
+ CellLabel->
+  "In[536]:=",ExpressionUUID->"47683d27-0a8b-445d-a1c7-e1422dece548"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.995072524903718*^9, 
+  3.995072524914021*^9}},ExpressionUUID->"6472e7a6-f6a3-4621-9535-\
+6aa4bfa73264"]
+},
+WindowSize->{1239, 866},
+WindowMargins->{{Automatic, 224}, {Automatic, 34}},
+FrontEndVersion->"13.0 for Mac OS X ARM (64-bit) \
+(2021\:5e7412\:67082\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"8e0c76d0-ec30-4e40-8c27-ae57e00bd080"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 14891, 423, 1189, "Input",ExpressionUUID->"10491e64-0966-4e8c-94da-adae26fd3b0e"],
+Cell[15452, 445, 154, 3, 30, "Input",ExpressionUUID->"c93fe893-edbd-44f1-980c-9613df451220"],
+Cell[15609, 450, 24555, 625, 2919, "Input",ExpressionUUID->"47683d27-0a8b-445d-a1c7-e1422dece548"],
+Cell[40167, 1077, 152, 3, 30, InheritFromParent,ExpressionUUID->"6472e7a6-f6a3-4621-9535-6aa4bfa73264"]
+}
+]
+*)
+
