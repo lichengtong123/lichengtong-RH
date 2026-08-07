@@ -1,0 +1,2197 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     84199,       2189]
+NotebookOptionsPosition[     83265,       2165]
+NotebookOutlinePosition[     83673,       2182]
+CellTagsIndexPosition[     83630,       2179]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+       "===", "===", "===", "===", "===", "===", "===", "===", "==="}], "\n", 
+     "   ", "|", 
+     RowBox[{"\[CapitalGamma]", 
+      RowBox[{"(", "s", ")"}]}], "|", " ", 
+     RowBox[{
+     "\:6a21\:66f2\:9762", "\n", "   ", "\:9012\:63a8\:5206\:5e26"}]}], 
+    "\:ff1a", 
+    RowBox[{"\:79ef\:5206\:5b9a\:4e49\:57df", " ", "+", " ", 
+     RowBox[{"\:56db\:5c42\:5411\:5de6\:5ef6\:62d3", 
+      RowBox[{"\:ff08", "\:5171\:4e94\:5c42\:7740\:8272", "\:ff09"}], "\n", 
+      "   ", "\:4e09\:8f74\:4ea4\:4e8e\:539f\:70b9"}]}], "\:ff0c", 
+    RowBox[{
+    "\:65e0\:6846\:5f0f\:6807\:6ce8", "\n", "   ", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "==="}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"--", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"\:516c\:5171\:53c2\:6570", " ", "--"}], "--"}], "--"}], 
+        "--"}]}]}]}]}], " ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Re", " ", "\:4e0b\:9650\:6269\:81f3"}], " ", "-", "4"}], 
+    "\:ff0c", "\:4ee5\:5bb9\:7eb3\:7b2c\:4e09", "\:3001", 
+    "\:56db\:5c42\:5ef6\:62d3\:5e26"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"reMin", " ", "=", " ", 
+     RowBox[{"-", "4"}]}], ";", " ", 
+    RowBox[{"reMax", " ", "=", " ", "4"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"imMin", " ", "=", " ", 
+     RowBox[{"-", "4"}]}], ";", " ", 
+    RowBox[{"imMax", " ", "=", " ", "4"}], ";"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"\:6a21", " ", "|", "\[CapitalGamma]", "|", " ", 
+      RowBox[{">=", " ", "0"}]}], "\:ff1a", 
+     RowBox[{"\:7ad6\:76f4\:8f74\:4ece", " ", "0", " ", "\:8d77"}], "\:ff0c", 
+     "\:4e0a\:7aef\:88c1\:526a\:5c16\:5cf0"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"zMin", " ", "=", " ", "0"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"zMax", " ", "=", " ", "6"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"reRange", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", " ", "reMin", ",", " ", "reMax"}], "}"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"imRange", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", " ", "imMin", ",", " ", "imMax"}], "}"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{"poleColor", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.55", ",", " ", "0.10", ",", " ", "0.05"}], "]"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"labelColor", " ", "=", " ", 
+     RowBox[{"GrayLevel", "[", "0.20", "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\:6781\:70b9", " ", "s"}], "=", "0"}], ",", 
+     RowBox[{"-", "1"}], ",", "...", ",", 
+     RowBox[{
+      RowBox[{"-", "5"}], " ", 
+      "\:8986\:76d6\:56db\:5c42\:5ef6\:62d3\:8fb9\:754c"}]}], " ", "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"poleMaxN", " ", "=", " ", "5"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"polePositions", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "n"}], ",", " ", "0"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", " ", "0", ",", " ", "poleMaxN"}], "}"}]}], "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"\:7070\:8272\:590d\:5e73\:9762\:7f51\:683c", " ", "--"}], 
+           "--"}], "--"}], "--"}]}]}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"grayPlane", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", "\n", "   ", 
+       RowBox[{
+        RowBox[{"Opacity", "[", "0.08", "]"}], ",", " ", 
+        RowBox[{"GrayLevel", "[", "0.5", "]"}], ",", "\n", "   ", 
+        RowBox[{"Polygon", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"reMin", ",", " ", "imMin", ",", " ", "0"}], "}"}], ",", 
+           " ", 
+           RowBox[{"{", 
+            RowBox[{"reMax", ",", " ", "imMin", ",", " ", "0"}], "}"}], ",", 
+           " ", 
+           RowBox[{"{", 
+            RowBox[{"reMax", ",", " ", "imMax", ",", " ", "0"}], "}"}], ",", 
+           " ", 
+           RowBox[{"{", 
+            RowBox[{"reMin", ",", " ", "imMax", ",", " ", "0"}], "}"}]}], 
+          "}"}], "]"}], ",", "\n", "   ", 
+        RowBox[{"Opacity", "[", "0.12", "]"}], ",", " ", 
+        RowBox[{"GrayLevel", "[", "0.4", "]"}], ",", " ", 
+        RowBox[{"Thickness", "[", "0.0005", "]"}], ",", "\n", "   ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"x", ",", " ", "imMin", ",", " ", "0"}], "}"}], ",", 
+             " ", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", " ", "imMax", ",", " ", "0"}], "}"}]}], "}"}],
+            ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+            "x", ",", " ", "reMin", ",", " ", "reMax", ",", " ", "0.5"}], 
+            "}"}]}], "]"}], "]"}], ",", "\n", "   ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"reMin", ",", " ", "y", ",", " ", "0"}], "}"}], ",", 
+             " ", 
+             RowBox[{"{", 
+              RowBox[{"reMax", ",", " ", "y", ",", " ", "0"}], "}"}]}], "}"}],
+            ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+            "y", ",", " ", "imMin", ",", " ", "imMax", ",", " ", "0.5"}], 
+            "}"}]}], "]"}], "]"}]}], "\n", "   ", "}"}], "]"}]}], ";"}], "\n",
+    "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "\:4e09\:6761\:8f74\:7ebf"}]}]}]}], "\:ff1a", 
+     RowBox[{"\:5747\:8fc7\:539f\:70b9", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"0", ",", "0", ",", "0"}], ")"}], " ", "--"}], "--"}], 
+        "--"}], "--"}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"axisThick", " ", "=", " ", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"Thickness", "[", "0.0008", "]"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"tickW", " ", "=", " ", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"Thickness", "[", "0.0005", "]"}]}], "]"}]}], ";"}], "\n", 
+   "\n", 
+   RowBox[{
+    RowBox[{"reAxisLine", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"axisThick", ",", " ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"reMin", " ", "-", " ", "0.1"}], ",", " ", "0", ",", " ",
+              "0"}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"reMax", " ", "+", " ", "0.3"}], ",", " ", "0", ",", " ",
+              "0"}], "}"}]}], "}"}], "]"}]}], "}"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"imAxisLine", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"axisThick", ",", " ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", " ", 
+             RowBox[{"imMin", " ", "-", " ", "0.2"}], ",", " ", "0"}], "}"}], 
+           ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", " ", 
+             RowBox[{"imMax", " ", "+", " ", "0.3"}], ",", " ", "0"}], 
+            "}"}]}], "}"}], "]"}]}], "}"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"zAxisLine", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"axisThick", ",", " ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", " ", "0", ",", " ", 
+             RowBox[{"zMin", " ", "-", " ", "0.05"}]}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", " ", "0", ",", " ", 
+             RowBox[{"zMax", " ", "+", " ", "0.3"}]}], "}"}]}], "}"}], 
+         "]"}]}], "}"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "Re"}]}]}]}], 
+     RowBox[{"(", "s", ")"}], " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"\:8f74\:523b\:5ea6", " ", "--"}], "--"}], "--"}], "--"}]}], 
+    " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"sTickObjs", " ", "=", " ", 
+     RowBox[{"Table", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{"tickW", ",", " ", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"xv", ",", " ", "0", ",", " ", "0"}], "}"}], ",", " ", 
+               RowBox[{"{", 
+                RowBox[{"xv", ",", " ", "0", ",", " ", 
+                 RowBox[{"-", "0.25"}]}], "}"}]}], "}"}], "]"}]}], "}"}], 
+          "]"}], ",", "\n", "    ", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"xv", ",", " ", "12", ",", " ", "Black"}], "]"}], ",", 
+            " ", 
+            RowBox[{"{", 
+             RowBox[{"xv", ",", " ", "0", ",", " ", 
+              RowBox[{"-", "0.55"}]}], "}"}]}], "]"}], "]"}]}], "}"}], ",", 
+       "\n", "   ", 
+       RowBox[{"{", 
+        RowBox[{"xv", ",", " ", 
+         RowBox[{"DeleteCases", "[", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{"reMin", ",", " ", "reMax", ",", " ", "1"}], "]"}], ",", 
+           " ", "0"}], "]"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"s0Tick", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"tickW", ",", " ", 
+         RowBox[{"Line", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", "0", ",", " ", 
+              RowBox[{"-", "0.25"}]}], "}"}]}], "}"}], "]"}]}], "}"}], "]"}], 
+      "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"reAxisLabel", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<Re(s)\>\"", ",", " ", "14", ",", " ", "Black", ",", " ", 
+          "Bold"}], "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"reMax", " ", "+", " ", "0.45"}], ",", " ", "0", ",", " ", 
+          "0"}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "Im"}]}]}]}], 
+     RowBox[{"(", "s", ")"}], " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"\:8f74\:523b\:5ea6", " ", "--"}], "--"}], "--"}], "--"}]}], 
+    " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"tTickObjs", " ", "=", " ", 
+     RowBox[{"Table", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{"tickW", ",", " ", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", " ", "yv", ",", " ", "0"}], "}"}], ",", " ", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "0.12"}], ",", " ", "yv", ",", " ", "0"}], 
+                "}"}]}], "}"}], "]"}]}], "}"}], "]"}], ",", "\n", "    ", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"yv", ",", " ", "12", ",", " ", "Black"}], "]"}], ",", 
+            " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.30"}], ",", " ", "yv", ",", " ", "0"}], "}"}]}],
+            "]"}], "]"}]}], "}"}], ",", "\n", "   ", 
+       RowBox[{"{", 
+        RowBox[{"yv", ",", " ", 
+         RowBox[{"DeleteCases", "[", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{"imMin", ",", " ", "imMax", ",", " ", "1"}], "]"}], ",", 
+           " ", "0"}], "]"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"t0Tick", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"tickW", ",", " ", 
+         RowBox[{"Line", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.12"}], ",", " ", "0", ",", " ", "0"}], "}"}]}], 
+           "}"}], "]"}]}], "}"}], "]"}], "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"imAxisLabel", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<Im(s)\>\"", ",", " ", "14", ",", " ", "Black", ",", " ", 
+          "Bold"}], "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", 
+          RowBox[{"imMax", " ", "+", " ", "0.5"}], ",", " ", "0"}], "}"}]}], 
+       "]"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "z"}]}]}]}], " ", "\:8f74\:523b\:5ea6", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"\:ff08", "\:6a21\:503c", "\:ff09"}], " ", "--"}], "--"}], 
+       "--"}], "--"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"zTickObjs", " ", "=", " ", 
+     RowBox[{"Table", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{"tickW", ",", " ", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", " ", "0", ",", " ", "zv"}], "}"}], ",", " ", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "0.12"}], ",", " ", "0", ",", " ", "zv"}], 
+                "}"}]}], "}"}], "]"}]}], "}"}], "]"}], ",", "\n", "    ", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"zv", ",", " ", "12", ",", " ", "Black"}], "]"}], ",", 
+            " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.32"}], ",", " ", "0", ",", " ", "zv"}], "}"}]}],
+            "]"}], "]"}]}], "}"}], ",", "\n", "   ", 
+       RowBox[{"{", 
+        RowBox[{"zv", ",", " ", 
+         RowBox[{"DeleteCases", "[", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{
+             RowBox[{"Ceiling", "[", "zMin", "]"}], ",", " ", 
+             RowBox[{"Floor", "[", "zMax", "]"}], ",", " ", "1"}], "]"}], ",",
+            " ", "0"}], "]"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"z0Tick", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"tickW", ",", " ", 
+         RowBox[{"Line", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.12"}], ",", " ", "0", ",", " ", "0"}], "}"}]}], 
+           "}"}], "]"}]}], "}"}], "]"}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"\:539f\:70b9", " ", "--"}], "--"}], "--"}], 
+         "--"}]}]}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"originDot", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"PointSize", "[", "0.012", "]"}], ",", " ", 
+        RowBox[{"Point", "[", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], "]"}]}], "}"}], 
+      "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"originLabel", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<O\>\"", ",", " ", "13", ",", " ", "Bold", ",", " ", "Black"}], 
+         "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "0.28"}], ",", " ", 
+          RowBox[{"-", "0.4"}], ",", " ", 
+          RowBox[{"-", "0.4"}]}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", "\n", 
+   
+   RowBox[{"(*", " ", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"\:6781\:70b9\:865a\:7ebf\:4e0e\:5c0f\:7403", " ", "--"}], 
+           "--"}], "--"}], "--"}]}]}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"poleAnnotations", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", "\n", "   ", 
+       RowBox[{"poleColor", ",", " ", 
+        RowBox[{"Opacity", "[", "0.50", "]"}], ",", " ", 
+        RowBox[{"Dashing", "[", 
+         RowBox[{"{", 
+          RowBox[{"0.015", ",", " ", "0.01"}], "}"}], "]"}], ",", " ", 
+        RowBox[{"Thickness", "[", "0.001", "]"}], ",", "\n", "   ", 
+        RowBox[{"Table", "[", "\n", "    ", 
+         RowBox[{
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"polePositions", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], ",", " ", "0", 
+               ",", " ", "zMin"}], "}"}], ",", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"polePositions", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], ",", " ", "0", 
+               ",", " ", "zMax"}], "}"}]}], "}"}], "]"}], ",", "\n", "    ", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", " ", 
+            RowBox[{"Length", "[", "polePositions", "]"}]}], "}"}]}], "]"}], 
+        ",", "\n", "   ", "poleColor", ",", "\n", "   ", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Sphere", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"polePositions", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], ",", " ", "0", 
+              ",", " ", "0"}], "}"}], ",", " ", "0.08"}], "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", " ", 
+            RowBox[{"Length", "[", "polePositions", "]"}]}], "}"}]}], "]"}], 
+        ",", "\n", "   ", 
+        RowBox[{"Table", "[", "\n", "    ", 
+         RowBox[{
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"\"\<\:6781\:70b9 s=\>\"", " ", "<>", " ", 
+               RowBox[{"ToString", "[", 
+                RowBox[{"-", "n"}], "]"}]}], ",", " ", "11", ",", " ", 
+              "poleColor", ",", " ", "Bold"}], "]"}], ",", "\n", "     ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "n"}], " ", "-", " ", "0.15"}], ",", " ", 
+              RowBox[{"imMin", " ", "+", " ", "0.55"}], ",", " ", "0.45"}], 
+             "}"}]}], "]"}], ",", "\n", "    ", 
+          RowBox[{"{", 
+           RowBox[{"n", ",", " ", "0", ",", " ", "poleMaxN"}], "}"}]}], 
+         "]"}]}], "\n", "   ", "}"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "\:9012\:63a8\:516c\:5f0f\:8bf4\:660e"}]}]}]}], 
+     "\:ff1a", "\:518d\:5411\:5de6", "\:3001", 
+     RowBox[{"\:8d34", " ", "+", 
+      RowBox[{"Im", " ", "\:5916\:4fa7\:7a7a\:767d\:533a"}]}], "\:ff0c", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"\:4e0d\:6321\:66f2\:9762", " ", "--"}], "--"}], "--"}], 
+      "--"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"formulaLabel", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", "\n", "   ", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<\:9012\:63a8\:516c\:5f0f: \
+\[CapitalGamma](s)=\[CapitalGamma](s+1)/s\>\"", ",", " ", "12", ",", " ", 
+          RowBox[{"GrayLevel", "[", "0.25", "]"}], ",", " ", "Bold"}], "]"}], 
+        ",", "\n", "    ", 
+        RowBox[{"{", 
+         RowBox[{"0.2", ",", " ", 
+          RowBox[{"imMax", " ", "+", " ", "0.55"}], ",", " ", 
+          RowBox[{"zMax", "*", "0.42"}]}], "}"}]}], "]"}], "]"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "\:9012\:63a8\:5206\:5e26"}]}]}]}], "\:ff1a", 
+     "\:7edf\:4e00\:91d1\:9ec4\:8272\:7cfb", "\:ff0c", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\:9010\:5c42\:52a0\:5927\:660e\:6697", "/", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"\:9971\:548c\:5dee", " ", "--"}], "--"}], "--"}], 
+         "--"}]}], "\n", "   ", "\:79ef\:5206\:5b9a\:4e49\:57df", " ", "Re", 
+       RowBox[{"(", "s", ")"}]}], ">", 
+      RowBox[{
+       RowBox[{"0", "\n", "   ", "\:7b2c1\:5c42"}], " ", "-", "1"}], " ", "<",
+       " ", "Re", " ", "<=", " ", 
+      RowBox[{
+       RowBox[{"0", "\n", "   ", "\:7b2c2\:5c42"}], " ", "-", "2"}], " ", "<",
+       " ", "Re", " ", "<=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "1"}], "\n", "   ", "\:7b2c3\:5c42"}], " ", "-", "3"}], 
+      " ", "<", " ", "Re", " ", "<=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "2"}], "\n", "   ", "\:7b2c4\:5c42"}], " ", "-", "4"}], 
+      " ", "<", " ", "Re", " ", "<=", " ", 
+      RowBox[{
+       RowBox[{"-", "3"}], "\n", "   ", "\:81ea\:53f3\:5411\:5de6"}]}], 
+     "\:ff1a", 
+     RowBox[{
+     "\:6d45\:4eae\:91d1", " ", "\[RightArrow]", " ", "\:91d1", " ", 
+      "\[RightArrow]", " ", "\:6df1\:91d1", " ", "\[RightArrow]", " ", 
+      "\:6697\:91d1\:68d5", " ", "\[RightArrow]", " ", 
+      RowBox[{"\:6df1\:8910\:91d1", 
+       RowBox[{"\:ff08", 
+        RowBox[{"\:540c\:8272\:76f8", "\:3001", "\:5bf9\:6bd4\:62c9\:5f00"}], 
+        "\:ff09"}]}]}]}], "\n", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"primaryColor", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"1.00", ",", " ", "0.92", ",", " ", "0.35"}], "]"}]}], ";"}], 
+   "      ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:4e3b", "\:ff1a", 
+     RowBox[{
+      RowBox[{"\:6d45\:4eae\:91d1", "  ", "Re", 
+       RowBox[{"(", "s", ")"}]}], ">", "0"}]}], "  ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"extension1Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"1.00", ",", " ", "0.78", ",", " ", "0.05"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c1\:5c42", "\:ff1a", "\:6807\:51c6\:91d1"}], " ", "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"extension2Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.92", ",", " ", "0.58", ",", " ", "0.00"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c2\:5c42", "\:ff1a", 
+     RowBox[{"\:6df1\:91d1", "/", "\:7425\:73c0"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"extension3Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.72", ",", " ", "0.40", ",", " ", "0.02"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c3\:5c42", "\:ff1a", "\:6697\:91d1\:68d5"}], " ", "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"extension4Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.48", ",", " ", "0.26", ",", " ", "0.04"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c4\:5c42", "\:ff1a", "\:6df1\:8910\:91d1"}], " ", "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"outerColor", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.32", ",", " ", "0.22", ",", " ", "0.10"}], "]"}]}], ";"}], 
+   "        ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Re", 
+       RowBox[{"(", "s", ")"}]}], "<=", 
+      RowBox[{"-", "4"}]}], "\:ff1a", 
+     "\:66f4\:6df1\:8910\:91d1\:793a\:610f"}], " ", "*)"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"colorFuncAbs", " ", "=", " ", 
+     RowBox[{"Function", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}], ",", "\n", "   ", 
+       
+       RowBox[{"Which", "[", "\n", "    ", 
+        RowBox[{
+         RowBox[{"x", " ", ">", " ", "0"}], ",", " ", "primaryColor", ",", 
+         "\n", "    ", 
+         RowBox[{
+          RowBox[{"-", "1"}], " ", "<", " ", "x", " ", "<=", " ", "0"}], ",", 
+         " ", "extension1Color", ",", "\n", "    ", 
+         RowBox[{
+          RowBox[{"-", "2"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "1"}]}], ",", " ", "extension2Color", ",", "\n", 
+         "    ", 
+         RowBox[{
+          RowBox[{"-", "3"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "2"}]}], ",", " ", "extension3Color", ",", "\n", 
+         "    ", 
+         RowBox[{
+          RowBox[{"-", "4"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "3"}]}], ",", " ", "extension4Color", ",", "\n", 
+         "    ", "True", ",", " ", "outerColor"}], "\n", "    ", "]"}]}], 
+      "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:56fe\:4f8b", "\:ff1a", 
+     RowBox[{
+      RowBox[{"\:518d\:5411\:5de6", 
+       RowBox[{"\:ff08", 
+        RowBox[{"\:51cf\:5c0f", " ", "Re"}], "\:ff09"}], 
+       "\:5e76\:79fb\:5230"}], " ", "+", 
+      RowBox[{"Im", " ", "\:5916\:4fa7\:7a7a\:767d"}]}], "\:ff0c", 
+     "\:907f\:514d\:906e\:6321\:6a21\:66f2\:9762"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"legendX", " ", "=", " ", "0.2"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"legendY", " ", "=", " ", 
+     RowBox[{"imMax", " ", "+", " ", "0.55"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"legendZ", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "0.92", ",", " ", "0.84", ",", " ", "0.76", ",", " ", "0.68", ",", " ",
+         "0.60"}], "}"}], "*", "zMax"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+       "===", "===", "===", "===", "===", "===", "===", "===", "==="}], "\n", 
+     "   ", "|", 
+     RowBox[{"\[CapitalGamma]", 
+      RowBox[{"(", "s", ")"}]}], "|", " ", 
+     RowBox[{
+     "\:6a21\:66f2\:9762", "\n", "   ", "===", "===", "===", "===", "===", "===",
+       "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+       "===", "===", "==="}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"absPlot", " ", "=", " ", 
+     RowBox[{"Plot3D", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"Abs", "[", 
+        RowBox[{"Gamma", "[", 
+         RowBox[{"x", " ", "+", " ", 
+          RowBox[{"I", " ", "y"}]}], "]"}], "]"}], ",", "\n", "   ", 
+       "reRange", ",", " ", "imRange", ",", "\n", "   ", 
+       RowBox[{"RegionFunction", " ", "->", " ", 
+        RowBox[{"Function", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}], ",", " ", 
+          RowBox[{"zMin", " ", "<=", " ", "z", " ", "<", " ", "zMax"}]}], 
+         "]"}]}], ",", "\n", "   ", 
+       RowBox[{"PlotRange", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"reMin", ",", " ", "reMax"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"imMin", ",", " ", "imMax"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"zMin", ",", " ", "zMax"}], "}"}]}], "}"}]}], ",", "\n", 
+       "   ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"\:4e3b\:5916\:89c2", "\:ff1a", 
+         RowBox[{
+         "\:91d1\:9ec4\:534a\:900f\:660e", " ", "+", " ", "\:9ad8\:5149"}]}], 
+        " ", "*)"}], "\n", "   ", 
+       RowBox[{"PlotStyle", " ", "->", " ", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"RGBColor", "[", 
+           RowBox[{"1.0", ",", " ", "0.84", ",", " ", "0.0"}], "]"}], ",", 
+          " ", 
+          RowBox[{"Opacity", "[", "0.80", "]"}], ",", " ", 
+          RowBox[{"Specularity", "[", 
+           RowBox[{"White", ",", " ", "30"}], "]"}]}], "]"}]}], ",", "\n", 
+       "   ", 
+       RowBox[{"ColorFunction", " ", "->", " ", "colorFuncAbs"}], ",", "\n", 
+       "   ", 
+       RowBox[{"ColorFunctionScaling", " ", "->", " ", "False"}], ",", "\n", 
+       "   ", 
+       RowBox[{"Lighting", " ", "->", " ", "\"\<Neutral\>\""}], ",", "\n", 
+       "   ", 
+       RowBox[{"Mesh", " ", "->", " ", "30"}], ",", "\n", "   ", 
+       RowBox[{"MeshStyle", " ", "->", " ", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"GrayLevel", "[", "0.95", "]"}], ",", " ", 
+          RowBox[{"Opacity", "[", "0.7", "]"}]}], "]"}]}], ",", "\n", "   ", 
+       RowBox[{"PlotPoints", " ", "->", " ", "100"}], ",", "\n", "   ", 
+       RowBox[{"MaxRecursion", " ", "->", " ", "4"}], ",", "\n", "   ", 
+       RowBox[{"BoundaryStyle", " ", "->", " ", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"White", ",", " ", 
+          RowBox[{"Opacity", "[", "0.9", "]"}], ",", " ", 
+          RowBox[{"Thickness", "[", "0.0015", "]"}]}], "]"}]}], ",", "\n", 
+       "   ", 
+       RowBox[{"ClippingStyle", " ", "->", " ", "None"}], ",", "\n", "   ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "\:975e\:6b63\:6574\:6570\:6781\:70b9\:5904\:6392\:9664", "\:ff0c", 
+         "\:907f\:514d\:6570\:503c\:7206\:70b8"}], " ", "*)"}], "\n", "   ", 
+       RowBox[{"Exclusions", " ", "->", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Element", "[", 
+           RowBox[{"x", ",", " ", "Integers"}], "]"}], " ", "&&", " ", 
+          RowBox[{"y", " ", "==", " ", "0"}], " ", "&&", " ", 
+          RowBox[{"x", " ", "<=", " ", "0"}]}], ")"}]}], ",", "\n", "   ", 
+       RowBox[{"Axes", " ", "->", " ", "False"}], ",", "\n", "   ", 
+       RowBox[{"Boxed", " ", "->", " ", "False"}]}], "\n", "   ", "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"absPlotFinal", " ", "=", " ", 
+     RowBox[{"Show", "[", "\n", "   ", 
+      RowBox[{
+      "absPlot", ",", "\n", "   ", "grayPlane", ",", "\n", "   ", 
+       "poleAnnotations", ",", "\n", "   ", "formulaLabel", ",", "\n", "   ", 
+       "reAxisLine", ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "sTickObjs", "]"}]}], ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "s0Tick", "]"}]}], ",", " ", "reAxisLabel", 
+       ",", "\n", "   ", "imAxisLine", ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "tTickObjs", "]"}]}], ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "t0Tick", "]"}]}], ",", " ", "imAxisLabel", 
+       ",", "\n", "   ", "zAxisLine", ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "zTickObjs", "]"}]}], ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "z0Tick", "]"}]}], ",", "\n", "   ", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"Text", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{
+           "\"\<|\[CapitalGamma](s)|\>\"", ",", " ", "14", ",", " ", "Bold"}],
+            "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", " ", "0", ",", " ", 
+            RowBox[{"zMax", " ", "+", " ", "0.55"}]}], "}"}]}], "]"}], "]"}], 
+       ",", "\n", "   ", "originDot", ",", " ", "originLabel", ",", "\n", 
+       "   ", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"{", "\n", "     ", 
+         RowBox[{
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:79ef\:5206\:5b9a\:4e49\:57df (Re(s)>0)\>\"", ",", " ", 
+              "13", ",", " ", "primaryColor", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "     ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:7b2c1\:5c42 (-1<Re\[LessEqual]0)\>\"", ",", " ", "13", 
+              ",", " ", "extension1Color", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "     ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:7b2c2\:5c42 (-2<Re\[LessEqual]-1)\>\"", ",", " ", "13", 
+              ",", " ", "extension2Color", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "     ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:7b2c3\:5c42 (-3<Re\[LessEqual]-2)\>\"", ",", " ", "13", 
+              ",", " ", "extension3Color", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "4", "]"}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "     ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:7b2c4\:5c42 (-4<Re\[LessEqual]-3)\>\"", ",", " ", "13", 
+              ",", " ", "extension4Color", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "5", "]"}], "]"}]}], "}"}]}], "]"}]}], "\n", 
+         "     ", "}"}], "]"}], ",", "\n", "   ", 
+       RowBox[{"PlotLabel", " ", "->", " ", 
+        RowBox[{"Style", "[", "\n", "     ", 
+         RowBox[{
+         "\"\<\[CapitalGamma](s) \:6a21\:66f2\:9762   |\[CapitalGamma](s)|   \
+\:ff08\:79ef\:5206\:57df + \:56db\:5c42\:9012\:63a8\:5ef6\:62d3\:ff09\>\"", 
+          ",", "\n", "     ", "16", ",", " ", "Bold"}], "]"}]}], ",", "\n", 
+       "   ", 
+       RowBox[{"PlotRange", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"reMin", " ", "-", " ", "0.3"}], ",", " ", 
+            RowBox[{"reMax", " ", "+", " ", "0.6"}]}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"imMin", " ", "-", " ", "0.6"}], ",", " ", 
+            RowBox[{"imMax", " ", "+", " ", "1.2"}]}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"zMin", " ", "-", " ", "0.15"}], ",", " ", 
+            RowBox[{"zMax", " ", "+", " ", "0.7"}]}], "}"}]}], "}"}]}], ",", 
+       "\n", "   ", 
+       RowBox[{"BoxRatios", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{"1.5", ",", " ", "1", ",", " ", "0.8"}], "}"}]}], ",", "\n", 
+       "   ", 
+       RowBox[{"Boxed", " ", "->", " ", "False"}], ",", "\n", "   ", 
+       RowBox[{"Axes", " ", "->", " ", "False"}], ",", "\n", "   ", 
+       RowBox[{"ViewPoint", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{"2.4", ",", " ", 
+          RowBox[{"-", "3.0"}], ",", " ", "1.6"}], "}"}]}], ",", "\n", "   ", 
+       
+       RowBox[{"ImageSize", " ", "->", " ", "1000"}], ",", "\n", "   ", 
+       RowBox[{"Background", " ", "->", " ", "None"}]}], "\n", "   ", "]"}]}],
+     ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"===", "===", " ", 
+     RowBox[{"\:8f93\:51fa\:5e76\:5bfc\:51fa", " ", "PDF"}], " ", "===", 
+     "==="}], " ", "*)"}], "\n", "absPlotFinal", "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+     "\:4f18\:5148\:5199\:5230\:4ed3\:5e93", " ", 
+      "\:5168\:4e66\:56fe\:5f62"}], "\:ff1b", 
+     RowBox[{
+     "\:82e5\:4e2d\:6587\:8def\:5f84\:5f02\:5e38\:53ef\:6539", " ", "outTmp", 
+      " ", "\:540e\:624b\:52a8\:590d\:5236"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+    "outPdf", " ", "=", " ", 
+     "\"\</Users/lichengtong/\:9ece\:66fc\:731c\:60f3\:6210\:4e66Grok7-12/\
+\:5168\:4e66\:56fe\:5f62/6-G\:6a21\:66f2\:9762.pdf\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"outTmp", " ", "=", " ", "\"\</tmp/6-G-mod-surface.pdf\>\""}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Quiet", "@", 
+     RowBox[{"Check", "[", "\n", "  ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Export", "[", 
+         RowBox[{
+         "outPdf", ",", " ", "absPlotFinal", ",", " ", "\"\<PDF\>\"", ",", 
+          " ", 
+          RowBox[{"ImageSize", " ", "->", " ", "1000"}]}], "]"}], ";", "\n", 
+        "  ", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<Exported: \>\"", ",", " ", "outPdf"}], "]"}]}], ",", 
+       "\n", "  ", 
+       RowBox[{
+        RowBox[{"Export", "[", 
+         RowBox[{
+         "outTmp", ",", " ", "absPlotFinal", ",", " ", "\"\<PDF\>\"", ",", 
+          " ", 
+          RowBox[{"ImageSize", " ", "->", " ", "1000"}]}], "]"}], ";", "\n", 
+        "  ", 
+        RowBox[{"Print", "[", 
+         RowBox[{
+         "\"\<Exported temp: \>\"", ",", " ", "outTmp", ",", " ", 
+          "\"\< \:ff08\:8bf7\:590d\:5236\:5230 \:5168\:4e66\:56fe\:5f62/6-G\
+\:6a21\:66f2\:9762.pdf\:ff09\>\""}], "]"}]}]}], "\n", "]"}]}], 
+    ";"}]}]}]], "Input",
+ CellLabel->
+  "In[270]:=",ExpressionUUID->"b05323c2-9f4f-419b-aee0-d0227f00a000"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.99507055748806*^9, 
+  3.9950705574997463`*^9}},ExpressionUUID->"09b609ed-163f-4776-b532-\
+3b10c215de82"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Exported: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"/Users/lichengtong/\:9ece\:66fc\:731c\:60f3\:6210\:4e66Grok7-12/\:5168\
+\:4e66\:56fe\:5f62/6-G\:6a21\:66f2\:9762.pdf\"\>"}],
+  SequenceForm[
+  "Exported: ", 
+   "/Users/lichengtong/\:9ece\:66fc\:731c\:60f3\:6210\:4e66Grok7-12/\:5168\
+\:4e66\:56fe\:5f62/6-G\:6a21\:66f2\:9762.pdf"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.994579647788108*^9},
+ CellLabel->
+  "\:6b63\:5728\:8ba1\:7b97In[270]:=",ExpressionUUID->"9072d79f-a2ed-4ce4-\
+a571-98ca5a23b221"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+       "===", "===", "===", "===", "===", "===", "===", "===", "==="}], "\n", 
+     "   ", "|", 
+     RowBox[{"\[CapitalGamma]", 
+      RowBox[{"(", "s", ")"}]}], "|", " ", 
+     RowBox[{
+     "\:6a21\:66f2\:9762", "\n", "   ", "\:9012\:63a8\:5206\:5e26"}]}], 
+    "\:ff1a", 
+    RowBox[{"\:79ef\:5206\:5b9a\:4e49\:57df", " ", "+", " ", 
+     RowBox[{"\:4e03\:5c42\:5411\:5de6\:5ef6\:62d3", 
+      RowBox[{"\:ff08", "\:5171\:516b\:5c42\:7740\:8272", "\:ff09"}], "\n", 
+      "   ", "\:4e09\:8f74\:4ea4\:4e8e\:539f\:70b9"}]}], "\:ff0c", 
+    RowBox[{
+    "\:65e0\:6846\:5f0f\:6807\:6ce8", "\n", "   ", "===", "===", "===", "===",
+      "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "==="}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"--", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"\:516c\:5171\:53c2\:6570", " ", "--"}], "--"}], "--"}], 
+        "--"}]}]}]}]}], " ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Re", " ", "\:4e0b\:9650\:6269\:81f3"}], " ", "-", "8"}], 
+    "\:ff0c", "\:4ee5\:5bb9\:7eb3\:4e03\:5c42\:5ef6\:62d3\:5e26"}], " ", 
+   "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"reMin", " ", "=", " ", 
+     RowBox[{"-", "7"}]}], ";", " ", 
+    RowBox[{"reMax", " ", "=", " ", "4"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"imMin", " ", "=", " ", 
+     RowBox[{"-", "4"}]}], ";", " ", 
+    RowBox[{"imMax", " ", "=", " ", "4"}], ";"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"\:6a21", " ", "|", "\[CapitalGamma]", "|", " ", 
+      RowBox[{">=", " ", "0"}]}], "\:ff1a", 
+     RowBox[{"\:7ad6\:76f4\:8f74\:4ece", " ", "0", " ", "\:8d77"}], "\:ff0c", 
+     "\:4e0a\:7aef\:88c1\:526a\:5c16\:5cf0"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"zMin", " ", "=", " ", "0"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"zMax", " ", "=", " ", "6"}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"reRange", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", " ", "reMin", ",", " ", "reMax"}], "}"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"imRange", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", " ", "imMin", ",", " ", "imMax"}], "}"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{"poleColor", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.55", ",", " ", "0.10", ",", " ", "0.05"}], "]"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"labelColor", " ", "=", " ", 
+     RowBox[{"GrayLevel", "[", "0.20", "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"\:6781\:70b9", " ", "s"}], "=", "0"}], ",", 
+     RowBox[{"-", "1"}], ",", "...", ",", 
+     RowBox[{
+      RowBox[{"-", "8"}], " ", 
+      "\:8986\:76d6\:4e03\:5c42\:5ef6\:62d3\:8fb9\:754c"}]}], " ", "*)"}], 
+   "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "\:4ec5\:5728\:524d\:56db\:5c42\:663e\:793a\:865a\:7ebf\:548c\:6807\:6ce8\
+", "\:ff0c", "\:540e\:4e09\:5c42\:9690\:85cf"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"poleMaxN", " ", "=", " ", "8"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"poleMaxDisplay", " ", "=", " ", "4"}], ";"}], "  ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:4ec5\:663e\:793a\:524d5\:4e2a\:6781\:70b9", 
+     RowBox[{"\:ff08", 
+      RowBox[{
+       RowBox[{"0", "\:5230"}], "-", "4"}], "\:ff09"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"polePositions", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "n"}], ",", " ", "0"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", " ", "0", ",", " ", "poleMaxN"}], "}"}]}], "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"\:7070\:8272\:590d\:5e73\:9762\:7f51\:683c", " ", "--"}], 
+           "--"}], "--"}], "--"}]}]}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"grayPlane", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", "\n", "   ", 
+       RowBox[{
+        RowBox[{"Opacity", "[", "0.08", "]"}], ",", " ", 
+        RowBox[{"GrayLevel", "[", "0.5", "]"}], ",", "\n", "   ", 
+        RowBox[{"Polygon", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"reMin", ",", " ", "imMin", ",", " ", "0"}], "}"}], ",", 
+           " ", 
+           RowBox[{"{", 
+            RowBox[{"reMax", ",", " ", "imMin", ",", " ", "0"}], "}"}], ",", 
+           " ", 
+           RowBox[{"{", 
+            RowBox[{"reMax", ",", " ", "imMax", ",", " ", "0"}], "}"}], ",", 
+           " ", 
+           RowBox[{"{", 
+            RowBox[{"reMin", ",", " ", "imMax", ",", " ", "0"}], "}"}]}], 
+          "}"}], "]"}], ",", "\n", "   ", 
+        RowBox[{"Opacity", "[", "0.12", "]"}], ",", " ", 
+        RowBox[{"GrayLevel", "[", "0.4", "]"}], ",", " ", 
+        RowBox[{"Thickness", "[", "0.0005", "]"}], ",", "\n", "   ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"x", ",", " ", "imMin", ",", " ", "0"}], "}"}], ",", 
+             " ", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", " ", "imMax", ",", " ", "0"}], "}"}]}], "}"}],
+            ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+            "x", ",", " ", "reMin", ",", " ", "reMax", ",", " ", "0.5"}], 
+            "}"}]}], "]"}], "]"}], ",", "\n", "   ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"reMin", ",", " ", "y", ",", " ", "0"}], "}"}], ",", 
+             " ", 
+             RowBox[{"{", 
+              RowBox[{"reMax", ",", " ", "y", ",", " ", "0"}], "}"}]}], "}"}],
+            ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+            "y", ",", " ", "imMin", ",", " ", "imMax", ",", " ", "0.5"}], 
+            "}"}]}], "]"}], "]"}]}], "\n", "   ", "}"}], "]"}]}], ";"}], "\n",
+    "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "\:4e09\:6761\:8f74\:7ebf"}]}]}]}], "\:ff1a", 
+     RowBox[{"\:5747\:8fc7\:539f\:70b9", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"0", ",", "0", ",", "0"}], ")"}], " ", "--"}], "--"}], 
+        "--"}], "--"}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"axisThick", " ", "=", " ", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"Thickness", "[", "0.0008", "]"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"tickW", " ", "=", " ", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Black", ",", " ", 
+       RowBox[{"Thickness", "[", "0.0005", "]"}]}], "]"}]}], ";"}], "\n", 
+   "\n", 
+   RowBox[{
+    RowBox[{"reAxisLine", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"axisThick", ",", " ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"reMin", " ", "-", " ", "0.1"}], ",", " ", "0", ",", " ",
+              "0"}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"reMax", " ", "+", " ", "0.3"}], ",", " ", "0", ",", " ",
+              "0"}], "}"}]}], "}"}], "]"}]}], "}"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"imAxisLine", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"axisThick", ",", " ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", " ", 
+             RowBox[{"imMin", " ", "-", " ", "0.2"}], ",", " ", "0"}], "}"}], 
+           ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", " ", 
+             RowBox[{"imMax", " ", "+", " ", "0.3"}], ",", " ", "0"}], 
+            "}"}]}], "}"}], "]"}]}], "}"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"zAxisLine", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"axisThick", ",", " ", 
+        RowBox[{"Line", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", " ", "0", ",", " ", 
+             RowBox[{"zMin", " ", "-", " ", "0.05"}]}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", " ", "0", ",", " ", 
+             RowBox[{"zMax", " ", "+", " ", "0.3"}]}], "}"}]}], "}"}], 
+         "]"}]}], "}"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "Re"}]}]}]}], 
+     RowBox[{"(", "s", ")"}], " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"\:8f74\:523b\:5ea6", " ", "--"}], "--"}], "--"}], "--"}]}], 
+    " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"sTickObjs", " ", "=", " ", 
+     RowBox[{"Table", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{"tickW", ",", " ", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"xv", ",", " ", "0", ",", " ", "0"}], "}"}], ",", " ", 
+               RowBox[{"{", 
+                RowBox[{"xv", ",", " ", "0", ",", " ", 
+                 RowBox[{"-", "0.25"}]}], "}"}]}], "}"}], "]"}]}], "}"}], 
+          "]"}], ",", "\n", "    ", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"xv", ",", " ", "12", ",", " ", "Black"}], "]"}], ",", 
+            " ", 
+            RowBox[{"{", 
+             RowBox[{"xv", ",", " ", "0", ",", " ", 
+              RowBox[{"-", "0.55"}]}], "}"}]}], "]"}], "]"}]}], "}"}], ",", 
+       "\n", "   ", 
+       RowBox[{"{", 
+        RowBox[{"xv", ",", " ", 
+         RowBox[{"DeleteCases", "[", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{"reMin", ",", " ", "reMax", ",", " ", "1"}], "]"}], ",", 
+           " ", "0"}], "]"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"s0Tick", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"tickW", ",", " ", 
+         RowBox[{"Line", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", "0", ",", " ", 
+              RowBox[{"-", "0.25"}]}], "}"}]}], "}"}], "]"}]}], "}"}], "]"}], 
+      "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"reAxisLabel", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<Re(s)\>\"", ",", " ", "14", ",", " ", "Black", ",", " ", 
+          "Bold"}], "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"reMax", " ", "+", " ", "0.45"}], ",", " ", "0", ",", " ", 
+          "0"}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "Im"}]}]}]}], 
+     RowBox[{"(", "s", ")"}], " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"\:8f74\:523b\:5ea6", " ", "--"}], "--"}], "--"}], "--"}]}], 
+    " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"tTickObjs", " ", "=", " ", 
+     RowBox[{"Table", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{"tickW", ",", " ", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", " ", "yv", ",", " ", "0"}], "}"}], ",", " ", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "0.12"}], ",", " ", "yv", ",", " ", "0"}], 
+                "}"}]}], "}"}], "]"}]}], "}"}], "]"}], ",", "\n", "    ", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"yv", ",", " ", "12", ",", " ", "Black"}], "]"}], ",", 
+            " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.30"}], ",", " ", "yv", ",", " ", "0"}], "}"}]}],
+            "]"}], "]"}]}], "}"}], ",", "\n", "   ", 
+       RowBox[{"{", 
+        RowBox[{"yv", ",", " ", 
+         RowBox[{"DeleteCases", "[", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{"imMin", ",", " ", "imMax", ",", " ", "1"}], "]"}], ",", 
+           " ", "0"}], "]"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"t0Tick", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"tickW", ",", " ", 
+         RowBox[{"Line", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.12"}], ",", " ", "0", ",", " ", "0"}], "}"}]}], 
+           "}"}], "]"}]}], "}"}], "]"}], "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"imAxisLabel", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<Im(s)\>\"", ",", " ", "14", ",", " ", "Black", ",", " ", 
+          "Bold"}], "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", 
+          RowBox[{"imMax", " ", "+", " ", "0.5"}], ",", " ", "0"}], "}"}]}], 
+       "]"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "z"}]}]}]}], " ", "\:8f74\:523b\:5ea6", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"\:ff08", "\:6a21\:503c", "\:ff09"}], " ", "--"}], "--"}], 
+       "--"}], "--"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"zTickObjs", " ", "=", " ", 
+     RowBox[{"Table", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{"tickW", ",", " ", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", " ", "0", ",", " ", "zv"}], "}"}], ",", " ", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "0.12"}], ",", " ", "0", ",", " ", "zv"}], 
+                "}"}]}], "}"}], "]"}]}], "}"}], "]"}], ",", "\n", "    ", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"zv", ",", " ", "12", ",", " ", "Black"}], "]"}], ",", 
+            " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.32"}], ",", " ", "0", ",", " ", "zv"}], "}"}]}],
+            "]"}], "]"}]}], "}"}], ",", "\n", "   ", 
+       RowBox[{"{", 
+        RowBox[{"zv", ",", " ", 
+         RowBox[{"DeleteCases", "[", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{
+             RowBox[{"Ceiling", "[", "zMin", "]"}], ",", " ", 
+             RowBox[{"Floor", "[", "zMax", "]"}], ",", " ", "1"}], "]"}], ",",
+            " ", "0"}], "]"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"z0Tick", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"tickW", ",", " ", 
+         RowBox[{"Line", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.12"}], ",", " ", "0", ",", " ", "0"}], "}"}]}], 
+           "}"}], "]"}]}], "}"}], "]"}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"\:539f\:70b9", " ", "--"}], "--"}], "--"}], 
+         "--"}]}]}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"originDot", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", " ", 
+        RowBox[{"PointSize", "[", "0.012", "]"}], ",", " ", 
+        RowBox[{"Point", "[", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], "]"}]}], "}"}], 
+      "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"originLabel", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<O\>\"", ",", " ", "13", ",", " ", "Bold", ",", " ", "Black"}], 
+         "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "0.28"}], ",", " ", 
+          RowBox[{"-", "0.4"}], ",", " ", 
+          RowBox[{"-", "0.4"}]}], "}"}]}], "]"}], "]"}]}], ";"}], "\n", "\n", 
+   
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{
+        "--", " ", "\:6781\:70b9\:865a\:7ebf\:4e0e\:5c0f\:7403"}]}]}]}], 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"\:ff08", "\:4ec5\:524d\:56db\:5c42", "\:ff09"}], " ", 
+         "--"}], "--"}], "--"}], "--"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"poleAnnotations", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", "\n", "   ", 
+       RowBox[{"poleColor", ",", " ", 
+        RowBox[{"Opacity", "[", "0.50", "]"}], ",", " ", 
+        RowBox[{"Dashing", "[", 
+         RowBox[{"{", 
+          RowBox[{"0.015", ",", " ", "0.01"}], "}"}], "]"}], ",", " ", 
+        RowBox[{"Thickness", "[", "0.001", "]"}], ",", "\n", "   ", 
+        RowBox[{"Table", "[", "\n", "    ", 
+         RowBox[{
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"polePositions", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], ",", " ", "0", 
+               ",", " ", "zMin"}], "}"}], ",", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"polePositions", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], ",", " ", "0", 
+               ",", " ", "zMax"}], "}"}]}], "}"}], "]"}], ",", "\n", "    ", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", " ", 
+            RowBox[{"poleMaxDisplay", " ", "+", " ", "1"}]}], "}"}]}], "]"}], 
+        ",", "\n", "   ", "poleColor", ",", "\n", "   ", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Sphere", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"polePositions", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], ",", " ", "0", 
+              ",", " ", "0"}], "}"}], ",", " ", "0.08"}], "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", " ", 
+            RowBox[{"poleMaxDisplay", " ", "+", " ", "1"}]}], "}"}]}], "]"}], 
+        ",", "\n", "   ", 
+        RowBox[{"Table", "[", "\n", "    ", 
+         RowBox[{
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"\"\<\:6781\:70b9 s=\>\"", " ", "<>", " ", 
+               RowBox[{"ToString", "[", 
+                RowBox[{"-", "n"}], "]"}]}], ",", " ", "11", ",", " ", 
+              "poleColor", ",", " ", "Bold"}], "]"}], ",", "\n", "     ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "n"}], " ", "-", " ", "0.15"}], ",", " ", 
+              RowBox[{"imMin", " ", "+", " ", "0.55"}], ",", " ", "0.45"}], 
+             "}"}]}], "]"}], ",", "\n", "    ", 
+          RowBox[{"{", 
+           RowBox[{"n", ",", " ", "0", ",", " ", "poleMaxDisplay"}], "}"}]}], 
+         "]"}]}], "\n", "   ", "}"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "\:9012\:63a8\:516c\:5f0f\:8bf4\:660e"}]}]}]}], 
+     "\:ff1a", "\:518d\:5411\:5de6", "\:3001", 
+     RowBox[{"\:8d34", " ", "+", 
+      RowBox[{"Im", " ", "\:5916\:4fa7\:7a7a\:767d\:533a"}]}], "\:ff0c", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"\:4e0d\:6321\:66f2\:9762", " ", "--"}], "--"}], "--"}], 
+      "--"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"formulaLabel", " ", "=", " ", 
+     RowBox[{"Graphics3D", "[", "\n", "   ", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<\:9012\:63a8\:516c\:5f0f: \
+\[CapitalGamma](s)=\[CapitalGamma](s+1)/s\>\"", ",", " ", "12", ",", " ", 
+          RowBox[{"GrayLevel", "[", "0.25", "]"}], ",", " ", "Bold"}], "]"}], 
+        ",", "\n", "    ", 
+        RowBox[{"{", 
+         RowBox[{"0.2", ",", " ", 
+          RowBox[{"imMax", " ", "+", " ", "0.55"}], ",", " ", 
+          RowBox[{"zMax", "*", "0.42"}]}], "}"}]}], "]"}], "]"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", " ", "\:9012\:63a8\:5206\:5e26"}]}]}]}], "\:ff1a", 
+     "\:524d\:56db\:5c42\:91d1\:9ec4\:8272\:7cfb", "\:ff0c", 
+     RowBox[{
+      RowBox[{
+      "\:540e\:4e09\:5c42\:7070\:767d\:8272\:7cfb", "\n", "   ", 
+       "\:79ef\:5206\:5b9a\:4e49\:57df", " ", "Re", 
+       RowBox[{"(", "s", ")"}]}], ">", 
+      RowBox[{
+       RowBox[{"0", "\n", "   ", "\:7b2c1\:5c42"}], " ", "-", "1"}], " ", "<",
+       " ", "Re", " ", "<=", " ", 
+      RowBox[{
+       RowBox[{"0", "\n", "   ", "\:7b2c2\:5c42"}], " ", "-", "2"}], " ", "<",
+       " ", "Re", " ", "<=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "1"}], "\n", "   ", "\:7b2c3\:5c42"}], " ", "-", "3"}], 
+      " ", "<", " ", "Re", " ", "<=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "2"}], "\n", "   ", "\:7b2c4\:5c42"}], " ", "-", "4"}], 
+      " ", "<", " ", "Re", " ", "<=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "3"}], "\n", "   ", "\:7b2c5\:5c42"}], " ", "-", "5"}], 
+      " ", "<", " ", "Re", " ", "<=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "4"}], "       ", 
+        RowBox[{"\:ff08", "\:7070\:767d", "\:ff09"}], "\n", "   ", 
+        "\:7b2c6\:5c42"}], " ", "-", "6"}], " ", "<", " ", "Re", " ", "<=", 
+      " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "5"}], "       ", 
+        RowBox[{"\:ff08", "\:7070\:767d", "\:ff09"}], "\n", "   ", 
+        "\:7b2c7\:5c42"}], " ", "-", "7"}], " ", "<", " ", "Re", " ", "<=", 
+      " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "6"}], "       ", 
+        RowBox[{"\:ff08", "\:7070\:767d", "\:ff09"}], "\n", "   ", 
+        "\:7b2c8\:5c42"}], " ", "-", "8"}], " ", "<", " ", "Re", " ", "<=", 
+      " ", 
+      RowBox[{
+       RowBox[{"-", "7"}], "       ", 
+       RowBox[{"\:ff08", "\:7070\:767d", "\:ff09"}], "\n", "   ", "\n", "   ",
+        "\:524d\:56db\:5c42\:81ea\:53f3\:5411\:5de6"}]}], "\:ff1a", 
+     RowBox[{
+     "\:6d45\:4eae\:91d1", " ", "\[RightArrow]", " ", "\:91d1", " ", 
+      "\[RightArrow]", " ", "\:6df1\:91d1", " ", "\[RightArrow]", " ", 
+      RowBox[{"\:6697\:91d1\:68d5", "\n", "   ", "\:540e\:4e09\:5c42"}]}], 
+     "\:ff1a", "\:4ece\:6d45\:7070\:9010\:6e10\:52a0\:6df1"}], "\n", "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"primaryColor", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"1.00", ",", " ", "0.92", ",", " ", "0.35"}], "]"}]}], ";"}], 
+   "      ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:4e3b", "\:ff1a", 
+     RowBox[{
+      RowBox[{"\:6d45\:4eae\:91d1", "  ", "Re", 
+       RowBox[{"(", "s", ")"}]}], ">", "0"}]}], "  ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"extension1Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"1.00", ",", " ", "0.78", ",", " ", "0.05"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c1\:5c42", "\:ff1a", "\:6807\:51c6\:91d1"}], " ", "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"extension2Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.92", ",", " ", "0.58", ",", " ", "0.00"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c2\:5c42", "\:ff1a", 
+     RowBox[{"\:6df1\:91d1", "/", "\:7425\:73c0"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"extension3Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.72", ",", " ", "0.40", ",", " ", "0.02"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c3\:5c42", "\:ff1a", "\:6697\:91d1\:68d5"}], " ", "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"extension4Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.48", ",", " ", "0.26", ",", " ", "0.04"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c4\:5c42", "\:ff1a", "\:6df1\:8910\:91d1"}], " ", "*)"}], 
+   "\n", 
+   RowBox[{
+   "(*", " ", "\:540e\:4e09\:5c42\:7070\:767d\:8272\:7cfb\:7edf\:4e00", " ", 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"extension5Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.65", ",", " ", "0.65", ",", " ", "0.65"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c5\:5c42", "\:ff1a", "\:7edf\:4e00\:7070\:767d"}], " ", 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"extension6Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.65", ",", " ", "0.65", ",", " ", "0.65"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c6\:5c42", "\:ff1a", "\:7edf\:4e00\:7070\:767d"}], " ", 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"extension7Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.65", ",", " ", "0.65", ",", " ", "0.65"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c7\:5c42", "\:ff1a", "\:7edf\:4e00\:7070\:767d"}], " ", 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"extension8Color", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.65", ",", " ", "0.65", ",", " ", "0.65"}], "]"}]}], ";"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:7b2c8\:5c42", "\:ff1a", "\:7edf\:4e00\:7070\:767d"}], " ", 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"outerColor", " ", "=", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.32", ",", " ", "0.22", ",", " ", "0.10"}], "]"}]}], ";"}], 
+   "        ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Re", 
+       RowBox[{"(", "s", ")"}]}], "<=", 
+      RowBox[{"-", "8"}]}], "\:ff1a", 
+     "\:66f4\:6df1\:8910\:91d1\:793a\:610f"}], " ", "*)"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"colorFuncAbs", " ", "=", " ", 
+     RowBox[{"Function", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}], ",", "\n", "   ", 
+       
+       RowBox[{"Which", "[", "\n", "    ", 
+        RowBox[{
+         RowBox[{"x", " ", ">", " ", "0"}], ",", " ", "primaryColor", ",", 
+         "\n", "    ", 
+         RowBox[{
+          RowBox[{"-", "1"}], " ", "<", " ", "x", " ", "<=", " ", "0"}], ",", 
+         " ", "extension1Color", ",", "\n", "    ", 
+         RowBox[{
+          RowBox[{"-", "2"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "1"}]}], ",", " ", "extension2Color", ",", "\n", 
+         "    ", 
+         RowBox[{
+          RowBox[{"-", "3"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "2"}]}], ",", " ", "extension3Color", ",", "\n", 
+         "    ", 
+         RowBox[{
+          RowBox[{"-", "4"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "3"}]}], ",", " ", "extension4Color", ",", "\n", 
+         "    ", 
+         RowBox[{
+          RowBox[{"-", "5"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "4"}]}], ",", " ", "extension5Color", ",", "\n", 
+         "    ", 
+         RowBox[{
+          RowBox[{"-", "6"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "5"}]}], ",", " ", "extension6Color", ",", "\n", 
+         "    ", 
+         RowBox[{
+          RowBox[{"-", "7"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "6"}]}], ",", " ", "extension7Color", ",", "\n", 
+         "    ", 
+         RowBox[{
+          RowBox[{"-", "8"}], " ", "<", " ", "x", " ", "<=", " ", 
+          RowBox[{"-", "7"}]}], ",", " ", "extension8Color", ",", "\n", 
+         "    ", "True", ",", " ", "outerColor"}], "\n", "    ", "]"}]}], 
+      "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"\:56fe\:4f8b", "\:ff1a", 
+     RowBox[{
+      RowBox[{"\:518d\:5411\:5de6", 
+       RowBox[{"\:ff08", 
+        RowBox[{"\:51cf\:5c0f", " ", "Re"}], "\:ff09"}], 
+       "\:5e76\:79fb\:5230"}], " ", "+", 
+      RowBox[{"Im", " ", "\:5916\:4fa7\:7a7a\:767d"}]}], "\:ff0c", 
+     "\:907f\:514d\:906e\:6321\:6a21\:66f2\:9762"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"legendX", " ", "=", " ", "0.2"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"legendY", " ", "=", " ", 
+     RowBox[{"imMax", " ", "+", " ", "0.55"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"legendZ", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "0.96", ",", " ", "0.88", ",", " ", "0.80", ",", " ", "0.72", ",", " ",
+         "0.64", ",", " ", "0.56"}], "}"}], "*", "zMax"}]}], ";"}], "\n", 
+   "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+       "===", "===", "===", "===", "===", "===", "===", "===", "==="}], "\n", 
+     "   ", "|", 
+     RowBox[{"\[CapitalGamma]", 
+      RowBox[{"(", "s", ")"}]}], "|", " ", 
+     RowBox[{
+     "\:6a21\:66f2\:9762", "\n", "   ", "===", "===", "===", "===", "===", "===",
+       "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+       "===", "===", "==="}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"absPlot", " ", "=", " ", 
+     RowBox[{"Plot3D", "[", "\n", "   ", 
+      RowBox[{
+       RowBox[{"Abs", "[", 
+        RowBox[{"Gamma", "[", 
+         RowBox[{"x", " ", "+", " ", 
+          RowBox[{"I", " ", "y"}]}], "]"}], "]"}], ",", "\n", "   ", 
+       "reRange", ",", " ", "imRange", ",", "\n", "   ", 
+       RowBox[{"RegionFunction", " ", "->", " ", 
+        RowBox[{"Function", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}], ",", " ", 
+          RowBox[{"zMin", " ", "<=", " ", "z", " ", "<", " ", "zMax"}]}], 
+         "]"}]}], ",", "\n", "   ", 
+       RowBox[{"PlotRange", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"reMin", ",", " ", "reMax"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"imMin", ",", " ", "imMax"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"zMin", ",", " ", "zMax"}], "}"}]}], "}"}]}], ",", "\n", 
+       "   ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"\:4e3b\:5916\:89c2", "\:ff1a", 
+         RowBox[{
+         "\:91d1\:9ec4\:534a\:900f\:660e", " ", "+", " ", "\:9ad8\:5149"}]}], 
+        " ", "*)"}], "\n", "   ", 
+       RowBox[{"PlotStyle", " ", "->", " ", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"RGBColor", "[", 
+           RowBox[{"1.0", ",", " ", "0.84", ",", " ", "0.0"}], "]"}], ",", 
+          " ", 
+          RowBox[{"Opacity", "[", "0.80", "]"}], ",", " ", 
+          RowBox[{"Specularity", "[", 
+           RowBox[{"White", ",", " ", "30"}], "]"}]}], "]"}]}], ",", "\n", 
+       "   ", 
+       RowBox[{"ColorFunction", " ", "->", " ", "colorFuncAbs"}], ",", "\n", 
+       "   ", 
+       RowBox[{"ColorFunctionScaling", " ", "->", " ", "False"}], ",", "\n", 
+       "   ", 
+       RowBox[{"Lighting", " ", "->", " ", "\"\<Neutral\>\""}], ",", "\n", 
+       "   ", 
+       RowBox[{"Mesh", " ", "->", " ", "30"}], ",", "\n", "   ", 
+       RowBox[{"MeshStyle", " ", "->", " ", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"GrayLevel", "[", "0.95", "]"}], ",", " ", 
+          RowBox[{"Opacity", "[", "0.7", "]"}]}], "]"}]}], ",", "\n", "   ", 
+       RowBox[{"PlotPoints", " ", "->", " ", "100"}], ",", "\n", "   ", 
+       RowBox[{"MaxRecursion", " ", "->", " ", "4"}], ",", "\n", "   ", 
+       RowBox[{"BoundaryStyle", " ", "->", " ", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"White", ",", " ", 
+          RowBox[{"Opacity", "[", "0.9", "]"}], ",", " ", 
+          RowBox[{"Thickness", "[", "0.0015", "]"}]}], "]"}]}], ",", "\n", 
+       "   ", 
+       RowBox[{"ClippingStyle", " ", "->", " ", "None"}], ",", "\n", "   ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "\:975e\:6b63\:6574\:6570\:6781\:70b9\:5904\:6392\:9664", "\:ff0c", 
+         "\:907f\:514d\:6570\:503c\:7206\:70b8"}], " ", "*)"}], "\n", "   ", 
+       RowBox[{"Exclusions", " ", "->", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Element", "[", 
+           RowBox[{"x", ",", " ", "Integers"}], "]"}], " ", "&&", " ", 
+          RowBox[{"y", " ", "==", " ", "0"}], " ", "&&", " ", 
+          RowBox[{"x", " ", "<=", " ", "0"}]}], ")"}]}], ",", "\n", "   ", 
+       RowBox[{"Axes", " ", "->", " ", "False"}], ",", "\n", "   ", 
+       RowBox[{"Boxed", " ", "->", " ", "False"}]}], "\n", "   ", "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"absPlotFinal", " ", "=", " ", 
+     RowBox[{"Show", "[", "\n", "   ", 
+      RowBox[{
+      "absPlot", ",", "\n", "   ", "grayPlane", ",", "\n", "   ", 
+       "poleAnnotations", ",", "\n", "   ", "formulaLabel", ",", "\n", "   ", 
+       "reAxisLine", ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "sTickObjs", "]"}]}], ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "s0Tick", "]"}]}], ",", " ", "reAxisLabel", 
+       ",", "\n", "   ", "imAxisLine", ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "tTickObjs", "]"}]}], ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "t0Tick", "]"}]}], ",", " ", "imAxisLabel", 
+       ",", "\n", "   ", "zAxisLine", ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "zTickObjs", "]"}]}], ",", " ", 
+       RowBox[{"Sequence", " ", "@@", " ", 
+        RowBox[{"Flatten", "[", "z0Tick", "]"}]}], ",", "\n", "   ", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"Text", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{
+           "\"\<|\[CapitalGamma](s)|\>\"", ",", " ", "14", ",", " ", "Bold"}],
+            "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", " ", "0", ",", " ", 
+            RowBox[{"zMax", " ", "+", " ", "0.55"}]}], "}"}]}], "]"}], "]"}], 
+       ",", "\n", "   ", "originDot", ",", " ", "originLabel", ",", "\n", 
+       "   ", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"{", "\n", "     ", 
+         RowBox[{
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:79ef\:5206\:5b9a\:4e49\:57df (Re(s)>0)\>\"", ",", " ", 
+              "13", ",", " ", "primaryColor", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "     ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:7b2c1\:5c42 (-1<Re\[LessEqual]0)\>\"", ",", " ", "13", 
+              ",", " ", "extension1Color", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "     ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:7b2c2\:5c42 (-2<Re\[LessEqual]-1)\>\"", ",", " ", "13", 
+              ",", " ", "extension2Color", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "     ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:7b2c3\:5c42 (-3<Re\[LessEqual]-2)\>\"", ",", " ", "13", 
+              ",", " ", "extension3Color", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "4", "]"}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "     ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:7b2c4\:5c42 (-4<Re\[LessEqual]-3)\>\"", ",", " ", "13", 
+              ",", " ", "extension4Color", ",", " ", "Bold"}], "]"}], ",", 
+            "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "5", "]"}], "]"}]}], "}"}]}], "]"}], ",", "\n", 
+          "     ", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:7070\:767d\:ff1a\:672a\:5ef6\:62d3\:7684\:66f2\:9762 \
+(-7<Re\[LessEqual]-4)\>\"", ",", " ", "13", ",", " ", "extension5Color", ",", 
+              " ", "Bold"}], "]"}], ",", "\n", "      ", 
+            RowBox[{"{", 
+             RowBox[{"legendX", ",", " ", "legendY", ",", " ", 
+              RowBox[{"legendZ", "[", 
+               RowBox[{"[", "6", "]"}], "]"}]}], "}"}]}], "]"}]}], "\n", 
+         "     ", "}"}], "]"}], ",", "\n", "   ", 
+       RowBox[{"PlotLabel", " ", "->", " ", 
+        RowBox[{"Style", "[", "\n", "     ", 
+         RowBox[{
+         "\"\<\[CapitalGamma](s) \:6a21\:66f2\:9762   |\[CapitalGamma](s)|   \
+\:ff08Eula\:79ef\:5206\:7684\:5b9a\:4e49\:57df + \:56db\:6b21\:9012\:63a8\
+\:5ef6\:62d3\:ff09\>\"", ",", "\n", "     ", "16", ",", " ", "Bold"}], 
+         "]"}]}], ",", "\n", "   ", 
+       RowBox[{"PlotRange", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"reMin", " ", "-", " ", "0.3"}], ",", " ", 
+            RowBox[{"reMax", " ", "+", " ", "0.6"}]}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"imMin", " ", "-", " ", "0.6"}], ",", " ", 
+            RowBox[{"imMax", " ", "+", " ", "1.2"}]}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"zMin", " ", "-", " ", "0.15"}], ",", " ", 
+            RowBox[{"zMax", " ", "+", " ", "0.7"}]}], "}"}]}], "}"}]}], ",", 
+       "\n", "   ", 
+       RowBox[{"BoxRatios", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{"1.5", ",", " ", "1", ",", " ", "0.8"}], "}"}]}], ",", "\n", 
+       "   ", 
+       RowBox[{"Boxed", " ", "->", " ", "False"}], ",", "\n", "   ", 
+       RowBox[{"Axes", " ", "->", " ", "False"}], ",", "\n", "   ", 
+       RowBox[{"ViewPoint", " ", "->", " ", 
+        RowBox[{"{", 
+         RowBox[{"2.4", ",", " ", 
+          RowBox[{"-", "3.0"}], ",", " ", "1.6"}], "}"}]}], ",", "\n", "   ", 
+       
+       RowBox[{"ImageSize", " ", "->", " ", "1000"}], ",", "\n", "   ", 
+       RowBox[{"Background", " ", "->", " ", "None"}]}], "\n", "   ", "]"}]}],
+     ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"===", "===", " ", 
+     RowBox[{"\:8f93\:51fa\:5e76\:5bfc\:51fa", " ", "PDF"}], " ", "===", 
+     "==="}], " ", "*)"}], "\n", "absPlotFinal", "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+     "\:4f18\:5148\:5199\:5230\:4ed3\:5e93", " ", 
+      "\:5168\:4e66\:56fe\:5f62"}], "\:ff1b", 
+     RowBox[{
+     "\:82e5\:4e2d\:6587\:8def\:5f84\:5f02\:5e38\:53ef\:6539", " ", "outTmp", 
+      " ", "\:540e\:624b\:52a8\:590d\:5236"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+    "outPdf", " ", "=", " ", 
+     "\"\</Users/lichengtong/\:9ece\:66fc\:731c\:60f3\:6210\:4e66Grok7-12/\
+\:5168\:4e66\:56fe\:5f62/6-G\:6a21\:66f2\:9762.pdf\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"outTmp", " ", "=", " ", "\"\</tmp/6-G-mod-surface.pdf\>\""}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Quiet", "@", 
+     RowBox[{"Check", "[", "\n", "  ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Export", "[", 
+         RowBox[{
+         "outPdf", ",", " ", "absPlotFinal", ",", " ", "\"\<PDF\>\"", ",", 
+          " ", 
+          RowBox[{"ImageSize", " ", "->", " ", "1000"}]}], "]"}], ";", "\n", 
+        "  ", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<Exported: \>\"", ",", " ", "outPdf"}], "]"}]}], ",", 
+       "\n", "  ", 
+       RowBox[{
+        RowBox[{"Export", "[", 
+         RowBox[{
+         "outTmp", ",", " ", "absPlotFinal", ",", " ", "\"\<PDF\>\"", ",", 
+          " ", 
+          RowBox[{"ImageSize", " ", "->", " ", "1000"}]}], "]"}], ";", "\n", 
+        "  ", 
+        RowBox[{"Print", "[", 
+         RowBox[{
+         "\"\<Exported temp: \>\"", ",", " ", "outTmp", ",", " ", 
+          "\"\< \:ff08\:8bf7\:590d\:5236\:5230 \:5168\:4e66\:56fe\:5f62/6-G\
+\:6a21\:66f2\:9762.pdf\:ff09\>\""}], "]"}]}]}], "\n", "]"}]}], 
+    ";"}]}]}]], "Input",
+ CellLabel->
+  "In[314]:=",ExpressionUUID->"8f8c64cd-a389-4f66-9a2a-216763ad16e9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.995070564989447*^9, 
+  3.995070565000564*^9}},ExpressionUUID->"3ba4e89d-fa28-4dc2-bfa3-\
+0ba66ab1953e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Exported: \"\>", 
+   "\[InvisibleSpace]", \
+"\<\"/Users/lichengtong/\:9ece\:66fc\:731c\:60f3\:6210\:4e66Grok7-12/\:5168\
+\:4e66\:56fe\:5f62/6-G\:6a21\:66f2\:9762.pdf\"\>"}],
+  SequenceForm[
+  "Exported: ", 
+   "/Users/lichengtong/\:9ece\:66fc\:731c\:60f3\:6210\:4e66Grok7-12/\:5168\
+\:4e66\:56fe\:5f62/6-G\:6a21\:66f2\:9762.pdf"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.994579678299532*^9},
+ CellLabel->
+  "\:6b63\:5728\:8ba1\:7b97In[314]:=",ExpressionUUID->"70df4f76-9c18-45c3-\
+bc95-4876f95faa4f"]
+}, Open  ]]
+},
+WindowSize->{1170, 866},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"13.0 for Mac OS X ARM (64-bit) \
+(2021\:5e7412\:67082\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"4c0617e3-826f-4c60-9352-7c7fcbc5f91f"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 38689, 999, 5433, "Input",ExpressionUUID->"b05323c2-9f4f-419b-aee0-d0227f00a000"],
+Cell[CellGroupData[{
+Cell[39272, 1023, 153, 3, 30, InheritFromParent,ExpressionUUID->"09b609ed-163f-4776-b532-3b10c215de82"],
+Cell[39428, 1028, 560, 14, 24, "Print",ExpressionUUID->"9072d79f-a2ed-4ce4-a571-98ca5a23b221"]
+}, Open  ]],
+Cell[40003, 1045, 42506, 1094, 5895, "Input",ExpressionUUID->"8f8c64cd-a389-4f66-9a2a-216763ad16e9"],
+Cell[CellGroupData[{
+Cell[82534, 2143, 152, 3, 30, InheritFromParent,ExpressionUUID->"3ba4e89d-fa28-4dc2-bfa3-0ba66ab1953e"],
+Cell[82689, 2148, 560, 14, 24, "Print",ExpressionUUID->"70df4f76-9c18-45c3-bc95-4876f95faa4f"]
+}, Open  ]]
+}
+]
+*)
+
