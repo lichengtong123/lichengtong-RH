@@ -1,0 +1,41 @@
+% 书后附注（不编号或作为附录后的说明页）
+\chapter*{书后附注：示意视频与程序源码}
+\addcontentsline{toc}{chapter}{书后附注：示意视频与程序源码}
+\markboth{书后附注}{书后附注}
+
+第~\ref{ch:visualization}~章（及书中其他涉及动画、数值图示的章节）所用的示意视频，
+以及生成这些视频与图形的程序源码、运行环境说明，\textbf{不写入本书正文}。
+配套材料统一托管于作者的 GitHub 仓库：
+
+\begin{center}
+\fbox{\parbox{0.88\textwidth}{\centering
+\vspace{0.6em}
+\textbf{配套资源（GitHub）}\\[0.5em]
+\url{https://github.com/lichengtong123/lichengtong-RH}\\[0.4em]
+{\small 仓库名：\texttt{lichengtong-RH}；亦可扫描书末/封底二维码（若有）进入同一页面。}
+\vspace{0.6em}
+}}
+\end{center}
+
+仓库中通常包括：
+\begin{enumerate}
+  \item \textbf{Manim 源程序}：与书中动画对应的脚本
+        （如 $\zeta$ 共形映射、Hardy 轨迹、$\pi_0$ 逼近等）及渲染说明；
+  \item \textbf{Mathematica 源程序}：与书中曲面、模图、对照图等相关的
+        \texttt{.nb} / \texttt{.wl} 笔记本与计算脚本；
+  \item \textbf{视频文件}：正文截图所对应的完整示意动画（或指向可播放副本的说明）；
+  \item \textbf{运行环境与安装说明}：Python / Manim Community、\texttt{mpmath} 等依赖，
+        以及 Mathematica 使用提示；如何安装、如何运行、主要参数含义与常见问题
+        （以仓库根目录 \textbf{\texttt{README}} 或 \texttt{README.md} 为准）。
+\end{enumerate}
+
+本书正文只讨论数学对象与图景含义；\textbf{环境配置、命令行、排错与版本细节
+以 GitHub 仓库文档为准，不在正文章节中展开}。
+若出版社另附光盘或官方下载页，内容应与上述仓库保持一致或以仓库为最新版本。
+
+\paragraph{使用注意}
+\begin{itemize}
+  \item 数值动画与数值图为示意，\textbf{不构成}定理证明；与正文冲突时以正文定义与证明为准。
+  \item 截断参数（零点个数、自变量范围等）改变后画面会变，对应的是数值截断，而非新的数学命题。
+  \item 仓库地址或目录结构若随版本更新，以 \url{https://github.com/lichengtong123/lichengtong-RH} 当前页面为准。
+\end{itemize}

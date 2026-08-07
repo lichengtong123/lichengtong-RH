@@ -1,0 +1,220 @@
+
+
+\chapter{Weierstrass 无穷乘积的详细推导}
+\label{app:weierstrass}
+
+\textbf{本附录的定位（证明例，非主线必引）。}
+第~\ref{ch:gamma_function}~章正文已用积分定义、递推延拓、极点/留数与余元建立 $\Gamma$ 的主线性质
+（含「无零点」）；$\xi$ 的 Hadamard 乘积在第~\ref{ch:xi_function}~章展开。
+\textbf{全书正文的定理证明不依赖}本附录的推导。
+
+本附录将 $1/\Gamma$ 的 Weierstrass 乘积
+\[
+  \frac{1}{\Gamma(s)}
+  = s\, e^{\gamma s}
+  \prod_{n=1}^{\infty}\Bigl(1+\frac{s}{n}\Bigr)e^{-s/n}
+\]
+作为 Weierstrass 方法的\textbf{完整证明例}：如何构造以给定点为零点的整函数，并与 $\Gamma$ 的递推、余元相容。
+篇幅不受正文限制，可逐步写细。若阅读第~\ref{ch:xi_function}~章时希望对照「按极点编码的乘积」与「按零点编码的 Hadamard」，可参阅本附录。
+
+%==============================================================
+\section*{附录内容概要}
+%==============================================================
+
+下文详细推导上述乘积表示，并讨论收敛性及与 $\Gamma$ 基本性质的相容性。
+
+%==============================================================
+\section{预备知识：Euler 常数与调和数}
+%==============================================================
+
+\begin{definition}{Euler 常数}{}
+Euler 常数 \(\gamma\) 定义为
+\[
+\gamma = \lim_{n \to \infty} \left( H_n - \log n \right),
+\]
+其中 \(H_n = 1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n}\) 是第 \(n\) 个调和数。
+数值上 \(\gamma \approx 0.5772156649\ldots\)
+\end{definition}
+
+Euler 常数的出现是因为调和级数发散的速度与对数函数相同。
+
+%==============================================================
+\section{\texorpdfstring{$\Gamma$}{Gamma} 函数的倒数表示}
+%==============================================================
+
+目标公式即正文~\eqref{eq:gamma-weierstrass}。下面给出完整推导。
+
+\begin{theorem}{Weierstrass 乘积（附录形式）}{}\label{thm:weierstrass-app}
+对任意 \(s \in \mathbb{C}\)，有
+\[
+\frac{1}{\Gamma(s)} = s \lim_{N \to \infty} \left[ \prod_{n=1}^N \left(1 + \frac{s}{n}\right) e^{-s/n} \right] e^{\gamma s}.
+\]
+\end{theorem}
+
+\section*{推导思路}
+
+Weierstrass 的原始想法是构造一个整函数，其零点恰好是 \(s = 0, -1, -2, \dots\)，然后证明这个整函数等于 \(1/\Gamma(s)\)。
+
+\subsection*{第一步：构造一个以 \(s=0,-1,-2,\dots\) 为零点的函数}
+
+考虑函数
+\[
+P_N(s) = s \prod_{n=1}^N \left(1 + \frac{s}{n}\right) e^{-s/n}.
+\]
+因子 \(e^{-s/n}\) 的作用是保证乘积收敛（因为 \(\sum 1/n\) 发散，但 \(\sum (1/n - 1/n) = 0\) 收敛）。
+
+当 \(N \to \infty\) 时，乘积
+\[
+P(s) = \lim_{N \to \infty} P_N(s)
+\]
+在任意紧集上一致收敛，因此 \(P(s)\) 是整函数。它的零点恰好在 \(s = 0, -1, -2, \dots\)，且均为单零点。
+
+\subsection*{第二步：引入 Euler 常数调整极限}
+
+直接极限 \(\lim_{N \to \infty} P_N(s)\) 可能发散，需要加入指数因子 \(e^{\gamma s}\) 来保证收敛性。实际上可以证明：
+\[
+\lim_{N \to \infty} P_N(s) e^{\gamma s} = \frac{1}{\Gamma(s)}.
+\]
+
+\subsection*{第三步：验证与 $\Gamma$ 函数的递推关系一致}
+
+我们从 Weierstrass 乘积表示出发，由于 \(F(s) = 1/\Gamma(s)\)，我们需要验证其满足递推关系：
+\[
+F(s+1) = \frac{F(s)}{s}.
+\]
+我们可以通过部分乘积的极限来进行严格推导。定义部分乘积为：
+\[
+F_N(s) = s e^{s(H_N - \log N)} \prod_{n=1}^N \left(1 + \frac{s}{n}\right) e^{-s/n},
+\]
+其中 \(H_N = \sum_{n=1}^N \frac{1}{n}\) 是调和数。由于 \(\prod_{n=1}^N e^{-s/n} = e^{-s H_N}\)，我们可以将指数项中的 \(e^{s H_N}\) 与之抵消，从而将部分乘积简化为：
+\[
+F_N(s) = s N^{-s} \prod_{n=1}^N \left(1 + \frac{s}{n}\right) = s N^{-s} \prod_{n=1}^N \frac{s+n}{n} = \frac{s(s+1)(s+2)\cdots(s+N)}{N! N^s}.
+\]
+此时，计算 \(F_N(s+1)\)：
+\begin{align*}
+F_N(s+1) &= \frac{(s+1)(s+2)\cdots(s+N+1)}{N! N^{s+1}} \\
+&= \frac{s(s+1)\cdots(s+N)}{N! N^s} \cdot \frac{s+N+1}{s N} \\
+&= F_N(s) \cdot \frac{s+N+1}{s N}.
+\end{align*}
+当 \(N \to \infty\) 时，由于：
+\[
+\lim_{N \to \infty} \frac{s+N+1}{s N} = \lim_{N \to \infty} \frac{1 + (s+1)/N}{s} = \frac{1}{s},
+\]
+我们有：
+\[
+F(s+1) = \lim_{N \to \infty} F_N(s+1) = \lim_{N \to \infty} \left[ F_N(s) \frac{s+N+1}{s N} \right] = \frac{F(s)}{s}.
+\]
+由此我们严格证明了 Weierstrass 乘积定义的函数满足递推关系 \(\Gamma(s+1) = s \Gamma(s)\)。
+
+%==============================================================
+\section{收敛性证明}
+%==============================================================
+
+要证明无穷乘积
+\[
+\prod_{n=1}^\infty \left(1 + \frac{s}{n}\right) e^{-s/n}
+\]
+收敛，需要考虑其对数。
+
+\begin{proposition}{}{}
+对任意固定的 \(s \in \mathbb{C}\)，级数
+\[
+\sum_{n=1}^\infty \left[ \log\left(1 + \frac{s}{n}\right) - \frac{s}{n} \right]
+\]
+绝对收敛。
+\end{proposition}
+
+\begin{proof}
+对充分大的 \(n\)，利用展开式 \(\log(1+z) = z - \frac{z^2}{2} + O(z^3)\)，有
+\[
+\log\left(1 + \frac{s}{n}\right) - \frac{s}{n} = -\frac{s^2}{2n^2} + O\left(\frac{1}{n^3}\right).
+\]
+因此通项 \(\sim -s^2/(2n^2)\)，而 \(\sum 1/n^2\) 收敛，故级数绝对收敛。这表明乘积收敛且与 \(s\) 无关。
+\end{proof}
+
+由于对任意 \(N\)，乘积中因子 \(s\) 和 \(e^{\gamma s}\) 与 \(N\) 无关，整个表达式在任意紧集上一致收敛，定义了一个整函数。
+
+%==============================================================
+\section{与 \texorpdfstring{$\Gamma$}{Gamma} 函数的关系}
+%==============================================================
+
+\begin{theorem}{}{}
+Weierstrass 乘积等于 \(1/\Gamma(s)\)。
+\end{theorem}
+
+\begin{proof}[概要]
+设
+\[
+G(s) = \frac{1}{s e^{\gamma s}} \prod_{n=1}^\infty \left(1 + \frac{s}{n}\right)^{-1} e^{s/n}.
+\]
+可以证明：
+\begin{enumerate}
+    \item \(G(s)\) 是亚纯函数，极点位于 \(s = 0, -1, -2, \dots\)；
+    \item \(G(s)\) 满足 \(G(s+1) = s G(s)\)；
+    \item \(G(1) = 1\)。
+\end{enumerate}
+在正实轴上可验证 \(G(x)=\Gamma(x)\)（\(x>0\)）；再由解析延拓的唯一性
+（第~\ref{ch:analytic_continuation_general}~章），有 \(G(s)=\Gamma(s)\) 在 \(\mathbb{C}\) 上成立
+（极点处按亚纯延拓理解）。因此
+\[
+G(s) = \Gamma(s) \quad \Longrightarrow \quad \frac{1}{\Gamma(s)} = s e^{\gamma s} \prod_{n=1}^\infty \left(1 + \frac{s}{n}\right) e^{-s/n}.
+\]
+\end{proof}
+
+%==============================================================
+\section{与 Euler 无穷乘积的关系}
+%==============================================================
+
+从 Weierstrass 乘积可以导出 Euler 的无穷乘积形式。注意到
+\[
+e^{\gamma s} = \lim_{N \to \infty} e^{s(H_N - \log N)} = \lim_{N \to \infty} N^{-s} e^{s H_N},
+\]
+其中 \(H_N = \sum_{n=1}^N 1/n\)。代入 Weierstrass 公式：
+\[
+\frac{1}{\Gamma(s)} = s \lim_{N \to \infty} \left[ \prod_{n=1}^N \left(1 + \frac{s}{n}\right) e^{-s/n} \right] e^{\gamma s}
+= s \lim_{N \to \infty} \left[ \prod_{n=1}^N \left(1 + \frac{s}{n}\right) e^{-s/n} \right] N^{-s} e^{s H_N}.
+\]
+但 \(\prod_{n=1}^N e^{-s/n} = e^{-s H_N}\)，与 \(e^{s H_N}\) 相消，得到
+\[
+\frac{1}{\Gamma(s)} = s \lim_{N \to \infty} N^{-s} \prod_{n=1}^N \left(1 + \frac{s}{n}\right).
+\]
+取倒数即得 Euler 形式：
+\[
+\Gamma(s) = \frac{1}{s} \lim_{N \to \infty} N^{s} \prod_{n=1}^N \left(1 + \frac{s}{n}\right)^{-1}
+= \frac{1}{s} \prod_{n=1}^\infty \frac{(1+1/n)^s}{1+s/n}.
+\]
+
+%==============================================================
+\section{应用示例：\texorpdfstring{$\Gamma(1/2) = \sqrt{\pi}$}{Gamma(1/2) = sqrt(pi)}}
+%==============================================================
+
+利用 Weierstrass 乘积可以计算 \(\Gamma(1/2)\)。由 Wallis 乘积：
+\[
+\frac{\pi}{2} = \prod_{n=1}^\infty \frac{(2n)^2}{(2n-1)(2n+1)} = \lim_{N \to \infty} \frac{2^{4N} (N!)^4}{[(2N)!]^2 (2N+1)}.
+\]
+我们将 \(s = 1/2\) 代入 Euler 乘积的部分乘积式中：
+\[
+\Gamma_N(1/2) = 2 \prod_{n=1}^N \frac{(1+1/n)^{1/2}}{1+1/(2n)} = 2 \prod_{n=1}^N \frac{\sqrt{n+1}}{\sqrt{n}} \frac{2n}{2n+1} = \frac{2\sqrt{N+1}}{2N+1} \frac{2^{2N}(N!)^2}{(2N)!}.
+\]
+对其平方后，经过代数整理可得：
+\[
+\Gamma_N(1/2)^2 = \frac{4(N+1)}{(2N+1)^2} \frac{2^{4N}(N!)^4}{[(2N)!]^2} = \frac{4(N+1)}{2N+1} \left[ \frac{2^{4N}(N!)^4}{[(2N)!]^2(2N+1)} \right].
+\]
+当 \(N \to \infty\) 时，前项分数趋于 \(2\)，中括号内的部分趋于 Wallis 乘积的极限值 \(\pi/2\)，因此：
+\[
+\Gamma(1/2)^2 = \lim_{N \to \infty} \Gamma_N(1/2)^2 = 2 \cdot \frac{\pi}{2} = \pi.
+\]
+由于 \(\Gamma(1/2) > 0\)，从而得到 \(\Gamma(1/2) = \sqrt{\pi}\)。这与余元公式导出的结果一致，且展示了 Weierstrass 与 Euler 乘积形式的完美自洽性。
+
+%==============================================================
+\section{小结}
+%==============================================================
+
+Weierstrass 无穷乘积是 $\Gamma$ 函数理论的核心结果之一，它：
+\begin{itemize}
+    \item 直接展示了 $\Gamma$ 函数的极点位置；
+    \item 证明了 \(1/\Gamma(s)\) 是整函数；
+    \item 为后续研究整函数的因子分解（Hadamard 乘积定理）奠定了基础；
+    \item 在 Riemann \(\xi(s)\) 的函数方程和乘积表示中起关键作用。
+\end{itemize}
+

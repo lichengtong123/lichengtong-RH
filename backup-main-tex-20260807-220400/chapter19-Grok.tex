@@ -1,0 +1,530 @@
+\chapter{黎曼原稿解读}\label{ch:riemann_original_interpretation}
+
+\vspace{0.6em}
+\begin{quote}
+\small
+当然，人们在此处希望有更严格的证明；我暂时在作了一些短暂的徒劳尝试后搁置了对这个证明的寻找，因为对我研究的下一个目标来说它似乎不必要。\\[4pt]
+\hfill——B.~Riemann，\textit{Ueber die Anzahl der Primzahlen unter einer gegebenen Gr\"{o}sse}（1859）
+\end{quote}
+\vspace{0.6em}
+
+本章给出黎曼 1859 年论文的完整中文译稿，并在译稿各段之后附\textbf{编者解读}。
+
+\paragraph{文献与译文来源}
+黎曼原文：
+B.~Riemann,
+\textit{Ueber die Anzahl der Primzahlen unter einer gegebenen Gr\"{o}sse},
+Monatsberichte der Berliner Akademie, November 1859
+（约八页；解析数论奠基文献之一）。
+本章中文译稿所据英译为 David~R.~Wilkins（Trinity College Dublin, 1998），
+经 Clay Mathematics Institute 发布；中译在不改动黎曼论述顺序与论断的前提下整理。
+
+\paragraph{版式约定（译稿与解读的分界）}
+\begin{itemize}
+  \item \textbf{译稿正文}：以下居中论文题名之后，连续排印的段落与公式为 1859 年论文中文译稿。
+  \item \textbf{编者解读}：插在译稿段落后的线框（标题为【解读】），为本书编者所加说明。
+        框内给出要点解释、现代记号对应；并通过「详论见」交叉引用指向前文章节，
+        以补齐原稿从略的推导（围道求值、$\vartheta$ 反演、显式公式细节等）。
+\end{itemize}
+
+\vspace{1.5em}
+\begin{center}
+{\LARGE\bfseries 论小于给定数值的素数个数}\\[0.6em]
+{\Large B.~Riemann（1859）}
+\end{center}
+
+\vspace{1.2em}
+
+我认为，报答柏林科学院接纳我为通讯院士所给予的荣幸，最好的方式是迅速利用由此获得的许可，发表一项关于素数个数的研究。考虑到 Gauss 和 Dirichlet 本人对这一主题长期以来所表现的兴趣，这个题目似乎值得这样的发表。
+
+我这项研究的出发点来自于 Euler 的观察，即对乘积
+\[
+\prod \frac{1}{1-\frac{1}{p^s}} = \sum_{n=1}^{\infty} \frac{1}{n^s}
+\]
+当以所有素数代替 $p$，以所有自然数代替 $n$ 时成立。由这两个表达式所代表的复变量 $s$ 的函数，在它们收敛的地方，我记为 $\zeta(s)$。两个表达式都仅在 $s$ 的实部大于 1 时收敛；同时，可以轻易地找到一个对该函数始终有效的表达式。
+
+\begin{commentary}{Euler 乘积与素数分布的复数推广}
+\textbf{要点.}
+开篇将 Euler 乘积中的变量取为复变量 $s$，并把两边共同代表的对象记作 $\zeta(s)$。
+级数与乘积在 $\operatorname{Re}(s)>1$ 时绝对收敛（第~\ref{ch:riemann_zeta_intro}~章第~\ref{sec:euler-product}~节）；
+黎曼同时指出目前仅在此半平面有效，但“容易找到对该函数始终有效的表达式”——解析延拓由此起笔。
+
+\textbf{现代对应.}
+\[
+\zeta(s)=\sum_{n=1}^\infty n^{-s}=\prod_p(1-p^{-s})^{-1},\qquad \operatorname{Re}(s)>1.
+\]
+乘积展开依赖算术基本定理；绝对收敛保证重排合法。
+
+\textbf{详论见.}
+第~\ref{ch:riemann_zeta_intro}~章第~\ref{sec:euler-product}~节；延拓见第~\ref{ch:riemann_zeta_continuation}~章。
+\end{commentary}
+
+利用方程
+\[
+\int_0^{\infty} e^{-nx} x^{s-1} \, dx = \frac{\Pi(s-1)}{n^s}
+\]
+首先可以看出
+\[
+\Pi(s-1)\zeta(s) = \int_0^{\infty} \frac{x^{s-1}}{e^x - 1} \, dx.
+\]
+
+\begin{commentary}{黎曼记号与 $\zeta(s)$ 的实积分表示}
+\textbf{要点.}
+译稿中的 $\Pi$ 为 Gauss--Riemann 阶乘记号（原稿用语），与现代 Gamma 函数的关系为
+\[
+\Pi(z)=\Gamma(z+1),
+\]
+因而 $\Pi(s-1)=\Gamma(s)$、$\Pi(s/2-1)=\Gamma(s/2)$、$\Pi(s/2)=\Gamma(s/2+1)$。
+下文【解读】框内一律改写为 $\Gamma$，不再出现 $\Pi$。
+
+由 $\int_0^\infty e^{-nx}x^{s-1}\,dx=\Gamma(s)\,n^{-s}$ 对 $n$ 求和得
+\[
+\Gamma(s)\zeta(s)=\int_0^\infty\frac{x^{s-1}}{e^x-1}\,dx
+\qquad(\operatorname{Re}s>1).
+\]
+此为等价改写，\textbf{尚非}全平面延拓。
+
+\textbf{详论见.}
+第~\ref{ch:riemann_zeta_intro}~章第~\ref{sec:integral-representation-eq}~节；
+第一法见第~\ref{sec:riemann_first_method}~节；
+$\Gamma$ 见第~\ref{ch:gamma_function}~章。
+\end{commentary}
+
+若我们考虑积分
+\[
+\int \frac{(-x)^{s-1} \, dx}{e^x - 1}
+\]
+从 $+\infty$ 沿着以 0 为中心（但内部不包含被积函数的其他不连续点）的域的正向回到 $+\infty$，则容易看出这等于
+\[
+(e^{-\pi si} - e^{\pi si}) \int_0^{\infty} \frac{x^{s-1}}{e^x - 1} \, dx
+\]
+条件是在多值函数 $(-x)^{s-1} = e^{(s-1)\log(-x)}$ 中，$-x$ 的对数被确定为当 $x$ 为负时为实数。因此
+\[
+2\sin(\pi s) \Pi(s-1) \zeta(s) = i \int_{\infty}^{\infty} \frac{(-x)^{s-1}}{e^x - 1} \, dx
+\]
+其中积分具有刚才规定的含义。
+
+\begin{commentary}{Hankel 围道积分与解析延拓}
+\textbf{要点.}
+这是\textbf{第一法}的关键一步：把实轴积分改写成绕正实轴割线的复围道积分（后称 Hankel 围道）。
+黎曼规定 $\log(-x)$ 在 $x$ 为负时取实值，上下岸相位差给出因子 $e^{-\pi si}-e^{\pi si}$。
+用 $\Pi(s-1)=\Gamma(s)$ 改写译稿公式，得
+\[
+2\sin(\pi s)\,\Gamma(s)\,\zeta(s)
+=i\int_{\infty}^{\infty}\frac{(-x)^{s-1}}{e^x-1}\,dx.
+\]
+右侧围道积分在广大 $s$ 区域内收敛，故给出 $\zeta$ 在 $\mathbb{C}\setminus\{1\}$ 上的亚纯延拓；
+负偶数处 $\sin(\pi s)=0$ 且右端可证为零，即平凡零点。分支、小圆弧与求值细节原稿从略。
+
+\textbf{详论见.}
+围道图与完整计算见第~\ref{ch:riemann_zeta_continuation}~章第~\ref{sec:riemann_first_method}~节（图~\ref{fig:hankel}）；
+本章不重复推导。
+\end{commentary}
+
+这个方程现在给出了函数 $\zeta(s)$ 对所有复数 $s$ 的值，并表明这个函数对所有有限值的 $s$ 是单值和有限的，除了 $s = 1$ 外，且当 $s$ 等于负偶数时为零。
+
+若 $s$ 的实部为负，则这个积分不但可以沿着正向绕上述指定域取，还可以沿着负向绕包含所有其余复数的域取，因为通过无穷大模的值的积分此时无穷小。然而在这个域的内部，被积函数仅在 $x$ 成为 $\pm 2\pi i$ 的整倍数时才有不连续性，因此积分等于沿着这些值负向绕路的积分之和。但围绕值 $n \cdot 2\pi i$ 的积分为 $(-n \cdot 2\pi i)^{s-1}(-2\pi i)$，由此可得
+\[
+2\sin(\pi s) \Pi(s-1) \zeta(s) = (2\pi)^s \sum_{n=1}^{\infty} n^{s-1} \left((-i)^{s-1} + i^{s-1}\right)
+\]
+从而得到 $\zeta(s)$ 与 $\zeta(1-s)$ 之间的一个关系，通过利用函数 $\Pi$ 的已知性质，可以表述如下：
+\[
+\Pi\left(\frac{s}{2} - 1\right) \pi^{-s/2} \zeta(s)
+\]
+当 $s$ 被 $1-s$ 替换时保持不变。
+
+\begin{commentary}{第一法续：留数与泛函方程}
+\textbf{要点.}
+在 $\operatorname{Re}(s)$ 为负时，黎曼将围道外扩，积分等于绕 $x=\pm 2n\pi i$ 的留数和，得到连接 $\zeta(s)$ 与 $\sum n^{s-1}$ 的等式。
+译稿写作 $\Pi(s/2-1)\pi^{-s/2}\zeta(s)$ 在 $s\leftrightarrow 1-s$ 下不变；
+由 $\Pi(s/2-1)=\Gamma(s/2)$，即
+\[
+\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s)
+\]
+在 $s\leftrightarrow 1-s$ 下不变。
+现代记 $\Lambda(s)=\pi^{-s/2}\Gamma(s/2)\zeta(s)$，则 $\Lambda(s)=\Lambda(1-s)$。
+
+\textbf{详论见.}
+第~\ref{ch:riemann_zeta_continuation}~章第~\ref{sec:riemann_first_method}~节；
+两法对照见第~\ref{sec:riemann_two_methods_comparison}~节。
+\end{commentary}
+
+这个函数的性质促使我引入了一个新的函数来简化分析。将 $\Pi(s-1)$ 替换为 $\Pi\left(\frac{s}{2}-1\right)$ 放入级数 $\sum \frac{1}{n^s}$ 的通项中，可以得到对函数 $\zeta(s)$ 的一个非常方便的表达式。实际上
+\[
+\frac{1}{n^s} \Pi\left(\frac{s}{2} - 1\right) \pi^{-s/2} = \int_0^{\infty} e^{-n^2\pi x} x^{s/2 - 1} \, dx
+\]
+因此，若设
+\[
+\psi(x) = \sum_{n=1}^{\infty} e^{-n^2\pi x}
+\]
+则
+\[
+\Pi\left(\frac{s}{2} - 1\right) \pi^{-s/2} \zeta(s) = \int_0^{\infty} \psi(x) x^{s/2-1} \, dx
+\]
+
+\begin{commentary}{第二法起笔：$\psi(x)$ 与对称因子}
+\textbf{要点.}
+第一法之后，黎曼另起一途。译稿中的 $\Pi(s/2-1)$ 即 $\Gamma(s/2)$，故可写
+\[
+\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s)
+=\int_0^\infty\psi(x)\,x^{s/2-1}\,dx,\qquad
+\psi(x)=\sum_{n=1}^\infty e^{-n^2\pi x}.
+\]
+此为\textbf{第二法}的出发点（实轴 Mellin，而非 Hankel 围道）。
+
+\textbf{现代对应.}
+黎曼的 $\psi(x)$ 是 Jacobi $\vartheta$ 的半边：$\vartheta(x)=1+2\psi(x)$；
+\textbf{切勿}与 Chebyshev $\psi(x)=\sum_{n\le x}\Lambda(n)$ 混淆。
+
+\textbf{详论见.}
+第~\ref{ch:riemann_zeta_continuation}~章第~\ref{sec:theta_function_method}~节。
+\end{commentary}
+
+由于
+\[
+2\psi(x) + 1 = x^{-1/2}\left(2\psi\left(\frac{1}{x}\right) + 1\right) \quad \text{（Jacobi, Fund. S. 184）}
+\]
+可得
+\[
+\begin{aligned}
+\Pi\left(\frac{s}{2} - 1\right) \pi^{-s/2} \zeta(s) 
+&= \int_1^{\infty} \psi(x) x^{s/2-1} \, dx 
++ \int_1^{\infty} \psi\left(\frac{1}{x}\right) x^{-(1+s)/2} \, dx 
++ \frac{1}{2}\int_1^{\infty} \left(x^{-(1+s)/2} - x^{-s/2-1}\right) \, dx \\
+&= \frac{1}{s(s-1)} + \int_1^{\infty} \psi(x) \left(x^{s/2-1} + x^{-(1+s)/2}\right) \, dx
+\end{aligned}
+\]
+
+\begin{commentary}{第二法小结：Jacobi 变换与对称积分}
+\textbf{要点.}
+引用 Jacobi 变换 $2\psi(x)+1=x^{-1/2}(2\psi(1/x)+1)$，拆分积分并分出 $1/(s(s-1))$，
+得全平面可用的对称表示（$\Pi(s/2-1)=\Gamma(s/2)$）
+\[
+\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s)
+=\frac{1}{s(s-1)}
++\int_1^\infty\psi(x)\Bigl(x^{s/2-1}+x^{-(1+s)/2}\Bigr)dx.
+\]
+右端在 $s\leftrightarrow 1-s$ 下不变，同时完成延拓与 FE。Poisson 求和细节原稿不写。
+
+\textbf{详论见.}
+第~\ref{sec:theta_function_method}~节；两法对照第~\ref{sec:riemann_two_methods_comparison}~节。
+\end{commentary}
+
+现在我设 $s = \frac{1}{2} + ti$ 并定义
+\[
+\xi(t) = \Pi\left(\frac{s}{2}\right) \left(s-1\right) \pi^{-s/2} \zeta(s)
+\]
+因此
+\[
+\xi(t) = \frac{1}{2} - \left(t^2 + \frac{1}{4}\right) \int_1^{\infty} \psi(x) x^{-3/4} \cos\left(\frac{t}{2} \log x\right) \, dx
+\]
+或等价地
+\[
+\xi(t) = 4 \int_1^{\infty} \frac{d\left(x^{3/2} \psi'(x)\right)}{dx} x^{-1/4} \cos\left(\frac{t}{2} \log x\right) \, dx
+\]
+这个函数对所有有限的 $t$ 值都是有限的，并允许按 $t^2$ 的幂展开为一个极度快速收敛的级数。由于对于实部大于 1 的 $s$ 值，$\log \zeta(s) = -\sum \log(1 - p^{-s})$ 保持有限，且对于 $\xi(t)$ 的其他因子的对数也成立，因此可以推断函数 $\xi(t)$ 仅当 $t$ 的虚部在 $\frac{1}{2}i$ 和 $-\frac{1}{2}i$ 之间时才能为零。
+
+$\xi(t) = 0$ 的根的个数，其实部在 0 和 $T$ 之间，约为
+\[
+\approx \frac{T}{2\pi} \log\frac{T}{2\pi} - \frac{T}{2\pi}
+\]
+因为沿着由虚部在 $\frac{1}{2}i$ 和 $-\frac{1}{2}i$ 之间、实部在 0 和 $T$ 之间的 $t$ 值组成的域的正向取的积分 $\int d\log \xi(t)$（除了数量级为 $\frac{1}{T}$ 的分数外）等于 $\left(T \log\frac{T}{2\pi} - T\right) i$；然而这个积分等于位于该域内的 $\xi(t) = 0$ 的根数乘以 $2\pi i$。人们确实在这些极限内发现了大约这个数量的实根，且极有可能所有的根都是实数。当然，人们在此处希望有更严格的证明；我暂时在作了一些短暂的徒劳尝试后搁置了对这个证明的寻找，因为对我研究的下一个目标来说它似乎不必要。
+
+\begin{commentary}{$\xi(t)$、零点计数与“根皆为实”}
+\textbf{要点.}
+黎曼令 $s=\frac12+ti$，译稿定义 $\xi(t)=\Pi(s/2)\,(s-1)\,\pi^{-s/2}\zeta(s)$。
+由 $\Pi(s/2)=\Gamma(s/2+1)$，即
+\[
+\xi(t)=\Gamma\!\left(\frac{s}{2}+1\right)(s-1)\,\pi^{-s/2}\zeta(s).
+\]
+现代常用
+\[
+\xi(s)=\frac12 s(s-1)\,\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s)
+\]
+（在 $s=\frac12+it$ 处与上式\textbf{差正规化因子}：$\Gamma(s/2+1)$ 与 $\frac12 s\Gamma(s/2)$ 等相差无零因子约定；
+零点集合一致）。FE 给出 $\xi(t)=\xi(-t)$。
+他估计 $[0,T]$ 内根数约 $N(T)\approx\frac{T}{2\pi}\log\frac{T}{2\pi}-\frac{T}{2\pi}$，
+并写“极有可能所有的根都是实数”——即后世所称的黎曼猜想（RH）。
+
+\textbf{详论见.}
+$\xi$ 的现代定义与 Hadamard：第~\ref{ch:xi_function}~章；
+$N(T)$：第~\ref{ch:zero_distribution}~章。
+\end{commentary}
+
+若用 $\alpha$ 表示方程 $\xi(\alpha) = 0$ 的所有根，则可以将 $\log \xi(t)$ 表为
+\[
+\sum \log\left(1 - \frac{t^2}{\alpha^2}\right) + \log \xi(0)
+\]
+因为由于 $\xi$ 的根的密度随 $t$ 的增长仅如 $\log\frac{t}{2\pi}$，所以这个表达式收敛，且对于无穷大的 $t$ 仅如 $t \log t$ 趋于无穷；因此它与 $\log \xi(t)$ 的差异由一个函数构成，对于有限的 $t$ 保持连续和有限，当除以 $t^2$ 时对于无穷大的 $t$ 变为无穷小。这个差异因此是一个常数，其值可以通过设置 $t = 0$ 来确定。
+
+\begin{commentary}{$\xi(t)$ 的乘积与 Hadamard 理论}
+\textbf{整函数因子分解--严格理论体系说明：}\\
+黎曼在此处\textbf{写出了}乘积
+\[
+\xi(t)=\xi(0)\prod_{\alpha}\Biggl(1-\frac{t^2}{\alpha^2}\Biggr),
+\]
+并简述其依据（零点成对出现；由 $N(T)$ 量级估计收敛；
+$\log\xi(t)$ 与 $\sum\log(1-t^2/\alpha^2)$ 之差在 $t\to\infty$ 时“低于 $t^2$”从而为常数），
+但\textbf{并未给出}整函数理论意义下的严格证明。
+这一工作直到近 40 年后才由 Hadamard 建立的整函数理论（Hadamard 因子分解定理）予以彻底完成。
+关于整函数的增长阶、亏格，以及 $\xi$ 函数无穷乘积的严格证明，
+已在本书第~\ref{ch:xi_function}~章第~\ref{sec:xi-hadamard-product}~节中系统建立；
+由 Hadamard 公式到原稿 $t$-乘积的推导，见同章第~\ref{sec:hadamard-to-riemann-product}~节。
+\end{commentary}
+
+借助这些方法，可以现在确定小于 $x$ 的素数个数。
+
+设 $F(x)$ 等于这个个数，当 $x$ 不恰好等于一个素数时；但当 $x$ 是一个素数时它大 $\frac{1}{2}$，因此对于任何 $F(x)$ 值出现跳跃的 $x$，
+\[
+F(x) = \frac{F(x+0) + F(x-0)}{2}
+\]
+
+若在恒等式
+\[
+\log \zeta(s) = -\sum \log(1 - p^{-s}) = \sum p^{-s} + \frac{1}{2}\sum p^{-2s} + \frac{1}{3}\sum p^{-3s} + \cdots
+\]
+中，我们用 $s\int_p^{\infty} x^{-s-1} \, dx$ 替换 $p^{-s}$，用 $s\int_{p^2}^{\infty} x^{-s-1} \, dx$ 替换 $p^{-2s}$，等等，我们得到
+\[
+\frac{\log \zeta(s)}{s} = \int_1^{\infty} f(x) x^{-s-1} \, dx
+\]
+其中我们记
+\[
+f(x) = F(x) + \frac{1}{2}F(x^{1/2}) + \frac{1}{3}F(x^{1/3}) + \cdots
+\]
+
+这个方程对每个复数值 $s = a + bi$（其中 $a > 1$）都有效。若方程
+\[
+g(s) = \int_0^{\infty} h(x) x^{-s} \, d\log x
+\]
+在这个范围内成立，则通过利用 Fourier 定理，可以用函数 $g$ 来表达函数 $h$。该方程分解为两个以下方程，若 $h(x)$ 为实且 $g(a + bi) = g_1(b) + ig_2(b)$：
+\[
+g_1(b) = \int_0^{\infty} h(x) x^{-a} \cos(b\log x) \, d\log x
+\]
+\[
+ig_2(b) = -i\int_0^{\infty} h(x) x^{-a} \sin(b\log x) \, d\log x
+\]
+若我们将两个方程都乘以 $(\cos(b\log y) + i\sin(b\log y)) \, db$ 并从 $-\infty$ 到 $+\infty$ 进行积分，则根据 Fourier 定理，在右边两者中我们都得到 $\pi h(y) y^{-a}$；因此，若我们将两个方程相加并乘以 $iy^a$，我们得到
+\[
+2\pi i h(y) = \int_{a-\infty i}^{a+\infty i} g(s) y^s \, ds
+\]
+其中积分进行使得 $s$ 的实部保持不变。对于 $h(y)$ 值出现跳跃的 $y$ 值，积分取跳跃两侧函数 $h$ 值的平均值。
+
+从函数 $f$ 的定义方式来看，它具有相同的性质，因此全般地
+\[
+f(y) = \frac{1}{2\pi i} \int_{a-\infty i}^{a+\infty i} \frac{\log \zeta(s)}{s} y^s \, ds
+\]
+
+\clearpage
+\begin{commentary}{黎曼素数计数函数、积分变换与 Perron 反演}
+本段将 $\zeta$ 的解析性质与素数分布挂钩，并给出由 $\log\zeta$ 反演 $f$（即 $J$）的路径。
+
+\textbf{（1）$F$、$f$ 与现代记号.}
+黎曼的 $F(x)$ 即（跳跃点取半值的）$\pi(x)$：
+$ F(x)=\frac{\pi(x+0)+\pi(x-0)}{2}$ 在素数处成立。
+$f(x)$ 即现代 $J(x)$（亦记 $\Pi(x)$）：
+\[
+J(x)=\sum_{n=1}^\infty\frac1n\pi(x^{1/n})
+=\pi(x)+\frac12\pi(x^{1/2})+\frac13\pi(x^{1/3})+\cdots.
+\]
+定义与性质见第~\ref{ch:elementary_number_theoretic_functions}~章第~\ref{sec:riemann_prime_power}~节。
+
+\textbf{（2）正向：Mellin 型积分.}
+由 $\log\zeta$ 的素数幂展开与 $p^{-ks}=s\int_{p^k}^\infty x^{-s-1}\,dx$，得
+\[
+\frac{\log\zeta(s)}{s}=\int_1^\infty f(x)\,x^{-s-1}\,dx
+\qquad(\operatorname{Re}s>1).
+\]
+即 $\log\zeta(s)/s$ 为 $J$ 的 Mellin 型变换。见第~\ref{ch:integral_transforms}~章。
+
+\textbf{（3）反向：Perron / 逆 Mellin.}
+黎曼借助 Fourier 定理的复形式，在竖直直线 $\operatorname{Re}s=a>1$ 上写出
+\[
+f(y)=\frac{1}{2\pi i}\int_{a-\infty i}^{a+\infty i}\frac{\log\zeta(s)}{s}\,y^s\,ds,
+\]
+此即后世 Perron 公式（逆 Mellin）。跳跃点取左右平均
+$\frac{J(y+0)+J(y-0)}{2}$。
+严格证明见第~\ref{ch:integral_transforms}~章第~\ref{sec:perron}~节；
+在显式公式中的应用见第~\ref{ch:riemann_explicit_formula}~章第~\ref{sec:explicit-derivation}~节。
+\end{commentary}
+
+对于 $\log \zeta$，可以代入之前找到的表达式
+\[
+\frac{s}{2}\log \pi - \log(s-1) - \log\Pi\left(\frac{s}{2}\right) + \sum_{\alpha} \log\left(1 + \frac{(s-1/2)^2}{\alpha^2}\right) + \log\xi(0)
+\]
+然而这个表达式的各项的积分在扩展到无穷时不收敛，因此适当的做法是通过分部积分将之前的方程转换为
+\[
+f(x) = -\frac{1}{2\pi i \log x} \int_{a-\infty i}^{a+\infty i} \frac{d}{ds} \left(\frac{\log \zeta(s)}{s}\right) x^s \, ds
+\]
+
+由于
+\[
+-\log\Pi\left(\frac{s}{2}\right) = \lim_{m\to\infty} \left(\sum_{n=1}^{m} \log\left(1 + \frac{s}{2n}\right) - \frac{s}{2}\log m\right)
+\]
+因此
+\[
+-\frac{d}{ds}\frac{1}{s}\log\Pi\left(\frac{s}{2}\right) = \sum_{n=1}^{\infty} \frac{d}{ds}\frac{1}{s}\log\left(1 + \frac{s}{2n}\right)
+\]
+由此得出，$f(x)$ 表达式中所有项除了
+\[
+\frac{1}{2\pi i \log x} \int_{a-\infty i}^{a+\infty i} \frac{1}{s^2} \log\xi(0) \cdot x^s \, ds = \log\xi(0)
+\]
+外，都采用形式
+\[
+\pm \frac{1}{2\pi i \log x} \int_{a-\infty i}^{a+\infty i} \frac{d}{ds} \left(\frac{1}{s}\log\left(1 - \frac{s}{\beta}\right)\right) x^s \, ds
+\]
+由于
+\[
+\frac{\partial}{\partial \beta} \left( \frac{1}{s} \log\left(1 - \frac{s}{\beta}\right) \right) = \frac{1}{(\beta - s)\beta}
+\]
+且若 $s$ 的实部大于 $\beta$ 的实部，
+\[
+-\frac{1}{2\pi i} \int_{a-\infty i}^{a+\infty i} \frac{x^s \, ds}{(\beta-s)\beta} = \frac{x^{\beta}}{\beta} = \int_\infty^{x} x^{\beta-1} \, dx
+\]
+或
+\[
+= \int_0^{x} x^{\beta-1} \, dx
+\]
+取决于 $\beta$ 的实部是否为负或正。结果是
+\[
+\frac{1}{2\pi i \log x} \int_{a-\infty i}^{a+\infty i} \frac{d}{ds}\left(\frac{1}{s}\log\left(1 - \frac{s}{\beta}\right)\right) x^s \, ds
+\]
+\[
+= -\frac{1}{2\pi i} \int_{a-\infty i}^{a+\infty i} \frac{1}{s}\log\left(1 - \frac{s}{\beta}\right) x^s \, ds
+\]
+\[
+= \int_{\infty}^{x} \frac{x^{\beta-1}}{\log x} \, dx + \text{常数}
+\]
+在第一种情况下，且
+\[
+= \int_0^{x} \frac{x^{\beta-1}}{\log x} \, dx + \text{常数}
+\]
+在第二种情况下。
+
+在第一种情况下，若令 $\beta$ 的实部变为无穷负数，则确定积分常数；在第二种情况下，从 0 到 $x$ 的积分取决于是通过具有正还是负辐角的复数值进行积分，而变化 $2\pi i$，对于前一条路径当 $\beta$ 值中 $i$ 的系数变为无穷正时变为无穷小，对于后一条则当此系数变为无穷负时。从这里可以看出左边 $\log(1 - s/\beta)$ 应该如何被确定，以使积分常数消失。
+
+将这些值代入 $f(x)$ 的表达式，得到
+\[
+f(x) = \text{Li}(x) - \sum_{\alpha} \left[\text{Li}\left(x^{1/2+\alpha i}\right) + \text{Li}\left(x^{1/2-\alpha i}\right)\right] + \int_x^{\infty} \frac{1}{x^2-1}\frac{dx}{x\log x} + \log\xi(0)
+\]
+
+% 与「Hadamard 理论」等解读框同一机制：可跨页；续页标题为【解读】接上框
+\begin{commentary}{黎曼显式公式的构造与深刻内涵}
+这就是\textbf{黎曼显式公式}：左端 $f(x)$（即 $J(x)$）为素数幂计数，右端求和遍历 $\zeta$ 的非平凡零点，二者由同一等式联系。
+\begin{itemize}
+    \item \textbf{各项的数论意义}：
+    \begin{itemize}
+        \item \textbf{主项}：译文写作 $\mathrm{Li}(x)$；现代 $J$-公式主项用 $\li(x)=\Ei(\log x)$，
+        与偏移 $\Li(x)=\int_2^x\mathrm{d}t/\log t$ 相差常数 $\li(2)$（见第~\ref{sec:Li}~节与第~\ref{ch:riemann_explicit_formula}~章）。
+        对应 $\zeta$ 在 $s=1$ 的极点，给出素数分布的主趋势。
+        \item \textbf{非平凡零点项}
+        $ -\sum_{\alpha}\bigl(\mathrm{Li}(x^{1/2+i\alpha})+\mathrm{Li}(x^{1/2-i\alpha})\bigr)$
+        （现代对应 $\li(x^\rho)$）：每一对 $\rho=\frac12\pm i\alpha$ 贡献对数尺度上的振荡修正。
+        \item \textbf{平凡零点项}
+        $\int_x^\infty\frac{1}{t^2-1}\frac{\mathrm{d}t}{t\log t}$：
+        来自负偶数处平凡零点，随 $x$ 增大迅速衰减。
+        \item \textbf{常数项} $\log\xi(0)$：须与现代 $J$-公式中的 $-\log 2$ 及 $\xi$ 记号区分，不宜直接写成 $\log(1/2)$。
+        \item \textbf{条件收敛与求和顺序}：该级数条件收敛，须按零点虚部模递增
+        $\lim_{T\to\infty}\sum_{|\alpha|<T}$ 求和；改序可导致不同极限。
+        \item \textbf{详论见}：$\psi_0$ 形显式公式见第~\ref{ch:riemann_explicit_formula}~章第~\ref{sec:explicit-derivation}~节；
+        $J$ 形原始公式见同章第~\ref{sec:integration-by-parts}~节。
+    \end{itemize}
+\end{itemize}
+\end{commentary}
+
+其中在 $\sum_{\alpha}$ 中，$\alpha$ 取遍方程 $\xi(\alpha) = 0$ 的所有正根（或具有正实部的根），这些根按模的增序排列。对于函数 $\xi$ 进行更细致的讨论就可以证明，在这种排序之下，级数
+\[
+\sum_{\alpha} \left[\text{Li}\left(x^{1/2+\alpha i}\right) + \text{Li}\left(x^{1/2-\alpha i}\right)\right] \log x
+\]
+收敛到一个极限，这个极限与积分
+\[
+\frac{1}{2\pi i} \int_{a-bi}^{a+bi} \frac{d \frac{1}{s}\log\frac{\xi\left(\left(s-\frac{1}{2}\right)i\right)}{\xi(0)}}{ds} x^s \, ds
+\]
+当 $b$ 趋向无穷时所得到的极限是一样的。然而，如果改变这种排序的话，级数可以收敛到任意的实数值。
+
+从 $f(x)$ 可以通过反演关系
+\[
+f(x) = \sum_{n=1}^{\infty} \frac{1}{n} F\left(x^{1/n}\right)
+\]
+来获得 $F(x)$，得到方程
+\[
+F(x) = \sum (-1)^{\mu} \frac{1}{m} f\left(x^{1/m}\right)
+\]
+其中 $m$ 跑遍所有这样的自然数，它们不能被除了 1 之外的任何平方数整除，而 $\mu$ 表示 $m$ 的素因子个数。
+
+若限制 $\sum_{\alpha}$ 为有限项数，则 $f(x)$ 的导数的表达式，或直到一个随 $x$ 的增长而非常迅速递减的项，
+\[
+\frac{1}{\log x} - 2\sum_{\alpha} \frac{\cos(\alpha \log x) x^{-1/2}}{\log x}
+\]
+给出素数个数密度 $+$ 素数平方个数密度的一半 $+$ 素数立方个数密度的三分之一等等在大小 $x$ 处的近似表达式。
+
+因而，众所周知的近似公式 $F(x) = \text{Li}(x)$ 仅在一个阶为 $x^{1/2}$ 的数量范围内是正确的，而且给出的值稍大了一些。在 $F(x)$ 的表达式中，排除掉那些随 $x$ 的增长而保持有界的项之后，非周期项为：
+\[
+\text{Li}(x) - \frac{1}{2}\text{Li}(x^{1/2}) - \frac{1}{3}\text{Li}(x^{1/3}) - \frac{1}{5}\text{Li}(x^{1/5}) + \frac{1}{6}\text{Li}(x^{1/6}) - \frac{1}{7}\text{Li}(x^{1/7}) + \cdots.
+\]
+实际上，Gauss 和 Goldschmidt 做过小于 $x$ 的素数个数与 $\text{Li}(x)$ 之间的比较，一直做到 $x = 3000000$。这个比较显示，在头一个十万之后，素数的个数就已小于 $\text{Li}(x)$，而且两者之差在经过多次震荡之后，随着 $x$ 的增长而逐渐地增长。素数个数的密度因周期项而增减的事实已经在计算中被观察到，但还未注意到它是否遵从某种规律。
+
+在任何未来的计数中，继续探究表达式中个别周期项对于素数密度的影响会是有趣的。函数 $f(x)$ 可能比 $F(x)$ 更规律的性态，而在头一个一百之内，它确实在平均意义下与 $\text{Li}(x) + \log\xi(0)$ 相当吻合。
+
+\begin{commentary}{Möbius 反演、误差阶与密度中的周期项}
+\textbf{要点.}
+\begin{enumerate}
+  \item \textbf{反演.}
+    译稿由
+    \[
+    f(x)=\sum_{n\ge 1}\frac{1}{n}F\!\left(x^{1/n}\right)
+    \]
+    反演得 $F$；原稿写作
+    $F(x)=\sum (-1)^\mu m^{-1}f(x^{1/m})$（$m$ 无平方因子，$\mu$ 为素因子个数）。
+    现代记号（$f=J$，$F$ 为跳跃点取半的 $\pi$）为
+    \[
+    F(x)=\sum_{m\ge 1}\frac{\mu(m)}{m}\,J\!\left(x^{1/m}\right),
+    \]
+    与第~\ref{ch:elementary_number_theoretic_functions}~章 Möbius 反演一致。
+
+  \item \textbf{误差阶与 RH.}
+    黎曼指出 $F$ 与 $\mathrm{Li}$ 之差落在阶约 $x^{1/2}$ 的范围内，且 $F$ 略小于 $\mathrm{Li}$（与 Gauss--Goldschmidt 数值一致）。
+    在本书偏移对数积分 $\Li(x)=\int_2^x\mathrm{d}t/\log t$ 下，von~Koch（1901）给出
+    \[
+    \mathrm{RH}
+    \quad\Longleftrightarrow\quad
+    \pi(x)-\Li(x)=O\!\bigl(x^{1/2}\log x\bigr).
+    \]
+    原稿只作阶的观察，未证明等价性。
+
+  \item \textbf{密度型写法与对数余弦逼近.}
+    译稿在有限截断后对 $f$ 作形式求导，写出
+    \[
+    \frac{1}{\log x}
+    -2\sum_{\alpha}
+    \frac{\cos(\alpha\log x)\,x^{-1/2}}{\log x}
+    \]
+    （另可含随 $x$ 迅速衰减的项），并称其逼近
+    「素数密度 $+$ 素数平方密度的一半 $+$ ……」。
+    相位 $\cos(\alpha\log x)$ 与振幅中的 $x^{-1/2}$ 来自非平凡零点
+    $\rho=\frac12+i\alpha$（RH 工作图景下）对 $x^{\rho}$ 的贡献——
+    与第~\ref{ch:fourier_vs_riemann}~章的\textbf{对数余弦逼近}为\textbf{同一零点振荡}的两种读法：
+    \begin{itemize}
+      \item 对数余弦：在\textbf{计数}层面修正 $\li$/$\Li$，逼近 $J_0$ 或 $\pi_0$ 的阶梯
+            （第~\ref{ch:fourier_vs_riemann}~、\ref{ch:riemann_numerical_approximation}~章）；
+      \item 密度型：对计数型显式公式的\textbf{形式导数}，描述局部加权密度的疏密涨落。
+    \end{itemize}
+    二者同源；原稿用密度语言点出「周期项」，本书前文用对数余弦做系统累计逼近与 Fourier 对照。
+    本书\textbf{未}另建独立的「密度型定理」体系——主定理仍是 $\psi_0$、$J_0$、$\pi_0$ 的显式公式
+    （第~\ref{ch:riemann_explicit_formula}~章）。
+    Gauss--Goldschmidt 所见 $\pi$ 与 $\mathrm{Li}$ 之差的振荡，正是上述周期项的数值表现。
+\end{enumerate}
+
+\textbf{详论见.}
+Möbius 与 $J\leftrightarrow\pi$：第~\ref{ch:elementary_number_theoretic_functions}~章；
+计数型显式公式：第~\ref{ch:riemann_explicit_formula}~章；
+对数余弦与 Fourier 对照：第~\ref{ch:fourier_vs_riemann}~章；
+von~Koch 误差：第~\ref{ch:prime_distribution}~章第~\ref{subsec:explicit_formula_intro}~节。
+\end{commentary}
+
+
+
+\vspace{1.5em}
+\noindent
+原稿以约八页数学内容奠定解析数论主线：Euler 乘积将素数与 $\zeta$ 相连，解析延拓将定义域扩至全平面，
+显式公式将素数计数与零点振荡对应——第~\ref{ch:riemann_zeta_intro}--\ref{ch:visualization}~章的理论与计算，皆可溯至此文。
+下一章（第~\ref{ch:contemporary_research}~章）简介当代研究方向与延伸阅读。
