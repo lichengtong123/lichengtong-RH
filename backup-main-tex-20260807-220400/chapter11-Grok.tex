@@ -1,0 +1,539 @@
+
+\chapter{\texorpdfstring{$\zeta(s)$}{Zeta(s)} 与 \texorpdfstring{$\xi(s)$}{xi(s)} 的零点几何与分布}\label{ch:zero_distribution}
+
+\section*{引言}\label{sec:intro_zero_distribution}
+
+在延拓、函数方程与 $\xi$ 的 Hadamard 乘积之后，本章从几何上描述 $\zeta$ 与 $\xi$ 的零点。
+目标：零点是实部与虚部零迹线的交点；临界带由已有定理限制；RH 在零迹线语言下有等价表述。
+
+安排：先讨论 $\zeta$ 的实部、虚部曲面与零迹线（并与第~\ref{ch:riemann_zeta_continuation}~章模曲面对照）；
+再给出 $N(T)$ 与临界带；最后讨论 $\xi$ 的对称曲面与临界线上 $\operatorname{Im}\xi\equiv0$。
+图为示意，\textbf{不代替}零点区域定理与 RH 的证明。
+
+\section{从 \texorpdfstring{$\xi(s)$}{xi(s)} 回到 \texorpdfstring{$\zeta(s)$}{Zeta(s)}}
+
+上一章已构造 $\xi(s)$：它是 $\mathbb{C}$ 上的一阶整函数，并满足
+\[
+\xi(s)=\xi(1-s).
+\]
+$\xi$ 与 $\zeta$ 有完全相同的非平凡零点（见第~\ref{sec:sec-xi-zero-topology}~节）；
+二者描述同一对象，规范化不同。
+$\xi$ 为整函数且对称形式简单；$\zeta$ 则直接联系 Dirichlet 级数、Euler 乘积与素数分布。
+
+第~\ref{ch:riemann_zeta_continuation}~章已给出全平面亚纯延拓、函数方程与分阶段模曲面示意。
+本章在跨越临界带的绘图窗口上用实部、虚部曲面与零迹线表述零点，并讨论临界带内的区域限制与 $N(T)$。
+图为示意，\textbf{不代替}证明。
+
+\section{ Riemann \texorpdfstring{$\zeta$}{Zeta} 函数的实部曲面}
+\label{sec:zeta_real_surface}
+
+设 $s=\sigma+it$。将 $\zeta(s)$ 分解为
+\[
+\zeta(s)=\operatorname{Re}\zeta(s)+i\operatorname{Im}\zeta(s),
+\]
+则 $z=\operatorname{Re}\zeta(s)$ 是 $(\sigma,t)$ 平面上的实值曲面。
+
+与第~\ref{ch:riemann_zeta_continuation}~章分阶段半平面图不同，本节取跨越临界带的窗口
+$s\in[-4,4]\times[-32,32]$（覆盖 $0<\Re s<1$ 与 $\Re s=\tfrac12$）。
+图~\ref{fig:zeta_real_cont} 给出解析延拓后的实部曲面，其上可见：
+\begin{itemize}
+    \item $s=1$ 邻域的一阶极点尖峰（$\zeta$ 的唯一极点；$\xi$ 无此结构）；
+    \item $\Re(s)>1$ 上相对平缓，临界带附近振荡增强（Dirichlet 级数各项的相位叠加）；
+    \item $\Re(s)<0$ 上振荡进一步加剧（与函数方程中 $\Gamma$、$\sin$ 因子一致）。
+\end{itemize}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1.0\textwidth]{全书图形/11-Z实曲面.pdf}
+\caption{解析延拓后的 $\zeta(s)$ 实部曲面。
+参考面 $z=0$ 上：金黄色带为临界带 $0<\Re(s)<1$，橙色边线为带边界 $\Re(s)=0,1$；
+蓝色虚线为临界线 $\Re(s)=\tfrac12$（函数方程对称轴，非 RH 证明）。
+白色曲线为曲面与 $z=0$ 的交线（实部零迹线 $\Re\zeta=0$）。图为示意。}
+\label{fig:zeta_real_cont}
+\end{figure}
+
+曲面与 $z=0$ 的交线 $\operatorname{Re}\zeta(s)=0$ 称为\textbf{实部零迹线}。
+在临界带 $0<\sigma<1$ 内，它与虚部零迹线的交点对应非平凡零点；
+左半实轴上的情形见下节与第~\ref{ch:riemann_zeta_continuation}~章图~\ref{fig:trivial_zeros}。
+下节给出虚部曲面。
+
+\section{ Riemann \texorpdfstring{$\zeta$}{Zeta} 函数的虚部曲面}
+\label{sec:zeta_imag_surface}
+
+同样，$z=\operatorname{Im}\zeta(s)$ 是 $(\sigma,t)$ 上的实值曲面。
+在同一窗口 $s\in[-4,4]\times[-32,32]$ 上，图~\ref{fig:zeta_imag_cont} 给出虚部曲面。
+由复共轭对称，虚部关于实轴 $t=0$ 呈奇对称，且在 $t=0$ 上恒为零。
+
+由 Cauchy--Riemann 方程，实部与虚部局部相互联系。
+交线 $\operatorname{Im}\zeta(s)=0$ 称为\textbf{虚部零迹线}；临界带内随 $t$ 增大振荡增强。
+
+两曲面共用参考平面 $z=0$：白色零迹线的交点即为 $\zeta$ 的零点。
+临界带内交点位置与第~\ref{ch:riemann_zeta_continuation}~章图~\ref{fig:zeta_modulus_cont_strip} 模曲面触底点一致；
+左半实轴上交点落在 $s=-2,-4,-6$ 上（与图~\ref{fig:trivial_zeros} 及函数方程给出的平凡零点一致）。
+零迹线交点与模曲面触底是同一事实的不同几何示意；图为示意，\textbf{不代替}证明。
+
+图~\ref{fig:zeta_real_cont} 与图~\ref{fig:zeta_imag_cont} 是\textbf{分开展示}，分别读出 $\operatorname{Re}\zeta=0$ 与 $\operatorname{Im}\zeta=0$。
+下一节将二者叠合，从「分镜」过渡到「合成」。
+
+% 虚部曲面：取消浮动，固定于重叠图一节之前（避免漂到后文）
+\begin{center}
+\includegraphics[width=1.0\textwidth]{全书图形/11-Z虚曲面.pdf}
+\captionof{figure}{解析延拓后的 $\zeta(s)$ 虚部曲面（共轭奇对称）。
+参考面 $z=0$ 上：金黄色带为临界带 $0<\Re(s)<1$，橙色边线为 $\Re(s)=0,1$；
+蓝色虚线为临界线 $\Re(s)=\tfrac12$（对称轴，非 RH 证明）。
+白色曲线为虚部零迹线 $\Im\zeta=0$。图为示意。}
+\label{fig:zeta_imag_cont}
+\end{center}
+
+\section{ Riemann \texorpdfstring{$\zeta$}{Zeta} 函数实部与虚部曲面的重叠图}
+
+前两节已在同一窗口下分别给出实部、虚部曲面及其白色零迹线。
+全纯函数的零点由两族零迹线的\textbf{公共}交点决定。叠合两曲面即可一次看清。
+
+由定义 $\zeta(s)=\operatorname{Re}\zeta(s)+i\operatorname{Im}\zeta(s)$，
+\[
+\boxed{
+\zeta(s)=0
+\iff
+\begin{cases}
+\operatorname{Re}\zeta(s)=0,\\[2mm]
+\operatorname{Im}\zeta(s)=0.
+\end{cases}
+}
+\]
+几何上：红色实部曲面与蓝色虚部曲面分别穿过 $z=0$，形成两组零迹线；公共交点即 $\zeta$ 的零点。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{全书图形/Z曲面重叠.pdf}
+\caption{$\zeta$ 实部与虚部曲面的重叠图（图~\ref{fig:zeta_real_cont} 与图~\ref{fig:zeta_imag_cont} 的\textbf{合成视角}）。
+红：$\operatorname{Re}\zeta$；蓝：$\operatorname{Im}\zeta$；灰：参考平面 $z=0$。
+公共交点满足 $\operatorname{Re}\zeta=\operatorname{Im}\zeta=0$，即 $\zeta$ 的非平凡零点。图为示意。}
+\label{fig:zeta-real-imag-combined}
+\end{figure}
+
+图~\ref{fig:zeta-real-imag-combined} 将前两节两张曲面叠合：零点是 $z=0$ 上两族零迹线的交点。
+「分镜」与「合成」读法一致，合成视角便于投影为二维零迹线网。
+
+将临界带内零迹线投影到 $z=0$，得纵横交织的曲线网；每一交叉点对应一个非平凡零点。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.90\textwidth]{全书图形/zeta零迹线.pdf}
+\caption{$\zeta$ 零迹线在 $z=0$ 上的投影。红：$\operatorname{Re}\zeta=0$；蓝：$\operatorname{Im}\zeta=0$；绿：临界线 $\operatorname{Re}s=\tfrac12$。
+纵轴 $\operatorname{Re}s$ 取负半轴朝上，与图~\ref{fig:zeta_real_cont}--\ref{fig:zeta-real-imag-combined} 的俯视投影一致（平凡零点在图上方）。
+公共交点即非平凡零点。图为示意，\textbf{不代替}证明。}
+\label{fig:zeta-zero-intersection}
+\end{figure}
+
+\subsection{零迹线相交的复分析约束——正交交汇}
+
+临界带内红、蓝零迹线并非任意曲线，而受 \textbf{Cauchy--Riemann 方程} 制约。
+设 $s=\sigma+it$，$\zeta(s)=u(\sigma,t)+iv(\sigma,t)$。
+零迹线即隐曲线 $u=0$ 与 $v=0$。
+
+在单零点 $s_0$（$\zeta'(s_0)\neq 0$）处，由
+\[
+u_{\sigma}=v_{t},\qquad u_{t}=-v_{\sigma}
+\]
+得 $v_{\sigma}=-u_{t}$、$v_{t}=u_{\sigma}$，从而
+\[
+\nabla u\cdot\nabla v
+=u_{\sigma}v_{\sigma}+u_{t}v_{t}
+=u_{\sigma}(-u_{t})+u_{t}u_{\sigma}=0.
+\]
+故 $\nabla u\perp\nabla v$。零迹线的切向分别垂直于 $\nabla u$、$\nabla v$，
+因而两族切向亦正交：在 $z=0$ 上，单零点处两族零迹线以直角相交。
+图~\ref{fig:zeta-zero-intersection} 与此一致。
+
+比较图~\ref{fig:zeta-real-imag-combined} 与图~\ref{fig:zeta-zero-intersection}：
+前者为全局曲面，后者为零迹线投影。
+下一节讨论临界带内的区域限制与计数。
+
+\section{非平凡零点的分布与临界带}\label{sec:zero-distribution-strip}
+
+前几节已建立几何语言：零点是实部与虚部零迹线的公共交点。
+问题转为区域限制：非平凡零点落在复平面的何处？
+
+第~\ref{ch:riemann_zeta_continuation}~章已由 Euler 乘积与函数方程给出初步结论；
+本节在零迹线语言下复述并收紧（含 $\operatorname{Re}s=1$ 上无零点），并引入 $N(T)$。
+
+当 $\operatorname{Re}(s)>1$ 时，$\zeta$ 有绝对收敛的 Euler 乘积
+\[
+\zeta(s)=\prod_{p}\frac{1}{1-p^{-s}}.
+\]
+每一因子非零，故乘积非零：
+\[
+\boxed{
+\operatorname{Re}(s)>1
+\Longrightarrow
+\zeta(s)\neq0.
+}
+\]
+
+另一方面，函数方程
+\[
+\zeta(s)
+=
+2^s\pi^{s-1}\sin\frac{\pi s}{2}\,\Gamma(1-s)\,\zeta(1-s)
+\]
+在 $\operatorname{Re}(s)<0$ 时给出 $\operatorname{Re}(1-s)>1$，从而 $\zeta(1-s)\neq 0$。
+因子 $2^s\pi^{s-1}$ 恒非零；$\Gamma(1-s)$ 无零点（$1/\Gamma$ 为整函数）。
+故左半平面零点只能来自 $\sin(\pi s/2)=0$，即 $s=-2,-4,-6,\ldots$：
+\[
+\boxed{
+\operatorname{Re}(s)<0
+\text{ 的零点仅有 }
+-2,-4,-6,\ldots
+}
+\]
+这些称为\textbf{平凡零点}。
+
+于是右半平面与左半平面的零点结构已定；可能出现非平凡零点的区域只剩
+\[
+0<\operatorname{Re}(s)<1,
+\]
+称为\textbf{临界带}。
+
+Hadamard 与 de la Vallée Poussin（1896）独立证明
+\[
+\boxed{
+\zeta(s)\neq0,\qquad\operatorname{Re}(s)=1.
+}
+\]
+故零点不能落在临界带右边界。结合 $\zeta(s)=\overline{\zeta(\bar s)}$ 与函数方程，亦得 $\operatorname{Re}(s)=0$ 上无非平凡零点。
+从而非平凡零点严格位于开带 $0<\operatorname{Re}(s)<1$。
+
+\subsection{零点计数函数 \texorpdfstring{$N(T)$}{N(T)} 与 Riemann--von Mangoldt 公式}
+\label{sec:NT-RVM}
+
+为定量描述临界带内零点的垂直分布，定义\textbf{零点计数函数}
+\[
+N(T)
+=
+\#\bigl\{\rho=\beta+i\gamma:\;
+0<\beta<1,\;
+0<\gamma\le T
+\bigr\}
+\]
+（计重数；仅上半平面）。$N(T)$ 是 $T$ 的\textbf{右连续阶梯函数}：
+在非零点纵坐标处局部常数，每经过一个虚部 $\gamma$（计重数）跳跃 $1$。
+图~\ref{fig:NT-staircase} 取 $0\le T\le 80$，与书中相应三维示意动画的截断高度一致；
+$N(T)$ 在每一枚 $\gamma_n\le 80$ 处跳一阶（共 $21$ 级）。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.12cm,y=0.28cm,
+  font=\small,
+  >=Stealth]
+  % ---------- 网格（先画）----------
+  \draw[xstep=5, ystep=1, gray!15, very thin] (0,0) grid (80,21);
+  % 水平线强调计数轴 N=1,2,...,21
+  \foreach \y in {1,...,21}
+    \draw[DarkGreen!25, thin] (0,\y) -- (80,\y);
+  \foreach \x in {0,10,20,30,40,50,60,70,80}
+    \draw[gray!40, thin] (\x,0) -- (\x,21);
+  \foreach \y in {0,5,10,15,20}
+    \draw[gray!45, thin] (0,\y) -- (80,\y);
+
+  % 坐标轴
+  \draw[->] (0,0) -- (88,0) node[right] {$T$};
+  \draw[->,DarkGreen!70!black] (0,0) -- (0,24)
+    node[above,DarkGreen!70!black] {$N(T)$~~\textnormal{\footnotesize（计数轴）}};
+  \foreach \x in {0,10,20,30,40,50,60,70,80}
+    \draw (\x,0.25) -- (\x,-0.25) node[below,font=\footnotesize] {$\x$};
+  % 纵轴计数点 N=0,1,...,21
+  \foreach \y in {0,1,...,21} {
+    \draw[DarkGreen!70!black] (0.35,\y) -- (-0.35,\y);
+  }
+  \foreach \y in {0,5,10,15,20,21}
+    \node[left,font=\footnotesize,DarkGreen!70!black] at (-0.45,\y) {$\y$};
+  \foreach \y in {1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19} {
+    \node[left,font=\scriptsize,DarkGreen!55!black] at (-0.35,\y) {$\y$};
+  }
+
+  \def\zeroList{%
+      14.13/1,21.02/2,25.01/3,30.42/4,32.94/5,37.59/6,40.92/7,43.33/8,%
+      48.01/9,49.77/10,52.97/11,56.45/12,59.35/13,60.83/14,65.11/15,%
+      67.08/16,69.55/17,72.07/18,75.70/19,77.14/20,79.34/21}
+
+  \foreach \g/\n in \zeroList {
+    \draw[DarkGreen!60, densely dotted, thin] (0,\n) -- (\g,\n);
+    \draw[gray!55, densely dotted, thin] (\g,0) -- (\g,\n);
+    \fill[DarkGreen] (0,\n) circle (1.6pt);
+    \draw[DarkGreen!80!black, thin] (0,\n) circle (2.2pt);
+  }
+
+  % 右连续阶梯
+  \draw[thick,MainBlue,line cap=round]
+    (0,0) -- (14.13,0)
+    -- (14.13,1) -- (21.02,1)
+    -- (21.02,2) -- (25.01,2)
+    -- (25.01,3) -- (30.42,3)
+    -- (30.42,4) -- (32.94,4)
+    -- (32.94,5) -- (37.59,5)
+    -- (37.59,6) -- (40.92,6)
+    -- (40.92,7) -- (43.33,7)
+    -- (43.33,8) -- (48.01,8)
+    -- (48.01,9) -- (49.77,9)
+    -- (49.77,10) -- (52.97,10)
+    -- (52.97,11) -- (56.45,11)
+    -- (56.45,12) -- (59.35,12)
+    -- (59.35,13) -- (60.83,13)
+    -- (60.83,14) -- (65.11,14)
+    -- (65.11,15) -- (67.08,15)
+    -- (67.08,16) -- (69.55,16)
+    -- (69.55,17) -- (72.07,17)
+    -- (72.07,18) -- (75.70,18)
+    -- (75.70,19) -- (77.14,19)
+    -- (77.14,20) -- (79.34,20)
+    -- (79.34,21) -- (80,21);
+
+  \foreach \g/\n in \zeroList {
+    \fill[MainBlue] (\g,\n) circle (1.35pt);
+  }
+
+  \draw[thick,dashed,DarkRed,domain=18:80,samples=100,smooth]
+    plot (\x, { max(0, (\x/(2*pi))*ln(\x/(2*pi*2.71828)) ) });
+  \node[DarkRed,anchor=west,font=\footnotesize] at (62,12.5)
+    {$\frac{T}{2\pi}\log\frac{T}{2\pi e}$};
+
+  \node[MainBlue,anchor=west,font=\footnotesize] at (2,23.0)
+    {$N(T)$ 阶梯};
+  \node[DarkGreen,anchor=west,font=\footnotesize] at (22,23.0)
+    {\textbullet~\textbf{计数点} $N=1,2,\ldots$（纵轴）};
+\end{tikzpicture}
+\caption{零点计数函数 $N(T)$ 的阶梯示意（$0\le T\le 80$）。
+\textbf{纵轴}为计数值 $N(T)$：每个整数高度 $N=1,2,\ldots,21$ 为一级\textbf{计数点}
+（绿色圆点及水平网格线），阶梯在 $\gamma_n$ 处跳到下一计数点。
+横轴为高度 $T$；浅色网格便于读 $T$ 与 $N$。
+本图取 $\gamma_n\le 80$ 的 $21$ 个纵坐标，与相应三维示意动画中
+高度截断 $T\le 80$ 时零点计数器的读数一致。
+红色虚线为 Riemann--von Mangoldt 主项示意。}
+\label{fig:NT-staircase}
+\end{figure}
+
+经典的 Riemann--von Mangoldt 公式断言
+\[
+\boxed{
+N(T)
+=
+\frac{T}{2\pi}\log\frac{T}{2\pi e}
++
+O(\log T)
+\qquad(T\to\infty).
+}
+\]
+主项来自 $\xi$ 在临界线上的辐角变化（Stirling 控制 $\Gamma$ 因子）；$O(\log T)$ 为经典误差界，可改进。
+相邻零点平均间距
+\[
+\Delta\gamma\sim\frac{2\pi}{\log(T/2\pi)}.
+\]
+图~\ref{fig:NT-staircase} 中台阶随 $T$ 变密，与上式一致。
+本章后文几何图像与第~\ref{ch:fourier_vs_riemann}~章频谱比较均依赖这一计数框架；
+完整证明属整函数增长理论，陈述见 Titchmarsh 等标准文献。
+
+\begin{historicalnote}
+\textbf{历史说明\quad Hadamard 与 de la Vallée Poussin。}
+1896 年，二人独立证明 $\zeta(s)\neq0$（$\operatorname{Re}(s)=1$），
+排除零点落在临界带右边界，并几乎同时完成素数定理 $\pi(x)\sim x/\log x$。
+证明综合整函数理论、Hadamard 乘积与对数导数估计。
+\textbf{证明提要见第~\ref{ch:prime_number_theorem}~章}；
+$3$--$4$--$1$ 不等式与零点自由区见附录~\ref{app:pnt_estimates}。
+亦可参阅 Titchmarsh \textit{The Theory of the Riemann Zeta-Function}
+与 Edwards \textit{Riemann's Zeta Function}。
+\end{historicalnote}
+
+综合得 $\zeta$ 零点的区域限制：
+\[
+\boxed{
+\begin{array}{ll}
+\operatorname{Re}(s)>1, & \zeta(s)\neq0, \\[2mm]
+\operatorname{Re}(s)=1, & \zeta(s)\neq0, \\[2mm]
+\operatorname{Re}(s)<0, & \text{仅有平凡零点 }-2,-4,-6,\ldots, \\[2mm]
+0<\operatorname{Re}(s)<1, & \text{全部非平凡零点所在区域。}
+\end{array}
+}
+\]
+前节零迹线重叠图与此一致：公共交点均落在临界带内（图为示意，\textbf{不代替}证明）。
+
+Riemann（1859）进一步问：非平凡零点是否全部位于 $\operatorname{Re}(s)=1/2$？
+此即下一节的黎曼猜想（RH）。
+
+\section{临界直线与黎曼猜想}\label{sec:critical_line_rh}
+
+非平凡零点已限制在开临界带 $0<\operatorname{Re}(s)<1$，但带宽为 $1$ 的区域内精细分布仍开放。
+
+1859 年，Riemann 在《论小于给定量的素数个数》中提出：
+\begin{center}
+\textbf{$\zeta$ 的全部非平凡零点都位于直线 $\operatorname{Re}(s)=\frac12$ 上。}
+\end{center}
+即\textbf{黎曼猜想（RH）}：
+\[
+\boxed{
+\operatorname{Re}(\rho)=\frac12,\quad \forall \rho\text{ 满足 }\zeta(\rho)=0\text{ 且 }0<\operatorname{Re}(\rho)<1.
+}
+\]
+
+这是关于全部非平凡零点的\textbf{全称命题}：
+一枚 $\operatorname{Re}(\rho)\neq 1/2$ 的零点即可否证；
+任意有限高度上的确认只给出「虚部 $\le T$ 的零点均在临界线上」的\textbf{有限全称}结论，
+\textbf{不能}代替无限多个零点的证明。
+正因一反例即可否证，在可达到高度上作可严格化的大规模计算具有理论必要性：
+搜寻或排除到某高度的反例，并提供该高度内可引用的有限结论
+（见第~\ref{ch:riemann_numerical_approximation}、\ref{ch:contemporary_research}~章）。
+
+由 $\xi(s)=\xi(1-s)$，若 $\rho$ 为非平凡零点，则 $1-\rho$、$\bar\rho$、$1-\bar\rho$ 亦然；
+故非平凡零点关于 $\operatorname{Re}(s)=1/2$ 与实轴镜像对称。
+RH 断言该对称结构退化为全部零点落在同一条竖直直线上。
+
+几何上：实部零迹线 $\operatorname{Re}\zeta=0$ 与虚部零迹线 $\operatorname{Im}\zeta=0$ 在临界带内交织，
+每一非平凡零点是其交点；RH 断言全部交点集中在 $\operatorname{Re}(s)=1/2$。
+
+RH 尚未证明。数值上，虚部不超过约 $3\times 10^{12}$ 的非平凡零点（约 $10^{13}$ 量级）
+均已验证落在临界线上（如 Platt \& Trudgian, 2021），未见反例——
+此为有限高度内的确认，不是 RH 的证明。
+
+RH 是 $\zeta$ 理论的中心问题之一，与素数分布及诸多解析数论结果相关；
+2000 年 Clay 数学研究所将其列入七个 \emph{Millennium Prize Problems} 之一。
+若 RH 成立，两族零迹线的全部公共交点均在 $\operatorname{Re}(s)=1/2$ 上，
+显式公式中零点项相位将受精确控制，从而改进素数计数的误差估计。
+
+\section{两种几何语言的汇合：从 \texorpdfstring{$\zeta$}{Zeta} 回到 \texorpdfstring{$\xi$}{xi}}\label{sec:two-languages}
+
+从 $\zeta$ 视角已得：非平凡零点是临界带内两族零迹线的交点；RH 断言它们全部位于 $\operatorname{Re}(s)=1/2$。
+
+$\zeta$ 在 $s=1$ 有极点，函数方程含 $\Gamma$ 与三角函数，对称 $s\mapsto 1-s$ 形式不够直接。
+$\xi$ 消去极点与附加因子后为整函数且 $\xi(s)=\xi(1-s)$，非平凡零点不变。
+
+二者描述同一组非平凡零点，侧重点不同：
+\begin{itemize}
+  \item \textbf{$\zeta$}：联系 Dirichlet 级数、Euler 乘积与素数分布；素数定理与显式公式的自然出发点。
+  \item \textbf{$\xi$}：Hadamard 乘积将函数编码为零点集合；曲面光滑对称，临界线作为对称轴更易辨认。
+\end{itemize}
+
+\noindent\textbf{叙述安排：}前半用 $\zeta$ 确立区域限制与 RH 的经典陈述；后半用 $\xi$ 的零迹线给出 RH 的几何等价表述。
+
+\section{\texorpdfstring{$\xi$}{xi} 曲面的几何结构}
+
+上一章已用 Hadamard 乘积表明：在适当正规化下，
+$\zeta$ 的非平凡零点（亦即 $\xi$ 的全部零点）唯一确定整函数 $\xi$。
+本节考察 $\xi$ 的几何形态：实部、虚部曲面及其与 $z=0$ 的交线（零迹线）；
+实部曲面与虚部曲面的零迹线交点给出同一零点集。
+
+设 $s=\sigma+it$。$\xi(s)=\operatorname{Re}\xi(s)+i\operatorname{Im}\xi(s)$ 对应两张实值曲面
+$z=\operatorname{Re}\xi(s)$ 与 $z=\operatorname{Im}\xi(s)$。
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.90\textwidth]{全书图形/xi实虚曲面重叠.pdf}
+\caption{$\xi$ 实部与虚部曲面的重叠图。
+红：$\operatorname{Re}\xi$；蓝：$\operatorname{Im}\xi$；灰：$z=0$。
+关于 $\operatorname{Re}(s)=1/2$ 镜像对称；交线即两族零迹线，公共交点为 $\xi$ 的全部零点
+（即 $\zeta$ 的全部非平凡零点）。图为示意。}
+\label{fig:xi-real-imag-combined}
+\end{figure}
+
+图~\ref{fig:xi-real-imag-combined} 显示：$\xi$ 已消去 $\zeta$ 的极点与 $\Gamma$ 因子奇性，曲面光滑且关于
+$\operatorname{Re}(s)=1/2$ 镜像对称；$\operatorname{Re}\xi=0$ 与 $\operatorname{Im}\xi=0$ 的交点即全部非平凡零点。
+
+下一节讨论零迹线拓扑，并将 RH 表述为交汇规律的几何命题。
+
+\section{零迹线拓扑与黎曼猜想的几何视角}\label{sec:sec-xi-zero-topology}
+
+由
+\[
+\xi(s)
+=
+\frac12 s(s-1)\pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s),
+\]
+除 $\zeta$ 外其余因子不产生非平凡零点，故
+\[
+\boxed{
+\xi(s)\text{ 与 }\zeta(s)\text{ 具有完全相同的非平凡零点。}
+}
+\]
+研究 $\zeta$ 的非平凡零点等价于研究整函数 $\xi$ 的零点。
+$\xi$ 无极点，满足 $\xi(s)=\xi(1-s)$，关于 $\operatorname{Re}(s)=1/2$ 对称更清晰。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.90\textwidth]{全书图形/xi零迹线.pdf}
+\caption{$\xi$ 零迹线在 $z=0$ 上的投影。
+红：$\operatorname{Re}\xi=0$；蓝：$\operatorname{Im}\xi=0$；绿：临界线 $\operatorname{Re}s=\tfrac12$
+（亦为 $\operatorname{Im}\xi=0$ 的一条连通分支，见下文推导）。
+纵轴 $\operatorname{Re}s$ 取负半轴朝上，与图~\ref{fig:zeta_real_cont}--\ref{fig:zeta-zero-intersection} 一致。
+公共交点即非平凡零点。图为示意，\textbf{不代替}证明。}
+\label{fig:xi-real-imag-intersection}
+\end{figure}
+
+图~\ref{fig:xi-real-imag-intersection} 将三维结构投影为二维零迹线网。
+临界线上 $\operatorname{Im}\xi\equiv 0$ 可分两步得到。
+
+\textbf{第一步（函数方程）。}由 $\xi(s)=\xi(1-s)$，令 $s=\tfrac12+it$，则
+\[
+\xi\!\left(\frac12+it\right)=\xi\!\left(\frac12-it\right).
+\]
+
+\textbf{第二步（Schwarz 反射）。}$\xi$ 在实轴上取实值，故 $\overline{\xi(\bar s)}=\xi(s)$。
+令 $s=\tfrac12+it$，得
+\[
+\overline{\xi\!\left(\frac12+it\right)}=\xi\!\left(\frac12-it\right).
+\]
+综合两步：$\xi(1/2+it)=\overline{\xi(1/2+it)}$，即
+\[
+\boxed{
+\operatorname{Im}\xi\!\left(\frac12+it\right)=0.
+}
+\]
+于是整条临界线
+\[
+\boxed{\operatorname{Re}(s)=\frac12}
+\]
+构成 $\operatorname{Im}\xi=0$ 的一条连通分支。
+
+图~\ref{fig:xi-real-imag-intersection} 中，该分支贯穿临界带；
+$\operatorname{Re}\xi=0$ 为另一族零迹线；交点即全部非平凡零点。
+从而 RH 可表述为：临界带内两族零迹线的全部交点都落在 $\operatorname{Re}(s)=1/2$ 上
+（等价重述，不是新证明）。
+
+数值与图形观察还提示：除临界线外，其余 $\operatorname{Im}\xi=0$ 分支在临界带内
+似乎不与 $\operatorname{Re}\xi=0$ 相交。若能严格证明这一点，则全部非平凡零点只能位于
+$\operatorname{Re}(s)=1/2$，RH 立即成立。
+此仍属零迹线拓扑层面的几何观察，连通性与整体拓扑尚需严格理论；
+它是 RH 的一种几何等价表述，不是新证明。
+
+\begin{center}
+\fbox{\parbox{0.88\textwidth}{\centering
+RH 可理解为 $\operatorname{Re}\xi=0$ 与 $\operatorname{Im}\xi=0$
+两族零迹线拓扑结构的几何命题。}}
+\end{center}
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\centering
+\vspace{0.2em}
+\textbf{第十一章：重要定理与核心公式汇总}\\[6pt]
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{lp{9.5cm}}
+\hline
+\textbf{名称} & \textbf{数学内容 / 公式表达} \\
+\hline
+$\zeta$ 实部 / 虚部曲面 & 极点尖峰、振荡；零迹线 $\Re\zeta=0$、$\Im\zeta=0$ \\
+$\xi$ 实虚重叠与零迹线 & 关于 $\Re s=1/2$ 对称；交点即非平凡零点 \\
+零迹线正交交汇 & 单零点处 $\nabla u\perp\nabla v$（Cauchy--Riemann） \\
+Riemann--von Mangoldt 公式 & $N(T)=\dfrac{T}{2\pi}\log\dfrac{T}{2\pi e}+O(\log T)$ \\
+黎曼猜想几何等价 & 临界带内两族零迹线交点均在 $\Re s=\tfrac12$ \\
+\hline
+\end{tabular}
+\vspace{0.2em}
+}}
+\end{center}
+
+\section*{本章小结与后续展望}\label{sec:zero_distribution_summary}
+\addcontentsline{toc}{section}{本章小结与后续展望}
+
+本章用曲面与零迹线描述 $\zeta$ 与 $\xi$ 的零点：交点对应零点；临界带由 Euler 乘积、函数方程与 $\operatorname{Re}s=1$ 无零点确定；$N(T)$ 给出垂直计数。对 $\xi$，对称性使 $\operatorname{Re}s=1/2$ 成为 $\operatorname{Im}\xi=0$ 的一条分支；RH 在几何上等价于：临界带内实部与虚部零迹线的全部交点都落在该轴上（这是等价重述，不是新证明）。
+
+下一章（第~\ref{ch:prime_number_theorem}~章）给出素数定理的证明提要：
+在 $\operatorname{Re}s=1$ 上无零点的条件下建立 $\psi(x)\sim x$，从而 $\pi\sim\Li$。
+再下一章（第~\ref{ch:riemann_explicit_formula}~章）用围道积分建立 $\psi_0$ 的显式公式，
+把非平凡零点与素数计数函数直接联系起来。

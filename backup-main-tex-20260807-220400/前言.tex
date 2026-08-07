@@ -1,0 +1,119 @@
+% 前言（作者说明体例与读法；非他人作「序」）
+\chapter*{\texorpdfstring{\centering 前言}{前言}}
+\addcontentsline{toc}{chapter}{前言}
+\markboth{前言}{前言}
+本书以\textbf{理解黎曼猜想所需的知识谱系}为主线。书名中的「素数分布」取经典解析数论含义：
+以 $\pi(x)$、$\psi(x)$ 等\textbf{素数计数函数的渐近与误差}为中心
+（Legendre--Gauss 型主项、素数定理、
+显式公式及黎曼猜想下的最优误差阶），\textbf{不}涵盖孪生素数、有界间隙、Goldbach 等其他分布或加性问题。
+素数定理是本书介绍的知识谱系的历史起点与应用背景。
+全书的重点不在复述黎曼猜想的最终表述，而在说明：要理解这一表述，需要哪些数学对象、
+哪些已证关系，以及它们如何依次建立。
+
+黎曼猜想可表述为：Riemann $\zeta$ 函数 $\zeta(s)$ 的非平凡零点均满足 $\operatorname{Re}s=1/2$。
+本书在给出上述表述的同时，更着重说明理解它所依赖的数学内容，主要包括：
+$\zeta$ 函数的 Euler 乘积、解析延拓与函数方程；作为对称因子的 $\Gamma$ 函数；
+$\xi$ 函数的整函数化与 Hadamard 乘积；$\zeta$ 平凡零点及非平凡零点的几何分布与非平凡零点计数函数 $N(T)$；
+以及由显式公式给出的零点与素数计数函数之间的对应。
+
+黎曼将素数分布置于\textbf{复分析框架}之中，从而把 $\zeta$ 函数（含其解析延拓与零点）
+与素数计数纳入同一理论体系。本书章节即按这一框架下的知识递进编排，大致分为四段。
+
+\paragraph{内容范围与章节安排}\mbox{}
+
+\textbf{（一）问题与工具：}\\
+第~\ref{ch:prime_distribution}--\ref{ch:elementary_number_theoretic_functions}~章给出计数型素数分布问题
+与 $\pi$、$J$、$\theta$、$\psi$、$M$ 等计数与算术函数；
+第~\ref{ch:complex_analysis_intro}--\ref{ch:integral_transforms}~章准备复分析与积分变换
+（Fourier、Mellin、Perron），使离散部分和能写成
+沿直线 $\operatorname{Re}s=c$ 的积分（Perron 公式中的竖线积分）。
+
+\textbf{（二）$\zeta$ 函数、$\Gamma$ 函数与解析延拓：}\\
+第~\ref{ch:riemann_zeta_intro}--\ref{ch:discrete_continuous}~章在 $\operatorname{Re}s>1$ 上建立
+$\zeta$ 的 Dirichlet 级数与 Euler 积，并把 $\mu$、$\Lambda$ 代入到 $1/\zeta$、$-\zeta'/\zeta$；
+第~\ref{ch:gamma_function}--\ref{ch:riemann_zeta_continuation}~章介绍并引用 $\Gamma$ 函数与解析延拓的一般概念，
+完成 $\zeta$ 的解析延拓、函数方程的推导。
+
+\textbf{（三）整函数、零点、素数定理、对数积分与显式公式：}\\
+第~\ref{ch:xi_function}--\ref{ch:zero_distribution}~章讨论 $\xi$ 函数、Hadamard 乘积与零点几何；
+第~\ref{ch:prime_number_theorem}~章给出素数定理的证明提要（主项 $\psi\sim x$）；
+第~\ref{ch:logint_Ei}~章专述 $\Li$、$\li$ 与 $\Ei$
+（素数定理比较用 $\Li$，显式公式用 $\li(x^{\rho})$，计算用 $\Ei$）；
+第~\ref{ch:riemann_explicit_formula}~章推导黎曼显式公式，给出主项与零点振荡的精确结构，
+并指出黎曼猜想是素数计数的最优误差阶。
+素数计数与零点数据通过恒等式对应；
+素数定理 $\psi\sim x$ 则须在显式结构之外，另证 $\zeta(1+it)\neq 0$ 等，才能得到主项主导的渐近
+（第~\ref{ch:prime_number_theorem}~章证明提要，细节见附录）。
+理论主线至此完成。
+
+\textbf{（四）谱系总图、对照、数值、几何示意、原稿与前沿：}\\
+第~\ref{ch:spectrum_map}~章给出主体理论完成后的知识谱系全文着色总图；
+第~\ref{ch:fourier_vs_riemann}~章比较 Fourier 逼近与零点余弦型振荡；
+第~\ref{ch:riemann_numerical_approximation}--\ref{ch:visualization}~章讨论 Hardy $Z$、
+Riemann--Siegel 与 $\pi_0$ 逼近，以及 $\zeta$ 共形映射、Hardy 轨迹等几何示意；
+第~\ref{ch:riemann_original_interpretation}~章解读黎曼 1859 年原稿
+（现代语言与计算工具齐备后的溯源，及对原稿作者的致敬）；
+第~\ref{ch:contemporary_research}~章简介当代研究方向与延伸阅读。
+附录补充 Abel--Stieltjes、围道变形、Weierstrass 乘积、Jensen 公式与素数定理估计等，
+供正文引用处查阅。
+
+\paragraph{目的与范围}
+\textbf{目的。}
+帮助读者建立一条可循的知识链条：从素数计数的算术对象，经 $\zeta$ 函数、$\Gamma$ 函数、
+解析延拓与函数方程，到 $\xi$ 函数、零点与显式公式，从而能够
+\begin{enumerate}
+  \item 建立理解黎曼猜想知识谱系的最小必要数学基础；
+  \item 分清素数定理（主项渐近，已证）、显式公式（精确表示，已证）与黎曼猜想
+        （以 $\operatorname{Re}s=1/2$ 为基本表述；在显式公式下与最优误差阶等价，未证）
+        各自所处的层次。
+\end{enumerate}
+书名并列「素数分布」与「黎曼猜想」，正对应上述目的：前者是\textbf{计数渐近}问题，后者是谱系中的未证顶点。
+
+\textbf{范围上的界限。}
+除开篇已限制的「素数分布」含义外，对零点自由区、密度定理等，本书只给证明提要或引用结论，
+不收录解析数论教本中的完整长证明；凡属提要处，均指向附录或标准文献。
+
+书中涉及函数的书写见书前《符号与约定》：表达式与定义写 $\zeta(s)$、$\Gamma(s)$、$\xi(s)$；
+叙述中指函数对象时，\textbf{首次}宜写「$\zeta$ 函数」「$\Gamma$ 函数」「$\xi$ 函数」，
+后文可简写 $\zeta$、$\Gamma$、$\xi$；避免「$\zeta(s)$ 函数」这类重复累赘的写法。
+其余记号亦见该书前约定。
+
+为标示阅读进度，全书共用\textbf{同一知识谱系关系图}的底图，分\textbf{三次着色}
+（第一次：第~\ref{ch:elementary_number_theoretic_functions}~章末；
+第二次：第~\ref{ch:riemann_zeta_continuation}~章末；
+第三次：第~\ref{ch:spectrum_map}~章全文总图）。
+彩色表示截至该进度已建立的主要对象与关系，灰白表示后文内容。
+节点表示对象；实线多表示已证关系，虚线在图例中标为「未证」。
+指向黎曼猜想的连线（谱系图中常标为 $\mathrm{RH}$，
+如 $N(T)\to\mathrm{RH}$、$\xi\leftrightarrow\mathrm{RH}$）取虚线，
+表示与黎曼猜想等价的说法或猜想本身的关系，而非已证推论
+（全文着色总图见图~\ref{fig:function-relations}，第~\ref{ch:spectrum_map}~章）。
+图只作数学关系与进度索引，细节仍以各章定义与证明为准。
+该谱系横跨数论、复分析与渐近分析等领域，概念与关系较多；
+图中仅标出\textbf{主要}对象与\textbf{主要}关系（节点与连线），并非穷尽，便于从全局把握脉络。
+
+\paragraph{分析表述与图形示意}
+黎曼猜想所涉对象大多定义在复平面上，同一命题往往既可写成数学表达式，也有相应的几何含义。
+本书在关键处\textbf{并行给出分析表述与图形示意}：前者用定义、定理与证明中的公式与推导；
+后者用于显示几何空间的曲面形态、对称性、零点位置及其与临界线的关系。
+两相对照，加深理解。
+
+书中图形——包括实曲面（红色）、虚曲面（蓝色）、模曲面（金黄色）、零迹线（绿色）、
+临界带（棕色）和零点（紫色）等——均在标明的参数域内由数值计算生成，
+只显示相应函数在该区域内的几何形态。
+\textbf{图形示意不作为证明}。临界带内曲面触底、交于临界线上等现象，应视为数值观察，
+或与已知理论结果的对照，而不能代替论证。
+示意视频、Manim 与 Mathematica 源程序，以及程序运行环境的建立与安装说明，
+见书后附注，统一托管于
+\url{https://github.com/lichengtong123/lichengtong-RH}。
+
+\paragraph{（鸣谢）}
+（待定）
+
+\vspace{1.5em}
+\begin{flushright}
+作者\\
+\today
+\end{flushright}
+
+\clearpage

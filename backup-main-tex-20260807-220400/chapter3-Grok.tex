@@ -1,0 +1,1244 @@
+
+
+%================================================================
+%================================================================
+\chapter{复变函数简介}\label{ch:complex_analysis_intro}
+%================================================================
+
+\section*{引言}\label{sec:intro_complex_analysis}
+
+后续各章在复平面上讨论 $\zeta(s)$ 的延拓、零点与显式公式；
+全纯与幂级数、Cauchy 定理、留数与幅角原理，是解析数论中常用的推理工具。
+
+本章给出上述讨论所需的最小完备集：复数与对数主支、全纯与恒等定理、含参量积分、
+Cauchy 积分、Laurent 展开与留数、辐角原理，以及保角映射与 Schwarz 反射。
+为第~\ref{ch:integral_transforms}~章以降的推演
+提供可直接引用的复分析定义、定理与公式，
+而非复分析教程全貌。
+
+\section{复数的基本运算}
+%================================================================
+
+\subsection{复数的定义与表示}
+
+\textbf{复数}是形如 $z = x + iy$ 的数，其中 $x,y\in\RR$，
+$i$ 是满足 $i^2=-1$ 的虚数单位。
+称 $x=\re{z}$ 为\textbf{实部}，$y=\im{z}$ 为\textbf{虚部}。
+全体复数的集合记为 $\CC$。
+
+复数有三种等价表示形式：
+
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{clll}
+\toprule
+形式 & 表达式 & 参数 & 适用场合 \\
+\midrule
+代数形式 & $z = x+iy$ & $x,y\in\RR$ & 加减法、实虚部分析 \\
+三角形式 & $z = r(\cos\theta+i\sin\theta)$ & $r\ge0$，$\theta\in\RR$ & 乘除法 \\
+指数形式 & $z = re^{i\theta}$ & $r\ge0$，$\theta\in\RR$ & 乘方、求根 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+其中 $r=|z|=\sqrt{x^2+y^2}$ 称为\textbf{模}，
+$\theta=\arg z$（满足 $\cos\theta=\frac{x}{r}$，$\sin\theta=\frac{y}{r}$）称为\textbf{辐角}。
+满足 $\theta\in(-\pi,\pi]$ 的辐角称为\textbf{主辐角}，记作 $\Arg z$。
+
+三种形式之间的桥梁是 \textbf{Euler 公式}：
+\begin{equation}
+  e^{i\theta} = \cos\theta + i\sin\theta.
+  \label{eq:euler}
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.1]
+  \draw[-Stealth,thick] (-0.4,0)--(3.4,0) node[right]{$x$};
+  \draw[-Stealth,thick] (0,-0.4)--(0,2.8) node[above]{$y$};
+  \coordinate (O) at (0,0);
+  \coordinate (Z) at (2.4,1.8);
+  \coordinate (X) at (2.4,0);
+  % 向量
+  \draw[-Stealth,very thick,blue!70!black] (O)--(Z)
+    node[above right,font=\small]{$z=x+iy=re^{i\theta}$};
+  % 投影虚线
+  \draw[dashed,gray!60] (Z)--(X) node[below,font=\small]{$x$};
+  \draw[dashed,gray!60] (Z)--(0,1.8) node[left,font=\small]{$y$};
+  % 角度弧
+  \draw[red!60!black,thick] (0.55,0) arc[start angle=0,end angle=36.87,radius=0.55];
+  \node[red!60!black,font=\small] at (0.78,0.18) {$\theta$};
+  % r 标注
+  \node[blue!60!black,font=\small] at (1.0,1.15) {$r$};
+  % 原点
+  \fill (O) circle (1.5pt) node[below left,font=\small]{$O$};
+  \fill (Z) circle (2pt);
+\end{tikzpicture}
+\caption{复平面（Argand 图）：$z=x+iy$ 对应点 $(x,y)$，
+  模 $r=|z|$，辐角 $\theta=\arg z$。}
+\label{fig:argand}
+\end{figure}
+
+\subsection{共轭与模}
+
+$z=x+iy$ 的\textbf{共轭}定义为 $\bar{z}=x-iy$（关于实轴的对称点）。
+共轭的基本性质：
+\begin{align}
+  z+\bar{z} &= 2\re{z}, & z-\bar{z} &= 2i\,\im{z}, \\
+  z\bar{z} &= |z|^2, & |\bar{z}| &= |z|.
+\end{align}
+
+模的基本性质（$z,w\in\CC$）：
+\begin{align}
+  |zw| &= |z||w|, &
+  \left|\frac{z}{w}\right| &= \frac{|z|}{|w|}, &
+  |z+w| &\le |z|+|w|. \quad\text{（三角不等式）}
+\end{align}
+
+\subsection{四则运算}
+
+设 $z_1=x_1+iy_1$，$z_2=x_2+iy_2$。
+
+\textbf{加减法：}
+\begin{equation}
+  z_1\pm z_2 = (x_1\pm x_2) + i(y_1\pm y_2).
+  \label{eq:add}
+\end{equation}
+
+\textbf{乘法：}
+\begin{equation}
+  z_1 z_2 = (x_1 x_2 - y_1 y_2) + i(x_1 y_2 + x_2 y_1).
+  \label{eq:mul}
+\end{equation}
+用指数形式更直观：若 $z_j=r_j e^{i\theta_j}$，则
+\begin{equation}
+  z_1 z_2 = r_1 r_2\,e^{i(\theta_1+\theta_2)}.
+  \label{eq:mul_exp}
+\end{equation}
+即\textbf{模相乘，辐角相加}。
+
+\textbf{除法：}利用共轭有理化
+\begin{equation}
+  \frac{z_1}{z_2} = \frac{z_1\bar{z}_2}{|z_2|^2}
+  = \frac{(x_1 x_2+y_1 y_2)+i(x_2 y_1-x_1 y_2)}{x_2^2+y_2^2},
+  \quad z_2\ne0.
+  \label{eq:div}
+\end{equation}
+用指数形式：$\frac{z_1}{z_2}=\frac{r_1}{r_2}\,e^{i(\theta_1-\theta_2)}$，即\textbf{模相除，辐角相减}。
+
+\subsection{乘方与开方}
+
+\textbf{De Moivre 公式：}对正整数 $n$，
+\begin{equation}
+  z^n = r^n(\cos n\theta + i\sin n\theta) = r^n e^{in\theta}.
+  \label{eq:demoivre}
+\end{equation}
+
+\textbf{$n$ 次方根：}方程 $w^n=z$（$z\ne0$，$n\in\ZZ^+$）有恰好 $n$ 个解：
+\begin{equation}
+  w_k = r^{1/n}\exp\!\left(i\frac{\theta+2k\pi}{n}\right),
+  \quad k=0,1,\ldots,n-1.
+  \label{eq:nthroot}
+\end{equation}
+这 $n$ 个根均匀分布在以原点为圆心、$r^{1/n}$ 为半径的圆上。
+
+\subsection{初等复数函数}
+
+\textbf{指数函数：}$e^z=e^x(\cos y+i\sin y)$，满足 $|e^z|=e^x$，$\arg(e^z) \equiv y \pmod{2\pi}$。
+
+\textbf{三角函数：}
+\begin{align}
+  \cos z &= \frac{e^{iz}+e^{-iz}}{2}, &
+  \sin z &= \frac{e^{iz}-e^{-iz}}{2i}.
+  \label{eq:trig}
+\end{align}
+
+\textbf{对数函数（多值与主支）：}
+\[
+  \log z=\ln|z|+i\arg z
+\]
+为多值；取主辐角 $\Arg z\in(-\pi,\pi]$ 得\textbf{主值支}
+\[
+  \Log z=\ln|z|+i\Arg z,
+\]
+在割线平面 $\CC\setminus(-\infty,0]$ 上全纯。
+沿负实轴绕 $0$ 一周，$\arg$ 跳 $2\pi$，故 $z=0$（及 $\infty$）为\textbf{分支点}。
+后文 Hankel 围道、$(-z)^{s-1}$ 等均在固定一支后讨论（第~\ref{ch:gamma_function}~、\ref{ch:riemann_zeta_continuation}~章）。
+
+%================================================================
+\section{解析函数}
+%================================================================
+
+\subsection{复变函数的极限与连续性}
+
+为了严格定义极限，先引入复平面上点集的\textbf{聚点}概念：
+设 $E \subset \CC$，$z_0 \in \CC$。若对任意 $\delta > 0$，去心邻域
+$0 < |z-z_0| < \delta$ 内都含有 $E$ 中的点，则称 $z_0$ 是 $E$ 的一个聚点
+（也称极限点或累积点）。这等价于：存在 $E \setminus \{z_0\}$ 中的互异点列
+$\{z_n\}$ 使得 $\lim_{n \to \infty} z_n = z_0$。
+
+设 $f:D\to\CC$（$D\subset\CC$），$z_0$ 是 $D$ 的聚点。若
+\[
+  \forall\,\varepsilon>0,\;\exists\,\delta>0,\;\forall\,z\in D,\;0<|z-z_0|<\delta
+  \;\Rightarrow\; |f(z)-A|<\varepsilon,
+\]
+则称 $A=\lim_{z\to z_0}f(z)$。
+注意：复平面中 $z\to z_0$ 可沿任意路径趋近，
+这比实数情形强得多。
+
+\subsection{复导数与 Cauchy--Riemann 方程}
+
+\begin{definition}{复导数}{}
+\label{def:complex_deriv}
+若极限
+\begin{equation}
+  f'(z_0) = \lim_{\Delta z\to 0}\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}
+  \label{eq:complex_deriv}
+\end{equation}
+存在（且与 $\Delta z\to0$ 的路径无关），则称 $f$ 在 $z_0$ \textbf{可微}，
+$f'(z_0)$ 称为 $f$ 在 $z_0$ 的\textbf{复导数}。
+\end{definition}
+
+令 $f(z)=u(x,y)+iv(x,y)$（$u,v:\RR^2\to\RR$），
+$z_0=x_0+iy_0$。
+
+\begin{theorem}{Cauchy--Riemann 方程}{}
+\label{thm:CR}
+令 $f=u+iv$，$z_0=x_0+iy_0$。C-R 方程的充分必要条件应分两侧叙述：
+\begin{enumerate}
+  \item \textbf{必要性：} 若 $f$ 在 $z_0$ 复可微，且偏导数 $\frac{\partial u}{\partial x}$ 等在该点存在，
+  则 $u,v$ 满足
+\begin{equation}
+    \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y},
+    \qquad
+    \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}.
+  \label{eq:CR}
+\end{equation}
+  （必要性不要求偏导连续。）
+  \item \textbf{充分性：} 若 $u,v$ 在 $(x_0,y_0)$ 处\textbf{实可微}（或邻域内偏导存在且在该点连续）
+  且满足 C-R 方程，则 $f$ 在 $z_0$ 复可微，且
+  $f'(z_0)=\frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}
+  =\frac{\partial v}{\partial y}-i\frac{\partial u}{\partial y}$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+令 $\Delta z = \Delta x + i\Delta y$。
+
+\textbf{必要性。} 沿实轴方向（$\Delta y=0$，$\Delta z=\Delta x$）：
+\begin{align}
+  f'(z_0) &= \lim_{\Delta x\to0}\frac{f(z_0+\Delta x)-f(z_0)}{\Delta x}
+  = \frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}.
+\end{align}
+沿虚轴方向（$\Delta x=0$，$\Delta z=i\Delta y$）：
+\begin{align}
+  f'(z_0) &= \lim_{\Delta y\to0}\frac{f(z_0+i\Delta y)-f(z_0)}{i\Delta y}
+  = \frac{1}{i}\!\left(\frac{\partial u}{\partial y}+i\frac{\partial v}{\partial y}\right)
+  = \frac{\partial v}{\partial y}-i\frac{\partial u}{\partial y}.
+\end{align}
+两种路径极限相等，得式~\eqref{eq:CR}。
+
+\textbf{充分性。} 若 C-R 成立且 $u,v$ 在该点实可微，则可验证差商极限与路径无关（标准估计），故 $f'(z_0)$ 存在。
+\end{proof}
+
+\subsection{解析函数的定义}
+
+\begin{definition}{解析函数}{}
+\label{def:analytic}
+若 $f$ 在 $z_0$ 的某邻域内每点均可微，
+则称 $f$ 在 $z_0$ \textbf{解析}（全纯，holomorphic）。
+若 $f$ 在区域 $D$ 内每点均解析，则称 $f$ 为 $D$ 上的\textbf{解析函数}（全纯函数）。
+若 $f$ 在整个复平面 $\CC$ 上解析，则称 $f$ 为\textbf{整函数}（entire function）。
+\end{definition}
+
+
+「在一点可微」与「在一点解析」的区别：解析要求在邻域内处处可微，
+而可微只要求该点本身，故解析更强。
+
+% 整框不跨页（empty+borderline 跨页时框线易缺）；页末空间不足则整框移到下页
+\begin{theorem}[breakable=false]{恒等定理}{}
+\label{thm:identity}
+设 $D\subset\CC$ 为\textbf{连通}区域，$f$ 在 $D$ 内全纯。
+若零点集 $\{z\in D:f(z)=0\}$ 在 $D$ 内有聚点，则 $f\equiv 0$ 于 $D$。
+等价地：若 $f,g$ 在 $D$ 内全纯，且在某有聚点的子集 $E\subset D$ 上 $f=g$，则 $f\equiv g$ 于 $D$。
+\end{theorem}
+
+\begin{proof}[证明提要]
+设 $Z=\{f=0\}$ 在 $D$ 内有聚点 $z_*$。由幂级数展开，若 $f\not\equiv 0$，则零点孤立，
+与 $z_*$ 为聚点矛盾。连通性将「在一点邻域恒零」传到全 $D$。
+\end{proof}
+
+后文解析延拓的唯一性（第~\ref{ch:analytic_continuation_general}~章）以本定理为根；
+Schwarz 反射等论证中「在实轴上一致则延拓唯一」亦依赖它。
+
+\label{def:meromorphic}
+设 $D\subset\CC$ 为区域。若 $f$ 在 $D$ 内除若干\textbf{极点}外处处全纯
+（每个极点为孤立奇点，且为有限阶极点，见第~\ref{sec:singularity}~节），
+则称 $f$ 在 $D$ 上\textbf{亚纯}（meromorphic）。
+例如有理函数，以及第~\ref{ch:riemann_zeta_continuation}~章解析延拓后的 $\zeta(s)$
+（仅 $s=1$ 为极点）在 $\CC$ 上亚纯。
+幅角原理对亚纯函数陈述（零点与极点计重数）。
+
+\subsection{调和函数}
+
+\label{thm:harmonic}
+若 $f=u+iv$ 在 $D$ 内解析，则 $u,v$ 均满足 Laplace 方程：
+\begin{equation}
+  \nabla^2 u = \frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=0,
+  \qquad
+  \nabla^2 v = 0.
+  \label{eq:laplace}
+\end{equation}
+此时称 $u,v$ 为\textbf{调和函数}，$v$ 称为 $u$ 的\textbf{共轭调和函数}。
+（由 C-R 方程~\eqref{eq:CR} 对 $x$、$y$ 分别求导并相加即得；偏导可交换。）
+
+\subsection{常见整函数与奇点}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{lll}
+\toprule
+函数 & 解析区域 & 奇点 \\
+\midrule
+多项式 $P(z)$ & 全平面 $\CC$（整函数） & 无 \\
+$e^z,\sin z,\cos z$ & 全平面 $\CC$（整函数） & 无 \\
+$1/z$ & $\CC\setminus\{0\}$ & $z=0$（单极点）\\
+$1/(z^2+1)$ & $\CC\setminus\{\pm i\}$ & $z=\pm i$（单极点）\\
+$\Log z$ & $\CC\setminus(-\infty,0]$ & $z=0, \infty$（分支点）\\
+$e^{1/z}$ & $\CC\setminus\{0\}$ & $z=0$（本性奇点）\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+%================================================================
+\subsection{保角映射}\label{sec:conformal}
+%================================================================
+
+\label{def:conformal}
+设 $f:D\to\CC$ 在区域 $D$ 内解析。
+若 $f$ 在点 $z_0\in D$ 处满足 $f'(z_0)\ne0$，
+则称 $f$ 在 $z_0$ 处是\textbf{保角的}（conformal）；
+若在 $D$ 内每点均保角，则称 $f$ 为 $D$ 上的\textbf{保角映射}。
+
+\paragraph{保角性的几何含义}
+设两条光滑曲线 $\gamma_1,\gamma_2$ 在 $z_0$ 处相交，
+夹角（切线方向之差）为 $\theta$。
+若 $f'(z_0)\ne0$，则 $f(\gamma_1)$ 与 $f(\gamma_2)$
+在 $w_0=f(z_0)$ 处的夹角仍为 $\theta$（且方向不变）。
+在 $f'(z_0)\ne0$ 处，$f$ 的局部作用是旋转角 $\arg f'(z_0)$、
+放大倍率 $|f'(z_0)|$，即\textbf{旋转加等比放大}，从而保角。
+\label{thm:conformal}
+更完整地说：设 $f$ 在区域 $D$ 内解析。
+若 $f'(z_0)\ne0$，则 $f$ 在 $z_0$ 处保角；
+若 $f'(z_0)=0$，则不保角——角度被放大为原来的 $m$ 倍，其中
+$m\ge 2$ 是 $f(z)-f(z_0)$ 在 $z_0$ 处的零点阶数。
+（设曲线 $\gamma$ 过 $z_0$、切方向 $e^{i\varphi}$，则像曲线切方向为
+$|f'(z_0)|\,e^{i(\varphi+\arg f'(z_0))}$，旋转角与 $\gamma$ 的选取无关。）
+
+$\zeta(s)$ 作为全纯映射在 $\zeta'\ne0$ 处局部保角；
+与临界线、零点、极点同框的几何示意见第~\ref{ch:visualization}~章
+（§\ref{sec:conformal_global}），这里无需赘述。
+
+%================================================================
+\subsection{Schwarz 反射原理}\label{sec:schwarz_reflection}
+%================================================================
+
+\label{thm:schwarz_reflection}
+\textbf{Schwarz 反射原理}（Schwarz Reflection Principle）
+是解析函数的一类对称延拓：若函数在实轴上取实值，则上半平面的解析函数可
+关于实轴按共轭延拓到下半平面。
+设 $D^+$ 是上半平面 $\operatorname{Im}(z)>0$ 中的区域，
+$I$ 是 $D^+$ 的边界与实轴相交的一段开区间，
+$D^- = \{\bar{z}: z\in D^+\}$ 是 $D^+$ 关于实轴的对称区域。
+若 $f$ 在 $D^+$ 内解析，在 $I$ 上连续且取\textbf{实值}
+（即 $\operatorname{Im}f(x)=0$ 对所有 $x\in I$），
+则 $f$ 可延拓为在 $D^+\cup I\cup D^-$ 上的解析函数，
+\begin{equation}
+    f(\bar{z}) = \overline{f(z)}, \qquad z\in D^+\cup I\cup D^-.
+  \label{eq:schwarz_reflection}
+\end{equation}
+证明思路：在 $D^-$ 上令 $g(z)=\overline{f(\bar{z})}$，由 C-R 知 $g$ 解析；
+在 $I$ 上 $f$ 取实值故 $f=g$；由恒等定理~\ref{thm:identity}
+（及第~\ref{ch:analytic_continuation_general}~章的延拓唯一性）得整体延拓。
+更一般地，反射轴不必是实轴，圆弧或直线段亦可；
+若 $f$ 将曲线 $\mathcal{C}$ 映到 $\mathcal{C}'$，则可关于二者联合延拓。
+
+对黎曼 $\zeta$ 函数：在 $\operatorname{Re}s>1$ 上由实系数 Dirichlet 级数取实值，
+从而由本原理得共轭对称 $\zeta(\bar{s})=\overline{\zeta(s)}$。
+完整陈述与证明见第~\ref{ch:riemann_zeta_intro}~章第~\ref{sec:schwarz}~节。
+
+%================================================================
+\section{Cauchy 积分理论}
+%================================================================
+
+
+\subsection{复积分的定义}
+
+设 $\mathcal{C}$ 是复平面中从 $a$ 到 $b$ 的光滑曲线，
+参数化为 $z(t)=x(t)+iy(t)$（$t\in[\alpha,\beta]$），
+$f$ 在 $\mathcal{C}$ 上连续。沿 $\mathcal{C}$ 的\textbf{复积分}定义为
+\begin{equation}
+  \int_{\mathcal{C}} f(z)\dif z
+  = \int_\alpha^\beta f(z(t))\,z'(t)\dif t.
+  \label{eq:complex_int}
+\end{equation}
+若 $f=u+iv$，$\dif z=\dif x+i\dif y$，则等价地：
+\begin{equation}
+  \int_{\mathcal{C}} f\dif z
+  = \int_{\mathcal{C}}(u\dif x-v\dif y)
+  + i\int_{\mathcal{C}}(v\dif x+u\dif y).
+  \label{eq:complex_int2}
+\end{equation}
+
+\textbf{基本估计（ML 不等式）：}
+\begin{equation}
+  \left|\int_{\mathcal{C}} f(z)\dif z\right|
+  \le \max_{z\in\mathcal{C}}|f(z)|\cdot L(\mathcal{C}),
+  \label{eq:ML}
+\end{equation}
+其中 $L(\mathcal{C})$ 是曲线 $\mathcal{C}$ 的弧长。
+
+\subsection{Cauchy 积分定理}
+
+\begin{theorem}{Cauchy 积分定理}{}
+\label{thm:cauchy_theorem}
+设 $f$ 在单连通区域 $D$ 内解析，$\mathcal{C}$ 是 $D$ 内任意一条简单闭曲线（正向），则
+\begin{equation}
+    \oint_{\mathcal{C}} f(z)\dif z = 0.
+  \label{eq:cauchy_theorem}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[证明（Green 公式法；$f'\in C^0$ 情形）]
+设 $\mathcal{C}$ 围成区域 $G\subset D$。令 $f=u+iv$，
+并\textbf{额外假定} $u,v$ 在 $G$ 的闭包上属于 $C^1$（等价于 $f'$ 连续时成立）。
+仅“邻域内复可微”而不假设 $f'$ 连续时，需用 Goursat 定理去掉连续性假设，此处不展开。
+由式~\eqref{eq:complex_int2}：
+\begin{align}
+  \oint_{\mathcal{C}} f\dif z
+  &= \oint_{\mathcal{C}}(u\dif x-v\dif y)
+   + i\oint_{\mathcal{C}}(v\dif x+u\dif y).
+\end{align}
+
+对每个实线积分用 Green 公式（$\oint_{\mathcal{C}}P\dif x+Q\dif y
+=\iint_G(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})\dif x\dif y$）：
+\begin{align}
+  \oint_{\mathcal{C}}(u\dif x-v\dif y)
+  &= \iint_G\!\left(-\frac{\partial v}{\partial x}-\frac{\partial u}{\partial y}\right)\dif x\dif y = 0,\\
+  \oint_{\mathcal{C}}(v\dif x+u\dif y)
+  &= \iint_G\!\left(\frac{\partial u}{\partial x}-\frac{\partial v}{\partial y}\right)\dif x\dif y = 0,
+\end{align}
+两个被积函数均由 C-R 方程~\eqref{eq:CR} 为零。
+\end{proof}
+
+由此，若 $f$ 在单连通区域 $D$ 内解析，则 $\int_{\mathcal{C}}f(z)\dif z$
+的值只与端点 $a,b$ 有关，与连接 $a,b$ 的路径 $\mathcal{C}\subset D$ 无关。
+
+\subsection{Cauchy 积分公式}
+
+\begin{theorem}{Cauchy 积分公式}{}
+\label{thm:cauchy_formula}
+设 $f$ 在区域 $D$ 内解析，$\mathcal{C}$ 是 $D$ 内围绕点 $z_0$
+的简单正向闭曲线（$z_0$ 在 $\mathcal{C}$ 内部），则
+\begin{equation}
+    f(z_0) = \frac{1}{2\pi i}\oint_{\mathcal{C}}\frac{f(z)}{z-z_0}\dif z.
+  \label{eq:cauchy_formula}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+由 Cauchy 定理，可将 $\mathcal{C}$ 变形为以 $z_0$ 为圆心、半径 $\varepsilon>0$ 的小圆 $C_\varepsilon$：
+\begin{equation}
+  \oint_{\mathcal{C}}\frac{f(z)}{z-z_0}\dif z
+  = \oint_{C_\varepsilon}\frac{f(z)}{z-z_0}\dif z.
+  \label{eq:CF_step1}
+\end{equation}
+
+参数化 $z=z_0+\varepsilon e^{i\theta}$（$\theta:0\to2\pi$），
+$\dif z=i\varepsilon e^{i\theta}\dif\theta$：
+\begin{align}
+  \oint_{C_\varepsilon}\frac{f(z)}{z-z_0}\dif z
+  &= \int_0^{2\pi}\frac{f(z_0+\varepsilon e^{i\theta})}{\varepsilon e^{i\theta}}
+     \cdot i\varepsilon e^{i\theta}\dif\theta
+  = i\int_0^{2\pi} f(z_0+\varepsilon e^{i\theta})\dif\theta.
+  \label{eq:CF_step2}
+\end{align}
+
+令 $\varepsilon\to0$，由 $f$ 的连续性，被积函数一致趋于 $f(z_0)$：
+\begin{equation}
+  \lim_{\varepsilon\to0}\oint_{C_\varepsilon}\frac{f(z)}{z-z_0}\dif z
+  = i\int_0^{2\pi}f(z_0)\dif\theta = 2\pi i\,f(z_0). \qedhere
+\end{equation}
+\end{proof}
+
+
+Cauchy 积分公式是复分析中的核心结果之一：
+它表明，若已知 $f$ 在闭曲线 $\mathcal{C}$ 上的值，
+则可以确定 $f$ 在 $\mathcal{C}$ 内部每一点的值。
+这体现了解析函数的"刚性"（rigidity）——边界值完全决定内部。
+
+
+\subsection{高阶导数公式}
+
+\label{thm:cauchy_higher}
+在定理~\ref{thm:cauchy_formula} 的条件下，$f$ 在 $z_0$ 处具有任意阶导数，且
+\begin{equation}
+    f^{(n)}(z_0) = \frac{n!}{2\pi i}\oint_{\mathcal{C}}\frac{f(z)}{(z-z_0)^{n+1}}\dif z,
+    \quad n=0,1,2,\ldots
+  \label{eq:cauchy_higher}
+\end{equation}
+（对式~\eqref{eq:cauchy_formula} 关于 $z_0$ 在积分号下求导即得。）
+
+\subsection{含参量积分与全纯级数}
+\label{sec:param_integral}
+
+后文 $\Gamma$、Mellin 与 $\zeta$ 的积分表示均依赖「对参数全纯」的含参量积分。
+\label{thm:param_integral}
+设 $\Omega\subset\CC$ 为区域，$I\subset\RR$ 为区间（可无界），
+$F:\Omega\times I\to\CC$ 满足：
+\begin{enumerate}
+  \item 对几乎处处的 $t\in I$，$s\mapsto F(s,t)$ 在 $\Omega$ 内全纯；
+  \item 对每个紧集 $K\subset\Omega$，存在可积控制 $g_K(t)$，使
+        $|F(s,t)|\le g_K(t)$ 对一切 $s\in K$、$t\in I$ 成立，
+        且 $\int_I g_K<\infty$。
+\end{enumerate}
+则 $\Phi(s)=\int_I F(s,t)\,\mathrm{d}t$ 在 $\Omega$ 内全纯，且可在积分号下求导：
+$\Phi'(s)=\int_I \frac{\partial F}{\partial s}\,\mathrm{d}t$。
+（紧集上由控制收敛；或对小三角形用 Morera 定理。）
+
+\label{thm:weierstrass_series}
+同样，若 $f_n$ 在区域 $\Omega$ 内全纯，且 $\sum f_n$ 在 $\Omega$ 的每个紧子集上一致收敛，
+则和函数 $f=\sum f_n$ 在 $\Omega$ 内全纯，且可逐项求导
+（Weierstrass 全纯函数项级数定理）。
+因而 Dirichlet 级数、Euler 乘积的局部一致收敛段给出全纯函数
+（第~\ref{ch:riemann_zeta_intro}~章）；
+$\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,\mathrm{d}t$（$\operatorname{Re}s>0$）
+的全纯性即上述含参量积分的直接应用（第~\ref{ch:gamma_function}~章）。
+
+\subsection{Taylor 展开与 Laurent 展开}
+
+若 $f$ 在圆盘 $|z-z_0|<R$ 内解析，则有 \textbf{Taylor 展开}
+\begin{equation}
+  f(z) = \sum_{n=0}^\infty a_n(z-z_0)^n,
+  \quad a_n = \frac{f^{(n)}(z_0)}{n!}
+  = \frac{1}{2\pi i}\oint_{\mathcal{C}}\frac{f(z)}{(z-z_0)^{n+1}}\dif z,
+  \label{eq:taylor}
+\end{equation}
+级数在 $|z-z_0|<R$ 内绝对收敛。
+
+%================================================================
+\section{Laurent 级数}
+%================================================================
+
+\subsection{Laurent 级数的定义}
+
+Taylor 级数要求函数在圆盘内解析，但实际中函数常在奇点附近出现负幂次项。
+Laurent 级数将 Taylor 展开推广到\textbf{圆环域}，允许含有负幂次。
+
+\label{def:laurent}
+形如
+\begin{equation}
+  \sum_{n=-\infty}^{+\infty} c_n(z-z_0)^n
+  = \cdots + \frac{c_{-2}}{(z-z_0)^2} + \frac{c_{-1}}{z-z_0}
+  + c_0 + c_1(z-z_0) + c_2(z-z_0)^2 + \cdots
+  \label{eq:laurent_series_def}
+\end{equation}
+的级数称为以 $z_0$ 为中心的 \textbf{Laurent 级数}，其中 $c_n\in\CC$。
+它由\textbf{解析部分} $\sum_{n=0}^{+\infty}c_n(z-z_0)^n$
+与\textbf{主部} $\sum_{n=1}^{+\infty}c_{-n}(z-z_0)^{-n}$ 组成；
+当两部分收敛域有交叉（$r<R$）时，级数在圆环 $r<|z-z_0|<R$ 内收敛。
+%=========================================
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.05]
+
+ % 外圆
+  \draw[blue!60!black, very thick] (0,0) circle (2.2cm);
+  \node[blue!60!black, font=\small] at (2.6,1.55) {$|z-z_0|=R$};
+  % 内圆
+  \draw[red!60!black, very thick] (0,0) circle (1.0cm);
+  \node[red!60!black, font=\small] at (3.0,-0.55) {$|z-z_0|=r$};
+     % 圆环阴影
+  \begin{scope}
+    \clip (0,0) circle (2.2cm);
+    \fill[blue!8] (0,0) circle (2.2cm);
+    \fill[white] (0,0) circle (1.0cm);
+  \end{scope}
+  \draw[-Stealth,thick] (-2.8,0)--(2.8,0) node[right,font=\small]{$x$};
+  \draw[-Stealth,thick] (0,-2.6)--(0,2.8) node[above,font=\small]{$y$};
+
+  % 中心点（奇点）
+  \fill[red] (0,0) circle (2.5pt);
+  \node[below right, font=\small, red] at (-0.05,-0.48) {$z_0$（奇点）};
+  % 积分曲线
+  \draw[purple!70!black, thick,
+    decoration={markings, mark=at position 0.25 with {\arrow[scale=1.2]{Stealth}},
+                          mark=at position 0.75 with {\arrow[scale=1.2]{Stealth}}},
+    postaction={decorate}]
+    (0,0) circle (1.55cm);
+  \node[purple!70!black, font=\small] at (-1.3,1.1) {$\mathcal{C}$};
+  % 收敛区域标注
+  \node[font=\small, blue!50!black] at (2.0,2.55)
+    {Laurent 级数收敛域};
+  % 指示箭头调整：箭头端移动到 C 圈（1.55cm）和外圆（2.2cm）的圆环中部（约1.875cm 半径处）
+  \draw[-Stealth, blue!40!black, thin] (2.0,2.42)--(1.34,1.34);
+  % r, R 标注
+  \draw[<->, blue!70, thin] (0,0)--(0.97,0) node[midway, below, font=\scriptsize]{$r$};
+  \draw[<->, blue!70, thin] (0,0)--(2.17,0) node[midway, above, font=\scriptsize]{$R$};
+\end{tikzpicture}
+\caption{Laurent 级数的收敛域：圆环 $r<|z-z_0|<R$。
+  $z_0$ 为奇点，$\mathcal{C}$ 为圆环内用于计算系数的积分曲线。}
+\label{fig:laurent_annulus}
+\end{figure}
+%=======================================
+\subsection{Laurent 展开定理及其证明}
+
+\begin{theorem}{Laurent 展开定理}{}
+\label{thm:laurent}
+设 $f$ 在圆环 $r<|z-z_0|<R$（$0\le r<R\le+\infty$）内解析，
+则 $f$ 可唯一地展开为 Laurent 级数：
+\begin{equation}
+    f(z) = \sum_{n=-\infty}^{+\infty} c_n(z-z_0)^n,
+    \quad
+    c_n = \frac{1}{2\pi i}\oint_{\mathcal{C}}\frac{f(w)}{(w-z_0)^{n+1}}\dif w,
+  \label{eq:laurent}
+\end{equation}
+其中 $\mathcal{C}$ 是圆环内任意包围 $z_0$ 的简单正向闭曲线，
+$n=0,\pm1,\pm2,\ldots$
+\end{theorem}
+
+\begin{proof}
+设 $z$ 在圆环内，取 $r<r_1<|z-z_0|<r_2<R$。
+在圆环 $r_1<|w-z_0|<r_2$ 内，$f$ 解析，$z$ 在此圆环内。
+
+由多连通域的 Cauchy 积分公式：
+\begin{equation}
+  f(z) = \frac{1}{2\pi i}\oint_{C_{r_2}}\frac{f(w)}{w-z}\dif w
+        -\frac{1}{2\pi i}\oint_{C_{r_1}}\frac{f(w)}{w-z}\dif w,
+  \label{eq:laurent_proof_1}
+\end{equation}
+其中 $C_{r_j}$ 为以 $z_0$ 为圆心、半径 $r_j$ 的正向圆。
+
+\textbf{处理外圆 $C_{r_2}$ 上的积分：}
+对 $w\in C_{r_2}$，$|z-z_0|<|w-z_0|$，令 $\zeta=\frac{z-z_0}{w-z_0}$，$|\zeta|<1$：
+\begin{align}
+  \frac{1}{w-z}
+  &= \frac{1}{(w-z_0)-(z-z_0)}
+  = \frac{1}{w-z_0}\cdot\frac{1}{1-\zeta}
+  = \frac{1}{w-z_0}\sum_{n=0}^\infty\zeta^n
+  \notag\\
+  &= \sum_{n=0}^\infty\frac{(z-z_0)^n}{(w-z_0)^{n+1}}.
+  \label{eq:geom_outer}
+\end{align}
+积分后得解析部分：
+\[
+\frac{1}{2\pi i}\oint_{C_{r_2}}\frac{f(w)}{w-z}\dif w
+ = \sum_{n=0}^\infty c_n(z-z_0)^n,
+\]
+其中 $c_n=\frac{1}{2\pi i}\oint_{C_{r_2}}\frac{f(w)}{(w-z_0)^{n+1}}\dif w$。
+
+\textbf{处理内圆 $C_{r_1}$ 上的积分：}
+对 $w\in C_{r_1}$，$|w-z_0|<|z-z_0|$，令 $\eta=\frac{w-z_0}{z-z_0}$，$|\eta|<1$：
+\begin{align}
+  \frac{-1}{w-z}
+  &= \frac{1}{z-w}
+  = \frac{1}{z-z_0}\cdot\frac{1}{1-\eta}
+  = \sum_{n=0}^\infty\frac{(w-z_0)^n}{(z-z_0)^{n+1}}.
+  \label{eq:geom_inner}
+\end{align}
+积分后令 $m=-(n+1)$（$m=-1,-2,-3,\ldots$），得主部：
+$ -\frac{1}{2\pi i}\oint_{C_{r_1}}\frac{f(w)}{w-z}\dif w
+ = \sum_{n=1}^\infty c_{-n}(z-z_0)^{-n}$，
+其中 $ c_{-n}=\frac{1}{2\pi i}\oint_{C_{r_1}}\frac{f(w)}{(w-z_0)^{-n+1}}\dif w$。
+
+\textbf{合并：}由 Cauchy 定理，$C_{r_1}$ 和 $C_{r_2}$ 上的积分可以统一为同一围道 $\mathcal{C}$（系数 $c_n$ 与 $r_1,r_2$ 的具体取值无关）。
+将两部分合并即得式~\eqref{eq:laurent}。
+
+\textbf{唯一性：}若有两个 Laurent 展开，对差级数逐项积分（利用 $\oint_\mathcal{C}(z-z_0)^n\dif z=2\pi i\cdot\delta_{n,-1}$，其中 $\delta_{ij}$ 为 Kronecker 记号），可证各系数相同。
+\end{proof}
+
+\subsection{计算方法与本书用途}
+
+直接用积分求系数 $c_n$ 通常繁琐；常用：
+（i）已知 Taylor 级数作代换；（ii）部分分式 + 几何级数
+$\frac{1}{1-\zeta}=\sum_{n\ge0}\zeta^n$（$|\zeta|<1$）。
+
+常用手法：已知 Taylor 级数作代换；部分分式配几何级数
+$\frac{1}{1-\zeta}=\sum_{n\ge0}\zeta^n$（$|\zeta|<1$）。
+同一函数在不同圆环内的 Laurent 展开一般不同，须先固定中心与区域。
+
+本书用 Laurent 展开主要读三件事（细节见下一节）：
+\begin{itemize}
+  \item \textbf{奇点类型}：主部为空 / 有限 / 无穷 $\Leftrightarrow$ 可去 / 极点 / 本性；
+  \item \textbf{留数}：$\Res(f,z_0)=c_{-1}$；本性奇点只能靠展开读 $c_{-1}$；
+  \item \textbf{围道积分}：$\oint f=2\pi i\sum c_{-1}$（留数定理）。
+\end{itemize}
+
+\label{def:res_infty}
+\textbf{无穷远处的留数}定义为
+\begin{equation}
+  \Res(f,\infty)
+  \;=\;
+  -\frac{1}{2\pi i}\oint_{|z|=R}f(z)\,\mathrm{d}z
+  \;=\;
+  -c_{-1}^{(\infty)},
+  \label{eq:res_infty}
+\end{equation}
+其中 $c_{-1}^{(\infty)}$ 来自 $f$ 在 $\infty$ 处（$w=1/z$）的 Laurent 展开。
+有限奇点留数与 $\Res(f,\infty)$ 之和为 $0$。
+
+Perron / Laplace 逆变换中的竖线积分，在闭合后亦化为留数和
+（第~\ref{ch:integral_transforms}~、\ref{ch:riemann_explicit_formula}~章）；
+多阶极点用公式~\eqref{eq:res_mth}，不必在此展开特例。
+
+\subsection{Laurent 与 Taylor 的比较}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lll}
+\toprule
+ & Taylor & Laurent \\
+\midrule
+幂次 & $n\ge 0$ & $n\in\ZZ$ \\
+收敛域 & 圆盘 & 圆环（中心可有奇点） \\
+系数 & $\dfrac{f^{(n)}(z_0)}{n!}$ & 围道积分 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%================================================================
+\section{孤立奇点与留数}
+%================================================================
+
+\subsection{孤立奇点的分类}\label{sec:singularity}
+
+若 $f$ 在 $z_0$ 处不解析，但在某去心邻域 $0<|z-z_0|<\delta$ 内解析，
+则称 $z_0$ 为 $f$ 的\textbf{孤立奇点}。
+根据 $f$ 在 $z_0$ 处 Laurent 展开的主部，奇点分三类：
+
+\begin{center}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{lp{4.0cm}p{5.0cm}l}
+\toprule
+类型 & Laurent 主部 & 等价条件 & 典型例子 \\
+\midrule
+可去奇点 &
+无主部（$c_{-n}=0$，$\forall n\ge1$）&
+$\displaystyle\lim_{z\to z_0}f(z)$ 存在有限 &
+$\dfrac{\sin z}{z}$ 在 $z=0$ \\[6pt]
+$m$ 阶极点 &
+$c_{-m}\ne0$，$c_{-n}=0$（$n>m$）&
+$\displaystyle\lim_{z\to z_0}(z-z_0)^m f(z)\ne0,\infty$ &
+$\dfrac{1}{(z-1)^2}$ 在 $z=1$ \\[6pt]
+本性奇点 &
+无穷多个非零 $c_{-n}$ &
+$\displaystyle\lim_{z\to z_0}f(z)$ 不存在 &
+$e^{1/z}$ 在 $z=0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{留数的定义}
+
+\begin{definition}{留数}{}
+\label{def:residue}
+设 $z_0$ 是 $f$ 的孤立奇点，$f$ 在 $z_0$ 处的 Laurent 展开为式~\eqref{eq:laurent}，
+则 $f$ 在 $z_0$ 处的\textbf{留数}（残数）定义为 $c_{-1}$：
+\begin{equation}
+  \Res(f,z_0) = c_{-1} = \frac{1}{2\pi i}\oint_{C_\varepsilon} f(z)\dif z,
+  \label{eq:res_def}
+\end{equation}
+其中 $C_\varepsilon$ 是以 $z_0$ 为圆心的充分小正向圆。
+\end{definition}
+
+\subsection{留数的计算方法}
+
+\textbf{方法一：}对简单极点（$m=1$），
+\begin{equation}
+  \Res(f,z_0) = \lim_{z\to z_0}(z-z_0)f(z).
+  \label{eq:res_simple}
+\end{equation}
+
+\textbf{方法二：}若 $f(z)=g(z)/h(z)$，$g(z_0)\ne0$，$h(z_0)=0$，$h'(z_0)\ne0$（单零点），
+\begin{equation}
+  \Res(f,z_0) = \frac{g(z_0)}{h'(z_0)}.
+  \label{eq:res_quotient}
+\end{equation}
+
+\textbf{方法三：}对 $m$ 阶极点，
+\begin{equation}
+  \Res(f,z_0) = \frac{1}{(m-1)!}\lim_{z\to z_0}
+  \frac{\dif^{m-1}}{\dif z^{m-1}}\!\left[(z-z_0)^m f(z)\right].
+  \label{eq:res_mth}
+\end{equation}
+
+\textbf{方法四：}对本性奇点，展开 Laurent 级数，直接读取 $c_{-1}$。
+
+\subsection{留数定理}
+
+\begin{theorem}{留数定理}{}
+\label{thm:residue}
+设 $f$ 在区域 $D$ 内除有限个孤立奇点 $z_1,z_2,\ldots,z_n$ 外处处解析，
+$\mathcal{C}$ 是 $D$ 内包含所有奇点的简单正向闭曲线，则
+\begin{equation}
+    \oint_{\mathcal{C}} f(z)\dif z
+    = 2\pi i\sum_{k=1}^n\Res(f,z_k).
+  \label{eq:residue_thm}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+在每个奇点外作小圆，用割线将多连通域化为单连通域，对所得区域用 Cauchy 定理；
+割线去回程抵消，小圆积分给出留数。几何与完整推导见图~\ref{fig:residue}。
+\end{proof}
+
+% 非浮动：紧接留数定理，固定于幅角定理节之前
+\begin{center}
+\begin{tikzpicture}[scale=1.15, line width=1.0pt]
+
+%==========================================================
+% 基本参数
+%==========================================================
+\def\Ra{3.6}
+\def\Rb{2.4}
+\def\rc{0.42}
+\def\off{0.14}
+
+\coordinate (O1) at ( 1.00, 1.00);
+\coordinate (O2) at ( 1.20, -0.75);
+\coordinate (O3) at (-1.80, 0.15);
+
+%==========================================================
+% 大椭圆
+%==========================================================
+\draw[blue!70!black, line width=1.6pt,
+  decoration={markings,
+    mark=at position 0.10 with {\arrow[scale=1.4,blue!70!black]{Stealth}},
+    mark=at position 0.35 with {\arrow[scale=1.4,blue!70!black]{Stealth}},
+    mark=at position 0.60 with {\arrow[scale=1.4,blue!70!black]{Stealth}},
+    mark=at position 0.85 with {\arrow[scale=1.4,blue!70!black]{Stealth}}},
+  postaction={decorate}]
+  (0,0) ellipse (\Ra cm and \Rb cm);
+\node[blue!70!black, font=\small] at (0,-2.78) {$\mathcal{C}$（正向逆时针）};
+\node[gray!55, font=\footnotesize] at (2.85,1.98) {$f$ 解析};
+
+%==========================================================
+% 奇点标记
+%==========================================================
+\fill[red!80!black] (O1) circle (2.2pt)
+  node[above=2pt, font=\footnotesize, red!70!black] {$z_1$};
+\fill[red!80!black] (O2) circle (2.2pt)
+  node[right=3pt, font=\footnotesize, red!70!black] {$z_2$};
+\fill[red!80!black] (O3) circle (2.2pt)
+  node[above=2pt, font=\footnotesize, red!70!black] {$z_3$};
+
+%==========================================================
+% 接触点
+%==========================================================
+\coordinate (P0) at ({3.6*cos(72)}, {2.4*sin(72)});
+\coordinate (P1in) at ({1.00+\rc*cos(80)}, {1.00+\rc*sin(80)});
+\coordinate (P1out) at ({1.00+\rc*cos(270)}, {1.00+\rc*sin(270)});
+\coordinate (P2in) at ({1.20+\rc*cos(100)}, {-0.75+\rc*sin(100)});
+\coordinate (P2out) at ({1.20+\rc*cos(200)}, {-0.75+\rc*sin(200)});
+\coordinate (P3) at ({-1.80+\rc*cos(10)}, {0.15+\rc*sin(10)});
+
+%==========================================================
+% 手绘割线样式
+%==========================================================
+\tikzset{
+  handdrawn/.style={
+    decoration={random steps, segment length=5pt, amplitude=0.7pt},
+    decorate, line cap=round
+  }
+}
+
+%==========================================================
+% 侧向双箭头宏
+% 旋向分析：路径在小圆上逆时针旋转，从去程方向看
+% 圆弧在右侧展开，故：
+% 去程箭头 → 放在割线【右侧】（法向 -off）
+% 回程箭头 ← 放在割线【左侧】（法向 +off）
+% 箭头：open Stealth（空心，带尾巴效果），缩小至 scale=0.82
+% 尾巴：在箭头起点处加一小段垂直短线
+%==========================================================
+\newcommand{\sideArrows}[2]{%
+  % 用 pgfgetlastxy 提取割线方向向量
+  \pgfpointdiff{\pgfpointanchor{#1}{center}}
+               {\pgfpointanchor{#2}{center}}%
+  \pgfgetlastxy{\cutdxdim}{\cutdydim}% 保存为带 pt 的 dimension
+  \pgfmathsetmacro{\cutdx}{\cutdxdim/1pt}%
+  \pgfmathsetmacro{\cutdy}{\cutdydim/1pt}%
+  \pgfmathsetmacro{\cutlen}{sqrt(\cutdx*\cutdx+\cutdy*\cutdy)}%
+  % 单位法向量（左侧正方向：旋转 +90°）
+  \pgfmathsetmacro{\tnx}{-\cutdy/\cutlen}%
+  \pgfmathsetmacro{\tny}{ \cutdx/\cutlen}%
+  \pgfmathsetmacro{\thalf}{1.65}% 尾巴半长
+  % 四个箭头端点
+  \coordinate (fwdTail) at ($(#1)!0.40!(#2)!{-\off cm}!90:(#2)$);
+  \coordinate (fwdHead) at ($(#1)!0.54!(#2)!{-\off cm}!90:(#2)$);
+  \coordinate (bwdTail) at ($(#1)!0.60!(#2)!{ \off cm}!90:(#2)$);
+  \coordinate (bwdHead) at ($(#1)!0.46!(#2)!{ \off cm}!90:(#2)$);
+  %--- 去程箭头（右侧，A→B）---
+  \draw[-{Stealth[scale=0.82, open]}, red!82!black, line width=0.78pt]
+    (fwdTail) -- (fwdHead);
+  \draw[red!82!black, line width=0.78pt]
+    ($(fwdTail)+(\thalf*\tnx pt, \thalf*\tny pt)$)
+    -- ($(fwdTail)+(-\thalf*\tnx pt, -\thalf*\tny pt)$);
+  %--- 回程箭头（左侧，B→A）---
+  \draw[-{Stealth[scale=0.82, open]}, red!82!black, line width=0.78pt]
+    (bwdTail) -- (bwdHead);
+  \draw[red!82!black, line width=0.78pt]
+    ($(bwdTail)+(\thalf*\tnx pt, \thalf*\tny pt)$)
+    -- ($(bwdTail)+(-\thalf*\tnx pt, -\thalf*\tny pt)$);
+}
+
+%==========================================================
+% ① 割线 L0：P0 → P1in
+%==========================================================
+\draw[red!75!black, line width=1.2pt, handdrawn]
+  (P0) to[out=228, in=82, looseness=0.88] (P1in);
+\sideArrows{P0}{P1in}
+\node[font=\scriptsize, red!60!black] at (1.50,1.86) {$L_0$};
+
+%==========================================================
+% ② C1 逆时针：去程 80°→270°，回程 270°→440°
+%==========================================================
+\draw[red!75!black, line width=1.2pt,
+  decoration={markings,
+    mark=at position 0.48 with {\arrow[scale=1.05]{Stealth[open]}}},
+  postaction={decorate}]
+  ({1.00+\rc*cos(80)},{1.00+\rc*sin(80)})
+  arc[start angle=80, end angle=270, radius=\rc];
+
+\draw[red!75!black, line width=1.2pt,
+  decoration={markings,
+    mark=at position 0.52 with {\arrow[scale=1.05]{Stealth[open]}}},
+  postaction={decorate}]
+  ({1.00+\rc*cos(270)},{1.00+\rc*sin(270)})
+  arc[start angle=270, end angle=440, radius=\rc];
+
+\node[font=\footnotesize, red!55!black] at
+  ({1.00+(\rc+0.32)*cos(175)},{1.00+(\rc+0.32)*sin(175)}) {$C_1$};
+
+%==========================================================
+% ③ 割线 L12：P1out → P2in
+%==========================================================
+\draw[red!75!black, line width=1.2pt, handdrawn]
+  (P1out) to[out=262, in=98, looseness=0.88] (P2in);
+\sideArrows{P1out}{P2in}
+\node[font=\scriptsize, red!60!black] at
+  ({1.00+\rc*cos(270)+0.32},
+   {0.5*(1.00+\rc*sin(270)-0.75+\rc*sin(100))}) {$L_{12}$};
+
+%==========================================================
+% ④ C2 逆时针：去程 100°→200°，回程 200°→460°
+%==========================================================
+\draw[red!75!black, line width=1.2pt,
+  decoration={markings,
+    mark=at position 0.52 with {\arrow[scale=1.05]{Stealth[open]}}},
+  postaction={decorate}]
+  ({1.20+\rc*cos(100)},{-0.75+\rc*sin(100)})
+  arc[start angle=100, end angle=200, radius=\rc];
+
+\draw[red!75!black, line width=1.2pt,
+  decoration={markings,
+    mark=at position 0.50 with {\arrow[scale=1.05]{Stealth[open]}}},
+  postaction={decorate}]
+  ({1.20+\rc*cos(200)},{-0.75+\rc*sin(200)})
+  arc[start angle=200, end angle=460, radius=\rc];
+
+\node[font=\footnotesize, red!55!black] at
+  ({1.20+(\rc+0.32)*cos(330)},{-0.75+(\rc+0.32)*sin(330)}) {$C_2$};
+
+%==========================================================
+% ⑤ 割线 L23：P2out → P3
+%==========================================================
+\draw[red!75!black, line width=1.2pt, handdrawn]
+  (P2out) to[out=168, in=345, looseness=0.92] (P3);
+\sideArrows{P2out}{P3}
+\node[font=\scriptsize, red!60!black] at (-0.32,-0.10) {$L_{23}$};
+
+%==========================================================
+% ⑥ C3 逆时针整圈：10°→370°
+%==========================================================
+\draw[red!75!black, line width=1.2pt,
+  decoration={markings,
+    mark=at position 0.22 with {\arrow[scale=1.05]{Stealth[open]}},
+    mark=at position 0.72 with {\arrow[scale=1.05]{Stealth[open]}}},
+  postaction={decorate}]
+  ({-1.80+\rc*cos(10)},{0.15+\rc*sin(10)})
+  arc[start angle=10, end angle=370, radius=\rc];
+
+\node[font=\footnotesize, red!55!black] at
+  ({-1.0+(\rc+0.32)*cos(188)},{-0.32+(\rc+0.32)*sin(188)})
+  {$C_3$（整圈）};
+
+%==========================================================
+% 出发点
+%==========================================================
+\fill[blue!70!black] (P0) circle (2.5pt);
+\node[blue!60!black, font=\footnotesize, above right] at (P0) {$P_0$};
+
+%==========================================================
+% 图例说明框（详细版，椭圆左侧外部）
+%==========================================================
+\node[draw=gray!45, fill=gray!3, rounded corners=5pt,
+  font=\scriptsize, inner sep=8pt, align=left,
+  text width=6.0cm] at (-6.65, 0.3)
+{%
+  \textbf{\normalsize 留数定理（割线法）}\\[5pt]
+  %-------- 大围道 --------
+  \textbf{大围道 $\mathcal{C}$}（蓝色，逆时针正向）\\
+  \quad 简单闭曲线，内含奇点 $z_1,\ldots,z_n$\\
+  \quad $f$ 在 $\mathcal{C}$ 及其内部（奇点除外）解析\\[5pt]
+  %-------- 割线 --------
+  \textbf{割线}（红色手绘曲线，共 $n$ 条）\\
+  \quad 无交叉、按序连接各小圆（并连至 $\mathcal{C}$）\\
+  \quad 割线将多连通域切割为\\
+  \quad 单连通域 $G$，使 Cauchy 定理可用\\[3pt]
+  \quad 每条割线沿相同路径走两次：\\[2pt]
+  \quad\begin{tikzpicture}[baseline=-1pt]
+    \draw[red!80!black,line width=0.75pt]
+      (0,0)--(0.6,0);
+    \draw[-{Stealth[scale=0.78,open]},red!80!black,line width=0.75pt]
+      (0.08,0.10)--(0.28,0.10);
+    \draw[red!80!black,line width=0.75pt]
+      (0.08,0.14)--(0.08,0.06);
+  \end{tikzpicture}
+  ~\textbf{去程} $L_k^+$：右侧箭头，\\
+  \quad\quad $\mathcal{C}\to C_k$，与逆时针旋向和谐\\[2pt]
+  \quad\begin{tikzpicture}[baseline=-1pt]
+    \draw[red!80!black,line width=0.75pt]
+      (0,0)--(0.6,0);
+    \draw[-{Stealth[scale=0.78,open]},red!80!black,line width=0.75pt]
+      (0.52,-0.10)--(0.32,-0.10);
+    \draw[red!80!black,line width=0.75pt]
+      (0.52,-0.06)--(0.52,-0.14);
+  \end{tikzpicture}
+  ~\textbf{回程} $L_k^-$：左侧箭头，\\
+  \quad\quad $C_k\to\mathcal{C}$，方向与去程相反\\[3pt]
+  \quad 去回程积分精确抵消（同路反向）：\\
+  \quad $\int_{L_k^+}\!\!f\,dz
+    +\int_{L_k^-}\!\!f\,dz = 0$\\[5pt]
+  %-------- 小圆弧 --------
+  \textbf{小圆弧 $C_k$}（红色实线，逆时针 = 正向）\\
+  \quad 绕奇点 $z_k$ 作充分小正向圆\\
+  \quad 去程弧 $+$ 回程弧 $=$ 逆时针整圈\\
+  \quad 两段弧上箭头均沿逆时针方向\\[5pt]
+  %-------- 推导 --------
+  \textbf{推导}：对单连通域 $G$ 用 Cauchy 定理\\
+  \quad $\oint_{\partial G}f\,dz=0$，展开得：\\[2pt]
+  \quad $\oint_{\mathcal{C}}\!f\,dz
+    +\sum_k\!\Bigl(
+      \int_{L_k^+}\!\!+\int_{L_k^-}\Bigr)f\,dz
+    -\sum_k\oint_{C_k}\!\!f\,dz=0$\\[3pt]
+  \quad 割线项为零。\\
+  \quad $\partial G$ 绕每个洞为顺时针，故小圆贡献为
+    $-\oint_{C_k}$（$C_k$ 正向）；\\
+  \quad 再由
+    $\oint_{C_k}f\,dz = 2\pi i\,\mathrm{Res}(f,z_k)$，得：\\[2pt]
+  \quad $\oint_{\mathcal{C}}\!f\,dz
+    =\sum_{k}\oint_{C_k}\!\!f\,dz$\\[3pt]
+  \quad $
+    \boxed{\oint_{\mathcal{C}}\!f\,dz
+    = 2\pi i\sum_{k}\mathrm{Res}(f,z_k)}$%
+};
+\end{tikzpicture}
+\captionof{figure}{多连通区域割线与留数定理证明示意图（图例内含完整证明）。}
+\label{fig:residue}
+\end{center}
+
+%================================================================
+\section{幅角定理}\label{sec:argument_principle}
+%================================================================
+
+\subsection{对数导数与辐角变化}
+
+设 $f$ 在区域 $D$ 内亚纯（除有限个极点外处处解析），
+$f$ 在曲线 $\mathcal{C}$ 上无零点也无极点。
+
+恒等式：
+\begin{equation}
+  \frac{f'(z)}{f(z)} = \frac{\dif}{\dif z}\log f(z)
+  = \frac{\dif}{\dif z}\!\left[\ln|f(z)|+i\arg f(z)\right].
+  \label{eq:log_deriv}
+\end{equation}
+
+在 $f$ 的全纯非零点处上式两端均全纯。
+在 $m$ 阶零点处，$f'/f$ 有一阶极点，留数为 $m$；
+在 $n$ 阶极点处，$f'/f$ 有一阶极点，留数为 $-n$。
+因而沿包围这些点的闭围道积分时，$f'/f$ 的留数之和等于（计重数的）零点个数减去极点个数；
+这正是下一小节幅角定理的内容。
+
+沿 $\mathcal{C}$ 积分：
+\begin{align}
+  \oint_{\mathcal{C}}\frac{f'(z)}{f(z)}\dif z
+  &= \Delta_{\mathcal{C}}\ln|f(z)| + i\,\Delta_{\mathcal{C}}\arg f(z).
+  \label{eq:log_deriv_int}
+\end{align}
+
+若 $\mathcal{C}$ 是闭曲线，$|f(z)|$ 回到原值，故 $\Delta_{\mathcal{C}}\ln|f|=0$，
+\begin{equation}
+  \oint_{\mathcal{C}}\frac{f'(z)}{f(z)}\dif z = i\,\Delta_{\mathcal{C}}\arg f(z).
+  \label{eq:arg_change}
+\end{equation}
+
+\subsection{幅角定理（辐角原理）}
+
+\begin{theorem}{幅角定理 / 辐角原理}{}
+\label{thm:argument_principle}
+设 $f$ 在区域 $D$ 内亚纯，$\mathcal{C}$ 是 $D$ 内的简单正向闭曲线，
+$f$ 在 $\mathcal{C}$ 上无零点也无极点。
+设 $\mathcal{C}$ 内部 $f$ 的零点个数为 $Z$（计重数），极点个数为 $P$（计重数），则
+\begin{equation}
+    \frac{1}{2\pi i}\oint_{\mathcal{C}}\frac{f'(z)}{f(z)}\dif z = Z - P.
+  \label{eq:argument_principle}
+\end{equation}
+等价地，
+\begin{equation}
+  Z - P = \frac{1}{2\pi}\Delta_{\mathcal{C}}\arg f(z).
+  \label{eq:argument_principle2}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+对 $f$ 的每个零点 $a$（$m_a$ 阶）和极点 $b$（$n_b$ 阶），
+在附近展开：
+\begin{align}
+  &a\text{ 处：}\; f(z)=(z-a)^{m_a}g(z),\;g(a)\ne0
+  \;\Rightarrow\; \frac{f'}{f}=\frac{m_a}{z-a}+\frac{g'}{g},\\
+  &b\text{ 处：}\; f(z)=(z-b)^{-n_b}h(z),\;h(b)\ne0
+  \;\Rightarrow\; \frac{f'}{f}=\frac{-n_b}{z-b}+\frac{h'}{h}.
+\end{align}
+
+因此 $f'/f$ 在 $\mathcal{C}$ 内部的留数之和为
+$\sum_a m_a - \sum_b n_b = Z-P$。
+换言之：$f'/f$ 的极点恰好位于 $f$ 的零点与极点处，留数分别为零点阶与极点阶的相反数。
+由留数定理：
+\[
+  \frac{1}{2\pi i}\oint_{\mathcal{C}}\frac{f'}{f}\dif z = Z-P.
+\]
+结合式~\eqref{eq:arg_change} 即得式~\eqref{eq:argument_principle2}。
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \begin{scope}[xshift=-4.3cm]
+    % z 平面
+    \draw[-Stealth,thick] (-2.5,0)--(2.5,0) node[right,font=\small]{$x$};
+    \draw[-Stealth,thick] (0,-2.0)--(0,2.0) node[above,font=\small]{$y$};
+    \node[font=\small, above left] at (-1.6,1.5) {$z$ 平面};
+    % 围道（在1.2倍基础上再×1.3，最终1.56倍：1.68×1.3=2.184cm，1.32×1.3=1.716cm）
+    \draw[blue!70!black, very thick, marrow=0.10, marrow=0.35, marrow=0.60, marrow=0.85]
+      (0,0) ellipse (2.184cm and 1.716cm);
+    % 标注位置再次微调（-1.44×1.3=-1.872cm）
+    \node[blue!70!black, font=\small, below] at (0,-1.9) {$\mathcal{C}$};
+    % 零点（位置不变）
+    \fill[green!60!black] (-1.1,0.7) circle (2.5pt)
+      node[above right, font=\scriptsize]{$a_1$零点};
+    \fill[green!60!black] (0.5,-0.2) circle (2.5pt)
+      node[below right, font=\scriptsize]{$a_2$零点};
+    % 极点（位置不变）
+    \fill[red] (-0.4,-0.7) circle (2.5pt)
+      node[below right, font=\scriptsize]{$b_1$极点};
+  \end{scope}
+
+  % 箭头（位置不变）
+  \draw[-Stealth, very thick, purple!70!black] (-1.3,0)--(1.6,0)
+    node[above, midway, font=\small]{$w=f(z)$};
+
+  \begin{scope}[xshift=4.0cm]
+    % w 平面
+    \draw[-Stealth,thick] (-2.2,0)--(2.3,0) node[right,font=\small]{$\operatorname{Re}w$};
+    \draw[-Stealth,thick] (0,-2.0)--(0,2.0) node[above,font=\small]{$\operatorname{Im}w$};
+    \node[font=\small, above left] at (-1.6,1.5) {$w$ 平面};
+    % 像曲线 f(C)（在1.2倍基础上再×1.3，所有坐标点最终放大1.56倍）
+    \draw[red!70!black, very thick,
+      marrow=0.08, marrow=0.33, marrow=0.58, marrow=0.83]
+      plot[smooth, tension=0.8]
+      coordinates{(1.56,0.468)(0.468,1.716)(-1.404,0.936)(-1.716,-0.468)(0,-1.56)
+                  (1.404,-0.78)(1.716,0.156)(0.468,1.56)(-1.248,0.78)(-1.56,-0.624)
+                  (0,-1.404)(1.404,-0.624)(1.56,0.468)};
+    \fill[black] (0,0) circle (2.5pt) node[below right, font=\small]{$w=0$};
+    % 标注位置再次微调（1.32×1.3=1.716, 0.36×1.3=0.468）
+    \node[red!70!black, font=\small, right] at (1.716,0.468)
+      {$f(\mathcal{C})$};
+    % 文字标注位置不变
+    \node[font=\small, below] at (0,-1.9)
+      {绕原点 $Z-P=1$ 圈};
+  \end{scope}
+\end{tikzpicture}
+\end{figure}
+
+\subsection{几何解释}
+
+幅角定理有直观的几何含义：
+
+当 $z$ 沿正向闭曲线 $\mathcal{C}$ 走一圈时，$w=f(z)$ 描绘出 $w$ 平面中的一条闭曲线 $\Gamma=f(\mathcal{C})$。
+$\frac{1}{2\pi}\Delta_{\mathcal{C}}\arg f(z)$ 正是 $\Gamma$ 绕 $w=0$ 点的\textbf{绕数}（winding number）。
+因而幅角定理的几何内容可概括为：
+\[
+  \text{（$f$ 的零点数 $-$ 极点数）}
+  = \text{（$f(\mathcal{C})$ 绕原点的圈数）}.
+\]
+
+\subsection{幅角定理与非平凡零点计数}
+
+幅角定理在解析数论中的最重要应用是对 Riemann $\zeta(s)$ 非平凡零点的计数：
+设 $N(T)$ 为 $\zeta(s)$ 满足 $0<\operatorname{Im}(s)\le T$ 的非平凡零点个数，
+对适当选取的矩形围道 $\mathcal{R}$，由幅角定理：
+\begin{equation}
+  N(T) = \frac{1}{2\pi}\Delta_{\mathcal{R}}\arg\zeta(s)
+  = \frac{T}{2\pi}\log\frac{T}{2\pi e} + \frac{7}{8} + O(\log T).
+  \label{eq:NT}
+\end{equation}
+
+具体推导需对矩形每条边分别估计 $\arg\zeta(s)$ 的变化，
+并利用 Stirling 公式处理 $\Gamma$ 函数项（详见第~\ref{ch:zero_distribution}~章第~\ref{sec:xi-hadamard-product}~节中关于零点分布与计数的系统讨论）。
+
+%================================================================
+\section{重要定理与核心公式汇总}
+%================================================================
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\centering
+\vspace{0.2em}
+\textbf{第~\ref{ch:complex_analysis_intro}~章：重要定理与核心公式汇总}\\[6pt]
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{lp{9.5cm}}
+\hline
+\textbf{名称} & \textbf{数学内容 / 公式表达} \\
+\hline
+C-R 方程 &
+  复可微 $\Rightarrow$ C-R；偏导连续 + C-R $\Rightarrow$ 复可微 \\
+恒等定理 &
+  连通域上全纯，$f|_E=0$ 且 $E$ 有聚点 $\Rightarrow$ $f\equiv 0$ \\
+含参量积分 &
+  控制收敛下 $\displaystyle\int F(s,t)\,\mathrm{d}t$ 对 $s$ 全纯（可在积分号下求导） \\
+Cauchy 定理 &
+  单连通域解析 $\Rightarrow$ $\displaystyle\oint f=0$ \\
+Cauchy 公式 &
+  $f(z_0)=\dfrac{1}{2\pi i}\displaystyle\oint\dfrac{f(z)}{z-z_0}\dif z$ \\
+留数定理 &
+  $\displaystyle\oint f=2\pi i\displaystyle\sum\Res(f,z_k)$ \\
+幅角定理 &
+  $\dfrac{1}{2\pi i}\displaystyle\oint\dfrac{f'}{f}=Z-P=\dfrac{1}{2\pi}\Delta\arg f$ \\
+\hline
+\end{tabular}
+\vspace{0.2em}
+}}
+\end{center}
+
+%================================================================
+\section*{本章小结与后续展望}
+\addcontentsline{toc}{section}{本章小结与后续展望}
+%================================================================
+
+本章准备后文所需的复分析工具：解析性与 C--R 方程、恒等定理与亚纯、含参量积分、
+Cauchy 定理与公式、Laurent 展开与留数、幅角原理；
+保角映射与 $\zeta$ 的几何示意见第~\ref{ch:visualization}~章。
+
+下一章引入 Fourier、Mellin 与 Perron 公式，将建立算术阶梯与复平面上的 Dirichlet 级数、围道积分的联系，形成显式公式数学推导的逻辑基础。

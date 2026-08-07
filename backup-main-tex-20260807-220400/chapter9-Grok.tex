@@ -1,0 +1,991 @@
+% ============================================================
+% 第九章 ζ 函数的解析延拓与函数方程
+% 内容：η 初等延拓；Riemann 第一法 (Hankel)；第二法 (ϑ)；平凡零点与临界带
+% 目的：全平面亚纯延拓 + 函数方程；为 ξ 与零点章定点
+% 编译方式：XeLaTeX（作为 main.tex 的 \input 子文件）
+% ============================================================
+
+\chapter{\texorpdfstring{$\zeta$}{Zeta} 函数的解析延拓与函数方程}\label{ch:riemann_zeta_continuation}
+
+\section{本章导读}
+
+\paragraph{定义域的阶段性}
+此前各章对 $\zeta$ 的讨论主要限于\textbf{右半平面}
+$\operatorname{Re}(s)>1$：Dirichlet 级数、Euler 乘积，以及第~\ref{ch:riemann_zeta_intro}~章中
+借助 $\Gamma$（$\operatorname{Re}s>0$）写出的积分表示
+$\zeta(s)=\frac1{\Gamma(s)}\int_0^\infty\frac{x^{s-1}}{e^x-1}\,dx$。
+在该半平面外级数发散，故不能把上述表示直接当作全平面定义。
+要理解 $\zeta$ 在 $\operatorname{Re}s\le 1$ 的形态（极点 $s=1$、临界带零点、与 $\Gamma$ 的函数方程），
+必须扩大定义域——本章给出解析延拓与函数方程的具体构造。
+（$\Gamma$ 自身已在第~\ref{ch:gamma_function}~章由 $\operatorname{Re}s>0$ 延拓至全平面；定义与唯一性见第~\ref{ch:analytic_continuation_general}~章。）
+
+在 $\operatorname{Re}(s)>1$ 上，
+\[
+  \zeta(s) \;=\; \sum_{n=1}^{\infty} \frac{1}{n^s} \;=\; \prod_{p} \left(1 - p^{-s}\right)^{-1}.
+\]
+Dirichlet 级数在该半平面外发散，但 $\zeta$ 可亚纯延拓到 $\mathbb{C}$（仅 $s=1$ 为极点），并满足函数方程。
+黎曼 1859 年论文给出两种经典构造（细节见正文与第~\ref{ch:riemann_original_interpretation}~章）：
+\begin{itemize}
+    \item \textbf{第一法（Hankel 围道）}：将积分表示转为绕正实轴分支切割的围道积分，再由留数得到 $\zeta(s)$ 与 $\zeta(1-s)$ 的关系。
+    \item \textbf{第二法（$\vartheta$ 函数）}：利用 Jacobi $\vartheta$ 的模反演（定义及由 Gauss 型 Fourier 变换与 Poisson 求和给出的证明见第~\ref{ch:integral_transforms}~章），分离极点并得到全平面收敛的积分表示，从而导出对称形式的函数方程。
+\end{itemize}
+
+\textbf{本章安排}：先用 $\eta(s)$ \textbf{分步}初等延拓——
+$\Re(s)>1\to$ 越过 $\Re(s)=1$（与第5章未延拓对照）$\to$ $\Re(s)>0$
+（临界带/线与非平凡零点的数值显现；$\eta$\textbf{不}给 FE，\textbf{不}证 RH）；
+再**分述**第一法、第二法；两法后**再比较**；
+最后由函数方程\textbf{证明}平凡零点并\textbf{界定}临界带/临界线。
+
+\textbf{要点}：函数方程的推导同时给出 $\zeta$ 的解析延拓。所得函数方程是 $\xi$ 的构造、零点区域限制与显式公式的出发点。
+
+\paragraph{围道选择}
+正文第一法使用 Hankel 围道处理 $(-z)^{s-1}$ 的分支；与矩形围道在合适变形下等价（见附录~\ref{app:contour}）。
+选择 Hankel 是为与第~\ref{ch:gamma_function}~章余元公式的处理一致，并便于写分支切割。
+
+% ============================================================
+\section{基于交错级数 \texorpdfstring{$\eta(s)$}{eta(s)} 的初等延拓
+（分步扩大定义域）}\label{sec:elementary_extension}
+
+在给出第一法、第二法之前，先用 $\eta$ 作\textbf{分步}初等延拓，使读者看见定义域扩大时 $\zeta$ 的变化。
+\begin{enumerate}
+  \item \textbf{起点} $\Re(s)>1$：第~\ref{ch:riemann_zeta_intro}~章 Dirichlet 级数（已知）。
+  \item \textbf{第一步} 越过 $\Re(s)=1$：与第5章\textbf{未延拓}截断曲面对照，说明解析延拓的必要。
+  \item \textbf{第二步} 扩至 $\Re(s)>0$：临界带、临界线与非平凡零点的\textbf{数值}显现。
+  \item \textbf{止步}：越不过 $\Re(s)=0$；$\eta$\textbf{推不出}函数方程（全平面与 FE 仍靠两法）。
+\end{enumerate}
+
+\subsection{交错级数 \texorpdfstring{$\eta(s)$}{eta(s)} 与延拓公式}
+
+\begin{equation}
+\label{eq:eta_definition}
+  \eta(s) \;=\; \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n^s}
+  \;=\; 1 - \frac{1}{2^s} + \frac{1}{3^s} - \frac{1}{4^s} + \cdots.
+\end{equation}
+实数 $s>0$ 时为交错级数，收敛；复数 $\Re(s)>0$ 时\textbf{条件收敛}（Dirichlet 审敛），
+\textbf{非}绝对收敛（绝对收敛 $\Leftrightarrow$ $\Re(s)>1$）。
+在每个 $\{\Re(s)\ge\delta>0\}$ 的紧子集上一致收敛，故 $\eta$ 在 $\Re(s)>0$ 上全纯。
+
+奇偶项分离（$\Re(s)>1$）得 $\zeta-\eta=2^{1-s}\zeta$，整理：
+\begin{equation}
+\label{eq:zeta_eta_continuation}
+  \zeta(s) \;=\; \frac{\eta(s)}{1 - 2^{1-s}}.
+\end{equation}
+分母 $1-2^{1-s}=0$ 当且仅当
+$s_k=1+\frac{2k\pi i}{\ln 2}$（$k\in\mathbb{Z}$），全在直线 $\Re(s)=1$ 上：
+\begin{itemize}
+  \item $k=0$：$s=1$。因 $\eta(1)=\ln 2\neq 0$，故 $s=1$ 为一阶极点；
+    $\operatorname{Res}(\zeta,1)=\lim_{s\to1}(s-1)\zeta(s)=\eta(1)/\ln 2=1$
+    （分母对 $s$ 求导用洛必达）。
+  \item $k\neq0$：$s_k$ 为可去奇点，需 $\eta(s_k)=0$（Titchmarsh；
+    或由后文全局延拓仅 $s=1$ 为极点反推）。补值后
+    $F(s)=\eta(s)/(1-2^{1-s})$ 在 $\Re(s)>0\setminus\{1\}$ 全纯，且与 $\Re(s)>1$ 上的 $\zeta$ 一致。
+\end{itemize}
+边界上（$t\neq0$）写
+\begin{equation}
+  \zeta(1+it) \;=\; \frac{\eta(1+it)}{1 - 2^{-it}}.
+  \label{eq:zeta_on_Re1}
+\end{equation}
+
+\subsection{第一步：越过 \texorpdfstring{$\Re(s)=1$}{Re(s)=1}
+—— 与第~\ref{ch:riemann_zeta_intro}~章未延拓情形对照}
+
+第~\ref{ch:riemann_zeta_intro}~章中 $\zeta$ 仅由 Dirichlet 级数定义在 $\Re(s)>1$。
+图~\ref{fig:Modular}、\ref{fig:real}、\ref{fig:Imaginary} 上，级数曲面在 $\Re(s)=1$
+\textbf{截断终止}：收敛边界如墙，墙右有定义，墙及左侧无定义。
+从右侧逼近 $\Re(s)=1$（$t\neq0$）时，有限部分和剧烈振荡，边界在数值与几何上不连续。
+
+若停留在「级数在哪收敛，函数就只在哪有定义」，则无法在 $\Re(s)=1$、$t\neq0$ 上谈论
+$\zeta(1+it)$（素数定理所需边界），更无法进入临界带与零点理论。
+故\textbf{解析延拓必要}：把 $\zeta$ 从「半平面上的级数」提升为「更大区域上的解析对象」。
+用 \eqref{eq:zeta_eta_continuation}--\eqref{eq:zeta_on_Re1} 完成第一步：
+$t\neq0$ 时定义推到直线 $\Re(s)=1$，除极点 $s=1$ 外边界有定义。
+
+将图~\ref{fig:zeta_mod_half}--\ref{fig:zeta_imag_half} 与第5章未延拓三图\textbf{对照}：
+\begin{itemize}
+  \item \textbf{模}（图~\ref{fig:zeta_mod_half} $\leftrightarrow$ 图~\ref{fig:Modular}）：
+        截断边缘消失，除 $s=1$ 模发散（一阶极点）外边界可衔接。
+  \item \textbf{实部}（图~\ref{fig:zeta_real_half} $\leftrightarrow$ 图~\ref{fig:real}）：
+        关于 $t=0$ 偶对称；$s=1$ 邻域左右符号跃迁与极点一致。
+  \item \textbf{虚部}（图~\ref{fig:zeta_imag_half} $\leftrightarrow$ 图~\ref{fig:Imaginary}）：
+        关于 $t=0$ 奇对称；$t=0$ 上虚部为零。
+\end{itemize}
+对照要点：\textbf{同一解析对象}越过级数收敛边界后仍存在；截断是表示法的局限，不是函数在边界外「消失」。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{全书图形/8-Z模曲面-0.pdf}
+\caption{第一步：$|\zeta|$ 推至 $\Re(s)=1$。对照图~\ref{fig:Modular}（级数截断）：
+截断边缘消失，除 $s=1$ 极点外边界可衔接。红线示意推进位置。}
+\label{fig:zeta_mod_half}
+\end{figure}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{全书图形/8-Z实曲面.pdf}
+\caption{第一步：$\Re\zeta$。对照图~\ref{fig:real}；关于 $t=0$ 偶对称，$s=1$ 邻域左右发散方向相反。}
+\label{fig:zeta_real_half}
+\end{figure}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{全书图形/8-Z虚曲面.pdf}
+\caption{第一步：$\Im\zeta$。对照图~\ref{fig:Imaginary}；关于 $t=0$ 奇对称。}
+\label{fig:zeta_imag_half}
+\end{figure}
+
+\subsection{第二步：扩至 \texorpdfstring{$\Re(s)>0$}{Re(s)>0}
+—— 临界带、临界线与非平凡零点的数值显现}
+
+在第一步已越过 $\Re(s)=1$ 的基础上，\eqref{eq:zeta_eta_continuation} 在整个开半平面
+$\Re(s)>0$ 上有效，定义域向左逼近虚轴（\textbf{不含} $\Re(s)\le 0$）。
+此时带状区域
+\[
+  0 < \Re(s) < 1
+\]
+已落在定义域内——即后文由函数方程\textbf{严格界定}的\textbf{临界带}的内部
+（边界 $\Re(s)=0,1$ 上的无零点是更深结果，见第~\ref{ch:zero_distribution}~章；
+此处先按开带作数值观察）。
+
+平分该带的中轴线
+\[
+  \Re(s) = \tfrac12
+\]
+即图上的\textbf{临界线}（RH 断言非平凡零点均在此线上；本节\textbf{不}证明 RH）。
+
+图~\ref{fig:zeta_modulus_cont_strip} 的模曲面上，可同时辨认：
+\begin{enumerate}
+  \item \textbf{一阶极点}：$s=1$ 处模发散，仍是右半平面内唯一极点。
+  \item \textbf{临界带}：$0<\Re(s)<1$ 的竖直条带进入视野（相对第一步「只到 $\Re(s)=1$」，
+        这是定义域\textbf{再向左一截}后才出现的结构）。
+  \item \textbf{临界线}：带的中线 $\Re(s)=1/2$。
+  \item \textbf{非平凡零点（数值）}：带内若干点模触底。它们是 $\eta$（或延拓后的 $\zeta$）的真实零点，
+        称为\textbf{非平凡零点}，以区别于后文由函数方程得到的平凡零点 $s=-2,-4,\ldots$
+        （平凡零点在左半平面，本阶段 $\eta$ \textbf{看不见}）。
+        图中低零点落在 $\Re(s)=1/2$ 上，\textbf{与 RH 一致，但不代替证明}；
+        也\textbf{不是}由 $\eta$ 推出的函数方程推论——$\eta$ 路径根本没有 FE。
+\end{enumerate}
+
+图~\ref{fig:zeta_modulus_cont_strip} 展示极点与带内触底并存；图为示意，\textbf{不代替}证明。
+相对第一步：第一步解决「级数墙能否越过」；第二步解决「越过后再向左，临界带与非平凡零点如何\textbf{先在图上显现}」。
+二者都是初等延拓的几何收获；\textbf{临界带/线的理论定义}与平凡零点的\textbf{证明}仍在两法 + 函数方程之后（第~\ref{sec:fe_geometry_trivial_zeros}~节）。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{全书图形/8-Z模曲面-1.pdf}
+\caption{第二步：$\Re(s)>0$ 上 $|\zeta|$。
+$s=1$ 极点发散；临界带 $0<\Re(s)<1$ 内触底与已知低非平凡零点位置一致（数值观察）；
+中轴线 $\Re(s)=1/2$ 为临界线（图示，非 RH 证明）。}
+\label{fig:zeta_modulus_cont_strip}
+\end{figure}
+
+\subsection{止步：无函数方程；通向两法}
+
+$\eta$ 在 $\Re(s)\le0$ 发散，\eqref{eq:zeta_eta_continuation} 失效；
+关系中无 $s\leftrightarrow 1-s$，故\textbf{推不出函数方程}，也无左半平面与平凡零点。
+第一步说明：\textbf{必须}延拓才能越过级数墙；
+第二步说明：延拓到 $\Re(s)>0$ 后，临界带与非平凡零点可先被\textbf{看见}；
+下一步（第一法、第二法）则在全平面完成延拓并建立函数方程，从而\textbf{证明}平凡零点并\textbf{界定}临界带——本章主线由此展开。
+
+% ============================================================
+\section{从初等延拓到全平面：黎曼两法概要}\label{sec:riemann_two_methods_blueprint}
+
+前一节用交错级数 $\eta(s)$ 将 $\zeta(s)$ 延拓到 $\Re(s)>0$。
+该方法在 $\Re(s)\le 0$ 失效，且\textbf{$\eta$ 推不出函数方程}。
+为得到全平面亚纯延拓与函数方程，Riemann（1859）给出两种完整构造。
+二者各走\textbf{独立的推导路径}，调用\textbf{不同的数学工具}，\textbf{互不作为对方的前提或引理}
+（详细对照见两法正文之后的第~\ref{sec:riemann_two_methods_comparison}~节）。
+本节只作\textbf{导读}（各是什么、后文在哪一节）。
+
+\begin{enumerate}
+    \item \textbf{第一法：围道积分与分支切割}
+    （第~\ref{sec:riemann_first_method}~节）
+    对多值因子作分支切割，构造包围正实轴的 Hankel 围道，将级数相关的实积分化为围道积分；再由留数得到 $\zeta(s)$ 与 $\zeta(1-s)$ 的关系。
+
+    \item \textbf{第二法：$\vartheta$ 函数与模反演}
+    （第~\ref{sec:theta_function_method}~节）
+    利用 Jacobi $\vartheta$ 的模反演
+    $\vartheta(1/x)=\sqrt{x}\,\vartheta(x)$
+    （证明见第~\ref{ch:integral_transforms}~章），经 Mellin 型积分分离极点，得到全平面收敛表示，并自然通向 $\xi(s)$ 的对称。
+\end{enumerate}
+
+下面两节依次给出推导；读完后再看第~\ref{sec:riemann_two_methods_comparison}~节的对照。
+
+% ============================================================
+\section{黎曼第一法：围道积分与留数定理}\label{sec:riemann_first_method}
+
+\subsection{从实积分开始：代数与连续的桥梁}
+
+考虑 $\Gamma$ 函数的积分定义：对于 $\Re(s)>0$，
+\[
+  \Gamma(s) \;=\;  \int_0^{\infty} t^{s-1} e^{-t} \,\mathrm{d}t.
+\]
+由第~\ref{ch:gamma_function}~章缩放式~\eqref{eq:gamma-scaled}（取正整数 $n$），
+\[
+  \frac{1}{n^s}
+  \;=\;
+  \frac{1}{\Gamma(s)} \int_0^{\infty} x^{s-1} e^{-nx} \,\mathrm{d}x
+  \qquad(\Re s>0).
+\]
+在 $\Re(s)>1$ 绝对收敛下，对 $n=1,2,\ldots$ 求和并交换求和与积分，得
+\begin{equation}
+\label{eq:zeta_integral_1}
+  \zeta(s)
+  \;=\;
+  \frac{1}{\Gamma(s)} \int_0^{\infty} \frac{x^{s-1}}{e^x - 1} \,\mathrm{d}x.
+\end{equation}
+此即 $\zeta(s)$ 在 $\Re(s)>1$ 上的实积分表示（与第~\ref{ch:riemann_zeta_intro}~章~\eqref{eq:zeta-integral} 一致）。
+当 $x\to 0$ 时被积函数 $\sim x^{s-2}$，故 $\Re(s)\le 1$ 时该实积分在原点附近发散；
+为突破此限制，将路径变形为复围道。
+
+\subsection{Hankel 围道与解析延拓}
+
+在复平面上引入 Hankel 围道 $C$\footnote{关于 Hankel 围道与矩形围道的等价性，参见附录~\ref{app:contour}。}：
+
+该围道从正实轴的 $+\infty$ 处出发，沿实轴上方（即 $z = x + i\epsilon$）向左平行移动，
+
+在原点附近以逆时针方向绕圆周（半径为 $\epsilon$）一周，然后沿实轴下方（即 $z = x - i\epsilon$）平行返回至 $+\infty$。
+
+为使多值函数 $(-z)^{s-1}=\exp\big((s-1)\log(-z)\big)$ 单值化，取分支切割线为正实轴 $[0,\infty)$。
+
+在路径的实轴上方上沿 $z = x + i0$ 处，其辐角为 $\arg(-z) = -\pi$，故 $-z = x e^{-i\pi}$；
+
+在路径的实轴下方下沿 $z = x - i0$ 处，其辐角为 $\arg(-z) = \pi$，故 $-z = x e^{i\pi}$。
+
+综上有：
+\[
+  (-z)^{s-1} \;=\;
+  \begin{cases}
+    x^{s-1} e^{-i\pi(s-1)}, & \text{沿路径上半部分} \\
+    x^{s-1} e^{i\pi(s-1)}, & \text{沿路径下半部分返回}
+  \end{cases}
+\]
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    > = stealth,
+    decoration={markings, mark=at position 0.55 with {\arrow[scale=1.5]{>}}}
+]
+    % 绘制坐标轴
+    \draw[->, thick, gray] (-2.5, 0) -- (6.5, 0) node[right, text=black] {$\Re(z)$};
+    \draw[->, thick, gray] (0, -2.5) -- (0, 2.5) node[above, text=black] {$\Im(z)$};
+
+    % 绘制分支切割线
+    \draw[ultra thick, brown, opacity=0.5, decorate, decoration={zigzag, segment length=2mm, amplitude=0.5mm}] (0,0) -- (5.8,0);
+    \node[brown, below] at (4.5, -1) {分支切割线};
+
+    % 绘制汉克尔围道
+    \def\r{1.0}
+    \def\eps{0.35}
+    \def\R{5.8}
+    \pgfmathsetmacro{\ang}{asin(\eps/\r)}
+
+    \draw[thick, blue, postaction={decorate}] (\R, \eps) -- ({\r*cos(\ang)}, \eps) node[midway, above] {$z = x + i\epsilon$};
+    \draw[thick, blue, postaction={decorate}] ({\r*cos(\ang)}, \eps) arc (\ang:360-\ang:\r);
+    \draw[thick, blue, postaction={decorate}] ({\r*cos(\ang)}, -\eps) -- (\R, -\eps) node[midway, below] {$z = x - i\epsilon$};
+
+    \node[blue, left] at (-\r-0.2, 0.7) {围道 $C$};
+
+    % 原点标记
+    \filldraw (0,0) circle (1pt) node[below right] {$O$};
+\end{tikzpicture}
+\caption{避开正半实轴分支切割线的汉克尔围道 示意图}
+\label{fig:hankel}
+\end{figure}
+
+考虑如下复围道积分：
+\begin{equation}
+\label{eq:I_s}
+  I(s) \;=\;  \int_C \frac{(-z)^{s-1}}{e^z - 1} \,\mathrm{d}z.
+\end{equation}
+
+\paragraph{围道积分的定义与解析延拓的两步法}
+需要特别强调：积分 $I(s)$ 是\textbf{直接通过固定的 Hankel 围道 $C$ 定义的}，该围道不依赖于参数 $s$。
+
+对于任意复数 $s$，被积函数在围道 $C$ 上（避开原点小圆弧）绝对收敛，因此 $I(s)$ 是复平面 $\mathbb{C}$ 上的\textbf{整函数}。
+
+接下来的推导将分两步进行：
+\begin{enumerate}
+  \item \textbf{第一步（限制区域）}：
+  在 $\Re(s)>1$ 的条件下，证明小圆弧积分趋于 $0$，从而将 $I(s)$ 简化为实轴上下沿路径的积分差，进而建立 $I(s)$ 与 $\zeta(s)$ 的关系：
+
+  \[
+    I(s) = -2i\sin(\pi s)\Gamma(s)\zeta(s),\qquad \Re(s)>1.
+  \]
+  \item \textbf{第二步（解析延拓）}：
+  上式左端 $I(s)$ 是整函数，右端 $-2i\sin(\pi s)\Gamma(s)\zeta(s)$ 在 $\Re(s)>1$ 时等于 $I(s)$，因此该式给出了 $\zeta(s)$ 在 $\Re(s)>1$ 区域的表达式。
+
+  由于右端因子在全平面解析（除极点外），此方程实现了 $\zeta(s)$ 到全复平面的解析延拓。
+\end{enumerate}
+
+此即“先在收敛域建立恒等式，再由左端延拓右端”的标准手法。
+
+在 $\Re(s)>1$ 的假定下，当小圆弧半径 $\epsilon \to 0$ 时，评估围道 $C$ 在原点附近的积分贡献。
+
+在半径为 $\epsilon$ 的圆弧段上，设 $z = \epsilon e^{i\phi}$（$\phi$ 从 $2\pi$ 减小到 $0$）。
+
+分子模估计满足 $|(-z)^{s-1}| \le \epsilon^{\sigma-1} e^{\pi |\tau|}$，而分母满足 $|e^z - 1| \sim \epsilon$。
+
+因此被积函数在圆弧段上的阶数为 $O(\epsilon^{\sigma-2})$。
+
+圆弧的积分长度为 $2\pi \epsilon$，故圆弧积分的贡献受限于 $O(\epsilon^{\sigma-1})$。
+
+当 $\Re(s) = \sigma > 1$ 时，随着 $\epsilon \to 0$，圆弧段的积分值确实收敛于 $0$。
+
+此时，积分 $I(s)$ 简化为分别沿正实轴上、下两侧水平路径积分的代数和。
+
+具体地，上沿路径（从 $+\infty$ 到 $0$）上 $-z = x e^{-i\pi}$，下沿路径（从 $0$ 到 $+\infty$）上 $-z = x e^{i\pi}$。
+
+代入可得：
+\begin{align*}
+  I(s) &=  \int_{+\infty}^{0} \frac{x^{s-1} e^{-i\pi(s-1)}}{e^x - 1} \,\mathrm{d}x \;+\;  \int_{0}^{+\infty} \frac{x^{s-1} e^{i\pi(s-1)}}{e^x - 1} \,\mathrm{d}x \\
+  &= \left( e^{i\pi(s-1)} - e^{-i\pi(s-1)} \right)  \int_0^{\infty} \frac{x^{s-1}}{e^x - 1} \,\mathrm{d}x \\
+  &= 2i \sin\big(\pi(s-1)\big) \cdot \Gamma(s)\zeta(s) \\
+  &= -2i \sin(\pi s) \Gamma(s) \zeta(s).
+\end{align*}
+
+其中最后一步利用了诱导公式：
+\[
+  \sin\!\big(\pi(s-1)\big) = \sin(\pi s - \pi) = -\sin(\pi s).
+\]
+此处利用当 $\Re(s)>1$ 时 $\zeta(s)$ 的积分表示公式 \eqref{eq:zeta_integral_1}。
+
+由此得到 $\zeta(s)$ 在 $\Re(s)>1$ 条件下的围道积分表示：
+\begin{equation}
+\label{eq:analytic_cont_first}
+  \zeta(s) \;=\; -\frac{1}{2i\sin(\pi s)\Gamma(s)}  \int_C \frac{(-z)^{s-1}}{e^z - 1} \,\mathrm{d}z.
+\end{equation}
+
+函数 $f(z)=\frac{(-z)^{s-1}}{e^z - 1}$ 除原点沿正实轴的分支切割线外，在复平面内其余部分存在单极点序列 $z=2n\pi i$。
+
+鉴于汉克尔围道 $C$ 仅环绕原点而未包含其余极点，积分 $I(s)$ 对所有的复数 $s$ 均绝对收敛，因此 $I(s)$ 是 $s$ 的整函数。
+
+结合 $\Gamma$ 函数的 Euler 反射公式 $\Gamma(s)\Gamma(1-s) = \frac{\pi}{\sin(\pi s)}$，上式可重写为：
+\begin{equation}
+\label{eq:zeta_contour_gamma}
+  \zeta(s) \;=\; -\frac{\Gamma(1-s)}{2\pi i}  \int_C \frac{(-z)^{s-1}}{e^z - 1} \,\mathrm{d}z.
+\end{equation}
+
+由此将 $\zeta(s)$ 亚纯延拓到全平面（奇异性见下）。
+
+为明确全平面上的奇异性，分析右端极点相消机制。
+
+外侧的 $\Gamma(1-s)$ 在 $1-s = 0, -1, -2, \dots$ 处（即正整数 $s = 1, 2, 3, \dots$ 处）拥有简单的单极点。
+
+然而，当 $s = n \in \{2, 3, 4, \dots\}$ 时，被积多值函数的指数 $s-1 = n-1$ 变为正整数。
+
+此时，复平面的分枝切割线消失，被积函数 $\frac{(-z)^{n-1}}{e^z-1}$ 退化为单值亚纯函数。
+
+由于 $n-1 \ge 1$，分子 $(-z)^{n-1}$ 在 $z=0$ 处的零点阶数至少为一阶，而分母 $e^z-1$ 在 $z=0$ 处为一阶零点，因此两零点相互抵消，使得 $z=0$ 实际上是被积函数的可去奇点（解析点）。
+
+此时被积函数在全平面解析（除虚轴上的极点外），且在正实轴无割线。由于 Hankel 围道 $C$ 在无穷远闭合后不包含虚轴上的极点，根据 Cauchy 积分定理，该闭曲线上的积分值恒为 $0$，即：
+\[
+  I(n) \;=\;  \int_C \frac{(-z)^{n-1}}{e^z - 1} \,\mathrm{d}z \;=\; 0 \quad (n = 2, 3, 4, \dots).
+\]
+由此表明，整函数 $I(s)$ 在 $s = 2, 3, 4, \dots$ 处拥有至少一阶的零点，这恰好\textbf{完全抵消}了因子 $\Gamma(1-s)$ 在这些正整数点处的单极点。
+
+而在 $s=1$ 处，被积函数为 $\frac{1}{e^z-1}$，$z=0$ 为其一阶极点且留数为 $1$。此时 Hankel 围道可收缩为仅环绕极点 $z=0$ 的闭曲线，其积分值为 $2\pi i \neq 0$，无法抵消 $\Gamma(1-s)$ 在 $s=1$ 处的极点。
+
+因此，$\zeta(s)$ 在整个复平面内除 $s=1$ 处有一个留数为 $1$ 的简单单极点外，在其余所有点（包括所有正整数）均完全解析。
+
+以上说明了极点相消机制。
+
+\subsection{基于留数定理的函数方程推导}
+
+进一步应用 Cauchy 留数定理。
+
+考虑在复平面中引入由原围道 $C$ 与逆时针方向半径为 $R=(2N+1)\pi$ 的大圆周 $C_R$ 构成的环形闭合区域。
+
+\subsubsection*{大圆周积分趋于零的条件与函数方程的有效区域}
+
+设 $s=\sigma+i\tau$。在半径 $R=(2N+1)\pi$ 的大圆周 $C_R$ 上，有 $|-z| = R$。
+
+分子部分满足模估计：
+\[
+  |(-z)^{s-1}| \;=\; |-z|^{\sigma-1} e^{-\tau \arg(-z)} \;\le\; R^{\sigma-1} e^{\pi |\tau|}.
+\]
+由于圆周的半径 $R = (2N+1)\pi$ 恰好穿过相邻两极点之间的中点，分母 $|e^z-1|$ 在整个圆周上存在正的下界，即 $|e^z-1| \ge c > 0$（其中常数 $c$ 与 $N$ 无关）。
+
+因此，大圆周上的积分模长可以估计为：
+\[
+  \left| \oint_{C_R} \frac{(-z)^{s-1}}{e^z - 1} \,\mathrm{d}z \right| \;\le\; \frac{e^{\pi |\tau|}}{c} R^{\sigma-1} \cdot 2\pi R \;=\; \frac{2\pi e^{\pi |\tau|}}{c} R^{\sigma}.
+\]
+由上估计可得：
+\begin{itemize}
+  \item 当 $\sigma = \Re(s) < 0$ 时，$R^{\sigma} \to 0$（$R\to\infty$），大圆周积分严格趋于 $0$；
+  \item 当 $\sigma = 0$ 时，$R^{\sigma} = 1$，积分可能不趋于 $0$（实际上有界但非零）；
+  \item 当 $\sigma > 0$ 时，积分发散。
+\end{itemize}
+
+因此，利用留数定理将 $I(s)$ 表示为内部极点留数之和的步骤，仅在 $\Re(s)<0$ 时严格成立。
+
+由此首先得到函数方程在 $\Re(s)<0$ 区域内的形式：
+\[
+\zeta(s) = 2^s(\pi)^{s-1}\sin\left(\frac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s),\qquad \Re(s)<0.
+\]
+由于右侧的 $\zeta(1-s)$ 在 $\Re(s)<0$ 时满足 $\Re(1-s)>1$，可由原始 Dirichlet 级数定义，因此该方程将 $\zeta(s)$ 从 $\Re(s)>1$ 的区域\textbf{直接延拓}到了 $\Re(s)<0$ 的区域。
+
+对于带状区域 $0\le\Re(s)\le 1$ 内的值，可通过第二法积分表示（公式 \eqref{eq:analytic_continuation}）或直接由解析延拓的唯一性进行定义。
+
+最终，函数方程通过解析延拓被证明对全平面 $s \in \mathbb{C} \setminus \{1\}$ 成立。
+
+当 $\Re(s)<0$ 时，外边界大圆周上的积分趋于 $0$。
+
+根据留数定理，围道 $C$ 上的积分值可以改写为内部分布在虚轴上的极点产生的留数之和。
+
+被积函数 $f(z) = \frac{(-z)^{s-1}}{e^z - 1}$ 在整个复平面上仅在虚轴上的点 $z = 2n\pi i$ 与 $z = -2n\pi i$ （$n=1,2,\dots$）处存在一阶极点。
+
+由于大圆周围道的走向，结果与极点留数和相差一个负号：
+\[
+   \int_{C} \frac{(-z)^{s-1}}{e^z - 1} \,\mathrm{d}z \;=\; -2\pi i \sum_{n=1}^{\infty} \left( \mathop{\mathrm{Res}}\limits_{z=2n\pi i} f(z) \;+\; \mathop{\mathrm{Res}}\limits_{z=-2n\pi i} f(z) \right).
+\]
+在计算极点处的留数时，须确定多值函数 $(-z)^{s-1} = \exp\big((s-1)\log(-z)\big)$ 在极点处的单值分支。
+
+由于 Hankel 围道 $C$ 沿正实轴 $[0,\infty)$ 作分支切割，对任意 $z\in\mathbb{C}\setminus[0,\infty)$，将极坐标写为：
+\[
+  z \;=\; r e^{i\theta}, \quad 0 < \theta < 2\pi.
+\]
+相应地，复变量 $-z$ 的辐角 $\arg(-z)$ 必须在区间 $(-\pi, \pi)$ 内连续滑动，以保证其不跨越割线。
+
+通过连续路径延拓确定 $-z$ 的解析分支：
+\begin{enumerate}
+  \item \textbf{上沿切口起步}：
+  当 $z$ 位于实轴上侧趋近割线（$\theta\to 0^+$）时，定义 $\arg(-z) = -\pi$，此时 $-z = x e^{-i\pi}$；
+
+  \item \textbf{下沿切口终局}：
+  当 $z$ 逆时针绕过原点，最终移至实轴下侧趋近于割线时，即 $\theta \to 2\pi^-$,
+  由于辐角随 $z$ 的逆时针运动连续增加了 $2\pi$，故此时 $\arg(-z) = -\pi + 2\pi = \pi$，对应 $-z = x e^{i\pi}$。
+\end{enumerate}
+
+根据这一辐角的连续演变规律，对于复平面切割区域内任意角度为 $\theta = \arg(z) \in (0, 2\pi)$ 的点，其 $-z$ 的辐角应通过沿围道内部的路径连续过渡确定，即满足：
+\begin{equation}
+\label{eq:argument_continuation}
+  \arg(-z) \;=\; \theta - \pi \quad (\text{其中 } 0 < \theta < 2\pi).
+\end{equation}
+
+容易验证，当 $\theta \in (0, 2\pi)$ 时，$\arg(-z) = \theta - \pi$ 恰好落在单值化区间 $(-\pi, \pi)$ 内，从而保持了函数的全纯性与单值性。
+
+现将该规律用于虚轴极点 $z = \pm 2n\pi i$：
+\begin{itemize}
+  \item \textbf{上半平面极点 $z = 2n\pi i$}：
+  此极点位于正虚轴上，其辐角 $\theta = \frac{\pi}{2}$。
+  由\eqref{eq:argument_continuation}，
+
+  \[
+    \arg(-z) \;=\; \frac{\pi}{2} - \pi \;=\; -\frac{\pi}{2}.
+  \]
+  因此 $-z$ 的取值为：
+
+  \[
+    -z \;=\; 2n\pi e^{-i\pi/2}.
+  \]
+  \item \textbf{下半平面极点 $z = -2n\pi i$}：
+  该极点位于负虚轴上，其辐角 $\theta = \frac{3\pi}{2}$。
+  同理，沿路径连续延拓后可得：
+
+  \[
+    \arg(-z) \;=\; \frac{3\pi}{2} - \pi \;=\; \frac{\pi}{2}.
+  \]
+  因此 $-z$ 的取值为：
+
+  \[
+    -z \;=\; 2n\pi e^{i\pi/2}.
+  \]
+\end{itemize}
+
+由上述从围道边界向极点的连续延拓，辐角取值得以唯一确定，从而可计算各极点的留数。
+
+在极点处求解分母导数（$e^z$），其值均为 $e^{\pm 2n\pi i} = 1$。
+
+由此，上半平面极点处的留数为：
+\[
+  R^+ \;=\; \mathop{\mathrm{Res}}\limits_{z=2n\pi i} f(z) \;=\; \lim_{z \to 2n\pi i} (z - 2n\pi i) \frac{(-z)^{s-1}}{e^z - 1} \;=\; (2n\pi e^{-i\pi/2})^{s-1} \;=\; (2n\pi)^{s-1} e^{-i\pi(s-1)/2}.
+\]
+同理，下半平面极点处的留数为：
+\[
+  R^- \;=\; \mathop{\mathrm{Res}}\limits_{z=-2n\pi i} f(z) \;=\; (2n\pi e^{i\pi/2})^{s-1} \;=\; (2n\pi)^{s-1} e^{i\pi(s-1)/2}.
+\]
+将在此共轭极点对处的留数相加：
+\begin{align*}
+  R^+ + R^- &= (2n\pi)^{s-1} \left( e^{-i\pi(s-1)/2} + e^{i\pi(s-1)/2} \right) \\
+  &= 2(2n\pi)^{s-1} \cos\left(\frac{\pi}{2}(s-1)\right) \\
+  &= 2(2n\pi)^{s-1} \sin\left(\frac{\pi s}{2}\right).
+\end{align*}
+
+对所有正整数 $n$ 求和：
+\[
+  \sum_{n=1}^{\infty} 2(2n\pi)^{s-1} \sin\left(\frac{\pi s}{2}\right) \;=\; 2(2\pi)^{s-1} \sin\left(\frac{\pi s}{2}\right) \sum_{n=1}^{\infty} n^{s-1} \;=\; 2(2\pi)^{s-1} \sin\left(\frac{\pi s}{2}\right) \zeta(1-s).
+\]
+于是，原积分可表示为：
+\[
+  I(s) \;=\; -4\pi i (2\pi)^{s-1} \sin\left(\frac{\pi s}{2}\right) \zeta(1-s).
+\]
+因为 $I(s) = -2i \sin(\pi s)\Gamma(s)\zeta(s)$，比较等式两侧：
+\[
+  -2i \sin(\pi s)\Gamma(s)\zeta(s) \;=\; -4\pi i (2\pi)^{s-1} \sin\left(\frac{\pi s}{2}\right) \zeta(1-s).
+\]
+根据倍角公式 $\sin(\pi s) = 2 \sin\left(\frac{\pi s}{2}\right) \cos\left(\frac{\pi s}{2}\right)$ 简化，得出：
+\begin{theorem}{黎曼函数方程}{riemann_functional_equation}
+$\zeta(s)$ 在 $s\in\mathbb{C}\setminus\{1\}$ 上满足
+\begin{equation}
+\label{eq:asymmetric_fe}
+  \zeta(1-s) \;=\; 2(2\pi)^{-s} \cos\left(\frac{\pi s}{2}\right) \Gamma(s) \zeta(s),
+\end{equation}
+以及与之等价的
+\begin{equation}
+\label{eq:asymmetric_fe_alt}
+  \zeta(s) \;=\; 2^s\pi^{s-1} \sin\left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s).
+\end{equation}
+\end{theorem}
+
+由 \eqref{eq:asymmetric_fe} 作替换 $s\mapsto 1-s$，得
+\[
+  \zeta(s) \;= \; 2(2\pi)^{-(1-s)} \cos\left(\frac{\pi(1-s)}{2}\right) \Gamma(1-s) \zeta(1-s).
+\]
+再用诱导公式
+\[
+  \cos\left(\frac{\pi(1-s)}{2}\right) \;=\; \cos\left(\frac{\pi}{2} - \frac{\pi s}{2}\right) \;=\; \sin\left(\frac{\pi s}{2}\right)
+\]
+整理指数项，即得 \eqref{eq:asymmetric_fe_alt}。故两种写法严格等价。
+
+为阐明两端在 $s = n \in \{2, 3, 4, \dots\}$ 处的相消机制，除围道法中 $I(n)=0$ 外，亦可直接读函数方程两端的零极点：
+\begin{itemize}
+  \item 当 $s$ 为正偶数 $2k$ （$k \ge 1$）时，左侧 $\zeta(2k)$ 有限，右侧
+        $\sin(\pi s/2)=\sin(k\pi)=0$ 的一阶零点与
+        $\Gamma(1-s)=\Gamma(1-2k)$ 的一阶极点相消，乘积保持有限；
+  \item 当 $s$ 为正奇数 $2k+1$ （$k \ge 1$）时，
+        $\sin(\pi s/2)=(-1)^k\neq 0$，而 $\Gamma(1-s)=\Gamma(-2k)$ 有极点。
+        由围道表示在正整数处 $I(n)=0$ 等已证机制
+        （或本章稍后由函数方程推出的平凡零点 $\zeta(-2k)=0$），
+        右侧相应因子相消，乘积保持有限。
+        平凡零点 $\zeta(-2k)=0$ 是函数方程的\textbf{推论}而非先验假定；
+        此处宜理解为两端亚纯延拓后的相容性检验，完整推导见下文“平凡零点”专节。
+  \item 当 $s=1$ 时，$\sin(\pi/2)=1\neq 0$ 且 $\zeta(0)=-1/2\neq 0$，
+        无零点消去 $\Gamma(1-s)$ 在 $s=1$ 的单极点，故 $s=1$ 为 $\zeta$ 的唯一一阶极点。
+\end{itemize}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{全书图形/8-函数方程.pdf}
+\caption{解析延拓后 $\zeta(s)$ 与其反射项 $\zeta(1-s)$ 模曲面的双三维曲面叠加与反射对称几何形态（展示 $s=1$ 与 $s=0$ 处的对称发散峰顶，以及围绕中轴线 $\Re(s)=1/2$ 的交织起伏）}
+\label{fig:zeta_global_surfaces}
+\end{figure}
+
+图 \ref{fig:zeta_global_surfaces} 给出 $\zeta(s)$ 模曲面与反射项 $\zeta(1-s)$ 模曲面的叠加示意，用以对照函数方程中的自变量反射 $s\mapsto 1-s$（图为示意，\textbf{不代替}证明）。图中可见：
+\begin{enumerate}
+    \item 模的叠加构成了一对对称的渐近峰顶结构。它们分别在各自的一阶极点 $s=1$（对应 $\zeta(s)$）与 $s=0$（对应 $\zeta(1-s)$）处展现出向无穷大发散的结构，并关于中轴线 $\Re(s) = 1/2$ 呈现出精确的反射对称，两者在此区域相互交织并向左侧振幅不断扩大地起伏。
+    \item 由于在此阶段尚未对非平凡零点进行精细的理论分析与定位，图中未绘制零点标记，仅展示了由函数方程所决定的反射映射关系。
+\end{enumerate}
+
+% ============================================================
+\section{黎曼第二法：\texorpdfstring{$\vartheta$}{theta} 函数与积分表示}\label{sec:theta_function_method}
+
+本节给出与第一法\textbf{平行}的另一条构造：\textbf{不}引用上一节 Hankel 围道的中间结果，
+而通过 $\vartheta$ 函数的模反演，在正实轴积分上建立关于 $s$ 与 $1-s$ 的对称结构。
+Jacobi $\vartheta$ 的定义及其模反演已在第~\ref{ch:integral_transforms}~章给出，并由该章的 Gauss 型 Fourier 变换与 Poisson 求和完整证明；本节直接引用，重点转入由此导出的 $\zeta$ 积分表示。
+
+\subsection{Jacobi \texorpdfstring{$\vartheta$}{theta} 函数与 \texorpdfstring{$\omega$}{omega} 反演}
+
+第~\ref{ch:integral_transforms}~章已定义
+\[
+  \vartheta(x) \;=\; \sum_{n=-\infty}^{\infty} e^{-\pi n^2 x}, \qquad x>0,
+\]
+并借助 Gauss 型 Fourier 变换（第~\ref{subsec:gauss_ft}~节）与 Poisson 求和，证明了等价形式的模反演
+\[
+  \vartheta\!\left(\frac{1}{x}\right) \;=\; \sqrt{x}\, \vartheta(x)
+  \quad\Longleftrightarrow\quad
+  \vartheta(x) \;=\; \frac{1}{\sqrt{x}}\,\vartheta\!\left(\frac{1}{x}\right).
+\]
+下文不再重证，只由此转入第二法所需的 $\omega$ 形式。
+
+在 $\Gamma$ 函数定义中考虑变量替换 $t = n^2 \pi x$：
+\begin{equation}
+\label{eq:gamma_sub_2}
+  \pi^{-\frac{s}{2}} \, \Gamma\!\left(\frac{s}{2}\right) \frac{1}{n^s} \;=\;  \int_0^{\infty} x^{\frac{s}{2}-1} e^{-n^2 \pi x} \,\mathrm{d}x.
+\end{equation}
+
+在 $\Re(s)>1$ 条件下，两端关于 $n$ 从 $1$ 到 $\infty$ 求和：
+\begin{equation}
+\label{eq:zeta_integral_2}
+  \pi^{-\frac{s}{2}} \, \Gamma\!\left(\frac{s}{2}\right) \zeta(s)
+  \;=\;  \int_0^{\infty} x^{\frac{s}{2}-1} \left( \sum_{n=1}^{\infty} e^{-n^2 \pi x} \right) \,\mathrm{d}x.
+\end{equation}
+
+为了分析这一积分，定义函数 $\omega(x)$ ：
+\[
+  \omega(x) \;=\; \sum_{n=1}^{\infty} e^{-n^2 \pi x}.
+\]
+由第~\ref{ch:integral_transforms}~章的关系 $\vartheta(x)=1+2\sum_{n=1}^{\infty}e^{-\pi n^2 x}$，即
+$\vartheta(x) = 1 + 2\omega(x)$。将模反演改写成 $\omega$ 的形式，得
+\begin{equation}
+\label{eq:omega_transform}
+  \omega\!\left(\frac{1}{x}\right) \;=\; \frac{\sqrt{x}}{2} - \frac{1}{2} + \sqrt{x}\,\omega(x).
+\end{equation}
+
+\subsection{积分推演与极点分离}
+
+回到式 \eqref{eq:zeta_integral_2} 的积分中。
+
+为了解决 $x \to 0$ 端的收敛性，将积分区间划分为 $[0, 1]$ 和 $[1, \infty)$ 两部分：
+\[
+  \pi^{-\frac{s}{2}} \, \Gamma\!\left(\frac{s}{2}\right) \zeta(s) \;=\;  \int_0^1 x^{\frac{s}{2}-1} \omega(x) \,\mathrm{d}x \;+\;  \int_1^{\infty} x^{\frac{s}{2}-1} \omega(x) \,\mathrm{d}x.
+\]
+既然 $\omega(x)$ 在 $x \to \infty$ 具有指数衰减性质，区间 $[1, \infty)$ 上的积分对所有的复数 $s$ 均绝对收敛。
+
+分析区间 $[0, 1]$ 上的第一部分积分（记为 $I_1$）：
+\[
+  I_1 \;=\;  \int_0^1 x^{\frac{s}{2}-1} \omega(x) \,\mathrm{d}x.
+\]
+作变量反演代换 $y = \frac{1}{x}, \mathrm{d}x = -y^{-2}\mathrm{d}y$：
+\[
+  I_1 \;=\;  \int_1^{\infty} y^{-\frac{s}{2}-1} \omega\!\left(\frac{1}{y}\right) \,\mathrm{d}y.
+\]
+将 $\omega(x)$ 的恒等式 \eqref{eq:omega_transform} 代入（为一致性，使用伪变量 $x$ 替代 $y$）：
+\begin{align*}
+  I_1
+  &=  \int_1^{\infty} x^{-\frac{s}{2}-1} \left( \frac{x^{1/2}}{2} - \frac{1}{2} + x^{1/2}\omega(x) \right) \,\mathrm{d}x \\
+  &= \frac{1}{2}  \int_1^{\infty} x^{-\frac{s+1}{2}} \,\mathrm{d}x \;-\; \frac{1}{2}  \int_1^{\infty} x^{-\frac{s}{2}-1} \,\mathrm{d}x \;+\;  \int_1^{\infty} x^{-\frac{s+1}{2}} \omega(x) \,\mathrm{d}x.
+\end{align*}
+
+前两项积分可以直接得出具有闭形式的结果：
+\[
+  \frac{1}{2} \left[ \frac{x^{\frac{1-s}{2}}}{\frac{1-s}{2}} \right]_1^{\infty} \;-\; \frac{1}{2} \left[ \frac{x^{-\frac{s}{2}}}{-\frac{s}{2}} \right]_1^{\infty} \;=\; \frac{-1}{1-s} \ - \ \frac{1}{s} \;=\; \frac{1}{s-1} \ - \ \frac{1}{s} \;=\; \frac{1}{s(s-1)}.
+\]
+这部分恰好构成了对复函数单极点特性的提取与分离。
+
+\subsection{第二法下的解析延拓积分表示}
+
+合并上述拆分的部分，可得：
+\begin{align*}
+  \pi^{-\frac{s}{2}} \Gamma\!\left(\frac{s}{2}\right) \zeta(s)
+  &= \frac{1}{s(s-1)} \;+\;  \int_1^{\infty} x^{-\frac{s+1}{2}} \omega(x) \,\mathrm{d}x \;+\;  \int_1^{\infty} x^{\frac{s}{2}-1} \omega(x) \,\mathrm{d}x \\
+  &= \frac{1}{s(s-1)} \;+\;  \int_1^{\infty} \left( x^{\frac{s}{2}-1} + x^{-\frac{s+1}{2}} \right) \omega(x) \,\mathrm{d}x.
+\end{align*}
+\begin{theorem}{$\zeta(s)$ 的积分解析延拓形式}{}
+\begin{equation}
+\label{eq:analytic_continuation}
+  \pi^{-\frac{s}{2}} \, \Gamma\!\left(\frac{s}{2}\right) \zeta(s) \;=\; \frac{1}{s(s-1)} \;+\;  \int_1^{\infty} \left( x^{\frac{s}{2}-1} + x^{-\frac{s+1}{2}} \right) \omega(x) \,\mathrm{d}x, \quad s \in \mathbb{C} \setminus \{0,1\}.
+\end{equation}
+
+由于等式右端积分对全体复平面均绝对收敛，并且奇点部分只在 $s=0, 1$ 提供简单的代数极点，
+
+该式提供了一个 $\zeta(s)$ 至复平面 $\mathbb{C}$ 上的亚纯函数解析延拓。
+\end{theorem}
+
+考察等式右端的形式。若作替换 $s \mapsto 1-s$：
+\begin{itemize}
+    \item 极点项 $\frac{1}{(1-s)(1-s-1)} = \frac{1}{s(s-1)}$ 表现为不变；
+    \item 积分中的项 $\left( x^{\frac{s}{2}-1} + x^{-\frac{s+1}{2}} \right)$ 的两个组成部分互相映射交换位置，因此其和亦保持完全不变。
+\end{itemize}
+
+这表明，左端 $\pi^{-s/2} \Gamma(s/2) \zeta(s)$ 关于 $\Re(s)=1/2$ 具有反射对称性，为下一章定义满足 $\xi(s)=\xi(1-s)$ 的 $\xi(s)$ 作准备。
+
+% ============================================================
+\section{两法的比较与同一延拓}\label{sec:riemann_two_methods_comparison}
+% ============================================================
+
+第一法与第二法都已给出完整构造。下面分两点：\textbf{逻辑上是否独立、为何并列}；
+\textbf{路径与产物有何不同、结果是否同一}。
+
+\subsection{独立性与为何并列}
+
+两法是两条\textbf{平行、自洽}的证明，而不是「主定理 + 另一写法」：
+
+\begin{itemize}
+  \item 各有\textbf{独立的推导路径}：第一法沿 Hankel 围道与留数推进；第二法沿 $\vartheta$ 模反演与全平面积分表示推进。
+  \item 各调用\textbf{独立的数学工具包}：前者主要是分支、路径变形与留数；后者主要是 Gauss 型 Fourier 变换、Poisson 求和与模反演（第~\ref{ch:integral_transforms}~章），工具清单\textbf{不互相包含}。
+  \item \textbf{互不作为对方的基础或引理}：第二法不引用第一法的中间结果，反之亦然；
+        任取其一，即可单独得到全平面亚纯延拓与函数方程（中间公式形态可不同，见下表）。
+\end{itemize}
+
+正因为独立，书中\textbf{两法都写}才有信息量：不是同一步骤的复述，而是两条可独立检验的构造；
+亦便于工具背景不同的读者择一细读，并与 Riemann 1859 两法并陈一致
+（译介见第~\ref{ch:riemann_original_interpretation}~章）。
+
+\subsection{路径区别与同一延拓}
+
+表~\ref{tab:riemann_methods_comparison} 对照主路径、工具与后文衔接
+（差别在\textbf{主演算画在何处}与直接产物形态；不作「复法 / 实法」对立）。
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{p{2.2cm}|p{5.0cm}|p{5.0cm}}
+\hline
+\textbf{对比维度} & \textbf{第一法 (Hankel 围道)} & \textbf{第二法 ($\vartheta$ 模反演)} \\ \hline
+\textbf{逻辑关系} & 自洽的完整构造；\textbf{不}依赖第二法
+  & 自洽的完整构造；\textbf{不}依赖第一法 \\ \hline
+\textbf{主路径} & 复平面围道、分支切割、留数
+  & 正实轴上 $\vartheta$ / $\omega$、模反演，再 Mellin 型积分 \\ \hline
+\textbf{主要工具} & 路径变形、分支、留数
+  & Gauss 型 FT、Poisson 求和、模反演（第~\ref{ch:integral_transforms}~章） \\ \hline
+\textbf{直接产物} & 围道积分表示；常得\textbf{非对称}型函数方程
+  & 全平面收敛的积分表示 \eqref{eq:analytic_continuation}；$s\leftrightarrow 1-s$ \textbf{对称}更显 \\ \hline
+\textbf{后文衔接} & 围道技术；与 1859 原稿围道叙述对照
+  & 对称整函数 $\xi(s)$、Hadamard 乘积、临界线几何 \\ \hline
+\end{tabular}
+\caption{Riemann 解析延拓第一法与第二法对照（两法正文之后）}
+\label{tab:riemann_methods_comparison}
+\end{table}
+
+路径与工具独立，并不产生两套 $\zeta$：二者均给出在 $\mathbb{C}\setminus\{1\}$ 上的亚纯延拓，
+且在 $\operatorname{Re}s>1$ 与 Dirichlet 级数重合。由第~\ref{ch:analytic_continuation_general}~章
+解析延拓的\textbf{唯一性}，这样的延拓至多一个，故两法定义的是\textbf{同一个}函数。
+
+下一节由函数方程（任一法所得）导出临界带、临界线与平凡零点。
+
+% ============================================================
+\section{函数方程的推论：临界带、临界线与平凡零点}
+\label{sec:fe_geometry_trivial_zeros}
+
+两法已给出同一亚纯延拓（第~\ref{sec:riemann_two_methods_comparison}~节）。
+本节由函数方程导出零点的全局区域限制，给出临界带与临界线的定义，并说明平凡零点的出现（图为示意，\textbf{不代替}证明）。
+全平面延拓后的实部、虚部三维曲面及其零迹线，系统见第~\ref{ch:zero_distribution}~章。
+
+\subsection{零点的全局区域限制与临界带、临界线的定义}
+\label{sec:critical_strip_from_fe}
+
+前文已建立非对称函数方程 \eqref{eq:asymmetric_fe_alt}。
+
+据此可限制 $\zeta(s)$ 零点的全局分布区域。
+
+$\zeta(s)$ 的零点分为两类：平凡零点，以及临界带内的非平凡零点。
+
+非平凡零点的存在区域可如下确定：
+\begin{enumerate}
+    \item \textbf{右半平面的无零点区域}：
+    当 $\Re(s) > 1$ 时，$\zeta(s)$ 可以表示为绝对收敛的 Euler 乘积：
+
+    \[
+      \zeta(s) \;=\; \prod_{p} \left(1 - p^{-s}\right)^{-1}.
+    \]
+    由于乘积中的每一项均不为零，且级数绝对收敛，因此在半平面 $\Re(s)>1$ 内 $\zeta(s)$ 恒不为零。
+
+    \item \textbf{左半平面的零点限制}：
+    当 $\Re(s) < 0$ 时，考虑非对称函数方程：
+
+    \[
+      \zeta(s) \;=\; 2^s \pi^{s-1} \sin\left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s).
+    \]
+    在右端项中：
+
+    - 自变量反射项 $\zeta(1-s)$ 的实部满足 $\Re(1-s) > 1$，由前述结论可知 $\zeta(1-s) \neq 0$；
+
+    - 因子 $\Gamma(1-s)$ 在全平面无零点（第\ref{ch:gamma_function}~章定理\ref{cor:gamma-no-zeros}），且在此处无极点；
+
+    - 因此，等式右侧唯一的零点来源只能是正弦因子 $\sin\left(\frac{\pi s}{2}\right) = 0$。
+
+    这直接导出了在负偶数处的\textbf{平凡零点}：
+
+    \[
+      s \;=\; -2, -4, -6, \dots
+    \]
+    也就是说，在左半平面 $\Re(s)<0$ 内，除了这些平凡零点外，不存在任何其他零点。
+\end{enumerate}
+
+综上所述，在仅用 $\operatorname{Re}s>1$ 无零点与函数方程时，所有非平凡零点必定被“挤压”在闭带
+\[
+  0 \;\leq\; \Re(s) \;\leq\; 1
+\]
+内。边界 $\Re(s)=1$（从而 $\Re(s)=0$）上的无零点是更深结果（Hadamard--de la Vallée Poussin，见第~\ref{ch:zero_distribution}~章），
+得到开临界带 $0<\Re(s)<1$ 后，非平凡零点的精确定位区间才收紧。
+
+据此给出：
+\begin{definition}{临界带与临界线}{}
+非平凡零点赖以存在的唯一带状区域 $0 \le \Re(s) \le 1$ 称为 $\zeta(s)$ 的\textbf{临界带}；
+
+而平分该临界带的反射对称轴线 $\Re(s)=1/2$ 称为\textbf{临界线}。
+\end{definition}
+
+第~\ref{sec:elementary_extension}~节图~\ref{fig:zeta_modulus_cont_strip} 上所见的中轴线 $\Re(s)=1/2$，
+在函数方程的对称性下正式获得作为「临界线」的定位（该图仍只是数值观察）。
+
+\subsection{左半平面 \texorpdfstring{$\Re(s)<0$}{Re(s)<0} 上的平凡零点}
+\label{sec:trivial_zeros_geometry}
+
+前文用交错级数仅将定义域推至 $\Re(s)>0$；左半平面 $\Re(s)<0$ 在该阶段不可达。
+完成全平面延拓后，可由函数方程讨论该半平面上的结构。
+
+由函数方程，$\zeta(s)$ 在 $\Re(s)<0$ 上的行为由右半平面经 $\sin$、$\Gamma$ 与 $\zeta(1-s)$ 确定。
+由非对称函数方程 \eqref{eq:asymmetric_fe_alt}，当 $\operatorname{Re}s\to-\infty$ 时，因子 $\Gamma(1-s)$ 与 $\sin(\pi s/2)$ 主导，左半平面曲面在虚部方向呈现振幅随 $|s|$ 增大而增长的振荡。
+
+在\textbf{向左跨越虚轴}后，出现由函数方程直接给出的另一类零点——\textbf{平凡零点}（交错级数阶段不可见；上一小节已由区域限制推出其位置，此处补全论证与几何示意）：
+\begin{itemize}
+    \item 当 $s = -2, -4, -6, \dots$ 为负偶数（即 $s = -2n$, $n \in \mathbb{N}^+$）时，
+    函数方程中的正弦因子 $\sin(\pi s/2) = \sin(-n\pi) = 0$ 恒为零。
+
+    \item 此时 $\Gamma(1-s)=\Gamma(1+2n)$ 为有限正整数（\textbf{此处 $\Gamma(1-s)$ 无极点}，无需“极点--零点抵消”），
+    且 $\zeta(1-s)=\zeta(1+2n)$ 亦为非零有限值，故正弦因子的零点直接给出：
+
+    \[
+      \zeta(-2n) \;=\; 0, \quad n = 1, 2, 3, \dots
+    \]
+\end{itemize}
+
+图\ref{fig:trivial_zeros} 给出 $\zeta(s)$ 在左半实轴附近的局部曲面：在负偶数 $s=-2,-4,-6$ 处曲面与零平面相交，与由函数方程推出的平凡零点一致（图为示意，\textbf{不代替}证明；证明见上文）。
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1.0\textwidth]{全书图形/8-Z模曲面-4.pdf}
+\caption{$\zeta(s)$ 延拓至左半平面后的局部曲面图（实轴负偶数点 $s=-2,-4,-6$ 处曲面触零，与平凡零点一致；图为示意）}
+\label{fig:trivial_zeros}
+\end{figure}
+
+全平面延拓后的实部、虚部三维曲面及其零迹线交点，以及与本章模曲面触底的对照，系统见第~\ref{ch:zero_distribution}~章第~\ref{sec:zeta_real_surface}、\ref{sec:zeta_imag_surface}~节。
+$\xi(s)$ 的整函数化见第~\ref{ch:xi_function}~章；非平凡零点的几何与 $N(T)$ 亦见第~\ref{ch:zero_distribution}~章。
+
+% ============================================================
+\subsection{与第八章解析延拓定义与唯一性的联系}
+
+第\ref{ch:analytic_continuation_general}章已说明：
+
+\textbf{若一个函数满足某个函数方程，且该方程能将定义域从已知区域映射到新区域，则函数方程本身可作为解析延拓工具}
+
+（参见第\ref{ch:analytic_continuation_general}章第\ref{subsec:functional_equation_method}节“函数方程”）。
+\begin{theorem}{解析延拓的存在性与构造}{}
+  由第一法或第二法推导出的黎曼函数方程，是 $\zeta(s)$ 从半平面 $\Re(s)>1$ 到全复平面 $s \in \mathbb{C} \setminus \{1\}$ 解析延拓的\textbf{显式构造}。
+
+  特别地，第二法给出的积分表示（\eqref{eq:analytic_continuation}）和第一法给出的围道积分表示（\eqref{eq:analytic_cont_first}）均为 $\zeta(s)$ 在全平面上的有效定义。
+\end{theorem}
+
+这与第\ref{ch:analytic_continuation_general}章的函数方程延拓法一致，
+
+同时也与 $\Gamma$ 函数利用递推公式 $\Gamma(s)=\Gamma(s+1)/s$ 向左延拓的做法同出一辙（参见第~\ref{ch:gamma_function}~章）。
+
+至此，$\zeta(s)$ 的解析延拓不仅在理论上存在（由唯一性保证），而且通过函数方程得到了具体的、可计算的表达式。
+
+% ============================================================
+\section*{本章小结与后续展望}
+\addcontentsline{toc}{section}{本章小结与后续展望}
+
+本章给出 $\zeta$ 的两种全平面构造：先分述第一法（Hankel 围道与留数）、第二法（$\vartheta$ 模反演与积分表示）——
+二者路径与工具\textbf{独立}，互不为引理；再在第~\ref{sec:riemann_two_methods_comparison}~节对照，
+并说明由唯一性二者给出同一亚纯延拓（第~\ref{ch:analytic_continuation_general}~章）。
+
+函数方程还给出关于临界线的对称，并推出左半平面上的平凡零点 $\zeta(-2k)=0$；
+曲面图上可见 $s=1$ 极点与左半平面振荡（图为示意）。
+
+$\zeta$ 在 $s=1$ 仍有极点，且函数方程中含 $\Gamma$ 与三角函数因子，
+非平凡零点的乘积表示在 $\zeta$ 本身上不够干净。
+
+下一章引入 $\xi(s)$，消去 $s=1$ 处的极点与函数方程中的附加因子，使对称写成
+$\xi(s)=\xi(1-s)$，并为 Hadamard 乘积、零点计数与显式公式作准备。
+
+\paragraph{知识谱系进度}
+\label{sec:ch8_spectrum_progress}
+本章完成了 $\zeta(s)$ 的解析延拓与函数方程。下图采用与第~\ref{ch:elementary_number_theoretic_functions}~章
+图~\ref{fig:spectrum-stage2}、第~\ref{ch:spectrum_map}~章图~\ref{fig:function-relations}
+\textbf{同一底图}（\texttt{黎曼猜想知识谱系关系图-A-2}）：
+在图~\ref{fig:spectrum-stage2} 已着色的初等算术层之上，进一步着色 $\Gamma$、$\zeta$
+及其延拓/函数方程相关连线（含 $\operatorname{Re}(s)>1$ 的 $\mu$、$\Lambda$、Euler 积分等分析桥梁）；
+$\xi$、$N(T)$、Hadamard 乘积、RH，以及尚未在本章完成证明的\textbf{显式公式}连线
+（$\zeta\to J$ 的 Perron 展开、$\zeta\to\psi$ 的 Perron 显式公式、$\psi\to\zeta$ 的 Mellin 负对数导）
+仍保持灰白，留待第~\ref{ch:spectrum_map}~章全文着色。
+读图时宜将\textbf{第二次着色新增彩色}元素与正文对照（表~\ref{tab:spectrum-stage8-guide}），
+把图上的箭头读成已证公式的索引；初等层彩色元素仍见表~\ref{tab:spectrum-stage2-guide}。
+
+% 图独占一页；题注文字排到下一页，避免与图例挤在同页
+% （同一底图三次着色之第二次；\spectrumStage=8 为内部进度码，非章号）
+\clearpage
+\begin{figure}[p]
+\centering
+\def\spectrumStage{8}
+\resizebox{\textwidth}{!}{%
+\input{图谱/谱系关系图-core.tex}%
+}
+\end{figure}
+\clearpage
+\noindent
+\captionof{figure}{黎曼猜想知识谱系关系图（第二次着色：至函数方程）。
+与图~\ref{fig:spectrum-stage2}（第一次）、图~\ref{fig:function-relations}（第三次）同一底图；
+彩色为截至本章已建立的部分，灰白为后文。
+相对第一次进度新增的彩色节点/连线与正文对照见表~\ref{tab:spectrum-stage8-guide}。}
+\label{fig:spectrum-stage8}
+
+\paragraph{图~\ref{fig:spectrum-stage8} 新增彩色元素与正文对照}
+下列各项将图上\textbf{相对第一次进度图新着色}的节点与连线引向相应定义与证明
+（含本章及前序已建立的 $\operatorname{Re}(s)>1$ 分析桥梁）；
+初等层（$\pi,J,\theta,\psi,\mu,\Lambda,\Li$ 及其算术互逆）见
+表~\ref{tab:spectrum-stage2-guide}，此处不重复。
+\begin{table}[htbp]
+\centering
+\caption{图~\ref{fig:spectrum-stage8} 新增彩色图元与正文对照}
+\label{tab:spectrum-stage8-guide}
+\small
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}p{4.9cm}p{8.3cm}@{}}
+\toprule
+\textbf{图上元素} & \textbf{正文（定义 / 公式 / 证明）} \\
+\midrule
+节点 $\zeta(s)$（上半：$\operatorname{Re}s>1$） &
+  第~\ref{ch:riemann_zeta_intro}~章：Dirichlet 级数与 Euler 乘积定义；
+  第~\ref{sec:holo}~节：$\operatorname{Re}s>1$ 上的全纯性 \\
+节点 $\zeta(s)$（下半：解析延拓） &
+  第~\ref{sec:elementary_extension}~节：$\eta$ 交错级数延拓至 $\operatorname{Re}s>0$
+  （式~\eqref{eq:zeta_eta_continuation}）；
+  第~\ref{sec:riemann_first_method}~、\ref{sec:theta_function_method}~节：
+  全平面亚纯延拓（仅 $s=1$ 为极点） \\
+节点 $\Gamma(s)$（上半：$\operatorname{Re}s>0$） &
+  第~\ref{ch:gamma_function}~章第~\ref{sec:gamma_def}~节：Euler 积分定义 \\
+节点 $\Gamma(s)$（下半：解析延拓） &
+  第~\ref{sec:gamma_continuation}~节：递推延拓至 $\mathbb{C}\setminus\{0,-1,-2,\ldots\}$；
+  第~\ref{sec:reflection_formula}~节：余元公式 \\
+$\zeta$ 节点左侧自环（解析延拓） &
+  第~\ref{sec:riemann_first_method}~节式~\eqref{eq:zeta_contour_gamma}、
+  第~\ref{sec:theta_function_method}~节式~\eqref{eq:analytic_continuation}：
+  Hankel / $\vartheta$ 两法给出的全局延拓 \\
+$\Gamma$ 节点右侧自环（解析延拓） &
+  第~\ref{sec:gamma_continuation}~节定理~\ref{thm:gamma-meromorphic} \\
+连线 $\Gamma\to\zeta$（Euler 积分，
+  $\zeta(s)\Gamma(s)=\int x^{s-1}/(e^x-1)\,\mathrm{d}x$） &
+  第~\ref{ch:riemann_zeta_intro}~章第~\ref{sec:integral-representation-eq}~节\eqref{eq:zeta-integral}；
+  第~\ref{ch:gamma_function}~章缩放式\eqref{eq:gamma-scaled}；
+  本章第~\ref{sec:riemann_first_method}~节由此出发 \\
+连线 $\Gamma\to\zeta$（Hankel 围道，
+  $\zeta=-\Gamma(1-s)/(2\pi i)\oint_{\mathrm{H}}\cdots$） &
+  第~\ref{sec:riemann_first_method}~节：
+  式~\eqref{eq:zeta_contour_gamma} 与路径变形；
+  同节导出函数方程~\eqref{eq:asymmetric_fe}、\eqref{eq:asymmetric_fe_alt} \\
+连线 $\mu\to\zeta$
+  （$1/\zeta(s)=\sum\mu(n)n^{-s}$，$\operatorname{Re}s>1$） &
+  第~\ref{ch:riemann_zeta_intro}~章
+  第~\ref{subsec:arith_dirichlet_gen}~节 \\
+连线 $\Lambda\to\zeta$
+  （$-\zeta'/\zeta=\sum\Lambda(n)n^{-s}$，$\operatorname{Re}s>1$） &
+  第~\ref{ch:riemann_zeta_intro}~章
+  第~\ref{subsec:chebyshev_zeta_relation}~节 \\
+连线 $\zeta\to J$（Mellin，
+  $\log\zeta(s)=s\int_1^\infty J(x)\,x^{-s-1}\,\mathrm{d}x$） &
+  第~\ref{ch:integral_transforms}~章：
+  Dirichlet 级数与部分和的 Mellin 联系
+  （$F(s)=s\int A(x)x^{-s-1}\,\mathrm{d}x$）；
+  系数 $A=J$ 时 $F=\log\zeta$（$\operatorname{Re}s>1$） \\
+第二法 $\vartheta$ 与对称积分表示
+  （图上函数方程所依赖的另一路径） &
+  $\vartheta$ 的定义与模反演（Gauss 型 FT + Poisson）
+  见第~\ref{ch:integral_transforms}~章第~\ref{subsec:gauss_ft}~节及随后的模反演小节；
+  应用于 $\zeta$ 见第~\ref{sec:theta_function_method}~节式~\eqref{eq:analytic_continuation}；
+  与第一法对照见表~\ref{tab:riemann_methods_comparison}
+  （第~\ref{sec:riemann_two_methods_comparison}~节） \\
+平凡零点 $\zeta(-2k)=0$
+  （函数方程推论，左半平面几何） &
+  第~\ref{sec:critical_strip_from_fe}~、\ref{sec:trivial_zeros_geometry}~节
+  与图~\ref{fig:trivial_zeros}；由~\eqref{eq:asymmetric_fe_alt} 推出 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\centering
+\vspace{0.2em}
+\textbf{第九章：重要定理与核心公式汇总}\\[6pt]
+\renewcommand{\arraystretch}{1.6}
+\hbadness=10000
+\begin{tabular}{lp{9.5cm}}
+\hline
+\textbf{名称} & \textbf{数学内容 / 公式表达} \\
+\hline
+交错级数关系式 & $\zeta(s) = \dfrac{\eta(s)}{1-2^{1-s}}, \quad \Re(s)>0, \ s \in \mathbb{C} \setminus \{1\}$ \\
+第一法围道积分表示 & $\displaystyle\zeta(s) = -\dfrac{\Gamma(1-s)}{2\pi i}\displaystyle\int_C \dfrac{(-z)^{s-1}}{e^z-1}dz, \quad s \in \mathbb{C} \setminus \{1\}$ \\
+第二法积分表示 & $\pi^{-s/2} \Gamma(s/2) \zeta(s) = \dfrac{1}{s(s-1)} + \displaystyle\int_1^\infty \left(x^{s/2-1} + x^{-(s+1)/2}\right)\omega(x)dx, \quad s \in \mathbb{C} \setminus \{0, 1\}$ \\
+非对称函数方程 & $\zeta(s) = 2^s \pi^{s-1}\sin\left(\dfrac{\pi s}{2}\right)\Gamma(1-s)\zeta(1-s), \quad s \in \mathbb{C} \setminus \{1\}$ \\
+平凡零点定理 & 当 $s = -2k$ ($k \in \mathbb{Z}^+$) 时，恒有 $\zeta(-2k) = 0$ \\
+\hline
+\end{tabular}
+\vspace{0.2em}
+}}
+\end{center}

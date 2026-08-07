@@ -1,0 +1,329 @@
+\chapter{对数积分与指数积分：\texorpdfstring{$\Li$}{Li}、\texorpdfstring{$\li$}{li} 与 \texorpdfstring{$\Ei$}{Ei}}\label{ch:logint_Ei}
+\label{ch:Li_li_Ei}
+
+% ============================================================
+\section*{本章导读}
+\addcontentsline{toc}{section}{本章导读}
+% ============================================================
+
+\(\li\) 为从 $0$ 取主值的对数积分，可延拓为复函数 \(\li(z)\)；
+\(\Li\) 为自 $2$ 起算的实偏移版，与 \(\li\) 仅差常数 \(\li(2)\)。
+\(\Ei\) 是 \(\li\) 经对数换元后的等价形式。
+素数定理用实 \(\Li\)；复点上用 \(\li(z)\)；数值实现多用 \(\Ei\)。
+
+% ============================================================
+\section{实对数积分 \texorpdfstring{$\li(x)$}{li(x)}}
+\label{sec:Li-li-summary}
+% ============================================================
+
+\begin{definition}{对数积分（实轴）}{}
+\label{def:li-real}
+对 $x>1$，
+\begin{equation}
+  \li(x)
+  \;=\;
+  \mathrm{P.V.}\int_0^x \frac{\mathrm{d}t}{\log t}
+  \;=\;
+  \lim_{\varepsilon\to 0^+}
+  \Biggl(
+    \int_0^{1-\varepsilon}\frac{\mathrm{d}t}{\log t}
+    +\int_{1+\varepsilon}^{x}\frac{\mathrm{d}t}{\log t}
+  \Biggr).
+  \label{eq:li-def-ch2}
+\end{equation}
+\end{definition}
+
+被积函数在 $t=1$ 有奇点，故取 Cauchy 主值。对 $x>1$，$\li(x)$ 为实数。记
+\begin{equation}
+  \li(2)
+  \;=\;
+  \mathrm{P.V.}\int_0^2\frac{\mathrm{d}t}{\log t}
+  \;\approx\;
+  1.04516.
+  \label{eq:li-of-two}
+\end{equation}
+
+\subsection{主值在 \texorpdfstring{$t=1$}{t=1} 附近的收敛性}
+
+在 $t=1$ 附近令 $t=e^{u}$（$u\to 0$），则
+\[
+  \frac{\mathrm{d}t}{\log t}
+  =\frac{e^{u}}{u}\,\mathrm{d}u
+  =\Bigl(\frac{1}{u}+1+O(u)\Bigr)\mathrm{d}u.
+\]
+奇部 $1/u$ 关于 $u=0$ 为奇函数，主值贡献为零；$1+O(u)$ 可积。
+故~\eqref{eq:li-def-ch2} 跨过 $t=1$ 的极限存在（有限）。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  >=Stealth,
+  font=\small,
+  every node/.style={inner sep=1pt}
+]
+  \draw[->] (-0.4,0) -- (8.2,0) node[right] {$t$（实轴）};
+  \draw[->] (0,-1.1) -- (0,1.4);
+  \foreach \x/\lab in {0/0, 1.8/1, 3.2/2, 6.5/x}
+    \draw (\x,0.08) -- (\x,-0.08) node[below] {$\lab$};
+  \fill[red!70!black] (1.8,0) circle (1.6pt);
+  \node[red!70!black, above] at (2.3,0.65) {奇点 $t=1$};% 相对原位右移0.5cm、上移0.5cm
+  \draw[blue!75!black, very thick, ->]
+    (0.08,0) -- (1.35,0);
+  \node[blue!75!black, above] at (0.7,0.05) {$\int_0^{1-\varepsilon}$};
+  \draw[blue!75!black, very thick]
+    (1.35,0) arc (180:0:0.45);
+  \node[blue!75!black, above] at (2.3,1.05) {主值挖去};% 相对原位右移0.5cm、上移0.5cm
+  \draw[blue!75!black, very thick, ->]
+    (2.25,0) -- (6.45,0);
+  \node[blue!75!black, above] at (4.3,0.05) {$\int_{1+\varepsilon}^{x}$};
+  \draw[green!50!black, thick, dashed, ->]
+    (3.2, -0.55) -- (6.45, -0.55);
+  \node[green!50!black, below] at (4.8,-0.55) {$\Li$：自 $2$ 至 $x$（不过 $t=1$）};
+  \node[blue!75!black, below left] at (7.6,-0.15) {$\li(x)$};
+\end{tikzpicture}
+\caption{实轴上的 $\li(x)$（$x>1$）：在 $t=1$ 处取 Cauchy 主值。
+虚线为 $\Li(x)=\int_2^x$，不过奇点。}
+\label{fig:li-real-path}
+\end{figure}
+
+$x\to+\infty$ 时的渐近与第~\ref{ch:prime_distribution}~章对 $\Li$ 的分部积分同型：
+\begin{equation}
+  \li(x)
+  \;\sim\;
+  \frac{x}{\log x}
+  +\frac{x}{(\log x)^{2}}
+  +\cdots
+  \qquad(x\to+\infty).
+  \label{eq:li-asymp-real}
+\end{equation}
+
+% ============================================================
+\section{偏移对数积分 \texorpdfstring{$\Li$}{Li}：实函数及其与 \texorpdfstring{$\li$}{li} 的关系}
+\label{sec:Li}
+% ============================================================
+
+\begin{definition}{偏移对数积分（实函数）}{}
+\label{def:Li-real}
+$\Li$ 是定义在实半轴上的实值函数
+\begin{equation}
+  \Li \colon (1,+\infty)\to\mathbb{R},
+  \qquad
+  \Li(x)
+  \;=\;
+  \int_2^x \frac{\mathrm{d}t}{\log t}.
+  \label{eq:Li-def-ch2}
+\end{equation}
+下限取 $2$，不过 $t=1$，无需主值。自变量不取复值。
+\end{definition}
+
+对实数 $x>1$，
+\begin{equation}
+  \boxed{
+  \Li(x)
+  \;=\;
+  \li(x)-\li(2)
+  }.
+  \label{eq:Li-li-real}
+\end{equation}
+因而
+\begin{equation}
+  \li(x)\;\sim\;\Li(x)\;\sim\;\frac{x}{\log x}
+  \qquad(x\to+\infty).
+  \label{eq:li-Li-asymp}
+\end{equation}
+完整渐近级数见第~\ref{ch:prime_distribution}~章~\eqref{eq:Li-parts-1}--\eqref{eq:Li-asymptotic}。
+
+实比较中 \(\li\) 与 \(\Li\) 可互换，但须按~\eqref{eq:Li-li-real} 调整常数：
+含 $\li(x)$ 与 $-\log 2$ 的主项改写为 $\Li$ 时，常数应为 $\li(2)-\log 2$，不可删去 $-\log 2$。
+素数定理 $\pi\sim\Li$ 用实函数 $\Li$（第~\ref{ch:prime_number_theorem}~章）。
+
+% ============================================================
+\section{\texorpdfstring{$\li$}{li} 的解析延拓}
+\label{sec:li-complex-power}
+% ============================================================
+
+\subsection{复自变量上的定义}
+
+\begin{definition}{对数积分（复延拓）}{}
+\label{def:li-complex}
+对 $z\notin[1,\infty)$，取自 $0$ 至 $z$、避开支点 $t=0$ 与 $t=1$ 的路径，
+\begin{equation}
+  \li(z)
+  \;=\;
+  \int_{0}^{z}\frac{\mathrm{d}t}{\log t}.
+  \label{eq:li-complex}
+\end{equation}
+$\log$ 取定一分支；路径与分支固定后 $\li(z)$ 单值。
+\end{definition}
+
+当 $z=x>1$ 且路径取实轴主值时，~\eqref{eq:li-complex} 与~\eqref{eq:li-def-ch2} 重合。
+这是第~\ref{ch:analytic_continuation_general}~章意义下的路径积分延拓：
+所得为 $\mathbb{C}\setminus[1,\infty)$ 上固定分支后的单值全纯函数，
+而非全平面无割线的整函数；换绕 $t=1$ 的道路一般改变值。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  >=Stealth,
+  font=\small,
+  scale=1.0
+]
+  \draw[->] (-0.8,0) -- (6.8,0) node[right] {$\operatorname{Re}t$};
+  \draw[->] (0,-1.8) -- (0,3.5) node[above] {$\operatorname{Im}t$};
+  \draw[line width=2.2pt, gray!55]
+    (1.2,0) -- (6.2,0);
+  \node[gray!70!black, below] at (4.2,-0.12) {割线 $[1,+\infty)$};
+  \fill[red!70!black] (1.2,0) circle (1.8pt);
+  \node[red!70!black, below left] at (1.15,-0.15) {$t=1$};
+  \fill (0,0) circle (1.5pt);
+  \node[below left] at (0,0) {$0$};
+  \draw[blue!75!black, very thick, ->]
+    (0.08,0.08)
+    .. controls (0.9,1.5) and (2.2,2.4) ..
+    (4.5,2.1);
+  % 标签与公式分置，避免与路径 $\gamma$ 重叠
+  \node[blue!75!black, left] at (1.85,2.05) {路径 $\gamma$};
+  \fill[blue!75!black] (4.5,2.1) circle (2pt);
+  \node[blue!75!black, right] at (4.65,2.15) {$z\notin[1,+\infty)$};
+  \node[anchor=south east, align=right, font=\small, text=black!80]
+    at (6.3,2.85) {$\li(z)=\int_{\gamma}\frac{\mathrm{d}t}{\log t}$};
+\end{tikzpicture}
+\caption{复平面上的 $\li(z)$：路径 $\gamma$ 避开支点 $t=0,1$ 与割线 $[1,+\infty)$
+（$\log$ 取定分支）。}
+\label{fig:li-complex-path}
+\end{figure}
+
+$\li(z)$ 一般取复值。$\Li$ 的自变量限于实数，故复点上使用 $\li(z)$；
+没有 $\li(z)=\Li(z)+\li(2)$ 在复域上的对应恒等式。
+
+\subsection{模曲面 \texorpdfstring{$|\li(z)|$}{|li(z)|}}
+\label{sec:li-modulus-surface}
+
+图~\ref{fig:li-modulus} 以高度 $|\li(z)|$ 展示定义~\ref{def:li-complex}（金黄色模曲面，三轴过原点）。
+奇点、零点与割线在模上分别表现为竖起、触底与沿缝挖空。图为示意。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.98\textwidth]{全书图形/13-li模曲面.pdf}
+\caption{$\li$ 的模曲面 $z=|\li(z)|$。
+红点：支点 $z=1$；实零点 Soldner 常数 $\mu\approx 1.45137$（$\li(\mu)=0$）。
+割线 $[1,+\infty)$ 按主支挖去；近 $z=1$ 处 $|\li|\to+\infty$（高度已裁剪）。}
+\label{fig:li-modulus}
+\end{figure}
+
+\paragraph{支点 $z=1$ 与实零点 $\mu$}
+被积函数 $1/\log t$ 在 $t=1$ 有简单极点；$\li(z)$ 在 $z=1$ 是\textbf{支点}（非 $\Gamma$ 型极点），
+$z\to 1$ 时 $|\li(z)|\to+\infty$，割线取 $[1,+\infty)$。
+在 $(1,+\infty)$ 上 $\li$ 恰有一个实零点（Soldner 常数）
+\begin{equation}
+  \li(\mu)=0,
+  \qquad
+  \mu\approx 1.45136923488\ldots.
+  \label{eq:soldner-mu}
+\end{equation}
+符号：$\li(x)<0$ 当 $1<x<\mu$；$\li(x)>0$ 当 $x>\mu$。
+由~\eqref{eq:Li-li-real}，$\Li(2)=0$ 而 $\Li(\mu)=-\li(2)\neq 0$：
+$\Li$ 的实零点是 $2$，$\li$ 的是 $\mu$。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{lll}
+\hline
+对象 & 模「竖起」 & 模「触底」 \\
+\hline
+$\Gamma(s)$ & 单极点 $s=0,-1,\ldots$ & 无 \\
+$\zeta(s)$ & $s=1$ 单极点 & 零点 \\
+$\li(z)$ & 支点 $z=1$ 及割线 & 实零点 $\mu$ 等 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{大模长时的主项}
+
+在割线平面 $\mathbb{C}\setminus[1,\infty)$ 内，当 $|z|\to\infty$ 且辐角与割线保持正距离时，
+\begin{equation}
+  \li(z)
+  \;\sim\;
+  \frac{z}{\log z}.
+  \label{eq:li-z-asymp}
+\end{equation}
+（与实渐近~\eqref{eq:li-asymp-real} 同型；亦可由 $\Ei(\Log z)\sim z/\Log z$ 得，见~\eqref{eq:li-z-Ei}。）
+任何满足 $z\notin[1,\infty)$ 的复点均可代入~\eqref{eq:li-complex}；
+后文若在特定点上取值，只是~\eqref{eq:li-complex} 的特例，不另定义新函数。
+
+% ============================================================
+\section{指数积分 \texorpdfstring{$\Ei$}{Ei}：\texorpdfstring{$\li$}{li} 的变换形式}
+\label{sec:Ei}
+% ============================================================
+
+\begin{definition}{指数积分}{}
+\label{def:Ei}
+\[
+  \Ei(z)
+  =
+  -\mathrm{p.v.}\int_{-z}^{+\infty}\frac{e^{-t}}{t}\,\mathrm{d}t,
+  \qquad
+  z\in\mathbb{C}\setminus(-\infty,0].
+\]
+\end{definition}
+
+分支一致时，
+\begin{equation}
+  \li(x)=\Ei(\log x),
+  \qquad
+  \Li(x)=\Ei(\log x)-\Ei(\log 2)
+  \qquad(x>1\text{ 实}),
+  \label{eq:li-Ei}
+\end{equation}
+\begin{equation}
+  \li(z)
+  \;\longleftrightarrow\;
+  \Ei(\Log z)
+  \qquad\bigl(z\notin[1,\infty)\bigr).
+  \label{eq:li-z-Ei}
+\end{equation}
+$\Ei$ 是 $\li$ 的变换形式，不引入新的算术对象；理论叙述以 $\li(z)$ 为准。
+数值实现见第~\ref{ch:riemann_numerical_approximation}~章。
+
+\subsection{为何引入 \texorpdfstring{$\Ei$}{Ei}}
+
+换元 $t=e^{u}$ 把 $\mathrm{d}t/\log t$ 化为 $e^{u}/u\,\mathrm{d}u$，
+$t=1$ 的奇点变为 $u=0$ 处的标准核，归入 $\Ei$ 的主值与分支理论。
+$\Ei(w)\sim e^{w}/w$ 直接给出~\eqref{eq:li-z-asymp}。
+公式叙述仍写 $\li(z)$；$\Ei$ 不替换其所表示的对象。
+
+% ============================================================
+\section{用法分工}
+\label{sec:Li-li-convention}
+% ============================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{lll}
+\hline
+场合 & 所用对象 & 依据 \\
+\hline
+素数定理、与 $\pi$ 的实比较 &
+  实函数 $\Li(x)$ &
+  定义~\ref{def:Li-real}；第~\ref{ch:prime_number_theorem}~章 \\
+复点上的取值 &
+  $\li(z)$ &
+  定义~\ref{def:li-complex} \\
+数值计算 &
+  $\Ei(\Log z)$ 等 &
+  \eqref{eq:li-Ei}--\eqref{eq:li-z-Ei} \\
+\hline
+\end{tabular}
+\end{center}
+
+实轴上可用~\eqref{eq:Li-li-real} 在 $\li$ 与 $\Li$ 之间改写；
+复点上只能用 $\li(z)$，没有「复自变量的 $\Li$」。
+
+% ============================================================
+\section*{本章小结与后续展望}
+\addcontentsline{toc}{section}{本章小结与后续展望}
+% ============================================================
+
+要点：$\Li=\li-\li(2)$（实）；复函数为 $\li(z)$（割线 $[1,+\infty)$）；
+模曲面标明支点 $z=1$ 与零点 $\mu$；$\Ei$ 为变换形式。
+下一章在特定复点上应用 $\li(z)$；数值章用 $\Ei$。

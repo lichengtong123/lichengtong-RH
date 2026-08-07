@@ -1,0 +1,647 @@
+% ============================================================
+% 第六章 数论函数的积分表示：离散部分和与 Perron 积分
+% 内容：综合第2–5章，推导 ψ,M,J,θ,π 的 Perron 积分表示
+% 目的：在 Re s>1 上把算术阶梯写成含 ζ 的竖线积分；为显式公式定点
+% 编译方式：XeLaTeX（作为 main.tex 的 \input 子文件）
+% ============================================================
+
+\chapter{数论函数的积分表示：离散部分和与 Perron 积分}\label{ch:discrete_continuous}
+\label{ch:perron_nt_summary}
+
+\section{引言}\label{sec:intro_discrete_continuous}
+
+第~\ref{ch:elementary_number_theoretic_functions}~章给出了系数 $\mu,\Lambda$ 与
+部分和阶梯 $M,\psi,J,\theta,\pi$ 的定义，以及它们之间的初等反演与
+Stieltjes 关系；第~\ref{ch:complex_analysis_intro}~章准备了围道积分语言；
+第~\ref{ch:integral_transforms}~章建立了一般 Perron 积分公式
+\[
+  A(x)=\sum_{n\le x}a_n
+  =\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty} F(s)\frac{x^s}{s}\,\mathrm{d}s,
+  \qquad
+  F(s)=\sum_{n\ge 1}a_n n^{-s}\ (c>\sigma_a);
+\]
+第~\ref{ch:riemann_zeta_intro}~章在 $\operatorname{Re}s>1$ 上证明了
+\[
+  \sum_{n=1}^{\infty}\frac{\mu(n)}{n^{s}}=\frac{1}{\zeta(s)},
+  \qquad
+  \sum_{n=1}^{\infty}\frac{\Lambda(n)}{n^{s}}=-\frac{\zeta'(s)}{\zeta(s)},
+  \qquad
+  \log\zeta(s)=\sum_{n=2}^{\infty}\frac{\Lambda(n)}{\log n}\,n^{-s}.
+\]
+
+生成函数 $1/\zeta$、$-\zeta'/\zeta$、$\log\zeta$ 已在
+第~\ref{ch:riemann_zeta_intro}~章由 Euler 乘积推出，本章不再重证。
+本章的任务是：对每一个目标部分和，从第二章读出系数 $a_n$，
+引用第五章的 $F(s)=\sum a_n n^{-s}$，再调用第四章的 Perron 积分公式
+\[
+  A(x)=\sum_{n\le x}a_n
+  =\frac{1}{2\pi i}\int_{(c)} F(s)\frac{x^s}{s}\,\mathrm{d}s
+  \qquad(c>1),
+\]
+把 $A(x)$ 写成含 $\zeta$ 的竖线积分。
+$\theta$ 与 $\pi$ 不直接对应单一闭式 Dirichlet 级数，
+将先经第二章的 Möbius 反演化归为 $\psi$、$J$，再代入 Perron 积分公式。
+
+\paragraph{适用范围}
+本章所有含 $\zeta$ 的等式均在 $\operatorname{Re}s>1$ 上使用
+第~\ref{ch:riemann_zeta_intro}~章的结论；竖线取 $c>1$。
+$x$ 为整数时，积分理解为左右平均 $A_0(x)$（见《符号与约定》与
+第~\ref{ch:integral_transforms}~章 Perron 定理的跳跃约定）。
+把竖线移出 $\operatorname{Re}s>1$、取出零点留数，需要解析延拓，
+见第~\ref{ch:gamma_function}~章之后各章；本章只完成「绝对收敛半平面上的积分表示」。
+
+
+%==============================================================
+\section{一般 Perron 的调用方式}
+\label{sec:working_framework}
+%==============================================================
+
+设 $\{a_n\}_{n\ge 1}$ 为复数序列，
+\[
+  F(s)=\sum_{n=1}^{\infty}a_n n^{-s}
+  \qquad\bigl(\operatorname{Re}s>\sigma_a\bigr),
+  \qquad
+  A(x)=\sum_{n\le x}a_n.
+\]
+第~\ref{ch:integral_transforms}~章定理（Perron 积分公式）断言：当 $c>\max(0,\sigma_a)$ 时，
+\begin{equation}
+  A(x)
+  =\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty} F(s)\frac{x^s}{s}\,\mathrm{d}s
+  \label{eq:perron_general_ch6}
+\end{equation}
+（$x$ 恰为某 $n$ 时右端取左右平均）。证明依赖跳跃核
+\[
+  \delta(y)=\frac{1}{2\pi i}\int_{(c)}\frac{y^s}{s}\,\mathrm{d}s
+  \quad(y>0),
+\]
+以及绝对收敛下求和与积分的交换（第~\ref{ch:integral_transforms}~章第~\ref{sec:perron}~节）；
+本章不再复述，只反复套用~\eqref{eq:perron_general_ch6}。
+
+对本书的数论对象，标准步骤是：
+\begin{enumerate}
+  \item 写出 $A(x)$ 的定义，读出系数 $a_n$；
+  \item 由第~\ref{ch:riemann_zeta_intro}~章（或直接由定义）得到 $F(s)$；
+  \item 取 $c>1$（保证绝对收敛），代入~\eqref{eq:perron_general_ch6}。
+\end{enumerate}
+
+下面按 $\psi$、$M$、$J$ 三条主线完成第 1--3 步，再处理 $\theta$、$\pi$。
+
+
+%==============================================================
+\section{\texorpdfstring{$\psi(x)$}{psi(x)} 的积分表示}
+\label{sec:psi_integral}
+%==============================================================
+
+\subsection{从定义到系数}
+
+由第~\ref{ch:elementary_number_theoretic_functions}~章第~\ref{sec:second_chebyshev}~节，
+\begin{equation}
+  \psi(x)=\sum_{n\le x}\Lambda(n),
+  \label{eq:psi_def_ch6}
+\end{equation}
+其中 von Mangoldt 函数 $\Lambda$ 由第~\ref{sec:von_mangoldt}~节定义：
+$\Lambda(n)=\log p$ 当 $n=p^k$（$k\ge 1$），否则 $\Lambda(n)=0$。
+因而~\eqref{eq:psi_def_ch6} 正是一般部分和 $A(x)=\sum_{n\le x}a_n$ 在
+$a_n=\Lambda(n)$ 时的特例。
+
+\subsection{生成函数}
+
+第~\ref{ch:riemann_zeta_intro}~章定理~\ref{thm:Lambda_dirichlet}：当 $\operatorname{Re}s>1$ 时，
+\begin{equation}
+  F_{\Lambda}(s)
+  :=\sum_{n=1}^{\infty}\frac{\Lambda(n)}{n^{s}}
+  =-\frac{\zeta'(s)}{\zeta(s)}.
+  \label{eq:F_Lambda_ch6}
+\end{equation}
+该式由 Euler 乘积取对数再对 $s$ 求导得到；此处只引用结论，不重写证明。
+在 $\operatorname{Re}s>1$ 上级数绝对收敛，故绝对收敛横坐标 $\sigma_a\le 1$，
+可取竖线 $c>1$。
+
+\subsection{代入 Perron 积分公式}
+
+将 $a_n=\Lambda(n)$、$F=F_{\Lambda}$、$A=\psi$ 代入~\eqref{eq:perron_general_ch6}，
+并利用~\eqref{eq:F_Lambda_ch6}，得到：
+
+\begin{theorem}{$\psi(x)$ 的 Perron 积分表示}{psi_perron}
+设 $x>0$、$c>1$。则在 $x$ 非整数时
+\begin{equation}
+  \psi(x)
+  =\frac{1}{2\pi i}
+  \int_{c-i\infty}^{c+i\infty}
+  \Bigl(-\frac{\zeta'(s)}{\zeta(s)}\Bigr)
+  \frac{x^s}{s}\,\mathrm{d}s;
+  \label{eq:psi_perron}
+\end{equation}
+$x$ 为整数时，右端等于 $\psi$ 在该点的左右平均 $\psi_0(x)$。
+\end{theorem}
+
+\begin{proof}
+由~\eqref{eq:psi_def_ch6} 与~\eqref{eq:F_Lambda_ch6}，
+$F_{\Lambda}$ 在 $\operatorname{Re}s=c>1$ 上绝对收敛。
+第~\ref{ch:integral_transforms}~章 Perron 定理给出
+\[
+  \psi(x)
+  =\frac{1}{2\pi i}
+  \int_{c-i\infty}^{c+i\infty}
+  F_{\Lambda}(s)\frac{x^s}{s}\,\mathrm{d}s.
+\]
+再把 $F_{\Lambda}(s)$ 换成 $-\zeta'(s)/\zeta(s)$ 即得~\eqref{eq:psi_perron}。
+跳跃点约定同该定理。
+\end{proof}
+
+\paragraph{推导链（汇总写法）}
+\[
+  \underbrace{\psi(x)=\sum_{n\le x}\Lambda(n)}_{\text{第2章定义}}
+  \;\xrightarrow{\ \text{Perron}\ }\;
+  \frac{1}{2\pi i}\int_{(c)} F_{\Lambda}(s)\frac{x^s}{s}\,\mathrm{d}s
+  \;\xrightarrow{\ \text{第5章}\ }\;
+  \frac{1}{2\pi i}\int_{(c)}\Bigl(-\frac{\zeta'}{\zeta}(s)\Bigr)\frac{x^s}{s}\,\mathrm{d}s.
+\]
+后文显式公式的出发点正是~\eqref{eq:psi_perron}：
+将竖线左移后，$-\zeta'/\zeta$ 在 $s=1$ 的留数给出主项 $x$，
+在非平凡零点 $\rho$ 的留数给出 $\sum x^{\rho}/\rho$
+（第~\ref{ch:riemann_explicit_formula}~章）。
+
+
+%==============================================================
+\section{\texorpdfstring{$M(x)$}{M(x)} 的积分表示}
+\label{sec:M_integral}
+%==============================================================
+
+\subsection{从定义到系数}
+
+第~\ref{ch:elementary_number_theoretic_functions}~章第~\ref{subsec:mertens_function}~节定义
+Mertens 函数
+\begin{equation}
+  M(x)=\sum_{n\le x}\mu(n),
+  \label{eq:M_def_ch6}
+\end{equation}
+其中 $\mu$ 为 Möbius 函数（第~\ref{sec:mobius_function}~节）。
+故 $a_n=\mu(n)$，$A(x)=M(x)$。
+
+\subsection{生成函数}
+
+第~\ref{ch:riemann_zeta_intro}~章定理~\ref{thm:mu_dirichlet}：当 $\operatorname{Re}s>1$ 时，
+\begin{equation}
+  F_{\mu}(s)
+  :=\sum_{n=1}^{\infty}\frac{\mu(n)}{n^{s}}
+  =\frac{1}{\zeta(s)}.
+  \label{eq:F_mu_ch6}
+\end{equation}
+此式由 Euler 乘积取倒数展开得到；在 $\operatorname{Re}s>1$ 上 $\zeta(s)\neq 0$
+（同章无零点定理），故 $1/\zeta$ 在该半平面全纯，级数绝对收敛。
+
+\subsection{代入 Perron 积分公式}
+
+\begin{theorem}{$M(x)$ 的 Perron 积分表示}{M_perron}
+设 $x>0$、$c>1$。则在 $x$ 非整数时
+\begin{equation}
+  M(x)
+  =\frac{1}{2\pi i}
+  \int_{c-i\infty}^{c+i\infty}
+  \frac{1}{\zeta(s)}\,\frac{x^s}{s}\,\mathrm{d}s;
+  \label{eq:M_perron}
+\end{equation}
+$x$ 为整数时右端为左右平均。
+\end{theorem}
+
+\begin{proof}
+由~\eqref{eq:M_def_ch6}、\eqref{eq:F_mu_ch6} 与 Perron 积分公式~\eqref{eq:perron_general_ch6}，
+\[
+  M(x)
+  =\frac{1}{2\pi i}
+  \int_{(c)} F_{\mu}(s)\frac{x^s}{s}\,\mathrm{d}s
+  =\frac{1}{2\pi i}
+  \int_{(c)}\frac{1}{\zeta(s)}\frac{x^s}{s}\,\mathrm{d}s.
+\]
+\end{proof}
+
+\paragraph{与黎曼猜想的联系（仅定位，不证明）}
+若能将~\eqref{eq:M_perron} 的竖线移至 $\operatorname{Re}s=\tfrac12+\varepsilon$，
+则 $M(x)$ 的增长由 $1/\zeta$ 在该线上的大小控制；
+$M(x)=O(x^{1/2+\varepsilon})$ 与黎曼猜想等价（精确表述见
+第~\ref{ch:riemann_explicit_formula}~章第~\ref{sec:mertens_rh}~节）。
+此处只需记住：对 $M$ 的积分分析与对 $\psi$ 的分析
+用同一 Perron 机制，只是 $F$ 从 $-\zeta'/\zeta$ 换成了 $1/\zeta$。
+
+
+%==============================================================
+\section{\texorpdfstring{$J(x)$}{J(x)} 的积分表示}
+\label{sec:J_integral}
+%==============================================================
+
+\subsection{从定义到系数}
+
+第~\ref{ch:elementary_number_theoretic_functions}~章第~\ref{sec:J}~节：
+\begin{equation}
+  J(x)
+  =\sum_{\substack{p^k\le x\\ k\ge 1}}\frac{1}{k}
+  =\sum_{2\le n\le x}\frac{\Lambda(n)}{\log n},
+  \label{eq:J_def_ch6}
+\end{equation}
+其中第二式在 $n$ 非素数幂时约定 $\Lambda(n)/\log n=0$，
+并在 $n=1$ 处无贡献。故可取
+\[
+  a_1=0,\qquad
+  a_n=\frac{\Lambda(n)}{\log n}\quad(n\ge 2),
+\]
+则 $J(x)=\sum_{n\le x}a_n$。
+
+\subsection{生成函数}
+
+第~\ref{ch:riemann_zeta_intro}~章~\eqref{eq:log_zeta_dirichlet}：当 $\operatorname{Re}s>1$ 时，
+\begin{equation}
+  F_{J}(s)
+  :=\sum_{n=2}^{\infty}\frac{\Lambda(n)}{\log n}\,n^{-s}
+  =\log\zeta(s).
+  \label{eq:F_J_ch6}
+\end{equation}
+该式来自对 Euler 乘积取对数
+\[
+  \log\zeta(s)=-\sum_{p}\log(1-p^{-s})=\sum_{p}\sum_{k\ge 1}\frac{p^{-ks}}{k},
+\]
+再按 $n=p^k$ 合并；系数在 $n=p^k$ 处恰为 $1/k=\Lambda(n)/\log n$。
+
+\subsection{代入 Perron 积分公式}
+
+\begin{theorem}{$J(x)$ 的 Perron 积分表示}{J_perron}
+设 $x>0$、$c>1$。则在 $x$ 非整数时
+\begin{equation}
+  J(x)
+  =\frac{1}{2\pi i}
+  \int_{c-i\infty}^{c+i\infty}
+  \log\zeta(s)\,\frac{x^s}{s}\,\mathrm{d}s;
+  \label{eq:J_perron}
+\end{equation}
+$x$ 为整数时右端为左右平均。
+\end{theorem}
+
+\begin{proof}
+由~\eqref{eq:J_def_ch6}、\eqref{eq:F_J_ch6} 与~\eqref{eq:perron_general_ch6} 即得。
+\end{proof}
+
+\paragraph{与 $\psi$ 的对照}
+$\psi$ 的系数是 $\Lambda$，生成函数是 $-\zeta'/\zeta$；
+$J$ 的系数是 $\Lambda/\log n$，生成函数是 $\log\zeta$。
+二者在 Dirichlet 级数层面满足形式关系
+\[
+  \frac{\mathrm{d}}{\mathrm{d}s}\log\zeta(s)
+  =\frac{\zeta'(s)}{\zeta(s)}
+  =-\sum_{n\ge 1}\Lambda(n)n^{-s},
+\]
+与系数层面「对 $n$ 乘以 $-\log n$」一致，但\textbf{部分和} $\psi$ 与 $J$ 之间的关系
+不是对积分再求导，而是第二章的 Stieltjes 恒等式——下一节核对两条路线是否相容。
+
+
+%==============================================================
+\section{\texorpdfstring{$\psi$}{psi} 与 \texorpdfstring{$J$}{J}：Stieltjes 关系与积分侧的一致性}
+\label{sec:psi_J_consistency}
+%==============================================================
+
+第~\ref{ch:elementary_number_theoretic_functions}~章第~\ref{subsec:J_psi_stieltjes}~节已在纯初等范围内证明：
+\begin{equation}
+  \psi(x)=\int_{2^-}^{x}\log t\,\mathrm{d}J(t),
+  \qquad
+  J(x)=\int_{2^-}^{x}\frac{1}{\log t}\,\mathrm{d}\psi(t)
+  \label{eq:psi_J_stieltjes_ch6}
+\end{equation}
+（阶梯上的 Stieltjes 积分，见附录~\ref{app:abel_stieltjes}）。
+这是\textbf{离散侧内部}的换元，不依赖 $\zeta$。
+
+现在两侧都有了 Perron 表示，应核对：把~\eqref{eq:J_perron}「形式地」代入
+左式，能否回到~\eqref{eq:psi_perron}。在 $x$ 固定、竖线 $c>1$ 上，
+由~\eqref{eq:J_perron} 与跳跃求和的合法性（有限个跳跃，或绝对收敛下的极限），
+\begin{align*}
+  \int_{2^-}^{x}\log t\,\mathrm{d}J(t)
+  &=\sum_{p^k\le x}\log(p^k)\cdot\frac{1}{k}
+  =\sum_{p^k\le x}\log p
+  =\psi(x),
+\end{align*}
+这正是~\eqref{eq:psi_J_stieltjes_ch6} 的证明内容，与是否写成积分无关。
+换言之：
+\begin{itemize}
+  \item Stieltjes 关系~\eqref{eq:psi_J_stieltjes_ch6} 保证 $\psi$ 与 $J$ 在离散侧互逆；
+  \item Perron 表示~\eqref{eq:psi_perron}、\eqref{eq:J_perron} 分别把它们送进复平面；
+  \item 两条路线\textbf{不互相推导}，但在系数与生成函数上相容
+        （$\Lambda$ 与 $\Lambda/\log n$，$\zeta'/\zeta$ 与 $\log\zeta$）。
+\end{itemize}
+后文若对 $J$ 的显式公式作 Stieltjes 变换，可回到 $\psi$ 的显式公式
+（第~\ref{ch:riemann_explicit_formula}~章），依据仍是~\eqref{eq:psi_J_stieltjes_ch6}。
+
+
+%==============================================================
+\section{\texorpdfstring{$\theta(x)$}{theta(x)}：由 \texorpdfstring{$\psi$}{psi} 反演再代入积分}
+\label{sec:theta_integral}
+%==============================================================
+
+\subsection{为何不直接对 $\theta$ 作 Dirichlet 级数}
+
+第一 Chebyshev 函数
+\[
+  \theta(x)=\sum_{p\le x}\log p
+\]
+对应的形式级数 $\sum_{p}(\log p)\,p^{-s}$ 是素数上的和，
+\textbf{不是} $\zeta$ 的有理式或对数的单一闭式。
+因此不宜强行写「$\theta$ 的 Perron + $\zeta$ 闭形式」；
+正确路径是第二章已经给出的 $\psi$--$\theta$ 反演。
+
+\subsection{反演公式}
+
+第~\ref{ch:elementary_number_theoretic_functions}~章：
+\begin{equation}
+  \psi(x)=\sum_{k\ge 1}\theta\!\left(x^{1/k}\right),
+  \qquad
+  \theta(x)=\sum_{k\ge 1}\mu(k)\,\psi\!\left(x^{1/k}\right).
+  \label{eq:theta_psi_inv_ch6}
+\end{equation}
+第二式由第一式经 Möbius 反演得到（同章证明轮廓：令 $\ell=km$，系数
+$\sum_{k\mid\ell}\mu(k)=[\ell=1]$）。
+
+\subsection{代入 $\psi$ 的积分表示}
+
+对固定的 $k$ 与 $x>1$，取 $y=x^{1/k}$。由定理~\ref{thm:psi_perron}，
+当 $c>1$ 时
+\[
+  \psi\!\left(x^{1/k}\right)
+  =\frac{1}{2\pi i}
+  \int_{c-i\infty}^{c+i\infty}
+  \Bigl(-\frac{\zeta'(s)}{\zeta(s)}\Bigr)
+  \frac{x^{s/k}}{s}\,\mathrm{d}s
+\]
+（$x^{1/k}$ 为整数时取左右平均）。代入~\eqref{eq:theta_psi_inv_ch6} 的第二式：
+
+\begin{theorem}{$\theta(x)$ 的积分型表示}{theta_perron}
+设 $x>1$、$c>1$。则
+\begin{equation}
+  \theta(x)
+  =\sum_{k\ge 1}\mu(k)\cdot
+  \frac{1}{2\pi i}
+  \int_{c-i\infty}^{c+i\infty}
+  \Bigl(-\frac{\zeta'(s)}{\zeta(s)}\Bigr)
+  \frac{x^{s/k}}{s}\,\mathrm{d}s,
+  \label{eq:theta_perron}
+\end{equation}
+其中对每个 $k$ 的积分在 $x^{1/k}$ 为整数时取左右平均；
+和式在 $k>\log x/\log 2$ 后自动为零（此时 $x^{1/k}<2$，$\psi=0$）。
+\end{theorem}
+
+\begin{proof}
+由~\eqref{eq:theta_psi_inv_ch6} 与定理~\ref{thm:psi_perron} 逐项代入即得。
+有限和与积分可交换。
+\end{proof}
+
+实务上很少直接分析~\eqref{eq:theta_perron}：通常先建立 $\psi$ 的显式公式，
+再经~\eqref{eq:theta_psi_inv_ch6} 回到 $\theta$。
+式~\eqref{eq:theta_perron} 的意义在于说明——$\theta$ 已经通过 $\psi$ 进入同一套
+「$-\zeta'/\zeta$ 的竖线积分」语言，无需另起一套生成函数。
+
+
+%==============================================================
+\section{\texorpdfstring{$\pi(x)$}{pi(x)}：由 \texorpdfstring{$J$}{J} 反演再代入积分}
+\label{sec:pi_integral}
+%==============================================================
+
+\subsection{反演公式}
+
+第~\ref{ch:elementary_number_theoretic_functions}~章第~\ref{subsec:J_pi_mobius}~节：
+\begin{equation}
+  J(x)=\sum_{k\ge 1}\frac{1}{k}\,\pi\!\left(x^{1/k}\right),
+  \qquad
+  \pi(x)=\sum_{n\ge 1}\frac{\mu(n)}{n}\,J\!\left(x^{1/n}\right).
+  \label{eq:pi_J_inv_ch6}
+\end{equation}
+第二式即~\eqref{eq:pi_from_J}；证明用 $\sum_{d\mid m}\mu(d)=[m=1]$。
+
+\subsection{代入 $J$ 的积分表示}
+
+\begin{theorem}{$\pi(x)$ 的积分型表示}{pi_perron}
+设 $x>1$、$c>1$。则
+\begin{equation}
+  \pi(x)
+  =\sum_{n\ge 1}\frac{\mu(n)}{n}\cdot
+  \frac{1}{2\pi i}
+  \int_{c-i\infty}^{c+i\infty}
+  \log\zeta(s)\,\frac{x^{s/n}}{s}\,\mathrm{d}s,
+  \label{eq:pi_perron}
+\end{equation}
+约定同定理~\ref{thm:theta_perron}（$x^{1/n}$ 的跳跃平均；大 $n$ 项为零）。
+\end{theorem}
+
+\begin{proof}
+由~\eqref{eq:pi_J_inv_ch6} 第二式与定理~\ref{thm:J_perron} 逐项代入。
+\end{proof}
+
+黎曼原稿与许多数值路线以 $J$ 的显式公式为主，再经~\eqref{eq:pi_J_inv_ch6} 得 $\pi$；
+式~\eqref{eq:pi_perron} 标明 $\pi$ 已进入 $\log\zeta$ 的竖线积分图景。
+
+\paragraph{与 $\theta$--$\pi$ 的 Abel 关系}
+第二章还有
+\[
+  \theta(x)=\int_{2^-}^{x}\log t\,\mathrm{d}\pi(t)
+\]
+（Abel / Stieltjes 分部，附录~\ref{app:abel_stieltjes}）。
+它与本节的「先 $J$ 再反演」是另一条离散侧通路：
+$\pi\leftrightarrow\theta$ 用对数权重，$\pi\leftrightarrow J$ 用素数幂与 Möbius。
+积分表示选定 $J$ 或 $\psi$ 为枢纽后，不再需要第三条独立的 Dirichlet 生成函数。
+
+
+%==============================================================
+\section{辅助对象：\texorpdfstring{$\lfloor x\rfloor$}{floor(x)} 与连续主项 \texorpdfstring{$\Li$}{Li}}
+\label{sec:floor_and_Li}
+%==============================================================
+
+\subsection{$\lfloor x\rfloor$：最简单的部分和}
+
+取 $a_n=1$，则 $A(x)=\lfloor x\rfloor$（$x$ 非整数时；整数点左右平均为 $x-\tfrac12$）。
+当 $\operatorname{Re}s>1$ 时 $F(s)=\zeta(s)$，故
+\begin{equation}
+  \lfloor x\rfloor
+  =\frac{1}{2\pi i}
+  \int_{c-i\infty}^{c+i\infty}
+  \zeta(s)\frac{x^s}{s}\,\mathrm{d}s
+  \qquad(c>1).
+  \label{eq:floor_perron}
+\end{equation}
+这是 Perron 机制的最简实例：系数全为 $1$，生成函数就是 $\zeta$ 本身。
+它不直接给出素数信息，但说明「$\zeta$ 的竖线积分恢复整数计数」与
+「$-\zeta'/\zeta$ 的竖线积分恢复加权素数幂计数」是同一套装置。
+
+\subsection{$\Li(x)$、$\li(x)$：不是部分和}
+
+偏移对数积分 $\Li(x)=\int_2^x\mathrm{d}t/\log t$ 与 $\li(x)$
+（见第~\ref{ch:logint_Ei}~章第~\ref{sec:Li}~节）
+\textbf{不是}某一算术序列 $\{a_n\}$ 的部分和 $A(x)$，
+因此\textbf{没有}「对某个 $F=\sum a_n n^{-s}$ 代入 Perron 积分公式得到 $\Li$」这一步骤。
+
+它们出现在下一步——对~\eqref{eq:psi_perron} 或~\eqref{eq:J_perron}
+\textbf{向左移线}之后：
+\begin{itemize}
+  \item $s=1$ 处 $-\zeta'/\zeta$ 的留数贡献主项 $x$（$\psi$ 侧），
+        对应素数定理 $\psi\sim x$；
+  \item 对 $J$ 侧，相应主项与 $\li$ 相联系；
+  \item 平凡零点等处的留数给出较低阶修正。
+\end{itemize}
+因而 $\Li$、$\li$ 属于「移线 + 留数」之后的连续主项，
+不属于本章在 $\operatorname{Re}s>1$ 上完成的积分表示。
+比较 $\pi\sim\Li$ 用偏移版 $\Li$；显式公式正文常用 $\li$
+（完整分工见第~\ref{ch:logint_Ei}~章）。
+
+
+%==============================================================
+\section{推导一览与尚未完成的步骤}
+\label{sec:what_remains}
+%==============================================================
+
+\subsection{本章已完成的推导}
+
+将本节结果按逻辑顺序重述（均为 $c>1$，$x$ 非整数时取真值，整数点取左右平均）：
+
+\begin{enumerate}
+  \item \textbf{$\psi$}：
+        $\psi=\sum_{n\le x}\Lambda(n)$，
+        $\sum\Lambda n^{-s}=-\zeta'/\zeta$，
+        故
+        \[
+          \psi(x)
+          =\frac{1}{2\pi i}\int_{(c)}\Bigl(-\frac{\zeta'}{\zeta}(s)\Bigr)\frac{x^s}{s}\,\mathrm{d}s.
+        \]
+  \item \textbf{$M$}：
+        $M=\sum_{n\le x}\mu(n)$，
+        $\sum\mu n^{-s}=1/\zeta$，
+        故
+        \[
+          M(x)
+          =\frac{1}{2\pi i}\int_{(c)}\frac{1}{\zeta(s)}\frac{x^s}{s}\,\mathrm{d}s.
+        \]
+  \item \textbf{$J$}：
+        $J=\sum_{n\le x}\Lambda(n)/\log n$，
+        $\sum(\Lambda/\log n)\,n^{-s}=\log\zeta$，
+        故
+        \[
+          J(x)
+          =\frac{1}{2\pi i}\int_{(c)}\log\zeta(s)\frac{x^s}{s}\,\mathrm{d}s.
+        \]
+  \item \textbf{$\theta$}：
+        $\theta(x)=\sum_{k}\mu(k)\psi(x^{1/k})$，
+        再将第 1 项的积分代入，得~\eqref{eq:theta_perron}。
+  \item \textbf{$\pi$}：
+        $\pi(x)=\sum_{n}\frac{\mu(n)}{n}J(x^{1/n})$，
+        再将第 3 项的积分代入，得~\eqref{eq:pi_perron}。
+\end{enumerate}
+
+以上各步推演所依赖的数学关系，均已在前几章建立：
+系数与部分和的定义、反演见第~\ref{ch:elementary_number_theoretic_functions}~章；
+围道积分与全纯性见第~\ref{ch:complex_analysis_intro}~章；
+Perron 积分公式见第~\ref{ch:integral_transforms}~章；
+$F$ 与 $\zeta$ 的恒等式见第~\ref{ch:riemann_zeta_intro}~章。
+本章只是上述各章内容的综合应用。
+
+\subsection{Perron 积分被积函数定义域的扩展}
+
+本章得到的~\eqref{eq:psi_perron}--\eqref{eq:pi_perron} 中，积分路径取 $\operatorname{Re}s=c>1$，
+是第~\ref{ch:integral_transforms}~章 Perron 竖线积分的计算
+（第~\ref{subsec:perron_contour_method}~节）的\textbf{第一步}：
+部分和已等于竖线积分，但竖线仍停在 $F$ 的绝对收敛半平面内。
+
+\paragraph{为何要算留数；为何必须延拓}
+要直接计算 $A(x)$ 的结构，按该节步骤，须把竖线段补成闭围道，用\textbf{留数定理}把积分化为
+\[
+  \sum\operatorname{Res}\Bigl(F(s)\frac{x^s}{s}\Bigr)
+  \quad\text{（求和\textbf{仅对已在围道内部}的奇点）}.
+\]
+留数定理本身只回答：内部有哪些奇点，就加哪些留数——它\textbf{不}要求、也\textbf{不}保证
+被积函数的全部奇点都在围道内。
+
+若要把积分真正算成 $A(x)$ 的完整结构，则须让围道包住被积函数的\textbf{全部相关奇点}
+（它们可出现在任意高度以及更左的半平面，故需 $T\to\infty$ 并视需要左移侧边）。
+这已超出留数定理的适用范围，而进入定义域问题：
+这些奇点往往落在 $F$ 的\textbf{原定义域之外}；
+围道要合法进入该区域并包住它们，必须先把 $F$ 的定义域扩大，即进行\textbf{解析延拓}。
+这就是以后各章讨论的解析延拓的必要性。
+（第~\ref{ch:complex_analysis_intro}~章；跳跃核 $y^s/s$ 在 $y>1$ 时必须左闭以包住 $s=0$，
+已是「奇点在定义可见区域之外时，围道必须扩出去」的纯复分析实例。）
+
+\paragraph{简单例子：奇点在 $\operatorname{Re}s>1$ 之外}
+取第~\ref{ch:integral_transforms}~章表中最简的系数 $a_n=1$，则
+$F(s)=\zeta(s)$（$\operatorname{Re}s>1$），部分和 $A(x)=\lfloor x\rfloor$，且
+\[
+  \lfloor x\rfloor
+  \;=\;
+  \frac{1}{2\pi i}
+  \int_{(c)}\zeta(s)\frac{x^s}{s}\,\mathrm{d}s
+  \qquad(c>1).
+\]
+被积函数 $\zeta(s)x^s/s$ 在更大区域上至少有两处简单极点：
+\begin{itemize}
+  \item $s=1$：来自 $\zeta$ 的极点，留数为 $x$；
+  \item $s=0$：来自分母的 $1/s$（延拓后 $\zeta$ 在 $s=0$ 全纯且 $\zeta(0)\neq 0$），
+        留数为 $\zeta(0)$（后文可知 $\zeta(0)=-\frac12$）。
+\end{itemize}
+$s=1$ 落在竖线 $\operatorname{Re}s=c>1$ 的左侧附近，尚可讨论；
+\textbf{关键在于} $s=0$ 落在 $\operatorname{Re}s>1$ \textbf{之外}。
+在 Dirichlet 级数的定义域内根本看不到 $\zeta(0)$，
+也无法合法地把围道画进 $\operatorname{Re}s\le 1$ 去「包住」它。
+因此：
+\begin{enumerate}
+  \item 完整计算要求极限围道包住全部相关奇点（含 $s=0$）；
+  \item 围道若不能进入更大区域，就\textbf{包不住}这些奇点；
+  \item 要把 $F$ 的定义域扩大到围道与奇点所在之处，必须进行\textbf{解析延拓}。
+\end{enumerate}
+（即便 $s=1$ 与 $s=0$ 都已包住并取留数，一般仍不等于 $\lfloor x\rfloor$，
+因水平边与左侧竖边的贡献通常尚未消失，还须估计——那是「估边」问题，
+与此处「为包住奇点而须延拓」不是同一环。）
+
+主线上的 $F=-\zeta'/\zeta$（对应 $\psi$）遵循同一逻辑：
+除 $s=1$ 的极点（贡献主项 $x$）外，延拓后 $\zeta$ 的零点都成为 $-\zeta'/\zeta$ 的极点，
+且它们落在 $\operatorname{Re}s>1$ 之外；不延拓，$F$ 在那些点无定义，围道无法合法包住它们。
+具体移线与估边见第~\ref{ch:prime_number_theorem}、\ref{ch:riemann_explicit_formula}~章——
+本节只需建立「要包住全部相关奇点 $\Rightarrow$ 扩大定义域 $\Rightarrow$ 解析延拓」这一环。
+
+\paragraph{小结}
+留数定理：只对围道\textbf{内部}的奇点求和。
+要把求和范围扩到被积函数的全部相关奇点，在本书中就是把 $F$ 的定义域扩大到整个复平面——
+这正是后文\textbf{解析延拓}的直接动机之一。
+在 $\operatorname{Re}s>1$ 上，$F$ 可由级数或 Euler 乘积定义；
+一旦为包住奇点而左移（并增高）围道，就进入该定义失效的区域
+（第~\ref{ch:riemann_zeta_intro}~章）。
+
+\paragraph{后文步骤（预告）}
+\begin{enumerate}
+  \item 延拓 $\Gamma$ 与 $\zeta$，建立函数方程
+        （第~\ref{ch:gamma_function}--\ref{ch:riemann_zeta_continuation}~章）；
+  \item 用延拓后的 $-\zeta'/\zeta$ 把竖线左移，取出 $s=1$ 处留数得主项 $x$，
+        证明增加的边上的积分为 $0$，
+        通向素数定理（第~\ref{ch:prime_number_theorem}~章）；
+  \item 再按同一步骤把零点等全部相关奇点的留数纳入右端，
+        证明增加的边上的积分为 $0$，
+        得显式公式（第~\ref{ch:riemann_explicit_formula}~章；
+        围道变形见附录~\ref{app:contour}）。
+\end{enumerate}
+
+在完成这些之前，~\eqref{eq:psi_perron}--\eqref{eq:pi_perron} 应读作：
+在绝对收敛半平面上，数论阶梯已经有了含 $\zeta$ 的竖线积分表示——
+它们是后文推导显式公式的基础。
+
+
+%==============================================================
+\section*{本章小结与后续展望}
+\label{sec:summary_discrete_continuous}
+\addcontentsline{toc}{section}{本章小结与后续展望}
+%==============================================================
+
+本章在 $\operatorname{Re}s>1$ 上完成了从数论函数到积分表示的推导：
+
+\begin{itemize}
+  \item 对 $\psi$、$M$、$J$，路径是
+        「第二章定义 $\to$ 引用第五章已证的 $F$ $\to$ 代入 Perron 积分公式」；
+  \item 对 $\theta$、$\pi$，路径是
+        「第二章 Möbius 反演 $\to$ 化归 $\psi$ 或 $J$ $\to$ 再代入 Perron 积分公式」；
+  \item $\psi$ 与 $J$ 之间的 Stieltjes 关系保持离散侧一致性，
+        与积分表示并行不悖；
+  \item $\Li$、$\li$ 不由 Perron 直接给出，而属于移线后的主项。
+\end{itemize}
+
+下一章起进入延拓工具链：$\Gamma$ 函数、解析延拓的一般定义，
+以及 $\zeta$ 的全平面理论。有了它们，才能把本章竖线上的积分
+合法地移出 $\operatorname{Re}s>1$，并最终在第~\ref{ch:riemann_explicit_formula}~章
+写成含全部非平凡零点的显式公式。

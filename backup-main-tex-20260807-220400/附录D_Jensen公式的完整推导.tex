@@ -1,0 +1,75 @@
+
+\chapter{Jensen 公式证明的完整推导}
+\label{app:jensen}
+
+本附录给出复分析中 Jensen 公式的逐步完整证明。Jensen 公式将解析函数在圆周上的积分与其在圆盘内部的零点分布联系起来，是研究整函数增长性与零点密度的核心工具，也是证明 Hadamard 因子分解定理（见\ref{sec:xi-hadamard-product}节）与建立零点计数理论（见第\ref{ch:zero_distribution}章与第\ref{ch:riemann_explicit_formula}章）的基础：
+\[
+  \int_0^R \frac{n(r)}{r}\,\mathrm{d}r
+  = \frac{1}{2\pi}\int_0^{2\pi}\log|f(Re^{i\theta})|\,\mathrm{d}\theta
+  - \log|f(0)|,
+\]
+其中 $f(z)$ 在 $|z|\le R$ 内解析，$f(0)\neq 0$，在圆周 $|z|=R$ 上无零点，$n(r)$ 为 $|z|\le r$ 内零点的个数（计重数）。
+
+下面逐步推导，读者可逐行验证。
+
+\textbf{第 1 步：构造辅助函数 $g(z)$。}
+设 $a_1, \dots, a_n$ 为 $f$ 在开圆盘 $|z| < R$ 内的所有零点（计重数）。定义：
+\[
+  g(z) = f(z) \prod_{k=1}^n \frac{R^2 - \overline{a_k} z}{R(z - a_k)}.
+\]
+
+\textbf{第 2 步：验证 $g(z)$ 在 $|z| \le R$ 内解析且无零点。}
+每个因子 $\frac{R^2 - \overline{a_k} z}{R(z - a_k)}$ 在 $z=a_k$ 处分母为零，看似有极点。但注意分子在 $z=a_k$ 处的值为
+\[
+  R^2 - \overline{a_k}\cdot a_k = R^2 - |a_k|^2 > 0
+  \quad (\text{因为 } |a_k| < R),
+\]
+故该因子在 $z=a_k$ 处确实有一阶极点。由于 $f(z)$ 在 $a_k$ 处有一阶零点，两者精确相消，$g(z)$ 在 $a_k$ 处解析。此外，分子 $R^2 - \overline{a_k}z$ 在 $|z|\le R$ 内无零点（其唯一零点 $z=R^2/\overline{a_k}$ 的模为 $R^2/|a_k|>R$，在圆外），故 $g(z)$ 在 $|z|\le R$ 内无零点。
+
+\textbf{第 3 步：验证 $|g(Re^{i\theta})| = |f(Re^{i\theta})|$。}
+在圆周 $|z| = R$ 上，$z = Re^{i\theta}$，则：
+\[
+  \left| \frac{R^2 - \overline{a_k} z}{R(z - a_k)} \right|
+  = \frac{|R^2 - \overline{a_k} Re^{i\theta}|}{R|Re^{i\theta} - a_k|}
+  = \frac{R|R - \overline{a_k} e^{i\theta}|}{R|Re^{i\theta} - a_k|}
+  = \frac{|Re^{-i\theta} - \overline{a_k}|}{|Re^{i\theta} - a_k|}
+  = 1,
+\]
+因为 $|Re^{-i\theta} - \overline{a_k}| = |Re^{i\theta} - a_k|$（共轭关系）。因此每个因子的模为 $1$，故 $|g(Re^{i\theta})| = |f(Re^{i\theta})|$。
+
+\textbf{第 4 步：计算 $g(0)$。}
+代入 $z=0$：
+\[
+  g(0) = f(0) \prod_{k=1}^n \frac{R^2}{R(-a_k)} = f(0) \prod_{k=1}^n \left(-\frac{R}{a_k}\right).
+\]
+取模：
+\[
+  |g(0)| = |f(0)| \prod_{k=1}^n \frac{R}{|a_k|}.
+\]
+
+\textbf{第 5 步：应用平均值定理。}
+由于 $g(z)$ 在 $|z| \le R$ 内解析且无零点，$\log|g(z)|$ 是调和函数。由调和函数的平均值性质：
+\[
+  \log|g(0)| = \frac{1}{2\pi} \int_0^{2\pi} \log|g(Re^{i\theta})| \,\mathrm{d}\theta.
+\]
+代入 $|g(Re^{i\theta})| = |f(Re^{i\theta})|$ 和 $|g(0)| = |f(0)| \prod_{k=1}^n (R/|a_k|)$：
+\[
+  \log|f(0)| + \sum_{k=1}^n \log\frac{R}{|a_k|}
+  = \frac{1}{2\pi} \int_0^{2\pi} \log|f(Re^{i\theta})| \,\mathrm{d}\theta.
+\]
+
+\textbf{第 6 步：将零点求和转化为积分。}
+记 $n(r)$ 为 $|z| \le r$ 内零点的个数（计重数）。则：
+\[
+  \sum_{k=1}^n \log\frac{R}{|a_k|}
+  = \int_0^R \frac{n(r)}{r} \,\mathrm{d}r,
+\]
+这是因为将积分区间按 $|a_k|$ 分段：在 $[|a_k|, |a_{k+1}|)$ 上，$n(r)$ 为常数，积分贡献 $n(r) \cdot (\log|a_{k+1}| - \log|a_k|)$，求和后即为 $\sum \log(R/|a_k|)$。
+
+\textbf{第 7 步：得到 Jensen 公式。}
+代入并移项：
+\[
+  \int_0^R \frac{n(r)}{r} \,\mathrm{d}r
+  = \frac{1}{2\pi} \int_0^{2\pi} \log |f(Re^{i\theta})| \,\mathrm{d}\theta - \log |f(0)|.
+\]
+这就是 Jensen 公式。$\square$

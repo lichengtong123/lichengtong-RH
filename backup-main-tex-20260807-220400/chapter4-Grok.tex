@@ -1,0 +1,636 @@
+\chapter{积分变换：从 Fourier、Mellin 变换到 Perron 公式}\label{ch:integral_transforms}
+\section{引言}\label{sec:intro_integral_transforms}
+
+算术对象（如 $\psi(x)$、$J(x)$）是阶梯或跳跃的；与之对应的 Dirichlet 级数定义在复半平面上。
+连接二者的标准工具是积分变换，本书主要用到两类：
+
+\begin{itemize}
+  \item \textbf{Mellin 变换}：将定义在 $(0,\infty)$ 上的函数变为复变量 $s$ 的函数；在对数坐标下与 Fourier 变换等价。
+  \item \textbf{Perron 公式}：由 Dirichlet 级数沿竖直线的围道积分恢复部分和。
+\end{itemize}
+
+本章先回顾 Fourier 变换的必要事实，再定义 Mellin 变换及其与 Dirichlet 级数的联系，
+最后给出\textbf{一般} Perron 公式，并把第~\ref{ch:elementary_number_theoretic_functions}~章的系数
+$\Lambda,\mu$ 等代入（生成函数写成 $\sum a_n n^{-s}$）。
+$\zeta$ 的严格定义与 $F(s)$ 的闭形式（如 $-\zeta'/\zeta$、$1/\zeta$、$\log\zeta$）
+见第~\ref{ch:riemann_zeta_intro}~章；显式公式见第~\ref{ch:riemann_explicit_formula}~章。
+
+\paragraph{历史说明}
+Mellin 变换由 H.~Mellin 在 19 世纪末建立并研究；Perron 公式由 O.~Perron 在 20 世纪初给出，此后成为解析数论的基本求和工具。
+
+
+%==============================================================
+\section{Fourier 变换基础}
+%==============================================================
+
+\subsection{定义与基本性质}
+
+Fourier 变换是 Mellin 变换的基础，理解 Fourier 变换是理解更一般积分变换的前提。
+
+\begin{definition}{Fourier 变换}{}
+设$f \in L^1(\R)$（即$\int_{-\infty}^{\infty}|f(t)|dt < \infty$），其\textbf{Fourier 变换}定义为
+\[
+\hat{f}(\xi) = \int_{-\infty}^{\infty} f(t) e^{-2\pi i \xi t} dt, \qquad \xi \in \R.
+\]
+$L^1$ 仅保证 $\hat f$ 连续有界，\textbf{一般不能}直接反演。
+若额外有 $\hat f\in L^1(\R)$ 且 $f$ 连续（或 $f$ 为 Schwartz 函数），则\textbf{逆 Fourier 变换}成立：
+\[
+f(t) = \int_{-\infty}^{\infty} \hat{f}(\xi) e^{2\pi i \xi t} d\xi.
+\]
+在 $L^2$ 意义下，逆变换与 Plancherel 定理以 $L^2$ 极限理解。
+\end{definition}
+
+
+\paragraph{不同惯例}
+不同领域对 Fourier 变换的常数因子有不同约定。角频率形式$e^{-i\omega t}$也常见：
+\[
+\hat{f}(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt, \qquad
+f(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{f}(\omega) e^{i\omega t} d\omega.
+\]
+本章根据需要使用最方便的形式。
+
+
+\begin{theorem}{Fourier 变换的基本性质}{}
+设$f,g$有良好的衰减性（如 Schwartz 函数），则：
+\begin{enumerate}
+    \item \textbf{线性：} $\widehat{af+bg} = a\hat{f} + b\hat{g}$。
+    \item \textbf{平移：} $\widehat{f(t-a)}(\xi) = e^{-2\pi i a\xi}\hat{f}(\xi)$。
+    \item \textbf{调制：} $\widehat{e^{2\pi i a t}f(t)}(\xi) = \hat{f}(\xi - a)$。
+    \item \textbf{伸缩：} $\widehat{f(at)}(\xi) = \frac{1}{|a|}\hat{f}\!\left(\frac{\xi}{a}\right)$。
+    \item \textbf{卷积：} $\widehat{f*g} = \hat{f}\hat{g}$，其中$(f*g)(t)=\int_{-\infty}^{\infty}f(u)g(t-u)du$。
+    \item \textbf{Plancherel 定理：} $\int_{-\infty}^{\infty} |f(t)|^2 dt = \int_{-\infty}^{\infty} |\hat{f}(\xi)|^2 d\xi$。
+\end{enumerate}
+\end{theorem}
+
+\subsection{Poisson 求和公式}
+
+Poisson 求和公式连接级数与积分，在$\vartheta$函数的变换性质中起核心作用。
+
+\begin{theorem}{Poisson 求和公式}{}
+设$f$是 Schwartz 函数（光滑且衰减足够快），则
+\[
+\sum_{n=-\infty}^{\infty} f(n) = \sum_{k=-\infty}^{\infty} \hat{f}(k).
+\]
+\end{theorem}
+
+\begin{proof}[证明概要]
+考虑周期函数$F(t)=\sum_{n=-\infty}^{\infty}f(t+n)$，其 Fourier 系数为
+\[
+c_k = \int_0^1 F(t) e^{-2\pi i k t} dt = \int_{-\infty}^{\infty} f(t) e^{-2\pi i k t} dt = \hat{f}(k).
+\]
+因此$F(t)=\sum_{k=-\infty}^{\infty}\hat{f}(k)e^{2\pi i k t}$。取$t=0$即得。
+\end{proof}
+
+\begin{corollary}{对称形式}{}
+若$f$是偶函数，则
+\[
+f(0) + 2\sum_{n=1}^{\infty} f(n) = \hat{f}(0) + 2\sum_{k=1}^{\infty} \hat{f}(k).
+\]
+\end{corollary}
+
+\subsection{Gauss 型 Fourier 变换}\label{subsec:gauss_ft}
+
+Poisson 求和的典型输入是衰减极快的偶函数。其中最重要的一类是\textbf{Gauss 型}（Gauss 型）函数：其 Fourier 变换仍为同类函数。
+下文采用本章的归一化
+\[
+\hat{f}(\xi) = \int_{-\infty}^{\infty} f(x)\, e^{-2\pi i \xi x}\, dx.
+\]
+指数中的系数取为 $\pi$，正是为了使标准 Gauss 函数在该约定下自对偶，从而伸缩后不出现额外常数。
+
+\begin{lemma}{实 Gauss 积分}{}
+对 $a>0$，
+\[
+\int_{-\infty}^{\infty} e^{-a x^2}\, dx = \sqrt{\frac{\pi}{a}}.
+\]
+特别地，$\int_{-\infty}^{\infty} e^{-\pi x^2}\, dx = 1$。
+\end{lemma}
+
+\begin{proof}[证明概要]
+记 $I=\int_{-\infty}^{\infty} e^{-a x^2}\, dx$。则
+\[
+I^2 = \int_{-\infty}^{\infty}\!\int_{-\infty}^{\infty} e^{-a(x^2+y^2)}\,dx\,dy
+= \int_0^{2\pi}\!\int_0^{\infty} e^{-a r^2}\, r\,dr\,d\theta
+= 2\pi\cdot\frac{1}{2a} = \frac{\pi}{a},
+\]
+故 $I=\sqrt{\pi/a}$（取正值）。令 $a=\pi$ 即得第二式。
+\end{proof}
+
+\begin{theorem}{标准 Gauss 函数的自对偶性}{}\label{thm:gaussian_self_dual}
+设 $g(x)=e^{-\pi x^2}$。则
+\[
+\hat{g}(\xi) = e^{-\pi \xi^2} = g(\xi), \qquad \xi\in\R.
+\]
+\end{theorem}
+
+\begin{proof}
+\[
+\hat{g}(\xi)
+= \int_{-\infty}^{\infty} e^{-\pi x^2} e^{-2\pi i x\xi}\, dx
+= \int_{-\infty}^{\infty} \exp\bigl(-\pi\bigl(x^2 + 2 i x\xi\bigr)\bigr)\, dx.
+\]
+配平方：$x^2+2ix\xi=(x+i\xi)^2+\xi^2$，于是
+\[
+\hat{g}(\xi)
+= e^{-\pi\xi^2}
+\int_{-\infty}^{\infty} \exp\bigl(-\pi (x+i\xi)^2\bigr)\, dx.
+\]
+被积函数 $z\mapsto e^{-\pi z^2}$ 整，且在水平带 $|\operatorname{Im} z|\le |\xi|$ 内绝对可积、在无穷远处衰减；
+将积分路径由 $\R$ 平移至 $\R+i\xi$，得
+\[
+\int_{-\infty}^{\infty} e^{-\pi (x+i\xi)^2}\, dx
+= \int_{-\infty}^{\infty} e^{-\pi u^2}\, du = 1
+\]
+（末步用引理）。因此 $\hat{g}(\xi)=e^{-\pi\xi^2}$。
+\end{proof}
+
+\begin{theorem}{伸缩后的 Gauss 型 Fourier 变换}{}\label{thm:gaussian_ft_scaled}
+设 $t>0$，定义 $f_t(x)=e^{-\pi t x^2}$。则
+\[
+\hat{f}_t(\xi)
+= \int_{-\infty}^{\infty} e^{-\pi t x^2} e^{-2\pi i x\xi}\, dx
+= \frac{1}{\sqrt{t}}\, e^{-\pi \xi^2 / t}.
+\]
+\end{theorem}
+
+\begin{proof}
+注意 $f_t(x)=g(\sqrt{t}\, x)$，其中 $g(x)=e^{-\pi x^2}$。
+由 Fourier 变换的伸缩性质（$a=\sqrt{t}>0$），
+\[
+\hat{f}_t(\xi)
+= \frac{1}{\sqrt{t}}\, \hat{g}\!\left(\frac{\xi}{\sqrt{t}}\right)
+= \frac{1}{\sqrt{t}}\, e^{-\pi \xi^2 / t}.
+\]
+\end{proof}
+
+\paragraph{说明}
+\begin{enumerate}
+  \item 对每个固定的 $t>0$，$f_t$ 属于 Schwartz 类，故可进入 Poisson 求和。
+  \item $t$ 增大时 $f_t$ 在实轴上更尖、衰减更快；其 Fourier 变换 $\hat{f}_t$ 则更平缓（宽度按 $1/\sqrt{t}$ 变化），这正是尺度与频率的不确定性关系在 Gauss 型上的具体表现。
+  \item 下一小节对 $f_t$ 应用 Poisson 求和，即得 Jacobi $\vartheta$ 的模反演。
+\end{enumerate}
+
+\subsection{Jacobi \texorpdfstring{$\vartheta$}{theta} 的模反演}
+
+Jacobi $\vartheta$ 函数是推导$\zeta$函数方程的核心工具。
+其模反演的分析核心，是上一小节的 Gauss 型 Fourier 变换与 Poisson 求和的合用。
+
+\begin{definition}{Jacobi $\vartheta$ 函数}{}
+定义
+\[
+\vartheta(t) = \sum_{n=-\infty}^{\infty} e^{-\pi n^2 t}, \qquad t > 0.
+\]
+\end{definition}
+
+注意到$\vartheta(t) = 1 + 2\sum_{n=1}^{\infty} e^{-\pi n^2 t}$。
+对每个 $t>0$，级数绝对收敛，且在紧区间 $[t_0,\infty)$（$t_0>0$）上一致收敛。
+
+\begin{theorem}{$\vartheta$ 函数的函数方程（模反演）}{}
+对$t > 0$，有
+\[
+\vartheta(t) = \frac{1}{\sqrt{t}}\,\vartheta\!\left(\frac{1}{t}\right),
+\]
+或等价地
+\[
+\vartheta\!\left(\frac{1}{t}\right) = \sqrt{t}\,\vartheta(t).
+\]
+\end{theorem}
+
+\begin{proof}
+取 $f_t(x)=e^{-\pi t x^2}$。由定理~\ref{thm:gaussian_ft_scaled}，
+\[
+\hat{f}_t(\xi) = \frac{1}{\sqrt{t}}\, e^{-\pi \xi^2 / t}.
+\]
+$f_t$ 为 Schwartz 函数，应用 Poisson 求和公式：
+\[
+\sum_{n=-\infty}^{\infty} f_t(n)
+= \sum_{k=-\infty}^{\infty} \hat{f}_t(k),
+\]
+即
+\[
+\sum_{n=-\infty}^{\infty} e^{-\pi n^2 t}
+= \frac{1}{\sqrt{t}} \sum_{k=-\infty}^{\infty} e^{-\pi k^2 / t},
+\]
+也就是 $\vartheta(t) = t^{-1/2}\vartheta(1/t)$。
+\end{proof}
+
+\paragraph{与第~\ref{ch:riemann_zeta_continuation}~章的联系}
+上式给出 $t\leftrightarrow 1/t$ 下 $\vartheta$ 的尺度反演：当 $t\to 0^+$ 时，左侧级数不易直接控制，右侧则因 $1/t\to\infty$ 而指数衰减。
+第~\ref{ch:riemann_zeta_continuation}~章第二法正是利用这一互换，将与 $\vartheta$（或 $\omega=(\vartheta-1)/2$）相关的 Mellin 型积分在 $0$ 端与 $\infty$ 端重新组合，从而得到 $\zeta(s)$ 的全平面表示与函数方程。
+
+%==============================================================
+\section{Mellin 变换}
+%==============================================================
+
+\subsection{定义与收敛性}
+
+Mellin 变换是 Fourier 变换在对数坐标下的变形，特别适合处理函数的尺度伸缩性质。
+
+\begin{definition}{Mellin 变换}{}
+设函数$f(x)$定义在$(0,\infty)$上，其\textbf{Mellin 变换}定义为
+\[
+\mathcal{M}f(s) = \int_0^{\infty} f(x) x^{s-1} dx, \qquad s = \sigma + it.
+\]
+该积分在垂直带$a < \sigma < b$内收敛，其中$a,b$由$f$在$0$和$\infty$处的增长性决定。
+\end{definition}
+
+
+\paragraph{与 Fourier 变换的关系}
+作变量代换 $x = e^{u}$，则 $dx = e^{u}du$，于是
+\[
+\mathcal{M}f(\sigma + it) = \int_{-\infty}^{\infty} f(e^{u}) e^{\sigma u} e^{i t u} du.
+\]
+此处，若令 $g(u) = f(e^u) e^{\sigma u}$，则上式补齐常数后恰为 $g(u)$ 的 Fourier 变换 $\hat{g}(\xi) = \int_{-\infty}^\infty g(u) e^{-2\pi i \xi u} du$ 在频率 $\xi = -t/(2\pi)$ 处的值。因此，Mellin 变换的理论可以完全由 Fourier 变换的性质推导得出。
+
+抽象地说，普通 Fourier 变换对应\textbf{加法群} $(\mathbb{R},+)$ 上的调和分析；经 $x=e^u$ 后，Mellin 变换对应\textbf{乘法群} $\mathbb{R}_+^*=(0,\infty)$ 上的同一套理论（$x^{s}$ 为该群上的连续特征）。
+
+
+\subsection{基本性质}
+
+\begin{theorem}{Mellin 变换的性质}{}
+设$f$的 Mellin 变换在带$a < \Re(s) < b$内解析，则：
+\begin{enumerate}
+    \item \textbf{尺度伸缩：} $\mathcal{M}[f(ax)](s) = a^{-s} \mathcal{M}f(s)$，$a>0$。
+    \item \textbf{幂函数乘：} $\mathcal{M}[x^c f(x)](s) = \mathcal{M}f(s+c)$。
+    \item \textbf{微分：} $\mathcal{M}[f'(x)](s) = -(s-1)\mathcal{M}f(s-1)$，收敛域右移。
+    \item \textbf{对数乘：} $\mathcal{M}[(\log x)^n f(x)](s) = \frac{d^n}{ds^n}\mathcal{M}f(s)$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[尺度伸缩的证明]
+直接计算：令$y = ax$，则$x = y/a$，$dx = dy/a$，
+\[
+\mathcal{M}[f(ax)](s) = \int_0^{\infty} f(ax) x^{s-1} dx
+= \int_0^{\infty} f(y) \left(\frac{y}{a}\right)^{s-1} \frac{dy}{a}
+= a^{-s} \mathcal{M}f(s). \qedhere
+\]
+\end{proof}
+
+\subsection{逆 Mellin 变换}
+
+\begin{theorem}{逆 Mellin 变换}{}
+若$\mathcal{M}f(s)$在垂直线$\Re(s)=c$上绝对收敛，则
+\[
+f(x) = \frac{1}{2\pi i} \int_{c-i\infty}^{c+i\infty} \mathcal{M}f(s) x^{-s} ds.
+\]
+\end{theorem}
+
+\begin{proof}
+由 Mellin 变换与 Fourier 变换的关系，逆变换可由 Fourier 逆变换直接推导：令 $g(u) = f(e^u) e^{cu}$，由角频率形式的 Fourier 逆变换，有
+\[
+f(e^{u})e^{cu} = \frac{1}{2\pi} \int_{-\infty}^{\infty} \mathcal{M}f(c+it) e^{-i t u} dt,
+\]
+作变量代换 $s = c + it$，则 $ds = i\,dt$，积分路径变为从 $c-i\infty$ 到 $c+i\infty$ 的垂直线：
+\[
+f(e^u) e^{cu} = \frac{1}{2\pi i} \int_{c-i\infty}^{c+i\infty} \mathcal{M}f(s) e^{-(s-c)u} ds = \frac{e^{cu}}{2\pi i} \int_{c-i\infty}^{c+i\infty} \mathcal{M}f(s) x^{-s} ds.
+\]
+两边约去 $e^{cu}$ 并代入 $x = e^u$，即得逆 Mellin 变换公式。
+\end{proof}
+
+\subsection{Mellin 变换与 Dirichlet 级数的联系}
+
+\begin{theorem}{Dirichlet 级数与部分和的积分联系}{}
+设 $A(x) = \sum_{n \le x} a_n$（部分和函数），则其 Dirichlet 级数 $F(s) = \sum_{n=1}^{\infty} a_n n^{-s}$
+与$A(x)$通过 Mellin 变换相联系：
+\[
+F(s) = s \int_1^{\infty} A(x) x^{-s-1} dx, \qquad \Re(s) > \sigma_a,
+\]
+其中$\sigma_a$是 Dirichlet 级数的绝对收敛横坐标。
+\end{theorem}
+
+\begin{proof}
+在$[n, n+1)$上$A(x) = \sum_{k=1}^n a_k$为常数，因此
+\[
+\int_1^{\infty} A(x) x^{-s-1} dx = \sum_{n=1}^{\infty} \left( \sum_{k=1}^n a_k \right) \int_n^{n+1} x^{-s-1} dx.
+\]
+通过分部求和（Abel 求和；见附录~\ref{app:abel_stieltjes}）可得：
+$\int_1^{\infty} A(x) x^{-s-1} dx = \frac{1}{s} \sum_{n=1}^{\infty} a_n n^{-s} = \frac{F(s)}{s}$。
+\end{proof}
+
+这个公式是联系数论函数与 Dirichlet 级数的基本工具。
+
+%==============================================================
+\section{Perron 公式}\label{sec:perron}
+%==============================================================
+
+\subsection{跳跃函数与积分表示}
+
+Perron 公式的核心是将离散求和转化为围道积分。其基础是以下积分引理。
+
+\begin{lemma}{跳跃函数的积分表示}{}
+对 $c > 0$，定义函数
+\[
+\delta(y) = 
+\begin{cases}
+1, & y > 1, \\
+\frac{1}{2}, & y = 1, \\
+0, & 0 < y < 1.
+\end{cases}
+\]
+则对任意 $c > 0$ 及 $y > 0$，在 Cauchy 主值意义下有：
+\begin{equation}
+\delta(y) = \lim_{T\to\infty} \frac{1}{2\pi i} \int_{c-iT}^{c+iT} \frac{y^s}{s} ds.
+\label{eq:delta_integral}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+考虑积分
+\begin{equation}
+  I(T)
+  = \frac{1}{2\pi i}
+    \int_{c-iT}^{c+iT} \frac{y^s}{s}\,\mathrm{d}s.
+\end{equation}
+
+若 $y > 1$，则 $\log y > 0$。当 $\Re(s)\to-\infty$ 时，
+\begin{equation}
+  y^s = e^{s\log y}
+\end{equation}
+呈指数级衰减。在复平面左侧闭合围道，取由垂直线 $\Re(s)=c$（从 $c-iT$ 到 $c+iT$）、
+水平段 $[-R+iT,\,c+iT]$ 与 $[-R-iT,\,c-iT]$ 以及垂直段 $\Re(s)=-R$ 组成的矩形围道
+$\mathcal{C}_L$。由于 $c>0$，该围道内部包含被积函数的唯一极点 $s=0$，其留数为
+\begin{equation}
+  \Res\!\left(\frac{y^s}{s},\,0\right) = 1.
+\end{equation}
+由留数定理，在此闭合围道上的积分值为 $1$。当 $R\to\infty$ 时，由于 $y>1$，左侧及上下两边的积分贡献在大矩形极限下趋于 $0$，因此垂直线 $\Re(s)=c$ 上的积分在 $T\to\infty$ 时收敛于 $1$：
+\begin{equation}
+  \lim_{T\to\infty} I(T) = 1.
+\end{equation}
+
+若 $0 < y < 1$，则 $\log y < 0$。当 $\Re(s)\to+\infty$ 时，$y^s$ 呈指数级衰减。
+因此在右侧闭合围道，取由垂直线 $\Re(s)=c$ 及右侧大矩形 $\mathcal{C}_R$ 组成的闭曲线。
+由于 $c>0$，右半平面内不包含极点 $s=0$，故该围道上的积分为 $0$。同理，当围道右侧推向无穷时，各边贡献趋于 $0$，故垂直线上的积分收敛于 $0$：
+\begin{equation}
+  \lim_{T\to\infty} I(T) = 0.
+\end{equation}
+
+若 $y = 1$，直接计算积分：
+\begin{align}
+\lim_{T\to\infty} \frac{1}{2\pi i}
+  \int_{c-iT}^{c+iT} \frac{1}{s}\,\mathrm{d}s
+&= \lim_{T\to\infty} \frac{1}{2\pi}
+  \int_{-T}^{T} \frac{1}{c+it}\,\mathrm{d}t
+\notag\\
+&= \lim_{T\to\infty} \frac{1}{2\pi}
+  \int_{-T}^{T} \frac{c-it}{c^2+t^2}\,\mathrm{d}t.
+\end{align}
+虚部为奇函数，积分为 $0$；实部为偶函数，故
+\begin{equation}
+\lim_{T\to\infty} \frac{c}{\pi}
+  \int_{0}^{T} \frac{1}{c^2+t^2}\,\mathrm{d}t
+= \frac{c}{\pi}\cdot\frac{\pi}{2c}
+= \frac{1}{2}.
+\qedhere
+\end{equation}
+\end{proof}
+
+
+$y^s/s$的逆 Mellin 变换正是以$y$为变元的 Heaviside 阶跃函数（在跳跃点取$1/2$），
+是 Mellin 变换对$\delta(x-1)$的积分表示。
+
+
+\subsection{Perron 公式的陈述}
+
+\begin{theorem}{Perron 公式}{}
+设$F(s) = \sum_{n=1}^{\infty} a_n n^{-s}$在$\Re(s) > \sigma_a$绝对收敛，
+$A(x) = \sum_{n \le x} a_n$。则对$c > \max(0, \sigma_a)$和$x > 0$，
+\[
+A(x) = \frac{1}{2\pi i} \int_{c-i\infty}^{c+i\infty} F(s) \frac{x^s}{s} ds.
+\]
+特别地，若$x$不是序列$\{a_n\}$的跳跃点，则积分等于$A(x)$；若$x$恰好等于某$n$，
+则积分等于$A(x-0) + \frac{1}{2}a_n$（跳跃点的平均值）。
+\end{theorem}
+
+\begin{proof}
+由引理，
+\[
+A(x) = \sum_{n=1}^{\infty} a_n \delta\!\left(\frac{x}{n}\right) = \sum_{n=1}^{\infty} a_n \cdot \frac{1}{2\pi i} \int_{c-i\infty}^{c+i\infty} \frac{(x/n)^s}{s} ds.
+\]
+由绝对收敛性交换求和与积分，立即得到 Perron 公式。\qed
+\end{proof}
+
+\subsection{截断版本与误差估计}\label{subsec:perron_truncation}
+
+在实际应用中，需要将积分截断到有限区间$[c-iT,\, c+iT]$。设 $F(s)=\sum_{n\ge 1}a_n n^{-s}$ 在 $\Re(s)=c$ 上绝对收敛，则当 $x\notin\mathbb{N}$（或取左右平均 $A_0(x)$）时，标准截断 Perron 公式给出
+\[
+A(x)
+=
+\frac{1}{2\pi i}
+\int_{c-iT}^{c+iT} F(s)\frac{x^s}{s}\,\mathrm{d}s
++
+R(x,T),
+\]
+其中误差满足
+\[
+\bigl|R(x,T)\bigr|
+\le
+\sum_{n=1}^{\infty}
+|a_n|
+\Bigl(\frac{x}{n}\Bigr)^{c}
+\min\Bigl(1,\;\frac{1}{T\bigl|\log(x/n)\bigr|}\Bigr)
+\]
+（$n=x$ 时约定 $\min(1,\infty)=1$）。因此\textbf{不能}无条件地写成 $O(x^c/T)$：误差同时依赖系数 $\{a_n\}$ 与 $x$ 到最近整数的距离；仅当 $x$ 取半整数且对 $\{a_n\}$ 有额外界时，才可推出形如 $O\!\bigl(x^c(\log x)/T\bigr)$ 的常用推论。
+
+\subsection{Perron 竖线积分的计算}
+\label{subsec:perron_contour_method}
+
+Perron 积分公式把部分和写成 $\operatorname{Re}s=c$ 上的\textbf{竖线积分}
+\[
+  \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty} F(s)\frac{x^s}{s}\,\mathrm{d}s
+\]
+（实务上先取截断 $c\pm iT$，再令 $T\to\infty$）。
+公式本身只给出「$A$ 等于这条竖线上的积分」；若要\textbf{算出}主项与振荡结构，后文各章反复使用同一套方法——本节先写出计算步骤，完整实现见第~\ref{ch:riemann_explicit_formula}~章。
+
+\paragraph{通用步骤}
+\begin{enumerate}
+  \item \textbf{截断}：用有限竖线段 $[c-iT,c+iT]$ 代替无穷竖线，误差由上节估计。
+  \item \textbf{补成闭围道}：将竖线段与水平边、左侧（或右侧）竖边连成矩形等闭路
+        （第~\ref{ch:complex_analysis_intro}~章的 Cauchy 定理与留数定理适用）。
+        核 $y^s/s$ 的证明已是这一思想的特例（见跳跃核引理）。
+  \item \textbf{化为留数}：闭路积分等于 $2\pi i$ 乘以围道内部
+        $F(s)x^s/s$ 的留数之和。
+        奇点来自 $F$ 的极点/零点以及分母 $s=0$ 等。
+  \item \textbf{估边}：证明水平边（及必要时左侧竖边）的贡献在 $T\to\infty$ 或侧边左移时受控、趋于 $0$ 或可并入误差。
+  \item \textbf{结论}：竖线积分 $=$ 所取奇点的留数贡献 $+$ 误差，
+        从而 $A(x)$ 写成主项 $+$ 振荡项 $+$ 余项。
+\end{enumerate}
+
+\paragraph{前提与后文}
+步骤 3--4 要求 $F$ 在比 $\operatorname{Re}s=c$ \textbf{更大的区域}上有定义，并具备可用的增长估计。
+当 $F$ 最初仅由绝对收敛的 Dirichlet 级数给出时，必须先对 $F$ 做\textbf{解析延拓}
+（对 $\zeta$ 即第~\ref{ch:riemann_zeta_continuation}~章等），再左移竖线取留数。
+本书后文：
+第~\ref{ch:discrete_continuous}~章先写出 $\operatorname{Re}s>1$ 上的竖线表示；
+第~\ref{ch:riemann_explicit_formula}~章再按本节步骤移线，得到显式公式。
+
+\subsection{Perron 公式的常见形式}
+
+下表用第~\ref{ch:elementary_number_theoretic_functions}~章的系数写出部分和型实例
+（均取 $c$ 大于 $F$ 的绝对收敛横坐标；无需 $\zeta$ 的闭形式）：
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{系数} & \textbf{Perron 公式} \\
+\hline
+一般 $a_n$，$F=\sum a_n n^{-s}$ &
+$\displaystyle\sum_{n\le x}a_n
+=\dfrac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}F(s)\dfrac{x^s}{s}\,\mathrm{d}s$ \\
+\hline
+$a_n=\Lambda(n)$，$F=\sum\Lambda(n)n^{-s}$ &
+$\displaystyle\psi(x)
+=\dfrac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}F(s)\dfrac{x^s}{s}\,\mathrm{d}s$ \\
+\hline
+$a_n=1$，$F=\sum n^{-s}$ &
+$\displaystyle\lfloor x\rfloor
+=\dfrac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}F(s)\dfrac{x^s}{s}\,\mathrm{d}s$ \\
+\hline
+$a_n=\mu(n)$，$F=\sum\mu(n)n^{-s}$ &
+$\displaystyle M(x)
+=\dfrac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}F(s)\dfrac{x^s}{s}\,\mathrm{d}s$ \\
+\hline
+\end{tabular}
+\end{center}
+
+第~\ref{ch:riemann_zeta_intro}~章将证明：在 $\operatorname{Re}s>1$ 上
+$\sum n^{-s}=\zeta(s)$、$\sum\mu n^{-s}=1/\zeta$、
+$\sum\Lambda n^{-s}=-\zeta'/\zeta$，
+从而上表可改写为含 $\zeta$ 的惯用形式；
+各数论函数的完整推导见第~\ref{ch:discrete_continuous}~章。
+
+%==============================================================
+\section{Perron 积分表示：从数论函数到复分析}\label{sec:perron_integral_representation}
+%==============================================================
+
+上一节已建立一般 Perron 公式。把第~\ref{ch:elementary_number_theoretic_functions}~章的
+$A(x)=\sum_{n\le x}a_n$ 代入时，生成函数一律写成
+$F(s)=\sum a_n n^{-s}$（$\operatorname{Re}s$ 充分大），
+\textbf{不}在本章把 $F$ 改写为 $\zeta$ 的闭形式。
+
+$\psi$、$M$、$J$ 的闭形式积分表示，以及 $\theta$、$\pi$ 经反演代入的推导，
+见第~\ref{ch:discrete_continuous}~章（综合运用第~\ref{ch:elementary_number_theoretic_functions}--\ref{ch:riemann_zeta_intro}~章）。
+本章只保留一般形式与截断误差。移线与显式公式见第~\ref{ch:riemann_explicit_formula}~章。
+
+\subsection{数论函数的 Perron 积分表示}\label{subsec:perron_nt_summary}
+
+对算术序列 $\{a_n\}$，记 $F(s)=\sum a_n n^{-s}$（$\Re(s)>\sigma_a$）、$A(x)=\sum_{n\le x}a_n$。
+在 $c>\sigma_a$ 时（$x$ 非整数或取左右平均 $A_0$），
+\[
+  A(x)
+  \;=\;
+  \frac{1}{2\pi i}
+  \int_{c-i\infty}^{c+i\infty} F(s)\,\frac{x^s}{s}\,ds.
+\]
+部分和 $A(x)$ 见第~\ref{ch:elementary_number_theoretic_functions}~章；
+$F$ 与 $\zeta$ 的等式见第~\ref{ch:riemann_zeta_intro}~章；
+$\psi,M,J,\theta,\pi$ 的完整推导见第~\ref{ch:discrete_continuous}~章。
+
+\paragraph{后文中的位置}
+Perron 积分公式是把\textbf{算术部分和}写成\textbf{竖线积分}的桥梁。
+按第~\ref{subsec:perron_contour_method}~节，在 $F$ 已解析延拓且水平边可控之后移线取留数，
+即得黎曼\textbf{显式公式}（见第~\ref{ch:riemann_explicit_formula}~章）；
+素数定理的若干解析证明也沿同一思路。
+
+%==============================================================
+\section{Laplace 变换与 Perron 公式的渊源}
+%==============================================================
+
+Perron 公式实质上是 Laplace 逆变换（\textbf{Bromwich 积分}）在数论语境下的推广。Bromwich 积分的形式为
+\[
+f(t) = \frac{1}{2\pi i} \int_{c-i\infty}^{c+i\infty} F(s)\, e^{st}\, ds,
+\]
+而 Perron 公式将其中的连续参数$t$替换为离散的$\log n$，将$e^{st}$替换为$(x/n)^s = x^s \cdot n^{-s}$，并将 Laplace 积分换为 Dirichlet 级数的求和。两者的对应关系如下表所示：
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+{\hbadness=10000
+\begin{tabular}{|p{3.2cm}|p{4.6cm}|p{4.6cm}|}
+\hline
+\textbf{特征} & \textbf{Bromwich 积分（Laplace 逆变换）} & \textbf{Perron 公式} \\
+\hline
+被积函数 & $F(s)\, e^{st}$ & $\displaystyle\left(\sum_{n=1}^{\infty} a_n n^{-s}\right)\dfrac{x^s}{s}$ \\
+\hline
+积分路径 & $\Re(s)=c$（$c > \sigma_0$） & $\Re(s)=c$（$c > \sigma_a$） \\
+\hline
+结果 & $f(t)$（连续函数） & $\displaystyle\sum_{n\le x} a_n$（阶梯函数） \\
+\hline
+围道变形后 & 奇点留数之和 & 奇点留数之和 \\
+\hline
+\end{tabular}
+}% end \hbadness=10000 group
+\end{center}
+
+
+\paragraph{Wiener--Ikehara 定理与延伸阅读}
+Laplace 变换与\textbf{Wiener--Ikehara 定理}联合提供了素数定理的另一种简洁证明路径，是 Tauber 理论最重要的应用之一（参见 Widder, 1941, \textit{The Laplace Transform}）。在本书主线中，Perron 公式是显式公式推导的直接工具，Laplace 变换作为其理论渊源背景了解即可。围道变形有矩形围道（第~\ref{ch:zero_distribution}~章）和 Hankel 围道（第~\ref{ch:riemann_zeta_continuation}~章）两种等价形式，读者可结合各章的具体应用理解。
+
+此外，在解析数论中频繁出现的 \textbf{阶梯函数上的 Stieltjes 积分}
+（形如 $\int f\,\mathrm{d}A$，$A$ 为右连续阶梯；化为跳跃处有限和）
+\textbf{并非} Stieltjes 变换。
+工作定义、Abel 求和与分部公式见\textbf{附录~\ref{app:abel_stieltjes}}；
+第~\ref{ch:elementary_number_theoretic_functions}~章给出 $\theta$–$\pi$、$J$–$\psi$ 等应用
+（如 $\psi(x)=\int_{2^-}^x\log t\,\mathrm{d}J(t)$），可与本章 Perron 公式对照。
+
+
+%==============================================================
+\section{总结与核心公式}
+%==============================================================
+
+本章介绍了解析数论中的两类主要积分变换工具：
+
+\begin{enumerate}
+    \item \textbf{Mellin 变换}：将函数$f(x)$（$x>0$）变换为$\mathcal{M}f(s) = \int_0^{\infty} f(x)x^{s-1}dx$，
+          逆变换为$f(x) = \frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty} \mathcal{M}f(s) x^{-s} ds$。
+          Mellin 变换把 Dirichlet 级数与部分和联系起来（见上节）。
+    
+    \item \textbf{Perron 公式}：将数论函数的加权和表示为围道积分：
+          \[
+          \sum_{n\le x} a_n = \frac{1}{2\pi i} \int_{c-i\infty}^{c+i\infty} F(s) \frac{x^s}{s} ds,
+          \]
+          其中 $F=\sum a_n n^{-s}$。这是推导$\psi(x)$和$J(x)$显式公式的出发点。
+\end{enumerate}
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\centering
+\vspace{0.3em}
+\textbf{第四章：重要定理与核心公式汇总}\\[8pt]
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{lp{9.5cm}}
+\hline
+\textbf{名称} & \textbf{数学内容 / 公式表达} \\
+\hline
+Poisson 求和公式 &
+  $\displaystyle\sum_{n=-\infty}^{\infty} f(n) = \displaystyle\sum_{k=-\infty}^{\infty} \hat{f}(k)$ \\
+Gauss 型 Fourier 变换 &
+  $\displaystyle\int_{-\infty}^{\infty} e^{-\pi t x^2} e^{-2\pi i x\xi}\,dx
+  = t^{-1/2} e^{-\pi \xi^2/t}$
+  \quad $(t>0)$ \\
+Jacobi $\vartheta$ 函数方程 &
+  $\vartheta(t) = \displaystyle\sum_{n=-\infty}^{\infty} e^{-\pi n^2 t} = \dfrac{1}{\sqrt{t}}\,\vartheta\!\left(\dfrac{1}{t}\right)$ \\
+Mellin 变换 &
+  $\mathcal{M}f(s) = \displaystyle\int_0^\infty f(x)\, x^{s-1}\, dx$ \\
+& \quad 逆变换：$f(x) = \dfrac{1}{2\pi i}\displaystyle\int_{c-i\infty}^{c+i\infty}\mathcal{M}f(s)\,x^{-s}\,ds$ \\
+Perron 积分公式 &
+  $\displaystyle\sum_{n \le x} a_n = \dfrac{1}{2\pi i}
+    \displaystyle\int_{c-i\infty}^{c+i\infty}
+    \Bigl(\displaystyle\sum_{n=1}^\infty a_n n^{-s}\Bigr)\dfrac{x^s}{s}\,ds$ \\
+\hline
+\end{tabular}
+\vspace{0.3em}
+}}
+\end{center}
+
+\section*{本章小结与后续展望}
+\addcontentsline{toc}{section}{本章小结与后续展望}
+
+本章给出 Fourier、Mellin 与一般 Perron 公式，并把第~\ref{ch:elementary_number_theoretic_functions}~章的
+$\Lambda,\mu$ 等系数代入竖线积分（生成函数写成 $\sum a_n n^{-s}$）。
+Mellin 把合适的算术权重变为 Dirichlet 级数；Perron 则把部分和还原为垂直线积分。
+
+下一章严格定义 $\zeta(s)$（$\operatorname{Re}s>1$），并证明
+$\sum\Lambda n^{-s}=-\zeta'/\zeta$ 等，从而把本章的 $F(s)$ 写成含 $\zeta$ 的闭形式；
+第~\ref{ch:discrete_continuous}~章再对 $\psi,M,J,\theta,\pi$ 完成从定义到积分的推导。
+$\Gamma$ 与 $\zeta$ 的积分表示见第~\ref{ch:riemann_zeta_intro}~、\ref{ch:gamma_function}~章；
+解析延拓见第~\ref{ch:analytic_continuation_general}~章。
+Perron 将在第~\ref{ch:riemann_explicit_formula}~章用于 $\psi_0$ 的显式公式。

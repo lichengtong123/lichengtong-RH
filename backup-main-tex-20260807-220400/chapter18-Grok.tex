@@ -1,0 +1,350 @@
+\chapter{$\zeta$ 共形映射、Hardy 轨迹与 $\pi_0$ 逼近}\label{ch:visualization}
+
+上一章给出 $\pi_0$ 的数值逼近。本章\textbf{不引入新定理}，而用三组动画的关键帧，
+把前文章节已建立的同一套对象画成三种几何：
+\begin{enumerate}
+  \item \textbf{共形映射}（§\ref{sec:conformal_global}，图~\ref{fig:zeta_conformal_still}）：
+        $w=\zeta(s)$ 下的全局索引——网格、临界线、零点、极点同框。
+  \item \textbf{Hardy 轨迹}（§\ref{sec:spiral}，图~\ref{fig:hardy_z_spiral_still}）：
+        $s=\frac12+it$ 的值域路径；过原点 $\Leftrightarrow$ 临界线零点。
+  \item \textbf{$\pi_0$ 逼近}（§\ref{sec:explicit_vis}，图~\ref{fig:pi0_approx_start}--\ref{fig:pi0_approx_end}）：
+        同一组 $\rho_k$ 合成 $\pi_0(x)$，与 $\pi(x)$ 阶梯对照。
+\end{enumerate}
+三者顺序是：定义域总图 $\to$ 临界线切片 $\to$ 算术轴合成；
+分别交叉引用第~\ref{ch:riemann_zeta_intro}--\ref{ch:zero_distribution}~章、
+第~\ref{ch:riemann_numerical_approximation}~章的 $Z$ 与相位，
+以及第~\ref{ch:riemann_explicit_formula}--\ref{ch:riemann_numerical_approximation}~章的显式公式。
+正文只放截图；完整视频、Manim / Mathematica 源程序与运行环境说明见\textbf{书后附注}
+（\url{https://github.com/lichengtong123/lichengtong-RH}）。
+
+% ============================================================
+\section{共形映射：\texorpdfstring{$\zeta(s)$}{Zeta(s)} 的全局几何索引}
+\label{sec:conformal_global}
+% ============================================================
+
+在面向公众的黎曼猜想介绍中，$w=\zeta(s)$ 的网格变形（常称「保角变换」「\(\zeta\) 映射动画」）出现频率很高，
+几乎成为该主题的一种视觉标志：画面曲线运动迅速复杂、具有强烈的视觉与概念冲击。
+例如著名数学科普频道 3Blue1Brown（3B1B）关于 $\zeta$ 与解析延拓的专题中，
+就有以类圆曲线扩张、发散为主的映射演示；但通常没有同时表现：
+临界带与临界线在映射下的扭曲、相交，以及非平凡零点沿射线向值域原点 $w=0$ 的收缩。
+而把临界带、临界线、零点与 $s=1$ 极点等几何上重要的元素留在旁白或略去，
+作为数学普及无可厚非。
+
+本节借用上述画面语言，把书中已建立的对象标进同一变形过程：
+网格对应延拓后的 $\zeta$，红点对应零点（同伦下向 $w=0$ 收缩，并与 RH 的几何说法对照），
+中央发亮对应 $s=1$ 极点与素数主项的同一奇点。
+完整视频见书后附注；下文截图与文字对照前文章节。
+
+\subsection{设置与截图}
+
+动画对定义域网格作同伦
+\begin{equation}
+  f_\alpha(s)=(1-\alpha)s+\alpha\,\zeta(s),\qquad \alpha\in[0,1],
+  \label{eq:homotopy}
+\end{equation}
+$\alpha=0$ 为恒等，$\alpha=1$ 为 $w=\zeta(s)$。
+图~\ref{fig:zeta_conformal_still} 取变换进行中的一帧（画面约 $56\%$ 进度），
+已足以读出标记；完整变形见书后附注中的 \texttt{ZetaConformalMap.mp4}。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{全书图形/保角变换.pdf}
+\caption{$\zeta$ 共形映射动画关键帧。
+黄线为网格在 $f_\alpha$ 下的像；中央亮区对应 $s=1$ 邻域被推离有限平面；
+竖直绿带为临界带示意，红点为临界线上的非平凡零点（及其共轭）。
+完整动画见书后附注。}
+\label{fig:zeta_conformal_still}
+\end{figure}
+
+\subsection{画面与前文章节的对应}
+
+\paragraph{（1）网格：延拓后的 $\zeta$，不是半平面级数}
+终态必须用\textbf{解析延拓后}的 $\zeta$（第~\ref{ch:analytic_continuation_general}~、
+\ref{ch:riemann_zeta_continuation}~章）。
+仅在 $\operatorname{Re}(s)>1$ 的 Dirichlet 级数无法合法铺满临界带内的网格；
+画面能进入 $\operatorname{Re}(s)\le 1$ 并在零点、极点附近剧烈形变，
+正是“延拓已经完成”的几何回声。
+密网格窗有限（虚部约 $|t|\lesssim$ 数个单位），更高零点靠临界线外延标出——
+这是示意截断，不是临界带只到 $|t|\sim 1$。
+
+\paragraph{（2）两个公式：定义区与函数方程}
+与网格对照，宜分清下列两式的适用范围。
+
+\textbf{定义区}（第~\ref{ch:riemann_zeta_intro}~章；仅 $\operatorname{Re}s>1$）
+\[
+\zeta(s)=\sum_{n=1}^{\infty}n^{-s}
+=\prod_{p}\bigl(1-p^{-s}\bigr)^{-1}
+\quad(\operatorname{Re}s>1).
+\]
+它说明 $\zeta$ 在绝对收敛半平面上的来源（级数 / Euler 积），
+但\textbf{不能}单独支撑本图临界带内的网格。
+
+\textbf{函数方程}（第~\ref{ch:riemann_zeta_continuation}~章；与~\eqref{eq:asymmetric_fe_alt} 同型）
+\[
+\zeta(s)=2^s\pi^{s-1}\sin\!\Bigl(\frac{\pi s}{2}\Bigr)\Gamma(1-s)\,\zeta(1-s).
+\]
+它给出延拓后的全局关系（$\zeta(s)$ 与 $\zeta(1-s)$ 由 $\chi(s)$ 相联；
+对称形式 $\Lambda(s)=\Lambda(1-s)$、$\xi(s)=\xi(1-s)$ 见第~\ref{ch:xi_function}~章），
+\textbf{并不}依赖左右半平面网格的镜面演示。
+简言之：级数管定义区，函数方程管延拓后的全局约束；网格所实现的是延拓后的 $\zeta$。
+
+\paragraph{（3）红点：零点定义与 RH 的几何说法}
+红点取 $\rho=\frac12\pm it_k$（数值表与第~\ref{ch:zero_distribution}~章 $N(T)$ 所用同一组对象）。
+因 $\zeta(\rho)=0$，同伦下
+$f_\alpha(\rho)=(1-\alpha)\rho$，标记沿射线收向原点 $w=0$——
+这是零点定义在同伦下的直接推论。
+书中已证：非平凡零点必在临界带 $0<\operatorname{Re}s<1$ 内
+（第~\ref{ch:zero_distribution}~章）；
+\textbf{黎曼猜想（RH）}的几何说法是：这些“坍缩中心”还须落在临界线
+$\operatorname{Re}s=\frac12$ 的像上。
+图中零点取在临界线上，是已有数值结果与 RH 工作假设下的惯用画法，\textbf{不能代替 RH 的证明}。
+共轭成对红点对应 $\zeta(\overline s)=\overline{\zeta(s)}$（系数实）。
+
+\paragraph{（4）中央发亮：极点 $s=1$ 与素数主项}
+$\zeta$ 在 $s=1$ 的单极点（Laurent 主项 $1/(s-1)$，第~\ref{ch:riemann_zeta_intro}~章）
+使小圆周像的半径 $\sim 1/r\to\infty$，网格被推离有限平面。
+同一奇点在第~\ref{ch:riemann_explicit_formula}~章显式公式中贡献
+$\psi$ 的主项 $x$ 或 $J$ 的 $\li(x)$——
+值域侧“推向无穷”与素数计数的光滑主趋势是同一极点的两面。
+
+\paragraph{（5）保角性与零点、极点}
+第~\ref{ch:complex_analysis_intro}~章：全纯映射在 $f'\neq 0$ 处局部保角（夹角保持）。
+对固定 $\alpha$，$f_\alpha'=(1-\alpha)+\alpha\zeta'$，
+故仅在 $f_\alpha'\neq 0$ 的开集上局部正交，\textbf{不能}由画面断言全程处处保角。
+对终态 $w=\zeta(s)$：
+\begin{itemize}
+  \item 极点 $s=1$：$\zeta$ 无定义，无保角性；画面中央发亮对应网格被推向无穷；
+  \item 非平凡零点 $\rho$：$\zeta(\rho)=0$，保角性取决于 $\zeta'(\rho)$——
+        若为单零点则 $\zeta'(\rho)\neq 0$，局部仍保角（网格交角 $90^\circ$）；
+        若 $\zeta'(\rho)=0$（多重零点），该点不保角。
+        数值上已知大量零点为单零点，\textbf{一般单零性未证}；
+  \item 其余 $\zeta'\neq 0$ 处：局部保角，是画面中网格正交的数学依据。
+\end{itemize}
+共轭对称 $\zeta(\bar s)=\overline{\zeta(s)}$
+（第~\ref{ch:riemann_zeta_intro}~章第~\ref{sec:schwarz}~节，用第~\ref{ch:complex_analysis_intro}~章 Schwarz 反射）
+使上下半平面的像关于 $w$ 平面实轴对称，与画面上下成对标记一致。
+
+\paragraph{阅读边界}
+同伦~\eqref{eq:homotopy} 不是第三种延拓；证明仍在第~\ref{ch:riemann_zeta_continuation}~章。
+本图红线（临界线）$\to$ 下节螺旋；本图红点 $\rho_k$ $\to$ 第三节 $\pi_0$ 的频率。
+
+% ============================================================
+\section{Hardy 轨迹：\texorpdfstring{$Z$}{Z} 与过原点}
+\label{sec:spiral}
+% ============================================================
+
+\subsection{设置与截图}
+
+取共形图中的临界线 $s=\frac12+it$，画值域路径
+\[
+\vec r(t)
+=\Bigl(
+  \operatorname{Re}\zeta\bigl(\tfrac12+it\bigr),\;
+  \operatorname{Im}\zeta\bigl(\tfrac12+it\bigr),\;
+  t
+\Bigr).
+\]
+图~\ref{fig:hardy_z_spiral_still} 为配套动画关键帧。
+临界线不是任选竖线：函数方程 $\Lambda(s)=\Lambda(1-s)$（或 $\xi(s)=\xi(1-s)$）
+以 $\operatorname{Re}s=\frac12$ 为对称轴
+（第~\ref{ch:riemann_zeta_continuation}~、\ref{ch:xi_function}~章），
+故本节在函数方程所取的对称轴 $\operatorname{Re}s=\frac12$ 上观察 $\zeta$。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{全书图形/Hardy Z函数.pdf}
+\caption{Hardy 轨迹动画关键帧。
+白线：三维路径 $\vec r(t)$；绿线：在 $(\operatorname{Re}\zeta,\operatorname{Im}\zeta)$ 平面上的投影；
+橙 / 蓝：侧面投影 $\operatorname{Re}\zeta(\frac12+it)$、$\operatorname{Im}\zeta(\frac12+it)$。
+白点 $N_k$ 标临界线零点；底栏为 Hardy 极坐标~\eqref{eq:hardy_polar}。
+完整动画见书后附注。}
+\label{fig:hardy_z_spiral_still}
+\end{figure}
+
+\subsection{画面与前文章节的对应}
+
+\paragraph{（1）三维轨迹与第~\ref{ch:zero_distribution}~章的曲面}
+白螺旋是 $\vec r(t)$；绿线是它在值域复平面上的投影。
+侧面橙、蓝曲线
+\[
+t\mapsto\operatorname{Re}\zeta\bigl(\tfrac12+it\bigr),\qquad
+t\mapsto\operatorname{Im}\zeta\bigl(\tfrac12+it\bigr)
+\]
+恰是第~\ref{ch:zero_distribution}~章实部 / 虚部高度曲面
+在 $\sigma=\frac12$ 上的截线。
+零迹线 $A=\{\operatorname{Re}\zeta=0\}$、$B=\{\operatorname{Im}\zeta=0\}$ 的交点为非平凡零点；
+沿临界线仅当两投影在\textbf{同一} $t$ 同时过零，三维轨迹才过值域原点。
+
+\paragraph{（2）过原点与 Hardy $Z$（第~\ref{ch:riemann_numerical_approximation}~章）}
+底栏公式即该章的极坐标分解~\eqref{eq:hardy_polar}：
+\[
+\zeta\Bigl(\tfrac12+it\Bigr)
+=Z(t)\,e^{-i\vartheta(t)},
+\qquad
+Z(t)=e^{i\vartheta(t)}\zeta\Bigl(\tfrac12+it\Bigr)\in\mathbb{R}.
+\]
+实值性来自函数方程与 $\vartheta$ 的定义（该章正文短证）；
+$Z(\gamma)=0$ $\Leftrightarrow$ $\zeta(\frac12+i\gamma)=0$ $\Leftrightarrow$ 轨迹过原点。
+第~\ref{ch:riemann_numerical_approximation}~章用 Gram / 割线求零点，
+就是在找 $Z$ 的实根；本节是同一分解的几何显示。
+模长 $|Z(t)|$ 决定螺圈半径，相位 $-\vartheta(t)$（及 $Z$ 的符号）决定旋转。
+
+\paragraph{（3）螺距变密与 $N(T)$（第~\ref{ch:gamma_function}~、\ref{ch:zero_distribution}~章）}
+Riemann--Siegel 相位的 Stirling 展开给出
+$\vartheta'(t)\sim\frac12\log(t/2\pi)$，
+故角速度随 $t$ 对数增长，螺旋在 $t$ 轴上\textbf{越绕越密}。
+这与 Riemann--von Mangoldt 公式
+\[
+N(T)=\frac{T}{2\pi}\log\frac{T}{2\pi e}+O(\log T)
+\]
+的主项同源：平均零点间距 $\sim 2\pi/\log(t/2\pi)\to 0$。
+画面上的“变距”= 书中零点密度增大的几何说法，不是独立现象。
+
+\paragraph{（4）圈半径涨落}
+$|Z(t)|$ 在相邻零点间的局部极大决定各圈半径；
+形式 Dirichlet 级数在临界线上不绝对收敛，但相位 $t\log n$ 的叠加
+提示几乎周期型干涉（与第~\ref{ch:riemann_numerical_approximation}~章
+Riemann--Siegel 主项同一思想层次）。
+“杂乱变幅”来自多频率，非单一谐波。
+
+\paragraph{（5）与 RH、无零点区的关系}
+若 RH 成立，全部非平凡零点都表现为本螺旋的过原点事件。
+若存在 $\beta\neq\frac12$ 的零点，它\textbf{不会}出现在本曲线上
+（而在竖直线 $\operatorname{Re}s=\beta$ 的值域轨迹上）。
+$\sigma>1$ 上 Euler 乘积保证 $\zeta\neq 0$；$\sigma=1,\,t\neq 0$ 上无零点与素数定理等价
+（第~\ref{ch:prime_distribution}~、\ref{ch:zero_distribution}~章）——
+那些竖直线\textbf{不过}原点，与本图的“反复过原点”形成对照。
+
+\paragraph{阅读边界}
+曲线用延拓后的 $\zeta(\frac12+it)$，不是临界线上的绝对收敛级数。
+画面只显示有限段 $t$；$N(T)$ 描述 $T\to\infty$ 的平均行为。
+过原点标记的是\textbf{临界线上}的零点；RH 的全称断言不能由图代替。
+
+\paragraph{与前后节}
+过原点高度 $\{\gamma_k\}$ $=$ 共形图红点虚部 $=$ 下节 $\pi_0$ 振荡的频率表。
+
+% ============================================================
+\section{$\pi_0$ 逼近：从零点到素数阶梯}
+\label{sec:explicit_vis}
+% ============================================================
+
+\subsection{设置与截图}
+
+前两节把非平凡零点固定为：共形映射中坍向 $w=0$ 的点，
+以及螺旋上 $t=\gamma_k$ 的过原点事件。
+本节把\textbf{同一组} $\rho_k=\frac12+i\gamma_k$ 代入
+第~\ref{ch:riemann_numerical_approximation}~章的 Möbius--$\Ei$ 截断~\eqref{eq:pi_explicit_full}，
+在 $x$ 轴上画 $\pi_0$，并与 $\pi(x)$ 对照。
+动画变量主要是非平凡零点个数 $K$；
+图~\ref{fig:pi0_approx_start}、\ref{fig:pi0_approx_end}
+为开始帧（$K=31$）与结束帧（$K=500$），平凡零点均取 $M=10$。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{全书图形/黎曼逼近1.pdf}
+\caption{$\pi_0$ 逼近动画开始帧：非平凡零点 $K=31$，平凡零点 $M=10$。
+橙线 $\pi(x)$，青线为 $\pi_0$ 逼近；曲线较圆滑，棱角未充分形成。
+完整动画见书后附注。}
+\label{fig:pi0_approx_start}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{全书图形/黎曼逼近2.pdf}
+\caption{同一动画结束帧：$K=500$，$M=10$。
+$\pi_0$ 更贴阶梯平台，跳跃由振荡重构；有限零点逼近的波纹向素数间断点收缩
+（与第~\ref{ch:riemann_numerical_approximation}~章图~\ref{fig:pi_comparison_merged} 同旨；
+勿与 Fourier 级数的经典 Gibbs 常数混称）。
+完整动画见书后附注。}
+\label{fig:pi0_approx_end}
+\end{figure}
+
+\subsection{画面与前文章节的对应}
+
+\paragraph{（1）橙 / 青两条曲线}
+橙色 $\pi(x)=\#\{p\le x\}$ 是第~\ref{ch:elementary_number_theoretic_functions}~章的算术对象。
+青色是~\eqref{eq:pi_explicit_full} 的有限零点逼近 $\pi_0^{(K,M)}$，
+不是另造阶梯，而是第~\ref{ch:riemann_explicit_formula}~章显式公式对 $\pi$ 的数值拟合。
+
+\paragraph{（2）公式链路：$\psi\to J\to\pi$}
+第~\ref{ch:riemann_explicit_formula}~章主线先有
+\[
+\psi_0(x)=x-\sum_{\rho}\frac{x^{\rho}}{\rho}-\cdots,
+\]
+再经分部得 $J_0$，最后 Möbius 反演
+\[
+\pi(x)=\sum_{k\ge 1}\frac{\mu(k)}{k}\,J(x^{1/k})
+\]
+回到 $\pi$（第~\ref{ch:elementary_number_theoretic_functions}~章反演与 §\ref{sec:psi-to-pi}）。
+图中出现的 $J$ 式、$\mu$ 定义与 $\pi_0$ 的三重 $\Ei$ 和，
+即该链路在计算层的展开：
+\begin{itemize}
+  \item \textbf{主项} $\Ei(\log x)/n$ 型：来自极点 $s=1$——
+        与共形图中央“推离有限平面”同一奇点；
+  \item \textbf{非平凡项} $\Ei(\rho_k\log x/n)$：
+        $\rho_k$ 即前两节红点 / 螺旋过原点高度；
+  \item \textbf{平凡项} $\Ei((-2m/n)\log x)$：负偶数零点，随 $m$ 快衰（$M=10$ 已足）。
+\end{itemize}
+实现用 $\Ei$ 统一复宗量分支；$\Li$ 仅用于 $\pi\sim\Li$ 的误差比较
+（见第~\ref{sec:Li}~节与第~\ref{ch:riemann_numerical_approximation}~章）。
+
+\paragraph{（3）$K$ 增大：与第~\ref{ch:fourier_vs_riemann}~、\ref{ch:riemann_numerical_approximation}~章}
+更多 $\gamma_k$ 叠加 $\Rightarrow$ 平台更平、跳跃更陡。
+第~\ref{ch:fourier_vs_riemann}~章比较了 Fourier 整数频率与对数余弦 / 零点频率；
+此处是后者在 $\pi_0$ 上的动态版。
+有限 $K$ 下跳跃附近可有过冲与波纹，波纹可向间断点收缩——
+与第~\ref{ch:riemann_numerical_approximation}~章图~\ref{fig:pi_comparison_merged}
+（$K=20,60,200,500$ 静态对照）同一思想；逼近核与 Dirichlet 核不同，
+过冲比例\textbf{不必}等于经典 Gibbs 约 $9\%$（第~\ref{ch:fourier_vs_riemann}~章）。
+评价宜看\textbf{整体波形}；素数点处有限项逼近收敛于中值 $\pi(p)-\frac12$，
+青线一般不等于 $\pi(p)$。
+
+\paragraph{（4）振幅、$\beta_k$ 与 RH}
+零点项振幅含因子 $x^{\beta_k}$（对 $\psi$ 约为 $x^{\beta}/|\rho|$）。
+此处取 $\beta_k=\frac12$（临界线零点表），即在 RH 工作假设下运行；
+若某 $\beta>\frac12$，该项会在更大尺度上主导（第~\ref{ch:prime_distribution}~章
+von Koch 型误差与第~\ref{ch:riemann_explicit_formula}~章振幅分析）。
+波形随 $K$ 改善只说明有限零点逼近有效，\textbf{不能}由此证明 RH 或素数定理。
+
+\paragraph{阅读边界}
+\eqref{eq:pi_explicit_full} 在有限 $K,M,N$ 时为近似；
+完整等式需对称求和并处理条件收敛（第~\ref{ch:riemann_explicit_formula}~章）。
+窗 $x\le 200$ 仅便于观看；大 $x$ 需更大 $K$ 与更稳的 $\Ei$ 求值。
+
+% ============================================================
+\section{三条示意的逻辑串联}
+% ============================================================
+
+\begin{center}
+共形映射（$\rho$ 在定义域）
+$\;\longrightarrow\;$
+Hardy 轨迹（$t=\gamma$ 过原点）
+$\;\longrightarrow\;$
+$\pi_0$ 逼近（$\gamma$ 为阶梯频率）
+\end{center}
+
+\begin{itemize}
+  \item \textbf{零点}：映射中的红点 $\to$ 轨迹过原点的高度 $\to$ 素数阶梯振荡频率
+        （同一 $\{\rho_k\}$ 的三种角色）。
+  \item \textbf{极点 $s=1$}：共形映射中推离有限平面 $\to$ $\pi_0$ 的光滑主项。
+  \item \textbf{函数方程/$\xi$}：保证临界线为对称轴、零点可作 Hadamard / 显式公式骨架
+        （第~\ref{ch:xi_function}~、\ref{ch:riemann_explicit_formula}~章已证）。
+\end{itemize}
+叙事与 1859 年论文一致：先 $\zeta$ 的全局与零点，再进入素数计数；
+本章三条示意按这一逻辑顺序衔接。
+全文知识谱系底图见第~\ref{ch:spectrum_map}~章图~\ref{fig:function-relations}。
+
+\section*{本章小结与后续展望}
+\addcontentsline{toc}{section}{本章小结与后续展望}
+
+本章以三组几何示意对照前文章节：
+$\zeta$ 共形映射（全局几何索引）、Hardy 轨迹（临界线上 $Z\,e^{-i\vartheta}$ 与 $N(T)$）、
+$\pi_0$ 逼近（算术轴上的阶梯拟合）。
+每节交叉引用前文章节的定义、函数方程、零点理论与数值公式；
+证明与误差分析仍以第~\ref{ch:riemann_zeta_continuation}--\ref{ch:riemann_numerical_approximation}~章为准。
+完整动画与源码见\textbf{书后附注}及 GitHub 仓库 \url{https://github.com/lichengtong123/lichengtong-RH}。
+
+\paragraph{后续展望}
+下一章解读 Riemann 1859 年原稿（第~\ref{ch:riemann_original_interpretation}~章），
+在数值与几何工具齐备之后回到历史源头；再后为当代前沿简介
+（第~\ref{ch:contemporary_research}~章）。
