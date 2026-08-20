@@ -16,6 +16,18 @@
 | `docs/` | 运行环境与安装说明 |
 | `images/` | 静态图件；含 `黎曼猜想知识谱系关系图.pdf`（全文着色总图） |
 
+## 第 18 章浏览器交互页
+
+书中第 18 章（\(\zeta\) 共形映射、Hardy 轨迹与 \(\pi_0\) 逼近）正文只放截图；下列页面可在浏览器中直接打开、交互查看，与章内三组示意一一对应（GitHub Pages，无需克隆仓库）：
+
+| 示意内容（书中） | 地址 |
+|------------------|------|
+| 共形映射 | https://lichengtong123.github.io/lichengtong-RH/Conformal-100.html |
+| Hardy 轨迹 | https://lichengtong123.github.io/lichengtong-RH/Hardy.html |
+| \(\pi_0\) 逼近 | https://lichengtong123.github.io/lichengtong-RH/J2pi.html |
+
+仓库根目录中的同名 `.html` 即上述页面源文件。数值动画为示意，不构成定理证明。
+
 ## 视频与 Manim 脚本（一一对应）
 
 文件名中英文、空格与书中称谓一致。视频在 `videos/`，脚本在 `manim/`。
