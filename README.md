@@ -18,12 +18,12 @@
 
 ## 第 18 章浏览器交互页
 
-书中第 18 章（\(\zeta\) 共形映射、3B1B 变换、Hardy 轨迹与 \(\pi_0\) 逼近）正文只放截图；下列页面可在浏览器中直接打开、交互查看，与章内四组示意一一对应（GitHub Pages，无需克隆仓库）：
+书中第 18 章（\(\zeta\) 共形映射、3B1B 变换、Hardy 轨迹与 \(\pi_0\) 逼近：视频动画示意）正文只放截图；下列页面可在浏览器中直接打开、交互查看。章内主线为三条动画（共形映射、Hardy 轨迹、\(\pi_0\) 逼近）；3B1B 为对共形映射的比较（GitHub Pages，无需克隆仓库）：
 
 | 示意内容（书中） | 地址 |
 |------------------|------|
 | 共形映射 | https://lichengtong123.github.io/lichengtong-RH/Conformal-100.html |
-| 3B1B 保角变换 | https://lichengtong123.github.io/lichengtong-RH/3B1B.html |
+| 3B1B 变换（对共形映射的比较） | https://lichengtong123.github.io/lichengtong-RH/3B1B.html |
 | Hardy 轨迹 | https://lichengtong123.github.io/lichengtong-RH/Hardy.html |
 | \(\pi_0\) 逼近 | https://lichengtong123.github.io/lichengtong-RH/J2pi.html |
 
@@ -36,7 +36,7 @@
 | 示意内容（书中） | 视频 | Manim 脚本 | 场景类名（脚本内） |
 |------------------|------|------------|-------------------|
 | \(\zeta\) 共形映射 | `videos/ζ 共形映射.mp4` | `manim/ζ 共形映射.py` | `ZetaConformalMap` |
-| \3B1B 保角变换 | `videos/3B1B.mp4` | `manim/3B1B.py` | `FullPlaneZeta` |
+| 3B1B 变换（对共形映射的比较） | `videos/3B1B.mp4` | `manim/3B1B.py` | `FullPlaneZeta` |
 | Hardy 轨迹 | `videos/Hardy 轨迹.mp4` | `manim/Hardy 轨迹.py` | `zeta_3D_18H` |
 | 素数计数 \(\pi_0(x)\) 逼近 | `videos/素数计数公式π0(x)逼近.mp4` | `manim/素数计数公式π0(x)逼近.py` | `RiemannVisualization1800log2` |
 
