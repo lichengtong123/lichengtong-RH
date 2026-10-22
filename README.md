@@ -6,13 +6,13 @@
 
 ## 在线观看书中动画
 
-书中第 20 章只印关键帧，完整动画见以下视频文件，可下载后用系统播放器观看；支持视频预览的浏览器也可直接打开，无需安装 Manim：
+书中第 20 章只印关键帧，完整动画可通过以下播放页观看，也可下载视频，无需安装 Manim：
 
 | 书中内容 | 地址 |
 |----------|------|
-| 二维 ζ 同伦（ζ 映射） | [视频](videos/ZetaConformalMap.mp4) |
-| Hardy 轨迹 | [视频](videos/zeta_3D_18H.mp4) |
-| π₀ 逼近 | [视频](videos/RiemannVisualization1800log2.mp4) |
+| 二维 ζ 同伦（ζ 映射） | [播放](https://lichengtong123.github.io/lichengtong-RH/videos/zeta.html) |
+| Hardy 轨迹 | [播放](https://lichengtong123.github.io/lichengtong-RH/videos/hardy.html) |
+| π₀ 逼近 | [播放](https://lichengtong123.github.io/lichengtong-RH/videos/pi0.html) |
 
 ## 目录
 
