@@ -1,0 +1,15 @@
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #202124; background: #f5f6f7; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+header { margin-bottom: 20px; }
+h1 { font-size: 26px; line-height: 1.4; margin: 12px 0 0; overflow-wrap: anywhere; }
+a { color: #155d83; text-underline-offset: 4px; }
+a:focus-visible { outline: 2px solid #155d83; outline-offset: 5px; }
+video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #fff; object-fit: contain; }
+nav { display: flex; flex-wrap: wrap; gap: 16px 24px; padding: 20px 0; border-bottom: 1px solid #cbd0d5; }
+nav a[aria-current="page"] { color: #202124; font-weight: 700; text-decoration-thickness: 2px; }
+footer { padding-top: 20px; font-size: 14px; line-height: 1.7; }
+footer a { display: inline-block; margin-right: 20px; }
+footer p { color: #555; }
+@media (max-width: 600px) { main { padding: 16px; } h1 { font-size: 22px; } }
