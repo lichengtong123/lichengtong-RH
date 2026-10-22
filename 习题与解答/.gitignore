@@ -1,1 +1,10 @@
 .DS_Store
+*.aux
+!书稿标签.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.xdv
+*.fls
+*.fdb_latexmk

@@ -1,0 +1,813 @@
+% ============================================================
+% 《素数计数与黎曼猜想》参考习题 · 第一部（第 1–6 章）
+% 编译：XeLaTeX，连续两次。书内编号由同目录 书稿标签.aux 提供；
+% 书稿改版后运行 更新书稿标签.sh 再编译，编号自动随书稿更新。
+% ============================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[left=2.6cm,right=2.6cm,top=2.6cm,bottom=2.6cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[ItalicFont=Songti SC]{Songti SC}
+\setCJKsansfont[ItalicFont=Songti SC]{Songti SC}
+\setCJKmonofont[ItalicFont=Songti SC]{Songti SC}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,array,enumitem,fancyhdr,xcolor}
+\usepackage{listings}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\externaldocument[B-]{书稿标签}
+
+% ---------- 记号（与书稿一致） ----------
+\DeclareMathOperator{\Li}{Li}
+\DeclareMathOperator{\li}{li}
+\DeclareMathOperator{\Res}{Res}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\dd}{\,\mathrm{d}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+% ---------- 书内引用：编号取自书稿，不生成外部链接 ----------
+\newcommand{\bref}[1]{\ref*{B-#1}}
+
+% ---------- 难度标记 ----------
+\newcommand{\lvI}{$\bigstar$\,基础}
+\newcommand{\lvII}{$\bigstar\bigstar$\,推导}
+\newcommand{\lvIII}{$\bigstar\bigstar\bigstar$\,延伸}
+
+% ---------- 题目、提示、解答的统一格式 ----------
+\newcommand{\Q}[3]{%
+  \par\addvspace{1.1em}\noindent
+  \hypertarget{q:#1}{}\textbf{习题 #1}\quad\textbf{#3}\hfill{\small #2}\par
+  \nopagebreak\smallskip}
+\newcommand{\Hint}[1]{%
+  \par\addvspace{0.8em}\noindent
+  \hypertarget{h:#1}{}\textbf{#1}\quad{\small（\hyperlink{q:#1}{题目}\ $\cdot$\ \hyperlink{s:#1}{解答}）}\quad}
+\newcommand{\Sol}[2]{%
+  \par\addvspace{1.2em}\noindent
+  \hypertarget{s:#1}{}\textbf{习题 #1\quad #2}\hfill{\small（\hyperlink{q:#1}{题目}）}\par
+  \nopagebreak\smallskip}
+\newcommand{\toHint}[1]{\hfill{\small\hyperlink{h:#1}{提示}\ $\cdot$\ \hyperlink{s:#1}{解答}}}
+
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=2.2em}
+\setlist[enumerate,1]{label=(\alph*)}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\linespread{1.18}
+\allowdisplaybreaks
+
+\lstset{basicstyle=\ttfamily\small,columns=fullflexible,frame=single,
+  framerule=0.3pt,rulecolor=\color{gray!60},xleftmargin=1em,xrightmargin=1em,
+  breaklines=true,showstringspaces=false}
+
+\newcommand{\versiondate}{2026 年 10 月 22 日}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第一部}
+\fancyhead[R]{\small 初稿 \versiondate}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\renewcommand{\contentsname}{目录}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries 参考习题 · 第一部\par}
+\vspace{0.6em}
+{\large 问题与算术准备（第 1–6 章）\par}
+\vspace{0.6em}
+{\normalsize 李成桐《素数计数与黎曼猜想：$\zeta$ 函数、零点与显式公式》配套资源\par}
+\vspace{0.3em}
+{\small 版本：\versiondate（初稿，尚未逐题复核）\par}
+\end{center}
+
+\vspace{0.8em}
+\section*{使用说明}
+
+本书是导读型专著，正文论证自足完整，不设习题。这里的题目供希望通过练习检查和加深理解的读者自选使用，不做也不影响阅读正文。
+
+\begin{itemize}
+  \item \textbf{三档难度。}
+    \lvI：检查定义、结论与具体计算；
+    \lvII：独立完成正文中的关键推导或其变式；
+    \lvIII：需要少量正文以外的论证或数值实验，供有余力的读者选做。
+  \item \textbf{题目、提示、解答分开。}
+    建议先独立思考，再看提示，最后对照解答。三部分之间可点击题号互相跳转。
+  \item \textbf{书内编号。}
+    题中「定理~\bref{thm:pnt}」「式~(\bref{eq:J_from_pi})」「第~\bref{sec:perron}~节」等编号均自动取自当前书稿；书稿改版后重新编译本文件，编号随之更新。
+  \item \textbf{固定题号。}
+    每题编号（如 2.3）一经发布不再改动；删去的题号留空，不由新题顶替，新题接续编号。反馈时请注明题号。
+  \item \textbf{数值。}
+    数值题的参考值用 Python 的 \texttt{mpmath} 计算，给出的位数足以核对；「$\approx$」表示四舍五入。
+\end{itemize}
+
+本批题目为初稿，题目可解性与解答仍待作者逐题复核。发现错误或表述不清，请在配套仓库的 Issues 中注明题号与具体位置。
+
+\tableofcontents
+
+% ============================================================
+\newpage
+\part*{一、题目}
+\addcontentsline{toc}{part}{一、题目}
+% ============================================================
+
+\section*{第 \bref{ch:prime_distribution} 章\quad 素数分布：从古典经验公式到解析数论}
+\addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:prime_distribution} 章\quad }{}素数分布：从古典经验公式到解析数论}
+
+\Q{1.1}{\lvI}{Legendre 型近似与 $\Li$ 的比较}
+记 $L_A(x)=x/(\log x-A)$，其中 $A=1.08366$ 为 Legendre 的拟合常数。
+\begin{enumerate}
+  \item 对 $x=10^4$、$10^6$，计算 $x/(\log x-1)$、$L_A(x)$ 与 $\Li(x)$，并与表~\bref{tab:pix} 中的 $\pi(x)$ 比较。哪个近似最好？
+  \item 已知 $\pi(10^8)=5\,761\,455$，$\pi(10^{12})=37\,607\,912\,018$，$\pi(10^{18})=24\,739\,954\,287\,740\,860$。计算这三处的 $\pi(x)-L_A(x)$ 与 $\pi(x)-\Li(x)$。
+  \item 用式~(\bref{eq:Li-asymptotic}) 与式~(\bref{eq:legendre-denom-expand}) 解释 (a)(b) 的现象：为什么拟合常数在中等范围占优，$x$ 增大后却不如 $\Li$？
+\end{enumerate}
+\toHint{1.1}
+
+\Q{1.2}{\lvII}{渐近展开的最优截断}
+记 $t_k(x)=(k-1)!\,x/(\log x)^k$，$S_n(x)=\sum_{k=1}^{n}t_k(x)$。
+\begin{enumerate}
+  \item 证明：对固定的 $x>e$，$t_k$ 随 $k$ 先减后增，最小项出现在 $k\approx\log x$ 处。
+  \item 取 $x=10^6$，对 $n=1,\dots,25$ 计算 $S_n(x)-\li(x)$，其中 $\li(x)=\Li(x)+\li(2)$，$\li(2)\approx1.04516$。$n$ 取多少时误差最小？最小误差与最小项相比如何？
+  \item 式~(\bref{eq:Li-parts-finite}) 是精确等式。若在其中取 $n=14$，来自积分下限的常数项 $-\sum_{k\le n}(k-1)!\,2/(\log 2)^k$ 有多大？这说明式~(\bref{eq:Li-asymptotic}) 中「$\sim$」的含义是什么，为什么不能把它当作收敛级数或在大 $n$ 处直接使用有限公式？
+\end{enumerate}
+\toHint{1.2}
+
+\Q{1.3}{\lvI}{$\Li(x)>x/\log x$ 的分界点}
+第~\bref{sec:Li-integration-by-parts}~节指出：当 $x>x_0\approx6.58$ 时 $\Li(x)>x/\log x$。
+\begin{enumerate}
+  \item 利用式~(\bref{eq:Li-parts-1}) 证明：$D(x)=\Li(x)-x/\log x$ 在 $x>2$ 上严格递增，因而恰有一个零点 $x_0$。
+  \item 用 Newton 迭代求 $x_0$ 至四位小数（积分可数值计算）。
+  \item 用 $x=3$ 与 $x=10$ 两处的数值说明 $D$ 在 $x_0$ 两侧的符号。
+\end{enumerate}
+\toHint{1.3}
+
+% ------------------------------------------------------------
+\section*{第 \bref{ch:elementary_number_theoretic_functions} 章\quad 初等数论函数与素数计数函数}
+\addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:elementary_number_theoretic_functions} 章\quad }{}初等数论函数与素数计数函数}
+
+\Q{2.1}{\lvI}{在 $x=30$ 处手算并核对互换关系}
+\begin{enumerate}
+  \item 列出不超过 $30$ 的全部素数幂，求 $J(30)$（写成既约分数）。
+  \item 用式~(\bref{eq:pi_from_J}) 由 $J$ 恢复 $\pi(30)$，写出参与计算的每一项。
+  \item 求 $e^{\theta(30)}$ 与 $e^{\psi(30)}$（精确整数），并用式~(\bref{eq:psi_sum_theta}) 核对二者的关系。
+  \item 证明：对正整数 $n$，$e^{\psi(n)}$ 等于 $1,2,\dots,n$ 的最小公倍数。
+\end{enumerate}
+\toHint{2.1}
+
+\Q{2.2}{\lvI}{$\Lambda$ 的三个恒等式}
+\begin{enumerate}
+  \item 对 $n=12$ 与 $n=8$，逐项写出并验证式~(\bref{eq:log_sum_Lambda})、(\bref{eq:Lambda_mu_conv})、(\bref{eq:Lambda_mu_log})。
+  \item 说明 $\Lambda$ 不是积性函数：举出 $\gcd(m,n)=1$ 而 $\Lambda(mn)\ne\Lambda(m)\Lambda(n)$ 的例子。$\mu$ 是积性的，为什么卷积 $\Lambda=\mu*\log$ 不必是积性的？
+\end{enumerate}
+\toHint{2.2}
+
+\Q{2.3}{\lvII}{Mertens 第一定理}
+证明：对 $x\ge2$，
+\[
+  \sum_{n\le x}\frac{\Lambda(n)}{n}=\log x+O(1).
+\]
+可以使用推论~\bref{cor:psi-O-x}。
+\toHint{2.3}
+
+\Q{2.4}{\lvII}{$\pi(x)$ 的一个显式上界}
+利用定理~\bref{thm:chebyshev-bounds} 的上界 $\theta(x)<x\log4$，证明：对 $x\ge2$，
+\[
+  \pi(x)<\sqrt{x}+\frac{4\log2\cdot x}{\log x}.
+\]
+并在 $x=10^6$ 处比较这个上界与 $\pi(10^6)=78\,498$。
+\toHint{2.4}
+
+\Q{2.5}{\lvIII}{Mertens 第二定理}
+\begin{enumerate}
+  \item 由习题 2.3 推出 $\displaystyle\sum_{p\le x}\frac{\log p}{p}=\log x+O(1)$。
+  \item 用附录~\bref{app:abel_stieltjes} 的分部公式~(\bref{eq:app-stieltjes-parts}) 证明
+  \[
+    \sum_{p\le x}\frac1p=\log\log x+O(1)\qquad(x\ge3).
+  \]
+\end{enumerate}
+\toHint{2.5}
+
+% ------------------------------------------------------------
+\section*{第 \bref{ch:complex_analysis_intro} 章\quad 解析数论的复变函数基础}
+\addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:complex_analysis_intro} 章\quad }{}解析数论的复变函数基础}
+
+\Q{3.1}{\lvI}{后文常用的几个留数}
+设 $x>0$，$x^s=e^{s\log x}$。
+\begin{enumerate}
+  \item 求 $x^s/\bigl(s(s+1)\bigr)$ 在 $s=0$ 与 $s=-1$ 处的留数。
+  \item 求 $x^s/s^2$ 在 $s=0$ 处的留数。
+  \item 对例~\bref{ex:residue_computation} 中的 $f(z)=1/\bigl(z(z^2+1)\bigr)$，分别求 $\oint_{|z|=1/2}f$ 与 $\oint_{|z|=2}f$（逆时针），并用模估计说明后者为何必为零。
+\end{enumerate}
+\toHint{3.1}
+
+\Q{3.2}{\lvI}{用 Rouché 定理数零点}
+设 $p(z)=z^5+3z+1$。用推论~\bref{cor:rouche} 求 $p$ 在 $|z|<1$ 内与在 $1<|z|<2$ 内的零点个数（计重数），并说明 $|z|=1$ 上没有零点。
+\toHint{3.2}
+
+\Q{3.3}{\lvII}{割线两沿与整数点处的 Hankel 积分}
+采用第~\bref{sec:branch_cut}~节对 Hankel 围道的约定：割线为正实轴，$\arg z\in(0,2\pi)$；路径 $\mathcal H$ 沿上沿自 $+\infty$ 到 $\varepsilon$，逆时针绕半径 $\varepsilon$ 的圆一周（不含割线上的点），再沿下沿回到 $+\infty$（图~\bref{fig:hankel_ch3}）。设 $g$ 为整函数，且在正实轴附近衰减得足够快，使下面的积分收敛；记
+\[
+  H(s)=\int_{\mathcal H}z^{s-1}g(z)\dd z.
+\]
+\begin{enumerate}
+  \item 证明下沿上 $z^{s-1}$ 的边界值等于上沿边界值乘以 $e^{2\pi is}$。
+  \item 证明：当 $s$ 为整数时两沿的积分相互抵消，$H(s)$ 化为整圈积分。由此求 $H(n)$（$n\ge1$）与 $H(-m)$（$m\ge0$），用 $g$ 的 Taylor 系数表示。
+  \item 取 $g(z)=e^{-z}$。证明 $\Re s>0$ 时 $H(s)=(e^{2\pi is}-1)\Gamma(s)$，其中 $\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\dd t$。再用 (b) 求 $H(-m)$。读完第~\bref{ch:gamma_function}~章后，可把结果与 $\Gamma$ 在 $s=-m$ 处的留数对照。
+\end{enumerate}
+\toHint{3.3}
+
+\Q{3.4}{\lvII}{竖线移动时的水平边}
+对 $x>0$、$c>0$、$T>0$，令
+\[
+  I(c)=\frac1{2\pi i}\int_{c-iT}^{c+iT}\frac{x^s}{s}\dd s .
+\]
+\begin{enumerate}
+  \item 设 $0<c_1<c_2$。用 Cauchy 定理把 $I(c_2)-I(c_1)$ 写成两条水平边上的积分，并说明方向。
+  \item 证明每条水平边的积分（含因子 $1/(2\pi i)$）的模不超过 $\dfrac{x^{c_2}(c_2-c_1)}{2\pi T}$（$x\ge1$ 时）。
+  \item 取 $x=10$、$T=10$，数值计算 $I(2)$、$I(1)$、$I(1/2)$。结合 (a) 与引理~\bref{lem:perron-trunc-kernel} 解释：为什么在有限高度 $T$ 上这些值互不相同，而 $T\to\infty$ 时都趋于 $1$。这与例~\bref{ex:homotopy_pole} 有何关系？
+\end{enumerate}
+\toHint{3.4}
+
+% ------------------------------------------------------------
+\section*{第 \bref{ch:integral_transforms} 章\quad 积分变换：从 Fourier、Mellin 变换到 Perron 公式}
+\addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:integral_transforms} 章\quad }{}积分变换：从 Fourier、Mellin 变换到 Perron 公式}
+
+\Q{4.1}{\lvII}{Cesàro 型 Perron 核}
+\begin{enumerate}
+  \item 证明：对 $y>0$、$c>0$，
+  \[
+    \frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}\frac{y^s}{s(s+1)}\dd s=\max\Bigl(0,\,1-\frac1y\Bigr),
+  \]
+  且这里的竖线积分绝对收敛，不必取对称截断极限，$y=1$ 处也不必取平均值。
+  \item 设 $F(s)=\sum a_nn^{-s}$ 在 $\Re s>\sigma_a$ 上绝对收敛，$c>\max(0,\sigma_a)$。证明对 $x>0$，
+  \[
+    \sum_{n\le x}a_n\Bigl(1-\frac nx\Bigr)=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}F(s)\frac{x^s}{s(s+1)}\dd s .
+  \]
+  \item 与定理~\bref{thm:perron_formula} 比较：核中多出的因子 $1/(s+1)$ 带来什么好处，又付出了什么代价？
+\end{enumerate}
+\toHint{4.1}
+
+\Q{4.2}{\lvII}{由 Mellin 联系延拓 $\zeta$}
+\begin{enumerate}
+  \item 在定理~\bref{thm:mellin_dirichlet_connection} 中取 $a_n=1$，证明对 $\Re s>1$，
+  \[
+    \zeta(s)=\frac{s}{s-1}-s\int_1^\infty\{x\}\,x^{-s-1}\dd x ,
+  \]
+  其中 $\{x\}=x-\lfloor x\rfloor$。
+  \item 证明右端积分在 $\Re s>0$ 上定义解析函数，因而右端给出 $\zeta$ 在 $\Re s>0$、$s\ne1$ 上的解析延拓，$s=1$ 是留数为 $1$ 的单极点。
+  \item 证明
+  \[
+    \lim_{s\to1}\Bigl(\zeta(s)-\frac1{s-1}\Bigr)=1-\int_1^\infty\frac{\{x\}}{x^2}\dd x ,
+  \]
+  并证明它等于 Euler 常数 $\gamma=\lim_{N\to\infty}\bigl(\sum_{n\le N}1/n-\log N\bigr)$。
+\end{enumerate}
+\toHint{4.2}
+
+\Q{4.3}{\lvI}{模反演的数值意义}
+\begin{enumerate}
+  \item 直接用定义计算 $\vartheta(0.1)$，要准确到 $10$ 位有效数字，需要取到哪一项？
+  \item 用定理~\bref{thm:theta_inversion} 改算 $\sqrt{10}\,\vartheta(10)$，需要几项？给出 $\vartheta(0.1)$ 的值。
+  \item $\vartheta(0.1)$ 与 $\sqrt{10}$ 相差多少？用模反演解释。
+\end{enumerate}
+\toHint{4.3}
+
+\Q{4.4}{\lvII}{$\vartheta$ 在 $x\to0^+$ 处的渐近}
+记 $\omega(x)=\sum_{n\ge1}e^{-\pi n^2x}=\tfrac12\bigl(\vartheta(x)-1\bigr)$。
+\begin{enumerate}
+  \item 由模反演证明 $\omega(x)=\dfrac1{2\sqrt x}-\dfrac12+\dfrac1{\sqrt x}\,\omega\Bigl(\dfrac1x\Bigr)$。
+  \item 证明对 $y>0$ 有 $0<\omega(y)\le\dfrac{e^{-\pi y}}{1-e^{-\pi y}}$。
+  \item 推出：对 $0<x\le1$，
+  \[
+    \Bigl|\omega(x)-\frac1{2\sqrt x}+\frac12\Bigr|\le\frac{e^{-\pi/x}}{(1-e^{-\pi})\sqrt x}.
+  \]
+  第~\bref{sec:theta_function_method}~节的 Riemann 第二法正是用这一渐近处理积分在原点附近的收敛性。
+\end{enumerate}
+\toHint{4.4}
+
+% ------------------------------------------------------------
+\section*{第 \bref{ch:riemann_zeta_intro} 章\quad 黎曼 \texorpdfstring{$\zeta$}{ζ} 函数初探}
+\addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:riemann_zeta_intro} 章\quad }{}黎曼 \texorpdfstring{$\zeta$}{ζ} 函数初探}
+
+\Q{5.1}{\lvII}{无零点的定量形式}
+设 $s=\sigma+it$，$\sigma>1$。证明
+\[
+  \frac{\zeta(2\sigma)}{\zeta(\sigma)}\le|\zeta(s)|\le\zeta(\sigma).
+\]
+这比定理~\bref{thm:no_zeros} 多给出了什么？取 $\sigma=1.1$，算出下界的数值。
+\toHint{5.1}
+
+\Q{5.2}{\lvI}{Euler 部分乘积的误差}
+对 $s=2$，计算 $\prod_{p\le P}(1-p^{-2})^{-1}$（$P=10,100,1000$），与 $\zeta(2)=\pi^2/6$ 比较，并与定理~\bref{thm:euler_product} 证明中的误差界 $\sum_{n>P}n^{-2}$ 对照。实际误差为什么明显小于这个界？
+\toHint{5.2}
+
+\Q{5.3}{\lvII}{$\sum_p p^{-\sigma}$ 与 $\log\zeta(\sigma)$}
+\begin{enumerate}
+  \item 证明 $\sigma>1$ 时 $\zeta(\sigma)\ge\dfrac1{\sigma-1}$。
+  \item 由定理~\bref{thm:Lambda_dirichlet} 证明中的展开，证明 $\sigma>1$ 时
+  \[
+    0\le\log\zeta(\sigma)-\sum_pp^{-\sigma}\le1 .
+  \]
+  \item 由此推出 $\sum_p1/p=+\infty$。这正是第~\bref{sec:euler-fail}~节所用的 Euler 定理。
+\end{enumerate}
+\toHint{5.3}
+
+\Q{5.4}{\lvIII}{Dirichlet $L$ 函数}
+设 $\chi:\mathbb Z_{>0}\to\CC$ 完全积性（$\chi(mn)=\chi(m)\chi(n)$ 对一切 $m,n$ 成立），且 $|\chi(n)|\le1$。
+\begin{enumerate}
+  \item 仿照定理~\bref{thm:euler_product}、\bref{thm:no_zeros}、\bref{thm:Lambda_dirichlet} 证明：对 $\Re s>1$，
+  \[
+    L(s,\chi)=\sum_{n\ge1}\frac{\chi(n)}{n^s}=\prod_p\bigl(1-\chi(p)p^{-s}\bigr)^{-1}\ne0,
+    \qquad
+    -\frac{L'}{L}(s,\chi)=\sum_{n\ge1}\frac{\chi(n)\Lambda(n)}{n^s}.
+  \]
+  证明中哪一步用到「完全积性」，只有积性为什么不够？
+  \item 以模 $4$ 的非主特征 $\chi_4$（$n\equiv1,3\pmod 4$ 时取 $1,-1$，$n$ 为偶数时取 $0$）为例，写出 $L(s,\chi_4)$ 的前几项与 Euler 乘积的前几个因子。
+\end{enumerate}
+这类函数是第~\bref{sec:grh}~节广义黎曼猜想讨论的对象。
+\toHint{5.4}
+
+% ------------------------------------------------------------
+\section*{第 \bref{ch:discrete_continuous} 章\quad 数论函数的积分表示：离散部分和与 Perron 积分}
+\addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:discrete_continuous} 章\quad }{}数论函数的积分表示：离散部分和与 Perron 积分}
+
+\Q{6.1}{\lvI}{跳跃点处的左右平均}
+定理~\bref{thm:theta_perron} 的证明对反演公式分别取左右极限再平均。
+\begin{enumerate}
+  \item 在 $x=8$ 处写出 $\psi_0(8)$、$\psi_0(\sqrt8)$、$\psi_0(2)$，验证 $\theta_0(8)=\sum_{k\le3}\mu(k)\psi_0(8^{1/k})$。
+  \item 在 $x=9$ 处作同样的验证。
+  \item 在素数 $x=7$ 处作同样的验证。若左端误用右连续的 $\theta(7)$，而右端仍用 Perron 积分给出的 $\psi_0$，两边差多少？
+\end{enumerate}
+\toHint{6.1}
+
+\Q{6.2}{\lvII}{只收集留数为什么不够}
+对式~(\bref{eq:floor_perron}) 的被积函数 $\zeta(s)x^s/s$，利用延拓后的事实：$\zeta$ 在 $s=1$ 有留数为 $1$ 的单极点，在 $s=0$ 解析且 $\zeta(0)=-\tfrac12$（式~(\bref{eq:zeta-at-zero})）。
+\begin{enumerate}
+  \item 求 $s=1$ 与 $s=0$ 两处的留数之和。
+  \item 对非整数 $x$，这个和与 $\lfloor x\rfloor_0$ 相差多少？这个差是否随 $x\to\infty$ 变小？
+  \item 被积函数在 $\Re s<0$ 还有没有别的极点？由此说明：把竖线继续左移时，左侧竖线与水平边上的积分不可能全部趋于零。这与第~\bref{sec:what_remains}~节的说明有何关系？
+\end{enumerate}
+\toHint{6.2}
+
+\Q{6.3}{\lvII}{截断 Perron 积分的数值实验}
+取 $x=10.5$、$c=2$。数值计算
+\[
+  I_T=\frac1{2\pi i}\int_{c-iT}^{c+iT}\zeta(s)\frac{x^s}{s}\dd s,\qquad T=25,50,100,200,
+\]
+与 $\lfloor x\rfloor=10$ 比较，并与第~\bref{subsec:perron_truncation}~节的误差界
+$\sum_n(x/n)^c\min\bigl(1,1/(T|\log(x/n)|)\bigr)$ 对照。误差是否随 $T$ 单调下降？界与实际误差相差多少？
+\toHint{6.3}
+
+\Q{6.4}{\lvIII}{为什么不直接对 $\theta$ 用 Perron 公式}
+记 $P(s)=\sum_p(\log p)\,p^{-s}$，它是 $\theta$ 的 Dirichlet 生成函数。
+\begin{enumerate}
+  \item 证明 $\Re s>1$ 时 $\displaystyle-\frac{\zeta'}{\zeta}(s)=\sum_{k\ge1}P(ks)$，并用 Möbius 反演证明
+  \[
+    P(s)=\sum_{k\ge1}\mu(k)\Bigl(-\frac{\zeta'}{\zeta}\Bigr)(ks)\qquad(\Re s>1),
+  \]
+  说明所需的绝对收敛。
+  \item 设 $-\zeta'/\zeta$ 已延拓为全平面上的亚纯函数，其极点为 $s=1$ 与 $\zeta$ 的零点。说明上式右端在 $\Re s>0$ 上给出 $P$ 的亚纯延拓，并指出 $P$ 在 $s=1/k$（$\mu(k)\ne0$）及 $s=\rho/k$ 处可能有极点。这些点在哪里聚集？
+  \item 结合 (b) 说明第~\bref{sec:theta_integral}~节为什么先把 $\theta$ 化归为 $\psi$，而不直接对 $P(s)x^s/s$ 移动积分路径。
+\end{enumerate}
+\toHint{6.4}
+
+% ============================================================
+\newpage
+\part*{二、提示}
+\addcontentsline{toc}{part}{二、提示}
+% ============================================================
+
+\subsection*{第 1 章}
+\Hint{1.1}(c) 把两种展开逐项相减：$L_A(x)-\Li(x)=(A-1)\dfrac{x}{(\log x)^2}+(A^2-2)\dfrac{x}{(\log x)^3}+\cdots$。再与 $\pi-\Li$ 的大小比较。
+
+\Hint{1.2}(a) 看相邻项之比 $t_{k+1}/t_k$。(b) 最小误差大约是最小项的一半。(c) $13!\approx6.2\times10^9$，而 $(\log2)^{14}\approx0.006$。
+
+\Hint{1.3}(a) $D(x)=\int_2^x(\log t)^{-2}\dd t-2/\log2$。(b) $D'(x)=(\log x)^{-2}$，从 $x=6.5$ 出发。
+
+\subsection*{第 2 章}
+\Hint{2.1}(b) $\nu(30)=4$，$\mu(4)=0$；$J(\sqrt{30})=J(5)$，$J(30^{1/3})=J(3)$。(d) 比较两边每个素数 $p$ 的指数。
+
+\Hint{2.2}(b) 看 $n=6$。积性要求的是「$\gcd(m,n)=1$ 时 $f(mn)=f(m)f(n)$」，而 $\log$ 满足的是加法关系。
+
+\Hint{2.3}对 $\log n=\sum_{d\mid n}\Lambda(d)$ 关于 $n\le x$ 求和，交换求和得 $\sum_{d\le x}\Lambda(d)\lfloor x/d\rfloor$；左端与 $\int_1^x\log t\dd t$ 比较。
+
+\Hint{2.4}把素数分成 $p\le\sqrt x$ 与 $\sqrt x<p\le x$ 两组；后一组中 $\log p>\tfrac12\log x$。
+
+\Hint{2.5}(a) 素数幂 $p^k$（$k\ge2$）对 $\sum\Lambda(n)/n$ 的贡献有界。(b) 取 $A(t)=\sum_{p\le t}\log p/p$，$f(t)=1/\log t$，记 $A(t)=\log t+E(t)$。
+
+\subsection*{第 3 章}
+\Hint{3.1}(a)(b) 用命题~\bref{prop:residue_formulas}；$x^s$ 在 $s=0$ 的 Taylor 展开为 $1+s\log x+\cdots$。(c) 当 $R>1$ 时积分与 $R$ 无关。
+
+\Hint{3.2}在 $|z|=1$ 上取主项 $3z$；在 $|z|=2$ 上取主项 $z^5$。
+
+\Hint{3.3}(a) 上沿 $\log z=\log x$，下沿 $\log z=\log x+2\pi i$。(b) 整数 $s$ 时 $z^{s-1}$ 单值。(c) 令 $\varepsilon\to0$，小圆上的积分趋于零。
+
+\Hint{3.4}(a) 矩形 $[c_1,c_2]\times[-T,T]$ 内 $x^s/s$ 解析。(b) 水平边上 $|s|\ge T$，$|x^s|\le x^{c_2}$。
+
+\subsection*{第 4 章}
+\Hint{4.1}(a) 留数见习题 3.1(a)；$y>1$ 向左闭合，$0<y\le1$ 向右闭合。(b) $n\le x$ 时 $1-n/x=\max(0,1-1/y)$，$y=x/n$。
+
+\Hint{4.2}(a) $\lfloor x\rfloor=x-\{x\}$。(b) 在 $\Re s\ge\delta$ 上用 $|\{x\}x^{-s-1}|\le x^{-1-\delta}$ 作控制。(c) $\int_n^{n+1}\{x\}x^{-2}\dd x$ 可显式算出。
+
+\Hint{4.3}项 $2e^{-\pi n^2/10}$ 的大小：$n=8$ 时约 $4\times10^{-9}$，$n=9$ 时约 $2\times10^{-11}$。
+
+\Hint{4.4}(b) $n^2\ge n$。(c) 在 (a) 中用 (b) 估计 $\omega(1/x)$，$1/x\ge1$。
+
+\subsection*{第 5 章}
+\Hint{5.1}$1/|\zeta(s)|=\prod_p|1-p^{-s}|\le\prod_p(1+p^{-\sigma})$，而 $1+p^{-\sigma}=(1-p^{-2\sigma})/(1-p^{-\sigma})$。
+
+\Hint{5.2}部分乘积展开后包含哪些 $n^{-2}$？缺少的是哪些 $n$？
+
+\Hint{5.3}(a) 与积分 $\int_1^\infty x^{-\sigma}\dd x$ 比较。(b) $\log\zeta(\sigma)-\sum_pp^{-\sigma}=\sum_p\sum_{k\ge2}p^{-k\sigma}/k$。
+
+\Hint{5.4}(a) 展开 $\prod_{p\le P}\sum_k\chi(p)^kp^{-ks}$ 时需要 $\chi(p)^k=\chi(p^k)$。(b) $\chi_4(2)=0$。
+
+\subsection*{第 6 章}
+\Hint{6.1}$8=2^3$ 是 $\psi$ 的跳跃点，$8^{1/3}=2$ 也是；$9=3^2$ 与 $9^{1/2}=3$ 同理。$\nu(7)=2$，$\sqrt7$ 不是跳跃点。
+
+\Hint{6.2}(b) 非整数 $x$ 处差为 $\tfrac12-\{x\}$。(c) $\zeta$ 的平凡零点是零点而不是极点。
+
+\Hint{6.3}在 $\Re s=2$ 上 $\zeta$ 可直接由级数计算；数值积分时把 $[-T,T]$ 分成许多小段。
+
+\Hint{6.4}(a) $\Lambda$ 只在素数幂上非零，按 $n=p^k$ 分组。(b) 固定 $s$ 后，只有有限个 $k$ 满足 $k\Re s\le1+\delta$。
+
+% ============================================================
+\newpage
+\part*{三、解答}
+\addcontentsline{toc}{part}{三、解答}
+% ============================================================
+
+\subsection*{第 1 章}
+
+\Sol{1.1}{Legendre 型近似与 $\Li$ 的比较}
+(a) 数值如下（$\Li$ 按式~(\bref{eq:Li-def-parts}) 取偏移积分）：
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+$x$ & $\pi(x)$ & $x/(\log x-1)$ & $L_A(x)$ & $\Li(x)$\\
+\midrule
+$10^4$ & $1229$ & $1217.98$ & $1230.51$ & $1245.09$\\
+$10^6$ & $78498$ & $78030.45$ & $78543.18$ & $78626.50$\\
+\bottomrule
+\end{tabular}
+\end{center}
+在这两处，带拟合常数的 $L_A$ 最接近 $\pi$：误差分别约为 $1.5$ 与 $45$，而 $\Li$ 的误差约为 $16$ 与 $128.5$。
+
+(b)
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+$x$ & $\pi(x)-L_A(x)$ & $\pi(x)-\Li(x)$\\
+\midrule
+$10^8$ & $\approx-6.55\times10^{3}$ & $\approx-753$\\
+$10^{12}$ & $\approx-6.06\times10^{7}$ & $\approx-3.83\times10^{4}$\\
+$10^{18}$ & $\approx-3.53\times10^{13}$ & $\approx-2.19\times10^{7}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+到 $10^8$ 时 $L_A$ 已不如 $\Li$，此后差距迅速扩大。
+
+(c) 由式~(\bref{eq:legendre-denom-expand}) 与式~(\bref{eq:Li-asymptotic})（记 $L=\log x$），
+\[
+  L_A(x)-\Li(x)=(A-1)\frac{x}{L^2}+(A^2-2)\frac{x}{L^3}+O\Bigl(\frac{x}{L^4}\Bigr).
+\]
+两种展开的首项相同，差别从第二项开始：$L_A$ 的系数是 $1,A,A^2,A^3,\dots$，按几何级数增长；$\Li$ 的系数是 $1,1,2,6,\dots$，按阶乘增长。$A=1.08366$ 时 $A-1\approx0.084$ 很小，而 $A^2-2\approx-0.826$，$A^3-6\approx-4.73$。在 $x=10^4$--$10^6$，$\log x$ 只有 $9$--$14$，展开中相邻几项量级相近（$x=10^6$ 时差式前三项约为 $438$、$-313$、$-130$），截断后无法据此判断谁更好；拟合常数 $A$ 正是在这一范围内用数据调出来的。$x$ 增大后，$x/L^2$ 比后面各项高出若干个 $\log x$ 因子，第一项占主导，$L_A-\Li\approx0.084\,x/L^2$ 无限增长。例如 $x=10^{18}$ 时 $0.084x/L^2-0.826x/L^3\approx3.7\times10^{13}$，与 (b) 的数值相符。
+
+另一方面，$\pi(x)-\Li(x)$ 比 $x/L^2$ 小得多：附录~\bref{app:pnt_estimates} 的定理~\bref{thm:pnt-error} 给出 $\psi(x)=x+O\bigl(x\,e^{-c\sqrt{\log x}}\bigr)$，再经分部求和可得 $\pi(x)=\Li(x)+O\bigl(x\,e^{-c'\sqrt{\log x}}\bigr)$（书中未展开这一步），它比任意 $x/L^k$ 都小。因此只要 $A\ne1$，$L_A$ 的误差最终约为 $|A-1|x/L^2$；即使取 $A=1$，第二项 $-x/L^3$ 仍然存在。在充分大的 $x$ 上，任何 $L_A$ 都不如 $\Li$。有限范围内的拟合效果不能代替渐近比较。
+
+\Sol{1.2}{渐近展开的最优截断}
+(a) $t_{k+1}/t_k=k/\log x$。故 $k<\log x$ 时项递减，$k>\log x$ 时项递增；最小项出现在 $k=\lfloor\log x\rfloor$ 或 $\lceil\log x\rceil$ 处。
+
+(b) $x=10^6$ 时 $\log x\approx13.8155$，$\li(10^6)\approx78627.5492$。部分数值：
+\begin{center}
+\begin{tabular}{rrr|rrr}
+\toprule
+$n$ & $t_n$ & $S_n-\li(x)$ & $n$ & $t_n$ & $S_n-\li(x)$\\
+\midrule
+$1$ & $72382.41$ & $-6245.14$ & $14$ & $0.6748$ & $+0.348$\\
+$4$ & $164.70$ & $-82.77$ & $15$ & $0.6838$ & $+1.032$\\
+$8$ & $3.797$ & $-6.537$ & $18$ & $1.058$ & $+3.692$\\
+$12$ & $0.8256$ & $-1.043$ & $20$ & $1.896$ & $+6.966$\\
+$13$ & $0.7171$ & $-0.326$ & $25$ & $19.21$ & $+50.79$\\
+\bottomrule
+\end{tabular}
+\end{center}
+误差在 $n=13$（$-0.326$）与 $n=14$（$+0.348$）处最小，约为最小项 $t_{14}\approx0.675$ 的一半；此后误差随 $n$ 增大而增大，到 $n=25$ 已超过 $50$。级数发散，但在 $n\approx\log x$ 处截断，仍能给出相当好的近似。
+
+(c) $n=14$ 时常数项为 $-\sum_{k\le14}(k-1)!\,2/(\log2)^k\approx-2.2\times10^{12}$，远大于 $\Li(10^6)$ 本身。式~(\bref{eq:Li-parts-finite}) 的右端由这个巨大的常数与同样巨大的余项 $R_{14}(10^6)$ 相互抵消，数值上毫无用处。
+
+式~(\bref{eq:Li-asymptotic}) 中的「$\sim$」是渐近展开：对每个\textbf{固定}的 $n$，当 $x\to\infty$ 时余项比最后保留的一项小一个 $1/\log x$ 因子，下限常数可并入 $O(1)$。它不断言对固定 $x$ 令 $n\to\infty$ 时级数收敛（实际上发散），也不保证在 $n$ 很大时有限公式可用。渐近展开只确定函数到 $o\bigl(x/(\log x)^n\bigr)$ 为止，因此它区分不开相差常数的 $\Li$ 与 $\li$；本题与 $\li$ 比较，只是因为 (b) 中最优截断的误差已小于 $\li(2)\approx1.045$。
+
+\Sol{1.3}{$\Li(x)>x/\log x$ 的分界点}
+(a) 由式~(\bref{eq:Li-parts-1})，$D(x)=\int_2^x(\log t)^{-2}\dd t-2/\log2$。当 $x>2$ 时 $D'(x)=(\log x)^{-2}>0$，故 $D$ 严格递增。又 $D(2)=-2/\log2<0$，而 $D(x)\to+\infty$（被积函数在 $[2,x]$ 上不小于 $(\log x)^{-2}$，积分至少为 $(x-2)/(\log x)^2$），所以 $D$ 恰有一个零点 $x_0$。
+
+(b) Newton 迭代 $x_{j+1}=x_j-D(x_j)(\log x_j)^2$，从 $x=6.5$ 出发两三步即收敛到 $x_0\approx6.5797$。
+
+(c) $\Li(3)\approx1.118<3/\log3\approx2.731$；$\Li(10)\approx5.120>10/\log10\approx4.343$。
+
+\subsection*{第 2 章}
+
+\Sol{2.1}{在 $x=30$ 处手算并核对互换关系}
+(a) 素数：$2,3,5,7,11,13,17,19,23,29$（$10$ 个，各计 $1$）；平方：$4,9,25$（各计 $\tfrac12$）；立方：$8,27$（各计 $\tfrac13$）；四次方：$16$（计 $\tfrac14$）。$2^5=32>30$。故
+\[
+  J(30)=10+\tfrac32+\tfrac23+\tfrac14=\tfrac{149}{12}.
+\]
+
+(b) $\nu(30)=\lfloor\log_230\rfloor=4$，$\mu(4)=0$，所以
+\[
+  \pi(30)=J(30)-\tfrac12J(30^{1/2})-\tfrac13J(30^{1/3}).
+\]
+$30^{1/2}\approx5.48$，$J(5.48)=J(5)=1+1+\tfrac12+1=\tfrac72$；$30^{1/3}\approx3.11$，$J(3)=2$。故
+$\pi(30)=\tfrac{149}{12}-\tfrac74-\tfrac23=\tfrac{149-21-8}{12}=10$。
+
+(c) $e^{\theta(30)}=2\cdot3\cdot5\cdots29=6\,469\,693\,230$。由式~(\bref{eq:psi_sum_theta})，$\psi(30)=\theta(30)+\theta(30^{1/2})+\theta(30^{1/3})+\theta(30^{1/4})$，其中 $e^{\theta(5.48)}=30$，$e^{\theta(3.11)}=6$，$e^{\theta(2.34)}=2$。故
+\[
+  e^{\psi(30)}=6\,469\,693\,230\times30\times6\times2=2\,329\,089\,562\,800 .
+\]
+直接按定义：$2$ 出现于 $2,4,8,16$，$3$ 出现于 $3,9,27$，$5$ 出现于 $5,25$，于是 $e^{\psi(30)}=2^4\cdot3^3\cdot5^2\cdot7\cdot11\cdots29$，结果相同。
+
+(d) $e^{\psi(n)}=\prod_{p^k\le n}p=\prod_{p\le n}p^{a_p}$，其中 $a_p$ 是满足 $p^k\le n$ 的 $k\ge1$ 的个数，即 $p^{a_p}\le n<p^{a_p+1}$。另一方面，$\operatorname{lcm}(1,\dots,n)$ 中 $p$ 的指数是 $1,\dots,n$ 中各数所含 $p$ 的最高指数，也就是满足 $p^k\le n$ 的最大 $k$，恰为 $a_p$。两边每个素数的指数相同，故相等。
+
+\Sol{2.2}{$\Lambda$ 的三个恒等式}
+(a) $n=12$ 的因子为 $1,2,3,4,6,12$，$\Lambda$ 依次为 $0,\log2,\log3,\log2,0,0$，和为 $\log12$，即式~(\bref{eq:log_sum_Lambda})。$\mu$ 非零的因子为 $1,2,3,6$（$\mu=1,-1,-1,1$），于是
+\[
+  \sum_{d\mid12}\mu(d)\log\frac{12}d=\log12-\log6-\log4+\log2=\log\frac{12\cdot2}{6\cdot4}=0=\Lambda(12),
+\]
+\[
+  -\sum_{d\mid12}\mu(d)\log d=-(0-\log2-\log3+\log6)=0 .
+\]
+$n=8$ 时 $\mu$ 非零的因子只有 $1,2$：$\Lambda(1)+\Lambda(2)+\Lambda(4)+\Lambda(8)=3\log2=\log8$；$\log8-\log4=\log2$；$-(0-\log2)=\log2$，都等于 $\Lambda(8)$。
+
+(b) $\Lambda(6)=0$，而 $\Lambda(2)\Lambda(3)=\log2\cdot\log3\ne0$。两个积性函数的 Dirichlet 卷积仍是积性的，但 $\log$ 不是积性函数（$\log(mn)=\log m+\log n$ 是加法关系，且 $\log1=0\ne1$），所以 $\mu*\log$ 不必积性。
+
+\Sol{2.3}{Mertens 第一定理}
+记 $T(x)=\sum_{n\le x}\log n$，$N=\lfloor x\rfloor$。由式~(\bref{eq:log_sum_Lambda})，
+\[
+  T(x)=\sum_{n\le x}\sum_{d\mid n}\Lambda(d)=\sum_{d\le x}\Lambda(d)\Bigl\lfloor\frac xd\Bigr\rfloor ,
+\]
+因为固定 $d$ 时，$n\le x$ 中 $d$ 的倍数恰有 $\lfloor x/d\rfloor$ 个。
+
+另一方面，$\log$ 递增，故 $\int_1^N\log t\dd t\le T(x)\le\int_1^N\log t\dd t+\log N$，而 $\int_1^N\log t\dd t=N\log N-N+1$。又 $u\mapsto u\log u-u$ 的导数为 $\log u$，$0\le x-N<1$，故 $N\log N-N=x\log x-x+O(\log x)$。于是
+\[
+  T(x)=x\log x-x+O(\log x)\qquad(x\ge2).
+\]
+
+把 $\lfloor x/d\rfloor=x/d-\{x/d\}$ 代入第一式：
+\[
+  x\sum_{d\le x}\frac{\Lambda(d)}d=T(x)+\sum_{d\le x}\Lambda(d)\Bigl\{\frac xd\Bigr\}.
+\]
+右端第二项介于 $0$ 与 $\psi(x)$ 之间，由推论~\bref{cor:psi-O-x} 为 $O(x)$。因此
+$x\sum_{d\le x}\Lambda(d)/d=x\log x+O(x)$，两边除以 $x$ 即得结论。
+
+\Sol{2.4}{$\pi(x)$ 的一个显式上界}
+不超过 $\sqrt x$ 的素数至多 $\sqrt x$ 个。对 $\sqrt x<p\le x$ 有 $\log p>\tfrac12\log x$，故
+\[
+  \#\{\sqrt x<p\le x\}<\frac{1}{\tfrac12\log x}\sum_{\sqrt x<p\le x}\log p\le\frac{2\theta(x)}{\log x}<\frac{2x\log4}{\log x}=\frac{4\log2\cdot x}{\log x}.
+\]
+两部分相加即得。$x=10^6$ 时上界约为 $1000+2.7726\times10^6/13.816\approx2.02\times10^5$，约为 $\pi(10^6)$ 的 $2.6$ 倍：数量级正确，常数较粗。
+
+\Sol{2.5}{Mertens 第二定理}
+(a) $\sum_{n\le x}\Lambda(n)/n=\sum_{p\le x}\log p/p+\sum_{p^k\le x,\,k\ge2}\log p/p^k$。第二个和不超过
+\[
+  \sum_p\log p\sum_{k\ge2}p^{-k}=\sum_p\frac{\log p}{p(p-1)}\le\sum_{n\ge2}\frac{\log n}{n(n-1)}<\infty .
+\]
+由习题 2.3 即得 $\sum_{p\le x}\log p/p=\log x+O(1)$。
+
+(b) 记 $A(t)=\sum_{p\le t}\log p/p=\log t+E(t)$，由 (a) 存在常数 $C$ 使 $t\ge2$ 时 $|E(t)|\le C$。$A$ 是右连续阶梯函数，在素数 $p$ 处跳跃 $\log p/p$，$A(2^-)=0$。取 $f(t)=1/\log t$，由分部公式~(\bref{eq:app-stieltjes-parts})，
+\[
+  \sum_{p\le x}\frac1p=\int_{2^-}^x\frac{\dd A(t)}{\log t}=\frac{A(x)}{\log x}+\int_2^x\frac{A(t)}{t(\log t)^2}\dd t .
+\]
+代入 $A=\log t+E$：首项为 $1+E(x)/\log x=O(1)$；积分化为
+\[
+  \int_2^x\frac{\dd t}{t\log t}+\int_2^x\frac{E(t)}{t(\log t)^2}\dd t=\log\log x-\log\log2+O\Bigl(C\int_2^\infty\frac{\dd t}{t(\log t)^2}\Bigr),
+\]
+而 $\int_2^\infty\dd t/\bigl(t(\log t)^2\bigr)=1/\log2$。合起来即得 $\sum_{p\le x}1/p=\log\log x+O(1)$。
+
+进一步的分析可证明 $\sum_{p\le x}1/p-\log\log x$ 收敛到常数 $0.2615\ldots$（Meissel--Mertens 常数），这里不展开。
+
+\subsection*{第 3 章}
+
+\Sol{3.1}{后文常用的几个留数}
+(a) 两处均为单极点。$\Res_{s=0}=\lim_{s\to0}x^s/(s+1)=1$；$\Res_{s=-1}=\lim_{s\to-1}x^s/s=-1/x$。
+
+(b) $x^s/s^2=\bigl(1+s\log x+\tfrac12s^2\log^2x+\cdots\bigr)/s^2$，$s^{-1}$ 的系数为 $\log x$。
+
+(c) 留数分别为 $1$（$z=0$）与 $-\tfrac12$（$z=\pm i$）。$|z|=1/2$ 内只有 $z=0$，积分为 $2\pi i$；$|z|=2$ 内三个极点都在，积分为 $2\pi i(1-\tfrac12-\tfrac12)=0$。
+
+用模估计：对任意 $R>1$，$|z|=R$ 内的极点相同，积分与 $R$ 无关；而在 $|z|=R$ 上 $|f|\le1/\bigl(R(R^2-1)\bigr)$，积分的模不超过 $2\pi R/\bigl(R(R^2-1)\bigr)\to0$。与 $R$ 无关的量趋于零，只能为零。
+
+\Sol{3.2}{用 Rouché 定理数零点}
+在 $|z|=1$ 上，$|z^5+1|\le2<3=|3z|$。由 Rouché 定理，$p=3z+(z^5+1)$ 与 $3z$ 在 $|z|<1$ 内零点个数相同，为 $1$。
+
+在 $|z|=2$ 上，$|3z+1|\le7<32=|z^5|$，故 $p$ 在 $|z|<2$ 内有 $5$ 个零点。
+
+在 $|z|=1$ 上 $|p(z)|\ge|3z|-|z^5+1|\ge1>0$，没有零点。所以 $1<|z|<2$ 内恰有 $5-1=4$ 个零点。（数值上，$|z|<1$ 内的零点为实根 $z\approx-0.3320$，其余四个零点的模约为 $1.263$ 与 $1.374$。）
+
+\Sol{3.3}{割线两沿与整数点处的 Hankel 积分}
+(a) 设 $z$ 趋于正实轴上的点 $x>0$。上沿 $\arg z\to0^+$，$\log z\to\log x$；下沿 $\arg z\to2\pi^-$，$\log z\to\log x+2\pi i$。故下沿
+$z^{s-1}=e^{(s-1)(\log x+2\pi i)}=x^{s-1}e^{2\pi i(s-1)}=x^{s-1}e^{2\pi is}$，即上沿值乘以 $e^{2\pi is}$。
+
+(b) 记 $C_\varepsilon$ 为小圆上的积分。按路径方向，
+\[
+  H(s)=-\int_\varepsilon^\infty x^{s-1}g(x)\dd x+C_\varepsilon+e^{2\pi is}\int_\varepsilon^\infty x^{s-1}g(x)\dd x .
+\]
+$s$ 为整数时 $e^{2\pi is}=1$，两沿抵消；此时 $z^{s-1}$ 在 $\CC\setminus\{0\}$ 上单值，小圆弧与割线上的一点合起来就是整圈，故
+\[
+  H(s)=\oint_{|z|=\varepsilon}z^{s-1}g(z)\dd z=2\pi i\,\Res_{z=0}\bigl(z^{s-1}g(z)\bigr).
+\]
+$n\ge1$ 时被积函数在 $0$ 解析，$H(n)=0$。$s=-m$（$m\ge0$）时，$z^{-m-1}g(z)$ 的 $z^{-1}$ 系数是 $g$ 的 $z^m$ 系数，故 $H(-m)=2\pi i\,g^{(m)}(0)/m!$。
+
+(c) $\Re s>0$ 时，小圆上 $|z^{s-1}e^{-z}|\le C\varepsilon^{\Re s-1}$，圆周长 $2\pi\varepsilon$，故 $C_\varepsilon=O(\varepsilon^{\Re s})\to0$；同时 $\int_\varepsilon^\infty\to\Gamma(s)$。于是 $H(s)=(e^{2\pi is}-1)\Gamma(s)$。$H(s)$ 与 $\varepsilon$ 无关（Cauchy 定理），所以这一等式不依赖 $\varepsilon$ 的选取。由 (b)，
+\[
+  H(-m)=2\pi i\cdot\frac{(-1)^m}{m!}.
+\]
+对照：第~\bref{ch:gamma_function}~章将证明 $\Gamma$ 在 $s=-m$ 有单极点，留数为 $(-1)^m/m!$。在 $s=-m$ 附近 $e^{2\pi is}-1=2\pi i(s+m)+O\bigl((s+m)^2\bigr)$，故 $(e^{2\pi is}-1)\Gamma(s)\to2\pi i\,(-1)^m/m!$，与 (b) 的结果一致。这正是第~\bref{ch:riemann_zeta_continuation}~章第一法在负整数处取值的机制。
+
+\Sol{3.4}{竖线移动时的水平边}
+(a) $x^s/s$ 在矩形 $[c_1,c_2]\times[-T,T]$ 上解析（$c_1>0$）。沿其正向边界积分为零：右边自下而上，上边自 $c_2+iT$ 到 $c_1+iT$，左边自上而下，下边自 $c_1-iT$ 到 $c_2-iT$。记 $H_{\mathrm{top}}$、$H_{\mathrm{bot}}$ 为按上述方向、含因子 $1/(2\pi i)$ 的水平边积分，则
+\[
+  I(c_2)+H_{\mathrm{top}}-I(c_1)+H_{\mathrm{bot}}=0,\qquad I(c_2)-I(c_1)=-(H_{\mathrm{top}}+H_{\mathrm{bot}}).
+\]
+
+(b) 水平边上 $|s|\ge T$，$|x^s|=x^\sigma\le x^{c_2}$（$x\ge1$），边长 $c_2-c_1$，故 $|H|\le\dfrac{1}{2\pi}\cdot\dfrac{x^{c_2}}{T}(c_2-c_1)$。
+
+(c) 数值：$I(2)\approx1.5072$，$I(1)\approx1.0636$，$I(1/2)\approx1.0220$（虚部为零：被积函数关于 $t\mapsto-t$ 共轭对称）。$I(2)-I(1)\approx0.4436$，与直接计算的 $-(H_{\mathrm{top}}+H_{\mathrm{bot}})$ 一致，也不超过 (b) 的界 $2\times100/(2\pi\cdot10)\approx3.18$。
+
+有限高度 $T$ 时，竖线端点 $c\pm iT$ 随 $c$ 移动，不满足同伦不变性「端点固定」的条件，差额正是水平边积分，所以 $I(c)$ 依赖 $c$。由引理~\bref{lem:perron-trunc-kernel}（$y=x=10>1$），$|I(c)-1|<10^c/(10\log10)$，在 $T\to\infty$ 时趋于零，所以各条竖线的极限都是 $\delta(10)=1$。例~\bref{ex:homotopy_pole} 讨论的是同一现象，只是被积函数换成 $\zeta(s)x^s/s$，矩形内还多了 $s=1$ 处的极点。
+
+\subsection*{第 4 章}
+
+\Sol{4.1}{Cesàro 型 Perron 核}
+(a) 竖线上 $|y^s/\bigl(s(s+1)\bigr)|\le y^c/\bigl(|t|(|t|+1)\bigr)$ 在 $t\in\RR$ 上可积，故积分绝对收敛，对称截断与普通广义积分一致。
+
+$y>1$ 时，以竖线段 $[c-iT,c+iT]$ 与 $\Re s=-U$（$U>1$）围成矩形。由习题 3.1(a)，内部留数之和为 $1-1/y$。水平边上 $|s(s+1)|\ge T^2$，积分的模不超过 $\frac1{2\pi T^2}\int_{-\infty}^cy^\sigma\dd\sigma=\frac{y^c}{2\pi T^2\log y}$；左边上被积函数的模不超过 $y^{-U}/\bigl(U(U-1)\bigr)$，边长 $2T$。先令 $U\to\infty$、再令 $T\to\infty$，补充边的贡献趋于零，得 $1-1/y$。
+
+$0<y\le1$ 时向右闭合，右边取 $\Re s=U$。内部无极点；$y<1$ 时估计同上（$y^\sigma$ 向右衰减）。$y=1$ 时被积函数为 $1/\bigl(s(s+1)\bigr)$，水平边与右边分别受 $(U-c)/(2\pi T^2)$ 与 $T/(\pi U^2)$ 控制；先取 $U=T^{3/2}$ 再令 $T\to\infty$ 即得结果为 $0$。三种情形合起来就是 $\max(0,1-1/y)$。由于这个函数连续，$y=1$ 处不需要取平均值。
+
+(b) 记 $k(y)=\max(0,1-1/y)$。$n\le x$ 时 $k(x/n)=1-n/x$，$n>x$ 时 $k(x/n)=0$，故左端 $=\sum_na_nk(x/n)$。由 (a)，
+\[
+  \sum_na_nk\Bigl(\frac xn\Bigr)=\sum_na_n\frac1{2\pi i}\int_{(c)}\frac{(x/n)^s}{s(s+1)}\dd s .
+\]
+由于 $\sum_n|a_n|n^{-c}\int_{\RR}\frac{x^c\dd t}{|s||s+1|}<\infty$，求和与积分可以交换（Fubini），得到所述公式。
+
+(c) 好处：核多了一个 $1/|s|$ 量级的衰减，竖线积分绝对收敛；截断到 $|t|\le T$ 时，每一项的误差一致地不超过 $\frac1\pi(x/n)^c/T$，不再含 $1/|\log(x/n)|$ 因子，$x$ 靠近整数时也不变坏；跳跃点处也不需要平均。代价：左端不再是部分和本身，而是加权平均 $\sum_{n\le x}a_n(1-n/x)=\frac1x\int_0^xA(t)\dd t$；要回到 $A(x)$ 还须作差分或求导，信息并没有凭空增加。
+
+\Sol{4.2}{由 Mellin 联系延拓 $\zeta$}
+(a) 取 $a_n=1$，$\sigma_a=1$，$A(x)=\lfloor x\rfloor=x-\{x\}$。对 $\Re s>1$，
+\[
+  \zeta(s)=s\int_1^\infty\lfloor x\rfloor x^{-s-1}\dd x=s\int_1^\infty x^{-s}\dd x-s\int_1^\infty\{x\}x^{-s-1}\dd x=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x .
+\]
+
+(b) 设 $K$ 为 $\{\Re s>0\}$ 中的紧集，则存在 $\delta>0$ 使 $K\subset\{\Re s\ge\delta\}$。在 $K$ 上 $|\{x\}x^{-s-1}|\le x^{-1-\delta}$，它在 $[1,\infty)$ 上可积。由定理~\bref{thm:param_integral}，积分在 $\Re s>0$ 上解析。于是右端在 $\Re s>0$ 上除 $s=1$ 外解析，在 $\Re s>1$ 上等于 $\zeta$，由唯一性它就是 $\zeta$ 的延拓。$s/(s-1)=1+1/(s-1)$，故 $s=1$ 是留数为 $1$ 的单极点。
+
+(c) 由 (a)，$\zeta(s)-\frac1{s-1}=1-s\int_1^\infty\{x\}x^{-s-1}\dd x$。积分在 $s=1$ 处连续，故极限为 $1-\int_1^\infty\{x\}x^{-2}\dd x$。在 $[n,n+1)$ 上 $\{x\}=x-n$，
+\[
+  \int_n^{n+1}\frac{x-n}{x^2}\dd x=\log\frac{n+1}n-n\Bigl(\frac1n-\frac1{n+1}\Bigr)=\log\frac{n+1}n-\frac1{n+1}.
+\]
+对 $n=1,\dots,N-1$ 求和：$\int_1^N\{x\}x^{-2}\dd x=\log N-\bigl(\sum_{k\le N}1/k-1\bigr)$。于是
+\[
+  1-\int_1^N\frac{\{x\}}{x^2}\dd x=\sum_{k\le N}\frac1k-\log N\longrightarrow\gamma\qquad(N\to\infty).
+\]
+数值上 $\gamma\approx0.5772157$。
+
+\Sol{4.3}{模反演的数值意义}
+(a) $\vartheta(0.1)=1+2\sum_{n\ge1}e^{-\pi n^2/10}$，求和中各项依次约为 $0.730$，$0.285$，$0.0592$，$0.00656$，$3.9\times10^{-4}$，$1.2\times10^{-5}$，$\dots$；$n=8$ 一项约 $3.8\times10^{-9}$，$n=9$ 一项约 $1.8\times10^{-11}$。要达到 $10$ 位有效数字，需要算到 $n=9$。
+
+(b) $\vartheta(10)=1+2e^{-10\pi}+\cdots$，而 $2e^{-10\pi}\approx4.5\times10^{-14}$，只需第一项。得
+$\vartheta(0.1)=\sqrt{10}\,\vartheta(10)\approx3.16227766016852$。
+
+(c) $\vartheta(0.1)-\sqrt{10}=\sqrt{10}\bigl(\vartheta(10)-1\bigr)\approx1.4\times10^{-13}$。模反演把 $x\to0^+$ 时收敛很慢的级数换成 $1/x\to\infty$ 时几乎只剩首项的级数，从而直接读出 $\vartheta(x)\approx x^{-1/2}$ 的主项。
+
+\Sol{4.4}{$\vartheta$ 在 $x\to0^+$ 处的渐近}
+(a) 由 $\vartheta(x)=x^{-1/2}\vartheta(1/x)$ 与 $\vartheta=1+2\omega$：$1+2\omega(x)=x^{-1/2}\bigl(1+2\omega(1/x)\bigr)$，整理即得。
+
+(b) 各项为正，故 $\omega(y)>0$。又 $n^2\ge n$，$\omega(y)\le\sum_{n\ge1}e^{-\pi ny}=e^{-\pi y}/(1-e^{-\pi y})$。
+
+(c) 由 (a)，左端等于 $x^{-1/2}\omega(1/x)$。$0<x\le1$ 时 $y=1/x\ge1$，由 (b)，$\omega(y)\le e^{-\pi y}/(1-e^{-\pi y})\le e^{-\pi y}/(1-e^{-\pi})$。代入即得。特别地，$\omega(x)=\tfrac1{2\sqrt x}-\tfrac12+O\bigl(x^{-1/2}e^{-\pi/x}\bigr)$，误差在 $x\to0^+$ 时比 $x$ 的任何正幂都小。
+
+\subsection*{第 5 章}
+
+\Sol{5.1}{无零点的定量形式}
+上界：$|\zeta(s)|\le\sum n^{-\sigma}=\zeta(\sigma)$。
+
+下界：由定理~\bref{thm:euler_product}，$\prod_{p\le P}(1-p^{-s})^{-1}\to\zeta(s)\ne0$，故 $\prod_{p\le P}(1-p^{-s})\to1/\zeta(s)$。对每个有限的 $P$，
+\[
+  \prod_{p\le P}|1-p^{-s}|\le\prod_{p\le P}(1+p^{-\sigma})=\prod_{p\le P}\frac{1-p^{-2\sigma}}{1-p^{-\sigma}} .
+\]
+令 $P\to\infty$，左端趋于 $1/|\zeta(s)|$，右端趋于 $\zeta(\sigma)/\zeta(2\sigma)$（对 $\sigma$ 与 $2\sigma$ 分别用 Euler 乘积）。故 $|\zeta(s)|\ge\zeta(2\sigma)/\zeta(\sigma)$。
+
+定理~\bref{thm:no_zeros} 只说 $\zeta(s)\ne0$；这里给出了在每条竖线 $\Re s=\sigma$ 上一致成立、不依赖 $t$ 的正下界。但下界在 $\sigma\to1^+$ 时趋于 $0$（$\zeta(\sigma)\to\infty$），所以不能由它推出直线 $\Re s=1$ 上无零点（参看第~\bref{sec:euler-fail}~节）。
+
+$\sigma=1.1$ 时 $\zeta(2.2)\approx1.4905$，$\zeta(1.1)\approx10.584$，下界约为 $0.1408$。（作为对照，在 $0\le t\le400$ 上以步长 $0.1$ 抽样，$|\zeta(1.1+it)|$ 的最小值约为 $0.377$。）
+
+\Sol{5.2}{Euler 部分乘积的误差}
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$P$ & $\prod_{p\le P}(1-p^{-2})^{-1}$ & $\zeta(2)-$部分乘积 & $\sum_{n>P}n^{-2}$\\
+\midrule
+$10$ & $1.595052$ & $0.04988$ & $0.09517$\\
+$100$ & $1.641945$ & $0.002989$ & $0.009887$\\
+$1000$ & $1.644725$ & $0.000209$ & $0.000977$\\
+\bottomrule
+\end{tabular}
+\end{center}
+部分乘积展开后恰好是所有素因子都不超过 $P$ 的 $n$ 的 $n^{-2}$ 之和，缺少的只是含有大于 $P$ 的素因子的 $n$。证明中的界把所有 $n>P$ 都算作缺项，其实其中许多数（如 $P=10$ 时的 $12,14,15,16,18,\dots$）的素因子都不超过 $P$，已经包含在部分乘积里。所以实际误差明显小于这个界。
+
+\Sol{5.3}{$\sum_pp^{-\sigma}$ 与 $\log\zeta(\sigma)$}
+(a) $x\mapsto x^{-\sigma}$ 递减，$n^{-\sigma}\ge\int_n^{n+1}x^{-\sigma}\dd x$，求和得 $\zeta(\sigma)\ge\int_1^\infty x^{-\sigma}\dd x=1/(\sigma-1)$。
+
+(b) 由定理~\bref{thm:Lambda_dirichlet} 的证明，$\log\zeta(\sigma)=\sum_p\sum_{k\ge1}p^{-k\sigma}/k$（各项为正，绝对收敛）。故
+\[
+  0\le\log\zeta(\sigma)-\sum_pp^{-\sigma}=\sum_p\sum_{k\ge2}\frac{p^{-k\sigma}}k\le\sum_p\sum_{k\ge2}p^{-k}=\sum_p\frac1{p(p-1)}\le\sum_{n\ge2}\frac1{n(n-1)}=1 .
+\]
+
+(c) 由 (a)(b)，$\sum_pp^{-\sigma}\ge\log\frac1{\sigma-1}-1\to+\infty$（$\sigma\to1^+$）。若 $\sum_p1/p$ 收敛，则对一切 $\sigma>1$ 有 $\sum_pp^{-\sigma}\le\sum_p1/p<\infty$，矛盾。
+
+\Sol{5.4}{Dirichlet $L$ 函数}
+(a) 由 $|\chi(n)n^{-s}|\le n^{-\sigma}$，级数在 $\Re s>1$ 绝对收敛。对每个素数 $p$，$|\chi(p)p^{-s}|<1$，
+$(1-\chi(p)p^{-s})^{-1}=\sum_{k\ge0}\chi(p)^kp^{-ks}=\sum_{k\ge0}\chi(p^k)p^{-ks}$，最后一步用了完全积性。有限个绝对收敛级数相乘，由唯一分解与完全积性 $\chi(\prod p^{k_p})=\prod\chi(p)^{k_p}$，
+\[
+  \prod_{p\le P}\bigl(1-\chi(p)p^{-s}\bigr)^{-1}=\sum_{\substack{n\ge1\\ p\mid n\Rightarrow p\le P}}\chi(n)n^{-s},
+\]
+与 $L(s,\chi)$ 之差不超过 $\sum_{n>P}n^{-\sigma}\to0$。若 $\chi$ 只是积性的，一般 $\chi(p^k)\ne\chi(p)^k$，此时局部因子是 $\sum_k\chi(p^k)p^{-ks}$，不能写成 $(1-\chi(p)p^{-s})^{-1}$。
+
+非零性：取 $a_p=\chi(p)p^{-s}/(1-\chi(p)p^{-s})$，$|a_p|\le2p^{-\sigma}$，各因子非零，由引理~\bref{lem:product_nonzero} 得 $L(s,\chi)\ne0$。
+
+对数导数：与定理~\bref{thm:Lambda_dirichlet} 的证明相同，$\log L(s,\chi)=\sum_p\sum_{k\ge1}\chi(p)^kp^{-ks}/k$（取 $\sigma\to+\infty$ 时趋于 $0$ 的分支），逐项求导得
+\[
+  -\frac{L'}{L}(s,\chi)=\sum_p\sum_{k\ge1}\chi(p^k)\log p\cdot p^{-ks}=\sum_{n\ge1}\frac{\chi(n)\Lambda(n)}{n^s}.
+\]
+
+(b) $L(s,\chi_4)=1-3^{-s}+5^{-s}-7^{-s}+9^{-s}-11^{-s}+\cdots$。Euler 乘积中 $p=2$ 的因子为 $1$，其余为 $(1+3^{-s})^{-1}(1-5^{-s})^{-1}(1+7^{-s})^{-1}(1+11^{-s})^{-1}(1-13^{-s})^{-1}\cdots$（$p\equiv1\pmod4$ 时取减号，$p\equiv3\pmod4$ 时取加号）。在 $s=1$ 处级数条件收敛于 $\pi/4$（Leibniz 级数），但这已超出绝对收敛半平面，需要另外论证。
+
+\subsection*{第 6 章}
+
+\Sol{6.1}{跳跃点处的左右平均}
+(a) $\psi(8)=3\log2+\log3+\log5+\log7$，$8=2^3$ 处跳跃 $\log2$，故 $\psi_0(8)=\psi(8)-\tfrac12\log2$。$\sqrt8\approx2.83$ 不是跳跃点，$\psi_0(\sqrt8)=\log2$。$8^{1/3}=2$ 是跳跃点，$\psi_0(2)=\tfrac12\log2$。于是
+\[
+  \psi_0(8)-\psi_0(\sqrt8)-\psi_0(2)=\psi(8)-2\log2=\log2+\log3+\log5+\log7=\theta(8)=\theta_0(8),
+\]
+最后一步因为 $8$ 不是素数，$\theta$ 在此连续。
+
+(b) $\psi_0(9)=\psi(9)-\tfrac12\log3=3\log2+\tfrac32\log3+\log5+\log7$；$\psi_0(3)=\log2+\tfrac12\log3$；$9^{1/3}\approx2.08$，$\psi_0(9^{1/3})=\log2$。$\nu(9)=3$，故
+\[
+  \psi_0(9)-\psi_0(3)-\psi_0(9^{1/3})=\log2+\log3+\log5+\log7=\theta_0(9).
+\]
+
+(c) $\nu(7)=2$。$\psi_0(7)=\psi(7)-\tfrac12\log7=2\log2+\log3+\log5+\tfrac12\log7$，$\psi_0(\sqrt7)=\log2$，故
+\[
+  \psi_0(7)-\psi_0(\sqrt7)=\log2+\log3+\log5+\tfrac12\log7=\theta(7)-\tfrac12\log7=\theta_0(7).
+\]
+若左端用右连续的 $\theta(7)$，两边相差 $\tfrac12\log7$。右连续形式的反演~(\bref{eq:theta_from_psi}) 本身也是正确的恒等式；两种约定各自自洽，但不能混用：由 Perron 积分得到的是 $\psi_0$，代入后左端必须是 $\theta_0$。
+
+\Sol{6.2}{只收集留数为什么不够}
+(a) $s=1$：$\Res=x\cdot\Res_{s=1}\zeta=x$。$s=0$：$\Res=\zeta(0)x^0=-\tfrac12$。和为 $x-\tfrac12$。
+
+(b) 非整数 $x$ 处 $\lfloor x\rfloor_0-(x-\tfrac12)=\tfrac12-\{x\}$，在 $(-\tfrac12,\tfrac12)$ 内来回摆动，不随 $x$ 增大而变小；整数 $x$ 处差为 $0$。
+
+(c) 没有。$x^s$ 是整函数，$1/s$ 只在 $0$ 有极点，延拓后的 $\zeta$ 只在 $s=1$ 有极点；平凡零点 $s=-2,-4,\dots$ 是 $\zeta$ 的零点，使被积函数为零而不是无穷。所以把竖线移到 $\Re s=-U$ 时，由留数定理，
+\[
+  \lfloor x\rfloor_0=(x-\tfrac12)+\bigl(\text{左竖线积分}\bigr)+\bigl(\text{水平边积分}\bigr)+\bigl(\text{截断误差}\bigr),
+\]
+而后几项之和必须等于不衰减的 $\tfrac12-\{x\}$，不可能全部趋于零。第~\bref{sec:what_remains}~节正是指出：解析延拓使围道可以移动，但留数之和一般不等于原部分和，边界积分必须保留并估计。对 $\psi$ 而言，$-\zeta'/\zeta$ 在每个零点都有极点，移线后得到的是包含零点项的显式公式（第~\bref{ch:riemann_explicit_formula}~章），情形不同于本题。
+
+\Sol{6.3}{截断 Perron 积分的数值实验}
+数值结果（$c=2$，$x=10.5$）：
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$T$ & $I_T$ & $I_T-10$ & 误差界\\
+\midrule
+$25$ & $10.3257$ & $+0.326$ & $6.98$\\
+$50$ & $10.0042$ & $+0.004$ & $3.49$\\
+$100$ & $10.1696$ & $+0.170$ & $1.74$\\
+$200$ & $9.9378$ & $-0.062$ & $0.872$\\
+\bottomrule
+\end{tabular}
+\end{center}
+误差有正有负，不随 $T$ 单调下降：它主要来自 $n$ 靠近 $x$ 的几项，记 $u=\log(x/n)$，其截断误差的主要部分像 $\sin(Tu)/(Tu)$ 那样随 $T$ 振荡。误差界按 $1/T$ 衰减，是对各项绝对值求和的上界，在本例中比实际误差大一到两个数量级。界给出的是保证，不是对误差的预测。
+
+参考程序（运行约数分钟）：
+\begin{lstlisting}[language=Python]
+from mpmath import mp, mpf, mpc, zeta, quad, pi, linspace
+mp.dps = 20
+x, c = mpf('10.5'), mpf(2)
+def I(T):
+    pts = linspace(-T, T, int(8*T) + 1)          # 分段积分
+    f = lambda t: zeta(mpc(c, t)) * x**mpc(c, t) / mpc(c, t)
+    return quad(f, pts) / (2*pi)                 # ds = i dt
+for T in [25, 50, 100, 200]:
+    v = I(mpf(T)); print(T, v.real, v.real - 10)
+\end{lstlisting}
+
+\Sol{6.4}{为什么不直接对 $\theta$ 用 Perron 公式}
+(a) $\Re s>1$ 时，$-\frac{\zeta'}{\zeta}(s)=\sum_n\Lambda(n)n^{-s}=\sum_p\sum_{k\ge1}\log p\cdot p^{-ks}=\sum_{k\ge1}P(ks)$，二重级数绝对收敛，可按 $k$ 分组。
+
+代入右端：$\sum_k\mu(k)\bigl(-\frac{\zeta'}{\zeta}\bigr)(ks)=\sum_k\mu(k)\sum_mP(kms)=\sum_{n\ge1}P(ns)\sum_{k\mid n}\mu(k)=P(s)$。重排的依据：$|P(ns)|\le\sum_p\log p\cdot p^{-n\sigma}\le2^{-(n-1)\sigma}\sum_p\log p\cdot p^{-\sigma}$，而按 $n=km$ 重排的项数为除数个数 $d(n)\le n$，$\sum_nn\,2^{-(n-1)\sigma}<\infty$，故三重级数绝对收敛。
+
+(b) 固定 $s$，$\Re s=\sigma>0$。取 $K$ 使 $K\sigma>2$。$k>K$ 的项 $\bigl(-\frac{\zeta'}{\zeta}\bigr)(ks)$ 由绝对收敛的 Dirichlet 级数给出，模不超过 $\sum_n\Lambda(n)n^{-k\sigma}\ll2^{-k\sigma}$，并且在 $s$ 的一个邻域内一致成立，所以尾部之和在该邻域内解析。前 $K$ 项各是亚纯函数 $-\zeta'/\zeta$ 在 $ks$ 处的值。因此右端在 $\Re s>0$ 上是亚纯函数，并在 $\Re s>1$ 上等于 $P$，从而给出 $P$ 的亚纯延拓。可能的极点来自 $ks=1$ 与 $ks=\rho$，即 $s=1/k$（$\mu(k)\ne0$）与 $s=\rho/k$。这些点的实部 $1/k$ 与 $\Re\rho/k$ 在 $k\to\infty$ 时趋于 $0$；由于零点的纵坐标 $\gamma$ 越来越密，$\gamma/k$ 可以逼近任意实数，所以这些点以虚轴 $\Re s=0$ 上的点为聚点。Landau 与 Walfisz（1920）据此证明 $\Re s=0$ 是 $P$ 的自然边界，$P$ 不能越过它延拓。
+
+(c) 对 $\psi$ 移线时，被积函数 $-\zeta'/\zeta\cdot x^s/s$ 在全平面亚纯，极点孤立，可以在每个有限区域内用留数定理。对 $P(s)x^s/s$，奇点在虚轴附近无限聚集，矩形围道无法越过 $\Re s=0$，也难以在 $0<\Re s<1$ 中控制无穷多个奇点。因此书中先用有限的 Möbius 反演把 $\theta$ 化归为 $\psi$，所有解析工作都在 $-\zeta'/\zeta$ 上完成。仓库「学习笔记」中《从 Euler 乘积到素数 zeta 函数》对 $P$ 的类似问题有更详细的讨论。
+
+\end{document}
