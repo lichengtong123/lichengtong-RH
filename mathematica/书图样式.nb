@@ -1,0 +1,229 @@
+Notebook[{Cell["\:4e66\:56fe\:6837\:5f0f", "Title"], 
+  Cell["\:5171\:7528\:6837\:5f0f\:6e90\:7801\:3002\:6b64\:6587\:4ef6\:672c\
+\:8eab\:4e0d\:751f\:6210\:63d2\:56fe\:ff1b\:914d\:5957\:7684 .wl \
+\:6587\:4ef6\:4f9b Mathematica \:7ed8\:56fe\:811a\:672c\:8f7d\:5165\:3002", 
+   "Text"], Cell[CellGroupData[{Cell["\:7a0b\:5e8f\:6e90\:7801", "Section"], 
+     Cell[BoxData[RowBox[{"Null", ";", "Null", ";", "Null", ";", "Null", ";", 
+         "Null", ";", RowBox[{"(", RowBox[{RowBox[{"viewA", "=", RowBox[
+                {"{", RowBox[{"2.4`", ",", RowBox[{"-", "3.`"}], ",", 
+                   "1.6`"}], "}"}]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{"viewB", "=", RowBox[{"{", 
+                 RowBox[{RowBox[{"-", "4.6`"}], ",", RowBox[{"-", "4.`"}], 
+                   ",", "2.6`"}], "}"}]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{"viewVert", "=", RowBox[
+                {"{", RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], ";"}], 
+           ")"}], ";", "Null", ";", RowBox[
+          {"(", RowBox[{RowBox[{"viewC", "=", RowBox[{"{", RowBox[
+                  {"3.48438`", ",", RowBox[{"-", "0.727659`"}], ",", 
+                   "2.1563`"}], "}"}]}], ";"}], ")"}], ";", "Null", ";", 
+         "Null", ";", RowBox[{"(", RowBox[{RowBox[{"boxH", "=", "0.8`"}], 
+             ";"}], ")"}], ";", RowBox[{"(", RowBox[
+            {RowBox[{RowBox[{"bookBox", "[", RowBox[{RowBox[{"{", RowBox[
+                      {"x1_", ",", "x2_"}], "}"}], ",", RowBox[{"h_", ":", 
+                     "boxH"}]}], "]"}], ":=", RowBox[{"{", RowBox[
+                  {FractionBox[RowBox[{"x2", "-", "x1"}], "12"], ",", "2", 
+                   ",", "h"}], "}"}]}], ";"}], ")"}], ";", "Null", ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"bookBoxB", "[", RowBox[
+                  {RowBox[{"{", RowBox[{"x1_", ",", "x2_"}], "}"}], ",", 
+                   RowBox[{"h_", ":", "1.1`"}]}], "]"}], ":=", RowBox[
+                {"{", RowBox[{RowBox[{"0.15`", " ", RowBox[{"(", RowBox[
+                        {"x2", "-", "x1"}], ")"}]}], ",", "2", ",", "h"}], 
+                 "}"}]}], ";"}], ")"}], ";", "Null", ";", "Null", ";", 
+         RowBox[{"(", RowBox[{RowBox[{"shrink3D", "=", RowBox[{"Method", 
+                 "\[Rule]", RowBox[{"{", RowBox[{"\"ShrinkWrap\"", "\[Rule]", 
+                     "True"}], "}"}]}]}], ";"}], ")"}], ";", "Null", ";", 
+         "Null", ";", RowBox[{"(", RowBox[{RowBox[{"imgW", "=", "560"}], 
+             ";"}], ")"}], ";", RowBox[{"(", RowBox[
+            {RowBox[{"fsTick", "=", "12"}], ";", RowBox[{"fsLab", "=", 
+               "13"}], ";", RowBox[{"fsTitle", "=", "13"}], ";", 
+             RowBox[{"fsRho", "=", "13"}], ";", RowBox[{"fsLeg", "=", "12"}], 
+             ";"}], ")"}], ";", RowBox[{"(", RowBox[
+            {RowBox[{"cjk", "=", "\"Songti SC\""}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{"cRed", "=", TemplateBox[
+                <|"color" -> RGBColor[0.8, 0.02, 0.02]|>, 
+                "RGBColorSwatchTemplate"]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{"cBlue", "=", TemplateBox[
+                <|"color" -> RGBColor[0.02, 0.1, 0.8]|>, 
+                "RGBColorSwatchTemplate"]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{"cGreen", "=", TemplateBox[
+                <|"color" -> RGBColor[0., 0.55, 0.1]|>, 
+                "RGBColorSwatchTemplate"]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{"cZero", "=", TemplateBox[
+                <|"color" -> RGBColor[1., 0.75, 0.]|>, 
+                "RGBColorSwatchTemplate"]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{"cStrip", "=", TemplateBox[
+                <|"color" -> RGBColor[0.6, 0.4, 0.2]|>, 
+                "RGBColorSwatchTemplate"]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{"fsAnn", "=", "11"}], ";"}], ")"}], 
+         ";", "Null", ";", "Null", ";", RowBox[
+          {"(", RowBox[{RowBox[{"lwThin", "=", RowBox[{"AbsoluteThickness", 
+                 "[", "0.5`", "]"}]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{"lwMid", "=", RowBox[
+                {"AbsoluteThickness", "[", "0.8`", "]"}]}], ";"}], ")"}], 
+         ";", RowBox[{"(", RowBox[{RowBox[{"lwThick", "=", RowBox[
+                {"AbsoluteThickness", "[", "1.2`", "]"}]}], ";"}], ")"}], 
+         ";", RowBox[{"(", RowBox[{RowBox[{"lwHeavy", "=", RowBox[
+                {"AbsoluteThickness", "[", "1.8`", "]"}]}], ";"}], ")"}], 
+         ";", RowBox[{"(", RowBox[{RowBox[{"dashStrip", "=", RowBox[
+                {"AbsoluteDashing", "[", RowBox[{"{", "}"}], "]"}]}], ";"}], 
+           ")"}], ";", "Null", ";", "Null", ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"ballRad", "[", RowBox[
+                  {"pr_", ",", "box_", ",", RowBox[{"r_", ":", "0.012`"}]}], 
+                 "]"}], ":=", RowBox[{"r", " ", RowBox[{"{", RowBox[
+                    {FractionBox[RowBox[{RowBox[{"pr", 
+                          "\[LeftDoubleBracket]", RowBox[{"1", ",", "2"}], 
+                          "\[RightDoubleBracket]"}], "-", RowBox[{"pr", 
+                          "\[LeftDoubleBracket]", RowBox[{"1", ",", "1"}], 
+                          "\[RightDoubleBracket]"}]}], RowBox[{"box", 
+                        "\[LeftDoubleBracket]", "1", 
+                        "\[RightDoubleBracket]"}]], ",", FractionBox[
+                      RowBox[{RowBox[{"pr", "\[LeftDoubleBracket]", RowBox[
+                          {"2", ",", "2"}], "\[RightDoubleBracket]"}], "-", 
+                        RowBox[{"pr", "\[LeftDoubleBracket]", RowBox[{"2", 
+                          ",", "1"}], "\[RightDoubleBracket]"}]}], RowBox[
+                       {"box", "\[LeftDoubleBracket]", "2", 
+                        "\[RightDoubleBracket]"}]], ",", FractionBox[
+                      RowBox[{RowBox[{"pr", "\[LeftDoubleBracket]", RowBox[
+                          {"3", ",", "2"}], "\[RightDoubleBracket]"}], "-", 
+                        RowBox[{"pr", "\[LeftDoubleBracket]", RowBox[{"3", 
+                          ",", "1"}], "\[RightDoubleBracket]"}]}], RowBox[
+                       {"box", "\[LeftDoubleBracket]", "3", 
+                        "\[RightDoubleBracket]"}]]}], "}"}]}]}], ";"}], 
+           ")"}], ";", RowBox[{"(", RowBox[{RowBox[{RowBox[{"zeroBalls", "[", 
+                 RowBox[{"pts_", ",", "pr_", ",", "box_", ",", RowBox[
+                    {"r_", ":", "0.008`"}]}], "]"}], ":=", RowBox[
+                {"{", RowBox[{"cZero", ",", RowBox[{"Specularity", "[", 
+                     RowBox[{"White", ",", "60"}], "]"}], ",", RowBox[
+                    {RowBox[{"(", RowBox[{RowBox[{"Ellipsoid", "[", RowBox[
+                          {"#1", ",", RowBox[{"ballRad", "[", RowBox[{"pr", 
+                          ",", "box", ",", "r"}], "]"}]}], "]"}], "&"}], 
+                       ")"}], "/@", "pts"}]}], "}"}]}], ";"}], ")"}], ";", 
+         "Null", ";", "Null", ";", RowBox[
+          {"(", RowBox[{RowBox[{"zeroT", "=", RowBox[{"{", RowBox[
+                  {"14.134725`", ",", "21.02204`", ",", "25.010858`", ",", 
+                   "30.424876`"}], "}"}]}], ";"}], ")"}], ";", "Null", ";", 
+         "Null", ";", RowBox[{"(", RowBox[{RowBox[{"bookDir", "=", RowBox[
+                {"If", "[", RowBox[{RowBox[{"$InputFileName", "=!=", 
+                     "\"\""}], ",", RowBox[{"DirectoryName", "[", 
+                     "$InputFileName", "]"}], ",", RowBox[
+                    {"NotebookDirectory", "[", "]"}]}], "]"}]}], ";"}], 
+           ")"}], ";", RowBox[{"(", RowBox[{RowBox[{RowBox[{"bookExport", 
+                 "[", RowBox[{"name_String", ",", "g_"}], "]"}], ":=", RowBox[
+                {"Export", "[", RowBox[{RowBox[{"FileNameJoin", "[", 
+                     RowBox[{"{", RowBox[{"bookDir", ",", RowBox[{"name", 
+                          "<>", "\".pdf\""}]}], "}"}], "]"}], ",", "g", ",", 
+                   RowBox[{"ImageResolution", "\[Rule]", "600"}]}], "]"}]}], 
+             ";"}], ")"}], ";", "Null", ";", "Null", ";", 
+         RowBox[{"(", RowBox[{RowBox[{"cTriv", "=", TemplateBox[
+                <|"color" -> RGBColor[0.55, 0., 0.75]|>, 
+                "RGBColorSwatchTemplate"]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"critLine3D", "[", 
+                 RowBox[{"{", RowBox[{"y1_", ",", "y2_"}], "}"}], "]"}], 
+               ":=", RowBox[{"{", RowBox[{"cGreen", ",", "lwThick", ",", 
+                   RowBox[{"Line", "[", RowBox[{"{", RowBox[{RowBox[{"{", 
+                          RowBox[{FractionBox["1", "2"], ",", "y1", ",", 
+                          "0"}], "}"}], ",", RowBox[{"{", RowBox[{FractionBox[
+                          "1", "2"], ",", "y2", ",", "0"}], "}"}]}], "}"}], 
+                     "]"}]}], "}"}]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"stripMark3D", "[", 
+                 RowBox[{"{", RowBox[{"y1_", ",", "y2_"}], "}"}], "]"}], 
+               ":=", RowBox[{"{", RowBox[{"cStrip", ",", "lwMid", ",", 
+                   RowBox[{"Line", "[", RowBox[{"{", RowBox[{RowBox[{"{", 
+                          RowBox[{"0", ",", "y1", ",", "0"}], "}"}], ",", 
+                         RowBox[{"{", RowBox[{"0", ",", "y2", ",", "0"}], 
+                          "}"}]}], "}"}], "]"}], ",", RowBox[{"Line", "[", 
+                     RowBox[{"{", RowBox[{RowBox[{"{", RowBox[{"1", ",", 
+                          "y1", ",", "0"}], "}"}], ",", RowBox[{"{", RowBox[
+                          {"1", ",", "y2", ",", "0"}], "}"}]}], "}"}], 
+                     "]"}]}], "}"}]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"trivialBalls", "[", 
+                 RowBox[{"pts_", ",", "pr_", ",", "box_", ",", RowBox[
+                    {"r_", ":", "0.008`"}]}], "]"}], ":=", RowBox[
+                {"{", RowBox[{"cTriv", ",", RowBox[{"Specularity", "[", 
+                     RowBox[{"White", ",", "60"}], "]"}], ",", RowBox[
+                    {RowBox[{"(", RowBox[{RowBox[{"Ellipsoid", "[", RowBox[
+                          {"#1", ",", RowBox[{"ballRad", "[", RowBox[{"pr", 
+                          ",", "box", ",", "r"}], "]"}]}], "]"}], "&"}], 
+                       ")"}], "/@", "pts"}]}], "}"}]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"poleBall", "[", RowBox[
+                  {"p_", ",", "pr_", ",", "box_", ",", RowBox[{"r_", ":", 
+                     "0.008`"}]}], "]"}], ":=", RowBox[{"{", RowBox[
+                  {"Black", ",", RowBox[{"Ellipsoid", "[", RowBox[{"p", ",", 
+                       RowBox[{"ballRad", "[", RowBox[{"pr", ",", "box", ",", 
+                          "r"}], "]"}]}], "]"}]}], "}"}]}], ";"}], ")"}], 
+         ";", "Null", ";", RowBox[{"(", RowBox[
+            {RowBox[{RowBox[{"bkItem", "[", RowBox[{"g_", ",", "txt_"}], 
+                 "]"}], ":=", TemplateBox[{"\[ThinSpace]", "\" \"", "g", 
+                 RowBox[{"Style", "[", RowBox[{"txt", ",", "fsLeg", ",", 
+                     "Black", ",", RowBox[{"FontFamily", "\[Rule]", 
+                       "cjk"}]}], "]"}]}, "RowWithSeparators"]}], ";"}], 
+           ")"}], ";", RowBox[{"(", RowBox[{RowBox[{RowBox[{"bkLine", "[", 
+                 RowBox[{"col_", ",", RowBox[{"lw_", ":", "1.6`"}]}], "]"}], 
+               ":=", GraphicsBox[{col, AbsoluteThickness[lw], LineBox[
+                  {{0, 0}, {1, 0}}]}, ImageSize -> {26, 8}, 
+                PlotRangePadding -> None]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"bkDisk", "[", "col_", "]"}], 
+               ":=", GraphicsBox[{col, EdgeForm[{Black, AbsoluteThickness[
+                    0.5]}], DiskBox[{0, 0}]}, ImageSize -> 8]}], ";"}], 
+           ")"}], ";", RowBox[{"(", RowBox[{RowBox[{RowBox[{"bkSurf", "[", 
+                 "col_", "]"}], ":=", GraphicsBox[{EdgeForm[{GrayLevel[0.4], 
+                   AbsoluteThickness[0.5]}], col, RectangleBox[{0, 0}, 
+                  {2, 1}]}, ImageSize -> {20, 10}, PlotRangePadding -> 
+                 None]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"bookLegendItem", "[", 
+                 "\"crit\"", "]"}], ":=", RowBox[{"bkItem", "[", 
+                 RowBox[{RowBox[{"bkLine", "[", "cGreen", "]"}], ",", 
+                   "\"\:4e34\:754c\:7ebf Re(s) = 1/2\""}], "]"}]}], ";"}], 
+           ")"}], ";", RowBox[{"(", RowBox[{RowBox[{RowBox[{"bookLegendItem", 
+                 "[", "\"strip\"", "]"}], ":=", RowBox[{"bkItem", "[", 
+                 RowBox[{RowBox[{"bkLine", "[", RowBox[{"cStrip", ",", 
+                       "1.`"}], "]"}], ",", 
+                   "\"\:4e34\:754c\:5e26\:8fb9\:754c Re(s) = 0, 1\""}], 
+                 "]"}]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"bookLegendItem", "[", 
+                 "\"zero\"", "]"}], ":=", RowBox[{"bkItem", "[", 
+                 RowBox[{RowBox[{"bkDisk", "[", "cZero", "]"}], ",", 
+                   "\"\:975e\:5e73\:51e1\:96f6\:70b9\""}], "]"}]}], ";"}], 
+           ")"}], ";", RowBox[{"(", RowBox[{RowBox[{RowBox[{"bookLegendItem", 
+                 "[", "\"triv\"", "]"}], ":=", RowBox[{"bkItem", "[", 
+                 RowBox[{RowBox[{"bkDisk", "[", "cTriv", "]"}], ",", "\"\
+\:5e73\:51e1\:96f6\:70b9 s = \[Minus]2, \[Minus]4, \[Ellipsis]\""}], "]"}]}], 
+             ";"}], ")"}], ";", RowBox[{"(", RowBox[
+            {RowBox[{RowBox[{"bookLegendItem", "[", "\"pole\"", "]"}], ":=", 
+               RowBox[{"bkItem", "[", RowBox[{RowBox[{"bkDisk", "[", "Black", 
+                     "]"}], ",", "\"\:6781\:70b9 s = 1\""}], "]"}]}], ";"}], 
+           ")"}], ";", RowBox[{"(", RowBox[{RowBox[{RowBox[{"bookLegendItem", 
+                 "[", RowBox[{"{", RowBox[{"g_", ",", "txt_String"}], "}"}], 
+                 "]"}], ":=", RowBox[{"bkItem", "[", RowBox[{"g", ",", 
+                   "txt"}], "]"}]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"bookLegend", "[", "keys_List", 
+                 "]"}], ":=", RowBox[{"Row", "[", RowBox[{RowBox[
+                    {"bookLegendItem", "/@", "keys"}], ",", TemplateBox[{12}, 
+                    "Spacer1"]}], "]"}]}], ";"}], ")"}], ";", 
+         RowBox[{"(", RowBox[{RowBox[{RowBox[{"bookLegendRows", "[", 
+                 "rows_List", "]"}], ":=", RowBox[{"Column", "[", 
+                 RowBox[{RowBox[{"bookLegend", "/@", "rows"}], ",", 
+                   RowBox[{"Alignment", "\[Rule]", "Center"}], ",", 
+                   RowBox[{"Spacings", "\[Rule]", "0.4`"}]}], "]"}]}], ";"}], 
+           ")"}], ";", "Null", ";", "Null", ";", 
+         RowBox[{"(", RowBox[{RowBox[{"yLen17", "=", "3"}], ";"}], ")"}], 
+         ";", RowBox[{"(", RowBox[{RowBox[{RowBox[{"box17", "[", 
+                 RowBox[{RowBox[{"{", RowBox[{"x1_", ",", "x2_"}], "}"}], 
+                   ",", RowBox[{"h_", ":", "boxH"}]}], "]"}], ":=", RowBox[
+                {"{", RowBox[{FractionBox[RowBox[{"yLen17", " ", "0.46`", 
+                      " ", RowBox[{"(", RowBox[{"x2", "-", "x1"}], ")"}]}], 
+                    "12.5`"], ",", "yLen17", ",", "h"}], "}"}]}], ";"}], 
+           ")"}], ";", RowBox[{"(", RowBox[{RowBox[{"re17", "=", RowBox[
+                {"{", RowBox[{RowBox[{"-", "8.5`"}], ",", "4"}], "}"}]}], 
+             ";"}], ")"}], ";", RowBox[{"(", RowBox[
+            {RowBox[{"reTicks17", "=", RowBox[{"{", RowBox[
+                  {RowBox[{"-", "8"}], ",", RowBox[{"-", "6"}], ",", 
+                   RowBox[{"-", "4"}], ",", RowBox[{"-", "2"}], ",", "2", 
+                   ",", "4"}], "}"}]}], ";"}], ")"}]}]], "Input", 
+      InitializationCell -> False]}, Closed]]}, 
+ WindowTitle -> "\:4e66\:56fe\:6837\:5f0f", StyleDefinitions -> "Default.nb", 
+ WindowSize -> {1100, 850}, TaggingRules -> 
+  {"SourceFile" -> "\:4e66\:56fe\:6837\:5f0f.wl", 
+   "SourceSHA256" -> 
+    "c02a9bc6f1d2c62489b1d961a70aa35cfacc2365dbb0bcc2904426feb11a3706", 
+   "SavedGraphicsCount" -> 0, "GeneratedAt" -> "2026-10-22T11:21:50"}]
