@@ -1,6 +1,6 @@
 # 动画视频
 
-本目录存放第 20 章的三个新版动画视频（`.mp4`）及播放页，视频均为 1920×1080、30 帧/秒。可在浏览器播放，也可下载后用系统播放器打开。生成这些视频的程序见 [manim/](../manim/README.md)。
+本目录提供白底书稿对应版和黑底辅助版视频及播放页。白底版的三个视频均为 1920×1080、30 帧/秒；黑底辅助版的参数见下方目录。可在浏览器播放，也可下载后用系统播放器打开。白底版的生成程序见 [manim/](../manim/README.md)。
 
 ## 书中引用的视频
 
@@ -10,7 +10,11 @@
 | Hardy 轨迹 | [播放](https://lichengtong123.github.io/lichengtong-RH/videos/hardy.html) | [zeta_3D_18H.mp4](zeta_3D_18H.mp4) | 38 秒 |
 | π₀ 逼近 | [播放](https://lichengtong123.github.io/lichengtong-RH/videos/pi0.html) | [RiemannVisualization1800log2.mp4](RiemannVisualization1800log2.mp4) | 64.6 秒 |
 
-旧版视频与仓库根目录的旧 HTML 播放页已移除；新版播放页统一置于本目录。
+## 黑底辅助视频
+
+[黑底辅助视频目录](black/README.md)提供 ζ 共形映射、Hardy 轨迹、素数计数 π₀ 逼近与 3B1B 式全平面变换四个视频。前三项也可从白底播放页进入对应黑底版；3B1B 单列为书中未印的补充演示。
+
+黑底视频供屏幕观看参考，制作批次和部分设置与白底版未必相同，不替代书稿对应版。根目录的旧 HTML 播放页不再使用。
 
 视频是有限范围内的数值示意；与书中定义、证明不一致时，以正文为准。
 
