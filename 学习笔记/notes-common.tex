@@ -1,0 +1,44 @@
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{xcolor}
+\usepackage{booktabs,array,enumitem,fancyhdr,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black}
+\setlength{\emergencystretch}{2em}
+\setlength{\parskip}{0.3em}
+\linespread{1.16}
+\allowdisplaybreaks
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{说明}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\Li}{\operatorname{Li}}
+\newcommand{\supp}{\operatorname{supp}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small 学习笔记}
+\fancyhead[R]{\small 初稿}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{15pt}
+\author{}
+\date{2026年10月22日初稿}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \thispagestyle{plain}%
+  \begin{center}
+    {\LARGE\bfseries \@title\par}
+    \vspace{0.6em}
+    {\small \@date\par}
+  \end{center}
+  \vspace{0.6em}}
+\makeatother
+\newcommand{\draftnotice}{\noindent{\small
+本文为供逐篇审阅的学习笔记初稿，不是新增研究成果。
+文中区分直接证明与引用结果；正文不依赖本文。
+本轮已作公式、条件及排版初步核查，尚待作者逐句审定。}\par\medskip}
