@@ -1,0 +1,123 @@
+\documentclass[UTF8,fontset=fandol,11pt]{ctexart}
+\input{../notes-common.tex}
+\title{积分计数函数的显式公式}
+\begin{document}
+\maketitle
+\draftnotice
+\section{积分以后，新的对象是什么}
+记 $\Lambda(n)$ 为 von Mangoldt 函数，$\psi(x)=\sum_{n\le x}\Lambda(n)$。
+对 $x\ge1$ 定义
+\[
+ \psi_1(x)=\int_1^x\psi(u)\dd u
+ =\sum_{n\le x}\Lambda(n)(x-n).
+\]
+有限区间只有有限个跳跃，故后一个等式可逐项积分获得。
+积分端点处 $\psi$ 取左值、右值或左右平均，不影响积分。
+$\psi_1$ 连续，但在素数幂处的导数一般仍有跳跃。
+本篇推导其显式公式，并证明零点级数绝对收敛；不将它与原来的不平滑公式混同。
+
+\section{所引用的解析输入}
+以下采用本书已经建立的结果，作为本文明确的前提：
+\begin{enumerate}
+ \item $\zeta$ 的亚纯延拓、函数方程和对数导数的 Dirichlet 级数；
+ \item 非平凡零点满足 $0<\Rea\rho<1$，并有 $N(T)=O(T\log(T+2))$，零点计重数；
+ \item 对任意固定 $U>0$，存在避零高度 $T_j\to\infty$，使固定竖带
+ $-U\le\sigma\le c$ 上 $\zeta'/\zeta(\sigma\pm\ii T_j)
+ =O_{U,c}(\log^2(T_j+2))$。
+\end{enumerate}
+第三项是围道估计输入，不在此重复其局部零点计数与对数导数展开证明。
+后文逐步说明如何使用它，而非把围道消失当成无需证明的事实。
+这些输入不以 RH 为前提。
+
+\section{先获得绝对收敛的积分表示}
+对 $c>1$，由一次平滑的 Perron 核和
+$-\zeta'/\zeta(s)=\sum\Lambda(n)n^{-s}$，
+\[
+ \psi_1(x)=\frac1{2\pi\ii}\int_{c-\ii\infty}^{c+\ii\infty}
+ -\frac{\zeta'}{\zeta}(s)\frac{x^{s+1}}{s(s+1)}\dd s.       \tag{1}
+\]
+合法换序由
+$\sum\Lambda(n)n^{-c}<\infty$ 与
+$\int_{\mathbb R}|(c+\ii t)(c+1+\ii t)|^{-1}\dd t<\infty$
+共同保证。
+多出的 $s+1$ 已使原积分线上的反演绝对收敛。
+
+\section{五类留数逐项计算}
+被积函数记为 $F_x(s)$。固定 $x>1$，并按重数计零点。
+\begin{enumerate}
+ \item $s=1$：$\zeta'/\zeta$ 留数为 $-1$，故
+ $\operatorname{Res}_{s=1}F_x=x^2/2$。
+ \item 非平凡零点 $\rho$：若其重数为 $m_\rho$，
+ 留数为 $-m_\rho x^{\rho+1}/(\rho(\rho+1))$。
+ \item $s=0$：$\zeta(0)\ne0$，核有单极点，留数为
+ $-x\zeta'(0)/\zeta(0)=-x\log(2\pi)$。
+ \item $s=-1$：此处 $\zeta(-1)=-1/12\ne0$，留数为
+ $+\zeta'(-1)/\zeta(-1)$。正号来自 $s=-1$ 处核的留数为 $-1$。
+ \item 平凡零点 $s=-2m$（$m\ge1$）：均为单零点，留数为
+ $-x^{1-2m}/(2m(2m-1))$。
+\end{enumerate}
+与未积分的公式相比，$s=-1$ 是新核带来的额外极点，不能遗漏。
+
+\section{围道的极限次序及边积分}
+取左边界为 $-U=-(2M+1)$，$M\ge1$。先固定 $M$，沿避零高度令 $T_j\to\infty$。
+两条水平边上 $|s(s+1)|\asymp T_j^2$，竖带宽有限，且 $x^{\sigma+1}$ 有固定上界，
+故各边积分为 $O_{M,c,x}(\log^2T_j/T_j^2)\to0$。
+右竖线积分由绝对收敛趋于式(1)。
+
+再处理无限长的左竖线。由函数方程的对数导数与 Stirling 估计，
+在负奇整数线 $\sigma=-U$ 上可得
+\[
+ \left|\frac{\zeta'}{\zeta}(-U+\ii t)\right|
+ \ll\log(U+|t|+2),\qquad U=3,5,\ldots .
+\]
+这是函数方程估计的直接应用：$1-s$ 位于绝对收敛半平面；
+三角因子在负奇整数线上避开其极点，Gamma 对数导数给出对数增长。
+在该线上
+$|s(s+1)|\gg U^2+t^2$，因而左边积分的模为
+\[
+ \ll x^{1-U}\int_{\mathbb R}
+       \frac{\log(U+|t|+2)}{U^2+t^2}\dd t
+ \ll x^{1-U}\frac{\log(U+2)}U\longrightarrow0.
+\]
+最后一步先令 $t=Uv$，再利用
+$\int_{\mathbb R}(1+\log(1+|v|))/(1+v^2)\dd v<\infty$。
+这里必须固定 $x>1$；没有证明对 $x\downarrow1$ 一致。
+
+\section{零点和的绝对收敛}
+对固定 $x>1$，$|x^{\rho+1}|\le x^2$。
+对足够大的 $|\gamma|$，有 $|\rho(\rho+1)|\gg\gamma^2$。
+由 Stieltjes 分部积分，
+\[
+ \sum_{\gamma>T}\gamma^{-2}
+ =-\frac{N(T)}{T^2}+2\int_T^\infty\frac{N(u)}{u^3}\dd u
+ =O\left(\frac{\log(T+2)}T\right)
+\]
+（$N$ 仅计正虚部；负虚部由共轭对称处理）。
+有限高度的零点项是有限和，且分母不为零，因此全零点级数绝对收敛。
+同样的界对任意紧区间 $1<a\le x\le b$ 一致成立。
+平凡零点级数则由 $x^{-2m}$ 的几何衰减绝对收敛。
+
+综合留数及边积分，得到
+\[
+\begin{aligned}
+ \psi_1(x)
+ ={}&\frac{x^2}{2}
+ -\sum_\rho\frac{x^{\rho+1}}{\rho(\rho+1)}
+ -x\log(2\pi)+\frac{\zeta'(-1)}{\zeta(-1)}\\
+ &-\sum_{m=1}^\infty\frac{x^{1-2m}}{2m(2m-1)},\qquad x>1.
+\end{aligned}
+\]
+这里零点计重数；由于绝对收敛，求和排列不再依赖高度对称规则。
+
+\section{为什么不能随意微分回去}
+若逐项微分，分母 $\rho+1$ 被消去，回到约 $x^\rho/\rho$ 的项。
+其绝对值上界只有 $O_x(|\gamma|^{-1})$，相应零点级数不绝对收敛。
+因此本篇的绝对收敛结论不足以支持逐项求导。
+恢复 $\psi$ 需要重新处理截断、跳跃和收敛方式；积分获得的优势在求导时可能丢失。
+
+\section*{参考依据与后续核验}
+解析输入及特殊值取自本书关于函数方程、零点计数和显式公式的结果；
+标准背景可查 E.\ C.\ Titchmarsh, \emph{The Theory of the Riemann Zeta-Function}, 2nd ed., 1986。
+本篇直接推导新核、各留数和收敛性，避零高度估计作为引用输入。
+作者复审时应重点核对左边界的一致常数与五类留数，不将本初稿视为已经独立重证全部输入。
+\end{document}

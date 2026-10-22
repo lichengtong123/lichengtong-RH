@@ -1,0 +1,96 @@
+\documentclass[UTF8,fontset=fandol,11pt]{ctexart}
+\input{../notes-common.tex}
+\title{从 Euler 乘积到素数 $\zeta$ 函数}
+\begin{document}
+\maketitle
+\draftnotice
+\section{只对素数求和会得到什么}
+$\zeta(s)$ 对全部正整数求和，而 Euler 乘积对素数取乘积。
+若改为直接对素数求和，可以定义
+\[
+ P(s)=\sum_p p^{-s},\qquad \Rea s>1.
+\]
+这个函数通常称素数 zeta 函数。它与 $\log\zeta$ 密切相关，
+但两者不是同一个函数；区分素数与素数幂，是理解这种关系的关键。
+本篇在绝对收敛区域内完整推导两者的互反，并研究 $s\downarrow1$ 的实轴行为。
+不声称据此已经完成复杂的全域延拓。
+
+\section{由 Euler 乘积获得第一重关系}
+在 $\sigma=\Rea s>1$ 上取与实轴正值连续一致的解析对数，
+\[
+ \log\zeta(s)=\sum_p\sum_{k=1}^\infty\frac{p^{-ks}}k
+            =\sum_{k=1}^\infty\frac{P(ks)}k.                \tag{1}
+\]
+换序由绝对收敛保证：
+\[
+ \sum_p\sum_{k\ge1}\frac{p^{-k\sigma}}k
+ \le\sum_p\frac{p^{-\sigma}}{1-p^{-\sigma}}
+ \le\frac1{1-2^{-\sigma}}\sum_{n\ge2}n^{-\sigma}<\infty.
+\]
+$k=1$ 是素数项，$k\ge2$ 收集更高素数幂，故 $\log\zeta$ 并不等于 $P$。
+
+\section{Möbius 反演的直接证明}
+记 $\mu$ 为 Möbius 函数，其基本恒等式为
+$\sum_{d\mid m}\mu(d)=1$（$m=1$），而 $m>1$ 时为零。
+将式(1)代入，候选反演为
+\[
+ \sum_{k\ge1}\frac{\mu(k)}k\log\zeta(ks)
+ =\sum_{k,j\ge1}\frac{\mu(k)}{kj}P(kjs).
+\]
+为了按 $m=kj$ 合并，先估计绝对值。对 $m\ge1$，
+\[
+ P(m\sigma)\le
+ \sum_{n\ge2}n^{-m\sigma}
+ \le 2^{-(m-1)\sigma}\sum_{n\ge2}n^{-\sigma}.
+\]
+因此
+\[
+ \sum_{k,j\ge1}\frac{|P(kjs)|}{kj}
+ \le\sum_{m\ge1}\frac{d(m)}m P(m\sigma)<\infty,
+\]
+因为 $d(m)\le m$，而剩下的是几何衰减。
+合法合并后，$P(ms)$ 的系数为
+$m^{-1}\sum_{k\mid m}\mu(k)$，故
+\[
+ P(s)=\sum_{k=1}^\infty\frac{\mu(k)}k\log\zeta(ks),
+ \qquad\Rea s>1.                                        \tag{2}
+\]
+这里不是把一个形式反演未经检查地用于双重无穷和。
+
+\section{实轴上靠近一的行为}
+对实数 $s>1$，将式(1)写成
+\[
+ P(s)=\log\zeta(s)-H(s),\qquad
+ H(s)=\sum_p\sum_{k\ge2}\frac{p^{-ks}}k.
+\]
+当 $s\ge1$ 时，
+\[
+ 0\le H(s)\le\sum_{n\ge2}\sum_{k\ge2}n^{-k}
+ =\sum_{n\ge2}\frac1{n(n-1)}=1.
+\]
+控制收敛定理因而保证 $H(s)\to H(1)<\infty$。
+又由 $\zeta$ 在 $1$ 的留数为 $1$，
+$\zeta(s)=(s-1)^{-1}(1+O(s-1))$，所以
+\[
+ P(s)=\log\frac1{s-1}-H(1)+o(1),\qquad s\downarrow1.
+\]
+$\zeta$ 的简单极点经取对数后变成对数型发散；高次素数幂只改变有限常数。
+这已经说明两个对象的奇性类型不同，但不是复平面上的完整分支分析。
+
+\section{从收敛边界能推出什么，不能推出什么}
+若假设 $\sum_p1/p<\infty$，则对 $s\downarrow1$ 用控制收敛定理，
+$P(s)$ 应趋于有限值，与上节发散矛盾。所以
+$\sum_p1/p$ 发散。
+更弱的“素数有无穷多个”也随之成立。
+
+另一方面，式(2)中出现 $\log\zeta(ks)$，
+提醒我们继续延拓时必须处理零点、极点与对数分支。
+但不能仅看见一个候选奇点，就宣称它一定在最终的和中保留下来：
+不同项之间可能存在重合或抵消，还须证明。
+本篇因此只在已建立绝对收敛的区域使用式(2)，不把后续奇性位置画成未经论证的结论。
+
+\section*{参考依据与后续核验}
+Euler 乘积、$\zeta$ 在 $1$ 的极点及 Möbius 基本恒等式，可参看本书相关结果。
+本篇直接证明了双重和反演和实轴渐近。
+若以后讨论自然边界，必须另列所用的零点信息和分支构造，不能作为本篇末尾的一句附带断言。
+\end{document}
