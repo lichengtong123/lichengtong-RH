@@ -1,6 +1,6 @@
 # Manim 动画程序（第 20 章）
 
-本目录是书中第 20 章动画的 Python（Manim Community）源程序。成片可在浏览器中直接观看，地址见[仓库首页](../README.md#在线观看书中动画)；视频文件见 [videos/](../videos/README.md)。
+本目录是书中第 20 章动画的 Python（Manim Community）源程序。已发布的三个新版视频及下载链接见 [videos/](../videos/README.md)。
 
 ## 程序与视频对照
 
@@ -9,7 +9,7 @@
 | 二维 ζ 同伦 | `二维 ζ 同伦.py` | `ZetaConformalMap` | `ZetaStill` |
 | Hardy 轨迹 | `Hardy 轨迹.py` | `zeta_3D_18H` | `HardyStill` |
 | π₀ 逼近 | `素数计数公式逼近.py` | `RiemannVisualization1800log2` | `Pi0Still` |
-| 3B1B 式全平面变换（书中未印） | `3B1B.py` | `FullPlaneZeta` | — |
+| 3B1B 式全平面变换（书中未印，仅保留源码） | `3B1B.py` | `FullPlaneZeta` | — |
 
 前三个程序共用同目录的 `ch20_render.py`（统一的分辨率、白底配色和渲染模式），下载或移动时须一并保留。
 

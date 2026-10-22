@@ -6,14 +6,13 @@
 
 ## 在线观看书中动画
 
-书中第 20 章只印关键帧，完整动画可在浏览器中直接播放，无需安装任何软件：
+书中第 20 章只印关键帧，完整动画见以下视频文件，可下载后用系统播放器观看；支持视频预览的浏览器也可直接打开，无需安装 Manim：
 
 | 书中内容 | 地址 |
 |----------|------|
-| 二维 ζ 同伦（ζ 映射） | https://lichengtong123.github.io/lichengtong-RH/Conformal-100.html |
-| Hardy 轨迹 | https://lichengtong123.github.io/lichengtong-RH/Hardy.html |
-| π₀ 逼近 | https://lichengtong123.github.io/lichengtong-RH/J2pi.html |
-| 3B1B 式全平面变换（与 ζ 映射对照，书中未印） | https://lichengtong123.github.io/lichengtong-RH/3B1B.html |
+| 二维 ζ 同伦（ζ 映射） | [视频](videos/ZetaConformalMap.mp4) |
+| Hardy 轨迹 | [视频](videos/zeta_3D_18H.mp4) |
+| π₀ 逼近 | [视频](videos/RiemannVisualization1800log2.mp4) |
 
 ## 目录
 
@@ -22,7 +21,7 @@
 | 目录 | 内容 | 对应章节 |
 |------|------|----------|
 | [manim/](manim/README.md) | 第 20 章动画的 Python（Manim）源程序、渲染命令与参数说明 | 第 20 章 |
-| [videos/](videos/README.md) | 动画视频（`.mp4`），根目录的 `*.html` 为播放页 | 第 20 章 |
+| [videos/](videos/README.md) | 三个新版动画视频（`.mp4`），供观看与下载 | 第 20 章 |
 | [mathematica/](mathematica/README.md) | 书中曲面图与零迹线图的 Mathematica 程序（`.wl`）及可用免费 Wolfram Player 查看的笔记本（`.nb`） | 第 5、7、9、10、13、17 章 |
 | [docs/](docs/) | [运行环境与安装说明](docs/运行环境建立与程序安装说明.md)、[ζ 函数数值计算的常用软件](docs/函数数值计算的常用软件.md) | 第 19、20 章 |
 | [关系图下载/](关系图下载/) | A3 版黎曼猜想知识谱系关系图（PDF），供单独查阅与打印 | 第 16 章 |
