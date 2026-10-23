@@ -60,7 +60,7 @@
   framerule=0.3pt,rulecolor=\color{gray!60},xleftmargin=1em,xrightmargin=1em,
   breaklines=true,showstringspaces=false}
 
-\newcommand{\versiondate}{2026 年 10 月 22 日}
+\newcommand{\versiondate}{2026 年 10 月 23 日（修订）}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第一部}
@@ -98,9 +98,13 @@
     题中「定理~\bref{thm:pnt}」「式~(\bref{eq:J_from_pi})」「第~\bref{sec:perron}~节」等编号均自动取自当前书稿；书稿改版后重新编译本文件，编号随之更新。
   \item \textbf{固定题号。}
     每题编号（如 2.3）一经发布不再改动；删去的题号留空，不由新题顶替，新题接续编号。反馈时请注明题号。
+  \item \textbf{主选与可选。}
+    星级表示完成难度，不等于题目的作用。初读时建议先做主选题；习题 1.2、2.5、3.3、4.1、4.2、5.4、6.4 为可选延伸，供希望深入某一环节的读者选做。这是阅读上的分层，不是硬性规定，可选题也不都是很难的题。
   \item \textbf{数值。}
     数值题的参考值用 Python 的 \texttt{mpmath} 计算，给出的位数足以核对；「$\approx$」表示四舍五入。
 \end{itemize}
+
+本次修订（2026 年 10 月 23 日）依据读者审查意见改正了习题 2.2、3.4、4.1、4.3、5.2、6.3、6.4 解答中的错误或不严密之处，修改了 1.1、1.2、5.4 的题设，并新增习题 2.6、4.5。
 
 本批题目为初稿，题目可解性与解答仍待作者逐题复核。发现错误或表述不清，请在配套仓库的 Issues 中注明题号与具体位置。
 
@@ -121,6 +125,7 @@
   \item 对 $x=10^4$、$10^6$，计算 $x/(\log x-1)$、$L_A(x)$ 与 $\Li(x)$，并与表~\bref{tab:pix} 中的 $\pi(x)$ 比较。哪个近似最好？
   \item 已知 $\pi(10^8)=5\,761\,455$，$\pi(10^{12})=37\,607\,912\,018$，$\pi(10^{18})=24\,739\,954\,287\,740\,860$。计算这三处的 $\pi(x)-L_A(x)$ 与 $\pi(x)-\Li(x)$。
   \item 用式~(\bref{eq:Li-asymptotic}) 与式~(\bref{eq:legendre-denom-expand}) 解释 (a)(b) 的现象：为什么拟合常数在中等范围占优，$x$ 增大后却不如 $\Li$？
+  （本小问可直接使用下面的已知结果作为前提：存在常数 $c>0$，使 $\pi(x)=\Li(x)+O\bigl(x\,e^{-c\sqrt{\log x}}\bigr)$。它由附录~\bref{app:pnt_estimates} 的定理~\bref{thm:pnt-error} 经分部求和得到，属于后文内容，本题不要求证明。）
 \end{enumerate}
 \toHint{1.1}
 
@@ -129,7 +134,7 @@
 \begin{enumerate}
   \item 证明：对固定的 $x>e$，$t_k$ 随 $k$ 先减后增，最小项出现在 $k\approx\log x$ 处。
   \item 取 $x=10^6$，对 $n=1,\dots,25$ 计算 $S_n(x)-\li(x)$，其中 $\li(x)=\Li(x)+\li(2)$，$\li(2)\approx1.04516$。$n$ 取多少时误差最小？最小误差与最小项相比如何？
-  \item 式~(\bref{eq:Li-parts-finite}) 是精确等式。若在其中取 $n=14$，来自积分下限的常数项 $-\sum_{k\le n}(k-1)!\,2/(\log 2)^k$ 有多大？这说明式~(\bref{eq:Li-asymptotic}) 中「$\sim$」的含义是什么，为什么不能把它当作收敛级数或在大 $n$ 处直接使用有限公式？
+  \item 式~(\bref{eq:Li-parts-finite}) 是精确等式。若在其中取 $n=14$，来自积分下限的常数项 $-\sum_{k\le n}(k-1)!\,2/(\log 2)^k$ 有多大？这说明式~(\bref{eq:Li-asymptotic}) 中「$\sim$」的含义是什么？为什么不能把它当作收敛级数？有限公式在大 $n$ 处仍是精确等式，为什么在数值计算中却不宜直接使用？
 \end{enumerate}
 \toHint{1.2}
 
@@ -187,6 +192,14 @@
   \]
 \end{enumerate}
 \toHint{2.5}
+
+\Q{2.6}{\lvI}{$\mu$ 与 Mertens 函数的手算}
+\begin{enumerate}
+  \item 列出 $n\le30$ 的 $\mu(n)$ 与 $M(n)=\sum_{k\le n}\mu(k)$（第~\bref{subsec:mertens_function}~节），找出 $M$ 在此范围内的最小值，并核对 $|M(n)|\le\sqrt n$。
+  \item 对 $n=12$ 与 $n=30$，逐项验证 $\sum_{d\mid n}\mu(d)=[n=1]$（引理~\bref{lem:musum}）。
+  \item 证明对一切 $x\ge1$，$\displaystyle\sum_{n\le x}M\Bigl(\frac xn\Bigr)=1$，并在 $x=30$ 处数值核对。
+\end{enumerate}
+\toHint{2.6}
 
 % ------------------------------------------------------------
 \section*{第 \bref{ch:complex_analysis_intro} 章\quad 解析数论的复变函数基础}
@@ -285,6 +298,15 @@
 \end{enumerate}
 \toHint{4.4}
 
+\Q{4.5}{\lvI}{Mellin 变换的尺度伸缩与幂乘}
+记 $G(s)=\int_0^\infty e^{-x}x^{s-1}\dd x$（$\Re s>0$）。
+\begin{enumerate}
+  \item 由第~\bref{subsec:mellin_properties}~节的尺度伸缩性质，求 $e^{-nx}$（$n\ge1$）与 $e^{-\pi n^2x}$ 的 Mellin 变换。
+  \item 设 $\Re s>1$。对 $\sum_{n\ge1}e^{-nx}=\frac1{e^x-1}$ 逐项作 Mellin 变换，得到 $\int_0^\infty\frac{x^{s-1}}{e^x-1}\dd x=G(s)\zeta(s)$，并说明交换求和与积分的依据。为什么这里要求 $\Re s>1$？
+  \item 由幂乘性质求 $xe^{-x}$ 的 Mellin 变换；再直接分部积分，验证 $G(s+1)=sG(s)$。
+\end{enumerate}
+\toHint{4.5}
+
 % ------------------------------------------------------------
 \section*{第 \bref{ch:riemann_zeta_intro} 章\quad 黎曼 \texorpdfstring{$\zeta$}{ζ} 函数初探}
 \addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:riemann_zeta_intro} 章\quad }{}黎曼 \texorpdfstring{$\zeta$}{ζ} 函数初探}
@@ -312,8 +334,8 @@
 \end{enumerate}
 \toHint{5.3}
 
-\Q{5.4}{\lvIII}{Dirichlet $L$ 函数}
-设 $\chi:\mathbb Z_{>0}\to\CC$ 完全积性（$\chi(mn)=\chi(m)\chi(n)$ 对一切 $m,n$ 成立），且 $|\chi(n)|\le1$。
+\Q{5.4}{\lvIII}{完全积性系数的 Euler 乘积}
+设 $\chi:\mathbb Z_{>0}\to\CC$ 完全积性（$\chi(mn)=\chi(m)\chi(n)$ 对一切 $m,n$ 成立），$\chi(1)=1$，且 $|\chi(n)|\le1$。（条件 $\chi(1)=1$ 排除了 $\chi\equiv0$：完全积性给出 $\chi(1)=\chi(1)^2$，若 $\chi(1)=0$ 则 $\chi$ 恒为零。）
 \begin{enumerate}
   \item 仿照定理~\bref{thm:euler_product}、\bref{thm:no_zeros}、\bref{thm:Lambda_dirichlet} 证明：对 $\Re s>1$，
   \[
@@ -324,7 +346,7 @@
   证明中哪一步用到「完全积性」，只有积性为什么不够？
   \item 以模 $4$ 的非主特征 $\chi_4$（$n\equiv1,3\pmod 4$ 时取 $1,-1$，$n$ 为偶数时取 $0$）为例，写出 $L(s,\chi_4)$ 的前几项与 Euler 乘积的前几个因子。
 \end{enumerate}
-这类函数是第~\bref{sec:grh}~节广义黎曼猜想讨论的对象。
+满足这些条件的函数不一定是 Dirichlet 特征；Dirichlet 特征（如 (b) 中的 $\chi_4$）是其中最重要的一类例子，相应的 Dirichlet $L$ 函数是第~\bref{sec:grh}~节广义黎曼猜想讨论的对象。
 \toHint{5.4}
 
 % ------------------------------------------------------------
@@ -393,6 +415,8 @@ $\sum_n(x/n)^c\min\bigl(1,1/(T|\log(x/n)|)\bigr)$ 对照。误差是否随 $T$ �
 
 \Hint{2.4}把素数分成 $p\le\sqrt x$ 与 $\sqrt x<p\le x$ 两组；后一组中 $\log p>\tfrac12\log x$。
 
+\Hint{2.6}(c) 交换求和次序：$\sum_{n\le x}\sum_{k\le x/n}\mu(k)=\sum_{m\le x}\sum_{k\mid m}\mu(k)$，令 $m=nk$。
+
 \Hint{2.5}(a) 素数幂 $p^k$（$k\ge2$）对 $\sum\Lambda(n)/n$ 的贡献有界。(b) 取 $A(t)=\sum_{p\le t}\log p/p$，$f(t)=1/\log t$，记 $A(t)=\log t+E(t)$。
 
 \subsection*{第 3 章}
@@ -411,6 +435,8 @@ $\sum_n(x/n)^c\min\bigl(1,1/(T|\log(x/n)|)\bigr)$ 对照。误差是否随 $T$ �
 
 \Hint{4.3}项 $2e^{-\pi n^2/10}$ 的大小：$n=8$ 时约 $4\times10^{-9}$，$n=9$ 时约 $2\times10^{-11}$。
 
+\Hint{4.5}(a) $\mathcal M[f(ax)](s)=a^{-s}\mathcal Mf(s)$。(b) 各项非负，用单调收敛定理（Tonelli）。(c) $\mathcal M[x^cf(x)](s)=\mathcal Mf(s+c)$。
+
 \Hint{4.4}(b) $n^2\ge n$。(c) 在 (a) 中用 (b) 估计 $\omega(1/x)$，$1/x\ge1$。
 
 \subsection*{第 5 章}
@@ -420,7 +446,7 @@ $\sum_n(x/n)^c\min\bigl(1,1/(T|\log(x/n)|)\bigr)$ 对照。误差是否随 $T$ �
 
 \Hint{5.3}(a) 与积分 $\int_1^\infty x^{-\sigma}\dd x$ 比较。(b) $\log\zeta(\sigma)-\sum_pp^{-\sigma}=\sum_p\sum_{k\ge2}p^{-k\sigma}/k$。
 
-\Hint{5.4}(a) 展开 $\prod_{p\le P}\sum_k\chi(p)^kp^{-ks}$ 时需要 $\chi(p)^k=\chi(p^k)$。(b) $\chi_4(2)=0$。
+\Hint{5.4}(a) 注意 $n=1$ 一项需要 $\chi(1)=1$。展开 $\prod_{p\le P}\sum_k\chi(p)^kp^{-ks}$ 时需要 $\chi(p)^k=\chi(p^k)$。(b) $\chi_4(2)=0$。
 
 \subsection*{第 6 章}
 \Hint{6.1}$8=2^3$ 是 $\psi$ 的跳跃点，$8^{1/3}=2$ 也是；$9=3^2$ 与 $9^{1/2}=3$ 同理。$\nu(7)=2$，$\sqrt7$ 不是跳跃点。
@@ -473,7 +499,7 @@ $10^{18}$ & $\approx-3.53\times10^{13}$ & $\approx-2.19\times10^{7}$\\
 \]
 两种展开的首项相同，差别从第二项开始：$L_A$ 的系数是 $1,A,A^2,A^3,\dots$，按几何级数增长；$\Li$ 的系数是 $1,1,2,6,\dots$，按阶乘增长。$A=1.08366$ 时 $A-1\approx0.084$ 很小，而 $A^2-2\approx-0.826$，$A^3-6\approx-4.73$。在 $x=10^4$--$10^6$，$\log x$ 只有 $9$--$14$，展开中相邻几项量级相近（$x=10^6$ 时差式前三项约为 $438$、$-313$、$-130$），截断后无法据此判断谁更好；拟合常数 $A$ 正是在这一范围内用数据调出来的。$x$ 增大后，$x/L^2$ 比后面各项高出若干个 $\log x$ 因子，第一项占主导，$L_A-\Li\approx0.084\,x/L^2$ 无限增长。例如 $x=10^{18}$ 时 $0.084x/L^2-0.826x/L^3\approx3.7\times10^{13}$，与 (b) 的数值相符。
 
-另一方面，$\pi(x)-\Li(x)$ 比 $x/L^2$ 小得多：附录~\bref{app:pnt_estimates} 的定理~\bref{thm:pnt-error} 给出 $\psi(x)=x+O\bigl(x\,e^{-c\sqrt{\log x}}\bigr)$，再经分部求和可得 $\pi(x)=\Li(x)+O\bigl(x\,e^{-c'\sqrt{\log x}}\bigr)$（书中未展开这一步），它比任意 $x/L^k$ 都小。因此只要 $A\ne1$，$L_A$ 的误差最终约为 $|A-1|x/L^2$；即使取 $A=1$，第二项 $-x/L^3$ 仍然存在。在充分大的 $x$ 上，任何 $L_A$ 都不如 $\Li$。有限范围内的拟合效果不能代替渐近比较。
+另一方面，由题中给出的前提 $\pi(x)=\Li(x)+O\bigl(x\,e^{-c\sqrt{\log x}}\bigr)$，$\pi(x)-\Li(x)$ 比任意 $x/L^k$ 都小，因而比 $x/L^2$ 小得多。因此只要 $A\ne1$，$L_A$ 的误差最终约为 $|A-1|x/L^2$；即使取 $A=1$，第二项 $-x/L^3$ 仍然存在。在充分大的 $x$ 上，任何 $L_A$ 都不如 $\Li$。有限范围内的拟合效果不能代替渐近比较。
 
 \Sol{1.2}{渐近展开的最优截断}
 (a) $t_{k+1}/t_k=k/\log x$。故 $k<\log x$ 时项递减，$k>\log x$ 时项递增；最小项出现在 $k=\lfloor\log x\rfloor$ 或 $\lceil\log x\rceil$ 处。
@@ -492,11 +518,11 @@ $13$ & $0.7171$ & $-0.326$ & $25$ & $19.21$ & $+50.79$\\
 \bottomrule
 \end{tabular}
 \end{center}
-误差在 $n=13$（$-0.326$）与 $n=14$（$+0.348$）处最小，约为最小项 $t_{14}\approx0.675$ 的一半；此后误差随 $n$ 增大而增大，到 $n=25$ 已超过 $50$。级数发散，但在 $n\approx\log x$ 处截断，仍能给出相当好的近似。
+按绝对值，误差在 $n=13$ 处最小（$-0.326$）；$n=14$ 的 $+0.348$ 稍大。二者都约为最小项 $t_{14}\approx0.675$ 的一半。注意最小项出现在 $k=14$，而误差最小的截断是 $n=13$：「最小项」与「最优截断」不必在同一处，最优截断一般在最小项附近、误差恰好变号的位置。此后误差随 $n$ 增大而增大，到 $n=25$ 已超过 $50$。级数发散，但在 $n\approx\log x$ 处截断，仍能给出相当好的近似。
 
-(c) $n=14$ 时常数项为 $-\sum_{k\le14}(k-1)!\,2/(\log2)^k\approx-2.2\times10^{12}$，远大于 $\Li(10^6)$ 本身。式~(\bref{eq:Li-parts-finite}) 的右端由这个巨大的常数与同样巨大的余项 $R_{14}(10^6)$ 相互抵消，数值上毫无用处。
+(c) $n=14$ 时常数项为 $-\sum_{k\le14}(k-1)!\,2/(\log2)^k\approx-2.2\times10^{12}$，远大于 $\Li(10^6)$ 本身。式~(\bref{eq:Li-parts-finite}) 在 $n=14$ 时仍是精确等式，但右端由这个巨大的常数与同样巨大的余项 $R_{14}(10^6)$ 相互抵消：要得到量级为 $10^5$ 的结果，必须先以 $12$ 位以上的相对精度算出两个约 $10^{12}$ 的数再相减，有效数字几乎全被抵消。问题出在数值计算，而不是公式本身失效。
 
-式~(\bref{eq:Li-asymptotic}) 中的「$\sim$」是渐近展开：对每个\textbf{固定}的 $n$，当 $x\to\infty$ 时余项比最后保留的一项小一个 $1/\log x$ 因子，下限常数可并入 $O(1)$。它不断言对固定 $x$ 令 $n\to\infty$ 时级数收敛（实际上发散），也不保证在 $n$ 很大时有限公式可用。渐近展开只确定函数到 $o\bigl(x/(\log x)^n\bigr)$ 为止，因此它区分不开相差常数的 $\Li$ 与 $\li$；本题与 $\li$ 比较，只是因为 (b) 中最优截断的误差已小于 $\li(2)\approx1.045$。
+式~(\bref{eq:Li-asymptotic}) 中的「$\sim$」是渐近展开：对每个\textbf{固定}的 $n$，当 $x\to\infty$ 时余项比最后保留的一项小一个 $1/\log x$ 因子，下限常数可并入 $O(1)$。它不断言对固定 $x$ 令 $n\to\infty$ 时级数收敛（实际上发散）。有限公式（带下限常数与余项）对每个 $n$ 都精确成立，但 $n$ 很大时它在数值上不宜直接使用。渐近展开只确定函数到 $o\bigl(x/(\log x)^n\bigr)$ 为止，因此它区分不开相差常数的 $\Li$ 与 $\li$；本题与 $\li$ 比较，只是因为 (b) 中最优截断的误差已小于 $\li(2)\approx1.045$。
 
 \Sol{1.3}{$\Li(x)>x/\log x$ 的分界点}
 (a) 由式~(\bref{eq:Li-parts-1})，$D(x)=\int_2^x(\log t)^{-2}\dd t-2/\log2$。当 $x>2$ 时 $D'(x)=(\log x)^{-2}>0$，故 $D$ 严格递增。又 $D(2)=-2/\log2<0$，而 $D(x)\to+\infty$（被积函数在 $[2,x]$ 上不小于 $(\log x)^{-2}$，积分至少为 $(x-2)/(\log x)^2$），所以 $D$ 恰有一个零点 $x_0$。
@@ -536,7 +562,7 @@ $\pi(30)=\tfrac{149}{12}-\tfrac74-\tfrac23=\tfrac{149-21-8}{12}=10$。
 \[
   -\sum_{d\mid12}\mu(d)\log d=-(0-\log2-\log3+\log6)=0 .
 \]
-$n=8$ 时 $\mu$ 非零的因子只有 $1,2$：$\Lambda(1)+\Lambda(2)+\Lambda(4)+\Lambda(8)=3\log2=\log8$；$\log8-\log4=\log2$；$-(0-\log2)=\log2$，都等于 $\Lambda(8)$。
+$n=8$ 时：式~(\bref{eq:log_sum_Lambda}) 给出 $\Lambda(1)+\Lambda(2)+\Lambda(4)+\Lambda(8)=3\log2=\log8$，等于 $\log n$；$\mu$ 非零的因子只有 $1,2$，于是另两式分别为 $\log8-\log4=\log2$ 与 $-(0-\log2)=\log2$，都等于 $\Lambda(8)=\log2$。
 
 (b) $\Lambda(6)=0$，而 $\Lambda(2)\Lambda(3)=\log2\cdot\log3\ne0$。两个积性函数的 Dirichlet 卷积仍是积性的，但 $\log$ 不是积性函数（$\log(mn)=\log m+\log n$ 是加法关系，且 $\log1=0\ne1$），所以 $\mu*\log$ 不必积性。
 
@@ -584,6 +610,32 @@ $x\sum_{d\le x}\Lambda(d)/d=x\log x+O(x)$，两边除以 $x$ 即得结论。
 而 $\int_2^\infty\dd t/\bigl(t(\log t)^2\bigr)=1/\log2$。合起来即得 $\sum_{p\le x}1/p=\log\log x+O(1)$。
 
 进一步的分析可证明 $\sum_{p\le x}1/p-\log\log x$ 收敛到常数 $0.2615\ldots$（Meissel--Mertens 常数），这里不展开。
+
+\Sol{2.6}{$\mu$ 与 Mertens 函数的手算}
+(a)
+\begin{center}
+\small
+\begin{tabular}{@{}c*{15}{c}@{}}
+\toprule
+$n$ & 1&2&3&4&5&6&7&8&9&10&11&12&13&14&15\\
+$\mu(n)$ & 1&$-1$&$-1$&0&$-1$&1&$-1$&0&0&1&$-1$&0&$-1$&1&1\\
+$M(n)$ & 1&0&$-1$&$-1$&$-2$&$-1$&$-2$&$-2$&$-2$&$-1$&$-2$&$-2$&$-3$&$-2$&$-1$\\
+\midrule
+$n$ & 16&17&18&19&20&21&22&23&24&25&26&27&28&29&30\\
+$\mu(n)$ & 0&$-1$&0&$-1$&0&1&1&$-1$&0&0&1&0&0&$-1$&$-1$\\
+$M(n)$ & $-1$&$-2$&$-2$&$-3$&$-3$&$-2$&$-1$&$-2$&$-2$&$-2$&$-1$&$-1$&$-1$&$-2$&$-3$\\
+\bottomrule
+\end{tabular}
+\end{center}
+最小值为 $-3$，出现在 $n=13,19,20,30$。各处都有 $|M(n)|\le\sqrt n$（如 $n=13$ 时 $3<\sqrt{13}\approx3.61$）。这类小范围的观察曾支持「$|M(x)|<\sqrt x$」的旧猜想，它后来被否定（第~\bref{sec:mertens-rh}~节）。
+
+(b) $n=12$：因子 $1,2,3,4,6,12$ 的 $\mu$ 依次为 $1,-1,-1,0,1,0$，和为 $0$。$n=30$：因子 $1,2,3,5,6,10,15,30$ 的 $\mu$ 依次为 $1,-1,-1,-1,1,1,1,-1$，和为 $0$。一般地，$n>1$ 有 $r\ge1$ 个不同素因子时，和为 $\sum_j\binom rj(-1)^j=(1-1)^r=0$。
+
+(c) 令 $m=nk$，交换求和次序：
+\[
+  \sum_{n\le x}M\Bigl(\frac xn\Bigr)=\sum_{n\le x}\sum_{k\le x/n}\mu(k)=\sum_{m\le x}\sum_{k\mid m}\mu(k)=\sum_{m\le x}[m=1]=1 .
+\]
+$x=30$ 时，逐项相加确得 $1$（例如前几项为 $M(30)+M(15)+M(10)+M(7)+M(6)+M(5)=-3-1-1-2-1-2$，其余 $n\ge7$ 各项合计 $+11$）。
 
 \subsection*{第 3 章}
 
@@ -633,12 +685,16 @@ $n\ge1$ 时被积函数在 $0$ 解析，$H(n)=0$。$s=-m$（$m\ge0$）时，$z^{
 
 (c) 数值：$I(2)\approx1.5072$，$I(1)\approx1.0636$，$I(1/2)\approx1.0220$（虚部为零：被积函数关于 $t\mapsto-t$ 共轭对称）。$I(2)-I(1)\approx0.4436$，与直接计算的 $-(H_{\mathrm{top}}+H_{\mathrm{bot}})$ 一致，也不超过 (b) 的界 $2\times100/(2\pi\cdot10)\approx3.18$。
 
-有限高度 $T$ 时，竖线端点 $c\pm iT$ 随 $c$ 移动，不满足同伦不变性「端点固定」的条件，差额正是水平边积分，所以 $I(c)$ 依赖 $c$。由引理~\bref{lem:perron-trunc-kernel}（$y=x=10>1$），$|I(c)-1|<10^c/(10\log10)$，在 $T\to\infty$ 时趋于零，所以各条竖线的极限都是 $\delta(10)=1$。例~\bref{ex:homotopy_pole} 讨论的是同一现象，只是被积函数换成 $\zeta(s)x^s/s$，矩形内还多了 $s=1$ 处的极点。
+有限高度 $T$ 时，竖线端点 $c\pm iT$ 随 $c$ 移动，不满足同伦不变性「端点固定」的条件，差额正是水平边积分，所以 $I(c)$ 依赖 $c$。对一般高度 $T$，由引理~\bref{lem:perron-trunc-kernel}（$y=x=10>1$），$|I(c)-1|<10^c/(T\log10)$，在 $T\to\infty$ 时趋于零，所以各条竖线的极限都是 $\delta(10)=1$。例~\bref{ex:homotopy_pole} 讨论的是同一现象，只是被积函数换成 $\zeta(s)x^s/s$，矩形内还多了 $s=1$ 处的极点。
 
 \subsection*{第 4 章}
 
 \Sol{4.1}{Cesàro 型 Perron 核}
-(a) 竖线上 $|y^s/\bigl(s(s+1)\bigr)|\le y^c/\bigl(|t|(|t|+1)\bigr)$ 在 $t\in\RR$ 上可积，故积分绝对收敛，对称截断与普通广义积分一致。
+(a) 竖线 $s=c+it$ 上，$|s|\ge c$，$|s+1|\ge c+1$，又 $|s|\ge|t|$，$|s+1|\ge|t|$，故
+\[
+  \Bigl|\frac{y^s}{s(s+1)}\Bigr|\le y^c\min\Bigl(\frac1{c(c+1)},\,\frac1{t^2}\Bigr).
+\]
+右端在有限区间上有界、在尾部按 $1/t^2$ 衰减，在 $t\in\RR$ 上可积，故积分绝对收敛，对称截断与普通广义积分一致。
 
 $y>1$ 时，以竖线段 $[c-iT,c+iT]$ 与 $\Re s=-U$（$U>1$）围成矩形。由习题 3.1(a)，内部留数之和为 $1-1/y$。水平边上 $|s(s+1)|\ge T^2$，积分的模不超过 $\frac1{2\pi T^2}\int_{-\infty}^cy^\sigma\dd\sigma=\frac{y^c}{2\pi T^2\log y}$；左边上被积函数的模不超过 $y^{-U}/\bigl(U(U-1)\bigr)$，边长 $2T$。先令 $U\to\infty$、再令 $T\to\infty$，补充边的贡献趋于零，得 $1-1/y$。
 
@@ -671,7 +727,7 @@ $0<y\le1$ 时向右闭合，右边取 $\Re s=U$。内部无极点；$y<1$ 时估
 数值上 $\gamma\approx0.5772157$。
 
 \Sol{4.3}{模反演的数值意义}
-(a) $\vartheta(0.1)=1+2\sum_{n\ge1}e^{-\pi n^2/10}$，求和中各项依次约为 $0.730$，$0.285$，$0.0592$，$0.00656$，$3.9\times10^{-4}$，$1.2\times10^{-5}$，$\dots$；$n=8$ 一项约 $3.8\times10^{-9}$，$n=9$ 一项约 $1.8\times10^{-11}$。要达到 $10$ 位有效数字，需要算到 $n=9$。
+(a) $\vartheta(0.1)=1+2\sum_{n\ge1}e^{-\pi n^2/10}$，各项 $2e^{-\pi n^2/10}$（含因子 $2$）依次约为 $1.461$，$0.569$，$0.118$，$0.0131$，$7.8\times10^{-4}$，$2.4\times10^{-5}$，$4.1\times10^{-7}$，$3.7\times10^{-9}$，$1.8\times10^{-11}$，$\dots$。$\vartheta(0.1)\approx3.162$，$10$ 位有效数字要求误差小于约 $5\times10^{-10}$。截到 $n=7$ 时略去的部分约 $3.7\times10^{-9}$，不够；截到 $n=8$ 时略去的部分约 $1.8\times10^{-11}$，已经足够。所以取到 $n=8$ 即可。
 
 (b) $\vartheta(10)=1+2e^{-10\pi}+\cdots$，而 $2e^{-10\pi}\approx4.5\times10^{-14}$，只需第一项。得
 $\vartheta(0.1)=\sqrt{10}\,\vartheta(10)\approx3.16227766016852$。
@@ -684,6 +740,19 @@ $\vartheta(0.1)=\sqrt{10}\,\vartheta(10)\approx3.16227766016852$。
 (b) 各项为正，故 $\omega(y)>0$。又 $n^2\ge n$，$\omega(y)\le\sum_{n\ge1}e^{-\pi ny}=e^{-\pi y}/(1-e^{-\pi y})$。
 
 (c) 由 (a)，左端等于 $x^{-1/2}\omega(1/x)$。$0<x\le1$ 时 $y=1/x\ge1$，由 (b)，$\omega(y)\le e^{-\pi y}/(1-e^{-\pi y})\le e^{-\pi y}/(1-e^{-\pi})$。代入即得。特别地，$\omega(x)=\tfrac1{2\sqrt x}-\tfrac12+O\bigl(x^{-1/2}e^{-\pi/x}\bigr)$，误差在 $x\to0^+$ 时比 $x$ 的任何正幂都小。
+
+\Sol{4.5}{Mellin 变换的尺度伸缩与幂乘}
+(a) $\mathcal M[e^{-x}](s)=G(s)$。由尺度伸缩，$\mathcal M[e^{-nx}](s)=n^{-s}G(s)$，
+\[
+  \mathcal M[e^{-\pi n^2x}](s)=(\pi n^2)^{-s}G(s)=\pi^{-s}n^{-2s}G(s)\qquad(\Re s>0).
+\]
+后者正是第二法中出现 $\pi^{-s/2}\Gamma(s/2)$ 的来源（以 $s/2$ 代 $s$）。
+
+(b) $x>0$ 时 $\frac1{e^x-1}=\sum_{n\ge1}e^{-nx}$。取 $\sigma=\Re s$，各项的模 $e^{-nx}x^{\sigma-1}$ 非负，由 Tonelli 定理
+$\int_0^\infty\sum_ne^{-nx}x^{\sigma-1}\dd x=\sum_nn^{-\sigma}G(\sigma)$，在 $\sigma>1$ 时有限；于是逐项积分合法（Fubini），得 $\int_0^\infty\frac{x^{s-1}}{e^x-1}\dd x=G(s)\sum_nn^{-s}=G(s)\zeta(s)$。
+要求 $\Re s>1$，一是为了 $\sum n^{-s}$ 绝对收敛，二是左端在原点附近 $\frac{x^{s-1}}{e^x-1}\sim x^{s-2}$，只有 $\Re s>1$ 时可积。两者给出同一条件。
+
+(c) 幂乘性质（$c=1$）给出 $\mathcal M[xe^{-x}](s)=G(s+1)$（$\Re s>-1$）。另一方面，分部积分：$\int_0^\infty e^{-x}x^{s}\dd x=\bigl[-e^{-x}x^s\bigr]_0^\infty+s\int_0^\infty e^{-x}x^{s-1}\dd x=sG(s)$（$\Re s>0$ 时边界项为零）。故 $G(s+1)=sG(s)$；这里的 $G$ 就是第~\bref{ch:gamma_function}~章的 $\Gamma$。
 
 \subsection*{第 5 章}
 
@@ -707,8 +776,8 @@ $\sigma=1.1$ 时 $\zeta(2.2)\approx1.4905$，$\zeta(1.1)\approx10.584$，下界�
 $P$ & $\prod_{p\le P}(1-p^{-2})^{-1}$ & $\zeta(2)-$部分乘积 & $\sum_{n>P}n^{-2}$\\
 \midrule
 $10$ & $1.595052$ & $0.04988$ & $0.09517$\\
-$100$ & $1.641945$ & $0.002989$ & $0.009887$\\
-$1000$ & $1.644725$ & $0.000209$ & $0.000977$\\
+$100$ & $1.641945$ & $0.002989$ & $0.0099502$\\
+$1000$ & $1.644725$ & $0.000209$ & $0.00099950$\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -724,13 +793,13 @@ $1000$ & $1.644725$ & $0.000209$ & $0.000977$\\
 
 (c) 由 (a)(b)，$\sum_pp^{-\sigma}\ge\log\frac1{\sigma-1}-1\to+\infty$（$\sigma\to1^+$）。若 $\sum_p1/p$ 收敛，则对一切 $\sigma>1$ 有 $\sum_pp^{-\sigma}\le\sum_p1/p<\infty$，矛盾。
 
-\Sol{5.4}{Dirichlet $L$ 函数}
+\Sol{5.4}{完全积性系数的 Euler 乘积}
 (a) 由 $|\chi(n)n^{-s}|\le n^{-\sigma}$，级数在 $\Re s>1$ 绝对收敛。对每个素数 $p$，$|\chi(p)p^{-s}|<1$，
 $(1-\chi(p)p^{-s})^{-1}=\sum_{k\ge0}\chi(p)^kp^{-ks}=\sum_{k\ge0}\chi(p^k)p^{-ks}$，最后一步用了完全积性。有限个绝对收敛级数相乘，由唯一分解与完全积性 $\chi(\prod p^{k_p})=\prod\chi(p)^{k_p}$，
 \[
   \prod_{p\le P}\bigl(1-\chi(p)p^{-s}\bigr)^{-1}=\sum_{\substack{n\ge1\\ p\mid n\Rightarrow p\le P}}\chi(n)n^{-s},
 \]
-与 $L(s,\chi)$ 之差不超过 $\sum_{n>P}n^{-\sigma}\to0$。若 $\chi$ 只是积性的，一般 $\chi(p^k)\ne\chi(p)^k$，此时局部因子是 $\sum_k\chi(p^k)p^{-ks}$，不能写成 $(1-\chi(p)p^{-s})^{-1}$。
+与 $L(s,\chi)$ 之差不超过 $\sum_{n>P}n^{-\sigma}\to0$。这里 $n=1$ 一项为 $\chi(1)=1$，与乘积中各因子展开的常数项 $1$ 相对应；若允许 $\chi(1)=0$，则 $\chi\equiv0$，级数为 $0$ 而乘积为 $1$，下面的非零性也不成立，所以条件 $\chi(1)=1$ 不可缺少。若 $\chi$ 只是积性的，一般 $\chi(p^k)\ne\chi(p)^k$，此时局部因子是 $\sum_k\chi(p^k)p^{-ks}$，不能写成 $(1-\chi(p)p^{-s})^{-1}$。
 
 非零性：取 $a_p=\chi(p)p^{-s}/(1-\chi(p)p^{-s})$，$|a_p|\le2p^{-\sigma}$，各因子非零，由引理~\bref{lem:product_nonzero} 得 $L(s,\chi)\ne0$。
 
@@ -786,7 +855,7 @@ $200$ & $9.9378$ & $-0.062$ & $0.872$\\
 \bottomrule
 \end{tabular}
 \end{center}
-误差有正有负，不随 $T$ 单调下降：它主要来自 $n$ 靠近 $x$ 的几项，记 $u=\log(x/n)$，其截断误差的主要部分像 $\sin(Tu)/(Tu)$ 那样随 $T$ 振荡。误差界按 $1/T$ 衰减，是对各项绝对值求和的上界，在本例中比实际误差大一到两个数量级。界给出的是保证，不是对误差的预测。
+误差有正有负，不随 $T$ 单调下降：它主要来自 $n$ 靠近 $x$ 的几项（如 $n=10,11$），记 $u=\log(x/n)$，这些项的截断误差含有因子 $e^{\pm iTu}$，随 $T$ 振荡，并大致按 $1/(T|u|)$ 衰减。误差界按 $1/T$ 衰减，是对各项绝对值求和的上界。本例中界与实际误差之比依次约为 $21$、$830$、$10$、$14$ 倍：$T=50$ 时实际误差恰好很小，比值接近三个数量级，其余情形约为一个数量级。界给出的是保证，不是对误差的预测。
 
 参考程序（运行约数分钟）：
 \begin{lstlisting}[language=Python]
@@ -806,8 +875,10 @@ for T in [25, 50, 100, 200]:
 
 代入右端：$\sum_k\mu(k)\bigl(-\frac{\zeta'}{\zeta}\bigr)(ks)=\sum_k\mu(k)\sum_mP(kms)=\sum_{n\ge1}P(ns)\sum_{k\mid n}\mu(k)=P(s)$。重排的依据：$|P(ns)|\le\sum_p\log p\cdot p^{-n\sigma}\le2^{-(n-1)\sigma}\sum_p\log p\cdot p^{-\sigma}$，而按 $n=km$ 重排的项数为除数个数 $d(n)\le n$，$\sum_nn\,2^{-(n-1)\sigma}<\infty$，故三重级数绝对收敛。
 
-(b) 固定 $s$，$\Re s=\sigma>0$。取 $K$ 使 $K\sigma>2$。$k>K$ 的项 $\bigl(-\frac{\zeta'}{\zeta}\bigr)(ks)$ 由绝对收敛的 Dirichlet 级数给出，模不超过 $\sum_n\Lambda(n)n^{-k\sigma}\ll2^{-k\sigma}$，并且在 $s$ 的一个邻域内一致成立，所以尾部之和在该邻域内解析。前 $K$ 项各是亚纯函数 $-\zeta'/\zeta$ 在 $ks$ 处的值。因此右端在 $\Re s>0$ 上是亚纯函数，并在 $\Re s>1$ 上等于 $P$，从而给出 $P$ 的亚纯延拓。可能的极点来自 $ks=1$ 与 $ks=\rho$，即 $s=1/k$（$\mu(k)\ne0$）与 $s=\rho/k$。这些点的实部 $1/k$ 与 $\Re\rho/k$ 在 $k\to\infty$ 时趋于 $0$；由于零点的纵坐标 $\gamma$ 越来越密，$\gamma/k$ 可以逼近任意实数，所以这些点以虚轴 $\Re s=0$ 上的点为聚点。Landau 与 Walfisz（1920）据此证明 $\Re s=0$ 是 $P$ 的自然边界，$P$ 不能越过它延拓。
+(b) 固定 $s$，$\Re s=\sigma>0$。取 $K$ 使 $K\sigma>2$。$k>K$ 的项 $\bigl(-\frac{\zeta'}{\zeta}\bigr)(ks)$ 由绝对收敛的 Dirichlet 级数给出，模不超过 $\sum_n\Lambda(n)n^{-k\sigma}\ll2^{-k\sigma}$，并且在 $s$ 的一个邻域内一致成立，所以尾部之和在该邻域内解析。前 $K$ 项各是亚纯函数 $-\zeta'/\zeta$ 在 $ks$ 处的值。因此右端在 $\Re s>0$ 上是亚纯函数，并在 $\Re s>1$ 上等于 $P$，从而给出 $P$ 的亚纯延拓。可能的极点来自 $ks=1$ 与 $ks=\rho$，即 $s=1/k$（$\mu(k)\ne0$）与 $s=\rho/k$。这些点的实部 $1/k$ 与 $\Re\rho/k$ 在 $k\to\infty$ 时趋于 $0$；由于零点的纵坐标 $\gamma$ 越来越密，$\gamma/k$ 可以逼近任意实数，所以这些点以虚轴 $\Re s=0$ 上的点为聚点。
 
-(c) 对 $\psi$ 移线时，被积函数 $-\zeta'/\zeta\cdot x^s/s$ 在全平面亚纯，极点孤立，可以在每个有限区域内用留数定理。对 $P(s)x^s/s$，奇点在虚轴附近无限聚集，矩形围道无法越过 $\Re s=0$，也难以在 $0<\Re s<1$ 中控制无穷多个奇点。因此书中先用有限的 Möbius 反演把 $\theta$ 化归为 $\psi$，所有解析工作都在 $-\zeta'/\zeta$ 上完成。仓库「学习笔记」中《从 Euler 乘积到素数 zeta 函数》对 $P$ 的类似问题有更详细的讨论。
+需要注意：以上只说明了\textbf{可能的}极点在虚轴上聚集，还不足以推出 $P$ 不能越过虚轴延拓。不同的 $k$ 可能把奇点映到同一点（例如 $\rho/k=\rho'/k'$），其奇异部分也可能相消；要得到自然边界，还须证明虚轴上每一点附近确有不可去的奇点。这一结论是 Landau 与 Walfisz（1920）证明的：$\Re s=0$ 是 $P$ 的自然边界（参见 Montgomery--Vaughan，\emph{Multiplicative Number Theory I}）。本题只把它作为引用结论，不在此证明。
+
+(c) 对 $\psi$ 移线时，被积函数 $-\zeta'/\zeta\cdot x^s/s$ 在全平面亚纯，极点孤立，可以在每个有限区域内用留数定理。对 $P(s)x^s/s$，可能的奇点在虚轴附近无限聚集（由上述引用结论，$\Re s=0$ 确为自然边界），矩形围道无法越过 $\Re s=0$，也难以在 $0<\Re s<1$ 中控制无穷多个奇点。因此书中先用有限的 Möbius 反演把 $\theta$ 化归为 $\psi$，所有解析工作都在 $-\zeta'/\zeta$ 上完成。仓库「学习笔记」中《从 Euler 乘积到素数 zeta 函数》对 $P$ 的类似问题有更详细的讨论。
 
 \end{document}
