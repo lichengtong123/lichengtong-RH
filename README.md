@@ -18,7 +18,7 @@
 | Hardy 轨迹 | [播放](https://lichengtong123.github.io/lichengtong-RH/videos/hardy.html) |
 | π₀ 逼近 | [播放](https://lichengtong123.github.io/lichengtong-RH/videos/pi0.html) |
 
-另提供[四个黑底辅助视频](videos/black/README.md)，供屏幕观看参考；各白底播放页也设有黑底版入口。黑底版与白底版制作批次不同，不替代书稿对应版。
+另提供[三个黑底辅助视频](videos/black/README.md)，供屏幕观看参考；各白底播放页也设有黑底版入口。黑底版与白底版制作批次不同，不替代书稿对应版。
 
 ## 目录
 
@@ -27,7 +27,7 @@
 | 目录 | 内容 | 对应章节 |
 |------|------|----------|
 | [manim/](manim/README.md) | 第 20 章动画的 Python（Manim）源程序、渲染命令与参数说明 | 第 20 章 |
-| [videos/](videos/README.md) | 三个白底书稿对应视频及四个黑底辅助视频，供观看与下载 | 第 20 章与补充演示 |
+| [videos/](videos/README.md) | 三个白底书稿对应视频及其黑底辅助版，供观看与下载 | 第 20 章 |
 | [mathematica/](mathematica/README.md) | 书中曲面图与零迹线图的 Mathematica 程序（`.wl`）及可用免费 Wolfram Player 查看的笔记本（`.nb`） | 第 5、7、9、10、13、17 章 |
 | [docs/](docs/) | [运行环境与安装说明](docs/运行环境建立与程序安装说明.md)、[ζ 函数数值计算的常用软件](docs/函数数值计算的常用软件.md) | 第 19、20 章 |
 | [关系图下载/](关系图下载/) | A3 版黎曼猜想知识谱系关系图（PDF），供单独查阅与打印 | 第 16 章 |
