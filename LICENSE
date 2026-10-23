@@ -1,0 +1,85 @@
+《素数计数与黎曼猜想：ζ 函数、零点与显式公式》配套资源 —— 许可说明
+License for the companion repository of
+"Prime Counting and the Riemann Hypothesis: the Zeta Function, Zeros and the Explicit Formula"
+
+Copyright (c) 2026 李成桐 (Li Chengtong)
+
+本仓库的内容按类别采用不同许可：
+The contents of this repository are licensed by category:
+
+一、源程序 —— MIT 许可
+1. Source code — MIT License
+
+   适用于 manim/ 与 mathematica/ 中的程序文件（.py、.wl、.nb），
+   videos/ 中的播放页面文件（.html、.css），
+   以及 习题与解答/ 中的脚本（.sh）。
+   Applies to program files in manim/ and mathematica/ (.py, .wl, .nb),
+   player pages in videos/ (.html, .css), and scripts (.sh) in 习题与解答/.
+
+   例外：manim/3B1B.py 及 videos/black/3B1BH.mp4 参照 3Blue1Brown
+   的原版场景（3b1b/videos 仓库 _2016/zeta.py）改写。本许可只涵盖作者本人
+   编写的部分；原版场景的设计与代码仍受 3Blue1Brown 原有条款约束。
+   Exception: manim/3B1B.py and videos/black/3B1BH.mp4 are adapted from
+   scenes by 3Blue1Brown (3b1b/videos, _2016/zeta.py). This license covers
+   only the author's own contributions; the original scene designs and code
+   remain subject to 3Blue1Brown's own terms.
+
+二、文字、图形与视频 —— 知识共享 署名-非商业性使用-相同方式共享 4.0 国际
+2. Text, figures and videos — Creative Commons
+   Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+
+   适用于 学习笔记/、习题与解答/、docs/（同行审阅稿除外）、关系图下载/
+   中的文档（.md、.tex、.pdf），各 README，以及 videos/ 中的视频文件（.mp4）。
+   Applies to documents (.md, .tex, .pdf) in 学习笔记/, 习题与解答/,
+   docs/ (except the peer-review preprint), 关系图下载/, all README files,
+   and the video files (.mp4) in videos/.
+
+   许可全文 / Legal code:
+   https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+   中文摘要 / Summary:
+   https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans
+
+   署名请注明：李成桐《素数计数与黎曼猜想：ζ 函数、零点与显式公式》配套资源，
+   https://github.com/lichengtong123/lichengtong-RH
+   Attribution: Li Chengtong, companion materials to "Prime Counting and the
+   Riemann Hypothesis", https://github.com/lichengtong123/lichengtong-RH
+
+三、不在上述许可范围内的内容
+3. Content not covered by the above
+
+   (a) 黎曼原稿扫描/ 中的 Riemann 1859 年论文扫描本（1876 年文集版）属于
+       公有领域，不受本许可约束；出处见该目录的 README。
+       The scan of Riemann's 1859 paper in 黎曼原稿扫描/ (1876 Collected
+       Works edition) is in the public domain and is not covered by this
+       license; see the README in that directory for its source.
+   (b) docs/同行审阅/ 中的预印版同行审阅稿为书稿本身，保留所有权利，
+       仅供受邀审阅者阅读，不得转载或传播。
+       The peer-review preprint in docs/同行审阅/ is the manuscript of the
+       book itself. All rights reserved; it is provided to invited reviewers
+       only and may not be redistributed.
+   (c) 书籍正文（含第 21 章中译稿）的版权不因本仓库的许可而转让。
+       Copyright in the book itself (including the Chinese translation in
+       Chapter 21) is not licensed by this repository.
+
+--------------------------------------------------------------------------
+MIT License
+
+Copyright (c) 2026 李成桐 (Li Chengtong)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
