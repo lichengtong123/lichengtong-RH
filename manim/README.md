@@ -9,7 +9,7 @@
 | 二维 ζ 同伦 | `二维 ζ 同伦.py` | `ZetaConformalMap` | `ZetaStill` |
 | Hardy 轨迹 | `Hardy 轨迹.py` | `zeta_3D_18H` | `HardyStill` |
 | π₀ 逼近 | `素数计数公式逼近.py` | `RiemannVisualization1800log2` | `Pi0Still` |
-| 3B1B 式全平面变换（书中未印，仅保留源码） | `3B1B.py` | `FullPlaneZeta` | — |
+| ζ 全平面变换（补充演示，书中未印；解读科普中常见的画面） | `ζ 全平面变换.py` | `FullPlaneZeta` | — |
 
 前三个程序共用同目录的 `ch20_render.py`（统一的分辨率、白底配色和渲染模式），下载或移动时须一并保留。
 
@@ -21,7 +21,7 @@
 RH_RENDER_MODE=video python -m manim "二维 ζ 同伦.py" ZetaConformalMap
 RH_RENDER_MODE=video python -m manim "Hardy 轨迹.py" zeta_3D_18H
 RH_RENDER_MODE=video python -m manim "素数计数公式逼近.py" RiemannVisualization1800log2
-python -m manim "3B1B.py" FullPlaneZeta
+python -m manim "ζ 全平面变换.py" FullPlaneZeta
 ```
 
 - 前三条命令输出白底、深色线条、1920×1080、30 fps 的完整视频，写入 `media/videos/` 下以程序名命名的子目录，不会覆盖 `videos/` 中已发布的视频。
