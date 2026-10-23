@@ -16,14 +16,6 @@ The contents of this repository are licensed by category:
    Applies to program files in manim/ and mathematica/ (.py, .wl, .nb),
    player pages in videos/ (.html, .css), and scripts (.sh) in 习题与解答/.
 
-   例外：manim/3B1B.py 及 videos/black/3B1BH.mp4 参照 3Blue1Brown
-   的原版场景（3b1b/videos 仓库 _2016/zeta.py）改写。本许可只涵盖作者本人
-   编写的部分；原版场景的设计与代码仍受 3Blue1Brown 原有条款约束。
-   Exception: manim/3B1B.py and videos/black/3B1BH.mp4 are adapted from
-   scenes by 3Blue1Brown (3b1b/videos, _2016/zeta.py). This license covers
-   only the author's own contributions; the original scene designs and code
-   remain subject to 3Blue1Brown's own terms.
-
 二、文字、图形与视频 —— 知识共享 署名-非商业性使用-相同方式共享 4.0 国际
 2. Text, figures and videos — Creative Commons
    Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
