@@ -1,0 +1,480 @@
+% ============================================================
+% 《素数计数与黎曼猜想》参考习题 · 第二部（第 7–9 章）
+% 编译：XeLaTeX，连续两次。书内编号由同目录 书稿标签.aux 提供；
+% 书稿改版后运行 更新书稿标签.sh 再编译，编号自动随书稿更新。
+% ============================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[left=2.6cm,right=2.6cm,top=2.6cm,bottom=2.6cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[ItalicFont=Songti SC]{Songti SC}
+\setCJKsansfont[ItalicFont=Songti SC]{Songti SC}
+\setCJKmonofont[ItalicFont=Songti SC]{Songti SC}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,array,enumitem,fancyhdr,xcolor}
+\usepackage{listings}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\externaldocument[B-]{书稿标签}
+
+% ---------- 记号（与书稿一致） ----------
+\DeclareMathOperator{\Li}{Li}
+\DeclareMathOperator{\li}{li}
+\DeclareMathOperator{\Res}{Res}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\dd}{\,\mathrm{d}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+% ---------- 书内引用：编号取自书稿，不生成外部链接 ----------
+\newcommand{\bref}[1]{\ref*{B-#1}}
+
+% ---------- 难度标记 ----------
+\newcommand{\lvI}{$\bigstar$\,基础}
+\newcommand{\lvII}{$\bigstar\bigstar$\,推导}
+\newcommand{\lvIII}{$\bigstar\bigstar\bigstar$\,延伸}
+
+% ---------- 题目、提示、解答的统一格式 ----------
+\newcommand{\Q}[3]{%
+  \par\addvspace{1.1em}\noindent
+  \hypertarget{q:#1}{}\textbf{习题 #1}\quad\textbf{#3}\hfill{\small #2}\par
+  \nopagebreak\smallskip}
+\newcommand{\Hint}[1]{%
+  \par\addvspace{0.8em}\noindent
+  \hypertarget{h:#1}{}\textbf{#1}\quad{\small（\hyperlink{q:#1}{题目}\ $\cdot$\ \hyperlink{s:#1}{解答}）}\quad}
+\newcommand{\Sol}[2]{%
+  \par\addvspace{1.2em}\noindent
+  \hypertarget{s:#1}{}\textbf{习题 #1\quad #2}\hfill{\small（\hyperlink{q:#1}{题目}）}\par
+  \nopagebreak\smallskip}
+\newcommand{\toHint}[1]{\hfill{\small\hyperlink{h:#1}{提示}\ $\cdot$\ \hyperlink{s:#1}{解答}}}
+
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=2.2em}
+\setlist[enumerate,1]{label=(\alph*)}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\linespread{1.18}
+\allowdisplaybreaks
+
+\lstset{basicstyle=\ttfamily\small,columns=fullflexible,frame=single,
+  framerule=0.3pt,rulecolor=\color{gray!60},xleftmargin=1em,xrightmargin=1em,
+  breaklines=true,showstringspaces=false}
+
+\newcommand{\versiondate}{2026 年 10 月 23 日}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第二部}
+\fancyhead[R]{\small 初稿 \versiondate}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\renewcommand{\contentsname}{目录}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries 参考习题 · 第二部\par}
+\vspace{0.6em}
+{\large $\zeta$ 的解析延拓与函数方程（第 7–9 章）\par}
+\vspace{0.6em}
+{\normalsize 李成桐《素数计数与黎曼猜想：$\zeta$ 函数、零点与显式公式》配套资源\par}
+\vspace{0.3em}
+{\small 版本：\versiondate（初稿，尚未逐题复核）\par}
+\end{center}
+
+\vspace{0.8em}
+\section*{使用说明}
+
+本书是导读型专著，正文论证自足完整，不设习题。这里的题目供希望通过练习检查和加深理解的读者自选使用，不做也不影响阅读正文。
+
+\begin{itemize}
+  \item \textbf{三档难度。}
+    \lvI：检查定义、结论与具体计算；
+    \lvII：独立完成正文中的关键推导或其变式；
+    \lvIII：需要少量正文以外的论证或数值实验，供有余力的读者选做。
+  \item \textbf{题目、提示、解答分开。}
+    建议先独立思考，再看提示，最后对照解答。三部分之间可点击题号互相跳转。
+  \item \textbf{书内编号。}
+    题中「定理~\bref{thm:reflection}」「式~(\bref{eq:asymmetric_fe_alt})」「第~\bref{sec:riemann_first_method}~节」等编号均自动取自当前书稿；书稿改版后重新编译本文件，编号随之更新。
+  \item \textbf{固定题号。}
+    每题编号（如 9.3）一经发布不再改动；删去的题号留空，不由新题顶替，新题接续编号。反馈时请注明题号。
+  \item \textbf{与第一部的联系。}
+    个别题目用到第一部习题的结论（如第一部习题 4.2 的 $\zeta(1+u)=1/u+\gamma+O(u)$），题中会注明。
+  \item \textbf{数值。}
+    数值题的参考值用 Python 的 \texttt{mpmath} 计算；「$\approx$」表示四舍五入。
+\end{itemize}
+
+本批题目为初稿，题目可解性与解答仍待作者逐题复核。发现错误或表述不清，请在配套仓库的 Issues 中注明题号与具体位置。
+
+\tableofcontents
+
+% ============================================================
+\newpage
+\part*{一、题目}
+\addcontentsline{toc}{part}{一、题目}
+% ============================================================
+
+\section*{第 \bref{ch:gamma_function} 章\quad $\Gamma$ 函数及其定义域的扩展}
+\addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:gamma_function} 章\quad }{}\texorpdfstring{$\Gamma$}{Γ} 函数及其定义域的扩展}
+
+\Q{7.1}{\lvI}{负半整数处的值与留数}
+\begin{enumerate}
+  \item 由递推公式~(\bref{eq:gamma-recurrence}) 与推论~\bref{cor:gamma-half}，求 $\Gamma(\tfrac52)$、$\Gamma(-\tfrac12)$、$\Gamma(-\tfrac32)$。
+  \item 用余元公式~(\bref{eq:reflection-formula}) 核对 $\Gamma(-\tfrac12)\Gamma(\tfrac32)$。
+  \item 写出 $\Gamma$ 在 $s=-1$、$s=-2$ 处的留数，并说明 $\Gamma$ 在实轴上相邻两个极点之间为何必然变号。
+\end{enumerate}
+\toHint{7.1}
+
+\Q{7.2}{\lvII}{Legendre 倍元公式}
+第~\bref{subsec:fe-two-symmetries}~节引用而未证明倍元公式
+\[
+  \Gamma(s)\,\Gamma\Bigl(s+\frac12\Bigr)=2^{1-2s}\sqrt\pi\,\Gamma(2s).
+\]
+用附录~\bref{app:weierstrass} 推论~\bref{cor:euler-form} 的 Gauss 极限形式
+$\Gamma(z)=\lim_{n\to\infty}\dfrac{n!\,n^z}{z(z+1)\cdots(z+n)}$
+证明它。（仓库「学习笔记」中《Γ 倍元公式的两种证明》给出另外两种证法。）
+\toHint{7.2}
+
+\Q{7.3}{\lvII}{$\chi(s)$ 在竖直方向的大小}
+设 $\chi(s)=2^s\pi^{s-1}\sin(\pi s/2)\,\Gamma(1-s)$（式~(\bref{eq:chi_factor})）。用推论~\bref{cor:stirling-vertical} 证明：$\sigma$ 固定、$|t|\to\infty$ 时
+\[
+  |\chi(\sigma+it)|=\Bigl(\frac{|t|}{2\pi}\Bigr)^{1/2-\sigma}\bigl(1+O(1/|t|)\bigr).
+\]
+特别地，$|\chi(\tfrac12+it)|\to1$。（习题 9.5 将证明 $|\chi(\tfrac12+it)|=1$ 精确成立。）
+\toHint{7.3}
+
+\Q{7.4}{\lvI}{Stirling 公式的数值检验}
+\begin{enumerate}
+  \item 对 $n=1,5,10,20$，计算 $n!\big/\bigl(\sqrt{2\pi n}\,(n/e)^n\bigr)$，并与 $1+\frac1{12n}$ 比较。
+  \item 由余元公式证明：对实数 $t\ne0$，
+  \[
+    \bigl|\Gamma(\tfrac12+it)\bigr|^2=\frac{\pi}{\cosh\pi t},\qquad
+    \bigl|\Gamma(it)\bigr|^2=\frac{\pi}{t\sinh\pi t}.
+  \]
+  \item 在 $t=1$ 与 $t=10$ 处，把 (b) 的精确值与推论~\bref{cor:stirling-vertical} 的主项 $2\pi|t|^{2\sigma-1}e^{-\pi|t|}$ 比较。
+\end{enumerate}
+\toHint{7.4}
+
+% ------------------------------------------------------------
+\section*{第 \bref{ch:analytic_continuation_general} 章\quad 解析延拓的定义与唯一性}
+\addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:analytic_continuation_general} 章\quad }{}解析延拓的定义与唯一性}
+
+\Q{8.1}{\lvII}{收敛边界之外的部分和}
+\begin{enumerate}
+  \item 利用第一部习题 4.2 的表示 $\zeta(s)=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x$ 与有限 Abel 求和，证明对 $\Re s>0$、$s\ne1$ 及正整数 $N$，
+  \[
+    \sum_{n\le N}n^{-s}=\zeta(s)+\frac{N^{1-s}}{1-s}+s\int_N^\infty\{x\}x^{-s-1}\dd x,
+  \]
+  且最后一项的模不超过 $|s|N^{-\sigma}/\sigma$。
+  \item 由此说明：$0<\sigma<1$ 时部分和按 $N^{1-\sigma}$ 增长；$\sigma=1$、$t\ne0$ 时部分和有界但不收敛。在这些点上失效的是级数，而不是 $\zeta$。
+  \item 取 $s=\rho_1\approx\tfrac12+14.134725i$（第一个非平凡零点），对 $N=100,1000,10000$ 计算 $\sum_{n\le N}n^{-s}$ 与 $\sum_{n\le N}n^{-s}-\frac{N^{1-s}}{1-s}$ 的模。
+\end{enumerate}
+\toHint{8.1}
+
+\Q{8.2}{\lvI}{极点不产生多值性}
+$\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。说明为什么沿绕 $s=1$ 的不同路径作延拓，不会像 $\log z$ 那样得到不同的值。$\log\zeta(s)$ 能否在 $\CC\setminus\{1\}$ 上取单值分支？
+\toHint{8.2}
+
+\Q{8.3}{\lvII}{另一个自然边界}
+仿照第~\bref{sec:natural_boundary}~节的例子，证明 $f(z)=\sum_{n\ge0}z^{2^n}$ 以 $|z|=1$ 为自然边界。$f$ 满足函数关系 $f(z^2)=f(z)-z$；为什么这一关系不能像 $\Gamma(s)=\Gamma(s+1)/s$ 那样用来延拓（对照第~\bref{sec:fe_continuation_schema}~节）？
+\toHint{8.3}
+
+% ------------------------------------------------------------
+\section*{第 \bref{ch:riemann_zeta_continuation} 章\quad $\zeta$ 函数的解析延拓与函数方程}
+\addcontentsline{toc}{section}{\texorpdfstring{第 \protect\bref{ch:riemann_zeta_continuation} 章\quad }{}\texorpdfstring{$\zeta$}{ζ} 函数的解析延拓与函数方程}
+
+\Q{9.1}{\lvI}{由 $\eta$ 计算 $\zeta(\tfrac12)$}
+\begin{enumerate}
+  \item 计算 $\eta(\tfrac12)$ 的部分和 $P_N=\sum_{n\le N}(-1)^{n-1}n^{-1/2}$（$N=10,100,1000$），再计算相邻部分和的平均 $\tfrac12(P_N+P_{N+1})$。哪一种收敛快？为什么？
+  \item 由式~(\bref{eq:zeta_eta_continuation}) 求 $\zeta(\tfrac12)$。
+\end{enumerate}
+\toHint{9.1}
+
+\Q{9.2}{\lvI}{负整数处的值}
+由函数方程~(\bref{eq:asymmetric_fe_alt}) 与 $\zeta(2)=\pi^2/6$、$\zeta(4)=\pi^4/90$，求 $\zeta(-1)$、$\zeta(-3)$，并说明 $\zeta(-2)=\zeta(-4)=0$ 从何而来。
+\toHint{9.2}
+
+\Q{9.3}{\lvII}{Hankel 积分与 Bernoulli 数}
+记 Bernoulli 数 $B_k$ 为展开 $\dfrac{z}{e^z-1}=\sum_{k\ge0}B_k\dfrac{z^k}{k!}$ 的系数（$B_0=1$，$B_1=-\tfrac12$，$B_2=\tfrac16$，$B_3=0$，$B_4=-\tfrac1{30}$）。
+\begin{enumerate}
+  \item 对非负整数 $m$，说明式~(\bref{eq:I_s}) 中 $I(-m)$ 的上下沿积分相互抵消，并求出 $I(-m)$。
+  \item 由式~(\bref{eq:zeta_contour_gamma}) 证明 $\zeta(-m)=(-1)^m\dfrac{B_{m+1}}{m+1}$。
+  \item 由此重新得到 $\zeta(0)$、$\zeta(-1)$、$\zeta(-3)$ 以及平凡零点。（这与第一部习题 3.3 是同一机制。）
+\end{enumerate}
+\toHint{9.3}
+
+\Q{9.4}{\lvII}{为什么是 3--4--1}
+定理~\bref{thm:no-zero-on-one} 的证明用到 $3+4\cos\theta+\cos2\theta\ge0$。
+\begin{enumerate}
+  \item 若只用 $1+\cos\theta\ge0$，同样的论证给出什么不等式？能否排除 $\zeta(1+it)=0$？
+  \item 解释 3--4--1 论证中 $|\zeta(\sigma+2it)|$ 一项为什么不会破坏结论。
+  \item 取 $\sigma=1.05$、$1.01$ 与 $t=1$、$14.134725$，数值验证式~(\bref{eq:pnt-341})。
+\end{enumerate}
+\toHint{9.4}
+
+\Q{9.5}{\lvII}{$\chi(s)\chi(1-s)=1$}
+\begin{enumerate}
+  \item 只用余元公式，由定义~(\bref{eq:chi_factor}) 直接证明 $\chi(s)\chi(1-s)=1$。这与把非对称函数方程连用两次有什么关系？
+  \item 证明 $\chi(\bar s)=\overline{\chi(s)}$，并推出 $|\chi(\tfrac12+it)|=1$ 对一切实数 $t$ 精确成立。
+  \item 由 (b) 说明：在临界线上 $|\zeta(\tfrac12+it)|=|\zeta(\tfrac12-it)|$，且 $\zeta(\tfrac12+it)$ 与 $\zeta(\tfrac12-it)$ 只差一个模为 $1$ 的因子。第~\bref{ch:riemann_numerical_approximation}~章的 Hardy $Z$ 函数正是由此构造的。
+\end{enumerate}
+\toHint{9.5}
+
+\Q{9.6}{\lvIII}{$\zeta'(0)=-\tfrac12\log(2\pi)$}
+利用函数方程~(\bref{eq:asymmetric_fe_alt})、第一部习题 4.2 的 $\zeta(1+u)=\frac1u+\gamma+O(u)$（$u\to0$），以及 $\Gamma'(1)=-\gamma$（第~\bref{subsec:gamma-poles}~节），求 $\zeta(s)$ 在 $s=0$ 处的 Taylor 展开到一次项，证明
+\[
+  \zeta'(0)=-\frac12\log(2\pi).
+\]
+\toHint{9.6}
+
+% ============================================================
+\newpage
+\part*{二、提示}
+\addcontentsline{toc}{part}{二、提示}
+% ============================================================
+
+\subsection*{第 7 章}
+\Hint{7.1}(a) $\Gamma(s)=\Gamma(s+1)/s$。(c) 留数公式见定理~\bref{thm:gamma-meromorphic}；$\Gamma$ 在实轴上没有零点。
+
+\Hint{7.2}先证 $\prod_{k=0}^n(s+k)(s+k+\tfrac12)=2^{-2n-2}\prod_{k=0}^{2n+1}(2s+k)$；对 $\Gamma(2s)$ 取 Gauss 极限时用 $2n+1$ 项。比值的极限与 $s$ 无关，再令 $s=\tfrac12$ 定常数。
+
+\Hint{7.3}$|\sin(a+ib)|^2=\sin^2a+\sinh^2b$；$\Gamma(1-s)$ 的实部为 $1-\sigma$。指数因子 $e^{\pm\pi|t|/2}$ 恰好相消。
+
+\Hint{7.4}(b) $\Gamma(\bar s)=\overline{\Gamma(s)}$；$\sin(\pi(\tfrac12+it))=\cosh\pi t$，$\sin(i\pi t)=i\sinh\pi t$；$\Gamma(1-it)=-it\,\Gamma(-it)$。
+
+\subsection*{第 8 章}
+\Hint{8.1}(a) 有限 Abel 求和：$\sum_{n\le N}n^{-s}=N^{1-s}+s\int_1^N\lfloor x\rfloor x^{-s-1}\dd x$。(c) 在零点处 $\zeta(\rho_1)=0$。
+
+\Hint{8.2}孤立奇点处有 Laurent 展开（定理~\bref{thm:laurent}）。$\zeta$ 在 $s=1$ 附近像 $1/(s-1)$。
+
+\Hint{8.3}在 $2^k$ 次单位根 $\omega$ 处，$n\ge k$ 时 $\omega^{2^n}=1$。映射 $z\mapsto z^2$ 把单位圆盘映入自身。
+
+\subsection*{第 9 章}
+\Hint{9.1}交错级数的部分和在极限两侧来回摆动，相邻两项的平均抵消了主要的摆动。
+
+\Hint{9.2}$\sin(-\pi/2)=-1$，$\sin(-3\pi/2)=1$，$\Gamma(2)=1$，$\Gamma(4)=6$。
+
+\Hint{9.3}(a) 整数 $s$ 时 $(-z)^{s-1}$ 单值。$\dfrac1{e^z-1}=\sum_{k\ge0}B_k\dfrac{z^{k-1}}{k!}$。(b) $\Gamma(1+m)=m!$。
+
+\Hint{9.4}(a) 若 $1+it$ 是 $m$ 阶零点，$\zeta(\sigma)|\zeta(\sigma+it)|\asymp(\sigma-1)^{m-1}$。
+
+\Hint{9.5}(a) $\sin\frac{\pi(1-s)}2=\cos\frac{\pi s}2$，$2\sin\frac{\pi s}2\cos\frac{\pi s}2=\sin\pi s$。(b) 在 $s=\tfrac12+it$ 处，$1-s=\bar s$。
+
+\Hint{9.6}$\chi(s)=\frac s2\bigl(1+s(\log2\pi+\gamma)\bigr)+O(s^3)$；$\zeta(1-s)=-\frac1s+\gamma+O(s)$。
+
+% ============================================================
+\newpage
+\part*{三、解答}
+\addcontentsline{toc}{part}{三、解答}
+% ============================================================
+
+\subsection*{第 7 章}
+
+\Sol{7.1}{负半整数处的值与留数}
+(a) $\Gamma(\tfrac52)=\tfrac32\cdot\tfrac12\Gamma(\tfrac12)=\tfrac34\sqrt\pi\approx1.32934$；
+$\Gamma(-\tfrac12)=\Gamma(\tfrac12)/(-\tfrac12)=-2\sqrt\pi\approx-3.54491$；
+$\Gamma(-\tfrac32)=\Gamma(-\tfrac12)/(-\tfrac32)=\tfrac43\sqrt\pi\approx2.36327$。
+
+(b) $\Gamma(-\tfrac12)\Gamma(\tfrac32)=-2\sqrt\pi\cdot\tfrac{\sqrt\pi}2=-\pi$，而 $\pi/\sin(-\pi/2)=-\pi$，一致。
+
+(c) $\Res_{s=-1}\Gamma=-1$，$\Res_{s=-2}\Gamma=\tfrac12$。在实轴上，$\Gamma$ 在 $(-n-1,-n)$ 内连续、取实值且没有零点（定理~\bref{thm:gamma-no-zeros}），故符号不变；而在单极点 $-n$ 两侧，$\Gamma(s)\approx\frac{(-1)^n/n!}{s+n}$ 的符号相反。所以 $\Gamma$ 在相邻区间 $(-n-1,-n)$ 与 $(-n,-n+1)$ 上符号相反：在 $(-1,0)$ 上为负，$(-2,-1)$ 上为正，依此交替。(a) 中 $\Gamma(-\tfrac12)<0$、$\Gamma(-\tfrac32)>0$ 与此一致。
+
+\Sol{7.2}{Legendre 倍元公式}
+记 $P_n(z)=z(z+1)\cdots(z+n)$。由于 $(s+k)(s+k+\tfrac12)=\tfrac14(2s+2k)(2s+2k+1)$，
+\[
+  P_n(s)\,P_n\bigl(s+\tfrac12\bigr)=2^{-2n-2}\prod_{k=0}^{2n+1}(2s+k)=2^{-2n-2}P_{2n+1}(2s).
+\]
+设 $2s\notin\{0,-1,-2,\dots\}$。对 $\Gamma(s)$、$\Gamma(s+\tfrac12)$ 取 $n$ 项的 Gauss 极限，对 $\Gamma(2s)$ 取 $m=2n+1$ 项的 Gauss 极限：
+\[
+\begin{aligned}
+  \frac{\Gamma(s)\Gamma(s+\frac12)}{\Gamma(2s)}
+  &=\lim_{n\to\infty}\frac{n!^2\,n^{2s+1/2}\,2^{2n+2}\big/P_{2n+1}(2s)}{(2n+1)!\,(2n+1)^{2s}\big/P_{2n+1}(2s)}\\
+  &=\lim_{n\to\infty}\Bigl(\frac{n}{2n+1}\Bigr)^{2s}\cdot\frac{n!^2\,2^{2n+2}\sqrt n}{(2n+1)!}.
+\end{aligned}
+\]
+第一个因子趋于 $2^{-2s}$。左端的极限存在，所以第二个因子（与 $s$ 无关）的极限 $C$ 也存在，且
+$\Gamma(s)\Gamma(s+\tfrac12)=2^{-2s}C\,\Gamma(2s)$。令 $s=\tfrac12$：$\Gamma(\tfrac12)\Gamma(1)=\tfrac12C\,\Gamma(1)$，得 $C=2\sqrt\pi$。于是
+$\Gamma(s)\Gamma(s+\tfrac12)=2^{1-2s}\sqrt\pi\,\Gamma(2s)$。两端是亚纯函数，由恒等定理对一切 $s$ 成立（在极点处按亚纯恒等式理解）。
+
+\Sol{7.3}{$\chi(s)$ 在竖直方向的大小}
+记 $s=\sigma+it$。由 $|\sin(a+ib)|^2=\sin^2a+\sinh^2b$，
+\[
+  \Bigl|\sin\frac{\pi s}2\Bigr|^2=\sin^2\frac{\pi\sigma}2+\sinh^2\frac{\pi t}2=\frac14e^{\pi|t|}\bigl(1+O(e^{-\pi|t|})\bigr),
+\]
+故 $|\sin(\pi s/2)|=\tfrac12e^{\pi|t|/2}\bigl(1+O(e^{-\pi|t|})\bigr)$。$1-s=(1-\sigma)-it$，由推论~\bref{cor:stirling-vertical}（实部固定为 $1-\sigma$），
+\[
+  |\Gamma(1-s)|=\sqrt{2\pi}\,|t|^{1/2-\sigma}e^{-\pi|t|/2}\bigl(1+O(1/|t|)\bigr).
+\]
+又 $|2^s\pi^{s-1}|=2^\sigma\pi^{\sigma-1}$。相乘，指数因子相消：
+\[
+  |\chi(s)|=2^\sigma\pi^{\sigma-1}\cdot\tfrac12\cdot\sqrt{2\pi}\,|t|^{1/2-\sigma}\bigl(1+O(1/|t|)\bigr)
+  =(2\pi)^{\sigma-1/2}|t|^{1/2-\sigma}\bigl(1+O(1/|t|)\bigr),
+\]
+即所求。$\sigma=\tfrac12$ 时主项为 $1$。
+
+\Sol{7.4}{Stirling 公式的数值检验}
+(a)
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$n$ & $n!$ & $n!/\bigl(\sqrt{2\pi n}(n/e)^n\bigr)$ & $1+\frac1{12n}$\\
+\midrule
+$1$ & $1$ & $1.084438$ & $1.083333$\\
+$5$ & $120$ & $1.016784$ & $1.016667$\\
+$10$ & $3628800$ & $1.008365$ & $1.008333$\\
+$20$ & $2.4329\times10^{18}$ & $1.004175$ & $1.004167$\\
+\bottomrule
+\end{tabular}
+\end{center}
+比值趋于 $1$，相对误差约为 $\frac1{12n}$。这正是 $E_\Gamma$ 的首项：可以证明 $E_\Gamma(s)=\frac1{12s}+O(|s|^{-3})$，定理~\bref{thm:stirling} 只给出它的上界 $O(1/|s|)$。
+
+(b) $\Gamma(\tfrac12-it)=\overline{\Gamma(\tfrac12+it)}$，由余元公式
+$|\Gamma(\tfrac12+it)|^2=\Gamma(\tfrac12+it)\Gamma(\tfrac12-it)=\pi/\sin\bigl(\pi(\tfrac12+it)\bigr)=\pi/\cosh\pi t$。
+又 $\Gamma(1-it)=-it\,\Gamma(-it)$，故
+$|\Gamma(it)|^2=\Gamma(it)\Gamma(-it)=\dfrac{\Gamma(it)\Gamma(1-it)}{-it}=\dfrac{\pi}{-it\sin(i\pi t)}=\dfrac{\pi}{-it\cdot i\sinh\pi t}=\dfrac{\pi}{t\sinh\pi t}$。
+
+(c) $t=1$：$|\Gamma(\tfrac12+i)|^2\approx0.271015$，主项 $2\pi e^{-\pi}\approx0.271521$；$|\Gamma(i)|^2\approx0.272029$，主项同为 $0.271521$。相对误差约 $0.2\%$。$t=10$：精确值与主项在 $20$ 位精度下一致（$\approx1.42697\times10^{-13}$ 与 $1.42697\times10^{-14}$），差别来自 $e^{-2\pi t}$ 量级的项。此处误差远小于推论给出的 $O(1/|t|)$，因为 $\sigma=0,\tfrac12$ 时 $1/|t|$ 项的系数恰好为零。
+
+\subsection*{第 8 章}
+
+\Sol{8.1}{收敛边界之外的部分和}
+(a) 有限 Abel 求和（$A(x)=\lfloor x\rfloor$，$A(N)=N$）：
+\[
+  \sum_{n\le N}n^{-s}=N\cdot N^{-s}+s\int_1^N\lfloor x\rfloor x^{-s-1}\dd x
+  =N^{1-s}+\frac{s}{1-s}\bigl(N^{1-s}-1\bigr)-s\int_1^N\{x\}x^{-s-1}\dd x .
+\]
+前两项之和为 $\frac{N^{1-s}}{1-s}+\frac{s}{s-1}$。再减去第一部习题 4.2 的
+$\zeta(s)=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x$（对 $\Re s>0$、$s\ne1$ 成立），得
+\[
+  \sum_{n\le N}n^{-s}-\zeta(s)=\frac{N^{1-s}}{1-s}+s\int_N^\infty\{x\}x^{-s-1}\dd x .
+\]
+由 $0\le\{x\}<1$，最后一项的模不超过 $|s|\int_N^\infty x^{-\sigma-1}\dd x=|s|N^{-\sigma}/\sigma$。
+
+(b) $0<\sigma<1$ 时 $|N^{1-s}/(1-s)|=N^{1-\sigma}/|1-s|\to\infty$，其余两项有界，部分和按 $N^{1-\sigma}$ 增长。$\sigma=1$、$t\ne0$ 时，$N^{1-s}/(1-s)=N^{-it}/(-it)$ 的模恒为 $1/|t|$，辐角 $-t\log N$ 不断旋转，余项趋于零，故部分和有界、在半径 $1/|t|$ 的圆附近转动而不收敛。$\zeta(s)$ 本身在这些点有确定的值，只是级数不再表示它。
+
+(c) $\rho_1$ 处 $\zeta(\rho_1)=0$：
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+$N$ & $\bigl|\sum_{n\le N}n^{-\rho_1}\bigr|$ & $\bigl|\sum_{n\le N}n^{-\rho_1}-\frac{N^{1-\rho_1}}{1-\rho_1}\bigr|$\\
+\midrule
+$100$ & $0.709$ & $0.0500$\\
+$1000$ & $2.236$ & $0.0158$\\
+$10000$ & $7.071$ & $0.0050$\\
+\bottomrule
+\end{tabular}
+\end{center}
+部分和本身按 $\sqrt N$ 增长（$\approx\sqrt N/|1-\rho_1|$），扣除显式的修正项后迅速趋于 $\zeta(\rho_1)=0$。剩余误差恰约为 $\tfrac12N^{-1/2}$，远小于 (a) 的粗略上界 $|s|N^{-1/2}/\sigma\approx28N^{-1/2}$；这是 Euler--Maclaurin 公式下一项 $\tfrac12N^{-s}$ 的贡献。
+
+\Sol{8.2}{极点不产生多值性}
+$s=1$ 是 $\zeta$ 的孤立奇点，$\zeta$ 在去心圆盘 $0<|s-1|<r$ 内有收敛的 Laurent 展开 $\frac1{s-1}+\sum_{k\ge0}c_k(s-1)^k$（定理~\bref{thm:laurent}）。这是去心圆盘上的单值函数，绕 $s=1$ 一周回到原处时函数值不变。由延拓唯一性，沿任何路径得到的延拓都与这一 Laurent 展开在重叠处一致，因此不会出现不同的值。
+
+$\log z$ 在 $z=0$ 附近不是这样：它不能写成去心圆盘上的单值函数，绕一周增加 $2\pi i$。同理，$\log\zeta(s)$ 在 $s=1$ 附近像 $-\log(s-1)$，绕 $s=1$ 一周增加 $-2\pi i$；绕 $\zeta$ 的每个零点一周也会改变 $2\pi i$ 的整数倍。所以 $\log\zeta$ 不能在 $\CC\setminus\{1\}$ 上取单值分支，第 5 章只在无零点的单连通半平面 $\Re s>1$ 上定义它（备注~\bref{rem:log_zeta_branch}）。
+
+\Sol{8.3}{另一个自然边界}
+$|z|<1$ 时级数绝对收敛，$f$ 解析。取 $\omega=e^{2\pi ip/2^k}$。当 $n\ge k$ 时 $2^k\mid2^n$，$\omega^{2^n}=1$，故对 $0<r<1$，
+\[
+  f(r\omega)=\sum_{n<k}(r\omega)^{2^n}+\sum_{n\ge k}r^{2^n}.
+\]
+前一部分有界；后一部分各项为正，对任意 $M$，前 $M$ 项之和在 $r\to1^-$ 时趋于 $M$，故 $|f(r\omega)|\to\infty$。与第~\bref{sec:natural_boundary}~节同样的论证说明 $\omega$ 不能跨越；形如 $e^{2\pi ip/2^k}$ 的点在单位圆上稠密，可跨越的边界点构成开集而不含这些点，只能为空集。
+
+函数关系：$f(z^2)=\sum_{n\ge0}z^{2^{n+1}}=f(z)-z$。用它延拓，需要把新区域中的点映回已知区域；但 $\Phi(z)=z^2$ 把单位圆盘映入自身，把圆外的点映到更远的圆外，从不把外面的点带回圆盘内。$\Gamma$ 的情形则不同：$\Phi(s)=s+1$ 把左边的竖带映入已经定义好的右边区域。函数关系能否用于延拓，取决于 $\Phi$ 能否把新点送回已知区域。
+
+\subsection*{第 9 章}
+
+\Sol{9.1}{由 $\eta$ 计算 $\zeta(\tfrac12)$}
+(a)
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+$N$ & $P_N$ & $\tfrac12(P_N+P_{N+1})$\\
+\midrule
+$10$ & $0.45073$ & $0.601481$\\
+$100$ & $0.55502$ & $0.604775$\\
+$1000$ & $0.58909$ & $0.604895$\\
+\bottomrule
+\end{tabular}
+\end{center}
+真值 $\eta(\tfrac12)\approx0.6048986$。$P_N$ 的误差约为 $\pm\tfrac12N^{-1/2}$，在极限两侧交替；相邻平均抵消了这一主项，误差降到 $N^{-3/2}$ 量级。
+
+(b) $\zeta(\tfrac12)=\eta(\tfrac12)/(1-2^{1/2})=0.6048986/(-0.4142136)\approx-1.4603545$。
+
+\Sol{9.2}{负整数处的值}
+由 $\zeta(s)=2^s\pi^{s-1}\sin(\pi s/2)\Gamma(1-s)\zeta(1-s)$：
+\[
+  \zeta(-1)=2^{-1}\pi^{-2}\cdot\sin(-\tfrac\pi2)\cdot\Gamma(2)\cdot\zeta(2)=\frac1{2\pi^2}\cdot(-1)\cdot1\cdot\frac{\pi^2}6=-\frac1{12},
+\]
+\[
+  \zeta(-3)=2^{-3}\pi^{-4}\cdot\sin(-\tfrac{3\pi}2)\cdot\Gamma(4)\cdot\zeta(4)=\frac1{8\pi^4}\cdot1\cdot6\cdot\frac{\pi^4}{90}=\frac1{120}.
+\]
+$s=-2n$ 时 $\sin(-n\pi)=0$，而 $\Gamma(1+2n)\zeta(1+2n)$ 有限，故 $\zeta(-2n)=0$：这就是平凡零点（第~\bref{subsec:trivial-zeros-simple}~节）。
+
+\Sol{9.3}{Hankel 积分与 Bernoulli 数}
+(a) $s=-m$ 时 $(-z)^{s-1}=(-z)^{-m-1}$ 是 $z$ 的单值函数，上下沿取值相同、方向相反，积分抵消；剩下绕原点一周的小圆积分（半径 $<2\pi$，圆内只有极点 $z=0$）。由
+$\dfrac1{e^z-1}=\sum_{k\ge0}B_k\dfrac{z^{k-1}}{k!}$，
+$(-z)^{-m-1}/(e^z-1)$ 的 $z^{-1}$ 系数为 $(-1)^{m+1}$ 乘以 $\frac1{e^z-1}$ 的 $z^m$ 系数，即 $(-1)^{m+1}\frac{B_{m+1}}{(m+1)!}$。故
+\[
+  I(-m)=2\pi i\,(-1)^{m+1}\frac{B_{m+1}}{(m+1)!}.
+\]
+$m=0$ 时为 $2\pi i\cdot(-1)\cdot(-\tfrac12)=\pi i$，与正文的 $I(0)$ 一致。
+
+(b) $s=-m$ 处 $\Gamma(1-s)=m!$ 有限，式~(\bref{eq:zeta_contour_gamma}) 直接适用：
+\[
+  \zeta(-m)=-\frac{m!}{2\pi i}\,I(-m)=(-1)^m\frac{m!\,B_{m+1}}{(m+1)!}=(-1)^m\frac{B_{m+1}}{m+1}.
+\]
+
+(c) $\zeta(0)=B_1=-\tfrac12$；$\zeta(-1)=-B_2/2=-\tfrac1{12}$；$\zeta(-3)=-B_4/4=\tfrac1{120}$，与习题 9.2 一致。$m=2n\ge2$ 时 $B_{2n+1}=0$（因为 $\frac z{e^z-1}+\frac z2$ 是偶函数，大于 $1$ 的奇数下标 Bernoulli 数都为零），故 $\zeta(-2n)=0$。
+
+\Sol{9.4}{为什么是 3--4--1}
+(a) 由 $\log|\zeta(\sigma+it)|=\sum\frac{\Lambda(n)}{n^\sigma\log n}\cos(t\log n)$ 与 $1+\cos\theta\ge0$，得 $\zeta(\sigma)|\zeta(\sigma+it)|\ge1$（$\sigma>1$）。若 $1+it$ 是 $m$ 阶零点，左端 $\asymp(\sigma-1)^{-1}(\sigma-1)^m=(\sigma-1)^{m-1}$。$m=1$ 时左端有界，不产生矛盾；只有 $m\ge2$ 才矛盾。所以这一不等式只能排除重零点，排除不了单零点。
+
+(b) $|\zeta(\sigma+2it)|$ 出现在左端的乘积中，它可能很大也可能很小。论证只需要它在 $\sigma\to1^+$ 时\textbf{有界}：因为 $t\ne0$，$1+2it\ne1$，$\zeta$ 在其附近解析，故有界。于是左端 $\ll(\sigma-1)^{-3}(\sigma-1)^{4m}\le\sigma-1\to0$，与 $\ge1$ 矛盾。三角式中各系数 $3,4,1$ 的作用正在于：$\cos\theta$ 的系数 $4$ 大于 $1$ 的系数 $3$，使零点的阶 $4m$ 压过极点的阶 $3$。
+
+(c)
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$\sigma$ & $t$ & $\zeta(\sigma)^3|\zeta(\sigma+it)|^4|\zeta(\sigma+2it)|$ & $\zeta(\sigma)|\zeta(\sigma+it)|$\\
+\midrule
+$1.05$ & $1$ & $9797$ & $23.10$\\
+$1.05$ & $14.134725$ & $254.4$ & $7.248$\\
+$1.01$ & $1$ & $1.039\times10^6$ & $110.7$\\
+$1.01$ & $14.134725$ & $2.381\times10^4$ & $33.34$\\
+\bottomrule
+\end{tabular}
+\end{center}
+各值均大于 $1$。注意 $t=14.134725$ 是第一个零点的纵坐标，但零点在 $\sigma=\tfrac12$ 上，离直线 $\sigma=1$ 很远，所以乘积并不小。
+
+\Sol{9.5}{$\chi(s)\chi(1-s)=1$}
+(a) $\chi(1-s)=2^{1-s}\pi^{-s}\sin\frac{\pi(1-s)}2\Gamma(s)=2^{1-s}\pi^{-s}\cos\frac{\pi s}2\Gamma(s)$。于是
+\[
+  \chi(s)\chi(1-s)=2\pi^{-1}\sin\frac{\pi s}2\cos\frac{\pi s}2\,\Gamma(s)\Gamma(1-s)=\frac{\sin\pi s}{\pi}\cdot\frac{\pi}{\sin\pi s}=1
+\]
+（先在 $s\notin\mathbb Z$ 处计算，再按亚纯恒等式推广）。非对称函数方程连用两次：$\zeta(s)=\chi(s)\zeta(1-s)=\chi(s)\chi(1-s)\zeta(s)$，这一恒等式正说明两次反射回到原处，彼此相容。
+
+(b) $\chi$ 的定义中只有实系数的函数（$2^s$、$\pi^{s-1}$、$\sin$、$\Gamma$ 在实轴上取实值），故 $\chi(\bar s)=\overline{\chi(s)}$。在 $s=\tfrac12+it$ 处 $1-s=\tfrac12-it=\bar s$，所以
+$1=\chi(s)\chi(\bar s)=|\chi(s)|^2$。这比习题 7.3 的渐近结论更强：在临界线上 $|\chi|=1$ 对一切 $t$ 精确成立。
+
+(c) 由 $\zeta(s)=\chi(s)\zeta(1-s)$ 与 $1-s=\bar s$，$\zeta(\tfrac12+it)=\chi(\tfrac12+it)\,\zeta(\tfrac12-it)$，而 $|\chi(\tfrac12+it)|=1$。又 $\zeta(\tfrac12-it)=\overline{\zeta(\tfrac12+it)}$，所以 $\zeta(\tfrac12+it)$ 与其共轭只差一个模为 $1$ 的因子。由于 $|\chi(\tfrac12+it)|=1$，可以写 $\chi(\tfrac12+it)=e^{-2i\vartheta(t)}$，其中 $\vartheta$ 是连续的实函数。令 $Z(t)=e^{i\vartheta(t)}\zeta(\tfrac12+it)$，则
+\[
+  \overline{Z(t)}=e^{-i\vartheta(t)}\zeta(\tfrac12-it)=e^{-i\vartheta(t)}\,\overline{\chi(\tfrac12+it)}\,\zeta(\tfrac12+it)=e^{-i\vartheta(t)}e^{2i\vartheta(t)}\zeta(\tfrac12+it)=Z(t),
+\]
+其中第二个等号用了 $\zeta(\tfrac12-it)=\chi(\tfrac12-it)\zeta(\tfrac12+it)$ 与 $\chi(\tfrac12-it)=\overline{\chi(\tfrac12+it)}$。所以 $Z(t)$ 取实值且 $|Z(t)|=|\zeta(\tfrac12+it)|$，这就是 Hardy $Z$ 函数的构造。
+
+\Sol{9.6}{$\zeta'(0)=-\tfrac12\log(2\pi)$}
+在 $s=0$ 附近展开 $\chi(s)=2^s\pi^{s-1}\sin(\pi s/2)\Gamma(1-s)$ 的各因子：
+\[
+\begin{gathered}
+  2^s\pi^{s-1}=\frac1\pi\bigl(1+s\log(2\pi)+O(s^2)\bigr),\qquad
+  \sin\frac{\pi s}2=\frac{\pi s}2+O(s^3),\\
+  \Gamma(1-s)=1-\Gamma'(1)s+O(s^2)=1+\gamma s+O(s^2).
+\end{gathered}
+\]
+故 $\chi(s)=\frac s2\bigl(1+s(\log2\pi+\gamma)\bigr)+O(s^3)$。由第一部习题 4.2，$\zeta(1-s)=-\frac1s+\gamma+O(s)$。相乘：
+\[
+  \zeta(s)=\chi(s)\zeta(1-s)=\frac s2\Bigl(-\frac1s+\gamma\Bigr)+\frac{s^2}2(\log2\pi+\gamma)\Bigl(-\frac1s\Bigr)+O(s^2)
+  =-\frac12-\frac s2\log(2\pi)+O(s^2).
+\]
+常数项 $-\tfrac12$ 与式~(\bref{eq:zeta-at-zero}) 一致，一次项系数即 $\zeta'(0)=-\tfrac12\log(2\pi)\approx-0.918939$（数值核对一致）。$\gamma$ 在两处出现、恰好相消。
+
+\end{document}
