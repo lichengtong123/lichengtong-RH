@@ -60,7 +60,7 @@
   framerule=0.3pt,rulecolor=\color{gray!60},xleftmargin=1em,xrightmargin=1em,
   breaklines=true,showstringspaces=false}
 
-\newcommand{\versiondate}{2026 年 10 月 23 日}
+\newcommand{\versiondate}{2026 年 10 月 23 日（修订）}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第二部}
@@ -99,10 +99,14 @@
   \item \textbf{固定题号。}
     每题编号（如 9.3）一经发布不再改动；删去的题号留空，不由新题顶替，新题接续编号。反馈时请注明题号。
   \item \textbf{与第一部的联系。}
-    个别题目用到第一部习题的结论（如第一部习题 4.2 的 $\zeta(1+u)=1/u+\gamma+O(u)$），题中会注明。
+    个别题目用到第一部习题的结论（如由第一部习题 4.2 的解析表示展开得到的 $\zeta(1+u)=1/u+\gamma_E+O(u)$），题中会注明。
+  \item \textbf{主选与可选。}
+    星级表示完成难度，不等于题目的作用。初读时建议先做主选题；习题 7.2、7.3（完整估计部分）、9.3、9.6 为可选延伸，供希望深入的读者选做。
   \item \textbf{数值。}
-    数值题的参考值用 Python 的 \texttt{mpmath} 计算；「$\approx$」表示四舍五入。
+    数值题的参考值用 Python 的 \texttt{mpmath} 计算（常规高精度计算，不是区间认证）；「$\approx$」表示四舍五入。
 \end{itemize}
+
+本次修订（2026 年 10 月 23 日）依据读者审查意见改正了习题 7.1 的题设与 8.2 的论证，补充了 7.4、8.1、9.1、9.5 等题的关键理由，统一 Euler 常数记号为 $\gamma_E$，并新增习题 9.7（Riemann 第二法）。
 
 本批题目为初稿，题目可解性与解答仍待作者逐题复核。发现错误或表述不清，请在配套仓库的 Issues 中注明题号与具体位置。
 
@@ -121,7 +125,7 @@
 \begin{enumerate}
   \item 由递推公式~(\bref{eq:gamma-recurrence}) 与推论~\bref{cor:gamma-half}，求 $\Gamma(\tfrac52)$、$\Gamma(-\tfrac12)$、$\Gamma(-\tfrac32)$。
   \item 用余元公式~(\bref{eq:reflection-formula}) 核对 $\Gamma(-\tfrac12)\Gamma(\tfrac32)$。
-  \item 写出 $\Gamma$ 在 $s=-1$、$s=-2$ 处的留数，并说明 $\Gamma$ 在实轴上相邻两个极点之间为何必然变号。
+  \item 写出 $\Gamma$ 在 $s=-1$、$s=-2$ 处的留数，并说明：在相邻两个极点所分隔的每个实区间内 $\Gamma$ 不变号，而相邻区间上 $\Gamma$ 的符号交替。
 \end{enumerate}
 \toHint{7.1}
 
@@ -140,10 +144,11 @@ $\Gamma(z)=\lim_{n\to\infty}\dfrac{n!\,n^z}{z(z+1)\cdots(z+n)}$
 \[
   |\chi(\sigma+it)|=\Bigl(\frac{|t|}{2\pi}\Bigr)^{1/2-\sigma}\bigl(1+O(1/|t|)\bigr).
 \]
-特别地，$|\chi(\tfrac12+it)|\to1$。（习题 9.5 将证明 $|\chi(\tfrac12+it)|=1$ 精确成立。）
+特别地，$|\chi(\tfrac12+it)|\to1$。（习题 9.5 将证明 $|\chi(\tfrac12+it)|=1$ 精确成立。）这里提前使用第~\bref{ch:riemann_zeta_continuation}~章的记号 $\chi$，题中已给出完整定义，只需第 7 章的工具；它是后文函数方程因子的预备计算。
 \toHint{7.3}
 
-\Q{7.4}{\lvI}{Stirling 公式的数值检验}
+\Q{7.4}{\lvII}{Stirling 公式的数值检验}
+（(a) 为基础计算；(b)(c) 涉及复参数的余元公式与误差解释。）
 \begin{enumerate}
   \item 对 $n=1,5,10,20$，计算 $n!\big/\bigl(\sqrt{2\pi n}\,(n/e)^n\bigr)$，并与 $1+\frac1{12n}$ 比较。
   \item 由余元公式证明：对实数 $t\ne0$，
@@ -151,7 +156,7 @@ $\Gamma(z)=\lim_{n\to\infty}\dfrac{n!\,n^z}{z(z+1)\cdots(z+n)}$
     \bigl|\Gamma(\tfrac12+it)\bigr|^2=\frac{\pi}{\cosh\pi t},\qquad
     \bigl|\Gamma(it)\bigr|^2=\frac{\pi}{t\sinh\pi t}.
   \]
-  \item 在 $t=1$ 与 $t=10$ 处，把 (b) 的精确值与推论~\bref{cor:stirling-vertical} 的主项 $2\pi|t|^{2\sigma-1}e^{-\pi|t|}$ 比较。
+  \item 在 $t=1$ 与 $t=10$ 处，把 (b) 的精确值与推论~\bref{cor:stirling-vertical} 的主项 $2\pi|t|^{2\sigma-1}e^{-\pi|t|}$ 比较。误差为什么远小于推论所说的 $O(1/|t|)$？
 \end{enumerate}
 \toHint{7.4}
 
@@ -166,13 +171,17 @@ $\Gamma(z)=\lim_{n\to\infty}\dfrac{n!\,n^z}{z(z+1)\cdots(z+n)}$
     \sum_{n\le N}n^{-s}=\zeta(s)+\frac{N^{1-s}}{1-s}+s\int_N^\infty\{x\}x^{-s-1}\dd x,
   \]
   且最后一项的模不超过 $|s|N^{-\sigma}/\sigma$。
-  \item 由此说明：$0<\sigma<1$ 时部分和按 $N^{1-\sigma}$ 增长；$\sigma=1$、$t\ne0$ 时部分和有界但不收敛。在这些点上失效的是级数，而不是 $\zeta$。
-  \item 取 $s=\rho_1\approx\tfrac12+14.134725i$（第一个非平凡零点），对 $N=100,1000,10000$ 计算 $\sum_{n\le N}n^{-s}$ 与 $\sum_{n\le N}n^{-s}-\frac{N^{1-s}}{1-s}$ 的模。
+  \item 由此说明：$0<\sigma<1$ 时部分和的模满足 $\bigl|\sum_{n\le N}n^{-s}\bigr|\sim N^{1-\sigma}/|1-s|$；$\sigma=1$、$t\ne0$ 时部分和有界但不收敛（找出两条有不同极限的子列）。在这些点上失效的是级数，而不是 $\zeta$。
+  \item 取 $s=\rho_1$（第一个非平凡零点，$\rho_1\approx\tfrac12+14.134725i$；计算时用高精度零点，如 \texttt{mpmath.zetazero(1)}，而不是这 $6$ 位小数），对 $N=100,1000,10000$ 计算 $\sum_{n\le N}n^{-s}$ 与 $\sum_{n\le N}n^{-s}-\frac{N^{1-s}}{1-s}$ 的模。
 \end{enumerate}
 \toHint{8.1}
 
 \Q{8.2}{\lvI}{极点不产生多值性}
-$\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。说明为什么沿绕 $s=1$ 的不同路径作延拓，不会像 $\log z$ 那样得到不同的值。$\log\zeta(s)$ 能否在 $\CC\setminus\{1\}$ 上取单值分支？
+$\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。可以使用第~\bref{ch:riemann_zeta_continuation}~章的结论作为前提：积分构造给出了 $\CC\setminus\{1\}$ 上的单值亚纯函数，并在 $\Re s>1$ 上与原来的 $\zeta$ 一致。
+\begin{enumerate}
+  \item 说明为什么沿绕 $s=1$ 的不同路径作延拓，不会像 $\log z$ 那样得到不同的值；$s=1$ 附近的 Laurent 展开在这里说明什么，不说明什么？
+  \item $\log\zeta(s)$ 能否在 $\CC\setminus\{1\}$ 上取单值解析分支？若把 $\zeta$ 的零点也全部除去呢？
+\end{enumerate}
 \toHint{8.2}
 
 \Q{8.3}{\lvII}{另一个自然边界}
@@ -204,7 +213,7 @@ $\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。说明为什么
 \toHint{9.3}
 
 \Q{9.4}{\lvII}{为什么是 3--4--1}
-定理~\bref{thm:no-zero-on-one} 的证明用到 $3+4\cos\theta+\cos2\theta\ge0$。
+定理~\bref{thm:no-zero-on-one} 的证明用到 $3+4\cos\theta+\cos2\theta\ge0$。以下固定实数 $t\ne0$。
 \begin{enumerate}
   \item 若只用 $1+\cos\theta\ge0$，同样的论证给出什么不等式？能否排除 $\zeta(1+it)=0$？
   \item 解释 3--4--1 论证中 $|\zeta(\sigma+2it)|$ 一项为什么不会破坏结论。
@@ -221,11 +230,23 @@ $\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。说明为什么
 \toHint{9.5}
 
 \Q{9.6}{\lvIII}{$\zeta'(0)=-\tfrac12\log(2\pi)$}
-利用函数方程~(\bref{eq:asymmetric_fe_alt})、第一部习题 4.2 的 $\zeta(1+u)=\frac1u+\gamma+O(u)$（$u\to0$），以及 $\Gamma'(1)=-\gamma$（第~\bref{subsec:gamma-poles}~节），求 $\zeta(s)$ 在 $s=0$ 处的 Taylor 展开到一次项，证明
+利用函数方程~(\bref{eq:asymmetric_fe_alt})、$\zeta(1+u)=\frac1u+\gamma_E+O(u)$（$u\to0$；由第一部习题 4.2 的解析表示及其余项进一步展开得到），以及 $\Gamma'(1)=-\gamma_E$（第~\bref{subsec:gamma-poles}~节），求 $\zeta(s)$ 在 $s=0$ 处的 Taylor 展开到一次项，证明
 \[
   \zeta'(0)=-\frac12\log(2\pi).
 \]
 \toHint{9.6}
+
+\Q{9.7}{\lvI}{Riemann 第二法中的对称与极点分离}
+记 $\omega(x)=\sum_{n\ge1}e^{-\pi n^2x}$，$H(s)=\int_1^\infty\bigl(x^{s/2-1}+x^{-(s+1)/2}\bigr)\omega(x)\dd x$。定理~\bref{thm:zeta-theta-integral} 给出
+\[
+  \pi^{-s/2}\Gamma\Bigl(\frac s2\Bigr)\zeta(s)=\frac1{s(s-1)}+H(s).
+\]
+\begin{enumerate}
+  \item 不重复正文的证明，直接从 $H$ 的积分核读出 $H(s)=H(1-s)$，并说明 $H$ 在实轴上与临界线上都取实值。
+  \item 数值计算 $H(2)$ 与 $H(\tfrac12)$，由上式核对 $\zeta(2)=\pi^2/6$ 与 $\zeta(\tfrac12)\approx-1.4603545$。再只用 $H(-1)=H(2)$ 求出 $\zeta(-1)$。
+  \item 右端在 $s=0$ 与 $s=1$ 都有极点，但 $\zeta$ 只在 $s=1$ 有极点。结合 $1/\Gamma(s/2)$ 的零点说明原因；并说明 $\zeta(-2n)=0$（$n\ge1$）如何由同一式读出。
+\end{enumerate}
+\toHint{9.7}
 
 % ============================================================
 \newpage
@@ -234,7 +255,7 @@ $\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。说明为什么
 % ============================================================
 
 \subsection*{第 7 章}
-\Hint{7.1}(a) $\Gamma(s)=\Gamma(s+1)/s$。(c) 留数公式见定理~\bref{thm:gamma-meromorphic}；$\Gamma$ 在实轴上没有零点。
+\Hint{7.1}(a) $\Gamma(s)=\Gamma(s+1)/s$。(c) 留数公式见定理~\bref{thm:gamma-meromorphic}；$\Gamma$ 在实轴上没有零点，故每个区间内不变号；跨过单极点时比较两侧。
 
 \Hint{7.2}先证 $\prod_{k=0}^n(s+k)(s+k+\tfrac12)=2^{-2n-2}\prod_{k=0}^{2n+1}(2s+k)$；对 $\Gamma(2s)$ 取 Gauss 极限时用 $2n+1$ 项。比值的极限与 $s$ 无关，再令 $s=\tfrac12$ 定常数。
 
@@ -245,12 +266,12 @@ $\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。说明为什么
 \subsection*{第 8 章}
 \Hint{8.1}(a) 有限 Abel 求和：$\sum_{n\le N}n^{-s}=N^{1-s}+s\int_1^N\lfloor x\rfloor x^{-s-1}\dd x$。(c) 在零点处 $\zeta(\rho_1)=0$。
 
-\Hint{8.2}孤立奇点处有 Laurent 展开（定理~\bref{thm:laurent}）。$\zeta$ 在 $s=1$ 附近像 $1/(s-1)$。
+\Hint{8.2}(a) 第 8 章正文已指出：唯一性定理本身不保证沿不同区域链的延拓能拼成整体单值函数；这里的整体相容性来自第 9 章的整体构造。(b) 若 $e^L=\zeta$，$\zeta$ 能取零值吗？绕 $s=1$ 的小圆上，$\frac1{2\pi i}\oint\zeta'/\zeta\,\dd s$ 等于多少？
 
 \Hint{8.3}在 $2^k$ 次单位根 $\omega$ 处，$n\ge k$ 时 $\omega^{2^n}=1$。映射 $z\mapsto z^2$ 把单位圆盘映入自身。
 
 \subsection*{第 9 章}
-\Hint{9.1}交错级数的部分和在极限两侧来回摆动，相邻两项的平均抵消了主要的摆动。
+\Hint{9.1}交错级数的部分和在极限两侧来回摆动，相邻两项的平均抵消了主要的摆动。要得到误差阶，把 $\eta(\tfrac12)-\frac12(P_N+P_{N+1})$ 写成相邻项之差 $a_n-a_{n+1}$（$a_n=n^{-1/2}$）组成的交错级数。
 
 \Hint{9.2}$\sin(-\pi/2)=-1$，$\sin(-3\pi/2)=1$，$\Gamma(2)=1$，$\Gamma(4)=6$。
 
@@ -260,7 +281,9 @@ $\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。说明为什么
 
 \Hint{9.5}(a) $\sin\frac{\pi(1-s)}2=\cos\frac{\pi s}2$，$2\sin\frac{\pi s}2\cos\frac{\pi s}2=\sin\pi s$。(b) 在 $s=\tfrac12+it$ 处，$1-s=\bar s$。
 
-\Hint{9.6}$\chi(s)=\frac s2\bigl(1+s(\log2\pi+\gamma)\bigr)+O(s^3)$；$\zeta(1-s)=-\frac1s+\gamma+O(s)$。
+\Hint{9.6}$\chi(s)=\frac s2\bigl(1+s(\log2\pi+\gamma_E)\bigr)+O(s^3)$；$\zeta(1-s)=-\frac1s+\gamma_E+O(s)$。
+
+\Hint{9.7}(a) $s\mapsto1-s$ 使两个幂函数 $x^{s/2-1}$ 与 $x^{-(s+1)/2}$ 互换。(b) $\Gamma(1)=1$，$\Gamma(-\frac12)=-2\sqrt\pi$。(c) $1/\Gamma(s/2)$ 在 $s=0,-2,-4,\dots$ 有单零点，而右端在 $s=-2n$（$n\ge1$）处有限。
 
 % ============================================================
 \newpage
@@ -333,7 +356,14 @@ $|\Gamma(\tfrac12+it)|^2=\Gamma(\tfrac12+it)\Gamma(\tfrac12-it)=\pi/\sin\bigl(\p
 又 $\Gamma(1-it)=-it\,\Gamma(-it)$，故
 $|\Gamma(it)|^2=\Gamma(it)\Gamma(-it)=\dfrac{\Gamma(it)\Gamma(1-it)}{-it}=\dfrac{\pi}{-it\sin(i\pi t)}=\dfrac{\pi}{-it\cdot i\sinh\pi t}=\dfrac{\pi}{t\sinh\pi t}$。
 
-(c) $t=1$：$|\Gamma(\tfrac12+i)|^2\approx0.271015$，主项 $2\pi e^{-\pi}\approx0.271521$；$|\Gamma(i)|^2\approx0.272029$，主项同为 $0.271521$。相对误差约 $0.2\%$。$t=10$：精确值与主项在 $20$ 位精度下一致（$\approx1.42697\times10^{-13}$ 与 $1.42697\times10^{-14}$），差别来自 $e^{-2\pi t}$ 量级的项。此处误差远小于推论给出的 $O(1/|t|)$，因为 $\sigma=0,\tfrac12$ 时 $1/|t|$ 项的系数恰好为零。
+(c) $t=1$：$|\Gamma(\tfrac12+i)|^2\approx0.271015$，主项 $2\pi e^{-\pi}\approx0.271521$；$|\Gamma(i)|^2\approx0.272029$，主项同为 $0.271521$。相对误差约 $0.2\%$。$t=10$：两个精确值分别约为 $1.42697\times10^{-13}$ 与 $1.42697\times10^{-14}$，与各自的主项的相对差约为 $5.2\times10^{-28}$。
+
+原因可直接由 (b) 的精确式读出。令 $q=e^{-2\pi|t|}$，则
+\[
+  \bigl|\Gamma(\tfrac12+it)\bigr|^2=\frac{2\pi e^{-\pi|t|}}{1+q},\qquad
+  \bigl|\Gamma(it)\bigr|^2=\frac{2\pi|t|^{-1}e^{-\pi|t|}}{1-q},
+\]
+与主项之比分别是 $1/(1+q)$ 与 $1/(1-q)$，相对误差约为 $q=e^{-2\pi|t|}$，是指数级小量（$t=1$ 时 $q\approx0.0019$，$t=10$ 时 $q\approx5.2\times10^{-28}$）。推论中的 $O(1/|t|)$ 只是对一般 $\sigma$ 成立的上界，不说明实际误差的大小；在这两条特殊竖线上，余元公式把 $|\Gamma|^2$ 化成了初等函数，误差的结构因而一目了然。
 
 \subsection*{第 8 章}
 
@@ -350,7 +380,9 @@ $\zeta(s)=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x$（对 $\Re s>0$、$s\n
 \]
 由 $0\le\{x\}<1$，最后一项的模不超过 $|s|\int_N^\infty x^{-\sigma-1}\dd x=|s|N^{-\sigma}/\sigma$。
 
-(b) $0<\sigma<1$ 时 $|N^{1-s}/(1-s)|=N^{1-\sigma}/|1-s|\to\infty$，其余两项有界，部分和按 $N^{1-\sigma}$ 增长。$\sigma=1$、$t\ne0$ 时，$N^{1-s}/(1-s)=N^{-it}/(-it)$ 的模恒为 $1/|t|$，辐角 $-t\log N$ 不断旋转，余项趋于零，故部分和有界、在半径 $1/|t|$ 的圆附近转动而不收敛。$\zeta(s)$ 本身在这些点有确定的值，只是级数不再表示它。
+(b) $0<\sigma<1$ 时 $|N^{1-s}/(1-s)|=N^{1-\sigma}/|1-s|\to\infty$，其余两项有界，故部分和的模满足 $\bigl|\sum_{n\le N}n^{-s}\bigr|\sim N^{1-\sigma}/|1-s|$。这是关于模的渐近式，并不说明实部、虚部或模对每个 $N$ 单调增长。
+
+$\sigma=1$、$t\ne0$ 时，$\frac{N^{1-s}}{1-s}=\frac{N^{-it}}{-it}$ 的模恒为 $1/|t|$，余项趋于零，故部分和有界，并逐渐靠近以 $\zeta(1+it)$ 为圆心、半径 $1/|t|$ 的圆。取 $N_k=\lfloor e^{2\pi k/|t|}\rfloor$ 与 $M_k=\lfloor e^{(2\pi k+\pi)/|t|}\rfloor$，则 $t\log N_k$ 与 $2\pi k\operatorname{sgn}t$ 之差趋于 $0$，故 $N_k^{-it}\to1$；同理 $M_k^{-it}\to-1$。两条子列的部分和分别趋于 $\zeta(1+it)\pm\frac1{-it}$，极限不同，所以部分和不收敛。$\zeta(s)$ 本身在这些点有确定的值，只是级数不再表示它。
 
 (c) $\rho_1$ 处 $\zeta(\rho_1)=0$：
 \begin{center}
@@ -364,12 +396,22 @@ $10000$ & $7.071$ & $0.0050$\\
 \bottomrule
 \end{tabular}
 \end{center}
-部分和本身按 $\sqrt N$ 增长（$\approx\sqrt N/|1-\rho_1|$），扣除显式的修正项后迅速趋于 $\zeta(\rho_1)=0$。剩余误差恰约为 $\tfrac12N^{-1/2}$，远小于 (a) 的粗略上界 $|s|N^{-1/2}/\sigma\approx28N^{-1/2}$；这是 Euler--Maclaurin 公式下一项 $\tfrac12N^{-s}$ 的贡献。
+部分和本身按 $\sqrt N$ 增长（$\approx\sqrt N/|1-\rho_1|$），扣除显式的修正项后迅速趋于 $\zeta(\rho_1)=0$。剩余误差恰约为 $\tfrac12N^{-1/2}$，远小于 (a) 的粗略上界 $|s|N^{-1/2}/\sigma\approx28N^{-1/2}$。它的来源要用更高阶的 Euler--Maclaurin 展开说明：下一项为 $\tfrac12N^{-s}$，其模为 $\tfrac12N^{-1/2}$。这是补充解释，(a) 的粗界本身并不给出这个系数。
 
 \Sol{8.2}{极点不产生多值性}
-$s=1$ 是 $\zeta$ 的孤立奇点，$\zeta$ 在去心圆盘 $0<|s-1|<r$ 内有收敛的 Laurent 展开 $\frac1{s-1}+\sum_{k\ge0}c_k(s-1)^k$（定理~\bref{thm:laurent}）。这是去心圆盘上的单值函数，绕 $s=1$ 一周回到原处时函数值不变。由延拓唯一性，沿任何路径得到的延拓都与这一 Laurent 展开在重叠处一致，因此不会出现不同的值。
+(a) 逻辑顺序是「整体构造保证全局相容，局部展开说明极点性质」，不能倒过来。
 
-$\log z$ 在 $z=0$ 附近不是这样：它不能写成去心圆盘上的单值函数，绕一周增加 $2\pi i$。同理，$\log\zeta(s)$ 在 $s=1$ 附近像 $-\log(s-1)$，绕 $s=1$ 一周增加 $-2\pi i$；绕 $\zeta$ 的每个零点一周也会改变 $2\pi i$ 的整数倍。所以 $\log\zeta$ 不能在 $\CC\setminus\{1\}$ 上取单值分支，第 5 章只在无零点的单连通半平面 $\Re s>1$ 上定义它（备注~\bref{rem:log_zeta_branch}）。
+全局：第 9 章的积分构造直接给出 $\CC\setminus\{1\}$ 上的一个单值亚纯函数，它在 $\Re s>1$ 上等于原来的 $\zeta$。沿任何允许的路径作延拓，每一步得到的函数元素都与这个整体函数在重叠处一致（延拓唯一性），所以终点处的值就是整体函数在该点的值，与路径无关。仅凭唯一性定理不能得出这一点：第 8 章正文已指出，沿不同区域链的延拓未必能拼成整体单值函数，$\log z$ 就是例子。
+
+局部：$s=1$ 是孤立奇点，$\zeta$ 在去心圆盘 $0<|s-1|<r$ 内有 Laurent 展开 $\frac1{s-1}+\sum_{k\ge0}c_k(s-1)^k$（定理~\bref{thm:laurent}），主部只有一项。这说明 $s=1$ 是单极点，而不是像 $\log z$ 在 $0$ 那样的对数型分支点：绕它一周，函数值不变。但它只描述 $s=1$ 附近，单独不能保证远处的路径相容。
+
+(b) 不能，而且有两层障碍。
+
+第一层：$\CC\setminus\{1\}$ 中含有 $\zeta$ 的零点。若存在解析函数 $L$ 使 $e^L=\zeta$，则 $\zeta=e^L$ 处处不为零，矛盾。所以在包含零点的区域上，$\log\zeta$ 根本无从定义。
+
+第二层：即使把全部零点也除去，剩余区域上仍没有单值解析的对数。取绕 $s=1$ 的充分小正向圆周，其内部只有极点、没有零点，由辐角原理 $\frac1{2\pi i}\oint\frac{\zeta'}{\zeta}\dd s=-1$；若解析对数 $L$ 存在，则 $L'=\zeta'/\zeta$，这个积分应为 $0$。等价地说，$\log\zeta$ 在 $s=1$ 附近像 $-\log(s-1)$，绕一周改变 $-2\pi i$。
+
+所以第 5 章只在无零点的单连通半平面 $\Re s>1$ 上定义 $\log\zeta$（备注~\bref{rem:log_zeta_branch}）。
 
 \Sol{8.3}{另一个自然边界}
 $|z|<1$ 时级数绝对收敛，$f$ 解析。取 $\omega=e^{2\pi ip/2^k}$。当 $n\ge k$ 时 $2^k\mid2^n$，$\omega^{2^n}=1$，故对 $0<r<1$，
@@ -395,7 +437,18 @@ $1000$ & $0.58909$ & $0.604895$\\
 \bottomrule
 \end{tabular}
 \end{center}
-真值 $\eta(\tfrac12)\approx0.6048986$。$P_N$ 的误差约为 $\pm\tfrac12N^{-1/2}$，在极限两侧交替；相邻平均抵消了这一主项，误差降到 $N^{-3/2}$ 量级。
+真值 $\eta(\tfrac12)\approx0.6048986$。$P_N$ 的误差约为 $\pm\tfrac12N^{-1/2}$，随 $N$ 的奇偶在极限两侧交替。表中的 $N=10,100,1000$ 都是偶数，最后一项为负，所以表中的 $P_N$ 全在真值下方；「两侧交替」是对全部整数 $N$ 而言的。
+
+相邻平均的误差可以严格估计。记 $a_n=n^{-1/2}$，$A_N=\frac12(P_N+P_{N+1})=P_N+\frac12(-1)^Na_{N+1}$，$b_j=a_{N+1+j}-a_{N+2+j}$。则
+\[
+  \eta(\tfrac12)-A_N=(-1)^N\Bigl(\tfrac12a_{N+1}-a_{N+2}+a_{N+3}-\cdots\Bigr)
+  =\frac{(-1)^N}2\sum_{j\ge0}(-1)^jb_j .
+\]
+由于 $a_n$ 是凸函数在整数点的值，$b_j$ 为正、递减且趋于零，交错级数的余项不超过首项，故
+\[
+  \bigl|\eta(\tfrac12)-A_N\bigr|\le\frac{a_{N+1}-a_{N+2}}2=O(N^{-3/2}).
+\]
+（$a_{N+1}-a_{N+2}\approx\frac12N^{-3/2}$，所以误差约不超过 $\frac14N^{-3/2}$，与表中数据相符。）
 
 (b) $\zeta(\tfrac12)=\eta(\tfrac12)/(1-2^{1/2})=0.6048986/(-0.4142136)\approx-1.4603545$。
 
@@ -407,7 +460,7 @@ $1000$ & $0.58909$ & $0.604895$\\
 \[
   \zeta(-3)=2^{-3}\pi^{-4}\cdot\sin(-\tfrac{3\pi}2)\cdot\Gamma(4)\cdot\zeta(4)=\frac1{8\pi^4}\cdot1\cdot6\cdot\frac{\pi^4}{90}=\frac1{120}.
 \]
-$s=-2n$ 时 $\sin(-n\pi)=0$，而 $\Gamma(1+2n)\zeta(1+2n)$ 有限，故 $\zeta(-2n)=0$：这就是平凡零点（第~\bref{subsec:trivial-zeros-simple}~节）。
+$s=-2n$（$n\ge1$；$s=0$ 不在其列，$\zeta(0)=-\frac12$）时 $\sin(-n\pi)=0$，而 $\Gamma(1+2n)\zeta(1+2n)$ 有限，故 $\zeta(-2n)=0$：这就是平凡零点（第~\bref{subsec:trivial-zeros-simple}~节）。
 
 \Sol{9.3}{Hankel 积分与 Bernoulli 数}
 (a) $s=-m$ 时 $(-z)^{s-1}=(-z)^{-m-1}$ 是 $z$ 的单值函数，上下沿取值相同、方向相反，积分抵消；剩下绕原点一周的小圆积分（半径 $<2\pi$，圆内只有极点 $z=0$）。由
@@ -455,11 +508,11 @@ $1.01$ & $14.134725$ & $2.381\times10^4$ & $33.34$\\
 (b) $\chi$ 的定义中只有实系数的函数（$2^s$、$\pi^{s-1}$、$\sin$、$\Gamma$ 在实轴上取实值），故 $\chi(\bar s)=\overline{\chi(s)}$。在 $s=\tfrac12+it$ 处 $1-s=\tfrac12-it=\bar s$，所以
 $1=\chi(s)\chi(\bar s)=|\chi(s)|^2$。这比习题 7.3 的渐近结论更强：在临界线上 $|\chi|=1$ 对一切 $t$ 精确成立。
 
-(c) 由 $\zeta(s)=\chi(s)\zeta(1-s)$ 与 $1-s=\bar s$，$\zeta(\tfrac12+it)=\chi(\tfrac12+it)\,\zeta(\tfrac12-it)$，而 $|\chi(\tfrac12+it)|=1$。又 $\zeta(\tfrac12-it)=\overline{\zeta(\tfrac12+it)}$，所以 $\zeta(\tfrac12+it)$ 与其共轭只差一个模为 $1$ 的因子。由于 $|\chi(\tfrac12+it)|=1$，可以写 $\chi(\tfrac12+it)=e^{-2i\vartheta(t)}$，其中 $\vartheta$ 是连续的实函数。令 $Z(t)=e^{i\vartheta(t)}\zeta(\tfrac12+it)$，则
+(c) 由 $\zeta(s)=\chi(s)\zeta(1-s)$ 与 $1-s=\bar s$，$\zeta(\tfrac12+it)=\chi(\tfrac12+it)\,\zeta(\tfrac12-it)$，而 $|\chi(\tfrac12+it)|=1$。又 $\zeta(\tfrac12-it)=\overline{\zeta(\tfrac12+it)}$，所以 $\zeta(\tfrac12+it)$ 与其共轭只差一个模为 $1$ 的因子。函数 $t\mapsto\chi(\tfrac12+it)$ 在整条实轴上连续、不为零且模为 $1$；实轴单连通，所以可以选取连续的实函数 $\vartheta$，使 $\chi(\tfrac12+it)=e^{-2i\vartheta(t)}$。这样的 $\vartheta$ 只确定到相差 $\pi$ 的整数倍，需要一个归一化：由 $\zeta(\tfrac12)=\chi(\tfrac12)\zeta(\tfrac12)$ 与 $\zeta(\tfrac12)\ne0$ 得 $\chi(\tfrac12)=1$，取 $\vartheta(0)=0$，这与第~\bref{ch:riemann_numerical_approximation}~章的相位约定一致；否则所构造的 $Z$ 会有一个整体正负号的不确定性。（逐点各取一个辐角，并不能自动拼成一条连续相位。）令 $Z(t)=e^{i\vartheta(t)}\zeta(\tfrac12+it)$，则
 \[
   \overline{Z(t)}=e^{-i\vartheta(t)}\zeta(\tfrac12-it)=e^{-i\vartheta(t)}\,\overline{\chi(\tfrac12+it)}\,\zeta(\tfrac12+it)=e^{-i\vartheta(t)}e^{2i\vartheta(t)}\zeta(\tfrac12+it)=Z(t),
 \]
-其中第二个等号用了 $\zeta(\tfrac12-it)=\chi(\tfrac12-it)\zeta(\tfrac12+it)$ 与 $\chi(\tfrac12-it)=\overline{\chi(\tfrac12+it)}$。所以 $Z(t)$ 取实值且 $|Z(t)|=|\zeta(\tfrac12+it)|$，这就是 Hardy $Z$ 函数的构造。
+其中第二个等号用了 $\zeta(\tfrac12-it)=\chi(\tfrac12-it)\zeta(\tfrac12+it)$ 与 $\chi(\tfrac12-it)=\overline{\chi(\tfrac12+it)}$。所以 $Z(t)$ 取实值且 $|Z(t)|=|\zeta(\tfrac12+it)|$，这就是 Hardy $Z$ 函数的构造。以上推导始终使用乘法形式 $\zeta(s)=\chi(s)\zeta(1-s)$，没有写成商 $\zeta(s)/\zeta(\bar s)$，所以在 $\zeta$ 的零点处同样成立（那里商是 $0/0$，无定义）。
 
 \Sol{9.6}{$\zeta'(0)=-\tfrac12\log(2\pi)$}
 在 $s=0$ 附近展开 $\chi(s)=2^s\pi^{s-1}\sin(\pi s/2)\Gamma(1-s)$ 的各因子：
@@ -467,14 +520,26 @@ $1=\chi(s)\chi(\bar s)=|\chi(s)|^2$。这比习题 7.3 的渐近结论更强：�
 \begin{gathered}
   2^s\pi^{s-1}=\frac1\pi\bigl(1+s\log(2\pi)+O(s^2)\bigr),\qquad
   \sin\frac{\pi s}2=\frac{\pi s}2+O(s^3),\\
-  \Gamma(1-s)=1-\Gamma'(1)s+O(s^2)=1+\gamma s+O(s^2).
+  \Gamma(1-s)=1-\Gamma'(1)s+O(s^2)=1+\gamma_E s+O(s^2).
 \end{gathered}
 \]
-故 $\chi(s)=\frac s2\bigl(1+s(\log2\pi+\gamma)\bigr)+O(s^3)$。由第一部习题 4.2，$\zeta(1-s)=-\frac1s+\gamma+O(s)$。相乘：
+故 $\chi(s)=\frac s2\bigl(1+s(\log2\pi+\gamma_E)\bigr)+O(s^3)$。由 $\zeta(1+u)=\frac1u+\gamma_E+O(u)$（取 $u=-s$），$\zeta(1-s)=-\frac1s+\gamma_E+O(s)$。相乘：
 \[
-  \zeta(s)=\chi(s)\zeta(1-s)=\frac s2\Bigl(-\frac1s+\gamma\Bigr)+\frac{s^2}2(\log2\pi+\gamma)\Bigl(-\frac1s\Bigr)+O(s^2)
+  \zeta(s)=\chi(s)\zeta(1-s)=\frac s2\Bigl(-\frac1s+\gamma_E\Bigr)+\frac{s^2}2(\log2\pi+\gamma_E)\Bigl(-\frac1s\Bigr)+O(s^2)
   =-\frac12-\frac s2\log(2\pi)+O(s^2).
 \]
-常数项 $-\tfrac12$ 与式~(\bref{eq:zeta-at-zero}) 一致，一次项系数即 $\zeta'(0)=-\tfrac12\log(2\pi)\approx-0.918939$（数值核对一致）。$\gamma$ 在两处出现、恰好相消。
+常数项 $-\tfrac12$ 与式~(\bref{eq:zeta-at-zero}) 一致，一次项系数即 $\zeta'(0)=-\tfrac12\log(2\pi)\approx-0.918939$（数值核对一致）。$\gamma_E$ 在两处出现、恰好相消。
+
+\Sol{9.7}{Riemann 第二法中的对称与极点分离}
+(a) 把 $s$ 换成 $1-s$：$x^{(1-s)/2-1}=x^{-(s+1)/2}$，$x^{-((1-s)+1)/2}=x^{s/2-1}$，两个幂函数恰好互换，其和不变，故 $H(1-s)=H(s)$。对称函数方程~(\bref{eq:symmetric_fe}) 就是由此直接读出的（极点项 $\frac1{s(s-1)}$ 同样在 $s\mapsto1-s$ 下不变）。
+$s$ 为实数时被积函数为实，$H(s)\in\RR$；$s=\frac12+it$ 时 $x^{s/2-1}=x^{-3/4}x^{it/2}$，$x^{-(s+1)/2}=x^{-3/4}x^{-it/2}$，和为 $2x^{-3/4}\cos(\frac t2\log x)$，也是实数。
+
+(b) 数值积分得 $H(2)\approx0.0235988$，$H(\tfrac12)\approx0.0230338$。
+$s=2$：左端 $\pi^{-1}\Gamma(1)\zeta(2)$，右端 $\frac12+H(2)\approx0.5235988=\frac\pi6$，故 $\zeta(2)=\frac{\pi^2}6$。
+$s=\frac12$：右端 $-4+H(\tfrac12)\approx-3.9769662$；除以 $\pi^{-1/4}\Gamma(\tfrac14)\approx2.7232893$，得 $\zeta(\tfrac12)\approx-1.4603545$。
+$s=-1$：$H(-1)=H(2)$，右端 $\frac12+H(2)=\frac\pi6$；左端 $\pi^{1/2}\Gamma(-\tfrac12)\zeta(-1)=-2\pi\zeta(-1)$，故 $\zeta(-1)=-\frac1{12}$，与习题 9.2 一致。
+
+(c) 右端在 $s=0$、$1$ 的极点属于完成函数 $\pi^{-s/2}\Gamma(s/2)\zeta(s)$，不都是 $\zeta$ 的极点。改写为 $\zeta(s)=\pi^{s/2}\frac1{\Gamma(s/2)}\bigl(\frac1{s(s-1)}+H(s)\bigr)$：$1/\Gamma(s/2)$ 在 $s=0$ 有单零点，恰好抵消 $\frac1{s(s-1)}$ 在 $0$ 的单极点，所以 $\zeta$ 在 $0$ 解析（并得 $\zeta(0)=-\frac12$）；在 $s=1$，$1/\Gamma(\frac12)=1/\sqrt\pi\ne0$，单极点保留。
+$s=-2n$（$n\ge1$）时右端 $\frac1{s(s-1)}+H(s)$ 有限，而 $1/\Gamma(s/2)$ 在此为零，故 $\zeta(-2n)=0$：平凡零点来自 $\Gamma(s/2)$ 的极点。
 
 \end{document}
