@@ -1,0 +1,662 @@
+\newlabel{ch:overview}{{}{xv}{\texorpdfstring {\centering 导论\quad 黎曼猜想知识总览}{导论　黎曼猜想知识总览}}{section*.9}{}}
+\newlabel{sec:overview-rh}{{}{xv}{一、黎曼猜想的陈述}{section*.11}{}}
+\newlabel{sec:overview-why}{{}{xvi}{二、零点与素数分布}{section*.13}{}}
+\newlabel{sec:overview-status}{{}{xvii}{三、已知结论与证明状态}{section*.15}{}}
+\newlabel{sec:overview-equivalents}{{}{xviii}{四、黎曼猜想的等价形式}{section*.17}{}}
+\newlabel{sec:overview-map}{{}{xix}{五、阅读路径与延伸阅读}{section*.19}{}}
+\newlabel{sec:confusable-terms}{{}{xxv}{四、易于混淆的用语解释}{section*.24}{}}
+\newlabel{ch:prime_distribution}{{1}{2}{素数分布：从古典经验公式到解析数论}{chapter.1}{}}
+\newlabel{sec:prime_atoms}{{1.1}{2}{问题的提出：\texorpdfstring {$\pi (x)$}{pi(x)}}{section.1.1}{}}
+\newlabel{sec:classical_main_terms}{{1.2}{3}{古典经验公式：Legendre 型近似与 Gauss \texorpdfstring {$\Li $}{Li} 函数}{section.1.2}{}}
+\newlabel{eq:Li-def-parts}{{1.1}{3}{古典经验公式：Legendre 型近似与 Gauss \texorpdfstring {$\Li $}{Li} 函数}{equation.1.1}{}}
+\newlabel{sec:Li-integration-by-parts}{{1.2.1}{3}{\texorpdfstring {$\Li (x)$}{Li(x)} 的分部积分与渐近展开}{subsection.1.2.1}{}}
+\newlabel{eq:Li-parts-1}{{1.2}{4}{基本结论：首项与第一修正项}{equation.1.2}{}}
+\newlabel{eq:Li-parts-finite}{{1.3}{4}{进一步展开：任意固定阶的公式}{equation.1.3}{}}
+\newlabel{eq:Li-asymptotic}{{1.4}{4}{进一步展开：任意固定阶的公式}{equation.1.4}{}}
+\newlabel{eq:legendre-denom-expand}{{1.5}{5}{首项、高阶项与 $\pi \sim \Li $}{equation.1.5}{}}
+\newlabel{tab:pix}{{1.1}{5}{$\pi (x)$ 与 $x/\log x$、$\Li (x)$ 的数值对照。 末两列分别为有符号差 $\pi (x)-\lfloor \Li (x)\rfloor $ 与相对误差 $\lvert \pi (x)-\lfloor \Li (x)\rfloor \rvert /\pi (x)$ （相对 $\pi $；所列采样点上 $\pi (x)-\lfloor \Li (x)\rfloor $ 为负）。}{table.caption.29}{}}
+\newlabel{fig:pix_compare}{{1.1}{6}{区间 $2\le x\le 100$ 上 $\pi (x)$、$\Li (x)$ 与 $x/\log x$ 的比较。 图示区间内 $x\ge 17$ 时 $\pi $ 介于 $x/\log x$ 与 $\Li $ 之间：$x/\log x$ 偏低、$\Li $ 偏高；两者谁更接近 $\pi $ 则随 $x$ 而变。此观察不表示上述大小关系在图示区间之外仍然成立。 较小的 $x$ 不必如此（如 $\pi (10)=4<10/\log 10$）。 $x$ 较大时相对误差变小，曲线在大尺度上几乎重合， 故取中等区间以显示绝对差。}{figure.caption.30}{}}
+\newlabel{subsec:pnt_intro}{{1.3}{6}{素数定理的表述}{section.1.3}{}}
+\newlabel{thm:pnt}{{1.3.1}{6}{素数定理，1896（证明见第~\ref {ch:prime_number_theorem}~章）}{tcb@cnt@theorem.1.3.1}{}}
+\newlabel{sec:riemann_hypothesis_intro}{{1.4}{7}{从经验公式到严格理论}{section.1.4}{}}
+\newlabel{subsec:euler_product_complex}{{1.4.1}{7}{Euler 乘积}{subsection.1.4.1}{}}
+\newlabel{thm:euler-product-ch1}{{1.6}{7}{Euler 乘积}{equation.1.6}{}}
+\newlabel{subsec:zeros_rh_intro}{{1.4.2}{7}{零点与黎曼猜想（名称解释）}{subsection.1.4.2}{}}
+\newlabel{subsec:explicit_formula_intro}{{1.4.3}{7}{显式公式（名称解释）}{subsection.1.4.3}{}}
+\newlabel{subsec:empirical_to_rigorous}{{1.4.4}{7}{从经验公式到严格理论的路径}{subsection.1.4.4}{}}
+\newlabel{ch:elementary_number_theoretic_functions}{{2}{9}{初等数论函数与素数计数函数}{chapter.2}{}}
+\newlabel{sec:intro_elementary_functions}{{2.1}{9}{引言}{section.2.1}{}}
+\newlabel{tab:function-classification}{{2.1}{9}{函数分类}{table.2.1}{}}
+\newlabel{sec:prime_counting}{{2.2}{10}{素数计数函数 \texorpdfstring {$\pi (x)$}{pi(x)}}{section.2.2}{}}
+\newlabel{def:prime-counting}{{2.2.1}{10}{素数计数函数}{tcb@cnt@theorem.2.2.1}{}}
+\newlabel{fig:pi-staircase-small}{{2.1}{11}{素数计数函数 $\pi (x)$（$1\le x\le 30$）。 红点为素数处跳跃后的函数值（跳跃量均为 $1$）。 大尺度对照：$\pi (10^6)=78498$，$\Li (10^6)\approx 78627$，相对误差 $|\pi -\Li |/\pi \approx 0.16\%$。}{figure.2.1}{}}
+\newlabel{sec:mobius_function}{{2.3}{11}{Möbius 函数 \texorpdfstring {$\mu (n)$}{mu(n)}}{section.2.3}{}}
+\newlabel{fig:mobius-values}{{2.2}{12}{Möbius 函数 $\mu (n)$ 的离散取值（$1\le n\le 30$）。 蓝色圆点、红色方点与绿色圆点分别表示 $\mu (n)=1,-1,0$；非零值以竖线连接至横轴，竖线不表示非整数处的函数值。}{figure.2.2}{}}
+\newlabel{subsec:mertens_function}{{2.3.4}{13}{Mertens 函数 \texorpdfstring {$M(x)$}{M(x)}：Möbius 函数的累积部分和}{subsection.2.3.4}{}}
+\newlabel{fig:mertens-staircase}{{2.3}{13}{Mertens 函数 $M(x)=\sum _{n\le x}\mu (n)$ 的右连续阶梯图（$1\le x\le 250$）。 曲线在每个区间 $[n,n+1)$ 上取常值 $M(n)$，整数处的圆点标示函数值。 图示范围内最小值为 $-8$，最大值为 $5$；例如 $M(95)=2$、$M(199)=-8$、$M(221)=5$。}{figure.2.3}{}}
+\newlabel{sec:riemann_prime_power}{{2.4}{14}{黎曼素数幂计数函数 \texorpdfstring {$J(x)$}{J(x)}}{section.2.4}{}}
+\newlabel{sec:J}{{2.4}{14}{黎曼素数幂计数函数 \texorpdfstring {$J(x)$}{J(x)}}{section.2.4}{}}
+\newlabel{eq:J_def}{{2.1}{14}{}{equation.2.1}{}}
+\newlabel{subsec:J_from_pi}{{2.4.3}{14}{用 \texorpdfstring {$\pi $}{pi} 表示 \texorpdfstring {$J$}{J}}{subsection.2.4.3}{}}
+\newlabel{eq:J_from_pi}{{2.2}{14}{用 \texorpdfstring {$\pi $}{pi} 表示 \texorpdfstring {$J$}{J}}{equation.2.2}{}}
+\newlabel{subsec:J_pi_mobius}{{2.4.4}{15}{与 \texorpdfstring {$\pi (x)$}{pi(x)} 的互换关系}{subsection.2.4.4}{}}
+\newlabel{eq:pi_from_J}{{2.3}{15}{与 \texorpdfstring {$\pi (x)$}{pi(x)} 的互换关系}{equation.2.3}{}}
+\newlabel{fig:J-staircase-small}{{2.4}{16}{黎曼素数幂计数函数 $J(x)$（$1\le x\le 30$）。 红点为素数处跳跃 $+1$，三角为高次素数幂处跳跃 $+1/k$。}{figure.2.4}{}}
+\newlabel{sec:von_mangoldt}{{2.5}{16}{von Mangoldt 函数 \texorpdfstring {$\Lambda (n)$}{Lambda(n)}}{section.2.5}{}}
+\newlabel{sec:Lambda}{{2.5}{16}{von Mangoldt 函数 \texorpdfstring {$\Lambda (n)$}{Lambda(n)}}{section.2.5}{}}
+\newlabel{eq:log_sum_Lambda}{{2.4}{16}{对数恒等式}{equation.2.4}{}}
+\newlabel{subsec:Lambda_mu_conv}{{2.5.4}{17}{von Mangoldt 函数与 Möbius 函数的卷积关系}{subsection.2.5.4}{}}
+\newlabel{eq:Lambda_mu_conv}{{2.5}{17}{von Mangoldt 函数与 Möbius 函数的卷积关系}{equation.2.5}{}}
+\newlabel{eq:Lambda_mu_log}{{2.6}{17}{von Mangoldt 函数与 Möbius 函数的卷积关系}{equation.2.6}{}}
+\newlabel{fig:von-mangoldt-values}{{2.5}{18}{von Mangoldt 函数 $\Lambda (n)$ 的非零取值（$1\le n\le 30$）。 蓝点表示素数 $p$ 处的值 $\log p$，红点表示高次素数幂 $p^k$（$k\ge 2$）处的值 $\log p$；其余正整数处的函数值为零，未另作标记。 竖线仅连接取值点与横轴，不表示非整数处的函数值。}{figure.2.5}{}}
+\newlabel{sec:first_chebyshev}{{2.6}{18}{第一 Chebyshev 函数 \texorpdfstring {$\theta (x)$}{theta(x)}}{section.2.6}{}}
+\newlabel{subsec:theta_pi_abel}{{2.6.3}{19}{与 \texorpdfstring {$\pi (x)$}{pi(x)} 的分部求和关系}{subsection.2.6.3}{}}
+\newlabel{eq:theta_pi_abel}{{2.7}{19}{与 \texorpdfstring {$\pi (x)$}{pi(x)} 的分部求和关系}{equation.2.7}{}}
+\newlabel{subsec:theta_psi_PNT}{{2.6.4}{19}{与素数定理的等价性}{subsection.2.6.4}{}}
+\newlabel{eq:pi_from_theta_parts}{{2.8}{19}{与素数定理的等价性}{equation.2.8}{}}
+\newlabel{subsec:chebyshev_elem}{{2.6.5}{20}{Chebyshev 的初等估计}{subsection.2.6.5}{}}
+\newlabel{thm:chebyshev-bounds}{{2.6.3}{20}{Chebyshev 型上下界}{tcb@cnt@theorem.2.6.3}{}}
+\newlabel{eq:chebyshev-upper}{{2.9}{20}{Chebyshev 型上下界}{equation.2.9}{}}
+\newlabel{cor:psi-O-x}{{2.6.4}{21}{$\psi (x)=O(x)$}{tcb@cnt@theorem.2.6.4}{}}
+\newlabel{fig:theta-staircase-small}{{2.6}{22}{第一 Chebyshev 函数 $\theta (x)$（$1\le x\le 30$）。红点为素数处跳跃后的函数值。}{figure.2.6}{}}
+\newlabel{sec:second_chebyshev}{{2.7}{22}{第二 Chebyshev 函数 \texorpdfstring {$\psi (x)$}{psi(x)}}{section.2.7}{}}
+\newlabel{eq:psi_def}{{2.10}{22}{}{equation.2.10}{}}
+\newlabel{subsec:psi_theta_rel}{{2.7.3}{23}{与 \texorpdfstring {$\theta (x)$}{theta(x)} 的关系}{subsection.2.7.3}{}}
+\newlabel{eq:psi_sum_theta}{{2.11}{23}{$\psi $ 与 $\theta $}{equation.2.11}{}}
+\newlabel{eq:psi_theta_asymp}{{2.12}{24}{与 \texorpdfstring {$\theta (x)$}{theta(x)} 的关系}{equation.2.12}{}}
+\newlabel{eq:theta_from_psi}{{2.13}{24}{与 \texorpdfstring {$\theta (x)$}{theta(x)} 的关系}{equation.2.13}{}}
+\newlabel{subsec:J_psi_stieltjes}{{2.7.4}{24}{\texorpdfstring {$J(x)$}{J(x)} 与 \texorpdfstring {$\psi (x)$}{psi(x)} 的积分关系}{subsection.2.7.4}{}}
+\newlabel{eq:psi_from_J_stieltjes}{{2.14}{24}{$\psi $ 与 $J$}{equation.2.14}{}}
+\newlabel{eq:J_from_psi_stieltjes}{{2.15}{24}{$\psi $ 与 $J$}{equation.2.15}{}}
+\newlabel{eq:psi_J_parts}{{2.16}{25}{\texorpdfstring {$J(x)$}{J(x)} 与 \texorpdfstring {$\psi (x)$}{psi(x)} 的积分关系}{equation.2.16}{}}
+\newlabel{fig:psi-theta-small}{{2.7}{26}{$\psi (x)$（蓝）与 $\theta (x)$（红）对比（$1\le x\le 30$）。 二者在素数处同步抬升；蓝阶在 $p^k$（$k\ge 2$）处再跳 $\log p$，故不低于红阶。 大尺度对照：$x=10^6$ 时 $|\psi (10^6)-10^6|/10^6\approx 0.04\%$。}{figure.2.7}{}}
+\newlabel{sec:offset_logarithmic_integral}{{2.8}{26}{偏移对数积分 \texorpdfstring {$\Li (x)$}{Li(x)}}{section.2.8}{}}
+\newlabel{subsec:Li_pi_asymp}{{2.8.1}{26}{与 \texorpdfstring {$\pi (x)$}{pi(x)} 的渐近关系}{subsection.2.8.1}{}}
+\newlabel{subsec:Li_asymptotic_plot}{{2.8.3}{27}{图形示意：大尺度渐近比较}{subsection.2.8.3}{}}
+\newlabel{fig:pix_Li_asymptotic}{{2.8}{28}{较大坐标尺度下 $\pi (x)$、$\Li (x)$ 与 $x/\log x$ 的数值比较（采样范围为 $10\le x\le 10^6$）。 曲线由采样点连接而成，蓝线并非逐个素数处的精确阶梯图。 绿线为 $x/\log x$，低于红线 $\Li (x)$；在较大自变量处，蓝、红两线在本图尺度下难以分辨，但并不相等。 $x=10^6$ 时，两者相差约 $128.50$，相对差约为 $0.164\%$。}{figure.2.8}{}}
+\newlabel{sec:relations_seven_functions}{{2.9}{29}{各函数的关系}{section.2.9}{}}
+\newlabel{sec:elementary_spectrum_map}{{2.9.2}{30}{初等数论函数间的主要数学关系}{subsection.2.9.2}{}}
+\newlabel{tab:spectrum-stage2-guide}{{2.2}{30}{本章主要公式与关系索引}{table.caption.34}{}}
+\newlabel{sec:summary_elementary_functions}{{2.9.2}{30}{本章要点}{section*.35}{}}
+\newlabel{ch:complex_analysis_intro}{{3}{32}{解析数论的复变函数基础}{chapter.3}{}}
+\newlabel{sec:intro_complex_analysis}{{3.1}{32}{引言}{section.3.1}{}}
+\newlabel{sec:CR_analytic}{{3.2}{32}{Cauchy--Riemann 方程与解析性}{section.3.2}{}}
+\newlabel{def:analytic}{{3.2.1}{32}{复可微与解析函数}{tcb@cnt@theorem.3.2.1}{}}
+\newlabel{thm:CR}{{3.2.2}{33}{Cauchy--Riemann 方程（证明提要）}{tcb@cnt@theorem.3.2.2}{}}
+\newlabel{ex:analytic_basic}{{3.2.3}{33}{解析与不解析}{tcb@cnt@theorem.3.2.3}{}}
+\newlabel{rem:smooth}{{3.2.4}{33}{无限次可微}{tcb@cnt@theorem.3.2.4}{}}
+\newlabel{thm:identity}{{3.2.5}{33}{恒等定理}{tcb@cnt@theorem.3.2.5}{}}
+\newlabel{sec:schwarz_reflection}{{3.2.1}{33}{Schwarz 反射原理}{subsection.3.2.1}{}}
+\newlabel{thm:schwarz_reflection}{{3.2.6}{33}{Schwarz 反射原理（仅引用）}{tcb@cnt@theorem.3.2.6}{}}
+\newlabel{sec:cauchy_integral}{{3.3}{34}{路径积分与 Cauchy 积分定理}{section.3.3}{}}
+\newlabel{def:contour}{{3.3.1}{34}{路径与路径积分}{tcb@cnt@theorem.3.3.1}{}}
+\newlabel{prop:integral_properties}{{3.3.2}{34}{路径积分的性质}{tcb@cnt@theorem.3.3.2}{}}
+\newlabel{ex:circle_integral}{{3.3.3}{34}{单位圆周上的幂积分}{tcb@cnt@theorem.3.3.3}{}}
+\newlabel{thm:cauchy_integral}{{3.3.4}{34}{Cauchy 积分定理（引用）}{tcb@cnt@theorem.3.3.4}{}}
+\newlabel{cor:antiderivative}{{3.3.5}{34}{原函数的存在性}{tcb@cnt@theorem.3.3.5}{}}
+\newlabel{sec:weierstrass_holomorphic_series}{{3.3.1}{35}{全纯函数项级数}{subsection.3.3.1}{}}
+\newlabel{thm:weierstrass_series}{{3.3.6}{35}{全纯函数项级数（内闭一致收敛）（证明提要）}{tcb@cnt@theorem.3.3.6}{}}
+\newlabel{sec:param_integral}{{3.3.2}{35}{含参量积分}{subsection.3.3.2}{}}
+\newlabel{thm:param_integral}{{3.3.7}{35}{含参量积分（仅引用）}{tcb@cnt@theorem.3.3.7}{}}
+\newlabel{sec:param_integral_unbounded}{{3.3.3}{35}{无穷区间上的含参积分}{subsection.3.3.3}{}}
+\newlabel{thm:differentiation_under_integral}{{3.3.8}{35}{无穷区间上的含参积分（引用）}{tcb@cnt@theorem.3.3.8}{}}
+\newlabel{sec:singularity}{{3.4}{36}{Laurent 级数与奇点分类}{section.3.4}{}}
+\newlabel{thm:laurent}{{3.4.1}{36}{Laurent 级数（仅引用）}{tcb@cnt@theorem.3.4.1}{}}
+\newlabel{fig:laurent_annulus}{{3.1}{36}{Laurent 级数的收敛域：一般圆环 $r_1<|z-z_0|<R$（定理~\ref {thm:laurent} 为 $r_1=0$ 的去心圆盘）。 $z_0$ 为圆环中心，$\mathcal {C}$ 为圆环内用于计算系数的正向积分圆周 $|z-z_0|=r$；仅当内半径为零时，才可进一步讨论中心处的孤立奇点。}{figure.caption.38}{}}
+\newlabel{def:singularity}{{3.4.2}{36}{孤立奇点与分类}{tcb@cnt@theorem.3.4.2}{}}
+\newlabel{ex:singularity_types}{{3.4.3}{37}{三类奇点}{tcb@cnt@theorem.3.4.3}{}}
+\newlabel{def:meromorphic}{{3.4.4}{37}{亚纯函数}{tcb@cnt@theorem.3.4.4}{}}
+\newlabel{sec:residue}{{3.5}{37}{留数定理与辐角原理}{section.3.5}{}}
+\newlabel{sec:argument_principle}{{3.5}{37}{留数定理与辐角原理}{section.3.5}{}}
+\newlabel{def:residue}{{3.5.1}{37}{留数}{tcb@cnt@theorem.3.5.1}{}}
+\newlabel{prop:residue_formulas}{{3.5.2}{37}{留数的计算}{tcb@cnt@theorem.3.5.2}{}}
+\newlabel{ex:residue_computation}{{3.5.3}{37}{三个一阶极点}{tcb@cnt@theorem.3.5.3}{}}
+\newlabel{thm:residue_theorem}{{3.5.4}{37}{留数定理（证明提要）}{tcb@cnt@theorem.3.5.4}{}}
+\newlabel{fig:residue}{{3.2}{38}{留数定理的割线法示意图：外轮廓、割线去回程与小圆定向。 割线依次连接外轮廓与各小圆，去回程沿同一路径反向而抵消。 红色小圆箭头表示计算留数时采用的正向（逆时针），并非割开区域的内边界方向；后者为顺时针。}{figure.3.2}{}}
+\newlabel{def:winding_number}{{3.5.5}{38}{围绕指数}{tcb@cnt@theorem.3.5.5}{}}
+\newlabel{thm:argument_principle}{{3.5.6}{38}{辐角原理（证明提要）}{tcb@cnt@theorem.3.5.6}{}}
+\newlabel{cor:rouche}{{3.5.7}{38}{Rouch\'e 定理（证明提要）}{tcb@cnt@theorem.3.5.7}{}}
+\newlabel{fig:argument_principle}{{3.3}{39}{辐角原理的几何含义：$z$ 沿 $\mathcal {C}$ 正向一周时， $w=f(z)$ 绕原点 $Z-P$ 圈（本图 $Z=2$、$P=1$）。}{figure.caption.39}{}}
+\newlabel{sec:branch_cut}{{3.6}{39}{支割线与多值函数}{section.3.6}{}}
+\newlabel{def:branch_cut}{{3.6.1}{39}{支割线与单值分支}{tcb@cnt@theorem.3.6.1}{}}
+\newlabel{rem:branch_choice}{{3.6.2}{39}{割线的选择}{tcb@cnt@theorem.3.6.2}{}}
+\newlabel{ex:log_multivalued}{{3.6.3}{39}{绕原点一周}{tcb@cnt@theorem.3.6.3}{}}
+\newlabel{prop:branch_cut_integral}{{3.6.4}{40}{支割线下的积分}{tcb@cnt@theorem.3.6.4}{}}
+\newlabel{fig:hankel_ch3}{{3.4}{40}{沿正实轴割线的 Hankel 路径示意（两沿间距为显示而放大）。 上沿自 $+\infty $ 趋向原点，小圆弧逆时针绕过原点，下沿返回 $+\infty $；在选定的 $\arg z\in (0,2\pi )$ 分支下，下沿的对数比上沿大 $2\pi i$。 原始无限路径不含外部大圆弧；闭合或变形时新增路径的贡献须另行估计。具体应用见第~\ref {ch:riemann_zeta_continuation}~章图~\ref {fig:hankel} 与附录~\ref {app:hankel_fe}。}{figure.caption.40}{}}
+\newlabel{sec:contour_deform}{{3.7}{40}{围道变形与积分估计}{section.3.7}{}}
+\newlabel{def:homotopy}{{3.7.1}{40}{同伦等价}{tcb@cnt@theorem.3.7.1}{}}
+\newlabel{thm:homotopy_invariance}{{3.7.2}{40}{同伦不变性（仅引用）}{tcb@cnt@theorem.3.7.2}{}}
+\newlabel{ex:homotopy_pole}{{3.7.3}{41}{同伦不变性与穿过极点}{tcb@cnt@theorem.3.7.3}{}}
+\newlabel{thm:phragmen_lindelof}{{3.7.4}{41}{Phragm\'en--Lindel\"of 原理（仅引用）}{tcb@cnt@theorem.3.7.4}{}}
+\newlabel{ch:integral_transforms}{{4}{43}{积分变换：从 Fourier、Mellin 变换到 Perron 公式}{chapter.4}{}}
+\newlabel{sec:intro_integral_transforms}{{4.1}{43}{引言}{section.4.1}{}}
+\newlabel{subsec:fourier_def}{{4.2.1}{44}{定义与基本性质}{subsection.4.2.1}{}}
+\newlabel{subsec:gauss_ft}{{4.2.3}{45}{Gauss 型 Fourier 变换}{subsection.4.2.3}{}}
+\newlabel{lem:real_gauss}{{4.2.5}{45}{实 Gauss 积分}{tcb@cnt@theorem.4.2.5}{}}
+\newlabel{thm:gaussian_self_dual}{{4.2.6}{45}{标准 Gauss 函数的自对偶性}{tcb@cnt@theorem.4.2.6}{}}
+\newlabel{thm:gaussian_ft_scaled}{{4.2.7}{46}{伸缩后的 Gauss 型 Fourier 变换}{tcb@cnt@theorem.4.2.7}{}}
+\newlabel{subsec:jacobi-theta}{{4.2.4}{46}{Jacobi \texorpdfstring {$\vartheta $}{theta} 的模反演}{subsection.4.2.4}{}}
+\newlabel{thm:theta_inversion}{{4.2.9}{47}{$\vartheta $ 函数的函数方程（模反演）}{tcb@cnt@theorem.4.2.9}{}}
+\newlabel{sec:mellin}{{4.3}{47}{Mellin 变换}{section.4.3}{}}
+\newlabel{subsec:mellin_properties}{{4.3.2}{48}{基本性质}{subsection.4.3.2}{}}
+\newlabel{rem:mellin_derivative_range}{{4.3.3}{49}{微分性质的适用范围}{tcb@cnt@theorem.4.3.3}{}}
+\newlabel{sec:mellin_inverse}{{4.3.3}{49}{逆 Mellin 变换}{subsection.4.3.3}{}}
+\newlabel{def:vertical_line}{{4.3.4}{49}{竖线积分}{tcb@cnt@theorem.4.3.4}{}}
+\newlabel{fig:vertical-line-truncation}{{4.1}{50}{竖线积分的路径与对称截断（图示取 $c>0$）。 有限路径自 $c-iT$ 向上至 $c+iT$，参数为 $s=c+it$、$-T\le t\le T$。 无限竖线积分在极限存在时按上下端点同时趋于无穷的对称截断极限理解，虚线表示路径延伸。}{figure.caption.51}{}}
+\newlabel{thm:mellin_dirichlet_connection}{{4.3.6}{51}{Dirichlet 级数与部分和的积分联系}{tcb@cnt@theorem.4.3.6}{}}
+\newlabel{rem:mellin_perron_connection}{{4.3.7}{51}{与 Perron 公式的衔接}{tcb@cnt@theorem.4.3.7}{}}
+\newlabel{sec:perron}{{4.4}{52}{Perron 公式}{section.4.4}{}}
+\newlabel{lem:perron_kernel}{{4.4.1}{52}{阶跃函数的积分表示}{tcb@cnt@theorem.4.4.1}{}}
+\newlabel{eq:delta_integral}{{4.1}{52}{阶跃函数的积分表示}{equation.4.1}{}}
+\newlabel{thm:perron_formula}{{4.4.2}{53}{Perron 公式}{tcb@cnt@theorem.4.4.2}{}}
+\newlabel{subsec:perron_truncation}{{4.4.3}{53}{截断版本与误差估计}{subsection.4.4.3}{}}
+\newlabel{lem:perron-trunc-kernel}{{4.4.3}{54}{截断 Perron 核}{tcb@cnt@theorem.4.4.3}{}}
+\newlabel{subsec:perron_contour_method}{{4.4.4}{54}{Perron 竖线积分与后文围道}{subsection.4.4.4}{}}
+\newlabel{tab:perron_common_forms}{{4.1}{55}{Perron 公式的常见系数形式（左端均为左右平均 $A_0$）。}{table.4.1}{}}
+\newlabel{rem:perron_applications}{{4.4.4}{55}{应用概览}{tcb@cnt@theorem.4.4.4}{}}
+\newlabel{ch:riemann_zeta_intro}{{5}{56}{黎曼 \texorpdfstring {$\zeta $}{Zeta} 函数初探}{chapter.5}{}}
+\newlabel{sec:intro_zeta_intro}{{5.1}{56}{引言}{section.5.1}{}}
+\newlabel{subsec:dirichlet-def}{{5.2.1}{57}{Dirichlet 级数的定义}{subsection.5.2.1}{}}
+\newlabel{eq:general_dirichlet}{{5.1}{57}{Dirichlet 级数}{equation.5.1}{}}
+\newlabel{eq:zeta_dirichlet}{{5.2}{57}{Dirichlet 级数的定义}{equation.5.2}{}}
+\newlabel{thm:convergence_halfplane}{{5.2.2}{57}{绝对收敛半平面}{tcb@cnt@theorem.5.2.2}{}}
+\newlabel{sec:euler-product}{{5.3}{57}{Euler 乘积及其适用范围}{section.5.3}{}}
+\newlabel{thm:euler_product}{{5.3.1}{57}{Euler 乘积}{tcb@cnt@theorem.5.3.1}{}}
+\newlabel{eq:euler_product}{{5.4}{57}{Euler 乘积}{equation.5.4}{}}
+\newlabel{sec:euler-fail}{{5.3.2}{58}{Euler 乘积的适用范围与 \texorpdfstring {$\sigma =1$}{sigma=1} 处的失效}{subsection.5.3.2}{}}
+\newlabel{sec:no_zeros}{{5.4}{58}{\texorpdfstring {$\zeta (s)$}{Zeta(s)} 在 \texorpdfstring {$\operatorname {Re}(s)>1$}{Re(s)>1} 的无零点性}{section.5.4}{}}
+\newlabel{lem:product_nonzero}{{5.4.1}{59}{绝对收敛无穷乘积的非零性}{tcb@cnt@theorem.5.4.1}{}}
+\newlabel{thm:no_zeros}{{5.4.2}{59}{无零点定理}{tcb@cnt@theorem.5.4.2}{}}
+\newlabel{sec:holo}{{5.5}{59}{\texorpdfstring {$\zeta (s)$}{Zeta(s)} 的解析性}{section.5.5}{}}
+\newlabel{thm:zeta_holomorphic}{{5.5.1}{59}{解析性}{tcb@cnt@theorem.5.5.1}{}}
+\newlabel{sec:zeta_symmetry}{{5.6}{60}{\texorpdfstring {$\zeta $}{Zeta} 的对称性}{section.5.6}{}}
+\newlabel{thm:zeta_symmetry}{{5.6.1}{60}{共轭对称性}{tcb@cnt@theorem.5.6.1}{}}
+\newlabel{sec:truncated_visual}{{5.7}{60}{截断级数的几何示意（与解析延拓后的图形对照）}{section.5.7}{}}
+\newlabel{fig:zeta_mod_truncated}{{5.1}{61}{截断级数 $\zeta _N$（$N=100$）的模曲面，绘制范围为 $1.05\le \operatorname {Re}s\le 6$、$-32\le \operatorname {Im}s\le 32$。 参考平面上的灰色虚线仅标示原 Dirichlet 级数的收敛边界 $\operatorname {Re}s=1$，不表示曲面的起始位置或解析延拓的推进位置。 靠近收敛边界的细密纹理须结合截断误差加以解释，不能仅凭此图判断其是否属于 $\zeta $ 本身的起伏；具体说明见下文。 解析延拓后的真 $\zeta $ 模曲面见图~\ref {fig:zeta_mod_half}（第~\ref {ch:riemann_zeta_continuation}~章）。}{figure.5.1}{}}
+\newlabel{sec:euler_dirichlet_gen}{{5.8}{62}{Euler 乘积与 Dirichlet 级数的生成函数}{section.5.8}{}}
+\newlabel{thm:mu_dirichlet}{{5.8.1}{62}{Möbius 函数的 Dirichlet 生成函数}{tcb@cnt@theorem.5.8.1}{}}
+\newlabel{rem:log_zeta_branch}{{5.8.2}{62}{对数分支}{tcb@cnt@theorem.5.8.2}{}}
+\newlabel{thm:Lambda_dirichlet}{{5.8.3}{63}{von Mangoldt 函数的 Dirichlet 生成函数}{tcb@cnt@theorem.5.8.3}{}}
+\newlabel{eq:mu_Lambda_pair}{{5.5}{63}{三条恒等式的汇总}{equation.5.5}{}}
+\newlabel{sec:limitations}{{5.9}{64}{Dirichlet 级数的局限性：解析延拓的必要性}{section.5.9}{}}
+\newlabel{sec:integral-representation-eq}{{5.10}{64}{积分表示：与 Mellin 型表示的衔接}{section.5.10}{}}
+\newlabel{eq:zeta_integral}{{5.6}{64}{积分表示：与 Mellin 型表示的衔接}{equation.5.6}{}}
+\newlabel{ch:discrete_continuous}{{6}{66}{数论函数的积分表示：离散部分和与 Perron 积分}{chapter.6}{}}
+\newlabel{ch:perron_nt_summary}{{6}{66}{数论函数的积分表示：离散部分和与 Perron 积分}{chapter.6}{}}
+\newlabel{sec:intro_discrete_continuous}{{6.1}{66}{引言}{section.6.1}{}}
+\newlabel{sec:working_framework}{{6.2}{66}{Perron 公式的应用条件}{section.6.2}{}}
+\newlabel{eq:perron_general_ch6}{{6.1}{66}{Perron 公式的应用条件}{equation.6.1}{}}
+\newlabel{sec:psi_integral}{{6.3}{67}{\texorpdfstring {$\psi (x)$}{psi(x)} 的积分表示}{section.6.3}{}}
+\newlabel{eq:psi_def_ch6}{{6.2}{67}{从定义到系数}{equation.6.2}{}}
+\newlabel{eq:F_Lambda_ch6}{{6.3}{67}{生成函数}{equation.6.3}{}}
+\newlabel{eq:psi_mellin}{{6.4}{67}{生成函数}{equation.6.4}{}}
+\newlabel{thm:psi_perron}{{6.3.1}{68}{$\psi _0(x)$ 的 Perron 积分表示}{tcb@cnt@theorem.6.3.1}{}}
+\newlabel{eq:psi_perron}{{6.5}{68}{$\psi _0(x)$ 的 Perron 积分表示}{equation.6.5}{}}
+\newlabel{sec:J_integral}{{6.4}{68}{\texorpdfstring {$J(x)$}{J(x)} 的积分表示}{section.6.4}{}}
+\newlabel{eq:J_def_ch6}{{6.6}{68}{从定义到系数}{equation.6.6}{}}
+\newlabel{eq:F_J_ch6}{{6.7}{68}{生成函数}{equation.6.7}{}}
+\newlabel{thm:J_perron}{{6.4.1}{69}{$J_0(x)$ 的 Perron 积分表示}{tcb@cnt@theorem.6.4.1}{}}
+\newlabel{eq:J_perron}{{6.8}{69}{$J_0(x)$ 的 Perron 积分表示}{equation.6.8}{}}
+\newlabel{sec:psi_J_consistency}{{6.5}{69}{\texorpdfstring {$\psi $}{psi} 与 \texorpdfstring {$J$}{J}：Stieltjes 关系与积分侧的一致性}{section.6.5}{}}
+\newlabel{eq:psi_J_stieltjes_ch6}{{6.9}{69}{\texorpdfstring {$\psi $}{psi} 与 \texorpdfstring {$J$}{J}：Stieltjes 关系与积分侧的一致性}{equation.6.9}{}}
+\newlabel{sec:M_integral}{{6.6}{69}{\texorpdfstring {$M(x)$}{M(x)} 的积分表示}{section.6.6}{}}
+\newlabel{eq:M_def_ch6}{{6.10}{69}{从定义到系数}{equation.6.10}{}}
+\newlabel{eq:F_mu_ch6}{{6.11}{70}{生成函数}{equation.6.11}{}}
+\newlabel{thm:M_perron}{{6.6.1}{70}{$M_0(x)$ 的 Perron 积分表示}{tcb@cnt@theorem.6.6.1}{}}
+\newlabel{eq:M_perron}{{6.12}{70}{$M_0(x)$ 的 Perron 积分表示}{equation.6.12}{}}
+\newlabel{sec:theta_integral}{{6.7}{70}{\texorpdfstring {$\theta (x)$}{theta(x)}：由 \texorpdfstring {$\psi $}{psi} 反演再代入积分}{section.6.7}{}}
+\newlabel{eq:theta_psi_inv_ch6}{{6.13}{71}{反演公式}{equation.6.13}{}}
+\newlabel{thm:theta_perron}{{6.7.1}{71}{$\theta _0(x)$ 的积分型表示}{tcb@cnt@theorem.6.7.1}{}}
+\newlabel{eq:theta_perron}{{6.14}{71}{$\theta _0(x)$ 的积分型表示}{equation.6.14}{}}
+\newlabel{sec:pi_integral}{{6.8}{71}{\texorpdfstring {$\pi (x)$}{pi(x)}：由 \texorpdfstring {$J$}{J} 反演再代入积分}{section.6.8}{}}
+\newlabel{eq:pi_J_inv_ch6}{{6.15}{72}{反演公式}{equation.6.15}{}}
+\newlabel{thm:pi_perron}{{6.8.1}{72}{$\pi _0(x)$ 的积分型表示}{tcb@cnt@theorem.6.8.1}{}}
+\newlabel{eq:pi_perron}{{6.16}{72}{$\pi _0(x)$ 的积分型表示}{equation.6.16}{}}
+\newlabel{sec:floor_integral}{{6.9}{72}{整数计数函数 \texorpdfstring {$\lfloor x\rfloor $}{floor(x)} 的积分表示}{section.6.9}{}}
+\newlabel{eq:floor_perron}{{6.17}{72}{整数计数函数 \texorpdfstring {$\lfloor x\rfloor $}{floor(x)} 的积分表示}{equation.6.17}{}}
+\newlabel{sec:evolution_elementary}{{6.10}{73}{从定义到含 \texorpdfstring {$\zeta $}{zeta} 的积分}{section.6.10}{}}
+\newlabel{tab:elementary_evolution}{{6.1}{73}{数论函数的定义、生成函数与积分表示之间的关系。左右平均记为 $A_0$；含 $\zeta $ 的等式均在 $\operatorname {Re}(s)>1$ 上使用。}{table.caption.65}{}}
+\newlabel{sec:what_remains}{{6.11}{73}{推导一览与尚未完成的步骤}{section.6.11}{}}
+\newlabel{sec:spectrum-stage1}{{6.11.2}{74}{知识谱系关系图：第一次着色}{section*.68}{}}
+\newlabel{fig:spectrum-stage2}{{6.1}{76}{黎曼猜想知识谱系关系图（第一次着色：第一部分，$\operatorname {Re}(s)>1$）。 与图~\ref {fig:function-relations} 为同一幅关系图；彩色为第一部分已建立的主要对象与关系，灰白为后文内容。 初等算术关系的公式索引见表~\ref {tab:spectrum-stage2-guide}，其余彩色元素与正文的对照见表~\ref {tab:spectrum-stage2-guide-b}。}{figure.6.1}{}}
+\newlabel{tab:spectrum-stage2-guide-b}{{6.2}{76}{图~\ref {fig:spectrum-stage2} 中 $\zeta $ 及其连线与正文对照（初等算术关系的公式索引见表~\ref {tab:spectrum-stage2-guide}）}{table.caption.69}{}}
+\newlabel{sec:summary_discrete_continuous}{{6.1}{76}{本章要点}{section*.71}{}}
+\newlabel{ch:gamma_function}{{7}{79}{\texorpdfstring {$\Gamma $}{Gamma} 函数及其定义域的扩展}{chapter.7}{}}
+\newlabel{sec:gamma_intro}{{7.1}{79}{引言}{section.7.1}{}}
+\newlabel{sec:factorial_to_integral}{{7.2}{79}{从阶乘到积分}{section.7.2}{}}
+\newlabel{sec:gamma_def}{{7.3}{80}{\texorpdfstring {$\Gamma $}{Gamma} 函数的积分定义：\texorpdfstring {$\operatorname {Re}(s) > 0$}{Re(s)>0}}{section.7.3}{}}
+\newlabel{def:gamma}{{7.3.1}{80}{$\Gamma $ 函数，Euler 积分形式}{tcb@cnt@theorem.7.3.1}{}}
+\newlabel{eq:gamma-def}{{7.1}{80}{$\Gamma $ 函数，Euler 积分形式}{equation.7.1}{}}
+\newlabel{thm:gamma-convergence}{{7.3.2}{80}{收敛性}{tcb@cnt@theorem.7.3.2}{}}
+\newlabel{fig:gamma-real-positive}{{7.1}{81}{Euler 积分定义域内的 $\Gamma (x)$（$x>0$）。红点表示整数处的阶乘值，三角点标示正实轴上的最小值；向左延拓后的模曲面见图~\ref {fig:gamma-mod-surface}。}{figure.caption.78}{}}
+\newlabel{sec:gamma_recurrence}{{7.4}{82}{递推公式}{section.7.4}{}}
+\newlabel{thm:gamma-recurrence}{{7.4.1}{82}{递推公式}{tcb@cnt@theorem.7.4.1}{}}
+\newlabel{eq:gamma-recurrence}{{7.2}{82}{递推公式}{equation.7.2}{}}
+\newlabel{thm:factorial-integral}{{7.4.2}{82}{阶乘的积分表示}{tcb@cnt@theorem.7.4.2}{}}
+\newlabel{eq:factorial-integral}{{7.3}{82}{阶乘的积分表示}{equation.7.3}{}}
+\newlabel{cor:gamma-factorial}{{7.4.3}{82}{与阶乘的关系}{tcb@cnt@theorem.7.4.3}{}}
+\newlabel{sec:gamma_continuation}{{7.5}{83}{定义域的扩展：从右半平面到全复平面}{section.7.5}{}}
+\newlabel{eq:recurrence-backward}{{7.4}{83}{用递推公式扩大定义域}{equation.7.4}{}}
+\newlabel{thm:gamma-meromorphic}{{7.5.1}{84}{$\Gamma $ 的全平面亚纯定义}{tcb@cnt@theorem.7.5.1}{}}
+\newlabel{fig:gamma-mod-surface}{{7.2}{85}{$|\Gamma (s)|$ 模曲面：积分定义域 $\operatorname {Re}(s)>0$ 与四层递推扩展 （第 $k$ 层对应 $-k<\operatorname {Re}(s)\le 1-k$，$k=1,2,3,4$）。 高度为 $|\Gamma |$，在极点 $s=0,-1,\ldots $ 处趋于 $+\infty $（图中已裁剪上端）。 正文可将递推继续到任意左半带；本图只画到第 4 层示意。}{figure.caption.79}{}}
+\newlabel{subsec:gamma-poles}{{7.5.2}{86}{极点与留数}{subsection.7.5.2}{}}
+\newlabel{cor:gamma-shift}{{7.5.2}{87}{移位公式}{tcb@cnt@theorem.7.5.2}{}}
+\newlabel{sec:reflection_formula}{{7.6}{87}{余元公式（反射公式）}{section.7.6}{}}
+\newlabel{thm:reflection}{{7.6.1}{87}{余元公式}{tcb@cnt@theorem.7.6.1}{}}
+\newlabel{eq:reflection-formula}{{7.5}{87}{余元公式}{equation.7.5}{}}
+\newlabel{cor:gamma-half}{{7.6.2}{88}{$\Gamma (1/2)$ 的值}{tcb@cnt@theorem.7.6.2}{}}
+\newlabel{sec:weierstrass}{{7.7}{89}{\texorpdfstring {$\Gamma $}{Gamma} 无零点；乘积表示}{section.7.7}{}}
+\newlabel{thm:gamma-no-zeros}{{7.7.1}{89}{$\Gamma $ 无零点}{tcb@cnt@theorem.7.7.1}{}}
+\newlabel{eq:gamma-weierstrass}{{7.6}{89}{乘积表示}{equation.7.6}{}}
+\newlabel{sec:stirling}{{7.8}{89}{Stirling 公式（渐近展开）}{section.7.8}{}}
+\newlabel{subsec:stirling-results}{{7.8.1}{89}{主要结论及其适用条件}{subsection.7.8.1}{}}
+\newlabel{thm:stirling}{{7.8.1}{90}{Stirling 公式}{tcb@cnt@theorem.7.8.1}{}}
+\newlabel{eq:stirling-exact}{{7.7}{90}{Stirling 公式}{equation.7.7}{}}
+\newlabel{cor:digamma-asymp}{{7.8.2}{90}{对数导数（digamma 函数）}{tcb@cnt@theorem.7.8.2}{}}
+\newlabel{cor:stirling-vertical}{{7.8.3}{90}{竖直带内的 Stirling 公式}{tcb@cnt@theorem.7.8.3}{}}
+\newlabel{cor:stirling-factorial}{{7.8.4}{91}{$n!$ 的渐近形式}{tcb@cnt@theorem.7.8.4}{}}
+\newlabel{subsec:stirling-outline}{{7.8.3}{91}{证明的主要思路}{subsection.7.8.3}{}}
+\newlabel{subsec:stirling-details}{{7.8.4}{91}{进一步讨论：Stirling 公式的完整证明}{subsection.7.8.4}{}}
+\newlabel{lem:loggamma-gauss}{{7.8.5}{91}{$\log \Gamma $ 的 Gauss 极限形式}{tcb@cnt@theorem.7.8.5}{}}
+\newlabel{sec:gamma-scaled}{{7.9}{94}{缩放公式}{section.7.9}{}}
+\newlabel{sec:gamma_zeta_preview}{{7.9}{94}{缩放公式}{section.7.9}{}}
+\newlabel{eq:gamma-scaled}{{7.8}{94}{缩放公式}{equation.7.8}{}}
+\newlabel{sec:gamma_ac_def}{{7.10}{94}{与解析延拓的关系}{section.7.10}{}}
+\newlabel{sec:gamma_summary}{{7.10}{94}{本章要点}{section*.88}{}}
+\newlabel{ch:analytic_continuation_general}{{8}{96}{解析延拓的定义与唯一性}{chapter.8}{}}
+\newlabel{sec:intro_why_continuation}{{8.1}{96}{引言}{section.8.1}{}}
+\newlabel{sec:definition_and_uniqueness}{{8.2}{96}{定义与唯一性定理}{section.8.2}{}}
+\newlabel{def:analytic_continuation}{{8.2.1}{96}{解析延拓}{tcb@cnt@theorem.8.2.1}{}}
+\newlabel{lem:zeros_isolated}{{8.2.3}{97}{零点孤立性（局部形式）}{tcb@cnt@theorem.8.2.3}{}}
+\newlabel{cor:continuation_unique}{{8.2.4}{98}{延拓的唯一性}{tcb@cnt@theorem.8.2.4}{}}
+\newlabel{sec:fe_continuation_schema}{{8.3}{98}{利用函数关系构造解析延拓}{section.8.3}{}}
+\newlabel{eq:fe_continuation_schema}{{8.1}{99}{利用函数关系构造解析延拓}{equation.8.1}{}}
+\newlabel{sec:common_methods}{{8.4}{99}{本书知识谱系中使用的解析延拓途径}{section.8.4}{}}
+\newlabel{subsec:eta_continuation_method}{{8.4.1}{100}{交错级数（\texorpdfstring {$\eta $}{eta}）}{subsection.8.4.1}{}}
+\newlabel{subsec:contour_integral_rep}{{8.4.2}{100}{围道与积分表示的变形}{subsection.8.4.2}{}}
+\newlabel{subsec:theta_continuation_method}{{8.4.3}{101}{模反演与 \texorpdfstring {$\vartheta $}{vartheta}}{subsection.8.4.3}{}}
+\newlabel{subsec:functional_equation_method}{{8.4.4}{101}{函数方程}{subsection.8.4.4}{}}
+\newlabel{sec:natural_boundary}{{8.5}{101}{解析延拓的障碍：自然边界}{section.8.5}{}}
+\newlabel{sec:summary_significance}{{8.5}{102}{本章要点}{section*.97}{}}
+\newlabel{ch:riemann_zeta_continuation}{{9}{103}{\texorpdfstring {$\zeta $}{Zeta} 函数的解析延拓与函数方程}{chapter.9}{}}
+\newlabel{sec:riemann_two_methods_blueprint}{{9.1}{103}{引言}{section.9.1}{}}
+\newlabel{sec:elementary_extension}{{9.2}{104}{基于交错级数 \texorpdfstring {$\eta (s)$}{eta(s)} 的初等延拓}{section.9.2}{}}
+\newlabel{subsec:eta_continuation}{{9.2.1}{104}{交错级数 \texorpdfstring {$\eta (s)$}{eta(s)} 与延拓公式}{subsection.9.2.1}{}}
+\newlabel{eq:eta_definition}{{9.1}{104}{交错级数 \texorpdfstring {$\eta (s)$}{eta(s)} 与延拓公式}{equation.9.1}{}}
+\newlabel{eq:zeta_eta_continuation}{{9.2}{104}{交错级数 \texorpdfstring {$\eta (s)$}{eta(s)} 与延拓公式}{equation.9.2}{}}
+\newlabel{lem:eta-sk-zero}{{9.2.1}{105}{$\eta $ 在分母附加零点处为零}{tcb@cnt@theorem.9.2.1}{}}
+\newlabel{eq:zeta_on_Re1}{{9.3}{106}{交错级数 \texorpdfstring {$\eta (s)$}{eta(s)} 与延拓公式}{equation.9.3}{}}
+\newlabel{subsec:step1}{{9.2.2}{106}{第一步观察：原收敛边界 \texorpdfstring {$\operatorname {Re}(s)=1$}{Re(s)=1} 附近}{subsection.9.2.2}{}}
+\newlabel{fig:zeta_mod_half}{{9.1}{107}{第一步观察：原收敛边界 $\operatorname {Re}s=1$ 附近的 $|\zeta |$。红线标示原收敛边界；除 $s=1$ 极点外，函数在该直线各点的邻域内解析。原 Dirichlet 级数的截断模曲面见图~\ref {fig:zeta_mod_truncated}。}{figure.caption.100}{}}
+\newlabel{fig:zeta_real_half}{{9.2}{108}{第一步观察：$\operatorname {Re}(\zeta )$。实部关于 $t=0$ 偶对称；沿实轴从右趋近 $s=1$ 时趋于 $+\infty $，沿 $\operatorname {Re}s=1$ 趋近时则保持有界。}{figure.9.2}{}}
+\newlabel{fig:zeta_imag_half}{{9.3}{108}{第一步观察：$\operatorname {Im}(\zeta )$。虚部关于 $t=0$ 奇对称；沿 $\operatorname {Re}s=1$、$t\to 0^+$ 和 $t\to 0^-$ 趋近极点时，分别趋于 $-\infty $ 和 $+\infty $。}{figure.9.3}{}}
+\newlabel{subsec:step2}{{9.2.3}{108}{第二步观察：\texorpdfstring {$\operatorname {Re}(s)>0$}{Re(s)>0} 内的临界带}{subsection.9.2.3}{}}
+\newlabel{fig:zeta_modulus_cont_strip}{{9.4}{109}{第二步观察：临界带及其右侧的 $|\zeta |$。$s=1$ 处为一阶极点，标记表示已知非平凡零点的位置，$\operatorname {Re}s=1/2$ 为临界线。图中红线标示本节延拓区域的边界 $\operatorname {Re}s=0$；本节通过交错级数建立的延拓仅限于其右侧的开半平面。}{figure.9.4}{}}
+\newlabel{subsec:eta_stop}{{9.2.4}{109}{交错级数表示的范围与后续延拓}{subsection.9.2.4}{}}
+\newlabel{sec:riemann_first_method}{{9.3}{110}{Riemann 第一法：围道积分与留数定理}{section.9.3}{}}
+\newlabel{eq:zeta_integral_1}{{9.4}{110}{从实积分到围道}{equation.9.4}{}}
+\newlabel{eq:I_s}{{9.5}{110}{Hankel 围道与解析延拓}{equation.9.5}{}}
+\newlabel{fig:hankel}{{9.5}{111}{第一法的围道（$z$-平面，$s$ 为参数；分支切割沿正实轴，红叉为 $1/(e^z-1)$ 的虚轴极点 $z=\pm 2n\pi i$）。 (a) Hankel 围道 $C$：沿上沿趋向原点，沿半径 $\varepsilon <2\pi $ 的小圆绕原点逆时针一周，再沿下沿返回；小圆内不含虚轴极点。 (b) 推导函数方程时的闭合围道：截断的 $C^{(R)}$ 与半径 $R=(2N+1)\pi $ 的逆时针大圆周 $C_R$ 拼成 $C_R-C^{(R)}$， 正向包围 $z=\pm 2n\pi i$（$1\le n\le N$）；$R$ 取相邻极点的中点（图中 $N=3$，按比例）。}{figure.caption.102}{}}
+\newlabel{eq:analytic_cont_first}{{9.6}{111}{Hankel 围道与解析延拓}{equation.9.6}{}}
+\newlabel{eq:zeta_contour_gamma}{{9.7}{111}{Hankel 围道与解析延拓}{equation.9.7}{}}
+\newlabel{eq:zeta-at-zero}{{9.8}{112}{Hankel 围道与解析延拓}{equation.9.8}{}}
+\newlabel{thm:riemann_functional_equation}{{9.3.1}{113}{函数方程（Riemann）}{tcb@cnt@theorem.9.3.1}{}}
+\newlabel{eq:asymmetric_fe}{{9.9}{113}{函数方程（Riemann）}{equation.9.9}{}}
+\newlabel{eq:asymmetric_fe_alt}{{9.10}{113}{函数方程（Riemann）}{equation.9.10}{}}
+\newlabel{sec:theta_function_method}{{9.4}{113}{Riemann 第二法：\texorpdfstring {$\vartheta $}{theta} 函数与积分表示}{section.9.4}{}}
+\newlabel{eq:gamma_sub_2}{{9.11}{114}{Jacobi \texorpdfstring {$\vartheta $}{theta} 函数与 \texorpdfstring {$\omega $}{omega} 反演}{equation.9.11}{}}
+\newlabel{eq:zeta_integral_2}{{9.12}{114}{Jacobi \texorpdfstring {$\vartheta $}{theta} 函数与 \texorpdfstring {$\omega $}{omega} 反演}{equation.9.12}{}}
+\newlabel{eq:omega_transform}{{9.13}{114}{Jacobi \texorpdfstring {$\vartheta $}{theta} 函数与 \texorpdfstring {$\omega $}{omega} 反演}{equation.9.13}{}}
+\newlabel{subsec:theta_pole_split}{{9.4.2}{114}{积分推演与极点分离}{subsection.9.4.2}{}}
+\newlabel{thm:zeta-theta-integral}{{9.4.1}{115}{$\zeta (s)$ 的积分解析延拓形式}{tcb@cnt@theorem.9.4.1}{}}
+\newlabel{eq:analytic_continuation}{{9.14}{115}{$\zeta (s)$ 的积分解析延拓形式}{equation.9.14}{}}
+\newlabel{eq:symmetric_fe}{{9.15}{115}{积分推演与极点分离}{equation.9.15}{}}
+\newlabel{sec:riemann_two_methods_comparison}{{9.5}{115}{两法的比较和延拓唯一性}{section.9.5}{}}
+\newlabel{sec:fe_symmetric_asymmetric}{{9.5}{115}{两法的比较和延拓唯一性}{section.9.5}{}}
+\newlabel{tab:riemann_methods_comparison}{{9.1}{116}{Riemann 解析延拓第一法与第二法对照}{table.caption.104}{}}
+\newlabel{subsec:fe-two-symmetries}{{9.5.2}{116}{函数方程：形式的差别与关系的同一性}{subsection.9.5.2}{}}
+\newlabel{eq:chi_factor}{{9.16}{116}{函数方程：形式的差别与关系的同一性}{equation.9.16}{}}
+\newlabel{fig:zeta_global_surfaces}{{9.6}{118}{非对称函数方程所联系的两个模曲面对照。两曲面分别为 $|\zeta (s)|$ 与 $|\zeta (1-s)|$，极点分别位于 $s=1$ 与 $s=0$；临界带、临界线及已知非平凡零点的位置见图中标示。}{figure.9.6}{}}
+\newlabel{sec:fe_geometry_trivial_zeros}{{9.6}{118}{函数方程的推论：临界带、临界线与平凡零点}{section.9.6}{}}
+\newlabel{sec:critical-strip-def}{{9.6.1}{118}{零点的全局区域限制与临界带}{subsection.9.6.1}{}}
+\newlabel{subsec:no-zero-on-one}{{9.6.2}{119}{临界带的边界：\texorpdfstring {$\operatorname {Re}(s)=1$}{Re(s)=1} 上无零点}{subsection.9.6.2}{}}
+\newlabel{thm:no-zero-on-one}{{9.6.2}{119}{直线 $\operatorname {Re}(s)=1$ 上无零点}{tcb@cnt@theorem.9.6.2}{}}
+\newlabel{eq:pnt-341}{{9.17}{119}{临界带的边界：\texorpdfstring {$\operatorname {Re}(s)=1$}{Re(s)=1} 上无零点}{equation.9.17}{}}
+\newlabel{cor:open-critical-strip}{{9.6.3}{120}{非平凡零点位于开带}{tcb@cnt@theorem.9.6.3}{}}
+\newlabel{rem:no-zero-vs-rh}{{9.6.4}{120}{与 RH 的区别}{tcb@cnt@theorem.9.6.4}{}}
+\newlabel{subsec:zero_fourfold}{{9.6.3}{120}{零点的四重对称}{subsection.9.6.3}{}}
+\newlabel{subsec:trivial-zeros-simple}{{9.6.4}{120}{左半平面上的平凡零点与实轴无零点}{subsection.9.6.4}{}}
+\newlabel{fig:trivial_zeros}{{9.7}{121}{$\zeta (s)$ 延拓至左半平面后的局部曲面图（实轴负偶数点 $s=-2,-4,-6$ 处曲面触零，与平凡零点一致）}{figure.9.7}{}}
+\newlabel{sec:spectrum-stage-two}{{9.6.4}{121}{知识谱系关系图：第二次着色}{section*.107}{}}
+\newlabel{fig:spectrum-stage8}{{9.8}{123}{黎曼猜想知识谱系关系图（第二次着色：第二部分，$\zeta $ 的延拓与函数方程）。 彩色为第一、二部分已建立的内容，灰白为后文。 相对第一次着色新增的彩色节点与连线见表~\ref {tab:spectrum-stage8-guide}。}{figure.9.8}{}}
+\newlabel{tab:spectrum-stage8-guide}{{9.2}{123}{图~\ref {fig:spectrum-stage8} 新增彩色图形元素与正文对照}{table.caption.108}{}}
+\newlabel{ch:xi_function}{{10}{126}{\texorpdfstring {$\xi $}{xi(s)} 函数——整函数化与 Hadamard 乘积}{chapter.10}{}}
+\newlabel{sec:intro_xi_function}{{10.1}{126}{引言}{section.10.1}{}}
+\newlabel{sec:xi-definition}{{10.2}{127}{\texorpdfstring {$\xi $}{xi(s)} 函数的定义与基本性质}{section.10.2}{}}
+\newlabel{subsec:xi-motivation}{{10.2.1}{127}{构造的动机}{subsection.10.2.1}{}}
+\newlabel{eq:xi-definition}{{10.1}{127}{\texorpdfstring {Riemann $\xi $ 函数}{Riemann xi 函数}}{equation.10.1}{}}
+\newlabel{sec:xi-entire-proof}{{10.2.3}{127}{整函数性：极点与平凡零点的相消}{subsection.10.2.3}{}}
+\newlabel{prop:xi-entire}{{10.2.2}{128}{\texorpdfstring {$\xi $}{xi} 为整函数}{tcb@cnt@theorem.10.2.2}{}}
+\newlabel{sec:xi-symmetry-sketch}{{10.2.4}{128}{函数方程（对称性）}{subsection.10.2.4}{}}
+\newlabel{prop:xi-fe}{{10.2.3}{128}{函数方程}{tcb@cnt@theorem.10.2.3}{}}
+\newlabel{eq:xi-functional-equation}{{10.2}{128}{函数方程}{equation.10.2}{}}
+\newlabel{subsec:xi-zero-correspondence}{{10.2.5}{129}{零点的精确对应}{subsection.10.2.5}{}}
+\newlabel{lem:zd-xi-real-nonzero}{{10.2.4}{129}{$\xi $ 在实轴上无零点}{tcb@cnt@theorem.10.2.4}{}}
+\newlabel{sec:xi-hadamard-product}{{10.3}{129}{\texorpdfstring {$\xi (s)$}{xi(s)} 的 Hadamard 无穷乘积与对数导数}{section.10.3}{}}
+\newlabel{fig:xi-real-imag}{{10.1}{130}{$\xi $ 的实部曲面，关于 $\operatorname {Re}s=\tfrac 12$ 镜面对称。临界线、临界带边界及已知非平凡零点的位置见图例。}{figure.caption.117}{}}
+\newlabel{fig:xi-imag}{{10.2}{131}{$\xi $ 的虚部曲面，关于 $\operatorname {Re}s=\tfrac 12$ 反对称。绘图范围与尺度同图~\ref {fig:xi-real-imag}。}{figure.caption.118}{}}
+\newlabel{fig:xi-modulus}{{10.3}{132}{$\xi $ 的模曲面 $z=|\xi (s)|$。 模非负；关于 $\operatorname {Re}(s)=\tfrac 12$ 与实轴 $\operatorname {Im}(s)=0$ 镜面对称。}{figure.caption.119}{}}
+\newlabel{eq:weierstrass-general}{{10.3}{133}{从多项式到 Weierstrass--Hadamard 乘积}{equation.10.3}{}}
+\newlabel{thm:hadamard-factorization}{{10.3.1}{133}{Hadamard 因子分解定理（仅引用）}{tcb@cnt@theorem.10.3.1}{}}
+\newlabel{sec:xi-order-genus}{{10.3.2}{133}{增长阶与基本因子的选取}{subsection.10.3.2}{}}
+\newlabel{prop:xi-order-one}{{10.3.2}{133}{\texorpdfstring {$\xi $}{xi} 为一阶整函数}{tcb@cnt@theorem.10.3.2}{}}
+\newlabel{eq:zeta-partial-sum}{{10.4}{134}{$\zeta $ 在 $\sigma \ge \frac 12$、$|s|\ge 2$ 上的多项式界}{equation.10.4}{}}
+\newlabel{eq:zeta-poly-bound}{{10.5}{134}{$\zeta $ 在 $\sigma \ge \frac 12$、$|s|\ge 2$ 上的多项式界}{equation.10.5}{}}
+\newlabel{par:xi-genus-one-factor}{{10.3.2}{134}{为何采用 $E(z,1)=(1-z)e^{z}$}{section*.122}{}}
+\newlabel{rem:sum-one-over-rho}{{10.3.3}{134}{$\sum _\rho 1/|\rho |=\infty $}{tcb@cnt@theorem.10.3.3}{}}
+\newlabel{sec:xi-to-zeta-logderiv}{{10.3.3}{135}{Hadamard 乘积与对数导数}{subsection.10.3.3}{}}
+\newlabel{eq:hadamard-product}{{10.6}{135}{Hadamard 乘积与对数导数}{equation.10.6}{}}
+\newlabel{eq:xi-log-derivative}{{10.7}{135}{两种 $\xi '/\xi $}{equation.10.7}{}}
+\newlabel{eq:xi-logderiv-from-def}{{10.8}{135}{两种 $\xi '/\xi $}{equation.10.8}{}}
+\newlabel{rem:zeta-logderiv-zero}{{10.3.4}{136}{$\zeta '(0)/\zeta (0)=\log (2\pi )$ 的推导}{tcb@cnt@theorem.10.3.4}{}}
+\newlabel{eq:xi-product-symmetric}{{10.9}{137}{$b_0=-\sum _\rho 1/\rho $ 与不带指数因子的乘积}{equation.10.9}{}}
+\newlabel{eq:zeta-from-xi-logderiv}{{10.10}{137}{换算到 $\zeta '/\zeta $}{equation.10.10}{}}
+\newlabel{eq:zeta-logderiv-hadamard}{{10.11}{137}{换算到 $\zeta '/\zeta $}{equation.10.11}{}}
+\newlabel{sec:hadamard-to-riemann-product}{{10.3.4}{138}{零点配对、RH 下的形式与原稿 $t$-乘积}{subsection.10.3.4}{}}
+\newlabel{eq:xi-rh-quadratic}{{10.12}{138}{RH 下的实二次型}{equation.10.12}{}}
+\newlabel{eq:riemann-product-xi-t}{{{R}}{138}{与原稿式~(R)}{AMS.129}{}}
+\newlabel{eq:Xi-riemann-form}{{10.13}{138}{与原稿式~(R)}{equation.10.13}{}}
+\newlabel{eq:pair-cancel}{{10.14}{138}{与原稿式~(R)}{equation.10.14}{}}
+\newlabel{sec:xi_function_summary}{{10.3.4}{139}{本章要点}{section*.134}{}}
+\newlabel{ch:zero_distribution}{{11}{141}{\texorpdfstring {$\zeta (s)$}{Zeta(s)} 的非平凡零点：分布、计数与黎曼猜想}{chapter.11}{}}
+\newlabel{sec:intro_zero_distribution}{{11.1}{141}{引言}{section.11.1}{}}
+\newlabel{sec:zero-distribution-strip}{{11.2}{141}{非平凡零点的分布与临界带}{section.11.2}{}}
+\newlabel{sec:NT-RVM}{{11.2.1}{142}{零点计数函数 \texorpdfstring {$N(T)$}{N(T)} 与 Riemann--von Mangoldt 公式}{subsection.11.2.1}{}}
+\newlabel{thm:rvm}{{11.2.1}{142}{Riemann--von Mangoldt 公式}{tcb@cnt@theorem.11.2.1}{}}
+\newlabel{eq:rvm-precise}{{11.1}{142}{Riemann--von Mangoldt 公式}{equation.11.1}{}}
+\newlabel{fig:NT-staircase}{{11.1}{143}{零点计数函数 $N(T)$ 的阶梯示意（$0\le T\le 80$，共 $21$ 个零点）。横轴为高度，纵轴为计数值，绿色圆点辅助标示整数计数。零点高度保留两位小数，跳跃位置为近似位置；跳跃下端的空心点表示左极限，上端实心点表示函数值，竖直连接线仅作示意。第一个零点高度为 $\gamma _1\approx 14.13$。红色实线为光滑项 $\frac {T}{2\pi }\log \frac {T}{2\pi e}+\frac 78$，自 $T=2$ 画起。}{figure.caption.136}{}}
+\newlabel{sec:critical_line_rh}{{11.3}{144}{临界线与黎曼猜想}{section.11.3}{}}
+\newlabel{sec:rh-real-form}{{11.4}{144}{RH 的实值表述：临界线上的 \texorpdfstring {$\xi $}{xi}}{section.11.4}{}}
+\newlabel{lem:zero-local}{{11.4.1}{146}{零点的局部计数与 $\zeta '/\zeta $ 的局部展开}{tcb@cnt@theorem.11.4.1}{}}
+\newlabel{subsec:rvm-proof}{{11.5}{147}{进一步讨论：Riemann--von Mangoldt 公式的完整证明}{section.11.5}{}}
+\newlabel{sec:zero_distribution_summary}{{11.5}{149}{本章要点}{section*.142}{}}
+\newlabel{ch:prime_number_theorem}{{12}{150}{素数定理}{chapter.12}{}}
+\newlabel{sec:pnt_ch_intro}{{12.1}{150}{引言}{section.12.1}{}}
+\newlabel{sec:pnt_goal}{{12.2}{150}{目标与等价形式}{section.12.2}{}}
+\newlabel{thm:pnt-main}{{12.2.1}{150}{素数定理}{tcb@cnt@theorem.12.2.1}{}}
+\newlabel{eq:pnt-equiv}{{12.1}{150}{目标与等价形式}{equation.12.1}{}}
+\newlabel{eq:psi-sim-x}{{12.2}{150}{目标与等价形式}{equation.12.2}{}}
+\newlabel{fig:pnt-flow}{{12.1}{151}{本章证明流程图（主轴自上而下）。原收敛半平面内的级数表示给出 Mellin 积分；解析延拓与左侧的边界无零点条件共同保证 $G$ 的边界全纯性。Chebyshev 上界保证 Newman 定理所用 $f$ 的有界性，积分收敛再结合单调性推出 $\psi \sim x$，最后由初等等价得到素数定理。配色约定见「符号与约定」第三节。}{figure.caption.143}{}}
+\newlabel{rem:pnt_explicit_division}{{12.2.2}{152}{与显式公式的分工}{tcb@cnt@theorem.12.2.2}{}}
+\newlabel{sec:pnt_inputs}{{12.3}{152}{\texorpdfstring {$\psi (x)-x$}{psi(x)-x} 的 Mellin 变换及其边界解析性}{section.12.3}{}}
+\newlabel{eq:pnt-logderiv}{{12.3}{152}{\texorpdfstring {$\psi (x)-x$}{psi(x)-x} 的 Mellin 变换及其边界解析性}{equation.12.3}{}}
+\newlabel{lem:pnt-mellin}{{12.3.1}{152}{Mellin 表示}{tcb@cnt@theorem.12.3.1}{}}
+\newlabel{lem:pnt-boundary}{{12.3.2}{152}{边界上的全纯性}{tcb@cnt@theorem.12.3.2}{}}
+\newlabel{sec:pnt_newman}{{12.4}{153}{Newman 定理：由解析延拓推出积分收敛}{section.12.4}{}}
+\newlabel{thm:newman}{{12.4.1}{153}{Newman}{tcb@cnt@theorem.12.4.1}{}}
+\newlabel{sec:pnt_proof}{{12.5}{153}{\texorpdfstring {$\psi (x)\sim x$}{psi(x) ~ x} 的证明}{section.12.5}{}}
+\newlabel{thm:psi-asymp}{{12.5.1}{153}{$\psi (x)\sim x$}{tcb@cnt@theorem.12.5.1}{}}
+\newlabel{sec:pnt_perron_outline}{{12.6}{154}{Perron 积分视角：主项与 \texorpdfstring {$\zeta (1+it)\neq 0$}{zeta(1+it)≠0} 的作用}{section.12.6}{}}
+\newlabel{eq:pnt-residue-one}{{12.4}{154}{Perron 积分视角：主项与 \texorpdfstring {$\zeta (1+it)\neq 0$}{zeta(1+it)≠0} 的作用}{equation.12.4}{}}
+\newlabel{sec:pnt_conclude}{{12.7}{154}{结论：从 \texorpdfstring {$\psi \sim x$}{psi ~ x} 到 \texorpdfstring {$\pi \sim \Li $}{pi ~ Li}}{section.12.7}{}}
+\newlabel{tab:pnt-steps}{{12.1}{155}{素数定理的两种证法}{table.caption.144}{}}
+\newlabel{sec:pnt_newman_details}{{12.8}{155}{进一步讨论：Newman 定理的完整证明}{section.12.8}{}}
+\newlabel{ch:logint_Ei}{{13}{158}{对数积分 \texorpdfstring {$\li $}{li} 的复延拓与指数积分 \texorpdfstring {$\Ei $}{Ei}}{chapter.13}{}}
+\newlabel{ch:Li_li_Ei}{{13}{158}{对数积分 \texorpdfstring {$\li $}{li} 的复延拓与指数积分 \texorpdfstring {$\Ei $}{Ei}}{chapter.13}{}}
+\newlabel{sec:intro_Li_li_Ei}{{13.1}{158}{引言}{section.13.1}{}}
+\newlabel{sec:Li-li-summary}{{13.2}{158}{实对数积分 \texorpdfstring {$\li (x)$}{li(x)}}{section.13.2}{}}
+\newlabel{def:li-real}{{13.2.1}{158}{对数积分（实轴）}{tcb@cnt@theorem.13.2.1}{}}
+\newlabel{eq:li-def-ch2}{{13.1}{158}{对数积分（实轴）}{equation.13.1}{}}
+\newlabel{eq:li-of-two}{{13.2}{158}{实对数积分 \texorpdfstring {$\li (x)$}{li(x)}}{equation.13.2}{}}
+\newlabel{eq:soldner-mu}{{13.3}{158}{实零点：Soldner 常数}{equation.13.3}{}}
+\newlabel{fig:li-real-graph}{{13.1}{159}{实函数 $\li (x)$，$0<x\le 4$（$0<x<1$ 为普通积分，$x>1$ 为 Cauchy 主值~\eqref {eq:li-def-ch2}）。 $x\to 1$ 时 $\li (x)\to -\infty $（虚线 $x=1$）；在 $(1,+\infty )$ 上唯一零点为 Soldner 常数 $\mu $（红点）。 $\Li (x)=\li (x)-\li (2)$ 的零点为 $x=2$（黑点处 $\li (2)\approx 1.04516$）。}{figure.caption.148}{}}
+\newlabel{fig:li-real-path}{{13.2}{159}{实轴上的 $\li (x)$（$x>1$）：删去奇点两侧的对称小区间，再令 $\varepsilon \to 0^+$，不包含复平面中的绕行积分。 虚线为 $\Li (x)=\int _2^x$，不过奇点。}{figure.caption.149}{}}
+\newlabel{eq:li-asymp-real}{{13.4}{159}{主值在 \texorpdfstring {$t=1$}{t=1} 附近的收敛性}{equation.13.4}{}}
+\newlabel{sec:Li}{{13.3}{160}{\texorpdfstring {$\li $}{li} 与 \texorpdfstring {$\Li $}{Li} 的关系}{section.13.3}{}}
+\newlabel{eq:Li-li-real}{{13.5}{160}{\texorpdfstring {$\li $}{li} 与 \texorpdfstring {$\Li $}{Li} 的关系}{equation.13.5}{}}
+\newlabel{eq:li-Li-asymp}{{13.6}{160}{\texorpdfstring {$\li $}{li} 与 \texorpdfstring {$\Li $}{Li} 的关系}{equation.13.6}{}}
+\newlabel{subsec:li-prime-crossings}{{13.3.1}{160}{与素数计数的比较：误差符号与交叉上界}{subsection.13.3.1}{}}
+\newlabel{sec:li-complex-power}{{13.4}{161}{\texorpdfstring {$\li $}{li} 的解析延拓}{section.13.4}{}}
+\newlabel{def:li-complex}{{13.4.1}{161}{对数积分（复延拓）}{tcb@cnt@theorem.13.4.1}{}}
+\newlabel{eq:li-complex}{{13.7}{161}{对数积分（复延拓）}{equation.13.7}{}}
+\newlabel{fig:li-complex-path}{{13.3}{161}{复平面上的 $\li (z)$：路径 $\gamma $ 在 $\Omega =\mathbb {C}\setminus \bigl ((-\infty ,0]\cup [1,+\infty )\bigr )$ 内自 $t_0\in (0,1)$ 至 $z$（$\log $ 取定分支）。}{figure.caption.150}{}}
+\newlabel{sec:li-modulus-surface}{{13.4.2}{162}{模曲面 \texorpdfstring {$|\li (z)|$}{|li(z)|}}{subsection.13.4.2}{}}
+\newlabel{fig:li-modulus}{{13.4}{162}{$\li $ 的模曲面 $z=|\li (z)|$，$\li $ 取定义~\ref {def:li-complex} 在 $\Omega $ 上的分支。 支点 $z=1$ 为对数型，$|\li (z)|\to \infty $；两条割线 $(-\infty ,0]$、$[1,+\infty )$ 两侧模的边界值相等，图中作拼接显示（红线标示割线）， $x>1$ 两侧边界值为 $\li (x)\mp i\pi $，模不小于 $\pi $；$z\to 0$ 时 $|\li (z)|\to 0$（边界点，不是零点）。 Soldner 常数 $\mu $ 是实主值的零点，不在此曲面上（见图~\ref {fig:li-real-graph}）。}{figure.caption.151}{}}
+\newlabel{eq:li-z-asymp}{{13.8}{163}{大模长时的主项}{equation.13.8}{}}
+\newlabel{sec:Ei}{{13.5}{163}{指数积分 \texorpdfstring {$\Ei $}{Ei}：\texorpdfstring {$\li $}{li} 的变换形式}{section.13.5}{}}
+\newlabel{def:Ei}{{13.5.1}{163}{指数积分}{tcb@cnt@theorem.13.5.1}{}}
+\newlabel{prop:Ei-horizontal}{{13.5.2}{163}{$\Ei $ 的水平射线表示（分支约定）}{tcb@cnt@theorem.13.5.2}{}}
+\newlabel{eq:Ei-horizontal}{{13.9}{163}{$\Ei $ 的水平射线表示（分支约定）}{equation.13.9}{}}
+\newlabel{eq:li-Ei}{{13.10}{164}{与对数积分的关系}{equation.13.10}{}}
+\newlabel{eq:li-z-Ei}{{13.11}{164}{与对数积分的关系}{equation.13.11}{}}
+\newlabel{eq:li-xrho-Ei}{{13.12}{165}{显式公式中的分支约定}{equation.13.12}{}}
+\newlabel{rem:Ei-library-branch}{{13.5.3}{165}{与数值库的分支差}{tcb@cnt@theorem.13.5.3}{}}
+\newlabel{sec:Li-li-convention}{{13.6}{166}{用法分工}{section.13.6}{}}
+\newlabel{ch:riemann_explicit_formula}{{14}{167}{黎曼显式公式}{chapter.14}{}}
+\newlabel{sec:riemann_explicit_intro}{{14.1}{167}{引言}{section.14.1}{}}
+\newlabel{fig:explicit-roadmap}{{14.1}{169}{本章显式公式的推导步骤（至 $J_0$，再经 Möbius 得 $\pi _0$）。 $\pi _0$ 由第~\ref {ch:elementary_number_theoretic_functions}~章 \eqref {eq:pi_from_J} 代入 $J_0$ 得到（求和至 $\nu (x)$），不在主留数论证之内（配色约定见「符号与约定」第三节）。 公式取 $x>1$、$c>1$；非平凡零点计重数，并按虚部高度对称截断求和。 左侧标出各步所在的节。路径估计先在固定避零高度下令 $N\to \infty $，再沿满足定量避零条件的高度令 $T\to \infty $；水平边积分的极限按此次序理解。 $J_0$ 公式中常数的确定引用文献，见第~\ref {sec:integration-by-parts}~节与本章注记。}{figure.14.1}{}}
+\newlabel{sec:dirichlet-to-contour}{{14.2}{169}{从 Dirichlet 级数到围道积分}{section.14.2}{}}
+\newlabel{fig:contour}{{14.2}{170}{显式公式推导中的矩形围道。右边界为 $\operatorname {Re}(s)=c>1$，左边界为 $\operatorname {Re}(s)=-U$，其中 $U=2N+1$；上下水平边位于 $\operatorname {Im}(s)=\pm T$。 图中所计极点均指被积函数 $(-\zeta '/\zeta )x^s/s$ 的极点，其中 $s=0$ 处的极点来自因子 $1/s$。 先在固定避零高度下令 $N\to \infty $，再沿满足定量避零条件的高度令 $T\to \infty $；图中水平边积分趋零按此次序理解。 图中非平凡零点 $\rho $ 的位置仅为示意，一般情形下仅知其位于开临界带内，推导不依赖 RH。}{figure.caption.160}{}}
+\newlabel{sec:explicit-derivation}{{14.3}{171}{显式公式的推导思路}{section.14.3}{}}
+\newlabel{sec:residue-sum}{{14.3.1}{171}{极点与留数}{subsection.14.3.1}{}}
+\newlabel{sec:finite-truncation}{{14.3.2}{172}{有限截断与极限过渡}{subsection.14.3.2}{}}
+\newlabel{eq:psi_T_formula}{{14.1}{172}{有限截断与极限过渡}{equation.14.1}{}}
+\newlabel{sec:zero-oscillation}{{14.4}{172}{显式公式的结构：主项与零点振荡}{section.14.4}{}}
+\newlabel{eq:zero-pair-cosine}{{14.2}{173}{显式公式的结构：主项与零点振荡}{equation.14.2}{}}
+\newlabel{sec:convergence}{{14.5}{173}{级数收敛性说明}{section.14.5}{}}
+\newlabel{eq:zero-sum-symmetric}{{14.3}{173}{级数收敛性说明}{equation.14.3}{}}
+\newlabel{sec:explicit-proof}{{14.6}{174}{截断显式公式与显式公式的证明}{section.14.6}{}}
+\newlabel{sec:path-estimation}{{14.6.1}{174}{补充路径估计}{subsection.14.6.1}{}}
+\newlabel{eq:zetalog-horiz}{{14.4}{175}{带内水平边}{equation.14.4}{}}
+\newlabel{lem:zetalog-left}{{14.6.1}{175}{左半平面上的 \texorpdfstring {$\zeta '/\zeta $}{zeta'/zeta}}{tcb@cnt@theorem.14.6.1}{}}
+\newlabel{subsec:perron-trunc-quant}{{14.6.2}{175}{截断 Perron 公式的定量形式}{subsection.14.6.2}{}}
+\newlabel{subsec:truncated-explicit}{{14.6.3}{176}{截断显式公式}{subsection.14.6.3}{}}
+\newlabel{thm:truncated-explicit}{{14.6.2}{176}{截断显式公式}{tcb@cnt@theorem.14.6.2}{}}
+\newlabel{eq:truncated-explicit}{{14.5}{176}{截断显式公式}{equation.14.5}{}}
+\newlabel{eq:truncated-explicit-error}{{14.6}{176}{截断显式公式}{equation.14.6}{}}
+\newlabel{discussion:explicit-truncation}{{14.6.3}{176}{\textcolor {black!75}{进一步讨论：截断余项的详细估计}}{section*.170}{}}
+\newlabel{rem:truncated-uniform}{{14.6.3}{177}{在紧区间上一致有界}{tcb@cnt@theorem.14.6.3}{}}
+\newlabel{thm:ef-explicit-psi}{{14.6.4}{177}{$\psi _0$ 的显式公式（von Mangoldt）}{tcb@cnt@theorem.14.6.4}{}}
+\newlabel{eq:explicit_psi}{{14.7}{177}{$\psi _0$ 的显式公式（von Mangoldt）}{equation.14.7}{}}
+\newlabel{sec:integration-by-parts}{{14.7}{178}{从 \texorpdfstring {$\psi $}{psi} 到 \texorpdfstring {$J$}{J}：显式公式与常数 \texorpdfstring {$\log \xi (0)$}{log xi(0)}}{section.14.7}{}}
+\newlabel{eq:J_from_psi_explicit}{{14.8}{178}{从 \texorpdfstring {$\psi $}{psi} 到 \texorpdfstring {$J$}{J}：显式公式与常数 \texorpdfstring {$\log \xi (0)$}{log xi(0)}}{equation.14.8}{}}
+\newlabel{eq:J0-from-psi0-a}{{14.9}{178}{从 \texorpdfstring {$\psi $}{psi} 到 \texorpdfstring {$J$}{J}：显式公式与常数 \texorpdfstring {$\log \xi (0)$}{log xi(0)}}{equation.14.9}{}}
+\newlabel{subsec:li-xrho-convention}{{14.7.1}{178}{\texorpdfstring {$\li (x^{\rho })$}{li(x^rho)} 的约定与渐近}{subsection.14.7.1}{}}
+\newlabel{lem:ef-Ei-asymp}{{14.7.1}{179}{$\Ei $ 的渐近展开}{tcb@cnt@theorem.14.7.1}{}}
+\newlabel{cor:ef-li-sum}{{14.7.2}{179}{$\sum _\rho \li (x^{\rho })$ 的收敛}{tcb@cnt@theorem.14.7.2}{}}
+\newlabel{subsec:ef-explicit-J}{{14.7.2}{179}{\texorpdfstring {$J_0$}{J0} 的显式公式}{subsection.14.7.2}{}}
+\newlabel{thm:ef-explicit-J}{{14.7.3}{179}{$J_0$ 的显式公式}{tcb@cnt@theorem.14.7.3}{}}
+\newlabel{eq:explicit_J_final}{{14.10}{179}{$J_0$ 的显式公式}{equation.14.10}{}}
+\newlabel{eq:ef-logzeta-riemann}{{14.11}{181}{\textcolor {black!75}{进一步讨论：从对数乘积理解显式公式的常数项}}{equation.14.11}{}}
+\newlabel{rem:J-psi-parallel}{{14.7.4}{182}{与 $\psi $ 公式的逐项对应}{tcb@cnt@theorem.14.7.4}{}}
+\newlabel{sec:psi-to-pi}{{14.8}{183}{从 \texorpdfstring {$J(x)$}{J(x)} 到 \texorpdfstring {$\pi (x)$}{pi(x)}}{section.14.8}{}}
+\newlabel{sec:explicit-pi}{{14.8.1}{183}{\texorpdfstring {$\pi (x)$}{pi(x)} 的显式公式}{subsection.14.8.1}{}}
+\newlabel{eq:explicit_pi}{{14.12}{183}{级数交换次序的合法性}{equation.14.12}{}}
+\newlabel{sec:truncation-two-errors}{{14.9}{184}{截断逼近与两种误差}{section.14.9}{}}
+\newlabel{sec:truncation-vs-main-error}{{14.9}{184}{截断逼近与两种误差}{section.14.9}{}}
+\newlabel{tab:explicit-error-types}{{14.1}{185}{截断逼近误差、相对于主项的误差与 RH 等价误差阶。}{table.14.1}{}}
+\newlabel{sec:riemann_explicit_summary}{{14.9.4}{186}{本章要点}{section*.179}{}}
+\newlabel{ch:rh_arithmetic}{{15}{187}{黎曼猜想的算术等价：误差阶、von~Koch 与 Mertens}{chapter.15}{}}
+\newlabel{sec:rh_arithmetic_intro}{{15.1}{187}{引言}{section.15.1}{}}
+\newlabel{sec:rh-error-proofs}{{15.2}{187}{RH 下的误差阶与 von Koch 等价}{section.15.2}{}}
+\newlabel{subsec:rh-error-method}{{15.2.1}{187}{RH 下误差阶的推导方式}{subsection.15.2.1}{}}
+\newlabel{thm:rh-psi-error}{{15.2.1}{188}{RH 下 $\psi $ 的误差阶}{tcb@cnt@theorem.15.2.1}{}}
+\newlabel{subsec:von_koch}{{15.2.2}{188}{von Koch 等价}{subsection.15.2.2}{}}
+\newlabel{thm:von_koch}{{15.2.2}{188}{von Koch 等价}{tcb@cnt@theorem.15.2.2}{}}
+\newlabel{rem:schmidt-omega}{{15.2.3}{189}{$\psi (x)-x=\Omega _\pm (x^{1/2})$（Schmidt，仅引用）}{tcb@cnt@theorem.15.2.3}{}}
+\newlabel{sec:mertens-rh}{{15.3}{189}{RH 的算术等价表述：Mertens 函数 \texorpdfstring {$M(x)$}{M(x)}}{section.15.3}{}}
+\newlabel{sec:mertens_rh}{{15.3}{189}{RH 的算术等价表述：Mertens 函数 \texorpdfstring {$M(x)$}{M(x)}}{section.15.3}{}}
+\newlabel{sec:mertens-equivalence}{{15.3}{189}{RH 的算术等价表述：Mertens 函数 \texorpdfstring {$M(x)$}{M(x)}}{section.15.3}{}}
+\newlabel{thm:mertens_rh}{{15.3.1}{190}{Mertens 函数与黎曼猜想的等价性}{tcb@cnt@theorem.15.3.1}{}}
+\newlabel{sec:rh-equivalents-catalog}{{15.4}{190}{进一步查阅：黎曼猜想的等价形式}{section.15.4}{}}
+\newlabel{sec:rh_arithmetic_summary}{{15.4}{194}{本章要点}{section*.183}{}}
+\newlabel{ch:spectrum_map}{{16}{195}{知识谱系图示}{chapter.16}{}}
+\newlabel{ch:spectrum_diagram}{{16}{195}{知识谱系图示}{chapter.16}{}}
+\newlabel{sec:intro_spectrum_map}{{16.1}{195}{引言}{section.16.1}{}}
+\newlabel{sec:spectrum_full_map}{{16.2}{198}{全着色关系图}{section.16.2}{}}
+\newlabel{fig:function-relations}{{16.1}{198}{黎曼猜想知识谱系关系图（第三次着色：全着色）。 彩色显示第~\ref {ch:prime_distribution}--\ref {ch:rh_arithmetic}~章及相关附录已建立的主要对象与关系。}{figure.16.1}{}}
+\newlabel{sec:proof-status}{{16.3}{198}{证明状态索引}{section.16.3}{}}
+\newlabel{tab:spectrum-stage16-guide}{{16.1}{199}{图~\ref {fig:function-relations} 相对第二次着色新增的图形元素与正文对照}{table.caption.187}{}}
+\newlabel{tab:proof-status-figure}{{16.2}{200}{图~\ref {fig:function-relations} 中连线与标注的证明状态}{table.16.2}{}}
+\newlabel{ch:zero_geometry}{{17}{205}{\texorpdfstring {$\zeta (s)$}{Zeta(s)} 与 \texorpdfstring {$\xi (s)$}{xi(s)} 的零点几何}{chapter.17}{}}
+\newlabel{sec:intro_zero_geometry}{{17.1}{205}{引言}{section.17.1}{}}
+\newlabel{sec:zeta_real_surface}{{17.2}{205}{Riemann \texorpdfstring {$\zeta $}{Zeta} 函数的实部曲面}{section.17.2}{}}
+\newlabel{fig:zeta_real_cont}{{17.1}{206}{解析延拓后的 $\zeta (s)$ 实部曲面。 曲面与参考面 $z=0$ 的交线即实部零迹线 $\operatorname {Re}(\zeta )=0$；临界线 $\operatorname {Re}(s)=\tfrac 12$ 是非平凡零点集的镜面对称轴（$s\mapsto 1-\bar s$，第~\ref {subsec:fe-two-symmetries}~节）。这一零点集的对称性不意味着 $\operatorname {Re}\zeta $ 曲面关于临界线镜面对称；$\operatorname {Re}\xi $ 则具有后一性质。}{figure.caption.192}{}}
+\newlabel{sec:zeta_imag_surface}{{17.3}{206}{Riemann \texorpdfstring {$\zeta $}{Zeta} 函数的虚部曲面}{section.17.3}{}}
+\newlabel{fig:zeta_imag_cont}{{17.2}{207}{解析延拓后的 $\zeta (s)$ 虚部曲面（共轭奇对称）。 曲面与参考面 $z=0$ 的交线即虚部零迹线 $\operatorname {Im}(\zeta )=0$。}{figure.caption.193}{}}
+\newlabel{fig:zeta-real-imag-combined}{{17.3}{208}{$\zeta $ 实部与虚部曲面的半透明叠合图（对应图~\ref {fig:zeta_real_cont} 与图~\ref {fig:zeta_imag_cont}）。 两曲面共用底平面 $(\sigma ,t)$；竖直坐标 $z$ 在实部曲面上表示 $\operatorname {Re}\zeta (s)$，在虚部曲面上表示 $\operatorname {Im}\zeta (s)$，二者采用同一高度尺度。 位于参考面 $z=0$ 上的公共交点满足 $\operatorname {Re}(\zeta )=\operatorname {Im}(\zeta )=0$，即 $\zeta $ 的零点（临界带内为非平凡零点）。}{figure.caption.194}{}}
+\newlabel{fig:zeta-zero-intersection}{{17.4}{208}{$\zeta $ 的零迹线 $\operatorname {Re}(\zeta )=0$ 与 $\operatorname {Im}(\zeta )=0$ 在 $z=0$ 上的投影。 纵轴 $\operatorname {Re}(s)$ 取负半轴朝上，与图~\ref {fig:zeta_real_cont}--\ref {fig:zeta-real-imag-combined} 的俯视投影一致（平凡零点在图上方）。 公共交点即 $\zeta $ 的零点（临界带内为非平凡零点）。}{figure.caption.195}{}}
+\newlabel{sec:two-languages}{{17.5}{209}{\texorpdfstring {$\xi $}{xi} 的零迹线}{section.17.5}{}}
+\newlabel{fig:xi-real-imag-combined}{{17.5}{210}{$\xi $ 实部与虚部曲面的半透明叠合图（对应图~\ref {fig:xi-real-imag} 与图~\ref {fig:xi-imag}；窗口见坐标轴，各曲线与标记见图下图例）。}{figure.caption.196}{}}
+\newlabel{sec:xi-zero-topology}{{17.6}{210}{零迹线交点与黎曼猜想的几何表述}{section.17.6}{}}
+\newlabel{fig:xi-real-imag-intersection}{{17.6}{211}{$\xi $ 的零迹线 $\operatorname {Re}(\xi )=0$ 与 $\operatorname {Im}(\xi )=0$ 在 $z=0$ 上的投影。 纵轴 $\operatorname {Re}(s)$ 取负半轴朝上，与图~\ref {fig:zeta_real_cont}--\ref {fig:zeta-zero-intersection} 一致。}{figure.caption.197}{}}
+\newlabel{sec:zero_geometry_summary}{{17.6}{211}{本章要点}{section*.199}{}}
+\newlabel{ch:fourier_vs_riemann}{{18}{212}{零点项的对数尺度振荡}{chapter.18}{}}
+\newlabel{sec:fourier_vs_riemann_intro}{{18.1}{212}{引言}{section.18.1}{}}
+\newlabel{def:pi0}{{18.1}{212}{引言}{section.18.1}{}}
+\newlabel{sec:cosine_merge}{{18.2}{212}{零点对的余弦合并}{section.18.2}{}}
+\newlabel{eq:cosine_psi}{{18.1}{212}{零点对的余弦合并}{equation.18.1}{}}
+\newlabel{sec:cosine_vs_ordinary}{{18.3}{213}{余弦形式与普通余弦的对照}{section.18.3}{}}
+\newlabel{subsec:psi_to_pi_transition}{{18.3.1}{213}{从 $\psi _0$ 到 $\pi _0$：振幅中 $\log x$ 的来源}{subsection.18.3.1}{}}
+\newlabel{eq:li_x_rho_asymptotic}{{18.2}{213}{从 $\psi _0$ 到 $\pi _0$：振幅中 $\log x$ 的来源}{equation.18.2}{}}
+\newlabel{eq:riemann}{{18.3}{213}{从 $\psi _0$ 到 $\pi _0$：振幅中 $\log x$ 的来源}{equation.18.3}{}}
+\newlabel{sec:n3_principle}{{18.4}{214}{余弦形式的有限截断：\texorpdfstring {$N=3$}{N=3}}{section.18.4}{}}
+\newlabel{eq:Rk}{{18.4}{214}{余弦形式的有限截断：\texorpdfstring {$N=3$}{N=3}}{equation.18.4}{}}
+\newlabel{fig:n3-logcos}{{18.1}{215}{前三个正虚部零点的对数周期振荡及其合成示意（$N=3$，$x\ge 2$）。与素数阶梯作定性比较。\newline \textbf {上图}　三个不同频率的对数周期修正量 $R_k$（$R_1$ 频率最低、振幅最大，提供基底起伏；$R_2, R_3$ 频率更高、振幅衰减，提供微调）与净合成线 $R_{\Sigma _3}=\sum _{k=1}^{3}R_k$。\newline \textbf {下图}　右连续 $\pi (x)$（示意）、主项 $L_2$、合成修正 $R_{\Sigma _3}$ 与 $N=3$ 截断 $L_2-R_{\Sigma _3}$。\newline \textbf {约定}　理论目标在跳跃点为 $\pi _0$；略去平凡零点与 $n\ge 2$ 的 Möbius 项。 $L_2$ 为两项渐近截断，不含常数项。\newline \textbf {注意}　为清楚显示三对共轭振荡合成的细节，上下两图垂直轴高度和水平轴长度的比例不同。}{figure.caption.201}{}}
+\newlabel{sec:fourier_vs_riemann_compare}{{18.5}{216}{对照：对数周期振荡不是周期 Fourier 级数}{section.18.5}{}}
+\newlabel{subsec:comparison}{{18.5.1}{217}{一百对零点的余弦截断示意}{subsection.18.5.1}{}}
+\newlabel{fig:riemann-logcos-approx}{{18.2}{217}{经垂直平移校准的零点项截断示意（前 $N=100$ 个正虚部零点，即一百对共轭；蓝线 $\pi _N-C$，红线 $\pi (x)$）。\newline $\pi _N=L_2-\sum _{k=1}^{N}R_k$，$C=\pi _N(16)-6$。两轴窗口与下一幅 Fourier 图相同，纵轴标示实际计数值。\newline 起伏来自非等距零点截断，与随后图~\ref {fig:fourier-approx} 中的周期 Gibbs 现象不同。}{figure.caption.203}{}}
+\newlabel{fig:fourier-approx}{{18.3}{218}{周期 Fourier 部分和，与图~\ref {fig:riemann-logcos-approx} 的零点项截断对照， 以显示等距谐波（Fourier）与零点频率（Riemann）在逼近阶梯时的差异。\newline $\pi (x)$ 本身不是周期函数。本图将 $[10,40)$ 上的阶梯作周期 $L=30$ 的延拓，再取其 Fourier 部分和（$N=100$）；坐标窗口为 $x\in [13,35]$，蓝色部分和显示于 $[17,31]$。数据按分段常数函数的 Fourier 系数积分计算。\newline 纵轴的基线为 $6$，刻度标示实际素数计数值。\newline Gibbs 现象的渐近过冲约为跳跃量的 $9\%$；该比例描述部分和阶数趋于无穷时跳跃点附近的局部极限，不要求本图每个有限阶峰值恰好等于此数。}{figure.caption.204}{}}
+\newlabel{ch:riemann_numerical_approximation}{{19}{220}{非平凡零点的数值计算与显式公式逼近}{chapter.19}{}}
+\newlabel{sec:hardy_RS}{{19.2}{220}{Hardy \texorpdfstring {$Z$}{Z} 函数与 Riemann--Siegel 公式}{section.19.2}{}}
+\newlabel{eq:theta_asymp}{{19.1}{221}{记号区分}{equation.19.1}{}}
+\newlabel{eq:zeta_phase_fe}{{19.2}{221}{$Z(t)$ 的实值性：第~\ref {sec:rh-real-form}~节的推论}{equation.19.2}{}}
+\newlabel{eq:hardy_polar}{{19.3}{222}{$Z$ 与 $\zeta $ 的对照}{equation.19.3}{}}
+\newlabel{tab:Z_vs_zeta}{{19.1}{222}{$Z(t)$ 与 $\zeta (\frac 12+it)$ 对照}{table.caption.211}{}}
+\newlabel{sec:RS}{{19.2.2}{223}{Riemann--Siegel 公式}{subsection.19.2.2}{}}
+\newlabel{eq:RS}{{19.4}{223}{Riemann--Siegel 公式（主项说明与余项引用）}{equation.19.4}{}}
+\newlabel{sec:zeros}{{19.3}{224}{非平凡零点的数值计算}{section.19.3}{}}
+\newlabel{sec:prelim}{{19.3.1}{224}{符号与零点计数}{subsection.19.3.1}{}}
+\newlabel{eq:NT_chap15}{{19.5}{224}{符号与零点计数}{equation.19.5}{}}
+\newlabel{tab:zeros}{{19.2}{225}{$\zeta (s)$ 前十个非平凡零点虚部 $\gamma _k$}{table.caption.214}{}}
+\newlabel{tab:gram}{{19.3}{225}{前几个 Gram 点}{table.caption.216}{}}
+\newlabel{alg:gram}{{19.3.3}{226}{Gram 点定位}{tcb@cnt@theorem.19.3.3}{}}
+\newlabel{subsec:turing-method}{{19.3.3}{226}{Turing 方法：如何确认没有遗漏零点}{subsection.19.3.3}{}}
+\newlabel{eq:secant}{{19.6}{228}{割线法精化}{equation.19.6}{}}
+\newlabel{subsec:zero-milestones}{{19.3.5}{229}{代表性计算结果}{subsection.19.3.5}{}}
+\newlabel{tab:milestones}{{19.4}{229}{零点计算的若干结果}{table.caption.217}{}}
+\newlabel{sec:explicit}{{19.4}{229}{显式公式的有限截断与逼近}{section.19.4}{}}
+\newlabel{sec:explicit-Ei}{{19.4.2}{230}{显式公式的 \texorpdfstring {$\Ei $}{Ei} 形式}{subsection.19.4.2}{}}
+\newlabel{discussion:ch19-trivial-regularization}{{19.4.3}{232}{\textcolor {black!75}{进一步讨论：平凡零点项与端点正则化}}{section*.222}{}}
+\newlabel{eq:pi_explicit_full}{{19.7}{233}{\textcolor {black!75}{进一步讨论：平凡零点项与端点正则化}}{equation.19.7}{}}
+\newlabel{eq:psi0-trunc-T}{{19.8}{234}{截断参数与误差分析}{equation.19.8}{}}
+\newlabel{par:trunc-error-J-pi}{{19.4.4}{234}{向 $J$、$\pi $ 的转换}{section*.225}{}}
+\newlabel{sec:numerical}{{19.5}{236}{数值实验}{section.19.5}{}}
+\newlabel{subsec:ch19-certification}{{19.5.2}{237}{误差预算与代表性核验}{subsection.19.5.2}{}}
+\newlabel{eq:ch19-trivial-tail-bound}{{19.9}{237}{误差的分工}{equation.19.9}{}}
+\newlabel{tab:ch19-certified-sample}{{19.5}{238}{$x=20.5$、$M=10$ 的有限求值核验；第二列的严格包围半径为 $10^{-12}$，第三列仅显示后验差值的六位小数}{table.caption.234}{}}
+\newlabel{subsec:comparison_plots}{{19.5.3}{238}{显式公式的有限截断}{subsection.19.5.3}{}}
+\newlabel{subsec:fig-pi-analysis}{{19.5.4}{239}{图~\ref {fig:pi_comparison_merged} 及结果分析}{subsection.19.5.4}{}}
+\newlabel{fig:pi_comparison_merged}{{19.1}{239}{Möbius--$\Ei $ 截断 $\pi _{K,M}$ 在不同非平凡零点对数 $K$ 下与右连续 $\pi (x)$ 的对比 （$K=20,\,60,\,200,\,500$，$M=10$，$x\in [10,40]$）。 红线为 $\pi (x)$；蓝线为按~\eqref {eq:pi_explicit_full} 计算得到的 $\pi _{K,M}(x)$。 跳跃点处理论目标为中值，非右连续 $\pi (p)$。}{figure.caption.236}{}}
+\newlabel{tab:piKM-error}{{19.6}{240}{不同 $K$ 下 $\pi _{K,M}$ 的误差（$M=10$，$x\in [10,40]$）}{table.caption.239}{}}
+\newlabel{sec:conclusion}{{19.5.4}{241}{本章要点}{section*.241}{}}
+\newlabel{ch:visualization}{{20}{242}{临界带、临界线、\texorpdfstring {$\zeta $}{ζ} 值域轨迹、Hardy 轨迹与素数振荡}{chapter.20}{}}
+\newlabel{ch:riemann_visual_synthesis}{{20}{242}{临界带、临界线、\texorpdfstring {$\zeta $}{ζ} 值域轨迹、Hardy 轨迹与素数振荡}{chapter.20}{}}
+\newlabel{sec:visualization_intro}{{20.1}{242}{从素数计数出发，再回到素数计数}{section.20.1}{}}
+\newlabel{sec:first_animation}{{20.2}{243}{\texorpdfstring {$\zeta $}{ζ} 映射中的解析结构}{section.20.2}{}}
+\newlabel{sec:critical_strip}{{20.2}{243}{\texorpdfstring {$\zeta $}{ζ} 映射中的解析结构}{section.20.2}{}}
+\newlabel{eq:homotopy}{{20.1}{243}{从自变量平面到函数值平面}{equation.20.1}{}}
+\newlabel{fig:zeta_conformal_still}{{20.1}{244}{视频 1 动态变换中的关键帧（$\alpha =0.56$，由程序直接输出）。零点标签标示原来的零点 $\rho $，标记此时却位于 $f_\alpha (\rho )=0.44\rho $；标签数值不是标记在当前固定坐标刻度上的读数。网格与红色临界线按映射形变，灰色虚线保留原临界线的位置。绿色填充仅为两侧边界采样像的辅助示意，不代表临界带像集的精确填色；中央密集网格来自极点邻域。显示截限见本章注记。}{figure.caption.244}{}}
+\newlabel{sec:zeta_value_trajectory}{{20.3}{245}{临界线函数值与零点的几何表现}{section.20.3}{}}
+\newlabel{sec:hardy}{{20.3}{245}{临界线函数值与零点的几何表现}{section.20.3}{}}
+\newlabel{sec:hardy-origin-zeros}{{20.3}{245}{临界线函数值与零点的几何表现}{section.20.3}{}}
+\newlabel{eq:w-crit}{{20.2}{245}{复值轨迹、空间提升与相位归一化}{equation.20.2}{}}
+\newlabel{eq:line-homotopy}{{20.3}{245}{复值轨迹、空间提升与相位归一化}{equation.20.3}{}}
+\newlabel{eq:hardy-lift}{{20.4}{245}{复值轨迹、空间提升与相位归一化}{equation.20.4}{}}
+\newlabel{fig:hardy_z_spiral_still}{{20.2}{246}{视频 2 的书稿静帧：临界线函数值的空间提升（$0\le t\le 80$）。黑线保留参数 $t$，绿线为沿高度轴方向的投影，棕色与蓝色曲线分别显示实部与虚部的变化。程序对横截面振幅统一放大 $2.25$ 倍，并调整坐标排列；消除这些显示变换后，黑线对应式~\eqref {eq:hardy-lift}，绿线对应 $w(t)$。黑点标记临界线零点高度，仅对部分零点标注数值。}{figure.caption.247}{}}
+\newlabel{sec:pi0}{{20.4}{246}{从零点振荡返回素数计数}{section.20.4}{}}
+\newlabel{sec:explicit_vis}{{20.4}{246}{从零点振荡返回素数计数}{section.20.4}{}}
+\newlabel{fig:pi0_approx_start}{{20.3}{248}{视频 3 的较早阶段书稿静帧：$K=31$，$M=10$。深棕线为素数计数参照，深青线为 Möbius--$\Ei $ 有限截断。零点项与主项、平凡零点修正和常数共同参与逼近。}{figure.caption.251}{}}
+\newlabel{fig:pi0_approx_end}{{20.4}{248}{视频 3 的结束阶段书稿静帧：$K=500$，$M=10$，配色与前图相同。更多零点项刻画出较细的阶梯结构；有限截断仍有误差，跳跃点的完整反演值采用左右平均约定。}{figure.caption.251}{}}
+\newlabel{sec:figure_correspondence}{{20.5}{249}{三条动画中的黎曼猜想主线}{section.20.5}{}}
+\newlabel{ch:riemann_original_interpretation}{{21}{252}{Riemann 原稿解读}{chapter.21}{}}
+\newlabel{sec:riemann-ms-intro}{{21}{252}{说明}{section*.257}{}}
+\newlabel{ch:contemporary_research}{{22}{268}{当代前沿研究简介}{chapter.22}{}}
+\newlabel{sec:kappa_on_line}{{22.1.1}{269}{从无穷多个到全部：零点比例的限制}{subsection.22.1.1}{}}
+\newlabel{sec:zero_verification}{{22.1.2}{270}{有限高度验证与无界高度的区别}{subsection.22.1.2}{}}
+\newlabel{sec:subconvexity}{{22.1.3}{270}{函数值的增长：为何研究亚凸界}{subsection.22.1.3}{}}
+\newlabel{sec:zero_density}{{22.1.4}{271}{零点密度与素数短区间}{subsection.22.1.4}{}}
+\newlabel{sec:rh_criteria_spectrum}{{22.2}{272}{等价表述能否带来新的证明工具}{section.22.2}{}}
+\newlabel{sec:von_koch_frontier}{{22.2.1}{272}{误差条件：精确表示之后还缺少什么}{subsection.22.2.1}{}}
+\newlabel{sec:dbn_frontier}{{22.2.3}{273}{热流形变与 de Bruijn--Newman 常数}{subsection.22.2.3}{}}
+\newlabel{sec:montgomery_gue}{{22.4}{275}{统计规律能够揭示什么}{section.22.4}{}}
+\newlabel{sec:critical_moments}{{22.4.2}{276}{从零点频率到函数值的矩}{subsection.22.4.2}{}}
+\newlabel{sec:grh}{{22.5}{277}{为何要把问题放入更广泛的函数族}{section.22.5}{}}
+\newlabel{tab:app-chapter}{{\caption@xref {tab:app-chapter}{ on input line 108}}{281}{本章要点}{section*.284}{}}
+\newlabel{app:mobius_inversion}{{A}{282}{Möbius 反演公式}{appendix.1.A}{}}
+\newlabel{sec:mobius_inversion}{{A}{282}{Möbius 反演公式}{appendix.1.A}{}}
+\newlabel{sec:app-musum}{{A.1}{282}{求和恒等式}{section.1.A.1}{}}
+\newlabel{lem:musum}{{A.1.1}{282}{}{tcb@cnt@theorem.1.A.1.1}{}}
+\newlabel{sec:app-mobius-divisor}{{A.2}{283}{第一、二形式：除子与 Dirichlet 卷积}{section.1.A.2}{}}
+\newlabel{thm:mobius_first}{{A.2.1}{283}{Möbius 反演公式}{tcb@cnt@theorem.1.A.2.1}{}}
+\newlabel{sec:app-mobius-power}{{A.3}{284}{第三形式：幂次族}{section.1.A.3}{}}
+\newlabel{thm:mobius_power}{{A.3.1}{284}{Möbius 反演公式（第三形式：幂次族）}{tcb@cnt@theorem.1.A.3.1}{}}
+\newlabel{sec:app-mobius-inclusion}{{A.4}{285}{容斥解读：\texorpdfstring {$+\frac 16 J(x^{1/6})$}{+1/6 J(x\^{}1/6)}}{section.1.A.4}{}}
+\newlabel{app:abel_stieltjes}{{B}{287}{Abel 求和与阶梯函数上的 Stieltjes 积分}{appendix.1.B}{}}
+\newlabel{sec:app-step-functions}{{B.1}{287}{右连续阶梯函数}{section.1.B.1}{}}
+\newlabel{sec:app-abel}{{B.2}{288}{Abel 求和（分部求和）}{section.1.B.2}{}}
+\newlabel{eq:app-abel}{{B.1}{288}{Abel 求和（分部求和）}{equation.1.B.1}{}}
+\newlabel{sec:app-stieltjes}{{B.3}{288}{阶梯函数上的 Stieltjes 积分}{section.1.B.3}{}}
+\newlabel{def:app-stieltjes}{{B.3.1}{288}{阶梯上的 Stieltjes 积分（工作定义）}{tcb@cnt@theorem.1.B.3.1}{}}
+\newlabel{eq:app-stieltjes-def}{{B.2}{288}{阶梯上的 Stieltjes 积分（工作定义）}{equation.1.B.2}{}}
+\newlabel{eq:app-stieltjes-sum}{{B.3}{289}{阶梯函数上的 Stieltjes 积分}{equation.1.B.3}{}}
+\newlabel{sec:app-stieltjes-parts}{{B.4}{289}{分部积分公式}{section.1.B.4}{}}
+\newlabel{thm:app-stieltjes-parts}{{B.4.1}{289}{阶梯 Stieltjes 分部积分}{tcb@cnt@theorem.1.B.4.1}{}}
+\newlabel{eq:app-stieltjes-parts}{{B.4}{289}{阶梯 Stieltjes 分部积分}{equation.1.B.4}{}}
+\newlabel{sec:app-abel-stieltjes-apps}{{B.5}{290}{本书中的标准应用}{section.1.B.5}{}}
+\newlabel{eq:app-J-from-psi-parts}{{B.5}{290}{本书中的标准应用}{equation.1.B.5}{}}
+\newlabel{sec:app-abel-stieltjes-summary}{{B.6}{290}{小结}{section.1.B.6}{}}
+\newlabel{app:hankel_fe}{{C}{291}{第一法：Hankel 围道与函数方程的详细推导}{appendix.1.C}{}}
+\newlabel{sec:app-hankel-small-arc}{{C.1}{291}{小圆弧与上下沿}{section.1.C.1}{}}
+\newlabel{sec:app-hankel-pole-cancel}{{C.2}{292}{正整数处的极点相消}{section.1.C.2}{}}
+\newlabel{eq:argument_continuation}{{C.1}{293}{虚轴留数与函数方程}{equation.1.C.1}{}}
+\newlabel{app:weierstrass}{{D}{294}{Weierstrass 无穷乘积的详细推导}{appendix.1.D}{}}
+\newlabel{thm:gauss-limit}{{D.2.1}{295}{Gauss 极限形式}{tcb@cnt@theorem.1.D.2.1}{}}
+\newlabel{eq:gauss-limit}{{D.1}{295}{Gauss 极限形式}{equation.1.D.1}{}}
+\newlabel{sec:weierstrass-convergence}{{D.3}{295}{收敛性证明}{section.1.D.3}{}}
+\newlabel{thm:weierstrass-app}{{D.4.1}{296}{Weierstrass 乘积（附录形式）}{tcb@cnt@theorem.1.D.4.1}{}}
+\newlabel{eq:weierstrass-FN-algebra}{{D.2}{296}{Weierstrass 乘积}{equation.1.D.2}{}}
+\newlabel{cor:euler-form}{{D.4.2}{296}{Euler 形式}{tcb@cnt@theorem.1.D.4.2}{}}
+\newlabel{app:jensen}{{E}{298}{Jensen 公式的完整证明及其在零点计数中的应用}{appendix.1.E}{}}
+\newlabel{sec:jensen-proof}{{E.1}{298}{Jensen 公式及其证明}{section.1.E.1}{}}
+\newlabel{sec:jensen-application}{{E.2}{300}{应用：零点的量级与收敛指数}{section.1.E.2}{}}
+\newlabel{prop:jensen-count}{{E.2.1}{300}{零点个数的量级}{tcb@cnt@theorem.1.E.2.1}{}}
+\newlabel{cor:jensen-exponent}{{E.2.2}{300}{零点的收敛指数}{tcb@cnt@theorem.1.E.2.2}{}}
+\newlabel{app:pnt_estimates}{{F}{301}{零点自由区与素数定理的误差项}{appendix.1.F}{}}
+\newlabel{sec:app-no-zero-Re1}{{F.1}{301}{\texorpdfstring {$3$--$4$--$1$}{3-4-1} 的对数导数形式}{section.1.F.1}{}}
+\newlabel{eq:app-logderiv-combo}{{F.1}{301}{\texorpdfstring {$3$--$4$--$1$}{3-4-1} 的对数导数形式}{equation.1.F.1}{}}
+\newlabel{sec:app-zero-free}{{F.2}{301}{零点自由区与 \texorpdfstring {$\psi (x)=x+o(x)$}{psi=x+o(x)}}{section.1.F.2}{}}
+\newlabel{subsec:app-free-region}{{F.2.1}{301}{de la Vallée Poussin 型自由区}{subsection.1.F.2.1}{}}
+\newlabel{eq:app-free-region}{{F.2}{301}{de la Vallée Poussin 型自由区}{equation.1.F.2}{}}
+\newlabel{eq:app-logderiv-near-zero}{{F.3}{302}{对数导数形式}{equation.1.F.3}{}}
+\newlabel{eq:app-free-quant}{{F.4}{302}{代入 $\sigma =1+\eta $}{equation.1.F.4}{}}
+\newlabel{rem:classical-zero-free-constant}{{F.2.1}{303}{经典零点自由区常数}{tcb@cnt@theorem.1.F.2.1}{}}
+\newlabel{subsec:app-T-choice}{{F.2.2}{303}{误差项：de la Vallée Poussin 型}{subsection.1.F.2.2}{}}
+\newlabel{thm:pnt-error}{{F.2.2}{303}{带误差项的素数定理}{tcb@cnt@theorem.1.F.2.2}{}}
+\newlabel{eq:app-psi-error}{{F.5}{303}{带误差项的素数定理}{equation.1.F.5}{}}
+\newlabel{sec:app-pnt-contour}{{F.3}{304}{围道边估计}{section.1.F.3}{}}
+\newlabel{lem:horiz-zetalog}{{F.3.1}{304}{水平边上的 \texorpdfstring {$\zeta '/\zeta $}{zeta'/zeta}}{tcb@cnt@theorem.1.F.3.1}{}}
+\newlabel{eq:app-T-gap}{{F.6}{304}{水平边上的 \texorpdfstring {$\zeta '/\zeta $}{zeta'/zeta}}{equation.1.F.6}{}}
+\newlabel{eq:app-zetalog-horiz}{{F.7}{304}{水平边上的 \texorpdfstring {$\zeta '/\zeta $}{zeta'/zeta}}{equation.1.F.7}{}}
+\newlabel{sec:app-tauberian}{{F.4}{305}{Tauberian 方法}{section.1.F.4}{}}
+\newlabel{app:hardy}{{G}{306}{Hardy 定理：临界线上有无穷多个零点}{appendix.1.G}{}}
+\newlabel{sec:hardy-statement}{{G.1}{306}{定理与记号}{section.1.G.1}{}}
+\newlabel{thm:hardy}{{G.1.1}{306}{Hardy 定理（1914）}{tcb@cnt@theorem.1.G.1.1}{}}
+\newlabel{lem:hardy-xi-growth}{{G.2.1}{306}{$\Xi $ 的增长}{tcb@cnt@theorem.1.G.2.1}{}}
+\newlabel{lem:hardy-cosine}{{G.2.2}{307}{余弦积分表示}{tcb@cnt@theorem.1.G.2.2}{}}
+\newlabel{prop:hardy-identity}{{G.2.3}{307}{Hardy 的积分恒等式}{tcb@cnt@theorem.1.G.2.3}{}}
+\newlabel{lem:hardy-strip}{{G.3.1}{307}{带形内的恒等式}{tcb@cnt@theorem.1.G.3.1}{}}
+\newlabel{eq:hardy-moment}{{G.1}{307}{带形内的恒等式}{equation.1.G.1}{}}
+\newlabel{lem:hardy-theta-i}{{G.4.1}{308}{$\vartheta $ 在 $i$ 附近的表示}{tcb@cnt@theorem.1.G.4.1}{}}
+\newlabel{lem:hardy-vanish}{{G.4.2}{308}{导数消失}{tcb@cnt@theorem.1.G.4.2}{}}
+\newlabel{eq:hardy-limit}{{G.2}{308}{关键引理：\texorpdfstring {$x\to -i\pi /4$}{x -> -i pi/4} 时 \texorpdfstring {$H$}{H} 的各阶导数趋于零}{equation.1.G.2}{}}
