@@ -43,4 +43,4 @@
 
 ## 许可与反馈
 
-源程序与视频的使用许可由作者另行声明；引用书中数学内容请注明书名与作者。问题与勘误请通过本仓库 Issues 反馈，或发邮件至 lichengtong-RH@qq.com。
+源程序（`manim/`、`mathematica/` 中的程序及播放页面）采用 MIT 许可；学习笔记、参考习题、文档、关系图与视频采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)；黎曼原稿扫描本属公有领域；同行审阅稿保留所有权利。详见 [LICENSE](LICENSE)。引用书中数学内容请注明书名与作者。问题与勘误请通过本仓库 Issues 反馈，或发邮件至 lichengtong-RH@qq.com。
