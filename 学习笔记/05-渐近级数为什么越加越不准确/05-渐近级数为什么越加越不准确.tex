@@ -1,5 +1,9 @@
 \documentclass[UTF8,fontset=fandol,11pt]{ctexart}
 \input{../notes-common.tex}
+\usepackage{pgfplots}
+\usepackage{float}
+\pgfplotsset{compat=1.18}
+\date{2026年10月22日初稿；10月23日增补示意图}
 \title{渐近级数为什么越加越不准确}
 \begin{document}
 \maketitle
@@ -40,6 +44,27 @@
 但须区分：$b_N$ 是余项的上界，其最小点不必恰好等于实际误差 $|R_N|$ 的最小点。
 由积分的精确表达式，可以作进一步比较；不应把“截在最小项附近”说成无需条件的普遍定理。
 本例每个 $R_N$ 的符号已知，偶数项数和奇数项数还分别提供一侧界。
+
+\subsection*{固定参数下的截断对照}
+\input{figures/truncation-summary.tex}
+图~\ref{fig:asymptotic-truncation} 固定 $t=0.095$，比较保留 $N$ 项后的
+上界 $b_N=N!t^N$ 与实际误差
+$E_N=|F(t)-\sum_{k=0}^{N-1}(-1)^kk!t^k|$。
+本次计算得 $F(0.095)\approx\trialF$。
+在图示的 $1\le N\le25$ 内，上界在 $N=\trialBoundN$ 处最小，
+实际误差在 $N=\trialErrorN$ 处最小；两者不应混称为同一个最优截断。
+\begin{figure}[H]
+\centering
+\input{figures/truncation-plot.tex}
+\caption{固定 $t=0.095$ 时的误差上界与实际误差，对数纵轴。
+每个点对应一个整数项数 $N$，连线只帮助比较趋势；竖虚线标出各自的最小点。
+数值由精确余积分计算，并与部分和之差交叉复核，不是区间认证。
+本图只对应 $F(t)$，不能将其误差界直接用于后文的 $\Li$。}
+\label{fig:asymptotic-truncation}
+\end{figure}
+两条曲线先降后升，说明在固定参数下增加项数可能先改善、后恶化近似；
+前节关于每个固定 $N$、$t\to0^+$ 的结论则仍然成立。
+图示仅比较这一组参数，并不把最小项附近截断提升为一般定理。
 
 \section{对数积分的有限阶展开}
 在 $x>2$ 上定义 $\Li(x)=\int_2^x\dd v/\log v$。
@@ -93,5 +118,7 @@ $\Li$ 的形式无穷展开不收敛。它也不是上一个积分 $F(t)$ 的交
 \section*{参考依据与后续核验}
 本文的两个余项表达式均由有限恒等式或有限次分部积分得到。
 相关背景可参看本书《素数分布：从古典经验公式到解析数论》及 Stirling 展开的讨论。
-后续数值表须同时报告变量、项数及实际误差，不能只画部分和而不比较精确值。
+绘图数据、参数和生成程序随本文提供。数据由 \texttt{mpmath} 在80位工作精度下计算，
+并以120位精度复算；截断误差同时用精确余积分与部分和之差核对。
+后续增加数值例子时仍须报告变量、项数及实际误差，不能只画部分和而不比较函数值。
 \end{document}
