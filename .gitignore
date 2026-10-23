@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.pyc
+
+# Manim 渲染输出（发布的视频见 videos/）
+media/
+
+# LaTeX 编译中间文件（PDF 与源文件照常纳入版本管理）
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.xdv
+*.fls
+*.fdb_latexmk
+# 参考习题引用书稿编号所需的标签文件须保留
+!书稿标签.aux
