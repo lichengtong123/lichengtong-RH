@@ -1,0 +1,183 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[ItalicFont=STSongti-SC-Bold]{Songti SC}
+\usepackage{xurl}
+\input{../notes-common.tex}
+\XeTeXlinebreaklocale "zh"
+\renewcommand{\proofname}{证明}
+\newcommand{\li}{\operatorname{li}}
+\date{2026年10月24日初稿}
+\title{黎曼猜想在素数分布中的确切位置}
+\begin{document}
+\maketitle
+
+\noindent{\small 本篇说明 RH 作为数学命题所断言的内容、它能推出的素数分布结论，
+以及需要更强假设或至今与 RH 无关的问题。所引定理均注明出处；
+标为“猜想”的命题均未证明。}\par\medskip
+
+\section{问题}
+在普及读物中，RH 常被描述为“质数的全部规律”，并与加密、人工智能乃至生命科学相联系。
+本篇的结论是：RH 是关于 $\zeta$ 零点位置的精确命题，等价于素数计数函数误差的最优阶；
+它在素数分布理论中处于中心位置，但\emph{远不能解决素数的一切问题}。
+许多基本问题需要更强的假设，另有许多问题即使 RH 与广义 RH 都成立，也没有已知的解决途径。
+
+\paragraph{关于“蕴涵”的说明}
+对尚未解决的命题 $A,B$，“$A$ 不蕴涵 $B$”无法在真值意义上断言：若 $B$ 为真，则任何 $A$ 都蕴涵 $B$。
+本文所说“RH 不能解决某问题”，确切含义是：目前没有从 RH 出发的证明，并且由 RH 推出的已知结论在量上不足以得到它（参见学习笔记第 14 篇第 2 节）。
+
+\section{素数计数的三个层次}
+记 $\pi(x)$ 为不超过 $x$ 的素数个数。关于 $\pi(x)$ 的问题可以分为三个层次。
+\begin{enumerate}
+ \item \textbf{精确表示。} Riemann 显式公式（本书第 14 章）把 $\pi(x)$（经 $J(x)$ 与 Möbius 反演）精确地表示为对 $\zeta$ 全部非平凡零点的求和。
+ 这是一个对偶关系：素数完全决定零点，零点也完全决定素数。
+ 它把素数计数问题完整地转化为零点问题，但没有确定零点的位置；
+ 在不知道 $\Rea\rho$ 的情况下，它不给出任何定量估计。
+ \item \textbf{主项。} 素数定理 $\pi(x)\sim\li(x)$（1896）。它依赖于 $\zeta$ 在 $\Rea s=1$ 上无零点；
+ 现有的误差估计 $\pi(x)-\li(x)\ll x\exp\bigl(-c(\log x)^{3/5}(\log\log x)^{-1/5}\bigr)$ 来自 Vinogradov--Korobov 型无零区域。
+ \item \textbf{偏差。} $\pi(x)$ 与 $\li(x)$ 之差能有多大。这是 RH 所回答的问题：
+ \begin{theorem}[von Koch 1901，引用]
+ RH 成立当且仅当 $\pi(x)=\li(x)+O(\sqrt x\log x)$。
+ \end{theorem}
+ 在 RH 下还有显式形式：$x\ge2657$ 时 $|\pi(x)-\li(x)|<\frac1{8\pi}\sqrt x\log x$（Schoenfeld 1976）。
+ 由 Littlewood（1914），$\pi(x)-\li(x)=\Omega_\pm\bigl(\sqrt x\log\log\log x/\log x\bigr)$，
+ 故 $\sqrt x$ 的量级除对数因子外不能再改进。
+\end{enumerate}
+因此，就 $\pi(x)$ 而言，RH 是“误差阶最优”的命题：它确定素数在\emph{大尺度累计意义下}有多么规则。
+素数分布的其他问题，涉及局部间距、算术结构或加法组合，不在这一陈述之内。
+
+\section{RH 能推出的素数分布结论}
+\begin{itemize}
+ \item \textbf{误差阶。} 如上节，以及 $\psi(x)=x+O(\sqrt x\log^2x)$。
+ \item \textbf{相邻素数的间距。} Cramér（1920）在 RH 下证明
+ $p_{n+1}-p_n=O(\sqrt{p_n}\log p_n)$；显式常数的改进见 Dudek（2015）、Carneiro--Milinovich--Soundararajan（2019）。
+ 无条件的最好结果是 $p_{n+1}-p_n\ll p_n^{0.525}$（Baker--Harman--Pintz 2001）。
+ \item \textbf{几乎所有短区间。} Selberg（1943）在 RH 下证明：若 $f(x)\to\infty$，
+ 则除去一个测度意义下密度为零的集合外，对所有 $x$，区间 $(x,x+f(x)\log^2x]$ 中有素数。
+\end{itemize}
+
+\subsection{一个界限：Legendre 猜想}
+Legendre 猜想断言：对每个正整数 $n$，$n^2$ 与 $(n+1)^2$ 之间有素数。
+\begin{proposition}\label{prop:legendre}
+由 RH 推出的间距界 $p_{n+1}-p_n=O(\sqrt{p_n}\log p_n)$ 不足以推出 Legendre 猜想。
+\end{proposition}
+\begin{proof}
+令 $x=n^2$。区间 $(n^2,(n+1)^2)$ 的长度为 $2n+1=2\sqrt x+1$。
+间距界给出的保证长度为 $C\sqrt x\log x$，当 $x$ 足够大时远大于 $2\sqrt x+1$。
+因此仅凭该间距界，不能排除长为 $2\sqrt x+1$ 的区间中没有素数。
+\end{proof}
+这说明：即使是“相邻平方数之间有素数”这样陈述简单的问题，也超出了 RH 所提供的精度。
+更强的 Cramér 猜想 $p_{n+1}-p_n=O(\log^2p_n)$ 同样不能由 RH 推出。
+
+\section{需要广义 RH 的问题}
+广义 Riemann 猜想（GRH）断言全部 Dirichlet $L$ 函数（以及更一般的 $L$ 函数）的非平凡零点都在临界线上。
+GRH 是比 RH 强得多的假设。普及讨论中常把 GRH 的推论归于 RH。
+\begin{itemize}
+ \item \textbf{等差数列中的素数。} 在 GRH 下，对 $q\le x$ 一致地有
+ $\psi(x;q,a)=\frac{x}{\varphi(q)}+O(\sqrt x\log^2x)$（Davenport, \emph{Multiplicative Number Theory}, Ch.~20）。
+ 无条件地，Siegel--Walfisz 定理只对 $q\le(\log x)^A$ 成立；Bombieri--Vinogradov 定理在对 $q$ 求平均的意义下给出与 GRH 相当的结论。
+ RH 本身对此没有直接作用。
+ \item \textbf{最小模素数。} 模 $q$ 剩余类 $a$ 中的最小素数：无条件地 $\ll q^L$（Linnik；目前 $L\le5$，Xylouris 2011）；
+ 在 GRH 下 $\ll q^{2+\varepsilon}$。
+ \item \textbf{Artin 原根猜想。} 非平方数 $a\ne-1$ 是无穷多个素数的原根。
+ Hooley（1967）在 Kummer 域 Dedekind zeta 函数的 GRH 下证明了它；
+ 无条件地，Heath-Brown（1986）证明至多有两个素数例外。
+ \item \textbf{三素数定理。} 每个充分大的奇数是三个素数之和。Hardy 与 Littlewood（1923）在 GRH 下证明；
+ Vinogradov（1937）无条件地证明了充分大的情形；Helfgott（2013）完成了全部奇数 $\ge7$ 的证明。
+ 这是一个“在 GRH 下先得证、后来无条件解决”的例子。
+\end{itemize}
+
+\section{RH 与 GRH 都不能决定的问题}
+以下问题，目前没有从 RH 或 GRH 出发的解决途径；其中的进展大多来自筛法与组合方法。
+\begin{itemize}
+ \item \textbf{孪生素数猜想。} 无穷多对素数相差 $2$。
+ Zhang（2013）证明了有界间距，Maynard 与 Tao（2015）及 Polymath 项目把界缩小到 $246$；
+ 这些结果使用 Bombieri--Vinogradov 定理与筛法，并不依赖 RH。
+ 若假设 Elliott--Halberstam 猜想（一个与 GRH 不同的分布猜想），间距可缩小到 $12$（Maynard）。
+ \item \textbf{偶数 Goldbach 猜想。} 每个大于 $2$ 的偶数是两个素数之和。
+ 在 GRH 下只能证明例外集很小：不超过 $x$ 的例外偶数至多 $O(x^{1/2+\varepsilon})$ 个（Hardy--Littlewood 1924）；
+ GRH 不能推出猜想本身。
+ \item \textbf{素数间距的极端值。} 大间距的下界（Ford--Green--Konyagin--Maynard--Tao 2018）是无条件的组合结果；
+ Cramér 猜想超出 RH 的范围（第 3.1 节）。
+ \item \textbf{多项式取素数值。} 例如 $n^2+1$ 是否无穷多次为素数（Landau 问题之一）；与 RH 没有已知联系。
+ \item \textbf{素数中的结构。} Green--Tao 定理（2008）：素数中有任意长的等差数列。它的证明不使用 RH。
+ \item \textbf{素数竞赛。} 模 $4$ 余 $3$ 的素数“通常”多于余 $1$ 的素数（Chebyshev 偏差）。
+ Rubinstein 与 Sarnak（1994）对偏差的精确刻画需要 GRH \emph{加上}零点虚部线性无关的假设（LI）；GRH 本身不够。
+\end{itemize}
+
+\section{汇总}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.38\textwidth}>{\raggedright\arraybackslash}p{0.52\textwidth}}
+\toprule
+问题 & 与 RH 的关系\\
+\midrule
+$\pi(x)$ 的精确表示 & 已由显式公式给出，与 RH 无关\\
+素数定理（主项） & 已证明，依赖 $\Rea s=1$ 上无零点\\
+$\pi(x)-\li(x)$ 的最优阶 & \textbf{等价于 RH}\\
+相邻素数间距 $O(\sqrt p\log p)$ & 由 RH 推出\\
+Legendre 猜想、Cramér 猜想 & 超出 RH 所给精度\\
+等差数列中素数的误差、最小模素数 & 需要 GRH\\
+Artin 原根猜想 & 需要 GRH（Hooley）\\
+三素数定理 & 曾需 GRH，现已无条件证明\\
+孪生素数、偶数 Goldbach & RH 与 GRH 均无已知途径\\
+素数竞赛的精确偏差 & 需要 GRH 与 LI\\
+素数中的长等差数列 & 已证明，不依赖 RH\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{与计算和应用的关系}
+\begin{itemize}
+ \item \textbf{加密。} RSA 等方案的安全性基于大整数分解的计算困难。RH 是关于素数分布的命题，
+ 不提供分解算法；它的证明或否证都不会直接改变这些方案的安全性。
+ \item \textbf{素性检验。} Miller（1976）的确定性素性检验以 GRH 为前提（Bach 1990 给出显式界）。
+ AKS 算法（2004）无条件地给出多项式时间的确定性检验，使这一依赖不再必要。
+ \item \textbf{计算 $\pi(x)$。} 实际计算 $\pi(x)$ 使用组合方法（Meissel--Lehmer、Lagarias--Miller--Odlyzko）
+ 或基于 $\zeta$ 积分的解析方法，都不以 RH 为前提。
+ \item \textbf{物理。} 零点间距的统计与随机矩阵理论（GUE）一致，后者也描述重原子核能级的统计（学习笔记第 15 篇）。
+ 这是统计规律上的深刻对应，并不意味着 RH 与生物或医学问题有关。
+\end{itemize}
+
+\section{RH 作为可证伪而高度确证的假说}
+RH 等价于一个 $\Pi_1$ 型算术命题（学习笔记第 13 篇）：若它不成立，存在有限的反例，可以由计算严格证实。
+在这一意义上它是可证伪的。高度 $3\cdot10^{12}$ 以下的全部零点已被严格证明位于临界线上（第 12 篇），
+零点比例、零点密度、函数域类比与随机矩阵统计也都与 RH 相容（第 15 篇）。
+以实验科学的标准衡量，RH 是一个经受了大量严格检验而未被证伪的假说，其确证程度不亚于物理定律。
+
+但数学的标准不同。实验科学相信一条定律，前提是检验覆盖了它起作用的范围；
+而控制零点局部行为的量随 $\log\log T$ 变化，现有数据只覆盖 $\log\log T\le3.4$（第 12 篇），
+数论中也有 Pólya、Mertens 猜想与 $\pi(x)<\li(x)$ 在大范围验证后失效的先例。
+因此，RH 在实验科学的意义上高度确证，在数学的意义上仍是猜想。两种身份并不矛盾。
+
+\section{结论}
+\begin{enumerate}
+ \item RH 是一个精确的数学命题：$\zeta$ 的非平凡零点都在临界线上；等价地，$\pi(x)$ 偏离 $\li(x)$ 的阶为 $\sqrt x\log x$。
+ \item 显式公式已经把素数计数完全转化为零点问题；RH 回答的是这一转化之后的误差阶。
+ \item RH 不能解决素数的一切问题：局部间距（Legendre、Cramér 猜想）、等差数列中的分布（需要 GRH）、
+ 加法与模式问题（孪生素数、Goldbach）都不在它的范围内。
+ \item RH 的特殊地位在于它是“零点位置决定误差阶”这一机制的原型，这一机制在 $L$ 函数理论中反复出现；
+ 这是方法上的中心地位，而不是对素数分布的全面解答。
+\end{enumerate}
+
+\section*{参考}
+\begin{itemize}
+ \item H.\ von Koch, Sur la distribution des nombres premiers, \emph{Acta Math.} 24 (1901)；
+ L.\ Schoenfeld, Sharper bounds for the Chebyshev functions $\theta(x)$ and $\psi(x)$ II, \emph{Math.\ Comp.} 30 (1976)。
+ \item H.\ Cramér, Some theorems concerning prime numbers, \emph{Ark.\ Mat.\ Astr.\ Fys.} 15 (1920)（RH 下的间距界）；
+ H.\ Cramér, On the order of magnitude of the difference between consecutive prime numbers, \emph{Acta Arith.} 2 (1936)（Cramér 猜想）；
+ A.\ Selberg, On the normal density of primes in small intervals, and the difference between consecutive primes, \emph{Arch.\ Math.\ Naturvid.} 47 (1943)。
+ \item R.\ C.\ Baker, G.\ Harman, J.\ Pintz, The difference between consecutive primes II, \emph{Proc.\ London Math.\ Soc.} 83 (2001)。
+ \item H.\ Davenport, \emph{Multiplicative Number Theory}, 3rd ed., Springer, 2000（等差数列中的素数、Bombieri--Vinogradov 定理）。
+ \item C.\ Hooley, On Artin's conjecture, \emph{J.\ reine angew.\ Math.} 225 (1967)；
+ D.\ R.\ Heath-Brown, Artin's conjecture for primitive roots, \emph{Quart.\ J.\ Math.} 37 (1986)。
+ \item H.\ A.\ Helfgott, The ternary Goldbach problem, 2013/2015, \url{https://arxiv.org/abs/1501.05438}。
+ \item Y.\ Zhang, Bounded gaps between primes, \emph{Ann.\ of Math.} 179 (2014)；
+ J.\ Maynard, Small gaps between primes, \emph{Ann.\ of Math.} 181 (2015)。
+ \item B.\ Green, T.\ Tao, The primes contain arbitrarily long arithmetic progressions, \emph{Ann.\ of Math.} 167 (2008)。
+ \item M.\ Rubinstein, P.\ Sarnak, Chebyshev's bias, \emph{Experiment.\ Math.} 3 (1994)。
+ \item M.\ Agrawal, N.\ Kayal, N.\ Saxena, PRIMES is in P, \emph{Ann.\ of Math.} 160 (2004)。
+ \item 本书第 14、15 章；学习笔记第 12--15 篇。
+\end{itemize}
+\end{document}
