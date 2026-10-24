@@ -47,6 +47,7 @@ Pratt（1975）证明，每个素数 $n$ 都有长度为 $O(\log^2n)$ 位的此�
 这里的要点是：寻找 $a$ 与分解 $n-1$ 可能很难，但检查证书是机械而简短的。
 一个计算若能产生这样的证书，其结论的可信度就不再依赖于寻找过程的程序是否正确。
 
+\Needspace{14\baselineskip}
 \section{浮点计算如何成为证明：区间算术}
 \subsection{包含原理}
 \begin{proposition}\label{prop:inclusion}
@@ -66,42 +67,58 @@ Pratt（1975）证明，每个素数 $n$ 都有长度为 $O(\log^2n)$ 位的此�
 这把“数值看起来是正的”转化为一个定理，其前提只是各基本运算区间扩张的正确性。
 
 \subsection{两个例子}
-以下用 Arb 库（通过 python-flint，100 位二进制精度）计算。Arb 对其实现的每个函数给出带严格误差界的球
+以下用 Arb 库（通过 python-flint 0.9.0，160 位二进制精度）计算，并在224位复核。Arb 对其实现的每个函数给出带严格误差界的球
 $[m\pm r]$，其正确性是本节结论的信任基础。
 \begin{enumerate}
  \item \textbf{Li 系数 $\lambda_1>0$}。$\lambda_1=1+\tfrac{\gamma_E}2-\tfrac12\log(4\pi)$（学习笔记第 10 篇）。算得
  \[
-  \lambda_1\in[0.02309570896612103381431024791\pm5.3\times10^{-30}],
+  0.02309570896612<\lambda_1<0.02309570896613,
  \]
  故 $\lambda_1>0$ 得到证明。
- \item \textbf{第一个零点}。Hardy 函数 $Z(t)=e^{\ii\vartheta(t)}\zeta(\tfrac12+\ii t)$ 对实数 $t$ 取实值且连续，
+ \item \textbf{一个临界线零点的存在性}。Hardy 函数 $Z(t)=e^{\ii\vartheta(t)}\zeta(\tfrac12+\ii t)$ 对实数 $t$ 取实值且连续，
  $\vartheta(t)=\Ima\log\Gamma(\tfrac14+\tfrac{\ii t}2)-\tfrac t2\log\pi$。算得
- \[
-  Z(14.1347)\in[-1.99414\times10^{-5}\pm10^{-28}],\qquad
-  Z(14.1348)\in[5.93750\times10^{-5}\pm10^{-28}].
- \]
+ \begin{align*}
+  -0.000019941389&<Z(14.1347)<-0.000019941387,\\
+  0.000059374978&<Z(14.1348)<0.000059374981.
+ \end{align*}
  由介值定理，$\zeta$ 在临界线上 $14.1347<t<14.1348$ 处有零点。
 \end{enumerate}
 第二个例子证明了“存在临界线上的零点”。要证明 $\mathrm{RH}(T)$，还须证明在高度 $T$ 以下\emph{没有其他零点}，
 这需要下一节的计数论证。
+这里展示的十进制上下界比内部球包围宽，已包含中点显示时的舍入影响，
+不把截短的小数配上原始球的极小半径。同目录的\texttt{认证示例.py}复核这些严格不等式，
+并输出软件版本与工作精度；高精度普通浮点只可作交叉检查，不承担区间包含的证明。
 
 \section{Turing 方法：证明“没有遗漏”}
 对不是零点纵坐标的 $T$，
 \[
  N(T)=\frac{\vartheta(T)}\pi+1+S(T),\qquad S(T)=\frac1\pi\arg\zeta(\tfrac12+\ii T).
 \]
-$\vartheta(T)$ 可以严格计算，困难在于 $S(T)$。验证 $\mathrm{RH}(T)$ 的逻辑结构如下：
-\begin{enumerate}
- \item 在 $[0,T]$ 上严格检测 $Z(t)$ 的符号变化，得到临界线上零点个数的下界 $N_0(T)$；
- \item 由 Turing（1953）的引理，对 $T_1<T_2$ 有显式常数 $a,b$ 使
- \[
-  \Bigl|\int_{T_1}^{T_2}S(t)\dd t\Bigr|\le a+b\log T_2
- \]
- （显式常数的改进见 Trudgian 2011）。若在 $T$ 以上一段区间内，符号变化的个数与 $\vartheta(t)/\pi+1$ 的预期一致，
- 则 $S$ 在 $T$ 附近不可能有持续的负偏差，从而 $N(T)\le N_0(T)$；
- \item 结合 $N_0(T)\le N(T)$ 得 $N(T)=N_0(T)$，即高度 $T$ 以下的零点全部位于临界线上且为单零点。
-\end{enumerate}
-第 2 步是关键：它用一个关于 $S$ 的平均性质的定理，把“只检查有限多个点”提升为“没有遗漏”。
+$\vartheta(T)$ 可以严格计算，困难在于 $S(T)$。
+记 $m(t)$ 为已确认的、互不相交的变号区间中，右端点不超过 $t$ 的区间数；
+每个区间至少含一个零点，故 $m(t)\le N(t)$。
+定义已检测计数的代理
+\[
+ \widetilde S(t)=m(t)-1-\vartheta(t)/\pi,\qquad
+ D(t)=N(t)-m(t)=S(t)-\widetilde S(t)\ge0.
+\]
+认证高度 $T$ 须位于所有隔离区间之外。此时对 $t\ge T$，
+新增的已检测区间全部位于 $(T,t]$ 内，因而 $D(t)\ge D(T)$；
+这并不表示 $D$ 在任意高度都单调。
+
+由 Turing 型积分估计，对适用范围内的 $T'>T$，可引用显式上界
+\[
+ \int_T^{T'}S(t)\dd t\le B(T,T')
+\]
+（常数及高度条件见 Trudgian 2011，本书第19章给出相应实例）。
+若区间计算给出 $L\le\int_T^{T'}\widetilde S(t)\dd t$，并验证
+\[
+ L+(T'-T)>B(T,T'),
+\]
+则不能有 $D(T)\ge1$：否则整个区间上 $D(t)\ge1$，
+将迫使 $\int_T^{T'}S(t)\dd t\ge L+(T'-T)>B(T,T')$，矛盾。
+于是 $N(T)=m(T)$，每个已检测区间恰含一个单零点，且没有其他零点。
+关键不是符号变化与预期“大致一致”，而是带严格包围和适用条件的这一不等式。
 Platt 与 Trudgian（2021）用这一方法和 Arb 区间运算证明了 $\mathrm{RH}(3\cdot10^{12})$。
 
 \section{依赖大规模计算的证明}
@@ -144,11 +161,14 @@ $\mathrm{RH}(3\cdot10^{12})$（Platt--Trudgian 2021） & 零点隔离与 Turing 
  四色定理与 Kepler 猜想的后续历程说明，计算证明的可信度可以通过这些途径确立。
  \item 就 RH 而言，计算的作用有明确的边界：它可以严格证明 $\mathrm{RH}(T)$，
  可以严格证明 Li 系数、de Bruijn--Newman 常数等的有限信息，
- 若 RH 不成立，原则上也可以严格证实反例；但它不能单独证明 RH（学习笔记第 12、13 篇）。
+ 若 RH 不成立，原则上也可以严格证实反例。有限高度的逐段验证不能代替关于所有高度的证明，
+ 但这不排除计算机寻找或核查一个一般性证明；形式化证明正是后者的一种实现。
 \end{enumerate}
 
 \section*{参考}
-\begin{itemize}
+\begingroup
+\small
+\begin{itemize}[itemsep=2pt,topsep=3pt,parsep=0pt]
  \item V.\ R.\ Pratt, Every prime has a succinct certificate, \emph{SIAM J.\ Comput.} 4 (1975).
  \item F.\ Johansson, Arb: efficient arbitrary-precision midpoint-radius interval arithmetic, \emph{IEEE Trans.\ Comput.} 66 (2017).
  \item A.\ M.\ Turing, Some calculations of the Riemann zeta-function, \emph{Proc.\ London Math.\ Soc.} (3) 3 (1953).
@@ -161,4 +181,5 @@ $\mathrm{RH}(3\cdot10^{12})$（Platt--Trudgian 2021） & 零点隔离与 Turing 
  \item D.\ Loeffler, M.\ Stoll, Formalizing zeta and $L$-functions in Lean, \emph{Annals of Formalized Mathematics}, 2025. \url{https://arxiv.org/abs/2503.00959}
  \item T.\ Tymoczko, The four-color problem and its philosophical significance, \emph{J.\ Philos.} 76 (1979).
 \end{itemize}
+\endgroup
 \end{document}
