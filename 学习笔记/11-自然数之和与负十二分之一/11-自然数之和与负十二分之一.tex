@@ -43,7 +43,7 @@ $\sum_{n\le N}n=N(N+1)/2\to+\infty$，故等式 $1+2+3+\cdots=-\tfrac1{12}$
 \end{proof}
 
 \begin{proposition}\label{prop:triangle}
-设 $V$ 满足 (L)(S)，其定义域含 $(1,2,3,\ldots)$ 并对去掉首项封闭。则 $V(1,2,3,\ldots)$ 无定义。
+不存在满足 (L)(S)、其定义域含 $(1,2,3,\ldots)$ 并对去掉首项封闭的复值求和法。
 特别地，满足 (S) 的求和法不能给 $(1,1,1,\ldots)$ 赋值。
 \end{proposition}
 \begin{proof}
@@ -53,10 +53,11 @@ $\sum_{n\le N}n=N(N+1)/2\to+\infty$，故等式 $1+2+3+\cdots=-\tfrac1{12}$
 另一方面，对 $(1,1,1,\ldots)$ 用 (S) 得 $T=1+T$，矛盾。
 \end{proof}
 
-因此任何给出 $-\tfrac1{12}$ 的规则都必须放弃 (M) 与 (S)。下面两种规则均保留 (L)，
+因此，在保留 (R) 并包含有限支集数列的前提下，有限赋值必须放弃 (M)；
+在保留 (L) 且定义域对去掉首项封闭的前提下，还必须放弃一般的 (S)。下面两种规则均保留 (L)，
 其值依赖于各项所处的\emph{位置} $n$，而不只依赖于各项构成的多重集。
 
-\section{第一种表述：$\zeta$ 的延拓在 $s=-1$ 处的值}
+\section{\texorpdfstring{第一种表述：$\zeta$ 的延拓在 $s=-1$ 处的值}{第一种表述：zeta 的延拓在 s=-1 处的值}}
 \subsection{周期 Bernoulli 函数}
 记 $t=\{x\}$，令
 \[
@@ -72,7 +73,7 @@ $P_2,P_3$ 连续、以 $1$ 为周期，在非整数点 $P_2'=P_1$、$P_3'=P_2$�
 \]
 最后一式在 $t=\tfrac12\pm\tfrac{\sqrt3}6$ 处取到。
 
-\subsection{延拓到 $\Rea s>-2$}
+\subsection{\texorpdfstring{延拓到 $\Rea s>-2$}{延拓到 Re s>-2}}
 学习笔记第~4 篇证明了，对 $\Rea s>0$、$s\ne1$，
 \[
  \zeta(s)=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x .
@@ -243,8 +244,9 @@ $D(s)=\sum(n-1)n^{-s}=\zeta(s-1)-\zeta(s)$，故
 
 \subsection{\texorpdfstring{“全体自然数之和等于 $-\tfrac1{12}$”}{“全体自然数之和等于 −1/12”}}
 若“和”指部分和的极限，则和为 $+\infty$。
-由命题~\ref{prop:monotone}，即使放宽为任何满足 (R)(M) 的求和法，结论仍是 $+\infty$。
-$-\tfrac1{12}$ 只在放弃 (M)(S) 的特定规则下出现，例如 $V_D$，或命题~\ref{prop:smooth} 中的常数项。
+由命题~\ref{prop:monotone}，任何满足 (R)(M)、且包含所用有限支集数列的复值求和法，
+都不能给它赋予有限值。
+$V_D$ 不满足一般的 (M)(S)；命题~\ref{prop:smooth} 则明确提取分离主项后的常数项。
 不指明规则而说“等于”，是没有确定含义的陈述。
 
 \subsection{\texorpdfstring{“$\zeta(s)=\sum n^{-s}$，代入 $s=-1$ 即得”}{“ζ(s)=Σn⁻ˢ，代入 s=−1 即得”}}
@@ -263,13 +265,26 @@ $-\tfrac1{12}$ 只在放弃 (M)(S) 的特定规则下出现，例如 $V_D$，或
  \item $B=1-2+3-4+\cdots$，将 $B$ 与其右移一位 $0+1-2+3-\cdots$ 逐项相加得 $G$，故 $B=\tfrac14$；
  \item $S-B=0+4+0+8+0+12+\cdots=4S$，故 $S=-\tfrac1{12}$。
 \end{enumerate}
-第 2 步使用 (L) 与 (S)：右移一位后值不变，等价于在 (S) 中取首项为 $0$。
-第 3 步对 $S$ 使用 (L)，并预设 $V(S)$ 存在。
-由命题~\ref{prop:triangle}，不存在同时满足 (L)(S) 且给 $S$ 赋值的规则，
-因此\emph{没有任何单一规则使三步同时成立}。
-第 1、2 步在 Cesàro 或 Abel 求和下成立，第 3 步在 $V_D$ 下成立（第~5.2 节）；推导混用了两种不相容的规则。
-所得三个数值碰巧都与 $V_D$ 一致：$V_D(G)=(1-2^{1-s})\zeta(s)|_{s=0}=\tfrac12$，$V_D(B)=\tfrac14$（第~5.2 节）。
-但这一致性须事后逐个验证，不能由该推导得出。
+第 2 步若仅凭一般的平移稳定性处理右移，第 3 步又对 $S$ 使用线性并预设其赋值存在，
+就用到了命题~\ref{prop:triangle} 已排除的全局公理组合。
+不过，公理组合不相容，不等于这些\emph{具体等式}不能在某个较弱框架内同时成立。
+
+先看普通的一阶 Cesàro 求和。$B$ 的前 $2m$ 个部分和的平均为 $0$，
+前 $2m+1$ 个部分和的平均为 $(m+1)/(2m+1)$，分别趋于 $0$ 与 $1/2$。
+因此 $B$ 不具有这种 Cesàro 和。Abel 求和则给出 $G=1/2$、$B=1/4$，
+并允许第 2 步的右移；但 $S$ 的 Abel 值不是有限数，不能据此继续第 3 步。
+
+在 Dirichlet 正则化 $V_D$ 中，三个值却可分别核验为
+$V_D(G)=1/2$、$V_D(B)=1/4$、$V_D(S)=-1/12$。
+为检查第 2 步，记 $\eta(s)=(1-2^{1-s})\zeta(s)$，
+右移后的 $B$ 所对应的 Dirichlet 函数为
+\[
+ \sum_{n\ge2}(-1)^n(n-1)n^{-s}=\eta(s)-\eta(s-1).
+\]
+延拓到 $s=0$ 后，其值为 $1/2-1/4=1/4$，所以这一特定右移确实不改变赋值。
+第 3 步的伸缩与线性关系已在第~5.2 节核验。
+这说明三条具体等式可以在 $V_D$ 下同时成立；
+但它们依赖已建立的解析延拓与各式的单独验证，不能反过来充当这些前提的独立证明。
 
 \subsection{\texorpdfstring{“物理实验证实了 $-\tfrac1{12}$”}{“物理实验证实了 −1/12”}}
 在量子场论的某些计算中（例如平行导体板间 Casimir 力的标准推导），
@@ -282,12 +297,12 @@ $-\tfrac1{12}$ 只在放弃 (M)(S) 的特定规则下出现，例如 $V_D$，或
 
 \section{讨论}
 \begin{enumerate}
- \item 由命题~\ref{prop:monotone}，$-\tfrac1{12}$ 不能解释为任何意义上的“总量”。
+ \item 由命题~\ref{prop:monotone}，$-\tfrac1{12}$ 不能解释为保留上述正则性与单调性的有限总和。
  命题~\ref{prop:smooth} 给出一个确切解释：它是光滑截断部分和中与截断函数无关的常数项；
  发散主项 $C_\eta N^2$ 则依赖截断方式。
- \item 两种表述以及 Ramanujan 求和（本文未讨论，参见 Hardy, \emph{Divergent Series} 中关于 Euler--Maclaurin 公式的一章）
- 给出相同的值，其共同来源是 Euler--Maclaurin 公式在左端点的边界项 $-B_2/2$。
- 一致性有结构上的原因，不需要额外假设。
+ \item 本文的两种表述给出相同的值，共同来源是 Euler--Maclaurin 公式的边界项 $-B_2/2$。
+ Ramanujan 求和涉及另外的定义与归一化，本文不据名称相同就断言其赋值；
+ 有关不同求和法可参看 Hardy, \emph{Divergent Series}。
  \item 由命题~\ref{prop:triangle} 与第~5.3 节，这些赋值依赖于项的编号。
  更准确的说法是：所赋予的值属于函数 $n\mapsto n$（连同其定义域 $\mathbb Z_{\ge1}$），
  而非属于数的多重集 $\{1,2,3,\ldots\}$。
@@ -296,6 +311,7 @@ $-\tfrac1{12}$ 只在放弃 (M)(S) 的特定规则下出现，例如 $V_D$，或
  但不再是原级数的和；临界带内的 $\zeta(s)$ 也是如此。
 \end{enumerate}
 
+\begin{samepage}
 \section*{参考}
 \begin{itemize}
  \item G.\ H.\ Hardy, \emph{Divergent Series}, Oxford, 1949.
@@ -303,4 +319,5 @@ $-\tfrac1{12}$ 只在放弃 (M)(S) 的特定规则下出现，例如 $V_D$，或
  \url{https://terrytao.wordpress.com/2010/04/10/the-euler-maclaurin-formula-bernoulli-numbers-the-zeta-function-and-real-variable-analytic-continuation/}
  \item 本书关于 $\zeta$ 解析延拓与函数方程的章节；学习笔记第~1、2、4 篇。
 \end{itemize}
+\end{samepage}
 \end{document}

@@ -1,15 +1,32 @@
 """学习笔记第 17 篇的数值表：J_0 的零点截断、周期 Fourier 部分和与零点函数系最小二乘拟合的误差比较。
-依赖 mpmath、numpy、sympy；首次运行需计算 400 个零点及相应 Ei 值，耗时数分钟。
+依赖 mpmath、numpy、sympy；默认30位工作精度。缓存仅写系统临时目录。
+运行 --dps 50 可独立复算；--check 可直接核对文中表格的三位小数。
 """
-import numpy as np, mpmath as mp, pickle, os, sys
-mp.mp.dps = 20
+import argparse
+import json
+from pathlib import Path
+import tempfile
+
+import numpy as np
+import mpmath as mp
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--dps", type=int, default=30)
+parser.add_argument("--check", action="store_true")
+args = parser.parse_args()
+if args.dps < 20:
+    parser.error("--dps must be at least 20")
+mp.mp.dps = args.dps
 K = 400
-zf = 'zeros.pkl'  # 缓存，可删除
-if os.path.exists(zf):
-    Z = pickle.load(open(zf, 'rb'))
+cache_dir = Path(tempfile.gettempdir()) / "rh-note17-cache"
+cache_dir.mkdir(exist_ok=True)
+zf = cache_dir / f"zeros-{K}-{args.dps}.json"
+if zf.exists():
+    Z = [mp.mpc(re, im) for re, im in json.loads(zf.read_text())]
 else:
     Z = [mp.zetazero(k) for k in range(1, K + 1)]
-    pickle.dump(Z, open(zf, 'wb'))
+    zf.write_text(json.dumps([[str(z.real), str(z.imag)] for z in Z]))
+print("mpmath", mp.__version__, "numpy", np.__version__, "dps", args.dps, flush=True)
 print('gamma_100', Z[99].imag, 'gamma_400', Z[399].imag)
 
 from sympy import primerange
@@ -36,15 +53,19 @@ J = np.array([J0(x) for x in xs])
 def tailint(x):
     return mp.quad(lambda t: 1 / (t * (t * t - 1) * mp.log(t)), [x, mp.inf])
 base = np.array([float(mp.li(x) - mp.log(2) + tailint(x)) for x in xs])
-cache = 'terms.npy'  # 缓存，可删除
-if os.path.exists(cache):
-    T = np.load(cache)
+cache = cache_dir / f"terms-{K}-{args.dps}-441.npy"
+if cache.exists():
+    T = np.load(cache, allow_pickle=False)
+    if T.shape != (K, len(xs)):
+        raise ValueError("Unexpected cached array shape")
 else:
     T = np.zeros((K, len(xs)), dtype=complex)
     for k in range(K):
         r = Z[k]
         for i, x in enumerate(xs):
             T[k, i] = complex(mp.ei(r * mp.log(x)))
+        if (k + 1) % 50 == 0:
+            print("Ei rows", k + 1, "of", K, flush=True)
     np.save(cache, T)
 def riemann(Kk):
     return base - 2 * np.real(T[:Kk].sum(axis=0))
@@ -76,10 +97,28 @@ for Kk in [25, 50, 100, 200, 250, 400]:
 for (a, b) in [(10, 40), (2, 100), (2, 1000)]:
     for N in [25, 100]:
         res['F[%d,%d)N%d' % (a, b, N)] = stats(fourier(a, b, N, xs))
-# least squares in zero basis on window, K=100
+# Free-coefficient fits are diagnostics, not the original explicit formula.
 for Kk in [25, 100]:
     B = np.vstack([np.ones_like(xs), base] + [np.real(T[k]) for k in range(Kk)] + [np.imag(T[k]) for k in range(Kk)]).T
-    coef, *_ = np.linalg.lstsq(B, J, rcond=None)
-    res['LSzero%d' % Kk] = stats(B @ coef)
+    for threshold in [None, 1e-10, 1e-8]:
+        coef, _, rank, singular = np.linalg.lstsq(B, J, rcond=threshold)
+        condition = singular[0] / singular[-1]
+        print(f"LS diagnostic K={Kk} rcond={threshold} rank={rank}/{B.shape[1]} "
+              f"condition={condition:.3e} rms/max={stats(B @ coef)}")
 for k, v in res.items():
     print(f'{k:20s} rms={v[0]:.4f} maxfar={v[1]:.4f}')
+
+if args.check:
+    expected = {
+        "R25": (0.136, 0.168), "R50": (0.104, 0.106),
+        "R100": (0.072, 0.076), "R200": (0.047, 0.048),
+        "R250": (0.039, 0.043), "R400": (0.026, 0.030),
+        "F[10,40)N25": (0.137, 0.267), "F[10,40)N100": (0.040, 0.041),
+        "F[2,100)N25": (0.289, 0.536), "F[2,100)N100": (0.107, 0.175),
+        "F[2,1000)N25": (10.19, 15.76), "F[2,1000)N100": (3.06, 5.64),
+    }
+    for name, target in expected.items():
+        tolerance = 0.0051 if name.startswith("F[2,1000)") else 0.00051
+        if max(abs(a - b) for a, b in zip(res[name], target)) > tolerance:
+            raise AssertionError((name, res[name], target))
+    print("All displayed table entries agree with the recomputation.")

@@ -12,6 +12,8 @@ Fourier 变换以加法变量的振荡为基础；Mellin 变换中则出现 $x^{
 二者的关系不是只靠形式相似：取对数变量，可以把正实轴上的乘法结构变为实轴上的加法结构。
 本篇完整写出变量、测度与归一化的变化，并说明何时可以反演。
 所需背景为实积分、复指数与 Fourier 反演定理。
+本书已用这一代换建立反演公式；这里进一步追踪测度和权重的变化，
+以说明乘法卷积为何自然采用 $\dd y/y$，以及它怎样与 Laplace 变换相接。
 
 图~\ref{fig:log-coordinates} 先列出 $u=\log x$ 的坐标关系。
 当 $x$ 乘以固定常数 $a>0$ 时，$u$ 增加 $\log a$；同时
@@ -39,12 +41,14 @@ $\dd x/x=\dd u$，因而乘法卷积中的测度也变为加法变量的通常�
 \]
 采用 Fourier 惯例
 $\widehat g(t)=\int_{\mathbb R}g(u)e^{-\ii tu}\dd u$，逐步计算得
-\begin{align*}
+\[
+\begin{aligned}
  \mathcal Mf(c+\ii t)
  &=\int_{-\infty}^{\infty}f(e^u)e^{(c+\ii t-1)u}e^u\dd u\\
  &=\int_{\mathbb R}g_c(u)e^{\ii tu}\dd u
  =\widehat g_c(-t).
-\end{align*}
+\end{aligned}
+\]
 这里有负号，是因为 Mellin 定义用了 $x^{+\ii t}$，而所选 Fourier 定义用了 $e^{-\ii tu}$。
 改变 Fourier 惯例会改变符号和常数，不能混用。
 
