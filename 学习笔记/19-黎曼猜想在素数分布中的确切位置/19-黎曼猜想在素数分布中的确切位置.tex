@@ -151,14 +151,50 @@ RH 等价于一个 $\Pi_1$ 型算术命题（学习笔记第 13 篇）：若它�
 数论中也有 Pólya、Mertens 猜想与 $\pi(x)<\li(x)$ 在大范围验证后失效的先例。
 因此，RH 在实验科学的意义上高度确证，在数学的意义上仍是猜想。两种身份并不矛盾。
 
+\section{为何 RH 仍居中心地位}\label{sec:center}
+前几节说明了 RH 不能做什么。它的中心地位来自以下几点，而不是来自“解决素数的一切问题”。
+
+\subsection{误差阶的含义：平方根相消}
+由 Littlewood 定理（第 2 节），$\pi(x)-\li(x)$ 的量级不能小于 $\sqrt x$（除对数因子外）；
+RH 断言它也不超过这个量级。于是 RH 刻画的是素数在累计意义上\emph{所能达到的最大均匀性}。
+这一量级恰与独立随机符号部分和的量级相同：独立 $\pm1$ 序列的部分和几乎必然为 $O(N^{1/2+\varepsilon})$
+（学习笔记第 15 篇命题 4.1），而 RH 等价于 $M(x)=\sum_{n\le x}\mu(n)=O(x^{1/2+\varepsilon})$（第 14 篇第 3.2 节）。
+在这个意义上，RH 说的是：素数与 Möbius 函数在大尺度上的累计偏差，与随机序列一样小。
+
+“平方根相消”是解析数论中反复出现的原则，指数和、特征和、Kloosterman 和都以它为理想情形。
+RH 是这一原则在素数上的基本形式。
+
+\subsection{已证明的类似命题是实际使用的工具}
+有限域上的类似命题已被证明（Weil 1948，Deligne 1974；学习笔记第 15 篇第 3.1 节），并给出大量平方根相消的估计。
+例如，对素数 $p$ 与 $p\nmid ab$，Kloosterman 和满足
+\[
+ \Bigl|\sum_{x=1}^{p-1}e^{2\pi\ii(ax+b\bar x)/p}\Bigr|\le2\sqrt p
+\]
+（Weil 1948，$\bar x$ 为 $x$ 模 $p$ 的逆）。这类估计是模形式、筛法与素数分布研究中的基本输入。
+第 5 节所说孪生素数问题上的进展（Zhang 2013）不依赖经典的 RH，却用到了 Deligne 证明的有限域上的 RH 所给出的指数和估计。
+可见 RH 型命题的作用远超素数计数：它们在已被证明的场合已经成为工作工具。
+
+\subsection{条件性定理}
+第 3、4 节所列的许多结论在 RH 或 GRH 下已经证明。数论文献中以此为前提的结果数以百计。
+RH 及其推广若被证明，这些条件性结果将同时成为定理；若被否证，它们将失去依据。
+RH 的分量在很大程度上来自它所支撑的这一整体。
+
+\subsection{困难本身的意义}
+在有限域的情形，$\zeta$ 函数的零点是 Frobenius 映射在上同调上作用的特征值的倒数，
+RH 归结为这些特征值的模，证明依赖这一几何结构。对 $\mathbb Q$ 上的 $\zeta$，目前不知道对应的算子或几何对象；
+Hilbert--Pólya 设想（零点是某个自伴算子的谱）只是猜测（学习笔记第 15 篇第 3.2 节）。
+因此普遍认为，RH 的证明需要发现一种尚未知道的结构，而这一结构的价值可能超出 RH 本身。
+人们看重 RH，很大程度上看重的是证明它所需要的东西。
+
 \section{结论}
 \begin{enumerate}
  \item RH 是一个精确的数学命题：$\zeta$ 的非平凡零点都在临界线上；等价地，$\pi(x)$ 偏离 $\li(x)$ 的阶为 $\sqrt x\log x$。
  \item 显式公式已经把素数计数完全转化为零点问题；RH 回答的是这一转化之后的误差阶。
  \item RH 不能解决素数的一切问题：局部间距（Legendre、Cramér 猜想）、等差数列中的分布（需要 GRH）、
  加法与模式问题（孪生素数、Goldbach）都不在它的范围内。
- \item RH 的特殊地位在于它是“零点位置决定误差阶”这一机制的原型，这一机制在 $L$ 函数理论中反复出现；
- 这是方法上的中心地位，而不是对素数分布的全面解答。
+ \item RH 的中心地位来自四个方面：它表达了素数所能达到的最大均匀性（平方根相消）；
+ 它已被证明的有限域类似命题是实际使用的工具；大量条件性定理以它为前提；
+ 证明它需要尚未知道的新结构（第~\ref{sec:center}~节）。这是方法与结构上的中心地位，而不是对素数分布的全面解答。
 \end{enumerate}
 
 \section*{参考}
@@ -178,6 +214,7 @@ RH 等价于一个 $\Pi_1$ 型算术命题（学习笔记第 13 篇）：若它�
  \item B.\ Green, T.\ Tao, The primes contain arbitrarily long arithmetic progressions, \emph{Ann.\ of Math.} 167 (2008)。
  \item M.\ Rubinstein, P.\ Sarnak, Chebyshev's bias, \emph{Experiment.\ Math.} 3 (1994)。
  \item M.\ Agrawal, N.\ Kayal, N.\ Saxena, PRIMES is in P, \emph{Ann.\ of Math.} 160 (2004)。
+ \item A.\ Weil, On some exponential sums, \emph{PNAS} 34 (1948)；P.\ Deligne, La conjecture de Weil I, \emph{Publ.\ Math.\ IHÉS} 43 (1974)。
  \item 本书第 14、15 章；学习笔记第 12--15 篇。
 \end{itemize}
 \end{document}
