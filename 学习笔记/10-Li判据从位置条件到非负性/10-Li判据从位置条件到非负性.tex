@@ -1,5 +1,9 @@
 \documentclass[UTF8,fontset=fandol,11pt]{ctexart}
 \input{../notes-common.tex}
+\usepackage{tikz}
+\usepackage{float}
+\usetikzlibrary{arrows.meta}
+\date{2026年10月22日初稿；10月24日增补示意图}
 \title{Li 判据：从零点位置到非负性}
 \begin{document}
 \maketitle
@@ -47,6 +51,29 @@ $2n\beta/|\rho|^2$，所以整个配对项为 $O_n(\gamma^{-2})$。
 上一节已证明该配对级数收敛，所以 $\lambda_n\ge0$。
 这里没有把一个未定义的“无穷个非负项之和”当作有限实数。
 
+\begin{samepage}
+同一个代数关系也可用图~\ref{fig:li-circle} 理解。
+暂对一般复数 $z\ne0$ 写 $w=1-1/z$，则 $\Rea z<1/2$、$=1/2$、$>1/2$
+分别对应 $|w|>1$、$=1$、$<1$。
+其中 $w=1$ 不能由有限的 $z$ 取到，左图用空心点标出这一例外。
+在 RH 下取 $z=\rho$，$w^n$ 仍在单位圆上；若将它记为 $q$，
+共轭点 $\bar q$ 对应另一项，向量 $1-q$ 与 $1-\bar q$ 的虚部抵消，
+各自的实部均为 $1-\cos(n\theta_\rho)\ge0$。
+图形解释的是已经证明的正向关系，不替代 Li 判据的反向定理。
+\end{samepage}
+
+\begin{figure}[H]
+\centering
+\input{figures/li-circle.tex}
+\caption{位置条件与非负配对项。
+左图为一般变换 $w=1-1/z$：$A,B,C$ 分别取
+$z=1/4+\ii/2,\ 1/2+\ii/2,\ 3/4+\ii/2$；这些是变换示意点，不是 $\zeta$ 的零点。
+右图取一般单位圆点 $q=e^{\ii\varphi}$，其中 $\varphi=2\pi/5$，
+用两条指向 $1$ 的箭头表示 $1-q$、$1-\bar q$；下方箭头表示它们的非负实数和。
+本图不表示对真实零点位置作了数值验证。}
+\label{fig:li-circle}
+\end{figure}
+
 \begin{theorem}[Li 判据，引用]
 RH 成立，当且仅当对每个正整数 $n$ 均有 $\lambda_n\ge0$。
 这些系数也满足
@@ -63,6 +90,7 @@ $s=1$ 附近 $\xi$ 不为零，可取局部解析对数；加入 $2\pi\ii$ 的�
 零点式与导数式的一致性及“全部非负推出 RH”的反向定理在此引用，
 上面直接证明的是 RH 推出非负性的方向。
 
+\begin{samepage}
 \section{首个系数可以直接计算}
 由导数式 $\lambda_1=\xi'(1)/\xi(1)$。
 对 $\xi$ 取对数导数，在 $s=1$ 附近写
@@ -80,6 +108,7 @@ $\Gamma'/\Gamma(1/2)=-\gamma_E-2\log2$。消去极点后，
 \]
 最后的不等号可用标准常数的可靠区间核查；近似值约为 $0.0230957$。
 一个正系数只检查了一个必要条件，不是全部正整数上的结论。
+\end{samepage}
 
 \section{有限零点表留下怎样的尾项}
 在 RH 下，对正虚部 $\gamma>0$，
