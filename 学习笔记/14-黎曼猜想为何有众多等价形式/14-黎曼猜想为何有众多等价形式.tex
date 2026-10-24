@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[ItalicFont=STSongti-SC-Bold]{Songti SC}
+\usepackage{xurl}
+\input{../notes-common.tex}
+\XeTeXlinebreaklocale "zh"
+\renewcommand{\proofname}{证明}
+\date{2026年10月24日初稿}
+\title{黎曼猜想为何有众多等价形式}
+\begin{document}
+\maketitle
+
+\noindent{\small 本篇整理 RH 的若干等价形式，并说明它们背后的共同机制。
+较易方向给出证明，较难方向注明出处。}\par\medskip
+
+\section{问题}
+RH 的等价表述遍及素数分布、算术函数、Farey 序列、泛函分析、热方程与正性条件。
+本篇讨论两个问题：在 RH 尚未解决时，“等价”是什么意思；
+以及为什么如此不同的命题会与零点位置等价。
+
+\section{“等价”的含义}
+在经典逻辑中，若 RH 为真，则 RH 与任何定理都等价；若为假，则与任何假命题都等价。
+因此“$X$ 与 RH 等价”作为真值陈述没有信息量，它的实际含义是：
+存在 $X\Rightarrow\mathrm{RH}$ 与 $\mathrm{RH}\Rightarrow X$ 的证明，且这些证明都不依赖于确定 RH 的真值。
+
+更有内容的表述是参数之间的恒等式。令
+\[
+ \Theta=\sup\{\Rea\rho:\ \zeta(\rho)=0,\ 0<\Rea\rho<1\}\in[\tfrac12,1].
+\]
+RH 即 $\Theta=\tfrac12$。许多等价形式实际上来自形如“某量的增长指数等于 $\Theta$”的无条件定理，
+RH 只是其中取 $\Theta=\tfrac12$ 的特例。下一节给出这种机制的两个例子。
+
+\section{机制：Mellin 变换把零点变为增长指数}
+\subsection{$\psi$ 的情形}
+对 $\Rea s>1$，由 Abel 求和，
+\[
+ -\frac{\zeta'}{\zeta}(s)=s\int_1^\infty\psi(x)x^{-s-1}\dd x,\qquad
+ \frac{s}{s-1}=s\int_1^\infty x\cdot x^{-s-1}\dd x,
+\]
+故
+\[
+ -\frac{\zeta'}{\zeta}(s)-\frac{s}{s-1}=s\int_1^\infty\bigl(\psi(x)-x\bigr)x^{-s-1}\dd x .  \tag{3.1}
+\]
+\begin{proposition}\label{prop:psi}
+若 $\psi(x)-x=O(x^\theta)$，$\tfrac12\le\theta<1$，则 $\zeta$ 在 $\Rea s>\theta$ 内无零点。
+\end{proposition}
+\begin{proof}
+在 $\Rea s\ge\theta+\delta$ 上，(3.1) 右端的被积函数由 $Cx^{\theta-\delta-1}$ 控制，
+积分在 $\Rea s>\theta$ 内解析。左端在 $s=1$ 处两个极点的留数均为 $1$，相互抵消。
+若 $\zeta(\rho)=0$，$\Rea\rho>\theta$，则 $-\zeta'/\zeta$ 在 $\rho$ 处有留数为负重数的极点，
+左端不解析，矛盾。
+\end{proof}
+反方向由显式公式得到：$\psi(x)-x=O(x^\Theta\log^2x)$（Ingham, \emph{The Distribution of Prime Numbers}, 1932）。
+两者合起来给出无条件恒等式
+\[
+ \inf\{\theta:\ \psi(x)-x=O(x^\theta)\}=\Theta .
+\]
+von Koch（1901）的等价形式 $\pi(x)=\operatorname{li}(x)+O(\sqrt x\log x)$ 是这一恒等式在 $\Theta=\tfrac12$ 时的精细化。
+
+\subsection{Mertens 函数的情形}
+同样，对 $\Rea s>1$，$M(x)=\sum_{n\le x}\mu(n)$ 满足
+\[
+ \frac1{\zeta(s)}=s\int_1^\infty M(x)x^{-s-1}\dd x .                   \tag{3.2}
+\]
+\begin{proposition}\label{prop:mertens}
+若 $M(x)=O(x^\theta)$，$\theta<1$，则 $\zeta$ 在 $\Rea s>\theta$ 内无零点。
+\end{proposition}
+\begin{proof}
+右端在 $\Rea s>\theta$ 内解析，从而 $1/\zeta$ 在该区域解析；$\zeta$ 的零点将是 $1/\zeta$ 的极点。
+\end{proof}
+反方向（RH $\Rightarrow M(x)=O(x^{1/2+\varepsilon})$）需要在 RH 下估计 $1/\zeta$ 在竖线上的增长，
+见 Titchmarsh, \emph{The Theory of the Riemann Zeta-Function}, \S14.25。由此得到 Littlewood（1912）的等价形式。
+
+\subsection{一般原则}
+上面两例的结构是：某个算术量的 Mellin 变换（或 Dirichlet 级数）
+等于 $\zeta$ 的某个组合（$1/\zeta$、$\zeta'/\zeta$ 等），零点成为它的奇点；
+而 Mellin 变换的解析区域由原函数的增长指数决定。
+于是“零点不超出 $\Rea s=\tfrac12$”与“误差项不超出 $x^{1/2+\varepsilon}$”相互转化。
+只要一个算术量的生成函数以这种方式含有 $\zeta$ 的零点，就会产生一个 RH 的等价形式。
+这解释了第一类等价形式为何如此之多。
+
+\section{一个泛函分析的例子：Nyman--Beurling 判据}
+对 $0<\theta\le1$，令 $\rho_\theta(x)=\{\theta/x\}-\theta\{1/x\}$。
+当 $x>1$ 时 $\{\theta/x\}=\theta/x=\theta\{1/x\}$，故 $\rho_\theta$ 支在 $(0,1]$ 上，且有界。
+\begin{theorem}[Nyman 1950，Beurling 1955，引用]
+RH 成立当且仅当 $\{\rho_\theta:0<\theta\le1\}$ 的线性组合在 $L^2(0,1)$ 中稠密
+（等价地，其闭包包含常函数 $\chi=\mathbf 1_{(0,1)}$）。
+\end{theorem}
+\begin{proposition}\label{prop:nb}
+若常函数 $\chi$ 属于上述线性组合的 $L^2(0,1)$ 闭包，则 $\zeta$ 在 $\Rea s>\tfrac12$ 内无零点。
+\end{proposition}
+\begin{proof}
+已知对 $0<\Rea s<1$ 有 $\int_0^\infty\{u\}u^{-s-1}\dd u=-\zeta(s)/s$（Titchmarsh (2.1.5)）。
+作代换 $x=\theta/u$ 与 $x=1/u$，得
+\[
+ \int_0^1\rho_\theta(x)x^{s-1}\dd x=\frac{\zeta(s)}{s}\bigl(\theta-\theta^s\bigr),\qquad 0<\Rea s<1 .
+\]
+设有限线性组合 $f_n=\sum_jc_{n,j}\rho_{\theta_{n,j}}$ 在 $L^2(0,1)$ 中收敛于 $\chi$。
+当 $\Rea s>\tfrac12$ 时 $x^{s-1}\in L^2(0,1)$，由 Cauchy--Schwarz 不等式，
+\[
+ \int_0^1f_n(x)x^{s-1}\dd x\longrightarrow\int_0^1x^{s-1}\dd x=\frac1s .
+\]
+若 $\zeta(\rho)=0$，$\tfrac12<\Rea\rho<1$，左端在 $s=\rho$ 处恒为零，而右端为 $1/\rho\ne0$，矛盾。
+$\Rea s\ge1$ 处 $\zeta$ 本无零点。
+\end{proof}
+这里的机制与第 3 节相同：Mellin 变换把伸缩 $x\mapsto x/\theta$ 变为乘以 $\theta^s$，
+把 $\{1/x\}$ 变为 $\zeta(s)/s$；零点成为逼近的障碍，而 $L^2$ 的配对恰在 $\Rea s>\tfrac12$ 时有效。
+临界线 $\tfrac12$ 在此作为 $L^2$ 的指标出现。
+
+\section{等价形式的分类}
+下表按机制列出若干等价形式。“$\varepsilon$”表示对每个 $\varepsilon>0$ 成立。
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.2\textwidth}>{\raggedright\arraybackslash}p{0.5\textwidth}>{\raggedright\arraybackslash}p{0.2\textwidth}}
+\toprule
+机制 & 等价形式 & 出处\\
+\midrule
+素数分布误差项 & $\pi(x)=\operatorname{li}(x)+O(\sqrt x\log x)$；$\psi(x)=x+O(x^{1/2+\varepsilon})$ & von Koch 1901\\
+算术函数和 & $M(x)=O(x^{1/2+\varepsilon})$ & Littlewood 1912\\
+ & Redheffer 矩阵 $A_n$ 满足 $\det A_n=M(n)$，故 RH $\iff\det A_n=O(n^{1/2+\varepsilon})$ & Redheffer 1977\\
+除数和不等式 & $\sigma(n)<e^\gamma n\log\log n$，$n>5040$ & Robin 1984\\
+ & $\sigma(n)\le H_n+e^{H_n}\log H_n$，$n\ge1$ & Lagarias 2002\\
+Farey 序列 & $\sum_{\nu}\bigl|f_\nu-\nu/\Phi(N)\bigr|=O(N^{1/2+\varepsilon})$ & Franel, Landau 1924\\
+幂级数增长 & $\sum_{k\ge1}\dfrac{(-x)^k}{(k-1)!\,\zeta(2k)}=O(x^{1/4+\varepsilon})$ & Riesz 1916\\
+函数逼近 & Nyman--Beurling 判据（第 4 节） & Nyman 1950, Beurling 1955\\
+正性 & 显式公式给出的二次型在适当检验函数类上非负 & Weil 1952\\
+ & $\lambda_n\ge0$ 对一切 $n$ 成立（学习笔记第 10 篇） & Li 1997\\
+导函数零点 & $\zeta'$ 在 $0<\Rea s<\tfrac12$ 内无零点 & Speiser 1934\\
+热方程形变 & de Bruijn--Newman 常数 $\Lambda\le0$（由 Rodgers--Tao，即 $\Lambda=0$） & de Bruijn 1950, Newman 1976\\
+\bottomrule
+\end{tabular}
+\end{center}
+表中 $f_\nu$ 为 $N$ 阶 Farey 序列在 $(0,1]$ 中的第 $\nu$ 项，$\Phi(N)$ 为其项数；Riesz 判据中级数前的符号约定各文献不一，不影响结论。
+
+\section{讨论}
+\begin{enumerate}
+ \item 大多数等价形式经由同一机制产生：零点通过 Mellin 变换（或显式公式）与增长指数相对应。
+ 前三类本质上是同一恒等式 $\inf\theta=\Theta$ 在不同算术量上的表现；
+ Robin 与 Lagarias 的判据则将 $\Theta=\tfrac12$ 精确到不含 $\varepsilon$ 的不等式，需要更精细的分析。
+ \item 第二种机制是正性：Weil 与 Li 的判据把零点位置转化为一族二次型或一列实数的非负性。
+ 第三种是逼近或谱的语言（Nyman--Beurling），其中临界线以 $L^2$ 的指标出现。
+ \item 等价改写一般不降低问题的难度，但提供不同的工具与不同的逻辑形式：
+ Lagarias 判据的每个实例可以有限检验（学习笔记第 13 篇）；
+ Li 判据适合数值观察；de Bruijn--Newman 常数允许讨论“离 RH 有多远”。
+ \item 等价形式之多也反映了 $\zeta$ 在数论中的位置：凡以素数或乘性函数为对象、以 Dirichlet 级数为工具的问题，
+ 其误差项最终都由零点控制。RH 因而不是一个孤立的命题，而是这类误差项最优性的共同表述。
+\end{enumerate}
+
+\section*{参考}
+\begin{itemize}
+ \item E.\ C.\ Titchmarsh, \emph{The Theory of the Riemann Zeta-Function}, 2nd ed., 1986, Ch.~II, XIV.
+ \item A.\ E.\ Ingham, \emph{The Distribution of Prime Numbers}, Cambridge, 1932.
+ \item P.\ Borwein, S.\ Choi, B.\ Rooney, A.\ Weirathmueller (eds.), \emph{The Riemann Hypothesis: A Resource for the Afficionado and Virtuoso Alike}, Springer, 2008（汇集了多数等价形式的原始文献）。
+ \item G.\ Robin, Grandes valeurs de la fonction somme des diviseurs et hypothèse de Riemann, \emph{J.\ Math.\ Pures Appl.} 63 (1984).
+ \item J.\ C.\ Lagarias, An elementary problem equivalent to the Riemann hypothesis, \emph{Amer.\ Math.\ Monthly} 109 (2002).
+ \item A.\ Beurling, A closure problem related to the Riemann zeta-function, \emph{PNAS} 41 (1955).
+ \item X.-J.\ Li, The positivity of a sequence of numbers and the Riemann hypothesis, \emph{J.\ Number Theory} 65 (1997).
+\end{itemize}
+\end{document}
