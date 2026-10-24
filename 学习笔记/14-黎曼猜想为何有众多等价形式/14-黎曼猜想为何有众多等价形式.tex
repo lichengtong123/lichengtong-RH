@@ -32,7 +32,7 @@ RH 即 $\Theta=\tfrac12$。许多等价形式实际上来自形如“某量的�
 RH 只是其中取 $\Theta=\tfrac12$ 的特例。下一节给出这种机制的两个例子。
 
 \section{机制：Mellin 变换把零点变为增长指数}
-\subsection{$\psi$ 的情形}
+\subsection{\texorpdfstring{$\psi$ 的情形}{psi 的情形}}
 对 $\Rea s>1$，由 Abel 求和，
 \[
  -\frac{\zeta'}{\zeta}(s)=s\int_1^\infty\psi(x)x^{-s-1}\dd x,\qquad
@@ -46,8 +46,10 @@ RH 只是其中取 $\Theta=\tfrac12$ 的特例。下一节给出这种机制的�
 若 $\psi(x)-x=O(x^\theta)$，$\tfrac12\le\theta<1$，则 $\zeta$ 在 $\Rea s>\theta$ 内无零点。
 \end{proposition}
 \begin{proof}
-在 $\Rea s\ge\theta+\delta$ 上，(3.1) 右端的被积函数由 $Cx^{\theta-\delta-1}$ 控制，
-积分在 $\Rea s>\theta$ 内解析。左端在 $s=1$ 处两个极点的留数均为 $1$，相互抵消。
+在 $\Rea s\ge\theta+\delta$ 上，
+$|(\psi(x)-x)x^{-s-1}|\le Cx^{-1-\delta}$。
+在任意紧集上，参数 $s$ 有界，求导所产生的固定次 $\log x$ 因子也仍然可积，
+故右端在 $\Rea s>\theta$ 内解析。左端在 $s=1$ 处两个极点的留数均为 $1$，相互抵消。
 若 $\zeta(\rho)=0$，$\Rea\rho>\theta$，则 $-\zeta'/\zeta$ 在 $\rho$ 处有留数为负重数的极点，
 左端不解析，矛盾。
 \end{proof}
@@ -77,7 +79,8 @@ von Koch（1901）的等价形式 $\pi(x)=\operatorname{li}(x)+O(\sqrt x\log x)$
 等于 $\zeta$ 的某个组合（$1/\zeta$、$\zeta'/\zeta$ 等），零点成为它的奇点；
 而 Mellin 变换的解析区域由原函数的增长指数决定。
 于是“零点不超出 $\Rea s=\tfrac12$”与“误差项不超出 $x^{1/2+\varepsilon}$”相互转化。
-只要一个算术量的生成函数以这种方式含有 $\zeta$ 的零点，就会产生一个 RH 的等价形式。
+若相关零点确实成为不被消去的奇点，并且反方向所需的增长估计和反演步骤也得到证明，
+就能建立这类等价形式。仅在生成函数中出现 $\zeta$，还不足以保证两个方向都成立。
 这解释了第一类等价形式为何如此之多。
 
 \section{一个泛函分析的例子：Nyman--Beurling 判据}
@@ -91,7 +94,13 @@ RH 成立当且仅当 $\{\rho_\theta:0<\theta\le1\}$ 的线性组合在 $L^2(0,1
 若常函数 $\chi$ 属于上述线性组合的 $L^2(0,1)$ 闭包，则 $\zeta$ 在 $\Rea s>\tfrac12$ 内无零点。
 \end{proposition}
 \begin{proof}
-已知对 $0<\Rea s<1$ 有 $\int_0^\infty\{u\}u^{-s-1}\dd u=-\zeta(s)/s$（Titchmarsh (2.1.5)）。
+由第 4 篇的 Abel 表示，在 $0<\Rea s<1$ 内，
+\[
+ \int_1^\infty\{u\}u^{-s-1}\dd u=\frac1{s-1}-\frac{\zeta(s)}s,
+ \qquad
+ \int_0^1\{u\}u^{-s-1}\dd u=\frac1{1-s}.
+\]
+两式相加得 $\int_0^\infty\{u\}u^{-s-1}\dd u=-\zeta(s)/s$。
 作代换 $x=\theta/u$ 与 $x=1/u$，得
 \[
  \int_0^1\rho_\theta(x)x^{s-1}\dd x=\frac{\zeta(s)}{s}\bigl(\theta-\theta^s\bigr),\qquad 0<\Rea s<1 .
@@ -133,19 +142,24 @@ Farey 序列 & $\sum_{\nu}\bigl|f_\nu-\nu/\Phi(N)\bigr|=O(N^{1/2+\varepsilon})$ 
 \end{tabular}
 \end{center}
 表中 $f_\nu$ 为 $N$ 阶 Farey 序列在 $(0,1]$ 中的第 $\nu$ 项，$\Phi(N)$ 为其项数；Riesz 判据中级数前的符号约定各文献不一，不影响结论。
+Redheffer 矩阵的元素为 $A_{ij}=1$（当 $j=1$ 或 $i\mid j$），其余为 $0$，其中 $1\le i,j\le n$。
+Weil 一项仅标出机制，使用时必须按原判据指定检验函数类、卷积与对合，
+不能将表中概述直接当作任意二次型的非负定理。
 
 \section{讨论}
 \begin{enumerate}
- \item 大多数等价形式经由同一机制产生：零点通过 Mellin 变换（或显式公式）与增长指数相对应。
- 前三类本质上是同一恒等式 $\inf\theta=\Theta$ 在不同算术量上的表现；
- Robin 与 Lagarias 的判据则将 $\Theta=\tfrac12$ 精确到不含 $\varepsilon$ 的不等式，需要更精细的分析。
+ \item 一大类等价形式经由相关机制产生：零点通过 Mellin 变换或显式公式与增长指数相联系。
+ 本文已在 $\psi$ 的情形说明增长指数恒等式，在 $M$ 的情形说明一个方向并引用另一个方向。
+ Robin 与 Lagarias 的精确不等式还需要额外的算术分析，不能从上述一般机制直接推出。
  \item 第二种机制是正性：Weil 与 Li 的判据把零点位置转化为一族二次型或一列实数的非负性。
  第三种是逼近或谱的语言（Nyman--Beurling），其中临界线以 $L^2$ 的指标出现。
  \item 等价改写一般不降低问题的难度，但提供不同的工具与不同的逻辑形式：
- Lagarias 判据的每个实例可以有限检验（学习笔记第 13 篇）；
+ Lagarias 判据的严格反例若存在，可以由有限计算认证（学习笔记第 13 篇）；
+ 一般可计算实数间的非严格比较不自动给出保证终止的判定过程。
  Li 判据适合数值观察；de Bruijn--Newman 常数允许讨论“离 RH 有多远”。
- \item 等价形式之多也反映了 $\zeta$ 在数论中的位置：凡以素数或乘性函数为对象、以 Dirichlet 级数为工具的问题，
- 其误差项最终都由零点控制。RH 因而不是一个孤立的命题，而是这类误差项最优性的共同表述。
+ \item 等价形式之多也反映了 $\zeta$ 在数论中的位置：许多算术部分和通过其生成函数与零点相联系。
+ 但不同问题还可能涉及其他 $L$ 函数、额外奇点或新的估计条件，
+ 不能断言所有乘性函数的误差都由 $\zeta$ 零点单独决定。
 \end{enumerate}
 
 \section*{参考}
