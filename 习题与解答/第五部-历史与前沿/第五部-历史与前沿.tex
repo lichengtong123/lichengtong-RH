@@ -61,7 +61,7 @@
   framerule=0.3pt,rulecolor=\color{gray!60},xleftmargin=1em,xrightmargin=1em,
   breaklines=true,showstringspaces=false}
 
-\newcommand{\versiondate}{2026 年 10 月 23 日}
+\newcommand{\versiondate}{2026 年 10 月 24 日（修订）}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第五部}
@@ -100,10 +100,14 @@
   \item \textbf{固定题号。}
     每题编号（如 22.3）一经发布不再改动；删去的题号留空，不由新题顶替，新题接续编号。反馈时请注明题号。
   \item \textbf{本部的性质。}
-    第~\bref{ch:riemann_original_interpretation}~章是 Riemann 原稿的译稿与解读，第~\bref{ch:contemporary_research}~章介绍前沿研究，二者都以前文已证的结果为基础。因此本部题目主要是：对照原稿核算其中的公式与常数，以及用前文工具复算前沿结论中可以初等检验的部分；另有两题辨别各类结果的逻辑强度。前沿定理本身的证明不在练习范围内。
+    第~\bref{ch:riemann_original_interpretation}~章是 Riemann 原稿的译稿与解读，第~\bref{ch:contemporary_research}~章介绍前沿研究，二者都以前文已证的结果为基础。因此本部题目主要是：对照原稿核算其中的公式与常数，以及用前文工具复算前沿结论中可以初等检验的部分；另有若干子问辨析结论的逻辑强度。前沿定理本身的证明不在练习范围内。
+  \item \textbf{主选与可选。}
+    星级表示完成难度，不等于题目的作用。初读时建议以理解性的子问为主；以下为可选延伸：习题 21.3 的高精度积分与整函数展开的控制，21.4(b) 的尾部修正，21.6 的截断比较，22.3(c) 的尾部估计，22.4(c) 的有限域编程枚举，22.5 的完整统计实验。
   \item \textbf{数值。}
     参考值用 Python 的 \texttt{mpmath} 计算（浮点，非区间认证）；「$\approx$」表示四舍五入。涉及零点的题使用 \texttt{mpmath.zetazero} 给出的前 $1000$ 个零点。
 \end{itemize}
+
+本次修订（2026 年 10 月 24 日）依据读者审查意见改正了习题 22.4、22.6、22.8 的题设或解答中的错误，补充了 21.3、21.4、21.5、21.6、22.1、22.3、22.5、22.7 的条件与说明，并为 22.8 增加两个讨论子问。
 
 本批题目为初稿，题目可解性与解答仍待作者逐题复核。发现错误或表述不清，请在配套仓库的 Issues 中注明题号与具体位置。
 
@@ -151,14 +155,21 @@
 \begin{enumerate}
   \item 由 $1+\frac{(s-\frac12)^2}{\alpha^2}=\bigl(1+\frac1{4\alpha^2}\bigr)\bigl(1-\frac s\rho\bigr)\bigl(1-\frac s{1-\rho}\bigr)$ 推出这一关系的来源。
   \item 用前 $10$、$100$、$1000$ 个零点计算 $\sum\log(1+\frac1{4\gamma^2})$，并仿照第三部习题 10.3 加上尾部修正，与 $-\log2-\log\xi(\frac12)$ 比较。
-  \item 这一修正只有约 $0.0058$。为什么不能因为它小就略去？
+  \item 记 $\Delta=\sum\log(1+\frac1{4\alpha^2})\approx0.0058$。若沿用原稿以 $s=\frac12$ 为基点的常数 $\log\xi(\frac12)$ 而漏掉 $\Delta$，$J_0$ 与 $\pi_0$ 的公式会出现什么偏差？为什么不能因为它小就略去？
 \end{enumerate}
 \toHint{21.4}
 
 \Q{21.5}{\lvI}{原稿的非周期项与 Gauss 的观察}
 \begin{enumerate}
   \item 原稿用 $(-1)^\mu$（$\mu$ 为无平方因子数 $m$ 的素因子个数）写反演。列出 $m\le12$ 的系数，说明它与 Möbius 函数的关系，以及为什么非周期项中没有 $m=4$、却有 $+\frac16\Li(x^{1/6})$。
-  \item 已知 $\pi(10^5)=9592$、$\Li(10^5)\approx9628.76$、$R(10^5)\approx9587.43$；$\pi(10^6)=78498$、$R(10^6)\approx78527.40$。这里 $R(x)=\sum_m\frac{\mu(m)}m\li(x^{1/m})$ 即原稿的非周期项（用 $\li$ 代替 $\Li$）。比较两种近似的误差。
+  \item 已知
+  \[
+    \begin{aligned}
+    &\pi(10^5)=9592,&&\Li(10^5)\approx9628.76,&&R(10^5)\approx9587.43,\\
+    &\pi(10^6)=78498,&&\Li(10^6)\approx78626.50,&&R(10^6)\approx78527.40.
+    \end{aligned}
+  \]
+  这里 $\Li$ 是本书的偏移积分 $\li-\li(2)$；$R(x)=\sum_{m\ge1}\frac{\mu(m)}m\li(x^{1/m})$ 是标准的 Riemann $R$ 函数，对应原稿的非周期项（原稿的 $\mathrm{Li}$ 即本书的主值 $\li$）。比较两种近似的误差（$R$ 可调用 \texttt{mpmath.riemannr} 计算）。$R$ 与精确反演公式中止于 $\nu(x)$ 的有限主项有何不同？
   \item 原稿说「$F(x)=\Li(x)$ 给出的值稍大」。这一判断在什么意义下正确，在什么意义下不能推广？
 \end{enumerate}
 \toHint{21.5}
@@ -180,7 +191,7 @@
 \begin{enumerate}
   \item 由 Dirichlet 级数证明 $|F(1+\delta+it)|\ll_\delta|t|+2$。
   \item 由函数方程与 Stirling 公式，$|\chi(-\delta+it)|\asymp|t|^{1/2+\delta}$，其中 $\zeta(s)=\chi(s)\zeta(1-s)$。由此证明 $|F(-\delta+it)|\ll_\delta(|t|+2)^{3/2+\delta}$。
-  \item 对两侧指数作线性插值，求 $\sigma=\frac12$ 处的指数，推出 $\zeta(\frac12+it)\ll_\varepsilon|t|^{1/4+\varepsilon}$。Bourgain 的指数 $13/84$ 比 $\frac14$ 小多少？Lindelöf 猜想对应什么指数？
+  \item 核查 $F$ 在闭竖带 $-\delta\le\Re s\le1+\delta$ 中满足定理~\bref{thm:phragmen_lindelof} 所要求的增长条件后，对两侧指数作线性插值，求 $\sigma=\frac12$ 处的指数，推出 $\zeta(\frac12+it)\ll_\varepsilon|t|^{1/4+\varepsilon}$。Bourgain 的指数 $13/84$ 比 $\frac14$ 小多少？Lindelöf 猜想对应什么指数？
 \end{enumerate}
 \toHint{22.1}
 
@@ -188,7 +199,7 @@
 Ingham 估计为 $N(\sigma,T)\ll_\sigma T^{3(1-\sigma)/(2-\sigma)}(\log T)^5$。
 \begin{enumerate}
   \item 计算 $\sigma=\frac12,\frac34,0.9$ 时 $T$ 的指数。$\sigma=\frac12$ 的结果为什么只是平凡的？
-  \item 设 $\sigma_0>\frac12$。由这一估计，实部大于 $\sigma_0$ 的零点在全部零点中的比例趋于什么？这为何仍推不出 RH？
+  \item 固定 $\frac12<\sigma_0<1$。由这一估计，实部大于 $\sigma_0$ 的零点在全部零点中的比例趋于什么？这为何仍推不出 RH？
 \end{enumerate}
 \toHint{22.2}
 
@@ -196,7 +207,7 @@ Ingham 估计为 $N(\sigma,T)\ll_\sigma T^{3(1-\sigma)/(2-\sigma)}(\log T)^5$。
 \begin{enumerate}
   \item 证明 $|1-1/\rho|=1\iff\Re\rho=\frac12$；写 $1-1/\rho=e^{i\theta_\rho}$，说明 RH 下共轭配对后 $\lambda_n=\sum_{\gamma>0}2(1-\cos n\theta_\rho)\ge0$。
   \item 证明 $\lambda_1=\sum_\rho1/\rho=-b_0$，由第三部习题 10.3 得 $\lambda_1\approx0.0230957$。
-  \item 用前 $1000$ 个零点计算 $\lambda_2$ 的部分和，并估计尾部（提示：$\theta_\rho\approx1/\gamma$）。
+  \item 用前 $1000$ 个零点计算 $\lambda_2$ 的部分和，并在 RH 下（零点都在临界线上的尾部模型）估计尾部（提示：$\theta_\rho\approx1/\gamma$）。
   \item 只算出有限多个 $\lambda_n>0$ 为什么不构成 RH 的证明？
 \end{enumerate}
 \toHint{22.3}
@@ -205,8 +216,8 @@ Ingham 估计为 $N(\sigma,T)\ll_\sigma T^{3(1-\sigma)/(2-\sigma)}(\log T)^5$。
 考虑 $\mathbb F_5$ 上的椭圆曲线 $C:\ y^2=x^3+x+1$（亏格 $g=1$）。
 \begin{enumerate}
   \item 计算 $N_1=\#C(\mathbb F_5)$（含无穷远点）。
-  \item 对 $g=1$，$P_C(u)=1-au+qu^2$，$a=q+1-N_1$。求 $P_C$ 及其根，验证 $|\alpha_j|=\sqrt5$；令 $u=5^{-s}$，验证相应零点满足 $\Re s=\frac12$。
-  \item 由 $N_n=q^n+1-(\alpha_1^n+\alpha_2^n)$ 预测 $N_2=\#C(\mathbb F_{25})$。（可编程在 $\mathbb F_{25}$ 中枚举核对。）
+  \item 对 $g=1$，$P_C(u)=1-au+qu^2=(1-\alpha_1u)(1-\alpha_2u)$，$a=q+1-N_1$。这里 $\alpha_j$ 是 $P_C$ 的倒数根（Frobenius 特征值），$P_C$ 的根是 $u_j=\alpha_j^{-1}$。求 $P_C$ 与 $\alpha_j$，验证 $|\alpha_j|=\sqrt5$、$|u_j|=1/\sqrt5$；令 $u=5^{-s}$，验证相应零点满足 $\Re s=\frac12$。
+  \item 由 $N_n=q^n+1-(\alpha_1^n+\alpha_2^n)$ 预测 $N_2=\#C(\mathbb F_{25})$。（选做：编程在 $\mathbb F_{25}$ 中枚举核对。）
   \item 这个例子中「零点位于临界线」由什么保证？为什么不能照搬到经典 $\zeta$？
 \end{enumerate}
 \toHint{22.4}
@@ -214,8 +225,8 @@ Ingham 估计为 $N(\sigma,T)\ll_\sigma T^{3(1-\sigma)/(2-\sigma)}(\log T)^5$。
 \Q{22.5}{\lvIII}{零点的对关联：数值实验}
 对前 $1000$ 个零点，令 $d_n=\frac1{2\pi}\log\frac{\gamma_n}{2\pi}$。
 \begin{enumerate}
-  \item 计算归一化相邻间距 $\delta_n=d_n(\gamma_{n+1}-\gamma_n)$ 的平均值与最小值。
-  \item 对 $a=0.25,0.5,1$，统计「每个零点平均有多少个更高的零点满足 $d_n(\gamma_m-\gamma_n)<a$」，与 $\int_0^ag(u)\dd u$（$g(u)=1-(\frac{\sin\pi u}{\pi u})^2$）及独立随机点（Poisson）的预测 $a$ 比较。
+  \item 计算归一化相邻间距 $\delta_n=d_n(\gamma_{n+1}-\gamma_n)$（$n=1,\dots,999$）的平均值与最小值。
+  \item 对 $a=0.25,0.5,1$，统计「每个零点平均有多少个更高的零点满足 $d_n(\gamma_m-\gamma_n)<a$」（对 $n=1,\dots,1000$ 平均，$m$ 只取表内的 $n<m\le1000$），与 $\int_0^ag(u)\dd u$（$g(u)=1-(\frac{\sin\pi u}{\pi u})^2$）及独立随机点（Poisson）的预测 $a$ 比较。
   \item 正文强调「对关联」与「相邻间距」不是同一统计量，且统计规律不约束单个零点的实部。结合 (a)(b) 说明这两点。
 \end{enumerate}
 \toHint{22.5}
@@ -224,7 +235,7 @@ Ingham 估计为 $N(\sigma,T)\ll_\sigma T^{3(1-\sigma)/(2-\sigma)}(\log T)^5$。
 \begin{enumerate}
   \item 利用 $|\zeta(\frac12+it)|=|Z(t)|$，数值计算 $M_1(100)=\frac1{100}\int_0^{100}Z(t)^2\dd t$。
   \item 与 $\log T$ 及更精确的 $\log\frac T{2\pi}+2\gamma_E-1$ 比较。$M_1(T)\sim\log T$ 在 $T=100$ 处为什么还不准？
-  \item $M_1$ 很小并不说明 $|\zeta(\frac12+it)|$「通常」很小。为什么？
+  \item 由 $M_1$ 能对「$|\zeta(\frac12+it)|$ 取大值的 $t$ 所占比例」得到什么上界？为什么单靠这一个矩不能确定 $|\zeta|$ 的典型大小或完整分布？
 \end{enumerate}
 \toHint{22.6}
 
@@ -236,17 +247,18 @@ Ingham 估计为 $N(\sigma,T)\ll_\sigma T^{3(1-\sigma)/(2-\sigma)}(\log T)^5$。
 \toHint{22.7}
 
 \Q{22.8}{\lvI}{各类结果的逻辑强度}
-第~\bref{ch:contemporary_research}~章强调，下列结果「不构成统一的证明进度」。把每一条归入：有限高度验证、无条件定理、等价判据、以 RH 为前提的条件结果、未证猜想（或模型预测）、预印本；并指出它对 RH 的意义。
+第~\bref{ch:contemporary_research}~章强调，下列结果「不构成统一的证明进度」。对每一条分几个方面判断（这些方面不是互斥的格子，同一条可以同时属于几类）：结论类型（定理、猜想或模型预测）；所用前提（无条件还是以 RH 为前提）；适用范围（有限高度、渐近还是全称）；来源与发表状态（如预印本）；对经典 RH 的意义。
 \begin{enumerate}
   \item Platt--Trudgian：高度 $3\times10^{12}$ 以下的零点全在临界线上；
   \item Pratt 等：临界线上零点的比例超过 $\frac5{12}$；
   \item Alp\"oge--Furman：超过约 $67.25\%$ 的零点为单零点且在临界线上；
   \item Bourgain：$\zeta(\frac12+it)\ll_\varepsilon|t|^{13/84+\varepsilon}$；
   \item Rodgers--Tao：$\Lambda_{\mathrm{dBN}}\ge0$；
-  \item Montgomery 的对关联定理；
+  \item Montgomery 1973 年的原始对关联定理；
   \item Keating--Snaith 的矩预测 $M_k(T)\sim c_k(\log T)^{k^2}$；
   \item Weil：有限域上曲线的黎曼猜想。
 \end{enumerate}
+再讨论两个问题：(i) 为什么有限域上的几何结构能强制全部零点的位置，而增长界与有限统计只能提供不同类型的约束？请联系本书的函数方程、整函数与显式公式说明。(ii) 若一份形式化证书以若干解析结果为假设，它实际核验了什么，又引用了什么？（不要求运行任何证明助理。）
 \toHint{22.8}
 
 % ============================================================
@@ -260,7 +272,7 @@ Ingham 估计为 $N(\sigma,T)\ll_\sigma T^{3(1-\sigma)/(2-\sigma)}(\log T)^5$。
 
 \Hint{21.2}(b) $-2\pi in$ 的主辐角为 $-\frac\pi2$。(c) $i^{s-1}+(-i)^{s-1}=2\cos\frac{\pi(s-1)}2=2\sin\frac{\pi s}2$；再用余元公式。
 
-\Hint{21.3}(a) $s=\frac12+it$ 时 $s(s-1)=-(t^2+\frac14)$，$x^{s/2-1}+x^{-(1+s)/2}=2x^{-3/4}\cos(\frac t2\log x)$。(b) $\psi(x)$ 用前若干项即可，$x>5$ 后可忽略。
+\Hint{21.3}(a) $s=\frac12+it$ 时 $s(s-1)=-(t^2+\frac14)$，$x^{s/2-1}+x^{-(1+s)/2}=2x^{-3/4}\cos(\frac t2\log x)$。(b) 直接用分段求积积分到 $\infty$。若截断在有限上限 $X\ge1$，尾部不超过 $(t^2+\frac14)\int_X^\infty\psi(x)x^{-3/4}\dd x$，并可用 $\psi(x)\le e^{-\pi x}/(1-e^{-3\pi X})$（$x\ge X$）控制；按目标精度选 $X$。$t=\gamma_1$ 要用高精度零点（如 \texttt{mpmath.zetazero(1)}）。(c) 在 $|t|\le R$ 上，余弦级数各项绝对值之和不超过 $\cosh(\frac R2\log x)\le x^{R/2}$。
 
 \Hint{21.4}(a) 在 $\Xi$ 的配对乘积中把 $t$ 换成 $(s-\frac12)/i$，再令 $s=0$。(b) 尾部 $\approx\int_T^\infty\frac{\log(t/2\pi)}{2\pi}\cdot\frac{\dd t}{4t^2}$。
 
@@ -283,7 +295,7 @@ Ingham 估计为 $N(\sigma,T)\ll_\sigma T^{3(1-\sigma)/(2-\sigma)}(\log T)^5$。
 
 \Hint{22.7}(b) 奇素数的平方都 $\equiv1\pmod4$。
 
-\Hint{22.8}逐条对照第~\bref{ch:contemporary_research}~章引言末段列出的五类结果。
+\Hint{22.8}对照第~\bref{ch:contemporary_research}~章引言末段列出的几类结果，但不要求每条只归一类。(d) 注意 RH $\Rightarrow$ Lindelöf。(ii) 参看第~\bref{ch:contemporary_research}~章关于形式化核验的一节。
 
 % ============================================================
 \newpage
@@ -314,14 +326,20 @@ $\Pi(\frac s2)(s-1)\pi^{-s/2}\zeta(s)=\frac12s(s-1)\pi^{-s/2}\Gamma(\frac s2)\ze
 $2\sin(\pi s)\Gamma(s)\zeta(s)=2(2\pi)^s\sin\frac{\pi s}2\,\zeta(1-s)$，即
 $\zeta(s)=\dfrac{(2\pi)^s\zeta(1-s)}{2\cos(\pi s/2)\Gamma(s)}$。由余元公式 $\Gamma(s)\Gamma(1-s)=\frac{\pi}{2\sin(\pi s/2)\cos(\pi s/2)}$，
 $\frac1{2\cos(\pi s/2)\Gamma(s)}=\frac{\sin(\pi s/2)\Gamma(1-s)}{\pi}$，得
-$\zeta(s)=2^s\pi^{s-1}\sin\frac{\pi s}2\Gamma(1-s)\zeta(1-s)$，即式~(\bref{eq:asymmetric_fe_alt})；再由解析延拓推广到全平面。
+$\zeta(s)=2^s\pi^{s-1}\sin\frac{\pi s}2\Gamma(1-s)\zeta(1-s)$，即式~(\bref{eq:asymmetric_fe_alt})。以上先在 $\Re s<0$ 且避开 $\sin$、$\cos$、$\Gamma$ 因子的零点与极点处约分，再按亚纯恒等式推广到全平面；「全平面」并不表示每个因子在每一点都有限。
 
 \Sol{21.3}{原稿的 $\xi(t)$ 积分表示}
 (a) 由 $\pi^{-s/2}\Gamma(\frac s2)\zeta(s)=\frac1{s(s-1)}+\int_1^\infty\psi(x)\bigl(x^{s/2-1}+x^{-(1+s)/2}\bigr)\dd x$，乘以 $\frac12s(s-1)$ 得 $\xi(s)=\frac12+\frac12s(s-1)\int_1^\infty(\cdots)$。$s=\frac12+it$ 时 $s(s-1)=-(t^2+\frac14)$，两幂之和为 $x^{-3/4}(x^{it/2}+x^{-it/2})=2x^{-3/4}\cos(\frac t2\log x)$，即得原稿公式。
 
-(b) 数值积分（$\psi$ 取前若干项）：$t=0$ 时 $0.4971208$，$t=10$ 时 $0.0379679$，与 $\Xi$ 一致；$t=\gamma_1$ 时约 $4\times10^{-22}$，在计算精度内为零。
+(b) 分段求积并积分到 $\infty$（$30$ 位工作精度）：$t=0$ 时 $0.497120778188$，$t=10$ 时 $0.037967850311$，与 $\Xi$ 一致；$t=\gamma_1$（高精度零点）时约 $10^{-31}$，在计算精度内为零。
 
-(c) 被积函数只通过 $\cos(\frac t2\log x)$ 依赖 $t$，它是 $t$ 的偶函数，前因子 $t^2+\frac14$ 也只含 $t^2$。把余弦展开，第 $k$ 项系数含 $\int_1^\infty\psi(x)x^{-3/4}\frac{(\log x/2)^{2k}}{(2k)!}\dd x$；由 $\psi(x)\le Ce^{-\pi x}$，这些积分对每个 $t$ 的级数都绝对收敛，且系数下降极快，故展开对一切复 $t$ 收敛，$\Xi$ 为 $t^2$ 的整函数。
+上限的选取不能随意：若只积分到 $X=5$，三处的值分别为
+\[
+  0.497120781620,\qquad 0.037967242534,\qquad 1.78\times10^{-6}.
+\]
+前因子 $t^2+\frac14$ 与 $\frac12$ 减去积分产生的消去会放大尾部误差，所以截断在 $5$ 只够低精度示意。由提示中的尾部界，$t=\gamma_1$ 时截断在 $X=5$、$8$、$10$ 的尾部分别不超过约 $2.7\times10^{-6}$、$1.6\times10^{-10}$、$2.5\times10^{-13}$。
+
+(c) 被积函数只通过 $\cos(\frac t2\log x)$ 依赖 $t$，它是 $t$ 的偶函数，前因子 $t^2+\frac14$ 也只含 $t^2$。把余弦展开，第 $k$ 项系数含 $\int_1^\infty\psi(x)x^{-3/4}\frac{(\log x/2)^{2k}}{(2k)!}\dd x$。为说明换序合法，在 $|t|\le R$ 上估计：余弦级数各项绝对值之和不超过 $\cosh(\frac R2\log x)\le x^{R/2}$，而 $\psi(x)x^{-3/4}x^{R/2}\le Ce^{-\pi x}x^{R/2}$ 在 $[1,\infty)$ 上可积。由此可以逐项积分，且所得 $t^2$ 的幂级数在 $|t|\le R$ 上一致收敛；$R$ 任意，故展开对一切复 $t$ 收敛，$\Xi$ 为 $t^2$ 的整函数。只说每个系数积分存在是不够的，需要这样一个统一的可积控制。
 
 \Sol{21.4}{常数修正 $\sum\log(1+\frac1{4\alpha^2})$}
 (a) $\rho=\frac12+i\alpha$，$1-\rho=\frac12-i\alpha$，
@@ -342,21 +360,29 @@ $1000$ & $0.0055952$ & $0.0057752$ \\
 \end{tabular}
 \end{center}
 
-(c) 它是 $J_0$ 显式公式中的常数，与 $x$ 无关，也不随所取零点个数改变；经 Möbius 反演后成为有限和 $C_\nu(x)$ 的一部分。略去它，有限截断无论取多少零点都会留下固定偏差。第 19 章表~\bref{tab:piKM-error} 中远离跳跃点的均方根误差已降到约 $0.02$，与这一常数同量级。更根本的是，显式公式是恒等式，常数必须精确，而非可调的拟合参数。
+(c) 要分清三个量：
+\[
+  \log\xi(\tfrac12)\approx-0.698922,\qquad \Delta\approx0.005775,\qquad \log\xi(\tfrac12)+\Delta=-\log2 .
+\]
+$J_0$ 完整公式中的常数是 $-\log2$，不是 $\Delta$；$\Delta$ 是从以 $s=\frac12$ 为基点的因子换到以 $s=0$ 为基点的因子时产生的归一化差。若保留旧基点的常数 $\log\xi(\frac12)$ 而漏掉 $\Delta$，$J_0$ 的公式就差一个固定常数 $\Delta$；经有限 Möbius 反演，$\pi_0$ 的公式差 $\Delta\sum_{n\le\nu(x)}\mu(n)/n$。这一偏差与 $x$ 无关，也不随所取零点个数改变，增加零点无法消除它。显式公式是恒等式，常数必须精确，而不是可调的拟合参数；所以不能因为它小就略去。这里取对数时要沿用书中的分支与共轭配对约定，不能用逐项任意的主值对数代替无穷乘积的解析对数。
 
 \Sol{21.5}{原稿的非周期项与 Gauss 的观察}
 (a) $m=1,\dots,12$ 的 $\mu(m)$ 依次为 $1,-1,-1,0,-1,1,-1,0,0,1,-1,0$。对无平方因子 $m$，$\mu(m)=(-1)^{\omega(m)}$，正是原稿的 $(-1)^\mu$；有平方因子的 $m$（$4,8,9,12$）不出现。$6=2\cdot3$ 有两个素因子，系数为 $+\frac16$。
 
 (b) $x=10^5$：$\Li-\pi\approx36.8$，$R-\pi\approx-4.6$；$x=10^6$：$\Li-\pi\approx128.5$，$R-\pi\approx29.4$。$R$ 吸收了 $-\frac12\li(\sqrt x)$ 等缓变项，误差明显更小；剩余部分主要是零点项的振荡，符号可正可负。
 
-(c) 在 Gauss 等人计算的范围内（以及远超此范围的现代计算中）确有 $\pi(x)<\Li(x)$，其系统部分正是 $\frac12\li(\sqrt x)$。但 Littlewood 证明 $\pi(x)-\Li(x)$ 无穷多次变号，所以「稍大」不能推广为对所有充分大 $x$ 成立的结论（第三部习题 14.5）。
+$R$ 是对全部 $m$ 求和的无穷级数（$m\to\infty$ 时 $\li(x^{1/m})$ 的行为使这一和须另行说明收敛方式，不能任意重排）；精确反演公式~(\bref{eq:explicit_pi}) 中的主项则止于 $\nu(x)=\lfloor\log_2x\rfloor$。二者数值接近但不相同：$x=10^5$ 时 $R\approx9587.4317$，有限主项 $\approx9587.4965$；$x=10^6$ 时分别约为 $78527.3994$ 与 $78527.3466$。
+
+(c) 在 Gauss 等人比较过的较大取样点上（以及远超此范围的现代计算中）确有 $\pi(x)<\li(x)$；这是原稿所说的 $\mathrm{Li}$，即本书的主值 $\li$。它不是对一切 $x$ 的断言：例如对本书的偏移 $\Li$，$\pi(2)=1>\Li(2)=0$。偏差的一个系统来源是 $\frac12\li(\sqrt x)$，但它不单独决定每个取样点的符号。Littlewood 证明 $\pi(x)-\li(x)$ 无穷多次变号（这一定理不依赖 RH），所以「稍大」不能推广为对所有充分大 $x$ 成立的结论（第三部习题 14.5）。
 
 \Sol{21.6}{密度中的周期项与求和次序}
-(a) $\li(x^\rho)=\Ei(\rho\log x)$，$\frac{\dd}{\dd x}\Ei(\rho\log x)=\frac{e^{\rho\log x}}{\rho\log x}\cdot\frac\rho x=\frac{x^{\rho-1}}{\log x}$。$\rho=\frac12\pm i\alpha$ 两项相加：$\frac{x^{-1/2}(x^{i\alpha}+x^{-i\alpha})}{\log x}=\frac{2x^{-1/2}\cos(\alpha\log x)}{\log x}$。链式法则带来的因子 $\rho$ 恰好消去 $\Ei$ 渐近式分母中的 $\rho$，所以密度中每个零点的权重相同，计数中则有 $1/|\rho|$。
+(a) $\li(x^\rho)=\Ei(\rho\log x)$，$\frac{\dd}{\dd x}\Ei(\rho\log x)=\frac{e^{\rho\log x}}{\rho\log x}\cdot\frac\rho x=\frac{x^{\rho-1}}{\log x}$。$\rho=\frac12\pm i\alpha$ 两项相加：$\frac{x^{-1/2}(x^{i\alpha}+x^{-i\alpha})}{\log x}=\frac{2x^{-1/2}\cos(\alpha\log x)}{\log x}$。由 $\Ei'(w)=e^w/w$ 与 $w=\rho\log x$，链式法则带来的因子 $\rho$ 与 $w$ 中的 $\rho$ 精确相消；这里不用任何大参数渐近。所以当 $\alpha$ 为实数（这对零点在临界线上）时，密度中每对零点的权重相同；一般 $\beta\ne\frac12$ 时模长还有不同的 $x^{\beta-1}$ 因子。计数中的 $1/|\rho|$ 只是 $\li(x^\rho)$ 渐近主项的尺度，不是完整函数的精确外部权重。
 
-(b) $(|\alpha|-\Re\alpha)(|\alpha|+\Re\alpha)=|\alpha|^2-(\Re\alpha)^2=(\Im\alpha)^2$。$|\Im\alpha|<\frac12$、$\Re\alpha\approx T$ 时差值 $<\frac1{8T}$。故按 $|\alpha|\le T$ 与按 $\Re\alpha\le T$ 截断，差别只涉及 $\Re\alpha\in(T-\frac1{8T},T]$ 的零点，由引理~\bref{lem:zero-local} 至多 $O(\log T)$ 个；每项 $O_x(1/T)$，总差 $O_x(\log T/T)\to0$。
+(b) 取代表根 $\Re\alpha>0$（$\Re\alpha$ 即零点的正虚部 $\gamma$）。$(|\alpha|-\Re\alpha)(|\alpha|+\Re\alpha)=|\alpha|^2-(\Re\alpha)^2=(\Im\alpha)^2$。按 $|\alpha|\le T$ 与按 $\Re\alpha\le T$ 截断，差别只在满足 $\Re\alpha\le T<|\alpha|$ 的零点上；对它们 $|\alpha|-\Re\alpha<\frac{1/4}{|\alpha|+\Re\alpha}<\frac1{4T}$，所以 $\Re\alpha\in(T-\frac1{4T},T]$，宽度为 $O(1/T)$。由引理~\bref{lem:zero-local}，这样的零点至多 $O(\log T)$ 个。对原来未求导的计数级数，每项 $\li(x^\rho)$ 为 $O_x(1/T)$，总差 $O_x(\log T/T)\to0$。
 
-(c) 对应零点和不绝对收敛（第三部习题 14.3(a)）：条件收敛的实级数可以重排到任意实数（Riemann 重排定理）。所以显式公式必须同时规定求和次序。
+这一比较只适用于计数级数。(a) 中求导得到的密度项没有 $1/\rho$ 的衰减，不能用同一估计；有限截断可以逐项求导，并不意味着可以对完整的无穷零点级数逐项求导。
+
+(c) 第三部习题 14.3(a) 证明的是 $\sum|x^\rho/\rho|$ 发散。Riemann 重排定理说：若某个实级数收敛但不绝对收敛，重排可以把它的和改成任意实数。这解释了为什么求和次序必须固定，所以本书把对称高度截断作为显式公式的一部分。但要严格证明原稿这句话，还须对所讨论的具体实级数逐一核实重排定理的条件；关于计数级数的结论也不能自动转移到它的导数级数上。这里只把原稿的陈述与本书已严格建立的范围并列说明。
 
 \subsection*{第 22 章}
 
@@ -365,33 +391,33 @@ $1000$ & $0.0055952$ & $0.0057752$ \\
 
 (b) $\zeta(-\delta+it)=\chi(-\delta+it)\zeta(1+\delta-it)$，$|\zeta(1+\delta-it)|\le\zeta(1+\delta)$；Stirling 公式给出 $|\chi(\sigma+it)|\asymp|t|^{1/2-\sigma}$，$\sigma=-\delta$ 时为 $|t|^{1/2+\delta}$。再乘 $|s-1|\asymp|t|$，得指数 $\frac32+\delta$。
 
-(c) $\frac12$ 恰为 $-\delta$ 与 $1+\delta$ 的中点，插值指数为 $\frac12\cdot1+\frac12(\frac32+\delta)=\frac54+\frac\delta2$。除以 $|s-1|\asymp|t|$ 得 $\frac14+\frac\delta2$；$\delta$ 任意小，即凸性界。$\frac14-\frac{13}{84}=\frac{8}{84}=\frac2{21}\approx0.095$，$13/84\approx0.1548$。Lindelöf 猜想对应指数 $0$（任意 $\varepsilon>0$）。
+(c) $F$ 在闭竖带内解析（极点已被 $s-1$ 消去），且在带内至多多项式增长（第~\bref{sec:subconvexity}~节），满足定理~\bref{thm:phragmen_lindelof} 的条件；不是任意解析函数只凭两条边界估计就能插值。$|t|\ge2$ 时用上面的 Stirling 比较，有限高度部分由连续性吸收。$\frac12$ 恰为 $-\delta$ 与 $1+\delta$ 的中点，插值指数为 $\frac12\cdot1+\frac12(\frac32+\delta)=\frac54+\frac\delta2$。除以 $|s-1|\asymp|t|$ 得 $\frac14+\frac\delta2$；$\delta$ 任意小，即凸性界。$\frac14-\frac{13}{84}=\frac{8}{84}=\frac2{21}\approx0.095$，$13/84\approx0.1548$。Lindelöf 猜想对应指数 $0$（任意 $\varepsilon>0$）。
 
 \Sol{22.2}{零点密度估计的指数}
 (a) $\sigma=\frac12$：$\frac{3/2}{3/2}=1$；$\sigma=\frac34$：$\frac{3/4}{5/4}=\frac35$；$\sigma=0.9$：$\frac{0.3}{1.1}\approx0.273$。$\sigma=\frac12$ 时上界 $T(\log T)^5$ 还比平凡的 $N(\sigma,T)\le N(T)\ll T\log T$ 弱，故无信息。
 
-(b) $\frac{N(\sigma_0,T)}{N(T)}\ll T^{\frac{3(1-\sigma_0)}{2-\sigma_0}-1}(\log T)^4\to0$（指数为负）：这些零点所占比例为零。但上界本身仍随 $T$ 增长，不排除无穷多个离线零点；RH 要求 $N(\sigma_0,T)=0$。
+(b) $\frac{N(\sigma_0,T)}{N(T)}\ll T^{\frac{3(1-\sigma_0)}{2-\sigma_0}-1}(\log T)^4\to0$（指数为负）：实部大于这个固定 $\sigma_0$ 的零点所占比例为零。不能再让 $\sigma_0$ 不加控制地趋于 $\frac12$，从而断言全部离线零点都只占零比例。上界本身仍随 $T$ 增长，不排除无穷多个离线零点；RH 要求 $N(\sigma_0,T)=0$。
 
 \Sol{22.3}{Li 系数 $\lambda_1$、$\lambda_2$}
 (a) $|1-1/\rho|=|\rho-1|/|\rho|=1\iff\rho$ 到 $0$ 与到 $1$ 等距 $\iff\Re\rho=\frac12$。RH 下 $1-1/\bar\rho=\overline{e^{i\theta_\rho}}=e^{-i\theta_\rho}$，一对共轭零点贡献 $(1-e^{in\theta})+(1-e^{-in\theta})=2(1-\cos n\theta)\ge0$。
 
 (b) $\lambda_1=\sum_\rho[1-(1-1/\rho)]=\sum_\rho1/\rho=-b_0\approx0.0230957$。
 
-(c) 前 $1000$ 个零点的部分和 $\approx0.0894674$。$\rho=\frac12+i\gamma$ 时 $1-1/\rho\approx1+i/\gamma$，$\theta\approx1/\gamma$，每对贡献 $2(1-\cos2\theta)\approx4/\gamma^2$，尾部 $\approx4\cdot\frac{\log(T/2\pi)+1}{2\pi T}\approx0.0028795$，合计 $\lambda_2\approx0.092347$。
+(c) 前 $1000$ 个零点的部分和 $\approx0.0894674$。$\rho=\frac12+i\gamma$ 时 $1-1/\rho\approx1+i/\gamma$，$\theta\approx1/\gamma$，每对贡献 $2(1-\cos2\theta)\approx4/\gamma^2$，尾部 $\approx4\cdot\frac{\log(T/2\pi)+1}{2\pi T}\approx0.0028795$，合计约 $0.0923469$。这是在 RH 下的尾部模型给出的实验估计，不是无条件的认证。由 Li 系数的解析表达 $\lambda_n=\frac1{(n-1)!}\frac{\dd^n}{\dd s^n}\bigl[s^{n-1}\log\xi(s)\bigr]_{s=1}$ 直接计算得 $\lambda_2\approx0.0923457$，两者相差约 $1.2\times10^{-6}$；所以尾部模型的结果只宜报到约 $0.09235$。
 
-(d) 判据要求对一切 $n$ 成立。离线零点对 $\lambda_n$ 的影响要到 $n$ 很大时才显现；有限多个系数为正只说明在相应范围内看不到反例，与有限高度验证同属有限性质。
+(d) 判据要求对一切 $n$ 成立；有限多个系数为正不能覆盖其余的 $n$。离线零点在哪个 $n$ 开始显现，取决于它的具体位置及其他项，无法预先断定。Li 系数涉及全部零点，有限高度验证只涉及一定高度以下的零点：二者都是有限检验，但检验的对象不同。
 
 \Sol{22.4}{有限域上的黎曼猜想：一个具体例子}
-(a) $x=0,1,2,3,4$ 时 $x^3+x+1\equiv1,3,1,1,4\pmod5$；$3$ 不是平方数，其余各给 $2$ 个 $y$。仿射点 $8$ 个，加无穷远点，$N_1=9$。
+(a) 先核对曲线光滑：短 Weierstrass 型 $y^2=x^3+ax+b$ 的判别式 $-16(4a^3+27b^2)$，此处为 $-16\cdot31\equiv4\pmod5$，不为零。$x=0,1,2,3,4$ 时 $x^3+x+1\equiv1,3,1,1,4\pmod5$；$3$ 不是平方数，其余各给 $2$ 个 $y$。仿射点 $8$ 个，加无穷远点，$N_1=9$。
 
-(b) $a=5+1-9=-3$，$P_C(u)=1+3u+5u^2$。$\alpha_{1,2}=\frac{-3\pm i\sqrt{11}}2$（满足 $\alpha_1+\alpha_2=-3$，$\alpha_1\alpha_2=5$），$|\alpha_j|^2=\frac{9+11}4=5$。$P_C$ 的零点 $u=\alpha_j^{-1}$，$|u|=5^{-1/2}$；$|5^{-s}|=5^{-\Re s}$，故 $\Re s=\frac12$。
+(b) $a=5+1-9=-3$，$P_C(u)=1+3u+5u^2$。$\alpha_{1,2}=\frac{-3\pm i\sqrt{11}}2$（满足 $\alpha_1+\alpha_2=-3$，$\alpha_1\alpha_2=5$），$|\alpha_j|^2=\frac{9+11}4=5$。$P_C$ 的根是倒数根的倒数 $u_j=\alpha_j^{-1}=\frac{-3\mp i\sqrt{11}}{10}$，$|u_j|=5^{-1/2}$；$|5^{-s}|=5^{-\Re s}$，故 $\Re s=\frac12$。
 
-(c) $\alpha_1^2+\alpha_2^2=a^2-2q=9-10=-1$，$N_2=25+1+1=27$。在 $\mathbb F_{25}=\mathbb F_5[i]/(i^2-2)$ 中枚举，确得 $27$ 个点（含无穷远点）。
+(c) $\alpha_1^2+\alpha_2^2=a^2-2q=9-10=-1$，$N_2=25+1+1=27$。在 $\mathbb F_{25}=\mathbb F_5[v]/(v^2-2)$ 中枚举（$2$ 不是模 $5$ 的平方数；这里用 $v$ 而不用 $i$，以免与复数的虚数单位 $i^2=-1$ 混淆），确得 $27$ 个点（含无穷远点）。
 
-(d) 由曲线的几何结构：$\alpha_j$ 是 Frobenius 在相应上同调上的特征值，其模长由 Weil 定理强制为 $\sqrt q$。经典 $\zeta$ 不是某条有限域曲线的 zeta 函数，没有现成的空间与 Frobenius 作用可以照搬。
+(d) 本例是一个二次多项式，可以直接算出 $|\alpha_j|=\sqrt5$，这与椭圆曲线的 Hasse 界 $|a|\le2\sqrt q$ 一致（$|{-3}|\le2\sqrt5$）。一般的结构解释来自曲线的几何：$\alpha_j$ 是 Frobenius 在相应上同调上的特征值，其模长由 Weil 定理强制为 $\sqrt q$；理解本例不需要先掌握上同调。经典 $\zeta$ 不是某条有限域曲线的 zeta 函数，没有现成的空间与 Frobenius 作用可以照搬。
 
 \Sol{22.5}{零点的对关联：数值实验}
-(a) 平均值 $\approx0.999$（归一化使平均间距约为 $1$）；最小值 $\approx0.138$。
+(a) 共 $999$ 个间距，平均值 $\approx0.999$（归一化使平均间距约为 $1$）；最小值 $\approx0.138$。
 
 (b)
 \begin{center}
@@ -406,30 +432,47 @@ $1$ & $0.553$ & $0.549$ & $1$ \\
 \bottomrule
 \end{tabular}
 \end{center}
-小距离处远少于 Poisson 预测，呈现「排斥」，与 $g(u)\approx\frac{\pi^2u^2}3$（$u\to0$）的趋势一致；$a=1$ 时与 $\int_0^1g$ 很接近。低处零点个数少、密度变化大，小 $a$ 的计数只有几个到几十个对，偏差在意料之中；Odlyzko 的高处数据吻合得好得多。
+小距离处远少于 Poisson 预测，呈现「排斥」，与 $g(u)\approx\frac{\pi^2u^2}3$（$u\to0$）的趋势一致；$a=1$ 时与 $\int_0^1g$ 很接近。三档的有序对数目分别为 $7$、$73$、$553$，除以 $1000$ 即表中数值。低处零点个数少、局部密度变化大，靠近最高样本处窗外的伙伴不可见，小 $a$ 的计数又只有几个到几十个对；所以这只是探索性的比较，不附带置信结论。Odlyzko 的高处数据吻合得好得多。
 
-(c) (a) 研究排序后相邻零点的距离；(b) 统计所有零点对，二者描述不同的分布。这些量全部由纵坐标 $\gamma$ 计算，与 $\beta$ 无关；即使有少数离线零点，它们的纵坐标仍可参与统计而不改变结果。所以统计吻合不约束单个零点的实部。
+(c) (a) 研究排序后相邻零点的距离；(b) 统计所有零点对，二者描述不同的分布。这些统计公式只使用纵坐标 $\gamma$：在纵坐标数据不变时，单独改变某些零点的实部不会改变这些统计量。所以这类纵坐标实验不能单独证明 RH，也不约束单个零点的实部。这并不是说真实零点的统计与实部在所有理论关系中都无关，也不是说增加或改变零点不会影响统计。
 
 \Sol{22.6}{二阶矩 $M_1(T)$}
 (a) $M_1(100)\approx2.956$。
 
 (b) $\log100\approx4.605$，而 $\log\frac{100}{2\pi}+2\gamma_E-1\approx2.922$，后者与数值相近。主项 $\log T$ 与次项 $-\log2\pi+2\gamma_E-1\approx-1.68$ 在 $T=100$ 处同量级，所以 $M_1\sim\log T$ 只描述 $T\to\infty$ 的首阶行为。
 
-(c) $M_1$ 是 $|\zeta|^2$ 的平均，少数大值对它贡献很大（高阶矩增长更快正是这个原因）；平均值大小与「大多数 $t$ 处的典型大小」不是同一回事。
+(c) 由 Markov 不等式，对任意 $A>0$，
+\[
+  \frac1T\,\mathrm{meas}\bigl\{0\le t\le T:\ |\zeta(\tfrac12+it)|\ge A\bigr\}\le\frac{M_1(T)}{A^2}.
+\]
+例如 $M_1(100)\approx2.956$，取 $A=10$，$|\zeta|\ge10$ 的点所占比例不超过约 $3.0\%$。所以 $M_1$ 相对于 $A^2$ 很小时，大值点确实只占小比例，这是对「大多数点」的一种单向控制。但一个矩不能确定中位数、分位数或峰值出现的位置：少数大值可以显著抬高均方，所以较大的 $M_1$ 不说明大多数点都大。高阶矩对大值更敏感，各阶矩合起来才更细地刻画分布。
 
 \Sol{22.7}{算术级数中的素数}
 (a) $\chi_0(n)=1$（$n$ 奇），$0$（$n$ 偶）；$\chi_1(n)=1,-1,0$ 分别对应 $n\equiv1,3$ 与 $n$ 偶。$\psi(x,\chi_0)+\psi(x,\chi_1)=2\psi(x;4,1)$，$\psi(x,\chi_0)-\psi(x,\chi_1)=2\psi(x;4,3)$；由 $\overline{\chi_1(3)}=-1$ 即为所给公式。
 
-(b) 奇素数的平方都 $\equiv1\pmod4$，它们在 $\psi(x;4,1)$ 中合计贡献约 $\theta(\sqrt x)\approx\sqrt x\approx316$，足以压过 $\pi(x;4,3)$ 多出 $25$ 个素数所带来的约 $-200$ 的差。去掉素数幂后，$\theta(x;4,3)>\theta(x;4,1)$ 与 $\pi$ 一致。这种「模 $4$ 余 $3$ 的素数偏多」（Chebyshev 偏差）的来源，与 $\pi(x)<\li(x)$ 的 $\frac12\li(\sqrt x)$ 是同一机制。
+(b) 奇素数的平方都 $\equiv1\pmod4$，它们在 $\psi(x;4,1)$ 中合计贡献约 $\theta(\sqrt x)\approx\sqrt x\approx316$，精确地说，要比较的是对数权重 $\theta$，不能仅由两个 $\pi$ 值推出差额：$\theta(10^5;4,1)\approx49739.695$，$\theta(10^5;4,3)\approx49945.001$，差约 $-205.31$；而 $\psi$ 的差约 $+102.55$。奇素数平方的贡献约 $293.54$，另有更高次幂的贡献，正是它们把 $\theta$ 的负差翻成了 $\psi$ 的正差。去掉素数幂后，$\theta(x;4,3)>\theta(x;4,1)$ 与 $\pi$ 一致。
+
+这种「模 $4$ 余 $3$ 的素数偏多」（Chebyshev 偏差）与 $\pi(x)<\li(x)$ 都含有素数平方修正造成的偏移，这是二者的共同结构；但长期偏差的完整分析还要考虑相应 $L$ 函数零点的贡献，本例不能证明一般的偏好。
 
 \Sol{22.8}{各类结果的逻辑强度}
-(a) 有限高度验证（经区间算术认证的定理）：排除该范围内的反例，不涉及更高处。
-(b) 无条件定理：正比例下界，不能推到 $100\%$，更不排除零密度的例外。
-(c) 预印本（报告的无条件结果）：按正文的态度，在完成同行评议前单列；即使成立，也仍是比例结论。
-(d) 无条件定理（亚凸界）：改进增长指数，与 RH 无直接蕴含关系；RH $\Rightarrow$ Lindelöf。
+(a) 定理（经区间算术认证），无条件，范围是有限高度：排除该范围内的反例，不涉及更高处。
+
+(b) 无条件定理，渐近比例下界（$\liminf_{T\to\infty}$ 意义下，并非每个有限 $T$ 都已验证同一比例）：不能推到 $100\%$，更不排除零密度的例外。
+
+(c) 作者报告的无条件渐近结果，来源是预印本：按正文的态度，在完成同行评议前单列。即使成立，也仍是比例结论；它针对的是「单零点且在临界线上」，与只计临界线零点的比例、或按重数计的总零点数都不能混用。
+
+(d) 无条件定理（亚凸界）。RH 蕴含更强的 Lindelöf 界，从而蕴含这一界：RH $\Rightarrow$ Lindelöf $\Rightarrow$ 指数 $\frac{13}{84}+\varepsilon$ 的界。反过来，无条件地证明这一亚凸界并没有证明 RH。
+
 (e) 无条件定理：结合等价得 RH $\iff\Lambda_{\mathrm{dBN}}=0$，但没有证明 RH。
-(f) 以 RH 为前提的条件结果（原始形式还限制测试函数的 Fourier 支集）；不能反过来证明 RH。
+
+(f) 以 RH 为前提的条件定理，原始形式还限制测试函数的 Fourier 支集；它不等于完整的对关联猜想，也不能反过来证明 RH。第~\bref{sec:montgomery_gue}~节另提到后来去掉了某些前提的无条件版本，但那也不是完整的 GUE 统计定理；两个版本不能混称。
+
 (g) 模型预测：$k=1,2$ 与经典定理一致，一般 $k$ 尚未证明。
+
 (h) 有限域情形的定理：经典 RH 的类比，说明几何结构可以强制零点位置，但不蕴含经典 RH。
+
+(i) 在有限域情形，曲线、它的点数以及作用于相应空间的 Frobenius 都有实际的构造，零点是有限个特征值的倒数，模长由几何性质一次性全部确定（习题 22.4）。经典情形中，函数方程只给出零点集的对称性，整函数理论与 Hadamard 乘积把 $\xi$ 与零点联系起来，显式公式把零点与素数联系起来，但它们都没有提供这样一个「迫使特征值落在圆上」的结构。增长界控制的是函数值的大小，只能间接限制零点；有限统计只用到有限个纵坐标。它们给出的是不同类型的约束，都不能逐一确定每个零点的位置。
+
+(ii) 证明助理的内核核验的是：从所列的假设出发，按形式系统的规则推出了结论，推理中没有漏洞。被当作假设引入的解析结果（例如某种对关联估计或零点计数渐近式）本身没有在证书中核验，仍是引用。所以要同时检查：形式化的命题是否忠实表达了原来的数学命题，假设中引用了什么，它们各自的证明状态如何。若把 RH 本身当作假设，得到的只是以 RH 为前提的结论。
 
 \end{document}
