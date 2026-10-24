@@ -1,5 +1,10 @@
 \documentclass[UTF8,fontset=fandol,11pt]{ctexart}
 \input{../notes-common.tex}
+\usepackage{pgfplots}
+\usepackage{float}
+\usetikzlibrary{arrows.meta}
+\pgfplotsset{compat=1.18}
+\date{2026年10月22日初稿；10月24日增补示意图}
 \title{振荡相消能带来多大改善}
 \begin{document}
 \maketitle
@@ -36,8 +41,24 @@
  \longrightarrow\left|\frac{2\sin(\alpha/2)}{\alpha}\right|.
 \]
 在 $\alpha=0$ 处按连续极限取 $1$。
-因此即使每个非零固定 $\theta$ 都能得到有界结果，也不能把它说成对所有 $\theta$ 一致有界。
+因此即使对每个固定的非共振参数 $\theta$ 都能得到有界结果，也不能把它说成对所有 $\theta$ 一致有界。
 参数随 $N$ 靠近共振点时，和仍可能具有 $N$ 的量级。
+
+图~\ref{fig:cancellation-resonance} 将这两个情形放在一起比较。
+左图中六个单位向量首尾相接，恰好闭合；右图仍取同一个固定角 $\theta=\pi/3$，
+并与随 $N$ 改变的 $\theta=\pi/N$ 对照。
+前者的 $|S_N|/N$ 趋于 $0$，后者则趋于 $2/\pi$。
+这一区别来自参数是否随项数接近共振点，而不是三角不等式失效。
+
+\begin{figure}[H]
+\centering
+\input{figures/cancellation-resonance.tex}
+\caption{单位向量的相消与接近共振时的不同尺度。
+左图取 $N=6$、$\theta=\pi/3$，箭头依次表示 $e^{\ii k\theta}$（$k=0,\ldots,5$），和为 $0$。
+右图取整数 $N=1,\ldots,80$；点表示有限和的精确公式值，连线仅便于观察，水平虚线为 $2/\pi$。
+归一化后的有限图形与上述极限一致，但极限仍由公式证明。}
+\label{fig:cancellation-resonance}
+\end{figure}
 
 \section{加入缓变系数：分部求和}
 记 $B_n=\sum_{k=1}^n b_k$。有限求和恒等式为
@@ -95,5 +116,6 @@ $C_\theta/(M+1)$，并且对 $0<r\le1$ 一致。
 \section*{参考依据与后续核验}
 几何和、有限分部求和及所需的极限交换均已在文中说明。
 可与本书《零点项的对数尺度振荡》对照阅读。
-后续若绘制图形，应同时展示固定 $\theta$ 与 $\theta=\alpha/N$ 两类取值，避免用单个参数实验暗示一致结论。
+图~\ref{fig:cancellation-resonance} 的绘图源码随本文提供；它同时展示固定参数与接近共振的参数，
+不将本篇的等距频率模型直接当作 $\zeta$ 零点和的相消估计。
 \end{document}

@@ -1,0 +1,52 @@
+\begin{minipage}[t]{0.47\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}[x=1.55cm,y=1.55cm,>=Stealth,font=\small]
+\path[use as bounding box] (-0.85,-0.85) rectangle (2.3,2.65);
+\node at (0.7,2.4) {六个方向的精确相消};
+\draw[->,gray!70] (-0.8,0)--(2.1,0) node[below] {$\Rea$};
+\draw[->,gray!70] (0,-0.4)--(0,2.15) node[left] {$\Ima$};
+\coordinate (P0) at (0,0);
+\coordinate (P1) at (1,0);
+\coordinate (P2) at (1.5,{sqrt(3)/2});
+\coordinate (P3) at (1,{sqrt(3)});
+\coordinate (P4) at (0,{sqrt(3)});
+\coordinate (P5) at (-0.5,{sqrt(3)/2});
+\draw[->,very thick,blue!65!black] (P0)--(P1) node[midway,below] {$k=0$};
+\draw[->,very thick,blue!65!black] (P1)--(P2) node[midway,right] {$1$};
+\draw[->,very thick,blue!65!black] (P2)--(P3) node[midway,right] {$2$};
+\draw[->,very thick,blue!65!black] (P3)--(P4) node[midway,above] {$3$};
+\draw[->,very thick,blue!65!black] (P4)--(P5) node[midway,left] {$4$};
+\draw[->,very thick,blue!65!black] (P5)--(P0) node[midway,left] {$5$};
+\fill (P0) circle (1.5pt);
+\node[below left] at (P0) {$0$};
+\node at (0.65,-0.62) {$S_6(\pi/3)=0$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.51\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=7.8cm,height=6.3cm,
+  xmin=1,xmax=80,ymin=-0.02,ymax=1.08,
+  xlabel={$N$},ylabel={$|S_N(\theta)|/N$},
+  title={固定参数与接近共振},
+  title style={font=\small},label style={font=\small},
+  tick label style={font=\small},
+  xtick={1,20,40,60,80},ytick={0,0.25,0.5,0.75,1},
+  axis lines=left,grid=major,grid style={gray!15},
+  legend style={font=\footnotesize,draw=none,
+    at={(0.5,-0.23)},anchor=north,legend columns=1},
+  domain=1:80,samples=80]
+\addplot[black,thick,mark=o,mark size=1.3pt]
+  {abs(sin(deg(pi*x/6)))/(x*sin(deg(pi/6)))};
+\addlegendentry{固定 $\theta=\pi/3$}
+\addplot[blue!65!black,thick,mark=*,mark size=1pt]
+  {1/(x*sin(deg(pi/(2*x))))};
+\addlegendentry{$\theta=\pi/N$}
+\addplot[gray!80!black,dashed,thick,domain=1:80,samples=2] {2/pi};
+\addlegendentry{极限 $2/\pi$}
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
