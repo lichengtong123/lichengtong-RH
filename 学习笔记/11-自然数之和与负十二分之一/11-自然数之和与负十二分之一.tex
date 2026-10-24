@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[ItalicFont=STSongti-SC-Bold]{Songti SC}
+\usepackage{xurl}
+\input{../notes-common.tex}
+\XeTeXlinebreaklocale "zh"
+\renewcommand{\proofname}{证明}
+\date{2026年10月24日初稿}
+\title{$1+2+3+\cdots=-\dfrac1{12}$ 的几种严格含义}
+\begin{document}
+\maketitle
+
+\noindent{\small 本篇讨论发散级数 $\sum n$ 的赋值问题。凡标为命题者均给出证明；
+引用的结果注明出处；数值结果单独标明，不作为证明使用。}\par\medskip
+
+\section{问题的提法}
+$\sum_{n\le N}n=N(N+1)/2\to+\infty$，故等式 $1+2+3+\cdots=-\tfrac1{12}$
+不是通常意义下的级数求和。需要回答的是：在何种明确的赋值规则下该等式成立；
+这些规则须放弃哪些性质；不同规则为何给出同一常数。
+
+本文给出两种互相独立的严格表述：$\zeta$ 的解析延拓在 $s=-1$ 处的值（第~3 节），
+以及光滑截断部分和在分离发散主项后的常数项（第~4 节），
+并说明二者均来自 Euler--Maclaurin 公式在左端点的同一边界项。
+
+\section{求和法的公理性质与不相容命题}
+称一个由某线性数列空间到 $\mathbb C$ 的映射 $V$ 为\emph{求和法}。考虑以下性质：
+\begin{enumerate}
+ \item[(R)] 正则：对收敛级数，$V$ 给出通常的和；
+ \item[(M)] 单调：对实数列，若 $a_n\le b_n$ 对一切 $n$ 成立，则 $V(a)\le V(b)$；
+ \item[(L)] 线性：$V(a+b)=V(a)+V(b)$，$V(ca)=cV(a)$；
+ \item[(S)] 平移稳定：$V(a_1,a_2,\ldots)=a_1+V(a_2,a_3,\ldots)$。
+\end{enumerate}
+通常的收敛求和、Cesàro 求和与 Abel 求和同时满足以上四条。
+
+\begin{proposition}\label{prop:monotone}
+若 $V$ 满足 (R)(M)，且 $(1,2,3,\ldots)$ 在其定义域内，则 $V(1,2,3,\ldots)\ge N(N+1)/2$ 对一切 $N$ 成立。
+因而不存在满足 (R)(M) 并给 $\sum n$ 赋予有限值的求和法。
+\end{proposition}
+\begin{proof}
+数列 $(1,2,\ldots,N,0,0,\ldots)$ 对应收敛级数，由 (R) 其值为 $N(N+1)/2$；
+它逐项不超过 $(1,2,3,\ldots)$，由 (M) 得结论。
+\end{proof}
+
+\begin{proposition}\label{prop:triangle}
+设 $V$ 满足 (L)(S)，其定义域含 $(1,2,3,\ldots)$ 并对去掉首项封闭。则 $V(1,2,3,\ldots)$ 无定义。
+特别地，满足 (S) 的求和法不能给 $(1,1,1,\ldots)$ 赋值。
+\end{proposition}
+\begin{proof}
+设 $S=V(1,2,3,\ldots)$。由 (S)，$S=1+V(2,3,4,\ldots)$。
+由 (L)，$V(2,3,4,\ldots)=S+T$，其中 $T=V(1,1,1,\ldots)$，
+其存在性由定义域的线性得到。于是 $T=-1$。
+另一方面，对 $(1,1,1,\ldots)$ 用 (S) 得 $T=1+T$，矛盾。
+\end{proof}
+
+因此任何给出 $-\tfrac1{12}$ 的规则都必须放弃 (M) 与 (S)。下面两种规则均保留 (L)，
+其值依赖于各项所处的\emph{位置} $n$，而不只依赖于各项构成的多重集。
+
+\section{第一种表述：$\zeta$ 的延拓在 $s=-1$ 处的值}
+\subsection{周期 Bernoulli 函数}
+记 $t=\{x\}$，令
+\[
+ P_1(x)=t-\tfrac12,\qquad
+ P_2(x)=\tfrac12\bigl(t^2-t+\tfrac16\bigr),\qquad
+ P_3(x)=\tfrac16\bigl(t^3-\tfrac32t^2+\tfrac12t\bigr),
+\]
+即 $P_k(x)=B_k(\{x\})/k!$，$B_k$ 为 Bernoulli 多项式。直接验证：
+$P_2,P_3$ 连续、以 $1$ 为周期，在非整数点 $P_2'=P_1$、$P_3'=P_2$，并且
+\[
+ P_2(0)=P_2(1)=\tfrac1{12}=\tfrac{B_2}{2},\qquad P_3(0)=P_3(1)=0,\qquad
+ \max|P_3|=\tfrac{\sqrt3}{216}.
+\]
+最后一式在 $t=\tfrac12\pm\tfrac{\sqrt3}6$ 处取到。
+
+\subsection{延拓到 $\Rea s>-2$}
+学习笔记第~4 篇证明了，对 $\Rea s>0$、$s\ne1$，
+\[
+ \zeta(s)=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x .
+\]
+将 $\{x\}=P_1(x)+\tfrac12$ 代入，并用 $s\int_1^\infty\tfrac12x^{-s-1}\dd x=\tfrac12$，得
+\[
+ \zeta(s)=\frac{s}{s-1}-\frac12-s\int_1^\infty P_1(x)x^{-s-1}\dd x,\qquad\Rea s>0.
+\]
+$\Rea s>0$ 时 $P_2(x)x^{-s-1}$ 与 $P_3(x)x^{-s-2}$ 在无穷远处趋于零，分部积分两次：
+\[
+ \int_1^\infty P_1x^{-s-1}\dd x
+ =-P_2(1)+(s+1)\int_1^\infty P_2x^{-s-2}\dd x
+ =-\frac1{12}+(s+1)(s+2)\int_1^\infty P_3x^{-s-3}\dd x .
+\]
+\begin{proposition}\label{prop:zeta}
+对 $\Rea s>-2$、$s\ne1$，
+\[
+ \zeta(s)=\frac{s}{s-1}-\frac12+\frac{s}{12}
+ -s(s+1)(s+2)\int_1^\infty P_3(x)\,x^{-s-3}\dd x .               \tag{3.1}
+\]
+特别地，$\zeta(0)=-\tfrac12$，$\zeta(-1)=-\tfrac1{12}$。
+\end{proposition}
+\begin{proof}
+上面已在 $\Rea s>0$ 上证明 (3.1)。在 $\Rea s\ge-2+\delta$ 的紧集上，
+被积函数由 $\tfrac{\sqrt3}{216}x^{-1-\delta}$ 控制，且对 $s$ 解析，
+故积分在 $\Rea s>-2$ 内解析。右端在 $\Rea s>-2$、$s\ne1$ 上解析，
+由解析延拓的唯一性，它就是 $\zeta$ 在该区域的延拓。
+在 $s=0$ 与 $s=-1$ 处，积分项分别因因子 $s$ 与 $s+1$ 而为零，代入即得。
+\end{proof}
+
+在 (3.1) 中，$\zeta(-1)$ 的三项分别为 $\tfrac12$、$-\tfrac12$ 与 $-\tfrac1{12}$；
+后者来自分部积分在左端点 $x=1$ 的边界项 $-P_2(1)=-B_2/2$。
+继续分部积分可将 $\zeta$ 延拓到全平面，并得到
+$\zeta(-n)=-B_{n+1}/(n+1)$（$n\ge1$）；此处引用该结果，不再展开。
+
+\section{第二种表述：光滑截断下的常数项}
+\subsection{Euler--Maclaurin 型恒等式}
+\begin{lemma}\label{lem:em}
+设 $f\in C^3[0,\infty)$，且在某有限区间外为零。则
+\[
+ \sum_{n\ge1}f(n)=\int_0^\infty f\dd x-\frac{f(0)}2-\frac{f'(0)}{12}
+ +\int_0^\infty P_3(x)f'''(x)\dd x .                                \tag{4.1}
+\]
+\end{lemma}
+\begin{proof}
+在 $[n,n+1]$ 上，$\int_n^{n+1}P_1f'\dd x=\tfrac12(f(n)+f(n+1))-\int_n^{n+1}f\dd x$。
+对 $n\ge0$ 求和（仅有限项非零）得
+$\sum_{n\ge1}f(n)=\int_0^\infty f-\tfrac12f(0)+\int_0^\infty P_1f'$。
+由 $P_2'=P_1$、$P_3'=P_2$ 及 $f$ 的紧支性，
+$\int_0^\infty P_1f'=-P_2(0)f'(0)-\int_0^\infty P_2f''
+=-\tfrac1{12}f'(0)+\int_0^\infty P_3f'''$，其中用了 $P_3(0)=0$。
+\end{proof}
+
+\subsection{主命题}
+设 $\eta\in C^\infty[0,\infty)$，在某有限区间外为零，且 $\eta(0)=1$。令
+\[
+ S_\eta(N)=\sum_{n\ge1}n\,\eta(n/N),\qquad C_\eta=\int_0^\infty y\,\eta(y)\dd y .
+\]
+\begin{proposition}\label{prop:smooth}
+当 $N\to\infty$ 时，
+\[
+ S_\eta(N)=C_\eta N^2-\frac1{12}+O_\eta(N^{-1}).
+\]
+\end{proposition}
+\begin{proof}
+对 $f(x)=x\,\eta(x/N)$ 用引理~\ref{lem:em}。有
+$\int_0^\infty f=C_\eta N^2$，$f(0)=0$，$f'(0)=\eta(0)=1$，以及
+\[
+ \int_0^\infty|f'''|\dd x
+ \le\frac1N\int_0^\infty\bigl(3|\eta''(y)|+y|\eta'''(y)|\bigr)\dd y .
+\]
+结合 $|P_3|\le\sqrt3/216$ 即得。
+\end{proof}
+
+主项 $C_\eta N^2$ 依赖截断函数，常数项 $-\tfrac1{12}$ 与 $\eta$ 无关。
+由引理~\ref{lem:em} 可见，它就是 $-f'(0)/12=-B_2f'(0)/2$，
+即第~3 节中同一个左端点边界项。两种表述给出同一常数，原因在此。
+
+\subsection{与硬截断的比较}
+硬截断 $\sum_{n\le N}n=\tfrac12N^2+\tfrac12N$ 的常数项为 $0$。
+将引理~\ref{lem:em} 的推导限制在 $[0,N]$ 上，右端点 $x=N$ 另外贡献
+$\tfrac12f(N)+\tfrac1{12}f'(N)$；对 $f(x)=x$，即 $\tfrac12N+\tfrac1{12}$。
+左端点的 $-\tfrac1{12}$ 与右端点的 $+\tfrac1{12}$ 相消，同时产生 $\tfrac12N$ 项。
+光滑截断函数在支集右端各阶导数为零，不产生右端点边界项，
+因此常数项只保留左端点的贡献。
+
+\subsection{数值检验与高阶修正}
+取 $\eta(x)=\exp\bigl(1-\tfrac1{1-x^2}\bigr)$（$0\le x<1$），$x\ge1$ 时 $\eta(x)=0$。
+它满足命题~\ref{prop:smooth} 的条件，$C_\eta=0.2018263188\ldots$。
+由于 $\eta$ 在 $[1,\infty)$ 上为零，$S_\eta(N)$ 是有限和。
+用 \texttt{mpmath} 在 40 位工作精度下计算，得：
+\begin{center}
+\begin{tabular}{rll}
+\toprule
+$N$ & $S_\eta(N)-C_\eta N^2$ & $\bigl(S_\eta(N)-C_\eta N^2+\tfrac1{12}\bigr)N^2$\\
+\midrule
+10   & $-0.0922356\ldots$ & $-0.890\ldots$\\
+30   & $-0.0834221\ldots$ & $-0.0799\ldots$\\
+100  & $-0.0833341\ldots$ & $-0.008303\ldots$\\
+300  & $-0.0833334259\ldots$ & $-0.0083333\ldots$\\
+1000 & $-0.0833333416\ldots$ & $-0.0083333313\ldots$\\
+\bottomrule
+\end{tabular}
+\end{center}
+第三列表明本例误差为 $N^{-2}$ 量级，且趋于 $-\tfrac1{120}$。这是数值观察，以下给出解释。
+
+将 (4.1) 中的余项再分部积分两次，
+利用 $P_4=B_4(\{x\})/24$、$P_5=B_5(\{x\})/120$，$P_4(0)=B_4/24=-\tfrac1{720}$，$P_5(0)=0$，得
+\[
+ \int_0^\infty P_3f'''\dd x=\frac{f'''(0)}{720}+\int_0^\infty P_5f^{(5)}\dd x .
+\]
+对 $f(x)=x\,\eta(x/N)$，$f'''(0)=3\eta''(0)/N^2$，且 $\int_0^\infty|f^{(5)}|\dd x=O_\eta(N^{-3})$。故
+\[
+ S_\eta(N)=C_\eta N^2-\frac1{12}+\frac{\eta''(0)}{240\,N^2}+O_\eta(N^{-3}).   \tag{4.2}
+\]
+本例 $\eta(x)=1-x^2+O(x^4)$，$\eta''(0)=-2$，修正项为 $-\tfrac1{120}N^{-2}$，与数值一致。
+注意 $\tfrac1{240}=\tfrac12\zeta(-3)$：(4.2) 中 $N^{-2}$ 的系数是 $\zeta(-3)\eta''(0)/2!$，
+常数项是 $\zeta(-1)\eta(0)/0!$。
+
+\begin{remark}
+一般地，用 Mellin 反演写
+$S_\eta(N)=\frac1{2\pi\ii}\int_{(c)}\zeta(s-1)\tilde\eta(s)N^s\dd s$（$c>2$，$\tilde\eta$ 为 $\eta$ 的 Mellin 变换），
+$\tilde\eta$ 在 $s=-k$ 处有留数 $\eta^{(k)}(0)/k!$，左移积分线可得
+$N^{-k}$ 项的系数为 $\zeta(-k-1)\eta^{(k)}(0)/k!$。
+由于 $\zeta(-2)=0$，$N^{-1}$ 项消失，与本例观察相符。
+移线所需的 $\tilde\eta$ 在竖线上的快速衰减与 $\zeta$ 的多项式增长此处不再验证；
+参见 Tao 的文章（文末参考）。学习笔记第~1、2 篇讨论了 Mellin 反演与光滑权重。
+\end{remark}
+
+对 $(1,1,1,\ldots)$ 作同样的计算，引理~\ref{lem:em} 给出常数项 $-\tfrac12=\zeta(0)$；
+上述 $\eta$ 下 $N=100$ 时数值偏差已小于 $3\times10^{-11}$。
+
+\section{Dirichlet 正则化下的形式运算}
+\subsection{定义}
+对数列 $a=(a_n)$，若 $D_a(s)=\sum a_nn^{-s}$ 在某右半平面收敛，
+且可延拓为在 $s=0$ 的邻域内解析的函数，则定义 $V_D(a)=D_a(0)$。
+$V_D$ 满足 (L)，不满足 (S)、(M)。它还具有\emph{伸缩不变性}：
+若 $b_{mk}=a_k$、其余 $b_n=0$，则 $D_b(s)=m^{-s}D_a(s)$，故 $V_D(b)=V_D(a)$。
+
+\subsection{常见推导的检验}
+常见的形式推导是
+\[
+ S=1+2+3+\cdots,\quad 4S=0+4+0+8+\cdots,\quad S-4S=1-2+3-4+\cdots=\tfrac14 .
+\]
+在 $V_D$ 下逐步检验：
+\begin{itemize}
+ \item $D(s)=\zeta(s-1)$，$V_D(S)=\zeta(-1)$；
+ \item $0+4+0+8+\cdots$ 由 $4S$ 伸缩得到，$D(s)=4\cdot2^{-s}\zeta(s-1)$，值为 $4\zeta(-1)$；
+ \item $1-2+3-4+\cdots$ 的 $D(s)=(1-2^{2-s})\zeta(s-1)$，值为 $-3\zeta(-1)$。
+ 另一方面，其 Abel 和为 $\lim_{x\uparrow1}x/(1+x)^2=\tfrac14$。
+\end{itemize}
+由 (L)，$-3\zeta(-1)=V_D(S)-V_D(4S\text{ 的伸缩})$。上述推导的每一步在 $V_D$ 下成立，
+但它预设了两件未加证明的事：$V_D(S)$ 存在，即 $\zeta$ 可延拓到 $s=-1$（命题~\ref{prop:zeta}）；
+$1-2+3-4+\cdots$ 的 $V_D$ 值等于其 Abel 和（此处由两边分别计算而得）。
+因此该推导只是在一个已知存在的框架内的计算，不是独立的证明。
+
+\subsection{平移的作用}
+$V_D$ 不满足 (S)。例如右移一位所得的 $0+1+2+3+\cdots$，
+$D(s)=\sum(n-1)n^{-s}=\zeta(s-1)-\zeta(s)$，故
+\[
+ V_D(0,1,2,3,\ldots)=-\tfrac1{12}+\tfrac12=\tfrac5{12}\ne V_D(1,2,3,\ldots).
+\]
+这与命题~\ref{prop:triangle} 一致。导致矛盾的形式推导，通常隐含了这种平移。
+
+\section{讨论}
+\begin{enumerate}
+ \item 由命题~\ref{prop:monotone}，$-\tfrac1{12}$ 不能解释为任何意义上的“总量”。
+ 命题~\ref{prop:smooth} 给出一个确切解释：它是光滑截断部分和中与截断函数无关的常数项；
+ 发散主项 $C_\eta N^2$ 则依赖截断方式。
+ \item 两种表述以及 Ramanujan 求和（本文未讨论，参见 Hardy, \emph{Divergent Series} 中关于 Euler--Maclaurin 公式的一章）
+ 给出相同的值，其共同来源是 Euler--Maclaurin 公式在左端点的边界项 $-B_2/2$。
+ 一致性有结构上的原因，不需要额外假设。
+ \item 由命题~\ref{prop:triangle} 与第~5.3 节，这些赋值依赖于项的编号。
+ 更准确的说法是：所赋予的值属于函数 $n\mapsto n$（连同其定义域 $\mathbb Z_{\ge1}$），
+ 而非属于数的多重集 $\{1,2,3,\ldots\}$。
+ \item 本书的一个基本做法，是在收敛域内定义 $\zeta$ 再作解析延拓。
+ $\zeta(-1)=-\tfrac1{12}$ 说明，延拓所得的函数值是确定的数学对象，
+ 但不再是原级数的和；临界带内的 $\zeta(s)$ 也是如此。
+\end{enumerate}
+
+\section*{参考}
+\begin{itemize}
+ \item G.\ H.\ Hardy, \emph{Divergent Series}, Oxford, 1949.
+ \item T.\ Tao, \emph{The Euler--Maclaurin formula, Bernoulli numbers, the zeta function, and real-variable analytic continuation}, 2010.
+ \url{https://terrytao.wordpress.com/2010/04/10/the-euler-maclaurin-formula-bernoulli-numbers-the-zeta-function-and-real-variable-analytic-continuation/}
+ \item 本书关于 $\zeta$ 解析延拓与函数方程的章节；学习笔记第~1、2、4 篇。
+\end{itemize}
+\end{document}
