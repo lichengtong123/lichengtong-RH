@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[ItalicFont=STSongti-SC-Bold]{Songti SC}
+\usepackage{xurl}
+\input{../notes-common.tex}
+\XeTeXlinebreaklocale "zh"
+\renewcommand{\proofname}{证明}
+\date{2026年10月24日初稿}
+\title{相信黎曼猜想的理由及其分量}
+\begin{document}
+\maketitle
+
+\noindent{\small 本篇逐类检查支持 RH 的理由，说明每类理由确切证明了什么、在何处止步。
+所引定理注明出处；标为“启发性”的论证不作为证明使用。}\par\medskip
+
+\section{问题}
+多数数论学家相信 RH 成立。这种信念的依据可以分为四类：
+\begin{enumerate}
+ \item[(A)] 已证明的部分结果；
+ \item[(B)] 类比情形中已证明的对应命题；
+ \item[(C)] 概率与随机矩阵模型；
+ \item[(D)] 数值验证（学习笔记第 12 篇已专门讨论）。
+\end{enumerate}
+本篇依次讨论 (A)(B)(C)，再讨论若干反面考虑。
+重点不在于罗列结果，而在于说明每类理由的逻辑分量。
+
+\section{部分结果}
+\subsection{临界线上的零点}
+记 $N(T)$ 为 $0<\gamma\le T$ 的零点个数，$N_0(T)$ 为其中位于临界线上的个数。
+\begin{itemize}
+ \item Hardy（1914）：$N_0(T)\to\infty$。
+ \item Selberg（1942）：$\liminf N_0(T)/N(T)>0$。
+ \item Levinson（1974）：比例大于 $\tfrac13$；Conrey（1989）：大于 $\tfrac25$；
+ Pratt、Robles、Zaharescu、Zeindler（2020）：大于 $\tfrac5{12}$。
+\end{itemize}
+这些结果的分量有一个明确的上限：比例下界即使达到 $1$，也只说明离线零点占零密度，
+不能排除任何一个离线零点。
+
+\subsection{零点密度}
+记 $N(\sigma,T)$ 为 $\beta\ge\sigma$、$0<\gamma\le T$ 的零点个数。
+\begin{itemize}
+ \item Bohr--Landau（1914）：对每个 $\delta>0$，$N(\tfrac12+\delta,T)=O_\delta(T)$。
+ 由于 $N(T)\sim\tfrac{T}{2\pi}\log T$，几乎所有零点都位于临界线的任意窄邻域内。
+ \item Ingham（1940）：$N(\sigma,T)\ll T^{3(1-\sigma)/(2-\sigma)}\log^5T$。
+\end{itemize}
+这类结果把可能的离线零点限制为稀少的例外，但同样不能排除例外。
+
+\subsection{无零区域}
+已知的最好无零区域（Vinogradov--Korobov 型）是
+$\sigma\ge1-c(\log t)^{-2/3}(\log\log t)^{-1/3}$。
+其宽度随 $t$ 趋于零。现有方法甚至不能证明存在 $\delta>0$，使 $\zeta$ 在 $\Rea s>1-\delta$ 内无零点。
+
+因此，(A) 类结果在“几乎所有”意义下支持 RH，在“每一个”意义下则距离很远。
+它们说明零点的统计分布与 RH 相容，但不提供排除个别反例的机制。
+
+\section{类比情形}
+\subsection{有限域上的曲线}
+设 $C$ 为有限域 $\mathbb F_q$ 上亏格 $g$ 的光滑射影曲线，$N_m=\#C(\mathbb F_{q^m})$。其 zeta 函数
+\[
+ Z(C,u)=\exp\Bigl(\sum_{m\ge1}\frac{N_m}{m}u^m\Bigr)=\frac{P(u)}{(1-u)(1-qu)},
+\]
+$P$ 是 $2g$ 次整系数多项式（Weil 有理性）。Weil（1948）证明 $P$ 的根的模都是 $q^{-1/2}$；
+令 $u=q^{-s}$，这正是全部零点满足 $\Rea s=\tfrac12$。Deligne（1974）将其推广到高维簇。
+（参考习题第五部 22.4 计算了一个 $g=1$ 的例子。）
+
+这一类比的分量在于：它表明“Euler 乘积 + 函数方程 + 零点在中线上”的组合在一个完整的平行理论中是真的。
+它的局限在于证明的机制：Weil 与 Deligne 的证明依赖 Frobenius 映射及其在上同调上的作用，
+零点是一个有限维线性算子的特征值的倒数。对 $\mathbb Q$ 而言，尚无已知的对应算子或几何对象。
+
+\subsection{Selberg zeta 函数}
+设 $X=\Gamma\backslash\mathbb H$ 为紧双曲曲面，$0=\lambda_0<\lambda_1\le\lambda_2\le\cdots$ 为 Laplace 算子的特征值。
+其 Selberg zeta 函数 $Z_X(s)$ 由闭测地线长度构成 Euler 型乘积。
+$Z_X$ 在 $0<\Rea s<1$ 中的零点恰为 $s_j,1-s_j$，其中 $\lambda_j=s_j(1-s_j)$（$j\ge1$），另有 $s=1$ 对应 $\lambda_0$。
+于是：
+\begin{itemize}
+ \item 若 $\lambda_j\ge\tfrac14$，则 $s_j=\tfrac12\pm\ii\sqrt{\lambda_j-\tfrac14}$ 位于中线上；
+ \item 若 $0<\lambda_j<\tfrac14$，则 $s_j$ 是 $(0,1)$ 中不等于 $\tfrac12$ 的实数。
+\end{itemize}
+因此 $Z_X$ 的“RH”成立当且仅当 $X$ 没有 $(0,\tfrac14)$ 中的小特征值。
+存在具有小特征值的紧双曲曲面（Randol 1974），故此“RH”并非总成立。
+
+这个例子的意义是双重的。一方面，它实现了 Hilbert--Pólya 设想：零点由一个自伴算子的谱决定，
+中线位置等价于谱的下界。另一方面，它表明谱解释本身并不保证零点在中线上，还需要谱的下界。
+
+\subsection{函数方程不足以保证零点位置}
+Davenport 与 Heilbronn（1936）构造了模 $5$ 的两个 Dirichlet $L$ 函数的线性组合 $f(s)$，
+它满足与 $L$ 函数同型的函数方程，却在 $\Rea s>1$ 中有无穷多个零点。
+原因是 $f$ 没有 Euler 乘积。这说明支持 RH 的任何论证都必须用到 Euler 乘积（即素数的乘法结构），
+而不能只依赖函数方程的对称性。
+
+\section{概率与随机矩阵模型}
+\subsection{Möbius 函数的随机模型}
+\begin{proposition}\label{prop:random}
+设 $X_1,X_2,\ldots$ 为独立随机变量，$P(X_n=1)=P(X_n=-1)=\tfrac12$，$S_N=\sum_{n\le N}X_n$。
+则对每个 $\varepsilon>0$，几乎必然地 $S_N=O(N^{1/2+\varepsilon})$。
+\end{proposition}
+\begin{proof}
+由 Hoeffding 不等式，$P(|S_N|\ge\lambda)\le2\exp(-\lambda^2/(2N))$。
+取 $\lambda=N^{1/2+\varepsilon}$，右端为 $2\exp(-N^{2\varepsilon}/2)$，对 $N$ 求和收敛。
+由 Borel--Cantelli 引理，几乎必然只有有限个 $N$ 使 $|S_N|\ge N^{1/2+\varepsilon}$。
+\end{proof}
+结合学习笔记第 14 篇命题 3.2，若 $\mu(n)$ 在 $\mu(n)\ne0$ 的位置上“像”独立的 $\pm1$，
+则 $M(x)=O(x^{1/2+\varepsilon})$，从而 RH 成立。这是 Denjoy 的启发性论证。
+
+其分量有限：$\mu$ 是确定性函数，“像随机变量”没有精确含义；
+任何将其精确化的尝试（例如 Sarnak 的 Möbius 随机性猜想）本身都是未解决的问题。
+此外，随机模型对上界的预测并不完全准确：在 RH 下，$M(x)/\sqrt x$ 的上下极限被普遍猜测为 $\pm\infty$，
+而 Mertens 猜想 $|M(x)|<\sqrt x$ 已被否定（学习笔记第 12 篇）。
+
+\subsection{随机矩阵}
+Montgomery（1973）在 RH 下证明：对 Fourier 变换支在 $(-1,1)$ 内的检验函数，
+规范化零点间距的对关联函数为 $1-\bigl(\frac{\sin\pi u}{\pi u}\bigr)^2$，
+与 Gauss 酉系综（GUE）随机 Hermite 矩阵特征值的对关联函数一致。
+Odlyzko 对高处零点的大规模计算显示，最近邻间距分布与 GUE 预测高度吻合。
+
+这一吻合支持 Hilbert--Pólya 设想（零点对应于某个自伴算子的谱），从而间接支持 RH。
+但须注意逻辑次序：Montgomery 定理以 RH 为前提，GUE 的特征值本身是实数；
+统计吻合说明 RH 与已知数据构成一个自洽的整体，而不是独立地推出 RH。
+
+\section{反面考虑}
+\begin{enumerate}
+ \item \textbf{de Bruijn--Newman 常数}。RH 等价于 $\Lambda\le0$，Rodgers--Tao（2020）证明 $\Lambda\ge0$。
+ 因此若 RH 成立，则 $\Lambda=0$：$\Xi$ 函数在热方程的反向流下，零点在 $t=0$ 时恰好全部为实数，
+ 而对任意 $t<0$ 不再如此。Newman 将此表述为：RH 若成立，也只是“恰好”成立。
+ \item \textbf{Lehmer 现象}。存在异常接近的相邻零点对（Lehmer 1956）。在热流形变下，
+ 这样的零点对是最先离开实轴的候选；它们的存在与 $\Lambda=0$ 相呼应。
+ \item \textbf{尺度问题}。决定零点局部行为的量以 $\log\log T$ 的尺度变化，
+ 而数值验证只覆盖了 $\log\log T\le3.4$（学习笔记第 12 篇）。
+ \item \textbf{模型的局限}。随机模型可以对“典型”行为作出成功预测，却不能排除个别例外；
+ RH 恰恰是一个关于“每一个零点”的命题。
+\end{enumerate}
+
+\section{讨论}
+四类理由各自都不能证明 RH，它们的分量来自不同的方面：
+\begin{itemize}
+ \item (A) 证明了 RH 的“几乎处处”版本；
+ \item (B) 说明 RH 型命题在有完整结构的平行理论中为真，并指出可能的证明机制（谱或上同调）；
+ \item (C) 说明 RH 与零点和 Möbius 函数的统计行为相容；
+ \item (D) 排除了低处的反例。
+\end{itemize}
+它们彼此独立，又都指向同一结论，这是信念的主要来源。
+另一方面，反面考虑表明：若 RH 成立，它是在一个没有余量的临界位置上成立；
+而 Davenport--Heilbronn 的例子提醒我们，一个证明必须深入使用素数的乘法结构。
+对一个关于“每一个零点”的命题而言，所有统计性或类比性的支持都不能替代证明。
+
+\section*{参考}
+\begin{itemize}
+ \item E.\ C.\ Titchmarsh, \emph{The Theory of the Riemann Zeta-Function}, 2nd ed., 1986, Ch.~IX, X, XIV.
+ \item K.\ Pratt, N.\ Robles, A.\ Zaharescu, D.\ Zeindler, More than five-twelfths of the zeros of $\zeta$ are on the critical line,
+ \emph{Res.\ Math.\ Sci.} 7 (2020). \url{https://arxiv.org/abs/1802.10521}
+ \item A.\ Weil, \emph{Sur les courbes algébriques et les variétés qui s'en déduisent}, Hermann, 1948；
+ P.\ Deligne, La conjecture de Weil I, \emph{Publ.\ Math.\ IHÉS} 43 (1974).
+ \item H.\ Davenport, H.\ Heilbronn, On the zeros of certain Dirichlet series, \emph{J.\ London Math.\ Soc.} 11 (1936).
+ \item H.\ L.\ Montgomery, The pair correlation of zeros of the zeta function, \emph{Proc.\ Sympos.\ Pure Math.} 24 (1973).
+ \item A.\ M.\ Odlyzko, On the distribution of spacings between zeros of the zeta function, \emph{Math.\ Comp.} 48 (1987).
+ \item B.\ Rodgers, T.\ Tao, The de Bruijn--Newman constant is non-negative, \emph{Forum Math.\ Pi} 8 (2020).
+ \item P.\ Sarnak, Three lectures on the Möbius function, randomness and dynamics, IAS 讲义, 2011.
+ \item B.\ Randol, Small eigenvalues of the Laplace operator on compact Riemann surfaces, \emph{Bull.\ AMS} 80 (1974).
+\end{itemize}
+\end{document}
