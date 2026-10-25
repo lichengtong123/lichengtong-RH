@@ -12,9 +12,11 @@ The contents of this repository are licensed by category:
 
    适用于 manim/ 与 mathematica/ 中的程序文件（.py、.wl、.nb），
    videos/ 中的播放页面文件（.html、.css），
+   docs/同行审阅/ 中自编的阅读入口（index.html、reader.css、reader.js），
    以及 习题与解答/ 中的脚本（.sh）。
    Applies to program files in manim/ and mathematica/ (.py, .wl, .nb),
-   player pages in videos/ (.html, .css), and scripts (.sh) in 习题与解答/.
+   player pages in videos/ (.html, .css), the authored review reader entry
+   (index.html, reader.css, reader.js), and scripts (.sh) in 习题与解答/.
 
 二、文字、图形与视频 —— 知识共享 署名-非商业性使用-相同方式共享 4.0 国际
 2. Text, figures and videos — Creative Commons
@@ -52,6 +54,10 @@ The contents of this repository are licensed by category:
    (c) 书籍正文（含第 21 章中译稿）的版权不因本仓库的许可而转让。
        Copyright in the book itself (including the Chinese translation in
        Chapter 21) is not licensed by this repository.
+   (d) docs/同行审阅/pdfjs/ 为第三方 PDF.js 组件，适用其附带的
+       Apache License 2.0 及字体等资源的原始许可，详见该目录的 LICENSE 与 NOTICE.md。
+       The third-party PDF.js distribution retains its bundled Apache 2.0
+       and resource licenses; see its LICENSE and NOTICE.md.
 
 --------------------------------------------------------------------------
 MIT License
