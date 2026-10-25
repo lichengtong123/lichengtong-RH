@@ -28,3 +28,6 @@ media/
 
 # 未加密的全书预印版只留本地（公开的只有 docs/同行审阅/ 中的加密稿）
 /素数计数与黎曼猜想-预印版.pdf
+
+# GitHub 双重验证恢复码只留本地，不得提交
+github-recovery-codes*.txt
