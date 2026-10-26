@@ -2,6 +2,7 @@
 # 第 11 章：黎曼猜想的形式化陈述
 -/
 import Mathlib.NumberTheory.LSeries.RiemannZeta
+import Mathlib.NumberTheory.LSeries.Nonvanishing
 
 /-! ## mathlib 中的 RH
 
@@ -27,3 +28,13 @@ example : RiemannHypothesis ↔
 条件 2 排除的点确实是 $\zeta$ 的零点（书中第 9 章由函数方程得到）。 -/
 example (n : ℕ) : riemannZeta (-2 * (n + 1)) = 0 :=
   riemannZeta_neg_two_mul_nat_add_one n
+
+/-! ## 一个被 Lean 接受、却与 RH 无关的陈述
+
+下面的定理“证明”了：若 $\operatorname{Re} s > 1$ 且 $\zeta(s) = 0$，则 $\operatorname{Re} s = 1/2$。
+Lean 接受它，证明只有一行；但它与 RH 毫无关系。原因是两个假设互相矛盾
+（$\operatorname{Re} s \ge 1$ 时 $\zeta(s) \ne 0$，见第 9 章示例），而从矛盾的假设可以推出任何结论。
+**教训**：Lean 保证“由假设推出结论”这一步无误，但不判断假设是否可能同时成立，
+也不判断陈述是否就是想要的那个命题。这一检查只能由人完成。 -/
+example (s : ℂ) (h1 : 1 < s.re) (h2 : riemannZeta s = 0) : s.re = 1 / 2 :=
+  absurd h2 (riemannZeta_ne_zero_of_one_le_re h1.le)
