@@ -18,3 +18,8 @@ jobs:
       - uses: leanprover/lean-action@v1
         with:
           lake-package-directory: Lean示例
+      - name: 汇总编译错误
+        if: failure()
+        working-directory: Lean示例
+        run: |
+          lake build 2>&1 | grep -A3 -E "^error" | head -60 | tr '\n' ' ' | sed 's/error: /\n::error::/g'
