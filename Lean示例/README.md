@@ -18,10 +18,10 @@
 | [Ch06_Chebyshev.lean](LeanExamples/Ch06_Chebyshev.lean) | 第 6 章 | $n\#\le4^n$；由此 $\theta(n)\le n\log4$ | mathlib；后者为本仓库补写 |
 | [Ch07_Gamma.lean](LeanExamples/Ch07_Gamma.lean) | 第 7 章 | 倍元公式、余元公式 | mathlib |
 | [Ch09_Zeta.lean](LeanExamples/Ch09_Zeta.lean) | 第 9 章，附录 F | 函数方程；$\operatorname{Re}s\ge1$ 上无零点；mathlib 对 $\zeta(1)$ 的约定；$\zeta(2)=\pi^2/6$；$\zeta(-1)=-1/12$ | mathlib；最后一条为本仓库补写 |
-| [Ch11_RiemannHypothesis.lean](LeanExamples/Ch11_RiemannHypothesis.lean) | 第 11 章 | RH 的形式化陈述；平凡零点 | mathlib（RH 本身未证明） |
+| [Ch11_RiemannHypothesis.lean](LeanExamples/Ch11_RiemannHypothesis.lean) | 第 11 章 | RH 的形式化陈述；平凡零点；一个被 Lean 接受却与 RH 无关的陈述 | mathlib（RH 本身未证明） |
 | [Notes.lean](LeanExamples/Notes.lean) | 附录 F；学习笔记第 11、16、20 篇 | $3+4\cos\theta+\cos2\theta\ge0$；平移稳定的求和法不能给 $1+1+\cdots$ 赋值；$2^{61}-1$ 是素数 | 本仓库补写 |
 
-尚未形式化（mathlib 中没有，本目录也未涉及）：$\xi$ 的 Hadamard 乘积（第 10 章）、零点计数公式（第 11 章）、素数定理（第 12 章；另有独立的 Lean 项目 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd) 在推进）、显式公式（第 14 章）、RH 的算术等价（第 15 章）。书中最核心的部分，正是形式化尚未到达的地方。
+mathlib 中尚未收入、本目录也未涉及的：$\xi$ 的 Hadamard 乘积（第 10 章）、零点计数公式（第 11 章）、素数定理（第 12 章；它不在 mathlib 中，但已在独立项目中形式化：Isabelle 与 HOL Light 中分别于 2007、2009 年完成；Lean 中有 Tao 与 Kontorovich 发起的 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd)，带误差项的强形式由 AI 代理 Gauss 于 2025 年完成）、显式公式（第 14 章）、RH 的算术等价（第 15 章）。书中最核心的部分，正是形式化尚未到达的地方。
 
 ## mathlib 中的定理从哪里来
 
