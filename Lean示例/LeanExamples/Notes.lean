@@ -30,7 +30,6 @@ Lean 中数列写作函数 `ℕ → ℝ`，`fun _ => 1` 是常数列，`fun n =>
 theorem no_shift_stable_sum (V : (ℕ → ℝ) → ℝ)
     (hV : ∀ a : ℕ → ℝ, V a = a 0 + V (fun n => a (n + 1))) : False := by
   have h := hV (fun _ => 1)
-  dsimp only at h
   linarith
 
 /-! ## 3. 学习笔记第 16 篇：$2^{61} - 1$ 是素数
