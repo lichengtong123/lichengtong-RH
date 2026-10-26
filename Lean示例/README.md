@@ -23,6 +23,12 @@
 
 尚未形式化（mathlib 中没有，本目录也未涉及）：$\xi$ 的 Hadamard 乘积（第 10 章）、零点计数公式（第 11 章）、素数定理（第 12 章；另有独立的 Lean 项目 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd) 在推进）、显式公式（第 14 章）、RH 的算术等价（第 15 章）。书中最核心的部分，正是形式化尚未到达的地方。
 
+## mathlib 中的定理从哪里来
+
+[mathlib](https://github.com/leanprover-community/mathlib4) 是 Lean 社区共同维护的数学库。其中每条定理都是有人用 Lean 写出完整证明、经 Lean 检查后收入的；按定理名可以在 mathlib 源代码中找到它的证明，并逐层追溯到 Lean 的基本公理。引用 mathlib 的定理，相当于写论文时引用已发表的引理：省去重复的工作，检查的标准并不降低。
+
+反过来，mathlib 中没有的命题，只是还没有人把它形式化并收入，并不意味着它不能在 Lean 中证明。上表中标明“本仓库补写”的几条，就是在 mathlib 已有结果之上自己写出的证明。书中显式公式、零点计数等内容尚未形式化，原因在于工作量大，而不是原则上做不到。黎曼猜想的情形不同：它的陈述已在 mathlib 中，缺的是数学上的证明。
+
 ## 读这些文件时值得注意的地方
 
 - **条件必须写全。** 书中的“$f$ 连续可微”在 Abel 求和的 Lean 版本里被拆成“处处可微”和“导数可积”两条；Euler 乘积若去掉 `1 < s.re`，Lean 就不接受证明。
