@@ -1,0 +1,20 @@
+name: Lean 示例检查
+
+on:
+  push:
+    paths:
+      - 'Lean示例/**'
+      - '.github/workflows/lean-examples.yml'
+  pull_request:
+    paths:
+      - 'Lean示例/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: Lean示例

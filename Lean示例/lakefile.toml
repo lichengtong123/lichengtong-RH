@@ -1,0 +1,16 @@
+name = "LeanExamples"
+version = "0.1.0"
+defaultTargets = ["LeanExamples"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+
+# mathlib 固定在 2025-08-06 的提交，与 lean-toolchain 中的 Lean 版本配套
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "e20d25fa4a1019ddaa7066067f47ed10f269aca2"
+
+[[lean_lib]]
+name = "LeanExamples"

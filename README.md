@@ -33,6 +33,7 @@
 | [关系图下载/](关系图下载/) | A3 版黎曼猜想知识谱系关系图（PDF），概括主体理论（第 1–15 章），供单独查阅与打印 | 第 16 章 |
 | [黎曼原稿扫描/](黎曼原稿扫描/README.md) | Riemann 1859 年论文德文原文扫描本（1876 年文集版，公有领域），供对照书中译稿 | 第 21 章 |
 | [学习笔记/](学习笔记/README.md) | 专题证明、推导与说明，附 PDF 与 LaTeX 源码（初稿） | 独立专题 |
+| [Lean示例/](Lean示例/README.md) | 以书中若干定理为例介绍形式化验证（Lean 4 + mathlib），附中文注释；不是对本书的验证 | 第 2、5–7、9、11 章 |
 | [习题与解答/](习题与解答/README.md) | 参考习题（题目、提示与完整解答，PDF），按部发布；第一至五部均已发布初稿 | 第 1–22 章 |
 
 ## 使用注意
@@ -43,4 +44,4 @@
 
 ## 许可与反馈
 
-源程序（`manim/`、`mathematica/` 中的程序及播放页面）采用 MIT 许可；学习笔记、参考习题、文档、关系图与视频采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)；黎曼原稿扫描本属公有领域；同行审阅稿保留所有权利。详见 [LICENSE](LICENSE)。引用书中数学内容请注明书名与作者。问题与勘误请通过本仓库 Issues 反馈，或发邮件至 lichengtong-RH@qq.com。
+源程序（`manim/`、`mathematica/` 中的程序及播放页面，`Lean示例/` 中的 Lean 程序）采用 MIT 许可；学习笔记、参考习题、文档、关系图与视频采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)；黎曼原稿扫描本属公有领域；同行审阅稿保留所有权利。详见 [LICENSE](LICENSE)。引用书中数学内容请注明书名与作者。问题与勘误请通过本仓库 Issues 反馈，或发邮件至 lichengtong-RH@qq.com。
