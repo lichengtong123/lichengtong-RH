@@ -4,6 +4,9 @@
 本文件把书中第 2 章（及附录 A、B）的几条基本恒等式，与 mathlib 中已经形式化的定理对照。
 每条 `example` 先用 Lean 写出书中的陈述，再用 mathlib 的定理完成证明；
 Lean 接受这个文件，就说明“书中的陈述”与“mathlib 已证明的定理”在形式上一致。
+mathlib 中的定理同样是有人用 Lean 写出完整证明、经 Lean 检查后收入的，引用它们相当于
+写论文时引用已发表的引理。mathlib 中没有的命题也可以自己证明，见 `Ch06_Chebyshev.lean`、
+`Ch09_Zeta.lean` 与 `Notes.lean` 中标明“本仓库补写”的例子。
 -/
 import Mathlib.NumberTheory.VonMangoldt
 import Mathlib.NumberTheory.AbelSummation
