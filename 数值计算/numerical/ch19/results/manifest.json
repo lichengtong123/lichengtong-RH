@@ -1,0 +1,49 @@
+{
+  "config": {
+    "version": "2.0",
+    "precision_bits": 160,
+    "check_precision_bits": 224,
+    "zero_count": 500,
+    "zero_isolation_radius": "1e-35",
+    "K_values": [
+      20,
+      60,
+      200,
+      500
+    ],
+    "M": 10,
+    "grid_start": 10,
+    "grid_end": 40,
+    "grid_step_denominator": 100,
+    "certificate_x": "41/2",
+    "certificate_digits": 12,
+    "certificate_radius": "1e-12"
+  },
+  "python": "3.11.8",
+  "python_flint": "0.9.0",
+  "platform": "macOS-26.2-arm64-arm-64bit",
+  "elapsed_seconds": 53.240062917000614,
+  "grid_count": 3001,
+  "storage_offset": 0,
+  "max_internal_radius": 3.163660432506471e-34,
+  "files_sha256": {
+    "numerical/ch19/config.json": "2880ae088ec22957a7ad4b036f28265118f3b12e5c4127fda72d442cd894db27",
+    "numerical/ch19/reproduce.py": "b5cb91ab7bdf7a130b1986a57e76af7e9b21695cae0b7e9534f980afa27c277a",
+    "numerical/ch19/test_reproduce.py": "da20c0eb5ed27ac6e92c04c8944dc2a755bd2619deb235270ae90ae7e428507c",
+    "numerical/ch19/requirements.txt": "fe3c529e0b09ab1426504e95fa612469105f9c745647283a07040775a35dcc87",
+    "numerical/ch19/results/summary.json": "627a85059223c19032fecdce38d19a0300a0ed4bd830a7ab1d7a890aea31a48c",
+    "numerical/ch19/results/zeros.json": "d13773ddb5a8f0838c8709284748f0146d3207ae1471da32a73974fe801f08b9",
+    "numerical/ch19/results/intervals_20.csv": "4795aa708e47735f86b3cf1977c2b366a520c5a34952245ef19ad4ab6cfadfef",
+    "numerical/ch19/results/intervals_200.csv": "400efc58dc6193ecda43ed48dcedf4487d5f003ffa20b145cee08d25d55b3ecf",
+    "numerical/ch19/results/intervals_500.csv": "e0e1757ec02a803010b0f367b3e70040766497d580d05ab9244d35a44d3d648b",
+    "numerical/ch19/results/intervals_60.csv": "d2dc0dbde477a93be589dca5217c20bf9e93ba01733f7a8eab1d64129895ac8d",
+    "dat/riemann_data_20.dat": "92de4c99ad9e6cb90fe0daedb86c17d27ded44f97ad74a660e6c9d06eb150ef3",
+    "dat/riemann_data_60.dat": "4e7561761085aa8259564ee280028d9104ec8742c106de2d5152748d069a3ae3",
+    "dat/riemann_data_200.dat": "5d5877e2cef8ab7792136e5e7cbeb0bdbd4033a5641f5dc1a09a50b1b53f7418",
+    "dat/riemann_data_500.dat": "6dea6c8e4f3190849422946266884bdcd994e5739272fd090229b01b4408cdb9",
+    "dat/ch19-error-rows.tex": "d3eda85e2e1b147a43b7c7d43c986b42ebe6b04d4e22f321a47a3072c44f4bc6",
+    "dat/ch19-certificate-rows.tex": "0897848eae5de3ec6cd434b9e7c86973ba9a17212f1b2368d4a3cbe2c7aa7898",
+    "dat/ch19-zero-rows.tex": "07693b7dd99c74b6b76dd8e4a6b95b5f386cd9e29e9afd699f41c10c01a06c61"
+  },
+  "scope": "Finite sums and finite-height zeros certified using FLINT; sample errors compared with exact sieve counts; no uniform explicit nontrivial-zero-tail bound claimed."
+}

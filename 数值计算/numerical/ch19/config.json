@@ -1,0 +1,15 @@
+{
+  "version": "2.0",
+  "precision_bits": 160,
+  "check_precision_bits": 224,
+  "zero_count": 500,
+  "zero_isolation_radius": "1e-35",
+  "K_values": [20, 60, 200, 500],
+  "M": 10,
+  "grid_start": 10,
+  "grid_end": 40,
+  "grid_step_denominator": 100,
+  "certificate_x": "41/2",
+  "certificate_digits": 12,
+  "certificate_radius": "1e-12"
+}
