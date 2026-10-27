@@ -1,5 +1,5 @@
 % ============================================================
-% 《素数计数与黎曼猜想》参考习题 · 第五部（第 21–22 章）
+% 《素数计数与黎曼猜想》参考习题 · 第五部分（第 21–22 章）
 % 编译：XeLaTeX，连续两次。书内编号由同目录 书稿标签.aux 提供；
 % 书稿改版后运行 更新书稿标签.sh 再编译，编号自动随书稿更新。
 % ============================================================
@@ -64,7 +64,7 @@
 \newcommand{\versiondate}{2026 年 10 月 24 日（修订）}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第五部}
+\fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第五部分}
 \fancyhead[R]{\small 初稿 \versiondate}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -74,7 +74,7 @@
 \begin{document}
 
 \begin{center}
-{\LARGE\bfseries 参考习题 · 第五部\par}
+{\LARGE\bfseries 参考习题 · 第五部分\par}
 \vspace{0.6em}
 {\large 历史与前沿（第 21–22 章）\par}
 \vspace{0.6em}
@@ -94,12 +94,12 @@
     \lvII：独立完成正文中的关键推导或其变式；
     \lvIII：需要少量正文以外的论证或数值实验，供有余力的读者选做。
   \item \textbf{题目、提示、解答分开。}
-    建议先独立思考，再看提示，最后对照解答。三部分之间可点击题号互相跳转。
+    建议先独立思考，再看提示，最后对照解答。题目、提示与解答之间可点击题号互相跳转。
   \item \textbf{书内编号。}
     题中「第~\bref{sec:subconvexity}~节」「式~(\bref{eq:asymmetric_fe_alt})」等编号均自动取自当前书稿；书稿改版后重新编译本文件，编号随之更新。
   \item \textbf{固定题号。}
     每题编号（如 22.3）一经发布不再改动；删去的题号留空，不由新题顶替，新题接续编号。反馈时请注明题号。
-  \item \textbf{本部的性质。}
+  \item \textbf{本部分的性质。}
     第~\bref{ch:riemann_original_interpretation}~章是 Riemann 原稿的译稿与解读，第~\bref{ch:contemporary_research}~章介绍前沿研究，二者都以前文已证的结果为基础。因此本部题目主要是：对照原稿核算其中的公式与常数，以及用前文工具复算前沿结论中可以初等检验的部分；另有若干子问辨析结论的逻辑强度。前沿定理本身的证明不在练习范围内。
   \item \textbf{主选与可选。}
     星级表示完成难度，不等于题目的作用。初读时建议以理解性的子问为主；以下为可选延伸：习题 21.3 的高精度积分与整函数展开的控制，21.4(b) 的尾部修正，21.6 的截断比较，22.3(c) 的尾部估计，22.4(c) 的有限域编程枚举，22.5 的完整统计实验。
@@ -154,7 +154,7 @@
 第 21 章解读给出 $\log\xi(\frac12)+\sum_{\Re\alpha>0}\log\bigl(1+\frac1{4\alpha^2}\bigr)=\log\xi(0)=-\log2$。
 \begin{enumerate}
   \item 由 $1+\frac{(s-\frac12)^2}{\alpha^2}=\bigl(1+\frac1{4\alpha^2}\bigr)\bigl(1-\frac s\rho\bigr)\bigl(1-\frac s{1-\rho}\bigr)$ 推出这一关系的来源。
-  \item 用前 $10$、$100$、$1000$ 个零点计算 $\sum\log(1+\frac1{4\gamma^2})$，并仿照第三部习题 10.3 加上尾部修正，与 $-\log2-\log\xi(\frac12)$ 比较。
+  \item 用前 $10$、$100$、$1000$ 个零点计算 $\sum\log(1+\frac1{4\gamma^2})$，并仿照第三部分习题 10.3 加上尾部修正，与 $-\log2-\log\xi(\frac12)$ 比较。
   \item 记 $\Delta=\sum\log(1+\frac1{4\alpha^2})\approx0.0058$。若沿用原稿以 $s=\frac12$ 为基点的常数 $\log\xi(\frac12)$ 而漏掉 $\Delta$，$J_0$ 与 $\pi_0$ 的公式会出现什么偏差？为什么不能因为它小就略去？
 \end{enumerate}
 \toHint{21.4}
@@ -178,7 +178,7 @@
 \begin{enumerate}
   \item 对有限个根，证明 $\frac{\dd}{\dd x}\bigl[\li(x^{1/2+i\alpha})+\li(x^{1/2-i\alpha})\bigr]=\dfrac{2x^{-1/2}\cos(\alpha\log x)}{\log x}$（$\alpha$ 实）。为什么这里 $1/\rho$ 的权重消失了？
   \item 原稿按 $|\alpha|$ 递增求和，本书按 $\gamma=\Re\alpha$ 对称截断。设 $|\Im\alpha|<\frac12$，证明 $|\alpha|-\Re\alpha=\dfrac{(\Im\alpha)^2}{|\alpha|+\Re\alpha}$，并说明两种截断只在边界附近相差 $O(\log T)$ 个零点。
-  \item 原稿说改变排序后级数「可以收敛到任意的实数值」。这与第三部习题 14.3 的哪一点相应？
+  \item 原稿说改变排序后级数「可以收敛到任意的实数值」。这与第三部分习题 14.3 的哪一点相应？
 \end{enumerate}
 \toHint{21.6}
 
@@ -206,7 +206,7 @@ Ingham 估计为 $N(\sigma,T)\ll_\sigma T^{3(1-\sigma)/(2-\sigma)}(\log T)^5$。
 \Q{22.3}{\lvII}{Li 系数 $\lambda_1$、$\lambda_2$}
 \begin{enumerate}
   \item 证明 $|1-1/\rho|=1\iff\Re\rho=\frac12$；写 $1-1/\rho=e^{i\theta_\rho}$，说明 RH 下共轭配对后 $\lambda_n=\sum_{\gamma>0}2(1-\cos n\theta_\rho)\ge0$。
-  \item 证明 $\lambda_1=\sum_\rho1/\rho=-b_0$，由第三部习题 10.3 得 $\lambda_1\approx0.0230957$。
+  \item 证明 $\lambda_1=\sum_\rho1/\rho=-b_0$，由第三部分习题 10.3 得 $\lambda_1\approx0.0230957$。
   \item 用前 $1000$ 个零点计算 $\lambda_2$ 的部分和，并在 RH 下（零点都在临界线上的尾部模型）估计尾部（提示：$\theta_\rho\approx1/\gamma$）。
   \item 只算出有限多个 $\lambda_n>0$ 为什么不构成 RH 的证明？
 \end{enumerate}
@@ -373,7 +373,7 @@ $J_0$ 完整公式中的常数是 $-\log2$，不是 $\Delta$；$\Delta$ 是从�
 
 $R$ 是对全部 $m$ 求和的无穷级数（$m\to\infty$ 时 $\li(x^{1/m})$ 的行为使这一和须另行说明收敛方式，不能任意重排）；精确反演公式~(\bref{eq:explicit_pi}) 中的主项则止于 $\nu(x)=\lfloor\log_2x\rfloor$。二者数值接近但不相同：$x=10^5$ 时 $R\approx9587.4317$，有限主项 $\approx9587.4965$；$x=10^6$ 时分别约为 $78527.3994$ 与 $78527.3466$。
 
-(c) 在 Gauss 等人比较过的较大取样点上（以及远超此范围的现代计算中）确有 $\pi(x)<\li(x)$；这是原稿所说的 $\mathrm{Li}$，即本书的主值 $\li$。它不是对一切 $x$ 的断言：例如对本书的偏移 $\Li$，$\pi(2)=1>\Li(2)=0$。偏差的一个系统来源是 $\frac12\li(\sqrt x)$，但它不单独决定每个取样点的符号。Littlewood 证明 $\pi(x)-\li(x)$ 无穷多次变号（这一定理不依赖 RH），所以「稍大」不能推广为对所有充分大 $x$ 成立的结论（第三部习题 14.5）。
+(c) 在 Gauss 等人比较过的较大取样点上（以及远超此范围的现代计算中）确有 $\pi(x)<\li(x)$；这是原稿所说的 $\mathrm{Li}$，即本书的主值 $\li$。它不是对一切 $x$ 的断言：例如对本书的偏移 $\Li$，$\pi(2)=1>\Li(2)=0$。偏差的一个系统来源是 $\frac12\li(\sqrt x)$，但它不单独决定每个取样点的符号。Littlewood 证明 $\pi(x)-\li(x)$ 无穷多次变号（这一定理不依赖 RH），所以「稍大」不能推广为对所有充分大 $x$ 成立的结论（第三部分习题 14.5）。
 
 \Sol{21.6}{密度中的周期项与求和次序}
 (a) $\li(x^\rho)=\Ei(\rho\log x)$，$\frac{\dd}{\dd x}\Ei(\rho\log x)=\frac{e^{\rho\log x}}{\rho\log x}\cdot\frac\rho x=\frac{x^{\rho-1}}{\log x}$。$\rho=\frac12\pm i\alpha$ 两项相加：$\frac{x^{-1/2}(x^{i\alpha}+x^{-i\alpha})}{\log x}=\frac{2x^{-1/2}\cos(\alpha\log x)}{\log x}$。由 $\Ei'(w)=e^w/w$ 与 $w=\rho\log x$，链式法则带来的因子 $\rho$ 与 $w$ 中的 $\rho$ 精确相消；这里不用任何大参数渐近。所以当 $\alpha$ 为实数（这对零点在临界线上）时，密度中每对零点的权重相同；一般 $\beta\ne\frac12$ 时模长还有不同的 $x^{\beta-1}$ 因子。计数中的 $1/|\rho|$ 只是 $\li(x^\rho)$ 渐近主项的尺度，不是完整函数的精确外部权重。
@@ -382,7 +382,7 @@ $R$ 是对全部 $m$ 求和的无穷级数（$m\to\infty$ 时 $\li(x^{1/m})$ 的
 
 这一比较只适用于计数级数。(a) 中求导得到的密度项没有 $1/\rho$ 的衰减，不能用同一估计；有限截断可以逐项求导，并不意味着可以对完整的无穷零点级数逐项求导。
 
-(c) 第三部习题 14.3(a) 证明的是 $\sum|x^\rho/\rho|$ 发散。Riemann 重排定理说：若某个实级数收敛但不绝对收敛，重排可以把它的和改成任意实数。这解释了为什么求和次序必须固定，所以本书把对称高度截断作为显式公式的一部分。但要严格证明原稿这句话，还须对所讨论的具体实级数逐一核实重排定理的条件；关于计数级数的结论也不能自动转移到它的导数级数上。这里只把原稿的陈述与本书已严格建立的范围并列说明。
+(c) 第三部分习题 14.3(a) 证明的是 $\sum|x^\rho/\rho|$ 发散。Riemann 重排定理说：若某个实级数收敛但不绝对收敛，重排可以把它的和改成任意实数。这解释了为什么求和次序必须固定，所以本书把对称高度截断作为显式公式的一部分。但要严格证明原稿这句话，还须对所讨论的具体实级数逐一核实重排定理的条件；关于计数级数的结论也不能自动转移到它的导数级数上。这里只把原稿的陈述与本书已严格建立的范围并列说明。
 
 \subsection*{第 22 章}
 
