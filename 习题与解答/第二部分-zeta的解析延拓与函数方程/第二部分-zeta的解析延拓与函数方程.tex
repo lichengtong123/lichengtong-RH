@@ -1,5 +1,5 @@
 % ============================================================
-% 《素数计数与黎曼猜想》参考习题 · 第二部（第 7–9 章）
+% 《素数计数与黎曼猜想》参考习题 · 第二部分（第 7–9 章）
 % 编译：XeLaTeX，连续两次。书内编号由同目录 书稿标签.aux 提供；
 % 书稿改版后运行 更新书稿标签.sh 再编译，编号自动随书稿更新。
 % ============================================================
@@ -63,7 +63,7 @@
 \newcommand{\versiondate}{2026 年 10 月 23 日（修订）}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第二部}
+\fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第二部分}
 \fancyhead[R]{\small 初稿 \versiondate}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -73,7 +73,7 @@
 \begin{document}
 
 \begin{center}
-{\LARGE\bfseries 参考习题 · 第二部\par}
+{\LARGE\bfseries 参考习题 · 第二部分\par}
 \vspace{0.6em}
 {\large $\zeta$ 的解析延拓与函数方程（第 7–9 章）\par}
 \vspace{0.6em}
@@ -93,13 +93,13 @@
     \lvII：独立完成正文中的关键推导或其变式；
     \lvIII：需要少量正文以外的论证或数值实验，供有余力的读者选做。
   \item \textbf{题目、提示、解答分开。}
-    建议先独立思考，再看提示，最后对照解答。三部分之间可点击题号互相跳转。
+    建议先独立思考，再看提示，最后对照解答。题目、提示与解答之间可点击题号互相跳转。
   \item \textbf{书内编号。}
     题中「定理~\bref{thm:reflection}」「式~(\bref{eq:asymmetric_fe_alt})」「第~\bref{sec:riemann_first_method}~节」等编号均自动取自当前书稿；书稿改版后重新编译本文件，编号随之更新。
   \item \textbf{固定题号。}
     每题编号（如 9.3）一经发布不再改动；删去的题号留空，不由新题顶替，新题接续编号。反馈时请注明题号。
-  \item \textbf{与第一部的联系。}
-    个别题目用到第一部习题的结论（如由第一部习题 4.2 的解析表示展开得到的 $\zeta(1+u)=1/u+\gamma_E+O(u)$），题中会注明。
+  \item \textbf{与第一部分的联系。}
+    个别题目用到第一部分习题的结论（如由第一部分习题 4.2 的解析表示展开得到的 $\zeta(1+u)=1/u+\gamma_E+O(u)$），题中会注明。
   \item \textbf{主选与可选。}
     星级表示完成难度，不等于题目的作用。初读时建议先做主选题；习题 7.2、7.3（完整估计部分）、9.3、9.6 为可选延伸，供希望深入的读者选做。
   \item \textbf{数值。}
@@ -166,7 +166,7 @@ $\Gamma(z)=\lim_{n\to\infty}\dfrac{n!\,n^z}{z(z+1)\cdots(z+n)}$
 
 \Q{8.1}{\lvII}{收敛边界之外的部分和}
 \begin{enumerate}
-  \item 利用第一部习题 4.2 的表示 $\zeta(s)=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x$ 与有限 Abel 求和，证明对 $\Re s>0$、$s\ne1$ 及正整数 $N$，
+  \item 利用第一部分习题 4.2 的表示 $\zeta(s)=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x$ 与有限 Abel 求和，证明对 $\Re s>0$、$s\ne1$ 及正整数 $N$，
   \[
     \sum_{n\le N}n^{-s}=\zeta(s)+\frac{N^{1-s}}{1-s}+s\int_N^\infty\{x\}x^{-s-1}\dd x,
   \]
@@ -208,7 +208,7 @@ $\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。可以使用第
 \begin{enumerate}
   \item 对非负整数 $m$，说明式~(\bref{eq:I_s}) 中 $I(-m)$ 的上下沿积分相互抵消，并求出 $I(-m)$。
   \item 由式~(\bref{eq:zeta_contour_gamma}) 证明 $\zeta(-m)=(-1)^m\dfrac{B_{m+1}}{m+1}$。
-  \item 由此重新得到 $\zeta(0)$、$\zeta(-1)$、$\zeta(-3)$ 以及平凡零点。（这与第一部习题 3.3 是同一机制。）
+  \item 由此重新得到 $\zeta(0)$、$\zeta(-1)$、$\zeta(-3)$ 以及平凡零点。（这与第一部分习题 3.3 是同一机制。）
 \end{enumerate}
 \toHint{9.3}
 
@@ -230,7 +230,7 @@ $\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。可以使用第
 \toHint{9.5}
 
 \Q{9.6}{\lvIII}{$\zeta'(0)=-\tfrac12\log(2\pi)$}
-利用函数方程~(\bref{eq:asymmetric_fe_alt})、$\zeta(1+u)=\frac1u+\gamma_E+O(u)$（$u\to0$；由第一部习题 4.2 的解析表示及其余项进一步展开得到），以及 $\Gamma'(1)=-\gamma_E$（第~\bref{subsec:gamma-poles}~节），求 $\zeta(s)$ 在 $s=0$ 处的 Taylor 展开到一次项，证明
+利用函数方程~(\bref{eq:asymmetric_fe_alt})、$\zeta(1+u)=\frac1u+\gamma_E+O(u)$（$u\to0$；由第一部分习题 4.2 的解析表示及其余项进一步展开得到），以及 $\Gamma'(1)=-\gamma_E$（第~\bref{subsec:gamma-poles}~节），求 $\zeta(s)$ 在 $s=0$ 处的 Taylor 展开到一次项，证明
 \[
   \zeta'(0)=-\frac12\log(2\pi).
 \]
@@ -373,7 +373,7 @@ $|\Gamma(it)|^2=\Gamma(it)\Gamma(-it)=\dfrac{\Gamma(it)\Gamma(1-it)}{-it}=\dfrac
   \sum_{n\le N}n^{-s}=N\cdot N^{-s}+s\int_1^N\lfloor x\rfloor x^{-s-1}\dd x
   =N^{1-s}+\frac{s}{1-s}\bigl(N^{1-s}-1\bigr)-s\int_1^N\{x\}x^{-s-1}\dd x .
 \]
-前两项之和为 $\frac{N^{1-s}}{1-s}+\frac{s}{s-1}$。再减去第一部习题 4.2 的
+前两项之和为 $\frac{N^{1-s}}{1-s}+\frac{s}{s-1}$。再减去第一部分习题 4.2 的
 $\zeta(s)=\frac{s}{s-1}-s\int_1^\infty\{x\}x^{-s-1}\dd x$（对 $\Re s>0$、$s\ne1$ 成立），得
 \[
   \sum_{n\le N}n^{-s}-\zeta(s)=\frac{N^{1-s}}{1-s}+s\int_N^\infty\{x\}x^{-s-1}\dd x .

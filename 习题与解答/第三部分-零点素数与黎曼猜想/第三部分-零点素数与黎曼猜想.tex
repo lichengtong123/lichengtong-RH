@@ -1,5 +1,5 @@
 % ============================================================
-% 《素数计数与黎曼猜想》参考习题 · 第三部（第 10–16 章）
+% 《素数计数与黎曼猜想》参考习题 · 第三部分（第 10–16 章）
 % 编译：XeLaTeX，连续两次。书内编号由同目录 书稿标签.aux 提供；
 % 书稿改版后运行 更新书稿标签.sh 再编译，编号自动随书稿更新。
 % ============================================================
@@ -64,7 +64,7 @@
 \newcommand{\versiondate}{2026 年 10 月 24 日（修订）}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第三部}
+\fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第三部分}
 \fancyhead[R]{\small 初稿 \versiondate}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -74,7 +74,7 @@
 \begin{document}
 
 \begin{center}
-{\LARGE\bfseries 参考习题 · 第三部\par}
+{\LARGE\bfseries 参考习题 · 第三部分\par}
 \vspace{0.6em}
 {\large 零点、素数与黎曼猜想（第 10–16 章）\par}
 \vspace{0.6em}
@@ -94,13 +94,13 @@
     \lvII：独立完成正文中的关键推导或其变式；
     \lvIII：需要少量正文以外的论证或数值实验，供有余力的读者选做。
   \item \textbf{题目、提示、解答分开。}
-    建议先独立思考，再看提示，最后对照解答。三部分之间可点击题号互相跳转。
+    建议先独立思考，再看提示，最后对照解答。题目、提示与解答之间可点击题号互相跳转。
   \item \textbf{书内编号。}
     题中「定理~\bref{thm:rvm}」「式~(\bref{eq:explicit_psi})」「第~\bref{sec:proof-status}~节」等编号均自动取自当前书稿；书稿改版后重新编译本文件，编号随之更新。
   \item \textbf{固定题号。}
     每题编号（如 14.3）一经发布不再改动；删去的题号留空，不由新题顶替，新题接续编号。反馈时请注明题号。
-  \item \textbf{与前两部的联系。}
-    习题 14.4 用到第一部习题 4.1 的 Cesàro 型 Perron 核，题中会注明。
+  \item \textbf{与前两部分的联系。}
+    习题 14.4 用到第一部分习题 4.1 的 Cesàro 型 Perron 核，题中会注明。
   \item \textbf{数值。}
     数值题的参考值用 Python 的 \texttt{mpmath} 计算；「$\approx$」表示四舍五入。
     涉及零点的数值题使用前 $1000$ 个非平凡零点（\texttt{mpmath.zetazero}，均在临界线上），
@@ -372,7 +372,7 @@ $10^7$ & $0.99985$ & $1.07117$ & $0.99949$ \\
 \toHint{14.3}
 
 \Q{14.4}{\lvIII}{$\psi_1$ 的显式公式}
-令 $\psi_1(x)=\int_0^x\psi(t)\dd t=\sum_{n\le x}\Lambda(n)(x-n)$。由第一部习题 4.1，对 $c>1$，
+令 $\psi_1(x)=\int_0^x\psi(t)\dd t=\sum_{n\le x}\Lambda(n)(x-n)$。由第一部分习题 4.1，对 $c>1$，
 $\psi_1(x)=\frac1{2\pi i}\int_{(c)}\bigl(-\frac{\zeta'}{\zeta}(s)\bigr)\frac{x^{s+1}}{s(s+1)}\dd s$。
 \begin{enumerate}
   \item 求被积函数的全部留数，形式地得到
@@ -877,7 +877,7 @@ $s=-2n$：$-\frac{x^{1-2n}}{(-2n)(1-2n)}=-\frac{x^{1-2n}}{2n(2n-1)}$。
 相加即得所述公式。
 
 (b) $|x^{\rho+1}/(\rho(\rho+1))|\le x^2/|\rho|^2$（$0<\beta<1$），$\sum|\rho|^{-2}<\infty$，由 Weierstrass 判别法在 $x$ 的紧集上一致绝对收敛。
-关键在于核 $\frac1{s(s+1)}$ 带来 $|s|^{-2}$ 的衰减：竖线积分本身绝对收敛（第一部习题 4.1），水平边上的被积函数 $\ll\frac{x^{c+1}\log^2T}{T^2}$（高度选在避开零点处，用引理~\bref{lem:zero-local}），长度有界，故 $T\to\infty$ 时趋于 $0$；无需像第~\bref{subsec:perron-trunc-quant}~节那样控制 Perron 截断误差。
+关键在于核 $\frac1{s(s+1)}$ 带来 $|s|^{-2}$ 的衰减：竖线积分本身绝对收敛（第一部分习题 4.1），水平边上的被积函数 $\ll\frac{x^{c+1}\log^2T}{T^2}$（高度选在避开零点处，用引理~\bref{lem:zero-local}），长度有界，故 $T\to\infty$ 时趋于 $0$；无需像第~\bref{subsec:perron-trunc-quant}~节那样控制 Perron 截断误差。
 
 不过零点和绝对收敛只保证等式右端有意义，并不单独完成移线。完整的论证还需两步：先固定左边界 $\Re s=-U$（$U>1$ 取奇数，避开 $s=-1$ 与平凡零点），取避零高度令 $T\to\infty$，得到包含 $\Re s>-U$ 内全部留数的等式；再令 $U$ 沿奇数趋于无穷，用函数方程给出的左半平面估计（引理~\bref{lem:zetalog-left}）说明左边界上的积分趋于 $0$。这两步可直接调用书中现成的估计，不必重复整套围道论证。
 
