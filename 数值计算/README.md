@@ -7,9 +7,9 @@
 | 路径 | 内容 | 对应章节 |
 |------|------|----------|
 | `numerical/ch19/` | 第 19 章数值实验（计算版本 v2.0）：源程序 `reproduce.py`、参数 `config.json`、测试 `test_reproduce.py`、依赖 `requirements.txt`，以及 `results/` 中的零点区间、逐点包络、统计与核验输出 | 第 19 章 |
-| `numerical/ch2/reproduce_comparison.py` | 重算第 2 章 $\pi(x)$、$\operatorname{Li}(x)$、$x/\log x$ 对照数据 | 第 2 章 |
+| `numerical/ch2/reproduce_comparison.py` | 重算第 2 章 $\pi(x)$、$\mathrm{Li}(x)$、$x/\log x$ 对照数据 | 第 2 章 |
 | `dat/pi_x_comparison.dat` | 第 2 章对照图数据 | 第 2 章 |
-| `dat/li_real_a.dat`、`dat/li_real_b.dat` | 第 13 章 $\operatorname{li}$ 实部曲线数据 | 第 13 章 |
+| `dat/li_real_a.dat`、`dat/li_real_b.dat` | 第 13 章 $\mathrm{li}$ 实部曲线数据 | 第 13 章 |
 | `dat/riemann_data.dat`、`dat/fourier_data.dat` 及 `generate_ch18_*.py` | 第 18 章两幅对照图的数据与生成程序 | 第 18 章 |
 | `dat/riemann_data_{20,60,200,500}.dat`、`dat/ch19-*-rows.tex` | 第 19 章数据图与表格行，由 `reproduce.py` 生成 | 第 19 章 |
 
