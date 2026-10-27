@@ -1,13 +1,13 @@
-name: Lean 示例检查
+name: 形式化证明-Lean示例检查
 
 on:
   push:
     paths:
-      - 'Lean示例/**'
+      - '形式化证明-Lean示例/**'
       - '.github/workflows/lean-examples.yml'
   pull_request:
     paths:
-      - 'Lean示例/**'
+      - '形式化证明-Lean示例/**'
   workflow_dispatch:
 
 jobs:
@@ -17,4 +17,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: leanprover/lean-action@v1
         with:
-          lake-package-directory: Lean示例
+          lake-package-directory: 形式化证明-Lean示例
