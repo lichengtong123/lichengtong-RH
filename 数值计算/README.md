@@ -31,6 +31,8 @@ python3 dat/generate_ch18_fourier.py
 
 程序按自身位置解析路径，因此 `dat/` 与 `numerical/` 须保持并列。参数、运行环境与耗时记录在 `numerical/ch19/results/manifest.json` 中。
 
+**运行前注意：**请保留仓库原有的 `dat/` 目录。重建命令会覆盖其中相应的数据文件、表格行，以及 `numerical/ch19/results/` 中的核验输出；需要比较旧结果时，应在仓库副本中运行。测试与 `--verify-artifacts` 不重建这些产物。计算版本 v2.0 对应书稿 10-19；运行耗时会随机器变化，产物哈希只用于核对版本一致性，不代替数学认证。
+
 ## 核验的范围
 
 `numerical/ch19/README.md`（英文）逐条说明了哪些结果有严格的区间包络、哪些只是取整后的中点值。要点如下：
