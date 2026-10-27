@@ -24,6 +24,8 @@
 
 [逐步注释代码：Simple.lean](../LeanExamples/Progressive/Simple.lean)
 
+配套[详细说明 PDF](../LeanExamples/Progressive/Simple-逐步说明.pdf)与[TeX 源码](../LeanExamples/Progressive/Simple-逐步说明.tex)逐条解释语法、数学推理、目标变化及 InfoView 提示，适合第一次阅读 Lean 证明时对照。
+
 对每个实数 θ，证明
 
 $$
