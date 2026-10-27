@@ -33,9 +33,12 @@ The contents of this repository are licensed by category:
 
    适用于 学习笔记/、习题与解答/、docs/（同行审阅稿除外）、关系图下载/
    中的文档（.md、.tex、.pdf），各 README，以及 videos/ 中的视频文件（.mp4）。
+   形式化证明-Lean示例/ 中的 TeX 说明文档及其 PDF 同样适用本项许可。
    Applies to documents (.md, .tex, .pdf) in 学习笔记/, 习题与解答/,
    docs/ (except the peer-review preprint), 关系图下载/, all README files,
    and the video files (.mp4) in videos/.
+   This category also covers explanatory TeX documents and their PDFs in
+   形式化证明-Lean示例/.
 
    许可全文 / Legal code:
    https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
