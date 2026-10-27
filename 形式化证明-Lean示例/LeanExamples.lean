@@ -5,3 +5,6 @@ import LeanExamples.Ch07_Gamma
 import LeanExamples.Ch09_Zeta
 import LeanExamples.Ch11_RiemannHypothesis
 import LeanExamples.Notes
+import LeanExamples.Progressive.Simple
+import LeanExamples.Progressive.Intermediate
+import LeanExamples.Progressive.ThetaFramework
