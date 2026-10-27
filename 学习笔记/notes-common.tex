@@ -4,7 +4,10 @@
 \usepackage{booktabs,array,enumitem,fancyhdr,hyperref}
 \usepackage{needspace}
 \makeatletter
-\@ifclassloaded{ctexart}{}{\setCJKmonofont{FandolFang-Regular.otf}}
+\@ifclassloaded{ctexart}{}{%
+  \setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}%
+  \setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}%
+  \setCJKmonofont{FandolFang-Regular.otf}}
 \makeatother
 \hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black}
 \setlength{\emergencystretch}{2em}

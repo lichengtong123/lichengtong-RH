@@ -62,7 +62,7 @@ xelatex -interaction=nonstopmode -halt-on-error 01-Mellin变换与对数坐标.t
 
 其他各篇同样进入相应目录，编译与目录同名的 `.tex` 文件。修改共用样式后须重新编译各篇。PDF 与源码一同发布，避免只更新其中一份。
 
-第 11–21 篇按作者排版习惯使用 fontspec、xeCJK 与 macOS 的 Songti SC 字体，在其他系统上编译时须将 `\setCJKmainfont` 及其中的粗体字体名改为本机可用的中文字体。
+第 11–21 篇使用 fontspec、xeCJK，并由共用模板统一设置 Fandol 中文字体，无须安装 macOS 的 Songti SC 字体。
 
 第 21 篇的代码使用 TeX Live 附带的 DejaVu 字体。
 
