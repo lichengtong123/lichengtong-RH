@@ -40,7 +40,7 @@
 需要先安装 Lean 的版本管理器 [elan](https://github.com/leanprover/elan)。本目录固定使用 Lean `v4.22.0-rc4` 与 mathlib 提交 `e20d25fa`（2025-08-06），首次运行会下载 mathlib 的预编译文件（数 GB）：
 
 ```bash
-cd Lean示例
+cd 形式化证明-Lean示例
 lake exe cache get
 lake build
 ```

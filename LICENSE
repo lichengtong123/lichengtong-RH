@@ -14,11 +14,11 @@ The contents of this repository are licensed by category:
    videos/ 中的播放页面文件（.html、.css），
    docs/同行审阅/ 中自编的阅读入口（index.html、reader.css、reader.js），
    习题与解答/ 中的脚本（.sh），
-   以及 Lean示例/ 中的 Lean 程序与配置文件（.lean、.toml）。
+   以及 形式化证明-Lean示例/ 中的 Lean 程序与配置文件（.lean、.toml）。
    Applies to program files in manim/ and mathematica/ (.py, .wl, .nb),
    player pages in videos/ (.html, .css), the authored review reader entry
    (index.html, reader.css, reader.js), scripts (.sh) in 习题与解答/,
-   and Lean source and configuration files (.lean, .toml) in Lean示例/.
+   and Lean source and configuration files (.lean, .toml) in 形式化证明-Lean示例/.
 
 二、文字、图形与视频 —— 知识共享 署名-非商业性使用-相同方式共享 4.0 国际
 2. Text, figures and videos — Creative Commons
