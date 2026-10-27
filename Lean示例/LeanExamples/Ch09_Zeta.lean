@@ -23,15 +23,17 @@ example (s : ℂ) (hs : ∀ n : ℕ, s ≠ -n) (hs' : s ≠ 1) :
 
 书中第 9 章证明 $\zeta$ 在直线 $\operatorname{Re} s = 1$ 上无零点，附录 F 进一步给出零点自由区。
 mathlib 的版本是 $\operatorname{Re} s \ge 1$ 时 $\zeta(s) \ne 0$，**连 $s = 1$ 也包括在内**。
-这在数学上说不通——$s = 1$ 是极点——但在 mathlib 中成立，见下一节。 -/
+这不同于本书在极点处不赋有限值的约定；mathlib 在该点使用补值，见下一节。 -/
 example (s : ℂ) (hs : 1 ≤ s.re) : riemannZeta s ≠ 0 :=
   riemannZeta_ne_zero_of_one_le_re hs
 
 /-! ## 3. 一个形式化约定：mathlib 中的“$\zeta(1)$”
 
 $\zeta$ 在 $s = 1$ 有极点，数学上 $\zeta(1)$ 没有定义。但 Lean 中的函数必须在每一点都有值，
-mathlib 于是规定 `riemannZeta 1` 为 $\zeta(s) - 1/(s-1)$ 的某种极限值：
+固定版本的 mathlib 根据其函数定义，在该点给出补值：
 $$\texttt{riemannZeta 1} = \frac{\gamma - \log(4\pi)}{2} \approx -0.977 .$$
+这个补值不是 Laurent 展开中的常数项；通常的有限部分
+$\lim_{s\to1}(\zeta(s)-1/(s-1))=\gamma$，两者不能混同。
 有趣的是，这个数恰好等于 $\lambda_1 - 1$，其中 $\lambda_1 = 1 + \gamma/2 - \tfrac12\log(4\pi)$
 是 Li 判据的第一个系数（学习笔记第 10 篇）。
 **教训**：读形式化陈述时，必须知道这些约定；上一节的“$\operatorname{Re} s \ge 1$ 时 $\zeta(s) \ne 0$”
