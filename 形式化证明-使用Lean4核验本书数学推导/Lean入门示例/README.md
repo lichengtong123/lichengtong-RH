@@ -18,7 +18,7 @@ tags: []
 |---|---|---|
 | [ThreeFourOne.lean](ThreeFourOne.lean) | 3–4–1 三角恒等式与非负性 | 两个定理的完整证明已通过 Lean 核验 |
 | [VonMangoldtMobius.lean](VonMangoldtMobius.lean) | von Mangoldt 因子和恒等式及 Möbius 反演 | 因子和、卷积恒等式和反演有限和的证明已通过 Lean 核验 |
-| [ThetaFramework.lean](ThetaFramework.lean) | 函数方程推导中的反射对称代数步骤 | 仅此代数片段已核验，尚不是 ζ 函数方程的完整形式化证明 |
+| [ThetaMellinSymmetry.lean](ThetaMellinSymmetry.lean) | 函数方程推导中的反射对称代数步骤 | 仅此代数片段已核验，尚不是 ζ 函数方程的完整形式化证明 |
 | [ShiftStableSum.lean](ShiftStableSum.lean) | 对全部实数序列要求首项分离规则所产生的矛盾 | 将规则专门用于常数序列，逐步推出矛盾；自选补充 |
 | [Mersenne61.lean](Mersenne61.lean) | $2^{61}-1$ 的素性核验 | 展开精确整数值、Lucas–Lehmer 测试与一般判据的应用；自选补充 |
 
@@ -62,7 +62,9 @@ $$
 
 ## 函数方程：当前仅完成代数片段
 
-`ThetaFramework.lean` 对任意复函数 A 定义模型
+配套[逐步说明 PDF](ThetaMellinSymmetry-逐步说明.pdf)解释模型的数学来源、每条证明指令、尚待完成的分析接口，以及 VS Code 操作与终端核验方法。
+
+`ThetaMellinSymmetry.lean` 对任意复函数 A 定义模型
 
 $$
 F_A(s)=-\frac1s-\frac1{1-s}+A(s)+A(1-s),
