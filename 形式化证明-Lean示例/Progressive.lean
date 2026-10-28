@@ -1,3 +1,5 @@
 import Progressive.ThreeFourOne
 import Progressive.Intermediate
 import Progressive.ThetaFramework
+import Progressive.ShiftStableSum
+import Progressive.Mersenne61

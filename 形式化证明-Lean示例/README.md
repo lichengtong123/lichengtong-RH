@@ -11,7 +11,7 @@
 
 ## 按难度递进的逐步推导
 
-目录分为两组：[各章Lean示例](各章Lean示例/)保存与正文章节对应的 `ChXX_…` 例程；[Progressive](Progressive/)保存逐步推导例程及配套说明。两者均位于本项目根目录下。`LeanExamples.lean` 是统一构建入口，`LeanExamples/Notes.lean` 暂保留原位，作为补充命题示例。
+目录分为两组：[各章Lean示例](各章Lean示例/)保存与正文章节对应的 `ChXX_…` 例程；[Progressive](Progressive/)保存逐步推导例程、两个自选补充例程及配套说明。两者均位于本项目根目录下。`LeanExamples.lean` 是统一构建入口。
 
 例程的用途、运行方法及完成范围见 [Progressive 的说明](Progressive/README.md)。选题包括 3–4–1 三角不等式、von Mangoldt 恒等式与 Möbius 反演，以及函数方程推导中的反射对称片段。实际推理逐步配中文注释，不以一句现成目标定理代替证明。
 
@@ -27,7 +27,8 @@
 | [Ch07_Gamma.lean](各章Lean示例/Ch07_Gamma.lean) | 第 7 章 | 倍元公式、余元公式 | mathlib |
 | [Ch09_Zeta.lean](各章Lean示例/Ch09_Zeta.lean) | 第 9 章，附录 F | 函数方程；$\operatorname{Re}s\ge1$ 上无零点；mathlib 对 $\zeta(1)$ 的约定；$\zeta(2)=\pi^2/6$；$\zeta(-1)=-1/12$ | mathlib；最后一条为本仓库补写 |
 | [Ch11_RiemannHypothesis.lean](各章Lean示例/Ch11_RiemannHypothesis.lean) | 第 11 章 | RH 的形式化陈述；平凡零点；一个被 Lean 接受却与 RH 无关的陈述 | mathlib（RH 本身未证明） |
-| [Notes.lean](LeanExamples/Notes.lean) | 附录 F；学习笔记第 11、16、20 篇 | $3+4\cos\theta+\cos2\theta\ge0$；平移稳定的求和法不能给 $1+1+\cdots$ 赋值；$2^{61}-1$ 是素数 | 本仓库补写 |
+| [ShiftStableSum.lean](Progressive/ShiftStableSum.lean) | 学习笔记第 11 篇 | 将首项分离规则用于常数序列，推出有限实数赋值的矛盾 | 本仓库展开推导 |
+| [Mersenne61.lean](Progressive/Mersenne61.lean) | 学习笔记第 16 篇 | 核验 $2^{61}-1$ 的 Lucas–Lehmer 计算证书，再用一般判据推出素性 | mathlib 的一般判据与认证计算；本仓库组织分步证明 |
 
 截至本目录 2026 年 10 月 27 日的检查，默认构建未覆盖：$\xi$ 的 Hadamard 乘积（第 10 章）、零点计数公式（第 11 章）、素数定理（第 12 章）、显式公式（第 14 章）、RH 的算术等价（第 15 章）。本目录固定的 mathlib 版本见下文。独立项目的范围和完成状态应按其具体版本核对，例如 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd)；不能从本目录未涉及某个结果，推断整个领域尚无相应形式化。
 
