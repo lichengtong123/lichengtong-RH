@@ -6,7 +6,7 @@
 Lean 接受这个文件，就说明“书中的陈述”与“mathlib 已证明的定理”在形式上一致。
 mathlib 中的定理同样是有人用 Lean 写出完整证明、经 Lean 检查后收入的，引用它们相当于
 写论文时引用已发表的引理。mathlib 中没有的命题也可以自己证明，见 `Ch06_Chebyshev.lean`、
-`Ch09_Zeta.lean`，以及 `Progressive/` 中展开实际推理的例子。
+`Ch09_Zeta.lean`，以及 `Lean入门示例/` 中展开实际推理的例子。
 -/
 import Mathlib.NumberTheory.VonMangoldt
 import Mathlib.NumberTheory.AbelSummation
