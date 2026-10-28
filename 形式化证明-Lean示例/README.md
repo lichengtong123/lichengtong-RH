@@ -39,7 +39,7 @@
 | [ShiftStableSum.lean](Lean入门示例/ShiftStableSum.lean) | 学习笔记第 11 篇 | 将首项分离规则用于常数序列，推出有限实数赋值的矛盾 | 本仓库展开推导 |
 | [Mersenne61.lean](Lean入门示例/Mersenne61.lean) | 学习笔记第 16 篇 | 核验 $2^{61}-1$ 的 Lucas–Lehmer 计算证书，再用一般判据推出素性 | mathlib 的一般判据与认证计算；本仓库组织分步证明 |
 
-截至本目录 2026 年 10 月 27 日的检查，默认构建未覆盖：$\xi$ 的 Hadamard 乘积（第 10 章）、零点计数公式（第 11 章）、素数定理（第 12 章）、显式公式（第 14 章）、RH 的算术等价（第 15 章）。本目录固定的 mathlib 版本见下文。独立项目的范围和完成状态应按其具体版本核对，例如 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd)；不能从本目录未涉及某个结果，推断整个领域尚无相应形式化。
+本目录目前收录的示例见上表，今后将根据读者需要及内容建设情况逐步增补。本目录固定的 mathlib 版本见下文；其他形式化项目的收录范围与完成情况，可参阅各项目的说明，例如 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd)。
 
 ## mathlib 中的定理从哪里来
 
