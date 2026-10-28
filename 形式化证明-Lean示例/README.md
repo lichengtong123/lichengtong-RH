@@ -11,6 +11,8 @@
 
 ## 按难度递进的逐步推导
 
+目录分为两组：[各章Lean示例](各章Lean示例/)保存与正文章节对应的 `ChXX_…` 例程；[Progressive](Progressive/)保存逐步推导例程及配套说明。两者均位于本项目根目录下。`LeanExamples.lean` 是统一构建入口，`LeanExamples/Notes.lean` 暂保留原位，作为补充命题示例。
+
 新增[三层示例草案](分层示例草案/README.md)：简单项为 3–4–1 三角不等式，中等项为 von Mangoldt 恒等式及 Möbius 反演，综合项为从 Jacobi ϑ 模反演推导 ζ 的函数方程。不按书籍章节排序，实际推理逐步配中文注释，不以一句现成目标定理代替证明。
 
 前两项已提供完整代码，综合项目前只有完整数学路线及最后对称性代数片段的代码，分析部分尚未形式化。以下按章列表保留作库定理对照，不与新草案的完成范围混同。
@@ -19,12 +21,12 @@
 
 | 文件 | 书中位置 | 内容 | 来源 |
 |------|----------|------|------|
-| [Ch02_ArithmeticFunctions.lean](LeanExamples/Ch02_ArithmeticFunctions.lean) | 第 2 章，附录 A、B | $\sum_{d\mid n}\Lambda(d)=\log n$；$\mu*\zeta=1$；Möbius 反演；Abel 求和 | mathlib |
-| [Ch05_EulerProduct.lean](LeanExamples/Ch05_EulerProduct.lean) | 第 5 章 | Euler 乘积 | mathlib |
-| [Ch06_Chebyshev.lean](LeanExamples/Ch06_Chebyshev.lean) | 第 6 章 | $n\#\le4^n$；由此 $\theta(n)\le n\log4$ | mathlib；后者为本仓库补写 |
-| [Ch07_Gamma.lean](LeanExamples/Ch07_Gamma.lean) | 第 7 章 | 倍元公式、余元公式 | mathlib |
-| [Ch09_Zeta.lean](LeanExamples/Ch09_Zeta.lean) | 第 9 章，附录 F | 函数方程；$\operatorname{Re}s\ge1$ 上无零点；mathlib 对 $\zeta(1)$ 的约定；$\zeta(2)=\pi^2/6$；$\zeta(-1)=-1/12$ | mathlib；最后一条为本仓库补写 |
-| [Ch11_RiemannHypothesis.lean](LeanExamples/Ch11_RiemannHypothesis.lean) | 第 11 章 | RH 的形式化陈述；平凡零点；一个被 Lean 接受却与 RH 无关的陈述 | mathlib（RH 本身未证明） |
+| [Ch02_ArithmeticFunctions.lean](各章Lean示例/Ch02_ArithmeticFunctions.lean) | 第 2 章，附录 A、B | $\sum_{d\mid n}\Lambda(d)=\log n$；$\mu*\zeta=1$；Möbius 反演；Abel 求和 | mathlib |
+| [Ch05_EulerProduct.lean](各章Lean示例/Ch05_EulerProduct.lean) | 第 5 章 | Euler 乘积 | mathlib |
+| [Ch06_Chebyshev.lean](各章Lean示例/Ch06_Chebyshev.lean) | 第 6 章 | $n\#\le4^n$；由此 $\theta(n)\le n\log4$ | mathlib；后者为本仓库补写 |
+| [Ch07_Gamma.lean](各章Lean示例/Ch07_Gamma.lean) | 第 7 章 | 倍元公式、余元公式 | mathlib |
+| [Ch09_Zeta.lean](各章Lean示例/Ch09_Zeta.lean) | 第 9 章，附录 F | 函数方程；$\operatorname{Re}s\ge1$ 上无零点；mathlib 对 $\zeta(1)$ 的约定；$\zeta(2)=\pi^2/6$；$\zeta(-1)=-1/12$ | mathlib；最后一条为本仓库补写 |
+| [Ch11_RiemannHypothesis.lean](各章Lean示例/Ch11_RiemannHypothesis.lean) | 第 11 章 | RH 的形式化陈述；平凡零点；一个被 Lean 接受却与 RH 无关的陈述 | mathlib（RH 本身未证明） |
 | [Notes.lean](LeanExamples/Notes.lean) | 附录 F；学习笔记第 11、16、20 篇 | $3+4\cos\theta+\cos2\theta\ge0$；平移稳定的求和法不能给 $1+1+\cdots$ 赋值；$2^{61}-1$ 是素数 | 本仓库补写 |
 
 截至本目录 2026 年 10 月 27 日的检查，默认构建未覆盖：$\xi$ 的 Hadamard 乘积（第 10 章）、零点计数公式（第 11 章）、素数定理（第 12 章）、显式公式（第 14 章）、RH 的算术等价（第 15 章）。本目录固定的 mathlib 版本见下文。独立项目的范围和完成状态应按其具体版本核对，例如 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd)；不能从本目录未涉及某个结果，推断整个领域尚无相应形式化。
@@ -55,4 +57,4 @@ lake build
 
 ## 许可
 
-除另行注明来源与许可的文件外，本目录的 Lean 程序文件采用 MIT 许可，说明文字采用 CC BY-NC-SA 4.0。新草案 `Intermediate.lean` 中的因子和证明改编自 mathlib，按 Apache-2.0 发布，见[许可全文](LeanExamples/Progressive/Apache-2.0.txt)及仓库根目录的 [LICENSE](../LICENSE)。
+除另行注明来源与许可的文件外，本目录的 Lean 程序文件采用 MIT 许可，说明文字采用 CC BY-NC-SA 4.0。新草案 `Intermediate.lean` 中的因子和证明改编自 mathlib，按 Apache-2.0 发布，见[许可全文](Progressive/Apache-2.0.txt)及仓库根目录的 [LICENSE](../LICENSE)。
