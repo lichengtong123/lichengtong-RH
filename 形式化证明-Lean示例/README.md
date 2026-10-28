@@ -13,9 +13,9 @@
 
 目录分为两组：[各章Lean示例](各章Lean示例/)保存与正文章节对应的 `ChXX_…` 例程；[Progressive](Progressive/)保存逐步推导例程及配套说明。两者均位于本项目根目录下。`LeanExamples.lean` 是统一构建入口，`LeanExamples/Notes.lean` 暂保留原位，作为补充命题示例。
 
-新增[三层示例草案](分层示例草案/README.md)：简单项为 3–4–1 三角不等式，中等项为 von Mangoldt 恒等式及 Möbius 反演，综合项为从 Jacobi ϑ 模反演推导 ζ 的函数方程。不按书籍章节排序，实际推理逐步配中文注释，不以一句现成目标定理代替证明。
+例程的用途、运行方法及完成范围见 [Progressive 的说明](Progressive/README.md)。选题包括 3–4–1 三角不等式、von Mangoldt 恒等式与 Möbius 反演，以及函数方程推导中的反射对称片段。实际推理逐步配中文注释，不以一句现成目标定理代替证明。
 
-前两项已提供完整代码，综合项目前只有完整数学路线及最后对称性代数片段的代码，分析部分尚未形式化。以下按章列表保留作库定理对照，不与新草案的完成范围混同。
+前两项已提供完整代码，函数方程的分析部分尚未形式化。以下按章列表保留作库定理对照，不与逐步推导例程的完成范围混同。
 
 ## 与本书的对照
 
@@ -57,4 +57,4 @@ lake build
 
 ## 许可
 
-除另行注明来源与许可的文件外，本目录的 Lean 程序文件采用 MIT 许可，说明文字采用 CC BY-NC-SA 4.0。新草案 `Intermediate.lean` 中的因子和证明改编自 mathlib，按 Apache-2.0 发布，见[许可全文](Progressive/Apache-2.0.txt)及仓库根目录的 [LICENSE](../LICENSE)。
+除另行注明来源与许可的文件外，本目录的 Lean 程序文件采用 MIT 许可，说明文字采用 CC BY-NC-SA 4.0。`Intermediate.lean` 中的因子和证明改编自 mathlib，按 Apache-2.0 发布，见[许可全文](Progressive/Apache-2.0.txt)及仓库根目录的 [LICENSE](../LICENSE)。
