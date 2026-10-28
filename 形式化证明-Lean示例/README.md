@@ -13,6 +13,8 @@
 
 目录分为两组：[各章Lean示例](各章Lean示例/)保存与正文章节对应的 `ChXX_…` 例程；[Progressive](Progressive/)保存逐步推导例程、两个自选补充例程及配套说明。两者均位于本项目根目录下。`LeanExamples.lean` 是统一构建入口。
 
+根目录的 `LeanExamples.lean`、`Progressive.lean` 与 `各章Lean示例.lean` 用于汇总导入和自动构建，不是重复例程。说明文档只发布 PDF，LaTeX 排版源码与内部规划不纳入公开目录。
+
 例程的用途、运行方法及完成范围见 [Progressive 的说明](Progressive/README.md)。选题包括 3–4–1 三角不等式、von Mangoldt 恒等式与 Möbius 反演，以及函数方程推导中的反射对称片段。实际推理逐步配中文注释，不以一句现成目标定理代替证明。
 
 前两项已提供完整代码，函数方程的分析部分尚未形式化。以下按章列表保留作库定理对照，不与逐步推导例程的完成范围混同。
