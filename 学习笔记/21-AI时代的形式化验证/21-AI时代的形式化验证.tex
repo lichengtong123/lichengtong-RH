@@ -107,7 +107,7 @@ Lean 接受一个定理，意味着内核逐步检查了一个证明项，确认
 若出现 \texttt{sorryAx}，说明证明中有未完成的部分；若出现其他名字，则是另外引入的公理，定理只在该公理成立时才成立。
 
 \subsection{不保证的部分：陈述}
-Lean 不判断陈述是否就是想要的命题。下面这条定理被 Lean 接受（本仓库 \texttt{形式化证明-Lean示例/\allowbreak LeanExamples/\allowbreak Ch11\_RiemannHypothesis.lean}）：
+Lean 不判断陈述是否就是想要的命题。下面这条定理被 Lean 接受（本仓库 \texttt{形式化证明-Lean示例/\allowbreak 各章Lean示例/\allowbreak Ch11\_RiemannHypothesis.lean}）：
 \begin{Verbatim}
 example (s : ℂ) (h1 : 1 < s.re) (h2 : riemannZeta s = 0) :
     s.re = 1 / 2 :=

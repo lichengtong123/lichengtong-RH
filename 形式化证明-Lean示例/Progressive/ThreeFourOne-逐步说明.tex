@@ -330,9 +330,9 @@ $0\le(1+\cos\theta)^2$ 的证明。
 \begin{enumerate}
   \item 在 VS Code 的“文件”菜单中选择“打开文件夹”（macOS 的菜单也可能显示为“打开”）。
   \item 选择仓库中的 \code{形式化证明-Lean示例} 文件夹。
-    项目根目录应有配置文件 \code{lakefile.toml}、\code{lean-toolchain}，以及 \code{LeanExamples} 目录，
+    项目根目录应有配置文件 \code{lakefile.toml}、\code{lean-toolchain}，以及 \code{Progressive} 目录，
     不要仅以最内层的 \code{Progressive} 目录作为项目根目录。
-  \item 在左侧资源管理器中依次展开 \code{LeanExamples}、\code{Progressive}，
+  \item 在左侧资源管理器中展开项目根目录下的 \code{Progressive}，
     打开 \code{ThreeFourOne.lean}，等待 Lean 服务处理文件。
   \item 如果右侧尚无 InfoView，按 macOS 的 \code{Cmd+Shift+P} 或
     Windows/Linux 的 \code{Ctrl+Shift+P} 打开命令面板，搜索 \code{Infoview}，
@@ -418,13 +418,13 @@ $0\le(1+\cos\theta)^2$ 的证明。
 该文件夹包含 \code{lean-toolchain}、\code{lakefile.toml} 和本例使用的 mathlib 依赖。
 在以这个文件夹为当前目录的终端中运行：
 \begin{Verbatim}
-lake env lean LeanExamples/Progressive/ThreeFourOne.lean
+lake env lean Progressive/ThreeFourOne.lean
 \end{Verbatim}
 若终端当前位于 \code{Progressive} 子目录，应先回到项目根目录。
 例如作者本机使用以下两行；其他读者将第一行替换为自己的项目路径：
 \begin{Verbatim}
 cd /Users/lichengtong/lichengtong-RH/形式化证明-Lean示例
-lake env lean LeanExamples/Progressive/ThreeFourOne.lean
+lake env lean Progressive/ThreeFourOne.lean
 \end{Verbatim}
 \code{lake env} 为随后启动的 Lean 设置项目环境，使其找到固定版本的依赖；
 \code{lean} 检查后面指定的文件。这不是将文件编译成一个用于数值试验的程序，
@@ -440,7 +440,7 @@ lake env lean LeanExamples/Progressive/ThreeFourOne.lean
 \step{查看定理的公理依赖}
 在能找到该模块的项目环境中，可以另建临时审查文件，写入
 \begin{Verbatim}
-import LeanExamples.Progressive.ThreeFourOne
+import Progressive.ThreeFourOne
 
 #print axioms Progressive.three_four_one_identity
 #print axioms Progressive.three_four_one_nonnegative
