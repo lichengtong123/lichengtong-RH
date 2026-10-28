@@ -8,7 +8,7 @@ import Mathlib.NumberTheory.VonMangoldt
 import Mathlib.Tactic
 
 /-!
-# 中等示例：von Mangoldt 恒等式与 Möbius 反演
+# von Mangoldt 恒等式与 Möbius 反演
 
 实际证明分为三段：按素数幂与互素乘积归纳证明因子和恒等式；
 将它写成卷积；再用 Möbius 函数与常数算术函数的卷积逆关系反演。

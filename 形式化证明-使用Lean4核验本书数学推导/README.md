@@ -67,4 +67,4 @@ lake build
 
 ## 许可
 
-除另行注明来源与许可的文件外，本目录的 Lean 程序文件采用 MIT 许可，说明文字采用 CC BY-NC-SA 4.0。`Intermediate.lean` 中的因子和证明改编自 mathlib，按 Apache-2.0 发布，见[许可全文](Lean入门示例/Apache-2.0.txt)及仓库根目录的 [LICENSE](../LICENSE)。
+除另行注明来源与许可的文件外，本目录的 Lean 程序文件采用 MIT 许可，说明文字采用 CC BY-NC-SA 4.0。`VonMangoldtMobius.lean` 中的因子和证明改编自 mathlib，按 Apache-2.0 发布，见[许可全文](Lean入门示例/Apache-2.0.txt)及仓库根目录的 [LICENSE](../LICENSE)。

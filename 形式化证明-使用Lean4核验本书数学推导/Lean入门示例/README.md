@@ -1,3 +1,9 @@
+---
+noteId: "b6fb8810d28f11f1ba34193feda203b5"
+tags: []
+
+---
+
 # Lean 入门示例
 
 本目录面向初次接触形式化证明的读者，通过由易到难的数学例子，介绍 Lean 的基本使用方法、操作步骤、证明写法及核验结果的理解。选题取自本书涉及的数学内容，但不按章节排列，也不编排为系统的 Lean 课程。每段证明配有中文注释，说明输入条件、中间结论和实际使用的推理。
@@ -11,7 +17,7 @@
 | 文件 | 内容 | 核验范围 |
 |---|---|---|
 | [ThreeFourOne.lean](ThreeFourOne.lean) | 3–4–1 三角恒等式与非负性 | 两个定理的完整证明已通过 Lean 核验 |
-| [Intermediate.lean](Intermediate.lean) | von Mangoldt 因子和恒等式及 Möbius 反演 | 因子和、卷积恒等式和反演有限和的证明已通过 Lean 核验 |
+| [VonMangoldtMobius.lean](VonMangoldtMobius.lean) | von Mangoldt 因子和恒等式及 Möbius 反演 | 因子和、卷积恒等式和反演有限和的证明已通过 Lean 核验 |
 | [ThetaFramework.lean](ThetaFramework.lean) | 函数方程推导中的反射对称代数步骤 | 仅此代数片段已核验，尚不是 ζ 函数方程的完整形式化证明 |
 | [ShiftStableSum.lean](ShiftStableSum.lean) | 对全部实数序列要求首项分离规则所产生的矛盾 | 将规则专门用于常数序列，逐步推出矛盾；自选补充 |
 | [Mersenne61.lean](Mersenne61.lean) | $2^{61}-1$ 的素性核验 | 展开精确整数值、Lucas–Lehmer 测试与一般判据的应用；自选补充 |
@@ -48,7 +54,7 @@ $$
 
 代码没有直接调用这两个现成目标公式。基础输入包括素因子分解归纳、因子枚举、对数乘法公式与一般卷积理论；证明中逐项解释它们的作用。
 
-配套[逐步说明 PDF](Intermediate-逐步说明.pdf)从通常的数学证明出发，逐条解释归纳、有限求和、卷积与反演的 Lean 写法，并介绍 VS Code 中的操作、证明状态及终端核验方法。
+配套[逐步说明 PDF](VonMangoldtMobius-逐步说明.pdf)从通常的数学证明出发，逐条解释归纳、有限求和、卷积与反演的 Lean 写法，并介绍 VS Code 中的操作、证明状态及终端核验方法。
 
 代码使用满足 de=n 的有序因子对展开反演有限和。算术函数的记号 ζ 表示正整数上恒为 1 的函数，不是复变函数 ζ；卷积单位元也不是普通的常值函数 1。库在 n=0 处的补值约定使代码还覆盖该点，但通常的数论公式仍取 n≥1。
 
