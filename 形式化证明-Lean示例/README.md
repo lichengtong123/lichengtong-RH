@@ -2,7 +2,7 @@
 
 本目录以本书的若干数学命题为例，介绍**形式化证明的写法与核验过程**。[Lean](https://lean-lang.org/) 是一种证明助手：使用者将数学定义、命题和推理步骤写成严格的形式语言，由计算机逐步检查推导是否符合逻辑规则。随着 AI 生成的数学证明越来越多，形式化核验也日益受到关注。
 
-## 不装 Lean 也能看什么
+## 不安装 Lean 也能阅读的内容
 
 - 每个 `.lean` 文件都配有中文注释：对应书中哪一章、用通常的数学语言怎样陈述、Lean 写法逐项是什么意思、与书中写法有何不同。在 GitHub 上直接点开即可阅读。
 - 仓库配置了自动检查：相关文件更新后，GitHub 的服务器会构建默认目标 `LeanExamples` 及其导入的模块。检查通过，表示这些模块中的形式化证明被 Lean 接受，不包括未被导入的练习文件，也不检查中文注释是否准确。检查记录在仓库的 Actions 页面公开。
@@ -32,7 +32,7 @@
 |------|----------|------|------|
 | [Ch02_ArithmeticFunctions.lean](各章Lean示例/Ch02_ArithmeticFunctions.lean) | 第 2 章，附录 A、B | $\sum_{d\mid n}\Lambda(d)=\log n$；$\mu*\zeta=1$；Möbius 反演；Abel 求和 | mathlib |
 | [Ch05_EulerProduct.lean](各章Lean示例/Ch05_EulerProduct.lean) | 第 5 章 | Euler 乘积 | mathlib |
-| [Ch06_Chebyshev.lean](各章Lean示例/Ch06_Chebyshev.lean) | 第 6 章 | $n\#\le4^n$；由此 $\theta(n)\le n\log4$ | mathlib；后者为本仓库补写 |
+| [Ch06_Chebyshev.lean](各章Lean示例/Ch06_Chebyshev.lean) | 第 6 章 | $\prod_{p\le n}p\le4^n$（乘积遍历素数）；由此 $\theta(n)\le n\log4$ | mathlib；后者为本仓库补写 |
 | [Ch07_Gamma.lean](各章Lean示例/Ch07_Gamma.lean) | 第 7 章 | 倍元公式、余元公式 | mathlib |
 | [Ch09_Zeta.lean](各章Lean示例/Ch09_Zeta.lean) | 第 9 章，附录 F | 函数方程；$\operatorname{Re}s\ge1$ 上无零点；mathlib 对 $\zeta(1)$ 的约定；$\zeta(2)=\pi^2/6$；$\zeta(-1)=-1/12$ | mathlib；最后一条为本仓库补写 |
 | [Ch11_RiemannHypothesis.lean](各章Lean示例/Ch11_RiemannHypothesis.lean) | 第 11 章 | RH 的形式化陈述；平凡零点；一个被 Lean 接受却与 RH 无关的陈述 | mathlib（RH 本身未证明） |
