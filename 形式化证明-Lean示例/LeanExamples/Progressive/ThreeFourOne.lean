@@ -2,11 +2,16 @@ import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 import Mathlib.Tactic
 
 /-!
-# 简单示例：3–4–1 三角不等式
+# 3–4–1 三角不等式：逐步证明示例
 
 目标是展示实际推导，不调用已经证明整个不等式的定理。
 基础输入：余弦倍角公式、实数平方非负、实数的代数运算。
 `ring` 只核验多项式恒等变形，不承担三角公式或不等式的证明。
+
+书中使用位置：10-19 版第 9.6.2 节及附录 F.1。
+本例仅核验三角恒等式与非负性，不包括其后 ζ 的级数与无零点论证。
+入口：https://github.com/lichengtong123/lichengtong-RH/tree/main/形式化证明-Lean示例
+同目录 ThreeFourOne-逐步说明.tex / .pdf 提供每一步的详细解释。
 -/
 
 namespace Progressive

@@ -22,9 +22,9 @@
 
 ## 一、简单：3–4–1 三角不等式
 
-[逐步注释代码：Simple.lean](../LeanExamples/Progressive/Simple.lean)
+[逐步注释代码：ThreeFourOne.lean](../LeanExamples/Progressive/ThreeFourOne.lean)
 
-配套[详细说明 PDF](../LeanExamples/Progressive/Simple-逐步说明.pdf)与[TeX 源码](../LeanExamples/Progressive/Simple-逐步说明.tex)逐条解释语法、数学推理、目标变化及 InfoView 提示，适合第一次阅读 Lean 证明时对照。
+配套[详细说明 PDF](../LeanExamples/Progressive/ThreeFourOne-逐步说明.pdf)与[TeX 源码](../LeanExamples/Progressive/ThreeFourOne-逐步说明.tex)逐条解释语法、数学推理、目标变化及 InfoView 提示，适合第一次阅读 Lean 证明时对照。
 
 对每个实数 θ，证明
 
@@ -165,7 +165,7 @@ lake build
 也可以只核验本草案的三个模块：
 
 ```sh
-lake build LeanExamples.Progressive.Simple LeanExamples.Progressive.Intermediate LeanExamples.Progressive.ThetaFramework
+lake build LeanExamples.Progressive.ThreeFourOne LeanExamples.Progressive.Intermediate LeanExamples.Progressive.ThetaFramework
 ```
 
 建议第一次阅读按本页顺序，先看数学推导，再打开相应 `.lean` 文件；不需要先阅读既有的按章对照目录，也不要求读者继续学习为一门系统 Lean 课程。
