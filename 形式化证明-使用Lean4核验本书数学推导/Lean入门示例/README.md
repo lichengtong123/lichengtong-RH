@@ -62,7 +62,7 @@ $$
 
 ## 函数方程：当前仅完成代数片段
 
-配套[证明解读与使用说明 PDF](ThetaMellinSymmetry-证明解读与使用说明.pdf)解释模型的数学来源、每条证明指令、尚待完成的分析接口，以及 VS Code 操作与终端核验方法。
+配套[证明解读与使用说明 PDF](ThetaMellinSymmetry-证明解读与使用说明.pdf)解释模型的数学来源、每条证明指令、尚待完成的分析接口，并通过两幅代码与 InfoView 同屏截图说明 VS Code 操作和证明状态，另附终端核验方法。
 
 `ThetaMellinSymmetry.lean` 对任意复函数 A 定义模型
 
