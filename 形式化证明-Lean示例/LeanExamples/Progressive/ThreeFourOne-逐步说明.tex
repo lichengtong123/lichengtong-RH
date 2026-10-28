@@ -1,5 +1,5 @@
 % 编译：在本文件所在目录运行 XeLaTeX 两遍。
-% 完整源码直接读取同目录 Simple.lean，避免另存一份代码后发生不同步。
+% 完整源码直接读取同目录 ThreeFourOne.lean，避免另存一份代码后发生不同步。
 \documentclass[UTF8,fontset=fandol,a4paper,11pt]{ctexart}
 \usepackage[margin=25mm]{geometry}
 \usepackage{amsmath,amssymb,mathtools}
@@ -9,7 +9,7 @@
 \usepackage{fancyvrb,fvextra}
 \usepackage{booktabs,array,enumitem,needspace,fancyhdr,xurl,hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,
-  pdftitle={Simple.lean 逐步说明：3–4–1 三角不等式}}
+  pdftitle={ThreeFourOne.lean 逐步说明：3–4–1 三角不等式}}
 \fvset{fontsize=\small,breaklines=true,breakanywhere=false,
   frame=leftline,framesep=5pt,xleftmargin=8pt}
 \setlength{\emergencystretch}{2em}
@@ -25,14 +25,14 @@
 \newcommand{\code}[1]{{\small\ttfamily\def\_{\textunderscore\allowbreak}#1}}
 \pdfstringdefDisableCommands{\def\code#1{#1}}
 \newcommand{\step}[1]{\Needspace{7\baselineskip}\subsection{#1}}
-\title{\texttt{Simple.lean} 逐步说明\\[0.3em]\large 从倍角公式到 3–4–1 三角不等式}
+\title{\texttt{ThreeFourOne.lean} 逐步说明\\[0.3em]\large 从倍角公式到 3–4–1 三角不等式}
 \author{}
 \date{2026 年 10 月 28 日草案}
 
 \begin{document}
 \maketitle
 
-本文对同目录的 \code{Simple.lean} 作逐步说明。目标不是系统讲授 Lean，
+本文对同目录的 \code{ThreeFourOne.lean} 作逐步说明。目标不是系统讲授 Lean，
 而是通过一个完整的小证明，说明数学推理如何写成可由计算机核验的形式。
 阅读时只需熟悉余弦倍角公式、实数平方非负及通常的代数运算。
 全文区分三件事：要证明的数学命题、代码如何组织推理，以及编辑器当前显示的信息。
@@ -70,13 +70,14 @@
 \section{完整代码与阅读约定}
 
 下面直接读取同目录的实际源码；左边的数字是源码行号，不属于 Lean 程序。
-\VerbatimInput[fontsize=\footnotesize,numbers=left,numbersep=5pt]{Simple.lean}
+\VerbatimInput[fontsize=\footnotesize,numbers=left,numbersep=5pt]{ThreeFourOne.lean}
 
 \paragraph{怎样理解“每一步”}
 代码中的空行用于分隔内容，注释用于解释意图，真正构成证明的是命题陈述和
 \code{by} 后的指令。以下先解释文件准备部分，再逐条说明两个证明。
 后文显示的目标为便于阅读作了排版整理，编辑器中的换行、隐含参数或类型标记可能略有差别。
 
+\Needspace{9\baselineskip}
 \section{文件准备：导入、注释与名字空间}
 
 \step{导入三角函数的基础理论}
@@ -356,20 +357,20 @@ hSquare : 0 ≤ (1 + Real.cos θ) ^ 2
 该文件夹包含 \code{lean-toolchain}、\code{lakefile.toml} 和本例使用的 mathlib 依赖。
 在以这个文件夹为当前目录的终端中运行：
 \begin{Verbatim}
-lake env lean LeanExamples/Progressive/Simple.lean
+lake env lean LeanExamples/Progressive/ThreeFourOne.lean
 \end{Verbatim}
 \code{lake env} 为随后启动的 Lean 设置项目环境，使其找到固定版本的依赖；
 \code{lean} 检查后面指定的文件。这不是将文件编译成一个用于数值试验的程序，
 而是检查其中的定义、命题和证明。
 
-对于当前不含额外打印命令的 \code{Simple.lean}，命令无错误退出时通常不会输出祝贺文字。
+对于当前不含额外打印命令的 \code{ThreeFourOne.lean}，命令无错误退出时通常不会输出祝贺文字。
 也可以运行 \code{lake build}，核验项目默认目标及其导入的模块。
 这不等于机器上的所有任意 \code{.lean} 文件都已自动核验。
 
 \step{查看定理的公理依赖}
 在能找到该模块的项目环境中，可以另建临时审查文件，写入
 \begin{Verbatim}
-import LeanExamples.Progressive.Simple
+import LeanExamples.Progressive.ThreeFourOne
 
 #print axioms Progressive.three_four_one_identity
 #print axioms Progressive.three_four_one_nonnegative
@@ -381,9 +382,9 @@ import LeanExamples.Progressive.Simple
 这些标准公理属于所采用形式系统的基础；公理依赖检查不代替对命题含义及定义的人工核对。
 
 \step{用 XeLaTeX 编译说明文档}
-本文是独立的 TeX 文件，不需要导入全书。在本文与 \code{Simple.lean} 所在目录执行两遍：
+本文是独立的 TeX 文件，不需要导入全书。在本文与 \code{ThreeFourOne.lean} 所在目录执行两遍：
 \begin{Verbatim}
-xelatex -interaction=nonstopmode -halt-on-error Simple-逐步说明.tex
+xelatex -interaction=nonstopmode -halt-on-error ThreeFourOne-逐步说明.tex
 \end{Verbatim}
 两者须放在同一目录，因为第二节通过 \code{\textbackslash VerbatimInput}
 直接读取实际代码。中文字体采用 TeX Live 通常附带的 Fandol；
@@ -407,7 +408,7 @@ xelatex -interaction=nonstopmode -halt-on-error Simple-逐步说明.tex
 
 本书随后将这一不等式用于构造关于 $\log|\zeta|$ 的非负组合。
 从三角不等式到 $\zeta$ 的无零点结论，还需要级数展开、收敛性及极点附近的估计；
-这些不属于 \code{Simple.lean} 的证明范围，不能从本例通过检查直接推断后续结论已全部形式化。
+这些不属于 \code{ThreeFourOne.lean} 的证明范围，不能从本例通过检查直接推断后续结论已全部形式化。
 
 \paragraph{阅读后的把握}
 读者不必记住所有策略名称，但应能辨认每一步的输入与输出：
