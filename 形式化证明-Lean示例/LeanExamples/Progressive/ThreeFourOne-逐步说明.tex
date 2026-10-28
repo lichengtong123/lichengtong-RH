@@ -4,6 +4,7 @@
 \usepackage[margin=25mm]{geometry}
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{xcolor}
+\usepackage{graphicx,caption}
 \usepackage{fontspec}
 \setmonofont{DejaVuSansMono.ttf}[BoldFont=DejaVuSansMono-Bold.ttf,Scale=0.88]
 \usepackage{fancyvrb,fvextra}
@@ -321,28 +322,88 @@ $0\le(1+\cos\theta)^2$ 的证明。
 第一项恒等式的变化更短：原等式先由倍角公式改写，再由 \code{ring} 完成代数核验。
 两段证明都具有清楚的中间状态，并非一条直接调用目标定理的指令。
 
-\section{怎样理解 InfoView 中的提示}
+\section{在 VS Code 中操作并判断证明是否通过}
 
-\step{\code{No goals} 与 \code{Goals accomplished!}}
-\code{No goals} 表示光标对应的证明状态没有剩余目标。
-在本文件两个证明的末尾，它表示相应证明已经结束。
-\code{Goals accomplished!} 是编辑器给出的完成提示，不是需要写入源码的指令。
+\step{打开项目，而不是只打开一个代码文件}
+以下以已经安装 Lean 4 扩展、并已取得本仓库依赖的 VS Code 为前提。
+如果尚未安装，可先在扩展面板中查找 Lean 4 并完成安装；不要把安装扩展与本例证明本身混为一件事。
+\begin{enumerate}
+  \item 在 VS Code 的“文件”菜单中选择“打开文件夹”（macOS 的菜单也可能显示为“打开”）。
+  \item 选择仓库中的 \code{形式化证明-Lean示例} 文件夹。
+    项目根目录应有配置文件 \code{lakefile.toml}、\code{lean-toolchain}，以及 \code{LeanExamples} 目录，
+    不要仅以最内层的 \code{Progressive} 目录作为项目根目录。
+  \item 在左侧资源管理器中依次展开 \code{LeanExamples}、\code{Progressive}，
+    打开 \code{ThreeFourOne.lean}，等待 Lean 服务处理文件。
+  \item 如果右侧尚无 InfoView，按 macOS 的 \code{Cmd+Shift+P} 或
+    Windows/Linux 的 \code{Ctrl+Shift+P} 打开命令面板，搜索 \code{Infoview}，
+    选择 Lean 4 提供的切换或显示 InfoView 命令。
+  \item 后续只需移动光标观察证明状态；修改文件后先保存，并等待检查完成。
+    不需要按 Python 程序的运行按钮，也不需要为了看到证明状态添加打印语句。
+\end{enumerate}
+项目而非单文件的打开方式，可参看 Lean 社区的项目使用说明\footnote{\url{https://leanprover-community.github.io/install/project.html}。界面文字会随 VS Code 与 Lean 扩展版本略有变化，本文以所示实例说明。}。
+首次加载可能需要准备依赖；如果出现找不到 \code{Mathlib} 的错误，应先检查项目环境，
+不能据此认定三角不等式的证明有错。
 
-这种提示是针对相应位置的证明。查看第一个定理末尾的成功信息，不应据此推断第二个定理
-或整个项目都已无错；全文件或项目是否通过，还应结合错误列表或命令行检查。
+\step{随着光标位置逐步观察目标}
+先把光标放在第一个定理的 \code{by} 后，查看要证明的恒等式。
+随后移至 \code{rw [Real.cos\_two\_mul]} 的行末，再移至 \code{ring} 的行末，
+对照前文已经列出的目标变化。信息面板根据光标位置更新；在命令前、命令内和命令后，
+看到的内容可能不同。
 
-\step{为什么已经完成，还会显示 \code{Expected type}}
-\code{Expected type} 表示光标所指表达式在该处需要具有的类型。
-对于证明表达式，类型本身就是要证明的命题。
-例如光标指向最后一行的 \code{hSquare} 时，可能看到
-\begin{Verbatim}
-θ : ℝ
-hSquare : 0 ≤ (1 + Real.cos θ) ^ 2
-⊢ 0 ≤ (1 + Real.cos θ) ^ 2
-\end{Verbatim}
-这里显示的是 \code{mul\_nonneg} 的第二个输入应当证明什么，
-以及 \code{hSquare} 恰好提供了它；并不表示完成后又冒出了一个未证目标。
-应将 \code{Tactic state} 与 \code{Expected type} 两个栏目的含义分开。
+然后依次查看第二个定理的 \code{rw}、\code{have hSquare} 和最后的 \code{exact}。
+将光标放在最后一行末尾，可观察该证明完成后的状态；将光标放在同一行的
+\code{hSquare} 上，则还可能看到这个局部表达式应具有的类型。
+这两种显示提供的信息不同，并不冲突。
+
+\step{对照实际截图理解各个栏目}
+图~\ref{fig:infoview-success} 是本例第二个定理完成后的实际 InfoView 截图。
+它保留编辑器的原始显示，不是另行编造的证明输出。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.58\textwidth,height=0.46\textheight,keepaspectratio]{ThreeFourOne-InfoView.png}
+  \caption{第二个定理完成后的 InfoView。上方的 \texttt{No goals} 表示没有剩余目标；\texttt{Expected type} 显示所指局部证明的类型，并非新的未证目标。}
+  \label{fig:infoview-success}
+\end{figure}
+
+各栏应分别理解：
+\begin{enumerate}
+  \item \code{ThreeFourOne.lean:35:40}：正在显示信息的文件和光标位置，
+    后两项为行号、列号，不是错误编号。源码注释增减后，数字也会随之改变。
+  \item \code{Tactic state} 下的 \code{No goals}：该位置的策略证明已经没有待处理目标。
+    在本例最后一行，它表示非负性证明已经完成。
+  \item \code{Expected type}：光标所指表达式在此处应当具有的类型。
+    对证明表达式，类型就是命题；它不是报告错误的栏目。
+  \item \code{θ : ℝ} 表明当前参数为实数；
+    \code{hSquare : 0 ≤ (1 + Real.cos θ) \textasciicircum\ 2}
+    表明已经具有平方非负的证明。符号 \code{⊢} 后再次出现同一命题，
+    是因为最后一行的 \code{mul\_nonneg} 正需要这份证明作为第二个输入。
+  \item \code{Messages} 中的 \code{Goals accomplished!}：编辑器针对相应定理的完成提示。
+    图中的位置标记指向第二个定理的声明（本截图为第 28 行）。
+    \code{Messages} 后的数字表示消息数量，不表示错误数量；消息的具体内容才决定其性质。
+  \item \code{All Messages} 是可展开的消息列表。可在其中继续查看是否存在文件的其他错误，
+    不能把这个栏目名称本身理解为通过或失败。
+\end{enumerate}
+
+图中 \code{Expected type} 内的平方指数 $2$ 因面板较窄而换行显示，
+并非代码把平方写漏，也不是另外一条命题。
+关键区别是：\code{Tactic state} 已没有未证目标，而 \code{Expected type}
+仍可解释光标所指的一个证明对象为何适用于当前位置。
+
+\step{什么情况下可以说“证明通过”}
+在当前这个文件中，可以按以下层次作判断：
+\begin{enumerate}
+  \item 第一个定理末尾出现 \code{No goals}，表示恒等式的证明已完成。
+  \item 第二个定理末尾出现 \code{No goals}，并有相应完成提示，表示非负性证明已完成。
+  \item 保存文件并等待处理结束后，检查编辑器的问题面板及消息列表，没有本文件的错误；
+    需要独立确认时，再执行下一节给出的命令行检查。
+\end{enumerate}
+这里的判断还依赖代码没有使用 \code{sorry} 等跳过证明的做法。
+本例的两段证明均未使用此类占位，也未把目标命题声明为公理。
+因此，本例的完成状态确实对应上述两条证明被 Lean 接受，而不只是证明框架暂时没有剩余目标。
+
+单独一张 \code{No goals} 截图不能证明整个项目都正确，也不能检查中文解释是否忠实于数学原意。
+它更不能表明本书后续的无零点论证已全部形式化。
 
 \step{\code{No info found} 不是同一类提示}
 \code{No info found} 表示编辑器在光标位置没有可显示的相应信息。
@@ -359,11 +420,20 @@ hSquare : 0 ≤ (1 + Real.cos θ) ^ 2
 \begin{Verbatim}
 lake env lean LeanExamples/Progressive/ThreeFourOne.lean
 \end{Verbatim}
+若终端当前位于 \code{Progressive} 子目录，应先回到项目根目录。
+例如作者本机使用以下两行；其他读者将第一行替换为自己的项目路径：
+\begin{Verbatim}
+cd /Users/lichengtong/lichengtong-RH/形式化证明-Lean示例
+lake env lean LeanExamples/Progressive/ThreeFourOne.lean
+\end{Verbatim}
 \code{lake env} 为随后启动的 Lean 设置项目环境，使其找到固定版本的依赖；
 \code{lean} 检查后面指定的文件。这不是将文件编译成一个用于数值试验的程序，
 而是检查其中的定义、命题和证明。
 
 对于当前不含额外打印命令的 \code{ThreeFourOne.lean}，命令无错误退出时通常不会输出祝贺文字。
+等到终端提示符重新出现，才表示这次命令已经结束；仍在运行时没有文字，不能提前判为成功。
+如果只出现依赖库 \code{has local changes} 的警告，而命令正常退出，这不是证明错误，
+但说明本次检查使用了存在本地改动的依赖目录，不能据此声称依赖与原始固定版本完全一致。
 也可以运行 \code{lake build}，核验项目默认目标及其导入的模块。
 这不等于机器上的所有任意 \code{.lean} 文件都已自动核验。
 
@@ -386,8 +456,9 @@ import LeanExamples.Progressive.ThreeFourOne
 \begin{Verbatim}
 xelatex -interaction=nonstopmode -halt-on-error ThreeFourOne-逐步说明.tex
 \end{Verbatim}
-两者须放在同一目录，因为第二节通过 \code{\textbackslash VerbatimInput}
-直接读取实际代码。中文字体采用 TeX Live 通常附带的 Fandol；
+本文、\code{ThreeFourOne.lean} 与截图 \code{ThreeFourOne-InfoView.png}
+须放在同一目录，因为第二节通过 \code{\textbackslash VerbatimInput}
+直接读取实际代码，截图也采用相对路径载入。中文字体采用 TeX Live 通常附带的 Fandol；
 代码字体采用 DejaVu Sans Mono。若环境缺少该等宽字体，须先安装或替换为能显示
 \code{θ}、\code{ℝ}、\code{≤} 等符号的等宽字体，不能忽略缺字警告。
 
