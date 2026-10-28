@@ -41,7 +41,7 @@
 
 本目录目前收录的示例见上表，今后将根据读者需要及内容建设情况逐步增补。本目录固定的 mathlib 版本见下文；其他形式化项目的收录范围与完成情况，可参阅各项目的说明，例如 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd)。
 
-## mathlib 中的定理从哪里来
+## Mathlib 数学库及其定理来源
 
 [mathlib](https://github.com/leanprover-community/mathlib4) 是 Lean 社区共同维护的数学库。其中每条定理都是有人用 Lean 写出完整证明、经 Lean 检查后收入的；按定理名可以在 mathlib 源代码中找到它的证明，并逐层追溯到 Lean 的基本公理。引用 mathlib 的定理，相当于写论文时引用已发表的引理：省去重复的工作，检查的标准并不降低。
 
