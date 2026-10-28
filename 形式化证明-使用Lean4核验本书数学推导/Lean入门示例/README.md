@@ -14,13 +14,13 @@ tags: []
 
 ## 例程与完成状态
 
-| 文件 | 内容 | 核验范围 |
-|---|---|---|
-| [ThreeFourOne.lean](ThreeFourOne.lean) | 3–4–1 三角恒等式与非负性 | 两个定理的完整证明已通过 Lean 核验 |
-| [VonMangoldtMobius.lean](VonMangoldtMobius.lean) | von Mangoldt 因子和恒等式及 Möbius 反演 | 因子和、卷积恒等式和反演有限和的证明已通过 Lean 核验 |
-| [ThetaMellinSymmetry.lean](ThetaMellinSymmetry.lean) | 函数方程推导中的反射对称代数步骤 | 仅此代数片段已核验，尚不是 ζ 函数方程的完整形式化证明 |
-| [ShiftStableSum.lean](ShiftStableSum.lean) | 对全部实数序列要求首项分离规则所产生的矛盾 | 将规则专门用于常数序列，逐步推出矛盾；自选补充 |
-| [Mersenne61.lean](Mersenne61.lean) | $2^{61}-1$ 的素性核验 | 展开精确整数值、Lucas–Lehmer 测试与一般判据的应用；自选补充 |
+| 文件 | 内容 | 本书对应内容 | 核验范围 |
+|---|---|---|---|
+| [ThreeFourOne.lean](ThreeFourOne.lean) | 3–4–1 三角恒等式与非负性 | §9.6.2；附录 F.1 | 两个定理的完整证明已通过 Lean 核验 |
+| [VonMangoldtMobius.lean](VonMangoldtMobius.lean) | von Mangoldt 因子和恒等式及 Möbius 反演 | §2.5.3“对数恒等式”、§2.5.4“von Mangoldt 函数与 Möbius 函数的卷积关系”；一般反演见附录 A | 因子和、卷积恒等式和反演有限和的证明已通过 Lean 核验 |
+| [ThetaMellinSymmetry.lean](ThetaMellinSymmetry.lean) | 函数方程推导中的反射对称代数步骤 | §9.4.2“积分推演与极点分离”中最后的对称性代数步骤 | 仅此代数片段已核验，尚不是 ζ 函数方程的完整形式化证明 |
+| [ShiftStableSum.lean](ShiftStableSum.lean) | 对全部实数序列要求首项分离规则所产生的矛盾 | 配套学习笔记第 11 篇 | 将规则专门用于常数序列，逐步推出矛盾；自选补充 |
+| [Mersenne61.lean](Mersenne61.lean) | $2^{61}-1$ 的素性核验 | 配套学习笔记第 16 篇 | 展开精确整数值、Lucas–Lehmer 测试与一般判据的应用；自选补充 |
 
 这些文件均纳入项目默认构建。不使用 `sorry` 跳过证明，也不把待证结论声明为公理；函数方程例程的实际结论刻意限于已完成的片段。
 
