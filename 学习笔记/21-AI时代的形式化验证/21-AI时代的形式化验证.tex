@@ -15,7 +15,7 @@
 \maketitle
 
 \noindent{\small 本篇以 Lean 4 及其数学库 mathlib 中关于 $\zeta$ 函数的定理为例，说明“经过形式化验证”保证什么、不保证什么，
-以及在 AI 大量生成证明的情况下应当怎样阅读这类声明。文中的 Lean 代码取自本仓库 \texttt{形式化证明-Lean示例/}，均已由 Lean 检查；
+以及在 AI 大量生成证明的情况下应当怎样阅读这类声明。文中的 Lean 代码取自本仓库 \texttt{形式化证明-使用Lean4核验本书数学推导/}，均已由 Lean 检查；
 形式化验证的一般原理见学习笔记第 16 篇，此处不重复。所涉近期事件截至 2026 年 10 月下旬，均注明出处。}\par\medskip
 
 \section{问题}
@@ -107,7 +107,7 @@ Lean 接受一个定理，意味着内核逐步检查了一个证明项，确认
 若出现 \texttt{sorryAx}，说明证明中有未完成的部分；若出现其他名字，则是另外引入的公理，定理只在该公理成立时才成立。
 
 \subsection{不保证的部分：陈述}
-Lean 不判断陈述是否就是想要的命题。下面这条定理被 Lean 接受（本仓库 \texttt{形式化证明-Lean示例/\allowbreak 各章Lean示例/\allowbreak Ch11\_RiemannHypothesis.lean}）：
+Lean 不判断陈述是否就是想要的命题。下面这条定理被 Lean 接受（本仓库 \texttt{形式化证明-使用Lean4核验本书数学推导/\allowbreak 各章Lean示例/\allowbreak Ch11\_RiemannHypothesis.lean}）：
 \begin{Verbatim}
 example (s : ℂ) (h1 : 1 < s.re) (h2 : riemannZeta s = 0) :
     s.re = 1 / 2 :=
@@ -214,6 +214,6 @@ RH 的算术等价形式 & 第 15 章 & 未收入 mathlib \\
  \item J.\ Avigad, K.\ Donnelly, D.\ Gray, P.\ Raff, A formally verified proof of the prime number theorem, \emph{ACM Trans.\ Comput.\ Logic} 9 (2007).
  \item J.\ Harrison, Formalizing an analytic proof of the prime number theorem, \emph{J.\ Automated Reasoning} 43 (2009).
  \item AI proved the quasi-Riemann hypothesis. What happens now?, \emph{Quanta Magazine}, 2026 年 10 月 19 日。 \url{https://www.quantamagazine.org/ai-proved-the-quasi-riemann-hypothesis-what-happens-now-20261019/}
- \item 本仓库 \texttt{形式化证明-Lean示例/}；学习笔记第 10 篇（Li 判据）、第 16 篇（计算与证明）；本书第 9、11 章。
+ \item 本仓库 \texttt{形式化证明-使用Lean4核验本书数学推导/}；学习笔记第 10 篇（Li 判据）、第 16 篇（计算与证明）；本书第 9、11 章。
 \end{itemize}
 \end{document}

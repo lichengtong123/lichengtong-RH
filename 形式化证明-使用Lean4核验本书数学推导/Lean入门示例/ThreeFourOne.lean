@@ -10,7 +10,7 @@ import Mathlib.Tactic
 
 书中使用位置：10-19 版第 9.6.2 节及附录 F.1。
 本例仅核验三角恒等式与非负性，不包括其后 ζ 的级数与无零点论证。
-入口：https://github.com/lichengtong123/lichengtong-RH/tree/main/形式化证明-Lean示例
+入口：https://github.com/lichengtong123/lichengtong-RH/tree/main/形式化证明-使用Lean4核验本书数学推导
 同目录 ThreeFourOne-逐步说明.pdf 提供每一步的详细解释。
 -/
 
