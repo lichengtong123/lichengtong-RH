@@ -9,13 +9,13 @@
 - 每个 `.lean` 文件都配有中文注释：对应书中哪一章、用通常的数学语言怎样陈述、Lean 写法逐项是什么意思、与书中写法有何不同。在 GitHub 上直接点开即可阅读。
 - 仓库配置了自动检查：相关文件更新后，GitHub 的服务器会构建默认目标 `LeanExamples` 及其导入的模块。检查通过，表示这些模块中的形式化证明被 Lean 接受，不包括未被导入的练习文件，也不检查中文注释是否准确。检查记录在仓库的 Actions 页面公开。
 
-## 按难度递进的逐步推导
+## Lean 入门与章节对照
 
-目录分为两组：[各章Lean示例](各章Lean示例/)保存与正文章节对应的 `ChXX_…` 例程；[Progressive](Progressive/)保存逐步推导例程、两个自选补充例程及配套说明。两者均位于本项目根目录下。`LeanExamples.lean` 是统一构建入口。
+目录分为两组：[各章Lean示例](各章Lean示例/)保存与正文章节对应的 `ChXX_…` 例程；[Lean入门示例](Lean入门示例/)通过由易到难的数学例子，介绍 Lean 的基本使用方法、操作步骤、证明写法及核验结果的理解，并提供自选补充例程。两者均位于本项目根目录下。`LeanExamples.lean` 是统一构建入口。
 
-根目录的 `LeanExamples.lean`、`Progressive.lean` 与 `各章Lean示例.lean` 用于汇总导入和自动构建，不是重复例程。说明文档只发布 PDF，LaTeX 排版源码与内部规划不纳入公开目录。
+根目录的 `LeanExamples.lean`、`Lean入门示例.lean` 与 `各章Lean示例.lean` 用于汇总导入和自动构建，不是重复例程。说明文档只发布 PDF，LaTeX 排版源码与内部规划不纳入公开目录。
 
-例程的用途、运行方法及完成范围见 [Progressive 的说明](Progressive/README.md)。选题包括 3–4–1 三角不等式、von Mangoldt 恒等式与 Möbius 反演，以及函数方程推导中的反射对称片段。实际推理逐步配中文注释，不以一句现成目标定理代替证明。
+例程的用途、运行方法及完成范围见 [Lean入门示例的说明](Lean入门示例/README.md)。选题包括 3–4–1 三角不等式、von Mangoldt 恒等式与 Möbius 反演，以及函数方程推导中的反射对称片段。实际推理逐步配中文注释，不以一句现成目标定理代替证明，也不将本栏目扩展为系统课程。
 
 前两项已提供完整代码，函数方程的分析部分尚未形式化。以下按章列表保留作库定理对照，不与逐步推导例程的完成范围混同。
 
@@ -29,8 +29,8 @@
 | [Ch07_Gamma.lean](各章Lean示例/Ch07_Gamma.lean) | 第 7 章 | 倍元公式、余元公式 | mathlib |
 | [Ch09_Zeta.lean](各章Lean示例/Ch09_Zeta.lean) | 第 9 章，附录 F | 函数方程；$\operatorname{Re}s\ge1$ 上无零点；mathlib 对 $\zeta(1)$ 的约定；$\zeta(2)=\pi^2/6$；$\zeta(-1)=-1/12$ | mathlib；最后一条为本仓库补写 |
 | [Ch11_RiemannHypothesis.lean](各章Lean示例/Ch11_RiemannHypothesis.lean) | 第 11 章 | RH 的形式化陈述；平凡零点；一个被 Lean 接受却与 RH 无关的陈述 | mathlib（RH 本身未证明） |
-| [ShiftStableSum.lean](Progressive/ShiftStableSum.lean) | 学习笔记第 11 篇 | 将首项分离规则用于常数序列，推出有限实数赋值的矛盾 | 本仓库展开推导 |
-| [Mersenne61.lean](Progressive/Mersenne61.lean) | 学习笔记第 16 篇 | 核验 $2^{61}-1$ 的 Lucas–Lehmer 计算证书，再用一般判据推出素性 | mathlib 的一般判据与认证计算；本仓库组织分步证明 |
+| [ShiftStableSum.lean](Lean入门示例/ShiftStableSum.lean) | 学习笔记第 11 篇 | 将首项分离规则用于常数序列，推出有限实数赋值的矛盾 | 本仓库展开推导 |
+| [Mersenne61.lean](Lean入门示例/Mersenne61.lean) | 学习笔记第 16 篇 | 核验 $2^{61}-1$ 的 Lucas–Lehmer 计算证书，再用一般判据推出素性 | mathlib 的一般判据与认证计算；本仓库组织分步证明 |
 
 截至本目录 2026 年 10 月 27 日的检查，默认构建未覆盖：$\xi$ 的 Hadamard 乘积（第 10 章）、零点计数公式（第 11 章）、素数定理（第 12 章）、显式公式（第 14 章）、RH 的算术等价（第 15 章）。本目录固定的 mathlib 版本见下文。独立项目的范围和完成状态应按其具体版本核对，例如 [PrimeNumberTheoremAnd](https://github.com/AlexKontorovich/PrimeNumberTheoremAnd)；不能从本目录未涉及某个结果，推断整个领域尚无相应形式化。
 
@@ -60,4 +60,4 @@ lake build
 
 ## 许可
 
-除另行注明来源与许可的文件外，本目录的 Lean 程序文件采用 MIT 许可，说明文字采用 CC BY-NC-SA 4.0。`Intermediate.lean` 中的因子和证明改编自 mathlib，按 Apache-2.0 发布，见[许可全文](Progressive/Apache-2.0.txt)及仓库根目录的 [LICENSE](../LICENSE)。
+除另行注明来源与许可的文件外，本目录的 Lean 程序文件采用 MIT 许可，说明文字采用 CC BY-NC-SA 4.0。`Intermediate.lean` 中的因子和证明改编自 mathlib，按 Apache-2.0 发布，见[许可全文](Lean入门示例/Apache-2.0.txt)及仓库根目录的 [LICENSE](../LICENSE)。
