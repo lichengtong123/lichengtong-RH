@@ -20,10 +20,10 @@ The contents of this repository are licensed by category:
    (index.html, reader.css, reader.js), scripts (.sh) in 习题与解答/,
    and Lean source and configuration files (.lean, .toml) in 形式化证明-Lean示例/.
 
-   例外：形式化证明-Lean示例/Progressive/Intermediate.lean
+   例外：形式化证明-Lean示例/Lean入门示例/Intermediate.lean
    的因子和证明改编自 Bhavik Mehta 的 mathlib 源码；该文件按 Apache-2.0
    发布，并保留来源说明。许可全文见同目录 Apache-2.0.txt。
-   Exception: Intermediate.lean in the Progressive examples is adapted from
+   Exception: Intermediate.lean in the Lean introductory examples is adapted from
    Bhavik Mehta's mathlib proof and is licensed under Apache-2.0; attribution
    is retained in the file and the license text is included alongside it.
 

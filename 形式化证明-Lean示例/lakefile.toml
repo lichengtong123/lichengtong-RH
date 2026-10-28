@@ -19,4 +19,4 @@ name = "LeanExamples"
 name = "各章Lean示例"
 
 [[lean_lib]]
-name = "Progressive"
+name = "Lean入门示例"
