@@ -37,3 +37,9 @@ media/
 
 # GitHub 双重验证恢复码只留本地，不得提交
 github-recovery-codes*.txt
+
+# 学习笔记只发布 PDF，LaTeX 源码、绘图源码与程序留本机
+/学习笔记/**/*.tex
+/学习笔记/**/*.py
+/学习笔记/**/*.csv
+/学习笔记/**/figures/
