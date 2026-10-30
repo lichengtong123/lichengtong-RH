@@ -32,7 +32,9 @@ class ZetaConformalMap(Scene):
         points_per_line = 80 if PREVIEW else 240
 
         # ------------------ 粉红 / 蓝色细网格 ------------------
-        fine_step = 0.25 if PREVIEW else 0.10
+        fine_step = 0.0625 if PREVIEW else 0.025
+        mapped_grid_width = 0.8
+        mapped_grid_opacity = 0.65
         pink_v_x0, pink_v_x1 = 1.01, 4.0
         pink_h_x0, pink_h_x1 = 1.0, 7.0
         pink_h_y0, pink_h_y1 = -2.0, 2.0
@@ -165,7 +167,7 @@ class ZetaConformalMap(Scene):
         self.add(formula, progress)
 
         display_note = Text(
-            "绿色填充示意临界带边界的形变，不表示像集的精确范围。\n"
+            "绿色填充仅示意边界形变，并非临界带经当前映射所得的精确区域。\n"
             "零点标签表示原位置；显示截限 |ζ|≤30。",
             font_size=15, color=THEME["muted"],
         ).to_corner(DOWN + LEFT, buff=0.35)
@@ -240,12 +242,14 @@ class ZetaConformalMap(Scene):
             v_group, h_group = VGroup(), VGroup()
             for i, sc in enumerate(v_src_sc):
                 col = interpolate_color(col1, col0, i / max(n_v - 1, 1))
-                line = VMobject(stroke_color=col, stroke_width=1.0, stroke_opacity=0.75)
+                line = VMobject(stroke_color=col, stroke_width=mapped_grid_width,
+                                stroke_opacity=mapped_grid_opacity)
                 line.set_points_smoothly([sc[j] for j in range(len(sc))])
                 v_group.add(line)
             for i, sc in enumerate(h_src_sc):
                 col = interpolate_color(col0, col1, i / max(n_h - 1, 1))
-                line = VMobject(stroke_color=col, stroke_width=1.0, stroke_opacity=0.75)
+                line = VMobject(stroke_color=col, stroke_width=mapped_grid_width,
+                                stroke_opacity=mapped_grid_opacity)
                 line.set_points_smoothly([sc[j] for j in range(len(sc))])
                 h_group.add(line)
 
@@ -477,7 +481,9 @@ class ZetaConformalMap(Scene):
             a = alpha_tracker.get_value()
             mid = (1 - a) * crit_src_sc + a * crit_dst_sc
             m.set_points_smoothly([mid[i] for i in range(len(mid))])
-            m.set_stroke(color=RED, opacity=0.95)
+            # Fade during the final 15% of the transformation; hide at the endpoint.
+            fade = np.clip((1.0 - a) / 0.15, 0.0, 1.0)
+            m.set_stroke(color=RED, opacity=0.95 * fade)
 
         # 临界带边界 Re s = 0 与 Re s = 1
         left_src = np.array([complex(0.0, t) for t in t_arr], dtype=complex)
