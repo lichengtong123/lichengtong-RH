@@ -8,6 +8,8 @@
 
 [输入密码在线阅读](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/)，或[下载预印版同行审阅稿（加密PDF）](docs/同行审阅/README.md)。打开密码由作者通过其他渠道单独提供；审阅版本、下载方式及反馈说明见该页面。
 
+英文审阅版：[输入密码在线阅读 / Read online](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/index-en.html)，或[下载加密 PDF / Download](docs/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf)。使用与中文版相同的打开密码。
+
 ## 在线观看书中动画
 
 书中第 20 章只印关键帧，完整动画可通过以下播放页观看，也可下载视频，无需安装 Manim：
