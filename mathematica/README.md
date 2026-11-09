@@ -46,7 +46,7 @@
 
 下载相应 `.nb` 文件后，用 Wolfram Player 打开，直接查看“已求值图形”部分；同一文件中的源码组默认折叠，观察图形不需要执行它，也不需要安装配套 `.wl` 文件。修改后的图形需要由 Mathematica 重新求值并保存输出，Player 不会自动运行外部源码或重新计算整幅曲面。
 
-这里承诺的是查看已保存的图形，不将普通 `.nb` 等同于可运行任意动态控件的应用。旋转、缩放及动态控件的可用范围，应以实际 Player 版本与许可为准；涉及内核求值的交互不能仅凭文件扩展名保证可用。官方对普通 `.nb` 与可交互部署格式的区别见 [Wolfram Player FAQ](https://www.wolfram.com/player-pro/faq/)。
+三维曲面可以用鼠标拖动旋转、缩放（已用 Wolfram Player 15.0.0 实测）。这一操作只改变已保存图形的视角，不需要重新计算。各文件中没有 Manipulate、Dynamic 一类需要内核重新求值的控件；官方 FAQ 所说免费 Player 对普通 `.nb`“可查看、不可交互”，指的正是这类控件，与本目录的观察方式无关，详见 [Wolfram Player FAQ](https://www.wolfram.com/player-pro/faq/)。
 
 ## 在 Mathematica 中修改参数与重新计算
 
