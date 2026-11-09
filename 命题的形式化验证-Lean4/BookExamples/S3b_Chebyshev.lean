@@ -2,9 +2,10 @@ import Mathlib.NumberTheory.Primorial
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 /-!
-# 第 3 阶段 · 例题 6：Chebyshev 上界 θ(n) ≤ n log 4（本书第 6 章）
+# 第 3 阶段 · 例题 6：Chebyshev 上界 θ(n) ≤ n log 4（本书第 2 章）
 
-书中第 6 章用 Chebyshev 型上界控制素数计数函数的增长。其初等形式是
+书中第 2 章“Chebyshev 的初等估计”一节证明了 Chebyshev 型上界 θ(x) < (log 4) x，
+第 15 章等处还要引用它。这里对整数 n 证明稍弱的非严格形式
 
   θ(n) = ∑_{p ≤ n} log p ≤ n log 4。
 
