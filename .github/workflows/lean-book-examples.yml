@@ -1,0 +1,20 @@
+name: 形式化证明-Lean4与本书命题对照检查
+
+on:
+  push:
+    paths:
+      - '形式化证明-Lean4与本书命题对照/**'
+      - '.github/workflows/lean-book-examples.yml'
+  pull_request:
+    paths:
+      - '形式化证明-Lean4与本书命题对照/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: 形式化证明-Lean4与本书命题对照
