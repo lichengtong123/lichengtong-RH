@@ -14,18 +14,21 @@ The contents of this repository are licensed by category:
    videos/ 中的播放页面文件（.html、.css），
    docs/同行审阅/ 中自编的阅读入口（index.html、reader.css、reader.js），
    习题与解答/ 中的脚本（.sh），
-   以及 形式化证明-使用Lean4核验本书数学推导/ 中的 Lean 程序与配置文件（.lean、.toml）。
+   以及 形式化证明-使用Lean4核验本书数学推导/、命题的形式化验证-Lean4/ 中的 Lean 程序与配置文件（.lean、.toml）。
    Applies to program files in manim/ and mathematica/ (.py, .wl, .nb),
    player pages in videos/ (.html, .css), the authored review reader entry
    (index.html, reader.css, reader.js), scripts (.sh) in 习题与解答/,
-   and Lean source and configuration files (.lean, .toml) in 形式化证明-使用Lean4核验本书数学推导/.
+   and Lean source and configuration files (.lean, .toml) in 形式化证明-使用Lean4核验本书数学推导/
+   and 命题的形式化验证-Lean4/.
 
    例外：形式化证明-使用Lean4核验本书数学推导/Lean入门示例/VonMangoldtMobius.lean
+   与 命题的形式化验证-Lean4/BookExamples/S3a_VonMangoldt.lean
    的因子和证明改编自 Bhavik Mehta 的 mathlib 源码；该文件按 Apache-2.0
    发布，并保留来源说明。许可全文见同目录 Apache-2.0.txt。
-   Exception: VonMangoldtMobius.lean in the Lean introductory examples is adapted from
-   Bhavik Mehta's mathlib proof and is licensed under Apache-2.0; attribution
-   is retained in the file and the license text is included alongside it.
+   Exception: VonMangoldtMobius.lean in the Lean introductory examples and
+   S3a_VonMangoldt.lean in 命题的形式化验证-Lean4/BookExamples are adapted from
+   Bhavik Mehta's mathlib proof and are licensed under Apache-2.0; attribution
+   is retained in each file and the license text is included alongside it.
 
 二、文字、图形与视频 —— 知识共享 署名-非商业性使用-相同方式共享 4.0 国际
 2. Text, figures and videos — Creative Commons
@@ -33,12 +36,13 @@ The contents of this repository are licensed by category:
 
    适用于 学习笔记/、习题与解答/、docs/（同行审阅稿除外）、关系图下载/
    中的文档（.md、.tex、.pdf），各 README，以及 videos/ 中的视频文件（.mp4）。
-   形式化证明-使用Lean4核验本书数学推导/ 中的 TeX 说明文档、配套截图及其 PDF 同样适用本项许可。
+   形式化证明-使用Lean4核验本书数学推导/ 中的 TeX 说明文档、配套截图及其 PDF，
+   以及 命题的形式化验证-Lean4/截图/ 中的截图，同样适用本项许可。
    Applies to documents (.md, .tex, .pdf) in 学习笔记/, 习题与解答/,
    docs/ (except the peer-review preprint), 关系图下载/, all README files,
    and the video files (.mp4) in videos/.
    This category also covers explanatory TeX documents, accompanying screenshots and PDFs in
-   形式化证明-使用Lean4核验本书数学推导/.
+   形式化证明-使用Lean4核验本书数学推导/, and the screenshots in 命题的形式化验证-Lean4/截图/.
 
    许可全文 / Legal code:
    https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
