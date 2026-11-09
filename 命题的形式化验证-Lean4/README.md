@@ -37,6 +37,36 @@
 
 每道例题的文件开头列出：书中的结论、mathlib 中的对应对象、显式引用的库定理，以及形式化陈述与书中表述在记号、条件和约定上的差别。不安装 Lean 也可以在 GitHub 上直接阅读。
 
+## 在 VS Code 中看到的证明状态
+
+Lean 的 VS Code 插件在编辑器右侧显示 InfoView：光标所在位置的假设与待证目标（Tactic state）、定理的检查结果（Messages）。以下截图取自作者本机，Lean 与 mathlib 版本与本目录相同。
+
+**例题 1：两种证明依赖的公理不同。** 光标在 `#print axioms primeCounting_100_native` 上，右侧列出的公理中多出 `Lean.ofReduceBool`。
+
+![例题 1](截图/S1a_PrimeCount-1.png)
+
+**例题 2：约定值。** 光标在 ζ(1) ≠ 0 的证明上，右侧显示待证命题 `riemannZeta 1 ≠ 0`。
+
+![例题 2](截图/S1b_RHStatement-1.png)
+
+**例题 4：3–4–1 不等式的最后一步。** 右侧列出已得到的 `hSquare : 0 ≤ (1 + cos θ)²`，与待证目标相同。
+
+![例题 4](截图/S2b_ThreeFourOne-1.png)
+
+**例题 7：用 Λ₀ 改写 Λ。** 第一张是改写之前，目标中是 `completedRiemannZeta s`（即 Λ）；第二张是执行 `rw [completedRiemannZeta_eq]` 之后，Λ 已换成 `completedRiemannZeta₀ s - 1 / s - 1 / (1 - s)`。上方列出的 s ≠ 0、s ≠ 1、1 − s ≠ 0 是随后化简所需的条件。
+
+![例题 7 改写前](截图/S4a_Xi-1.png)
+
+![例题 7 改写后](截图/S4a_Xi-2.png)
+
+**例题 8：由书中陈述推出 mathlib 陈述。** 右侧列出 `h : RHBook`、ζ(s) = 0、s 不是平凡零点，以及由临界带结论得到的 0 < Re s、Re s < 1；最后一步只需把这些交给 `h`。
+
+![例题 8](截图/S4b_CriticalStrip-1.png)
+
+**收尾：互相矛盾的假设。** 右侧同时列出 `h1 : 1 < s.re` 与 `h2 : riemannZeta s = 0`。两者不可能同时成立，所以结论 Re s = 1/2 虽被 Lean 接受，却说明不了任何问题。
+
+![收尾](截图/S5_Checking-1.png)
+
 ## 自动检查
 
 仓库配置了自动检查：本目录的文件更新后，GitHub 服务器用固定版本的 Lean 与 mathlib 构建全部例题。检查通过，表示例题中的形式化证明已被 Lean 接受，其中不含 `sorry`，也未添加新的公理。检查记录在仓库的 Actions 页面公开。
