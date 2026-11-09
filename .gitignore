@@ -53,3 +53,6 @@ github-recovery-codes*.txt
 # AIGC 检测：原始报告含书稿正文，不入库
 /AIGC检测/朱雀回文/
 /AIGC检测/.claude/
+# AIGC 检测的脚本只留本地
+/AIGC检测/*.py
+/AIGC检测/*.sh
