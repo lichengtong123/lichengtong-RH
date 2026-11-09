@@ -56,3 +56,6 @@ github-recovery-codes*.txt
 # AIGC 检测的脚本只留本地
 /AIGC检测/*.py
 /AIGC检测/*.sh
+# 知网目录只收核验图（报告原件含书稿正文）
+/AIGC检测/知网/*
+!/AIGC检测/知网/*-核验图.pdf
