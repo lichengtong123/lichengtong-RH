@@ -34,6 +34,7 @@ mathlib 陈述中的条件 s ≠ 1 在这里没有用到：mathlib 给 ζ(1) 规
 -/
 
 open Complex
+open scoped Real
 
 namespace BookExamples.CriticalStrip
 
@@ -78,10 +79,11 @@ theorem trivial_of_re_nonpos {s : ℂ} (hz : riemannZeta s = 0) (hre : s.re ≤ 
     · linear_combination h
   subst hwk
   -- 于是 s = −2k；由 Re s ≤ 0 得 k ≥ 0，由 s ≠ 0 得 k ≠ 0。
-  have hk0 : (0 : ℝ) ≤ k := by
-    simp at hre
-    linarith
-  have hk0' : 0 ≤ k := by exact_mod_cast hk0
+  have hk0' : 0 ≤ k := by
+    have h3 : (1 : ℂ) - (2 * k + 1) = ((-2 * k : ℤ) : ℂ) := by push_cast; ring
+    rw [h3, intCast_re] at hre
+    have h4 : -2 * k ≤ 0 := by exact_mod_cast hre
+    omega
   have hkne : k ≠ 0 := by
     rintro rfl
     simp at hw1
@@ -111,7 +113,8 @@ theorem riemannHypothesis_iff_book : RiemannHypothesis ↔ RHBook := by
     apply h s hz
     · rintro ⟨n, rfl⟩
       have hn : (0 : ℝ) ≤ n := Nat.cast_nonneg n
-      simp at h0 <;> linarith
+      simp at h0
+      linarith
     · rintro rfl
       simp at h1
   · -- 书中陈述 ⇒ mathlib 陈述：由第二步，非平凡零点都在临界带内。
