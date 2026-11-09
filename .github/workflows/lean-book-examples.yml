@@ -1,13 +1,13 @@
-name: 本书命题的形式化验证-Lean4检查
+name: 命题的形式化验证-Lean4检查
 
 on:
   push:
     paths:
-      - '本书命题的形式化验证-Lean4/**'
+      - '命题的形式化验证-Lean4/**'
       - '.github/workflows/lean-book-examples.yml'
   pull_request:
     paths:
-      - '本书命题的形式化验证-Lean4/**'
+      - '命题的形式化验证-Lean4/**'
   workflow_dispatch:
 
 jobs:
@@ -17,4 +17,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: leanprover/lean-action@v1
         with:
-          lake-package-directory: 本书命题的形式化验证-Lean4
+          lake-package-directory: 命题的形式化验证-Lean4
