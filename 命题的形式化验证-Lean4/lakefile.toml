@@ -1,6 +1,6 @@
 name = "BookExamples"
 version = "0.1.0"
-defaultTargets = ["BookExamples"]
+defaultTargets = ["BookExamples", "NotesExamples"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -14,3 +14,6 @@ rev = "e20d25fa4a1019ddaa7066067f47ed10f269aca2"
 
 [[lean_lib]]
 name = "BookExamples"
+
+[[lean_lib]]
+name = "NotesExamples"

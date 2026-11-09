@@ -8,3 +8,4 @@ import BookExamples.S3b_Chebyshev
 import BookExamples.S4a_Xi
 import BookExamples.S4b_CriticalStrip
 import BookExamples.S5_Checking
+import BookExamples.A_LibraryMap
