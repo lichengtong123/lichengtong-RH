@@ -42,23 +42,31 @@ namespace BookExamples.CriticalStrip
 theorem trivial_of_re_nonpos {s : ℂ} (hz : riemannZeta s = 0) (hre : s.re ≤ 0) :
     ∃ n : ℕ, s = -2 * (n + 1) := by
   -- 记 s = 1 − w，则 Re w ≥ 1。
+  -- `obtain ⟨w, rfl⟩ : ∃ w, s = 1 - w := …`：先证明“存在 w 使 s = 1 − w”（取 w = 1 − s），
+  -- 再取出这个 w，并用 `rfl` 把条件和目标中的 s 全部替换为 1 − w。
   obtain ⟨w, rfl⟩ : ∃ w, s = 1 - w := ⟨1 - s, by ring⟩
   have hwre : 1 ≤ w.re := by
+    -- hre 原为 Re(1 − w) ≤ 0；按 Re(a − b) = Re a − Re b、Re 1 = 1 改写成 1 − Re w ≤ 0。
     rw [sub_re, one_re] at hre
+    -- 由线性不等式 1 − Re w ≤ 0 推出 1 ≤ Re w。
     linarith
   -- w ≠ 1：否则 s = 0，而 ζ(0) = −1/2 ≠ 0。
   have hw1 : w ≠ 1 := by
+    -- 反证：假设 w = 1，并代入。
     rintro rfl
     rw [sub_self, riemannZeta_zero] at hz
     norm_num at hz
   -- w 不是非正整数（它的实部 ≥ 1）。
   have hwn : ∀ n : ℕ, w ≠ -n := by
+    -- 反证：任取自然数 n，假设 w = −n（记作 h），则 Re w = −n ≤ 0，与 Re w ≥ 1 矛盾。
     intro n h
     rw [h, neg_re, natCast_re] at hwre
     have : (0 : ℝ) ≤ n := Nat.cast_nonneg n
     linarith
   -- 函数方程：0 = ζ(1 − w) = 2 (2π)^(−w) Γ(w) cos(πw/2) ζ(w)。
+  -- `riemannZeta_one_sub` 需要两个条件：w 不是非正整数（hwn）、w ≠ 1（hw1）。
   have hfe := riemannZeta_one_sub hwn hw1
+  -- 已知 ζ(1 − w) = 0（hz），代入函数方程左边。
   rw [hz] at hfe
   have hζw : riemannZeta w ≠ 0 := riemannZeta_ne_zero_of_one_le_re hwre
   have hΓ : Gamma w ≠ 0 := Gamma_ne_zero hwn
@@ -67,27 +75,36 @@ theorem trivial_of_re_nonpos {s : ℂ} (hz : riemannZeta s = 0) (hre : s.re ≤ 
     cpow_ne_zero_iff.mpr (Or.inl (mul_ne_zero two_ne_zero hπ))
   -- 其余因子都不为零，所以 cos(πw/2) = 0。
   have hcos : cos (π * w / 2) = 0 := by
+    -- `hfe.symm` 把等式两边对调：乘积 = 0。
     have h0 := hfe.symm
+    -- `mul_eq_zero`：乘积为零当且仅当某个因子为零。再用已知的“不为零”逐个排除，
+    -- 只剩 cos(πw/2) = 0。
     simp only [mul_eq_zero, hζw, hΓ, hpow, two_ne_zero, or_false, false_or] at h0
     exact h0
   -- cos(πw/2) = 0 推出 w = 2k + 1。
+  -- `cos_eq_zero_iff`：cos θ = 0 当且仅当存在整数 k 使 θ = (2k + 1)π/2。取出这个 k。
   obtain ⟨k, hk⟩ := cos_eq_zero_iff.mp hcos
   have hwk : w = 2 * k + 1 := by
     have h2 : (π : ℂ) * (w - (2 * k + 1)) = 0 := by linear_combination 2 * hk
+    -- 乘积为零，分两种情形：π = 0（与 hπ 矛盾）或 w − (2k + 1) = 0。
     rcases mul_eq_zero.mp h2 with h | h
     · exact absurd h hπ
     · linear_combination h
+  -- `subst` 把 w 全部替换为 2k + 1。
   subst hwk
   -- 于是 s = −2k；由 Re s ≤ 0 得 k ≥ 0，由 s ≠ 0 得 k ≠ 0。
   have hk0' : 0 ≤ k := by
     have h3 : (1 : ℂ) - (2 * k + 1) = ((-2 * k : ℤ) : ℂ) := by push_cast; ring
     rw [h3, intCast_re] at hre
     have h4 : -2 * k ≤ 0 := by exact_mod_cast hre
+    -- `omega` 处理整数的线性算术：由 −2k ≤ 0 得 0 ≤ k。
     omega
   have hkne : k ≠ 0 := by
     rintro rfl
     simp at hw1
   -- 取 n = k − 1，即 s = −2(n + 1)。
+  -- 要证“存在 n”，`refine ⟨(k - 1).toNat, ?_⟩` 给出 n = k − 1（化为自然数），
+  -- `?_` 是剩下要证的等式 s = −2(n + 1)。
   refine ⟨(k - 1).toNat, ?_⟩
   have hn : (((k - 1).toNat : ℕ) : ℤ) = k - 1 := Int.toNat_of_nonneg (by omega)
   have hnC : (((k - 1).toNat : ℕ) : ℂ) = (k : ℂ) - 1 := by exact_mod_cast hn
@@ -97,11 +114,15 @@ theorem trivial_of_re_nonpos {s : ℂ} (hz : riemannZeta s = 0) (hre : s.re ≤ 
 /-- 第二步：非平凡零点都在开临界带 0 < Re s < 1 内。 -/
 theorem mem_criticalStrip {s : ℂ} (hz : riemannZeta s = 0)
     (hnt : ¬∃ n : ℕ, s = -2 * (n + 1)) : 0 < s.re ∧ s.re < 1 := by
+  -- 目标是“0 < Re s 且 Re s < 1”，`constructor` 拆成两个目标。
   constructor
-  · by_contra h
+  · -- 反证：假设 ¬(0 < Re s)，`push_neg` 化为 Re s ≤ 0。
+    -- 由第一步，s 是平凡零点，与条件 hnt（s 不是平凡零点）矛盾。
+    by_contra h
     push_neg at h
     exact hnt (trivial_of_re_nonpos hz h)
-  · by_contra h
+  · -- 反证：假设 ¬(Re s < 1)，即 1 ≤ Re s。此时 ζ(s) ≠ 0，与 hz 矛盾。
+    by_contra h
     push_neg at h
     exact riemannZeta_ne_zero_of_one_le_re h hz
 
@@ -109,15 +130,21 @@ theorem mem_criticalStrip {s : ℂ} (hz : riemannZeta s = 0)
 theorem riemannHypothesis_iff_book : RiemannHypothesis ↔ RHBook := by
   constructor
   · -- mathlib 陈述 ⇒ 书中陈述：临界带内的零点不是平凡零点，也不是 s = 1。
+    -- h 是 mathlib 陈述（作为假设）；再引入 s 与书中陈述的三个条件。
     intro h s hz h0 h1
+    -- 用 h 推出 Re s = 1/2，还要提供 h 的另两个条件，它们成为两个新目标：
+    -- s 不是平凡零点；s ≠ 1。
     apply h s hz
-    · rintro ⟨n, rfl⟩
+    · -- 若 s = −2(n + 1)，则 Re s < 0，与 0 < Re s（h0）矛盾。
+      rintro ⟨n, rfl⟩
       have hn : (0 : ℝ) ≤ n := Nat.cast_nonneg n
       simp at h0
       linarith
-    · rintro rfl
+    · -- 若 s = 1，则 Re s = 1，与 Re s < 1（h1）矛盾。
+      rintro rfl
       simp at h1
   · -- 书中陈述 ⇒ mathlib 陈述：由第二步，非平凡零点都在临界带内。
+    -- 条件 s ≠ 1 用不到，用 `_` 引入而不起名字（InfoView 中显示为 x✝）。
     intro h s hz hnt _
     obtain ⟨h0, h1⟩ := mem_criticalStrip hz hnt
     exact h s hz h0 h1

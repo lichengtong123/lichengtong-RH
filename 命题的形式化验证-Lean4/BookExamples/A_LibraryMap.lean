@@ -14,6 +14,16 @@ import Mathlib.NumberTheory.Harmonic.ZetaAsymp
 Lean 接受本文件，说明这些陈述在 mathlib 中已有完整的形式化证明。
 
 阅读时请留意每条陈述中的条件，以及 mathlib 的约定与书中写法的差别。
+
+每条的写法都是
+
+  example (参数与条件) : 书中的陈述 :=
+    mathlib 定理名 (所需的条件)
+
+`:=` 后面不写 `by`，直接给出 mathlib 中的一条定理，表示“这正是该定理”。
+Lean 检查这条定理的结论与 `:` 后写出的陈述是否一致；一致才接受。
+想看某条 mathlib 定理的原始陈述，可在 VS Code 中按住 Ctrl（macOS 为 Cmd）点击定理名跳转，
+或在 mathlib 文档中按名称搜索。
 -/
 
 open ArithmeticFunction Finset MeasureTheory

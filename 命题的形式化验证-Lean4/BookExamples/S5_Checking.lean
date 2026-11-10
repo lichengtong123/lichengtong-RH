@@ -8,8 +8,9 @@ import BookExamples.S4a_Xi
 
 “某定理已经形式化证明”这类说法，至少要检查三件事：
 
-1. **证明是否完整**：有没有用 `sorry` 跳过步骤。含 `sorry` 的文件也能通过编译，
-   只是会给出警告。
+1. **证明是否完整**：有没有用 `sorry` 跳过步骤。`sorry` 的意思是“这一步先当作已证”，
+   含 `sorry` 的文件也能通过编译，只是会给出警告 `declaration uses 'sorry'`，
+   `#print axioms` 中也会出现 `sorryAx`。本仓库的自动检查把警告当作错误，所以不允许 `sorry`。
 2. **依赖哪些公理**：用 `#print axioms 定理名` 查看。标准公理之外若出现别的条目，
    就要弄清它是什么。例如有人声明了“公理 RH 成立”，由它推出的一切结论都会被 Lean 接受，
    而 `#print axioms` 会把这条公理列出来。
@@ -26,12 +27,20 @@ namespace BookExamples.Checking
 /-! ## 例一：信任范围不同的两个证明
 
 例题 1 中 π(100) = 25 的两种证明结论相同，但依赖的公理不同。比较下面两行输出：
-`native_decide` 的证明多出 `Lean.ofReduceBool`，表示信任了编译执行的结果。 -/
+
+  primeCounting_100_kernel：[propext, Classical.choice, Quot.sound]
+  primeCounting_100_native：[propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+
+前三条是 Lean 的标准公理（命题外延性、选择公理、商的可靠性），对应普通数学默认使用的公理，
+几乎所有基于 mathlib 的证明都依赖它们。`native_decide` 的证明多出 `Lean.ofReduceBool`：
+计算由编译后的程序完成、没有经内核检查，Lean 只是承认它的结果，
+因此要额外信任编译器与运行时。各条公理的详细解释见例题 1（S1a_PrimeCount.lean）的开头。 -/
 
 #print axioms BookExamples.PrimeCount.primeCounting_100_kernel
 #print axioms BookExamples.PrimeCount.primeCounting_100_native
 
--- 作为对照：例题 7 的 ξ 函数对称性只依赖 Lean 的标准公理。
+-- 作为对照：例题 7 的 ξ 函数对称性用到了大量 mathlib 定理，但只依赖 Lean 的三条标准公理。
+-- 可见公理列表的长短与证明的难易无关，它只说明证明最终建立在哪些基本假设之上。
 #print axioms BookExamples.Xi.xi_one_sub
 
 /-! ## 例二：被 Lean 接受、却与黎曼猜想无关的陈述
@@ -40,6 +49,9 @@ namespace BookExamples.Checking
 但它与黎曼猜想无关：两个假设不可能同时成立（Re s ≥ 1 时 ζ(s) ≠ 0），
 从矛盾的假设可以推出任何结论。 -/
 
+-- 证明的读法：`h1.le` 由 1 < Re s 得到 1 ≤ Re s；`riemannZeta_ne_zero_of_one_le_re h1.le`
+-- 于是证明了 ζ(s) ≠ 0。它与 h2 : ζ(s) = 0 矛盾。`absurd` 由一对互相矛盾的命题推出任意结论。
+-- 结论 Re s = 1/2 在证明中根本没有用到。
 theorem vacuous (s : ℂ) (h1 : 1 < s.re) (h2 : riemannZeta s = 0) : s.re = 1 / 2 :=
   absurd h2 (riemannZeta_ne_zero_of_one_le_re h1.le)
 
@@ -60,9 +72,13 @@ noncomputable def model (A : ℂ → ℂ) (s : ℂ) : ℂ :=
 
 /-- “函数方程”：对任意 A 都成立，因此与 ζ 无关。 -/
 theorem functional_equation (A : ℂ → ℂ) (s : ℂ) : model A (1 - s) = model A s := by
+  -- 准备 1 − (1 − s) = s。
   have h : (1 : ℂ) - (1 - s) = s := by ring
+  -- 展开定义：左边是 −1/(1−s) − 1/(1−(1−s)) + A(1−s) + A(1−(1−s))。
   unfold model
+  -- 把其中的 1 − (1 − s) 换成 s，左边变为 −1/(1−s) − 1/s + A(1−s) + A(s)。
   rw [h]
+  -- 与右边只差加数的顺序。证明中没有用到 A 的任何性质。
   ring
 
 end BookExamples.Checking
