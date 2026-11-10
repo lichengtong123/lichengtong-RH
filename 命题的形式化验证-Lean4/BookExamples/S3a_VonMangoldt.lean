@@ -28,6 +28,25 @@ mathlib 中两者都已有现成定理（`vonMangoldt_sum` 等）。本例不调
 * `vonMangoldt_apply_pow`、`vonMangoldt_apply_prime`、`vonMangoldt_apply_one`：Λ 的取值；
 * `Real.log_pow`、`Real.log_mul`：对数运算；
 * `ArithmeticFunction.coe_zeta_mul_coe_moebius`：ζ * μ = 1（这里的 ζ 是恒等于 1 的算术函数）。
+
+## 记号
+
+* `Λ`、`μ`：von Mangoldt 函数与 Möbius 函数，与书中相同。
+* `ζ`：在本文件中是**算术函数** ζ(n) = 1（n ≥ 1），不是复变 ζ 函数。
+* `f * g`：两个算术函数的 Dirichlet 卷积 (f * g)(n) = ∑_{de=n} f(d) g(e)；
+  `1` 是卷积的单位元（在 n = 1 处取 1，其余取 0）。
+* `n.divisors`：n 的全部正因子组成的有限集；`∑ d ∈ n.divisors, Λ d` 即 ∑_{d∣n} Λ(d)。
+* `(μ : ArithmeticFunction ℝ)`：μ 本来取整数值，这里把它看作取实数值的算术函数，才能与 log 卷积。
+
+## 证明中用到的几种写法
+
+* `refine Nat.recOnPrimeCoprime ?_ ?_ ?_ n`：套用一条归纳原理，三个 `?_` 是留待证明的三种情形，
+  之后分别由 `·` 开头的三段证明。
+* `intro p k hp`：把情形中的变量和条件引入，起名为 p、k、hp。
+* `simp only [...] at ha hb ⊢`：只用列出的引理化简，同时作用于条件 ha、hb 和目标（`⊢`）。
+* `calc`：写一串等式，每一步在 `:=` 后单独给出理由。
+* `congrArg (fun f => f n) h`：由函数等式 h : F = G 得到 F(n) = G(n)。
+* `simpa … using h`：把 h 和目标化简成同一形式，然后用 h 完成证明。
 -/
 
 open ArithmeticFunction Finset
