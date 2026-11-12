@@ -6,7 +6,7 @@
 |------|------|----------|------|
 | 预印版（加密PDF） | [下载审阅稿](素数计数与黎曼猜想-预印版-同行审阅-加密.pdf) | 2026-11-12 | 336 |
 | 预印版（加密Word） | [下载 Word 版](素数计数与黎曼猜想-预印版-同行审阅-加密.docx) | 2026-11-12 | 约 355 |
-| 英文审阅版（加密PDF） | [Download English review edition](Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf) | 2026-11-12 | 389 |
+| 英文审阅版（加密PDF） | [Download English review edition](Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf) | 2026-11-12 | 390 |
 
 **[输入密码在线阅读](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/)**，也可下载上表中的加密 PDF 后阅读。在线阅读页仅显示 PDF；需要修订文字的审阅者请下载上表中的加密 Word 版，用 Word、WPS 或 LibreOffice 打开，密码相同。打开密码由作者通过其他渠道提供，不在仓库中公布。
 
