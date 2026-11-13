@@ -61,11 +61,10 @@
   framerule=0.3pt,rulecolor=\color{gray!60},xleftmargin=1em,xrightmargin=1em,
   breaklines=true,showstringspaces=false}
 
-\newcommand{\versiondate}{2026 年 10 月 24 日（修订）}
+\newcommand{\versiondate}{2026 年 11 月 13 日（修订）}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第三部分}
-\fancyhead[R]{\small 初稿 \versiondate}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -80,7 +79,7 @@
 \vspace{0.6em}
 {\normalsize 李成桐《素数计数与黎曼猜想：$\zeta$ 函数、零点与显式公式》配套资源\par}
 \vspace{0.3em}
-{\small 版本：\versiondate（初稿，尚未逐题复核）\par}
+{\small 版本：\versiondate\par}
 \end{center}
 
 \vspace{0.8em}
@@ -108,14 +107,18 @@
     取零点只需一行 Python：\texttt{from mpmath import zetazero; g=[zetazero(n).imag for n in range(1,1001)]}（约需数分钟），也可从 LMFDB 的零点表下载。
     这些都是数值实验，提高工作精度不等于严格证明；需要严格结论时，题中会说明所依据的认证结果或尚缺的步骤。
   \item \textbf{主选与可选。}
-    星级表示完成难度，不等于题目的作用。初读时建议以理解正文主线的子问为主；以下为可选延伸：习题 10.2，10.3 与 10.5 的尾部修正，10.4 的 Stirling 乘子估计，11.2、11.5 的完整推导，11.6，12.3(c)，14.4，15.2，15.4。
+    星级表示完成难度，不等于题目的作用。初读时建议以理解正文主线的子问为主；以下为可选延伸：习题 10.2，10.3 与 10.5(b) 的尾部修正，10.4 的 Stirling 乘子估计，11.2、11.5 的完整推导，11.6，12.3(c)，14.4，14.6 末尾关于认证的讨论，15.2，15.4。
   \item \textbf{第 16 章。}
     第~\bref{ch:spectrum_map}~章不引入新定理，相应三题只要求判别关系与证明状态，不要求证明。
 \end{itemize}
 
-本次修订（2026 年 10 月 24 日）依据读者审查意见改正了习题 12.3、16.3 的错误结论，把 11.6 改为数值核验并列出严格认证尚缺的步骤，补充了 10.5、12.4、14.4 等处的前提条件，修正了 11.3、11.4、12.2、14.2、14.3、14.5、14.6 中过强或不准确的说法，并为 12.4 新增一小问。
+\noindent\textbf{修订备忘：}
+\begin{itemize}
+  \item 2026 年 10 月 24 日：依据早期审查意见改正了习题 12.3、16.3 的错误结论，把 11.6 改为数值核验并列出严格认证尚缺的步骤，补充了 10.5、12.4、14.4 等处的前提条件，修正了 11.3、11.4、12.2、14.2、14.3、14.5、14.6 中过强或不准确的说法，并为 12.4 新增一小问。
+  \item 2026 年 11 月 13 日：完成第 10–16 章全部 32 题的首轮逐题复核与数值重算，同步最新书稿编号，修正 10.5(b) 尾部修正因子笔误与 10.4(b) Stirling 推导引用，把 11.6(c) 改作条件式结论并补全 14.4(b) 围道估计细节，厘清 12.4(a)、14.5(b)、16.1、16.2(b) 等题的表述与依赖边界。
+\end{itemize}
 
-本批题目为初稿，题目可解性与解答仍待作者逐题复核。发现错误或表述不清，请在配套仓库的 Issues 中注明题号与具体位置。
+发现错误或表述不清，请在配套仓库的 Issues 中注明题号与具体位置。
 
 \tableofcontents
 
@@ -141,7 +144,7 @@
 命题~\bref{prop:xi-order-one} 给出下界 $\log\xi(\sigma)\ge\frac\sigma2\log\sigma-O(\sigma)$（$\sigma\to+\infty$）。
 \begin{enumerate}
   \item 假设 $\xi$ 只有有限个零点。由定理~\bref{thm:hadamard-factorization} 写出 $\xi$ 的形式，并与上述下界比较，推出矛盾。
-  \item 更进一步，假设 $\sum_\rho1/|\rho|<\infty$。证明此时 $\log|\xi(\sigma)|=O(\sigma)$，仍与下界矛盾。由此不经第~\bref{ch:zero_distribution}~章重新得到注记~\bref{rem:sum-one-over-rho} 的结论。
+  \item 更进一步，假设 $\sum_\rho1/|\rho|<\infty$。证明此时在正实轴上有上界 $\log|\xi(\sigma)|\le O(\sigma)$（$\sigma\to+\infty$），仍与下界矛盾。由此不经第~\bref{ch:zero_distribution}~章重新得到注记~\bref{rem:sum-one-over-rho} 的结论。
   \item 这一论证能否说明临界线上有零点？
 \end{enumerate}
 \toHint{10.2}
@@ -167,8 +170,8 @@
   \[
     \Xi(t)=-\frac12\Bigl(t^2+\frac14\Bigr)\pi^{-1/4}\Bigl|\Gamma\Bigl(\frac14+\frac{it}2\Bigr)\Bigr|\,Z(t),
   \]
-  从而 $Z(t)$ 为实数，且与 $\Xi(t)$ 有相同的实零点（$t\neq0$ 时符号相反）。
-  \item 记 $A(t)=\frac12(t^2+\frac14)\pi^{-1/4}|\Gamma(\frac14+\frac{it}2)|>0$，则 (a) 即 $\Xi(t)=-A(t)Z(t)$。由 Stirling 公式（定理~\bref{thm:stirling}）证明
+  从而 $Z(t)$ 为实数，且与 $\Xi(t)$ 有相同的实零点（在非零点处符号相反）。
+  \item 记 $A(t)=\frac12(t^2+\frac14)\pi^{-1/4}|\Gamma(\frac14+\frac{it}2)|>0$，则 (a) 即 $\Xi(t)=-A(t)Z(t)$。由竖直带内的 Stirling 公式（推论~\bref{cor:stirling-vertical}，来自定理~\bref{thm:stirling}）证明
   \[
     A(t)=\pi^{-1/4}\sqrt{2\pi}\,2^{-3/4}\,t^{7/4}e^{-\pi t/4}\bigl(1+O(1/t)\bigr)\qquad(t\to+\infty).
   \]
@@ -323,7 +326,7 @@ $10^7$ & $0.99985$ & $1.07117$ & $0.99949$ \\
 \Q{13.3}{\lvII}{数值库中的两种陷阱}
 沿用习题 13.2 的记号。
 \begin{enumerate}
-  \item \texttt{mpmath.ei(w)} 返回 $0.1164367+3.2417081i$。与 13.2(b) 比较，并用注记~\bref{rem:Ei-library-branch} 解释差值。这一差值是否影响显式公式中的共轭配对和？
+  \item 在配套使用 \texttt{mpmath} 的分支约定下，\texttt{mpmath.ei(w)} 返回 $0.1164367+3.2417081i$。与 13.2(b) 比较，并用注记~\bref{rem:Ei-library-branch} 解释差值。这一差值是否影响显式公式中的共轭配对和？
   \item \texttt{mpmath.li(mpf(100)**rho)} 返回 $1.354212+6.314357i$，与正确值相去甚远。计算 $\operatorname{Log}(x^\rho)$（主值），解释原因。
   \item 据此写出在程序中计算 $\li(x^\rho)$ 的正确做法。
 \end{enumerate}
@@ -372,7 +375,7 @@ $10^7$ & $0.99985$ & $1.07117$ & $0.99949$ \\
 \toHint{14.3}
 
 \Q{14.4}{\lvIII}{$\psi_1$ 的显式公式}
-令 $\psi_1(x)=\int_0^x\psi(t)\dd t=\sum_{n\le x}\Lambda(n)(x-n)$。由第一部分习题 4.1，对 $c>1$，
+设 $x>1$，令 $\psi_1(x)=\int_0^x\psi(t)\dd t=\sum_{n\le x}\Lambda(n)(x-n)$。由第一部分习题 4.1，对 $c>1$，
 $\psi_1(x)=\frac1{2\pi i}\int_{(c)}\bigl(-\frac{\zeta'}{\zeta}(s)\bigr)\frac{x^{s+1}}{s(s+1)}\dd s$。
 \begin{enumerate}
   \item 求被积函数的全部留数，形式地得到
@@ -515,7 +518,7 @@ Robin 判据：RH 等价于对一切 $n>5040$，$\sigma(n)<e^{\gamma_E}n\log\log
 
 \Hint{10.3}(a) 截断集合 $\{|\gamma|<T\}$ 在 $\rho\mapsto1-\rho$ 下不变。(c) 尾部 $\approx\int_T^\infty\frac1{2\pi}\log\frac t{2\pi}\cdot\frac{\dd t}{t^2}$。
 
-\Hint{10.4}(a) $s=\frac12+it$ 时 $s(s-1)=-(t^2+\frac14)$，$\pi^{-s/2}\Gamma(\frac s2)=\pi^{-1/4}|\Gamma(\frac14+\frac{it}2)|e^{i\vartheta(t)}$。(b) $|\Gamma(\sigma+i\tau)|\sim\sqrt{2\pi}\,|\tau|^{\sigma-1/2}e^{-\pi|\tau|/2}$。
+\Hint{10.4}(a) $s=\frac12+it$ 时 $s(s-1)=-(t^2+\frac14)$，$\pi^{-s/2}\Gamma(\frac s2)=\pi^{-1/4}|\Gamma(\frac14+\frac{it}2)|e^{i\vartheta(t)}$。(b) 推论~\bref{cor:stirling-vertical} 给出 $|\Gamma(\sigma+i\tau)|=\sqrt{2\pi}\,|\tau|^{\sigma-1/2}e^{-\pi|\tau|/2}\bigl(1+O(1/|\tau|)\bigr)$。
 
 \Hint{10.5}（RH 下）每个略去的因子 $1-t^2/\gamma^2<1$；略去的因子之积 $\approx\exp\bigl(-t^2\sum_{\gamma>T}\gamma^{-2}\bigr)$。
 
@@ -599,11 +602,11 @@ $\xi(\frac12)=\frac12\cdot\frac12\cdot(-\frac12)\pi^{-1/4}\Gamma(\frac14)\zeta(\
 当 $s=\frac12+it$（$t$ 实）时 $1-s=\frac12-it=\bar s$，于是
 $\xi(s)=\xi(1-s)=\xi(\bar s)=\overline{\xi(s)}$，即 $\Xi(t)\in\RR$。
 
-(d) $\Xi$ 在 $[14,14.2]$ 上为实值连续函数且端点异号，由介值定理在 $(14,14.2)$ 内有零点，它对应临界线上的一个非平凡零点，且重数为奇数。变号本身只说明存在零点；要确认它就是第一个零点 $\gamma_1\approx14.134725$，还要用零点计数（高度 $14.2$ 以下只有一个零点）。
+(d) $\Xi$ 在 $[14,14.2]$ 上为实值连续函数且端点异号，由介值定理在 $(14,14.2)$ 内至少存在一个奇数重零点，它对应临界线上的非平凡零点。变号本身只说明存在零点；要确认它就是第一个零点 $\gamma_1\approx14.134725$，还要用零点计数（高度 $14.2$ 以下只有一个零点）。
 临界线以外 $\xi$ 一般取复值，要求 $\Re\xi=\Im\xi=0$ 同时成立，一维的介值定理不再适用；这正是「在临界线上找零点」与「排除临界线外的零点」难度不同的原因之一。
 
 \Sol{10.2}{不用 $N(T)$ 证明零点无穷多}
-(a) 若零点只有有限个 $\rho_1,\dots,\rho_K$（计重数），则 $\xi(s)/\prod(s-\rho_k)$ 是无零点的一阶整函数，由 Hadamard 定理等于 $e^{a+bs}$，故 $\xi(s)=P(s)e^{a+bs}$，$P$ 为 $K$ 次多项式。于是 $\log|\xi(\sigma)|\le|b|\sigma+O(\log\sigma)=O(\sigma)$，与 $\log\xi(\sigma)\ge\frac\sigma2\log\sigma-O(\sigma)$ 矛盾。
+(a) 若零点只有有限个 $\rho_1,\dots,\rho_K$（计重数），直接对一阶整函数 $\xi$ 套用 Hadamard 因子分解定理（定理~\bref{thm:hadamard-factorization}），得 $\xi(s)=P(s)e^{a+bs}$，其中 $P(s)=\xi(0)\prod_{k=1}^K(1-s/\rho_k)$ 为 $K$ 次多项式。于是当 $\sigma\to+\infty$ 时 $\log|\xi(\sigma)|\le|b|\sigma+O(\log\sigma)\le O(\sigma)$，与 $\log\xi(\sigma)\ge\frac\sigma2\log\sigma-O(\sigma)$ 矛盾。
 
 (b) 若 $\sum1/|\rho|<\infty$，则 $\sum1/\rho$ 绝对收敛，式~(\bref{eq:hadamard-product}) 可写成
 $\xi(s)=\xi(0)e^{(b_0+\sum1/\rho)s}\prod_\rho(1-s/\rho)$，乘积绝对收敛。取 $r=|s|$，任给 $\varepsilon>0$，取 $R_0$ 使 $\sum_{|\rho|>R_0}1/|\rho|<\varepsilon$，则
@@ -612,7 +615,7 @@ $\xi(s)=\xi(0)e^{(b_0+\sum1/\rho)s}\prod_\rho(1-s/\rho)$，乘积绝对收敛。
   \le\sum_{|\rho|\le R_0}\log\Bigl(1+\frac r{|\rho|}\Bigr)+\sum_{|\rho|>R_0}\frac r{|\rho|}
   \le K\log\Bigl(1+\frac r{\rho_*}\Bigr)+\varepsilon r ,
 \]
-其中 $K$ 为 $|\rho|\le R_0$ 的零点个数，$\rho_*=\min|\rho|>0$。故 $\log|\xi(\sigma)|=O(\sigma)$，与下界矛盾。
+其中 $K$ 为 $|\rho|\le R_0$ 的零点个数，$\rho_*=\min|\rho|>0$。故正实轴上满足上界 $\log|\xi(\sigma)|\le O(\sigma)$（$\sigma\to+\infty$），与下界矛盾。
 因此 $\sum1/|\rho|=\infty$，这正是注记~\bref{rem:sum-one-over-rho} 的结论，而这里只用了 $\xi$ 在正实轴上的增长。
 （注记中由 $N(T)\gg T\log T$ 得到的是更强的定量信息。）
 
@@ -643,9 +646,14 @@ $1000$ & $0.0223761$ & $0.0230960$ & $0.0230957$ \\
 
 \Sol{10.4}{$\Xi$ 与 Hardy 的 $Z$ 函数}
 (a) $s=\frac12+it$ 时 $s(s-1)=-(t^2+\frac14)$，$\pi^{-s/2}\Gamma(\frac s2)=\pi^{-1/4}\cdot\pi^{-it/2}\Gamma(\frac14+\frac{it}2)=\pi^{-1/4}|\Gamma(\frac14+\frac{it}2)|e^{i\vartheta(t)}$，代入定义得所述等式。
-左端实，右端前因子为非零实数，故 $Z(t)$ 为实数；两者零点相同，$t\neq0$ 时前因子为负，故符号相反。
+左端实，右端前因子为非零实数，故 $Z(t)$ 为实数；两者零点相同，且对一切实数 $t$ 前因子 $-A(t)$ 严格为负，故在公共非零点处符号相反。
 
-(b) $\frac12(t^2+\frac14)\sim\frac12t^2$，Stirling 公式给出 $|\Gamma(\frac14+\frac{it}2)|\sim\sqrt{2\pi}(\frac t2)^{-1/4}e^{-\pi t/4}$，相乘，并注意 $\frac12\cdot2^{1/4}=2^{-3/4}$，即得 $A(t)$ 的展开。因为 $\Xi=-AZ$ 对一切 $t$ 成立，这一写法在 $Z$ 的零点处同样有意义。
+(b) $\frac12(t^2+\frac14)=\frac12t^2\bigl(1+O(t^{-2})\bigr)$；由竖直带内的 Stirling 公式（推论~\bref{cor:stirling-vertical}，来自定理~\bref{thm:stirling} 的模值展开），$t\to+\infty$ 时
+\[
+  \Bigl|\Gamma\Bigl(\frac14+\frac{it}2\Bigr)\Bigr|
+  =\sqrt{2\pi}\Bigl(\frac t2\Bigr)^{-1/4}e^{-\pi t/4}\Bigl(1+O\Bigl(\frac1t\Bigr)\Bigr),
+\]
+两式相乘并注意 $\frac12\cdot2^{1/4}=2^{-3/4}$，即得 $A(t)$ 的展开。因为 $\Xi=-AZ$ 对一切 $t$ 成立，这一写法在 $Z$ 的零点处同样有意义。
 
 (c) $t=14$：$-\frac12(196.25)\pi^{-1/4}|\Gamma(\frac14+7i)|\cdot(-0.105626)\approx2.0129\times10^{-4}$，与习题 10.1 一致；$A(t)$ 与其主项之比在 $t=14$ 时约为 $1.0014$，$t=50$ 时约为 $1.0001$。
 $\Xi(t)$ 含因子 $e^{-\pi t/4}$，$t=50$ 时已小到 $10^{-15}$ 量级，图上几乎是零；$Z(t)$ 去掉了这一指数衰减与无关的正因子，保留了全部实零点与符号，因此更适合作图。
@@ -666,7 +674,7 @@ $t=10$ & $0.099241$ & $0.051827$ & $0.040801$ & $0.037968$ \\
 
 (b) 在 RH 下，略去的根都是实数 $\gamma>\gamma_N>t$，每个因子 $1-t^2/\gamma^2\in(0,1)$，略去的因子之积小于 $1$，所以部分乘积偏大。不假设 RH 时，未知的根 $\alpha$ 可能是复数，须与共轭根合并后另行估计，上述单因子论证不再适用；已用的前 $1000$ 个零点在临界线上，不能推出全部遗漏因子都是这种形式。
 略去部分 $\approx\exp\bigl(-t^2\sum_{\gamma>T}\gamma^{-2}\bigr)\approx\exp\bigl(-t^2\frac{\log(T/2\pi)+1}{2\pi T}\bigr)$。
-$N=1000$ 时修正因子在 $t=5$、$10$ 处分别约为 $0.98216$、$0.93050$；修正后与真值之比为 $0.999993$、$0.999972$，相对误差约 $10^{-5}$。
+$N=1000$ 时修正因子在 $t=5$、$10$ 处分别约为 $0.98216$、$0.93054$；修正后与真值之比为 $0.999993$、$0.999972$，相对误差约 $10^{-5}$。
 $t$ 越大收敛越慢，因为尾部的影响以 $t^2$ 放大。
 
 \subsection*{第 11 章}
@@ -703,7 +711,7 @@ $\Im\log\Gamma(z)=b\log|z|+(a-\frac12)\arg z-b+O(\frac1b)$；而 $b\log|z|=b\log
   \Im\log\Gamma\Bigl(\frac14+\frac{iT}2\Bigr)=\frac T2\log\frac T2-\frac T2-\frac\pi8+O\Bigl(\frac1T\Bigr),
 \]
 减去 $\frac T2\log\pi$ 即得 $\vartheta(T)$ 的展开。于是 $N(T)=\frac T{2\pi}\log\frac T{2\pi}-\frac T{2\pi}+1-\frac18+S(T)+O(\frac1T)$，常数为 $\frac78$。
-数值上 $1+\vartheta(100)/\pi\approx29.002410$，$\bar N(100)\approx29.002344$，二者之差约 $6.6\times10^{-5}$，与 Stirling 展开的下一项 $\frac1{48T}\cdot\frac1\pi$ 相符。
+数值上 $1+\vartheta(100)/\pi\approx29.002410$，$\bar N(100)\approx29.002344$，二者之差约 $6.6\times10^{-5}$，与 $\vartheta(T)$ 渐近展开中的 $\frac1T$ 阶项 $\frac1{48T}\cdot\frac1\pi$（综合了 $\log|z|$、$\arg z$ 与 Stirling 余项 $\frac1{12z}$ 的贡献）相符。
 
 (c) $\Gamma(\frac s2+1)=\frac s2\Gamma(\frac s2)$，而 $\Delta_L\arg\frac s2=\arctan2T=\frac\pi2+O(\frac1T)$。所以书中分组的 $\Gamma$ 因子比这里多出约 $\frac\pi2$：$\frac{3\pi}8=-\frac\pi8+\frac\pi2$；相应地有理因子从 $s(s-1)$ 的 $\pi$ 变为 $s-1$ 的 $\frac\pi2$。总和都是 $\frac{7\pi}8$。
 
@@ -723,14 +731,14 @@ $1000$ & $1419.4225$ & $909.584$ & $1.56$ & $1419.518$ \\
 \bottomrule
 \end{tabular}
 \end{center}
-比值趋于 $1$ 的速度大约像 $1+\frac{\log\log n}{\log n}$，极慢；而 $\tilde\gamma_n$ 的偏差主要来自 $S(T)$ 的涨落。本表三个近似值的偏差（约 $0.46$、$0.54$、$0.10$）都小于相应高度的平均间距（约 $3.04$、$1.73$、$1.16$）；但一般而言，高度上的偏差约为 $S(T)$ 乘以平均间距，而 $S(T)$ 无界，所以不能由此断言偏差总在一个平均间距以内。
+比值的首个修正项约为 $\frac{\log\log n}{\log n}$，趋于 $1$ 的速度极慢；而 $\tilde\gamma_n$ 的偏差主要来自 $S(T)$ 的涨落。本表三个近似值的偏差（约 $0.46$、$0.54$、$0.10$）都小于相应高度的平均间距（约 $3.04$、$1.73$、$1.16$）；但一般而言，高度上的偏差约为 $S(T)$ 乘以平均间距，而 $S(T)$ 无界，所以不能由此断言偏差总在一个平均间距以内。
 
 \Sol{11.4}{计数判据的几种说法}
 (a) 任取非平凡零点 $\rho$。由共轭对称不妨设 $\gamma>0$；取 $T_k\ge\gamma$，由 $N_0(T_k)=N(T_k)$，高度不超过 $T_k$ 的零点全在临界线上，特别地 $\Re\rho=\frac12$。
 
 (b) 只说明高度 $\le T$ 的零点全在临界线上，即「RH 已验证到高度 $T$」；数值验证的结论都是这种形式。
 
-(c) RH 蕴含它（RH 下比值恒为 $1$）；反向蕴含并未建立。单靠比例条件，不能排除数量为 $o(T\log T)$ 的离线零点：比例趋于 $1$ 与这样的零点在逻辑上相容。这说明比例条件比 RH 弱，并不是说已经构造出这样的反例。已知的无条件结果是临界线上的零点占正比例（Selberg，第~\bref{sec:kappa_on_line}~节），连比值趋于 $1$ 也尚未证明。
+(c) RH 蕴含它（RH 下比值恒为 $1$）；反向蕴含尚未建立。单靠比例条件，在逻辑上不能排除数量为 $o(T\log T)$ 的离线零点（比例趋于 $1$ 与这样的零点在逻辑上相容）；这仅说明目前只确立了单向蕴含，并不意味着已经构造出这类离线零点，也不等于已经证明二者不等价。已知的无条件结果是临界线上的零点占正比例（Selberg，第~\bref{sec:kappa_on_line}~节），连比值趋于 $1$ 也尚未证明。
 
 \Sol{11.5}{$\sum1/\gamma$ 的增长}
 (a) $N(t)=0$（$t<\gamma_1$），Stieltjes 分部：
@@ -744,15 +752,14 @@ $\sum_{0<\gamma\le T}\frac1\gamma=\frac{N(T)}T+\int_{2}^T\frac{N(t)}{t^2}\dd t$�
 
 (b) $T=\gamma_{100}$：左端 $\approx1.031173$，$\frac1{4\pi}\log^2\frac T{2\pi}\approx1.047529$；$T=\gamma_{1000}$：左端 $\approx2.321061$，主项 $\approx2.337810$。两次给出 $C\approx-0.016$、$-0.017$，相当一致。（若用 $\frac1{4\pi}\log^2T$ 作主项，差值会随 $T$ 增大，因为二者相差 $O(\log T)$。）
 
-(c) RH 下 $\sum_{|\gamma|<T}|x^\rho/\rho|=2x^{1/2}\sum_{0<\gamma<T}|\rho|^{-1}\asymp x^{1/2}\log^2T$，取 $T=x^{1/2}$ 后正是 $x^{1/2}\log^2x$ 的量级。所以只要逐项取绝对值，$\log^2x$ 就是这种方法的极限；要改进只能利用 $x^{i\gamma}$ 的相位抵消。
+(c) RH 下 $\sum_{|\gamma|<T}|x^\rho/\rho|=2x^{1/2}\sum_{0<\gamma<T}|\rho|^{-1}\asymp x^{1/2}\log^2T$，取 $T=x^{1/2}$ 后正是 $x^{1/2}\log^2x$ 的量级。所以只要对选定截断范围内的零点项逐项取绝对值来估计，$\log^2x$ 就是这种三角形不等式上界的极限（注意这并非实际振荡误差的下界）；要改进上界只能利用 $x^{i\gamma}$ 的相位抵消。
 
 \Sol{11.6}{到高度 100 的数值核验}
 (a) 变号 $29$ 次。$Z$ 与 $\Xi$ 零点相同，每次变号对应临界线上一个奇数重零点，故 $N_0(100)\ge29$（步长若太大可能漏掉相距很近的一对零点，所以这只是下界）。
 
-(b) $|\zeta(2+it)-1|\le\sum_{n\ge2}n^{-2}=\zeta(2)-1\approx0.645<1$，故 $\Re\zeta(2+it)>0$。在 $\frac12\le\sigma\le2$ 上取 $301$ 个等距点，$\Re\zeta(\sigma+100i)$ 的最小值约为 $1.19>0$。若正性在整段上成立（严格证明见 (d)），则沿整条路径 $L$，$\zeta$ 的值都在右半平面，连续辐角始终在 $(-\frac\pi2,\frac\pi2)$ 内，终点的连续辐角就是主值：$S(100)=\frac1\pi\arg\zeta(\frac12+100i)\approx-0.002410$。
+(b) $|\zeta(2+it)-1|\le\sum_{n\ge2}n^{-2}=\zeta(2)-1\approx0.645<1$，故 $\Re\zeta(2+it)>0$。在 $\frac12\le\sigma\le2$ 上取 $301$ 个等距点，$\Re\zeta(\sigma+100i)$ 的最小值约为 $1.19>0$。有限网格上的检查与正性假设一致，但尚不能保证整条水平线段无例外；若整段上 $\Re\zeta(\sigma+100i)>0$ 确已严格认证（所需步骤见 (d)），则沿整条路径 $L$，$\zeta$ 的值都在右半平面，连续辐角始终在 $(-\frac\pi2,\frac\pi2)$ 内，终点的连续辐角才等于主值：$S(100)=\frac1\pi\arg\zeta(\frac12+100i)\approx-0.002410$。
 
-(c) $N(100)=1+28.002410-0.002410=29$（数值上两项之和与 $29$ 的差在计算精度以内；由习题 11.2(a) 的精确等式，$N(100)$ 是整数）。
-于是 $29\le N_0(100)\le N(100)=29$：$29$ 个变号点各对应至少一重零点，而总重数只有 $29$，故全部零点都是单零点且都在临界线上。逻辑核心是「$29$ 个已确认的不同临界线零点」加上「总重数为 $29$」。
+(c) 数值计算给出 $1+\vartheta(100)/\pi+\frac1\pi\arg\zeta(\frac12+100i)\approx29$（精确计算与 $29$ 的差在浮点舍入以内）。若按 (d) 的要求，全部三项均已严格核实——即：(1) $29$ 处异号端点的 $Z$ 值符号获误差界确认，(2) 整段 $\frac12\le\sigma\le2$ 上 $\Re\zeta(\sigma+100i)>0$ 成立使 $S(100)$ 确为主值辐角，(3) 计数表达式 $1+\vartheta(100)/\pi+S(100)$ 的严格包含区间落在 $(28.5,29.5)$ 内——则由习题 11.2(a) 的精确整数性质必得 $N(100)=29$，从而由 $29\le N_0(100)\le N(100)=29$ 推出高度 $100$ 以下的零点全部在临界线上且均为单零点。普通浮点结果本身只能说明数值实验与这一结论相符。
 
 (d) 严格认证还缺三步：
 \begin{enumerate}[label=\arabic*.]
@@ -773,7 +780,7 @@ $\sum_{0<\gamma\le T}\frac1\gamma=\frac{N(T)}T+\int_{2}^T\frac{N(t)}{t^2}\dd t$�
 \Sol{12.2}{Newman 定理的边界条件}
 (a) $\Re z>0$ 时 $g(z)=\int_0^\infty e^{(i-z)t}\dd t=\frac1{z-i}$，在 $z=0$ 处全纯（$g(0)=i$），但在虚轴上的 $z=i$ 有极点，不能全纯延拓到包含 $\Re z\ge0$ 的开集；而 $\int_0^X e^{it}\dd t=(e^{iX}-1)/i$ 不收敛。可见只在 $z=0$ 一点全纯不够，需要整条虚轴。
 
-(b) $-\frac{\zeta'}{\zeta}(s)=-\frac m{s-s_0}+O(1)$，$s_0=1+it_0$，故 $G(s)$ 在 $s_0$ 处有主部 $-\frac m{s_0(s-s_0)}$，从而 $g(z)=G(z+1)$ 在虚轴上的 $z=it_0$ 有极点，定理~\bref{thm:newman} 不适用。
+(b) $-\frac{\zeta'}{\zeta}(s)=-\frac m{s-s_0}+O(1)$（$s_0=1+it_0$），而 $\frac1{s-1}$ 在 $s_0$ 处全纯（$t_0\ne0$），故由引理~\bref{lem:pnt-mellin}，$G(s)$ 在 $s_0$ 处有主部 $-\frac m{s_0(s-s_0)}$，从而 $g(z)=G(z+1)$ 在虚轴上的 $z=it_0$ 有极点，定理~\bref{thm:newman} 不适用。
 启发式地，按 Perron 积分的留数，这一极点（连同共轭点 $\bar s_0$）在 $\psi(x)$ 中产生 $-m\bigl(\frac{x^{s_0}}{s_0}+\frac{x^{\bar s_0}}{\bar s_0}\bigr)=-\frac{2mx}{|s_0|}\cos(t_0\log x-\arg s_0)$，这一项会使 $\psi(x)/x$ 出现振幅约 $2m/|s_0|$ 的对数周期振荡。这只是启发式解释：其余项也可能有同阶贡献，单凭这一项不能证明 $\psi(x)/x$ 没有极限。严格的结论是：$G$ 在边界上有极点，Newman 定理不再适用（与第~\bref{sec:pnt_perron_outline}~节的说法一致）。
 
 (c) 定理~\bref{thm:no-zero-on-one} 恰好保证 $G$ 在整条直线 $\Re s=1$ 上全纯（引理~\bref{lem:pnt-boundary}），这是核查本次 Newman 应用所需边界条件的关键输入；(b) 从启发式的角度说明它为什么重要。
@@ -804,7 +811,7 @@ $\zeta(z+1)$ 在 $\Re z\ge0$ 上除 $z=0$（极点）外无零点；$z=0$ 处 $1
 
 \Sol{12.4}{三种形式的收敛速度}
 (a) 由式~(\bref{eq:li-asymp-real})，$\Li(x)\log x/x=1+\frac1{\log x}+\frac2{\log^2x}+\frac6{\log^3x}+\cdots$，故
-$\frac{\pi(x)\log x}x=\frac{\pi(x)}{\Li(x)}\cdot\frac{\Li(x)\log x}x$，其中第二个因子与 $1$ 只差 $\frac1{\log x}$ 量级，下降极慢。$x=10^7$ 时 $\log x\approx16.12$，前四项给出 $1.0712$，乘以 $0.99949$ 约得 $1.0706$，与表中 $1.07117$ 相差不到千分之一。
+$\frac{\pi(x)\log x}x=\frac{\pi(x)}{\Li(x)}\cdot\frac{\Li(x)\log x}x$，其中第二个因子与 $1$ 只差 $\frac1{\log x}$ 量级的系统修正，在本表区间内下降极慢（这里仅说明本表的数值观察与 $1/\log x$ 修正的来源，不从有限样本推出普遍的收敛速度排序）。$x=10^7$ 时 $\log x\approx16.12$，前四项截断和给出 $1.0712$（乘以 $0.99949$ 约得 $1.0706$）；若计入渐近展开余项，精确的 $\Li(10^7)\log(10^7)/10^7\approx1.07172$，乘以表中 $0.99949$ 得 $1.07117$，与表中数值吻合。
 相比之下，$\psi(x)/x-1$ 与 $\pi/\Li-1$ 没有这种 $1/\log x$ 量级的系统偏差。若 RH 成立，定理~\bref{thm:rh-psi-error} 与定理~\bref{thm:von_koch} 给出它们的相对误差上界分别为 $O(x^{-1/2}\log^2x)$ 与 $O(x^{-1/2}\log^2x)$（后者用 $\Li(x)\sim x/\log x$ 换算）；无条件的素数定理本身不提供这种强度的估计。
 
 (b) $f\sim g$ 只表示 $f/g\to1$，不包含收敛速度。$x/\log x$ 与 $\Li(x)$ 本身就相差因子 $1+O(1/\log x)$，所以「$\pi\sim x/\log x$」与「$\pi\sim\Li$」作为极限等价，作为近似却好坏悬殊。
@@ -834,7 +841,14 @@ $\Ei(\bar w)=\int_{-\infty-iv}^{\bar w}\frac{e^\zeta}\zeta\dd\zeta=\overline{\in
 (c) 由主项，$2\Re\li(x^\rho)\approx\frac{2x^\beta}{|\rho|\log x}\cos(\gamma\log x-\arg\rho)$。与式~(\bref{eq:zero-pair-cosine}) 相比多出因子 $1/\log x$，这正是从 $\psi$ 的显式公式到 $J$ 的显式公式时 $\dd t/\log t$ 带来的因子。$x=100$ 时配对和 $2\Re\li(x^{\rho_1})\approx0.23287$。
 
 \Sol{13.3}{数值库中的两种陷阱}
-(a) 差值为 $3.1415927i=i\pi$，与注记~\bref{rem:Ei-library-branch} 的 $\Ei_{\mathrm{lib}}(w)=\Ei(w)+i\pi\operatorname{sgn}(\Im w)$ 一致。实部相同，共轭配对和 $2\Re$ 不受影响；但若直接对单个 $\rho$ 求和（例如只取上半平面再乘 $2$ 后取复数值），虚部会错。
+(a) 差值为 $3.1415927i=i\pi$，对应 \texttt{mpmath.ei} 所采用的分支切割约定（即注记~\bref{rem:Ei-library-branch} 的 $\Ei_{\mathrm{lib}}(w)=\Ei(w)+i\pi\operatorname{sgn}(\Im w)$；不同数值软件对 $\Ei$ 的分支规定不尽相同，不能泛指所有 $\Ei$ 实现）。实部相同，共轭配对和 $2\Re$ 不受影响；但若直接对单个 $\rho$ 求和（例如只取上半平面再乘 $2$ 后取复数值），虚部会错。
+在测试点 $w=(\frac12+i\gamma_1)\log100$ 下，可用如下代码复现 (a)(b) 两项数值：
+\begin{lstlisting}[language=Python]
+from mpmath import mp, ei, li, zetazero
+rho = mp.mpc('0.5', zetazero(1).imag)
+w = rho * mp.log(100)
+print(ei(w), li(mp.mpf(100)**rho))
+\end{lstlisting}
 
 (b) $x^\rho$ 先被算成一个复数，库再取主值对数：$\operatorname{Log}(x^\rho)\approx2.302585+2.260962i$，虚部是 $65.092815$ 减去 $10\cdot2\pi$ 后的余数。于是库实际计算的是 $\Ei_{\mathrm{lib}}(2.302585+2.260962i)$，而不是本书约定的 $\Ei(\rho\log x)$：两者自变量的虚部相差 $2\pi$ 的整数倍，这正是主值对数把「绕原点的圈数」折回的结果，函数值完全不同，不能互相替代。
 书中的 $\li(x^\rho)$ 按式~(\bref{eq:li-xrho-Ei}) 定义为 $\Ei(\rho\log x)$，依赖于 $\rho\log x$ 本身，而不是复数 $x^\rho$ 的值；$x^\rho$ 一旦算出，就丢失了「绕原点多少圈」的信息。
@@ -856,15 +870,15 @@ $s=-2n$：主部 $-\frac1{s+2n}$，留数 $-\frac{x^{-2n}}{-2n}=\frac{x^{-2n}}{2
 \Sol{14.2}{截断显式公式的数值实验}
 (a) $\psi(20)=\log232792560\approx19.265658$。$20$ 不是素数幂，$\psi_0(20)=\psi(20)$；$\psi_0(20.5)=\psi(20)$；$19$ 是素数，$\psi_0(19)=\psi(19)-\frac12\log19\approx19.265658-1.472219=17.793439$。
 
-(b) $N=1000$ 时误差分别为 $-0.0061$（$x=19$）、$+0.0155$（$x=20$）、$-0.0069$（$x=20.5$），且随 $N$ 并不单调下降。$x=19$ 处收敛到跳跃的左右平均值 $\psi_0(19)$，而不是 $\psi(19)$；在跳跃点附近部分和的收敛不是一致的。
+(b) 以 $\psi_0(x)$ 作为截断显式公式收敛的精确基准：$N=1000$ 时，相对 $\psi_0(x)$ 的误差分别为 $-0.0061$（$x=19$）、$+0.0155$（$x=20$）、$-0.0069$（$x=20.5$），且随 $N$ 并不单调下降。$x=19$ 处收敛到跳跃的左右平均值 $\psi_0(19)$，而不是 $\psi(19)$；在跳跃点附近部分和的收敛不是一致的。
 
-(c) 误差界首项 $\frac{x\log^2(xT)}T$ 只以 $\frac{\log^2T}T$ 的速度下降，而 $N$ 个零点只到达高度 $T\approx2\pi N/\log N$，所以对固定的 $x$，这个上界具有 $O_x\bigl((\log N)^3/N\bigr)$ 的形状，衰减较慢。但这只是上界：实际误差未必达到它，而且如表所示一般不随 $N$ 单调下降。距离项 $\log x\min(1,\frac x{T\langle x\rangle})$ 中，$\langle x\rangle$ 按书中约定是 $x$ 到异于 $x$ 本身的最近素数幂的距离（$x=19$ 时为 $2$，不是 $0$）；$x$ 靠近另一个素数幂时这一项更大。零点和是条件收敛的振荡和，这是它收敛慢的根本原因（对照习题 14.4）。
+(c) 误差界首项 $\frac{x\log^2(xT)}T$ 只以 $\frac{\log^2T}T$ 的速度下降，而 $N$ 个零点只到达高度 $T\approx2\pi N/\log N$，所以对固定的 $x$，这个上界具有 $O_x\bigl((\log N)^3/N\bigr)$ 的形状，衰减较慢。但这只是上界：实际误差未必达到它，而且如表所示一般不随 $N$ 单调下降。距离项 $\log x\min(1,\frac x{T\langle x\rangle})$ 中，$\langle x\rangle$ 按书中约定是 $x$ 到异于 $x$ 本身的最近素数幂的距离（$x=19$ 时为 $2$，不是 $0$）；$x$ 靠近另一个素数幂时这一项更大。由本例的振荡行为与上述余项上界可见，这里不能期待误差随零点个数单调或快速下降（对照习题 14.4）。
 
 \Sol{14.3}{零点和的条件收敛}
 (a) $x>1$、$\beta>0$ 时 $|x^\rho/\rho|=x^\beta/|\rho|\ge1/|\rho|$，而 $\sum_\rho1/|\rho|=\infty$（注记~\bref{rem:sum-one-over-rho} 或习题 10.2(b)），故不绝对收敛。
 
 (b) 由式~(\bref{eq:zero-pair-cosine})，一对 $\rho,\bar\rho$ 之和为实数；单个 $x^\rho/\rho$ 一般不是实数；按共轭配对可保证每个部分和为实数。
-若上半平面截断到 $T'$、下半平面截断到 $T$，多出的项为 $\sum_{T\le\gamma<T'}x^{\rho}/\rho$（上半平面多出的那些零点；写进显式公式右端时带负号），一般不是实数。定理~\bref{thm:ef-explicit-psi} 只对对称截断（等价地，共轭配对并按虚部绝对值递增截断，式~(\bref{eq:zero-sum-symmetric})）断言极限存在并等于 $\psi_0(x)$；配对成实数之后，条件收敛的级数仍不能任意重排；对条件收敛的级数，换一种截断方式就不再有这一保证，所以书中把对称截断作为显式公式的一部分。
+若上半平面截断到 $T'$、下半平面截断到 $T$，多出的项为 $\sum_{T\le\gamma<T'}x^{\rho}/\rho$（上半平面多出的那些零点；写进显式公式右端时带负号），一般不是实数。定理~\bref{thm:ef-explicit-psi} 只对对称截断（等价地，共轭配对并按虚部绝对值递增截断，式~(\bref{eq:zero-sum-symmetric})）断言极限存在并等于 $\psi_0(x)$。注意 (a) 只证明了未配对级数 $\sum_\rho|x^\rho/\rho|=\infty$，它本身不能直接推出「配对成实数后的级数也不绝对收敛」；但在未另证配对级数绝对收敛之前，定理并不保证任意重排或非对称截断仍给出同一值，所以书中把对称截断作为显式公式的一部分。
 
 (c) 习题 14.4 中的项为 $\frac{x^{\rho+1}}{\rho(\rho+1)}$，模不超过 $x^2/|\rho|^2$，而 $\sum|\rho|^{-2}<\infty$，绝对收敛，求和次序无关。代价是零点项多了一个分母因子 $\rho+1$，$\psi_1$ 比 $\psi$ 光滑一阶；在 $\psi$ 的非跳跃点仍可由 $\psi_1'=\psi$ 恢复 $\psi$，积分并没有不可逆地丢失算术信息。
 
@@ -874,12 +888,15 @@ $s=1$：$\frac{x^2}{2}$；$s=\rho$：$-\frac{x^{\rho+1}}{\rho(\rho+1)}$；
 $s=0$：$-\frac{\zeta'(0)}{\zeta(0)}x=-x\log(2\pi)$；
 $s=-1$：$\zeta(-1)=-\frac1{12}\neq0$，极点来自 $\frac1{s+1}$，留数 $-\frac{\zeta'(-1)}{\zeta(-1)}\cdot\frac{x^0}{-1}=\frac{\zeta'(-1)}{\zeta(-1)}$；
 $s=-2n$：$-\frac{x^{1-2n}}{(-2n)(1-2n)}=-\frac{x^{1-2n}}{2n(2n-1)}$。
-相加即得所述公式。
+相加即形式地得到所述候选公式（正式等式由 (b) 的移线与极限论证完成）。
 
 (b) $|x^{\rho+1}/(\rho(\rho+1))|\le x^2/|\rho|^2$（$0<\beta<1$），$\sum|\rho|^{-2}<\infty$，由 Weierstrass 判别法在 $x$ 的紧集上一致绝对收敛。
-关键在于核 $\frac1{s(s+1)}$ 带来 $|s|^{-2}$ 的衰减：竖线积分本身绝对收敛（第一部分习题 4.1），水平边上的被积函数 $\ll\frac{x^{c+1}\log^2T}{T^2}$（高度选在避开零点处，用引理~\bref{lem:zero-local}），长度有界，故 $T\to\infty$ 时趋于 $0$；无需像第~\bref{subsec:perron-trunc-quant}~节那样控制 Perron 截断误差。
+关键在于核 $\frac1{s(s+1)}$ 带来 $|s|^{-2}$ 的衰减：原竖线积分本身绝对收敛（第一部分习题 4.1），故无需像第~\bref{subsec:perron-trunc-quant}~节那样控制有限 $T$ 的 Perron 截断误差。
 
-不过零点和绝对收敛只保证等式右端有意义，并不单独完成移线。完整的论证还需两步：先固定左边界 $\Re s=-U$（$U>1$ 取奇数，避开 $s=-1$ 与平凡零点），取避零高度令 $T\to\infty$，得到包含 $\Re s>-U$ 内全部留数的等式；再令 $U$ 沿奇数趋于无穷，用函数方程给出的左半平面估计（引理~\bref{lem:zetalog-left}）说明左边界上的积分趋于 $0$。这两步可直接调用书中现成的估计，不必重复整套围道论证。
+不过零点和绝对收敛只保证等式右端有意义，不能代替围道移线论证。完整的证明分两步：
+(1) 先固定左边界 $\Re s=-U$（$U>1$ 取奇数，避开 $s=-1$ 与平凡零点）。在避零高度 $T$（由引理~\bref{lem:zero-local} 可在单位区间内选取）上，利用水平边估计（$\sigma\in[-1,c]$ 用式~(\bref{eq:zetalog-horiz}) 或引理~\bref{lem:horiz-zetalog}，得 $|\zeta'/\zeta|\ll\log^2T$；$\sigma\in[-U,-1]$ 用引理~\bref{lem:zetalog-left}，得 $|\zeta'/\zeta|\ll\log(U+T)$），结合核 $\bigl|\frac{x^{s+1}}{s(s+1)}\bigr|\le\frac{x^{c+1}}{T^2}$，得上下水平边积分 $\ll_x\frac{\log^2T+\log(U+T)}{T^2}\to0$（$T\to\infty$）；同时左竖边 $\sigma=-U$ 上的被积函数模长 $\ll x^{1-U}\frac{\log(U+|t|)}{U^2+t^2}$ 对 $t\in\RR$ 绝对可积，因此令 $T\to\infty$ 即得包含 $\Re s>-U$ 内全部留数与左竖边积分的恒等式。
+(2) 再令 $U$ 沿奇数趋于无穷：由左半平面估计（引理~\bref{lem:zetalog-left}），左竖边积分不超过常数倍的
+$x^{1-U}\int_{-\infty}^\infty\frac{\log(U+|t|)}{U^2+t^2}\dd t\ll\frac{x^{1-U}\log U}{U}\to0$（因 $x>1$），平凡零点级数同时收全，从而严格确立候选公式。
 
 (c) $\psi_1(20)=\sum_{n\le20}\Lambda(n)(20-n)\approx165.836686$，平凡零点项 $\approx0.025010$。
 \begin{center}
@@ -902,7 +919,11 @@ $N$ & $10$ & $100$ & $1000$ \\
 \Sol{14.5}{$\pi(x)$ 与 $\li(x)$ 的偏差}
 (a) 式~(\bref{eq:explicit_pi}) 主项中 $n=2$ 的一项为 $\frac{\mu(2)}2\li(x^{1/2})=-\frac12\li(\sqrt x)$，而 $\li(\sqrt x)\sim\frac{\sqrt x}{\log\sqrt x}=\frac{2\sqrt x}{\log x}$，故这一项 $\sim-\sqrt x/\log x$。它来自 $J$ 对素数平方的计数：$J(x)=\pi(x)+\frac12\pi(\sqrt x)+\cdots$。
 
-(b) $D(x)$ 减去 $n=2$ 项的贡献，剩余为 $0.63$、$0.19$、$0.08$、$0.56$、$0.55$。其中 $n\ge3$ 的主项（$\frac13\li(x^{1/3})$ 等）只贡献较小的一部分；主要是零点项的振荡。例如 $x=10^6$ 时 $R(x)-\pi(x)\approx29.4$，按 $\log x/\sqrt x$ 归一后约为 $0.41$，正是零点贡献。
+(b) $D(x)$ 减去 $n=2$ 项的贡献，剩余为 $0.63$、$0.19$、$0.08$、$0.56$、$0.55$。按式~(\bref{eq:explicit_pi}) 的分解，这一残差由三部分合并而成：
+(1) $3\le n\le\nu(x)$ 的高次幂主项（如 $-\frac13\li(x^{1/3})-\frac15\li(x^{1/5})+\cdots$），
+(2) 零点振荡项，以及
+(3) 常数项 $-\log2\sum_{n\le\nu(x)}\frac{\mu(n)}n$ 与积分修正项。
+例如在 $x=10^6$（$\nu(10^6)=19$，$\pi_0=\pi$）处，$n=3,\dots,19$ 的高次主项合计约 $-11.40$；扣除全部有限 Möbius 主项后，有限主项与 $\pi(10^6)$ 之差约为 $29.35$（若换用经典无穷级数 $R(x)=\sum_{n=1}^\infty\frac{\mu(n)}n\li(x^{1/n})$，该差约为 $29.36$，与有限主项相差约 $0.015$）。再加上常数项（约 $+0.035$）与极小的积分修正项，合起来才对应式~(\bref{eq:explicit_pi}) 的零点贡献（约 $29.38$，按 $\log x/\sqrt x$ 归一后约 $0.41$）；因此在这一样本上零点项是主要部分，但残差并非单一来源。
 
 (c) 要区分三件事。
 \begin{enumerate}[label=\arabic*.]
@@ -918,7 +939,7 @@ $N$ & $10$ & $100$ & $1000$ \\
 (b) 主项：$30.12614-\frac12(6.16560)-\frac13(3.40665)-\frac15(1.68023)+\frac16(1.25667)\approx30.12614-3.08280-1.13555-0.33605+0.20944=25.78119$（$n=4$ 时 $\mu(4)=0$）。
 $\sum_{n\le6}\mu(n)/n=1-\frac12-\frac13-\frac15+\frac16=\frac2{15}$，常数项 $-\frac2{15}\log2\approx-0.09242$。
 
-(c) $25.78119-0.69721-0.09242-0.00026\approx24.99130$，与 $25$ 相差约 $0.009$，来自略去的高处零点。注意零点项合计约 $0.70$，小于 $n=2$ 的修正（约 $3.08$），却大于 $n=5$、$6$ 两项（约 $0.34$、$0.21$）；这些项都参与精确表示，缺一不可。$x=100$ 时 $\pi_0$ 恰为整数 $25$；在素数处 $\pi_0$ 是半整数，截断值不能靠取整来认证。
+(c) $25.78119-0.69721-0.09242-0.00026\approx24.99130$，与 $25$ 相差约 $0.009$，来自略去的高处零点。注意零点项合计约 $0.70$，小于 $n=2$ 的修正（约 $3.08$），却大于 $n=5$、$6$ 两项（约 $0.34$、$0.21$）；这些项都参与精确表示，缺一不可。$x=100$ 时 $\pi_0$ 恰为整数 $25$，在素数处 $\pi_0$ 是半整数；无论在整数点还是半整数点，截断值与真值之差很小并不等于已经拥有足以认证取整的严格尾部余项界。
 
 \subsection*{第 15 章}
 
@@ -927,16 +948,16 @@ $\sum_{n\le6}\mu(n)/n=1-\frac12-\frac13-\frac15+\frac16=\frac2{15}$，常数项 
 
 (b) $\pi(x)=\frac{x+E(x)}{\log x}+\int_2^x\frac{\dd t}{\log^2t}+\int_2^x\frac{E(t)}{t\log^2t}\dd t$，代入 (a)，$\frac x{\log x}$ 抵消，即得 $\pi(x)=\Li(x)+\frac2{\log2}+\frac{E(x)}{\log x}+\int_2^x\frac{E(t)}{t\log^2t}\dd t$。
 
-(c) 其导数为 $1$（正文已算），而 $x=2$ 时值为 $\Li(2)\log2-0=0$，故恒等于 $x-2$。这一步把 $\Li$ 的「主项」精确地还原为 $\theta$ 的主项 $x$，不留任何误差。
+(c) 其导数为 $1$（正文已算），而 $x=2$ 时值为 $\Li(2)\log2-0=0$，故恒等于 $x-2$。这一步把 $\Li$ 的「主项」还原为 $\theta$ 的主项 $x$，只差已知常数 $-2$，不留任何渐近余项误差。
 
-(d) 正方向中，$\psi$ 换成 $\theta$ 使 $E$ 多出 $O(\sqrt x)$，在 $\pi$ 的公式中只贡献 $O(\sqrt x/\log x)+O(\int_2^x t^{-1/2}\log^{-2}t\dd t)=O(\sqrt x)$，被 $O(\sqrt x\log x)$ 吸收；逆方向中 $\psi-\theta=O(\sqrt x)$ 被 $O(\sqrt x\log^2x)$ 吸收。
+(d) 正方向中，$\psi$ 换成 $\theta$ 使 $E$ 多出 $O(\sqrt x)$，在 $\pi$ 的公式中只贡献 $O(\sqrt x/\log x)+O(\int_2^x t^{-1/2}\log^{-2}t\dd t)=O(\sqrt x/\log^2x)$（或粗放记作 $O(\sqrt x)$），被 $O(\sqrt x\log x)$ 吸收；逆方向中 $\psi-\theta=O(\sqrt x)$ 被 $O(\sqrt x\log^2x)$ 吸收。
 
 \Sol{15.2}{零点实部的上确界与误差指数}
 (a) 设 $x\ge4$，在定理~\bref{thm:truncated-explicit} 中取 $T=x$。$|x^\rho/\rho|\le x^\Theta/|\rho|$，与定理~\bref{thm:rh-psi-error} 的证明相同地 $\sum_{|\gamma|<T}1/|\rho|\ll\log^2T$，零点有限和 $\ll x^\Theta\log^2x$；余项 $\ll\frac{x\log^2(x^2)}x+\log x\ll\log^2x$。因 $\Theta\ge\frac12$，$x^\Theta\log^2x$ 占主导，得 $\psi(x)=x+O(x^\Theta\log^2x)$。
 
 (b) $\Re s>1$ 时 $-\frac{\zeta'}{\zeta}(s)-\frac s{s-1}=s\int_1^\infty(\psi(x)-x)x^{-s-1}\dd x$。若 $\psi(x)-x=O(x^\alpha)$，右端在 $\Re s>\alpha$ 的紧集上一致绝对收敛，定义解析函数；由唯一性左端在 $\Re s>\alpha$ 解析。$\zeta$ 在该半平面的零点会给左端带来留数 $-m\neq0$ 的极点，矛盾。故 $\zeta$ 在 $\Re s>\alpha$ 无零点，$\Theta\le\alpha$。
 
-(c) 由 (b)，凡使 $\psi(x)-x=O(x^\alpha)$ 成立的 $\alpha$ 都满足 $\alpha\ge\Theta$；由 (a)，每个 $\alpha>\Theta$ 都使之成立。故下确界为 $\Theta$。$\Theta\ge\frac12$ 恒成立，所以 RH $\iff\Theta=\frac12$。
+(c) 由 (b)，凡使 $\psi(x)-x=O(x^\alpha)$（$0<\alpha\le1$）成立的 $\alpha$ 都满足 $\alpha\ge\Theta$；由 (a)，每个 $\alpha>\Theta$ 都使之成立。故下确界为 $\Theta$（若在全部实指数上取下确界，任何 $\alpha\le0$ 的界也会推出某个 $0<\alpha'<\frac12$ 的 $O(x^{\alpha'})$ 界，同样与 (b) 矛盾，故不会给出更小的下确界）。$\Theta\ge\frac12$ 恒成立，所以 RH $\iff\Theta=\frac12$。
 若 $\Theta=1$（零点可以无限逼近 $\Re s=1$ 而不达到），(a) 只给出 $O(x\log^2x)$，比平凡界还弱，自然与 $\psi(x)\sim x$ 不矛盾；素数定理来自 $\Re s=1$ 上没有零点，而不是来自 $\Theta<1$。
 
 \Sol{15.3}{Liouville 函数判据的一个方向}
@@ -960,22 +981,23 @@ $\sum_{n\le6}\mu(n)/n=1-\frac12-\frac13-\frac15+\frac16=\frac2{15}$，常数项 
 \Sol{15.5}{Robin 判据的例外}
 (a) $\sigma(5040)=\sigma(2^4)\sigma(3^2)\sigma(5)\sigma(7)=31\cdot13\cdot6\cdot8=19344$，比值 $\approx1.790973>e^{\gamma_E}\approx1.781072$，不等式不成立，所以 $5040$ 必须作为例外。
 
-(b) 这 $26$ 个数是 3、4、5、6、8、9、10、12、16、18、20、24、30、36、48、60、72、84、120、180、240、360、720、840、2520、5040。除最小的几个外，它们都只含很小的素因子、因数特别多（多为高合成数）；$5040=7!$ 是最后一个。$\sigma(n)/n$ 的大值正出现在这类数上。
+(b) 这 $26$ 个数是 3、4、5、6、8、9、10、12、16、18、20、24、30、36、48、60、72、84、120、180、240、360、720、840、2520、5040。除最小的几个外，它们都主要含较小素因子及其幂次，使 $\sigma(n)/n=\prod_{p^a\parallel n}(1+p^{-1}+\cdots+p^{-a})$ 较大（多为高合成数）；$5040=7!$ 是最后一个。$\sigma(n)/n$ 的大值正出现在这类数上。
 
 (c) 有限范围的验证与 RH 相容（最大比值 $1.7558<e^{\gamma_E}$），但证明不了 RH。等价性的意义在于：若 RH 不成立，则必存在 $n>5040$ 违反不等式；所以找到一个反例就否定 RH，而任何有限检验都不足以证明它。
 
 \subsection*{第 16 章}
 
 \Sol{16.1}{证明状态的分类}
-(a) 书内推导（命题~\bref{prop:xi-fe}）。
-(b) 书内推导（调用列明的前置定理 Hadamard 因子分解）。
-(c) 文献引用：至多相差常数的推导在书内，常数 $-\log2$ 依据引用的完整显式公式确定。
-(d) 文献引用（Titchmarsh 定理 14.25(C)）。
-(e) 书内推导。
-(f) 未证命题。
-(g) 书内推导：等价关系已证，但两边的命题都未证。
-(h) 书内推导（附录~\bref{app:hardy}，Hardy 定理）。
-(i) 书内推导（Newman 方法，第~\bref{sec:pnt_conclude}~节）。
+按表~\bref{tab:proof-status-figure} 的三类分组（「推导见本书（可调用明确列出的前置定理）」「文献引用」「未证命题」）作归类（注意「是否引用前置定理」与「关系已证／命题未证」属于不同维度，这里严格沿用该表口径）：
+(a) 推导见本书（命题~\bref{prop:xi-fe}）。
+(b) 推导见本书（围道估计经引理~\bref{lem:zero-local} 间接调用列明的前置定理 Hadamard 因子分解，在该表中仍归入第一组）。
+(c) 文献引用（至多相差常数的推导在书内，常数 $-\log2$ 依据引用的完整显式公式确定，归入第二组）。
+(d) 文献引用（Titchmarsh 定理 14.25(C)，归入第二组）。
+(e) 推导见本书（第一组）。
+(f) 未证命题（第三组）。
+(g) 推导见本书（作为关系连线归入第一组：等价关系已证，但两边的命题本身仍未证）。
+(h) 推导见本书（附录~\bref{app:hardy}，Hardy 定理，归入第一组）。
+(i) 推导见本书（Newman 方法，第~\bref{sec:pnt_conclude}~节，归入第一组）。
 
 (f) 画作虚框；(g) 的连线画作实线，它只表示等价已成立。注意 (g) 已证并不意味着 RH 已证，这正是表中「等价已证；RH 本身未证」的含义。
 
@@ -985,8 +1007,9 @@ $\sum_{n\le6}\mu(n)/n=1-\frac12-\frac13-\frac15+\frac16=\frac2{15}$，常数项 
 (a) 用到：Riemann--von Mangoldt 公式（经引理~\bref{lem:zero-local}）、$\psi_0$ 的显式公式（围道估计经引理~\bref{lem:zero-local}）、定理~\bref{thm:rh-psi-error}（经截断显式公式）。
 不用到：素数定理（Newman 方法只用 $\zeta$ 在 $\Re s\ge1$ 附近的性质）、von Koch 的「误差界 $\Rightarrow$ RH」与 Mertens 的「$M$ 界 $\Rightarrow$ RH」（两者都只用 Mellin 表示与解析延拓的唯一性）。
 
-(b) 素数定理用到 $\zeta(1+it)\neq0$（引理~\bref{lem:pnt-boundary}）。$\psi_0$ 的显式公式本身不需要它：即使 $\Re s=1$ 上有零点，它们也只是零点和中的项，公式照样成立；只有要从显式公式推出 $\psi(x)\sim x$ 时，才需要知道零点离 $\Re s=1$ 有多远（附录~\bref{app:pnt_estimates}）。
-定理~\bref{thm:rh-psi-error} 以 RH 为前提，RH 已包含 $\Re s=1$ 上无零点。
+(b) 素数定理用到 $\zeta(1+it)\neq0$（定理~\bref{thm:no-zero-on-one}，经引理~\bref{lem:pnt-boundary} 进入 Newman 方法）。
+对 $\psi_0$ 的显式公式而言，本书的逻辑顺序是先无条件证明非平凡零点落在开临界带 $0<\Re\rho<1$ 内（推论~\bref{cor:open-critical-strip}，依赖定理~\bref{thm:no-zero-on-one}），再在开带假设下陈述定理~\bref{thm:ef-explicit-psi} 并完成水平边（引理~\bref{lem:horiz-zetalog}）与零点配对论证；因此不能说「即使 $\Re s=1$ 上有零点，现行公式也照样成立」（若取消边界无零点条件，至少须重新界定零点集合、围道路径与条件收敛求和，并逐处复查开带假设）。
+另一方面，移线法本身只需固定竖线或避零水平边上的局部界，并不需要定量的零点自由区。本书附录~\bref{app:pnt_estimates} 在由显式公式导出定量误差界时使用了该零点自由区。应当把「本书现有证明对开带的逻辑依赖」与「移线法是否需要定量零点自由区」分开；同理，定理~\bref{thm:rh-psi-error} 也是先在开临界带内陈述 RH，而不是靠 RH 去“包含”边界无零点。
 
 \Sol{16.3}{等价、蕴含与反例}
 (a) 已知 $P\Rightarrow$ RH。$P$ 已被 Odlyzko--te Riele 否定，但否定一个更强的命题不能据此否定 RH。注意不能写「逆不成立」：$P$ 已知为假，若再断言「RH $\Rightarrow P$」不成立，就等于断言 RH 为真。

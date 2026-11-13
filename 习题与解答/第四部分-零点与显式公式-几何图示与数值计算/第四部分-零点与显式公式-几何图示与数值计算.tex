@@ -61,11 +61,10 @@
   framerule=0.3pt,rulecolor=\color{gray!60},xleftmargin=1em,xrightmargin=1em,
   breaklines=true,showstringspaces=false}
 
-\newcommand{\versiondate}{2026 年 10 月 24 日（修订）}
+\newcommand{\versiondate}{2026 年 11 月 13 日（修订）}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small《素数计数与黎曼猜想》参考习题 · 第四部分}
-\fancyhead[R]{\small 初稿 \versiondate}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -80,7 +79,7 @@
 \vspace{0.6em}
 {\normalsize 李成桐《素数计数与黎曼猜想：$\zeta$ 函数、零点与显式公式》配套资源\par}
 \vspace{0.3em}
-{\small 版本：\versiondate（初稿，尚未逐题复核）\par}
+{\small 版本：\versiondate\par}
 \end{center}
 
 \vspace{0.8em}
@@ -102,14 +101,18 @@
   \item \textbf{与第三部分的联系。}
     第三部分习题 10.4（$\Xi$ 与 $Z$）、11.2（$N(T)=1+\vartheta(T)/\pi+S(T)$）、11.6（到高度 $100$ 的数值核验）与 13.3（数值库的分支）是本部第 19、20 章题目的准备，题中会注明。第三部分习题 11.6 是数值实验，严格认证尚缺的步骤见该题 (d)，本部不把它当作已认证的结论使用。
   \item \textbf{主选与可选。}
-    星级表示完成难度，不等于题目的作用。初读时建议以应用正文结论的子问为主；以下为可选延伸：习题 17.1(c) 的完整局部论证，19.3 的高阶展开，19.4 的误差阶与复杂度比较，19.6(a)(c)，19.7 中关于极限次序的讨论，19.8 的完整程序复现，20.2(c) 的临界点局部模型。
+    星级表示完成难度，不等于题目的作用。初读时建议以应用正文结论的子问为主；以下为可选延伸：习题 17.1(c) 的完整局部论证，19.3 的高阶展开，19.4 的误差阶与复杂度比较，19.5(b) 的局部收敛分析，19.6(a)(c)，19.7 中关于极限次序的讨论，19.8 的完整程序复现，20.2(c) 的临界点局部模型。
   \item \textbf{数值。}
     本部分以数值题为主。参考值用 Python 的 \texttt{mpmath} 计算（浮点，非区间认证）；「$\approx$」表示四舍五入。涉及零点的题使用 \texttt{mpmath.zetazero} 给出的前 $1000$ 个零点。读者复算时出现末位差异属正常；与第~\bref{ch:riemann_numerical_approximation}~章的严格核验不是同一层次的工作。
 \end{itemize}
 
-本次修订（2026 年 10 月 24 日）依据读者审查意见改正了习题 17.2、17.3、18.2、20.3、20.4 的题设或解答中的错误，补充了 19.7、20.2 等处的条件，修正了 18.3、18.4、19.3、19.4、19.8 中不准确的说法。
+\noindent\textbf{修订备忘：}
+\begin{itemize}
+  \item 2026 年 10 月 24 日：依据早期审查意见改正了习题 17.2、17.3、18.2、20.3、20.4 的题设或解答中的错误，补充了 19.7、20.2 等处的条件，修正了 18.3、18.4、19.3、19.4、19.8 中不准确的说法。
+  \item 2026 年 11 月 13 日：完成第 17–20 章全部 19 题的首轮逐题复核与数值重算，同步最新书稿编号，补严 17.1(c)、19.3(a)、19.5(b)、19.6(c)、19.7(c) 的局部展开、余项阶与极限说明，删去 18.2(b) 误引并统一 17.2 角度舍入与 18.3、18.4、19.1(c)、19.8、20.1–20.4 的表述。
+\end{itemize}
 
-本批题目为初稿，题目可解性与解答仍待作者逐题复核。发现错误或表述不清，请在配套仓库的 Issues 中注明题号与具体位置。
+发现错误或表述不清，请在配套仓库的 Issues 中注明题号与具体位置。
 
 \tableofcontents
 
@@ -126,7 +129,7 @@
 \begin{enumerate}
   \item 证明 $\xi(1-\bar s)=\overline{\xi(s)}$，由此推出：$\Re\xi$ 关于临界线偶对称，$\Im\xi$ 奇对称；临界线与实轴都包含在零迹集合 $\Im\xi=0$ 中。
   \item 设 $\rho=\frac12+i\gamma$ 是单零点。证明 $\xi'(\rho)$ 是纯虚数，并由此说明 $\Re\xi=0$ 在 $\rho$ 处的切线是水平的。已知 $\xi'(\rho_1)\approx0.0013827\,i$，与此相符吗？
-  \item 实轴与临界线都在 $\Im\xi=0$ 中，二者在 $s=\frac12$ 相交，而 $\xi(\frac12)\neq0$。证明 $\xi'(\frac12)=0$，并用 $\xi$ 在 $\frac12$ 处的 Taylor 展开解释：为什么同一族零迹线可以在这里「十字交叉」。（$\xi''(\frac12)\approx0.022972$。）
+  \item 实轴与临界线都在 $\Im\xi=0$ 中，二者在 $s=\frac12$ 相交，而 $\xi(\frac12)\neq0$。证明 $\xi'(\frac12)=0$，并用 $\xi$ 在 $\frac12$ 处的 Taylor 展开及局部因式分解解释：为什么同一族零迹线可以在这里「十字交叉」，且小邻域内恰好只有这两条线。（进阶说明；$\xi''(\frac12)\approx0.022972$。）
 \end{enumerate}
 \toHint{17.1}
 
@@ -174,7 +177,7 @@
   \item 基准误差 $\Li(x)-L_2(x)$；
   \item 常数修正 $\li(2)-\log2$。
 \end{enumerate}
-据此解释正文为什么说该模型「用于展示振荡结构，而非完整的计数逼近」，以及图~\bref{fig:pi_comparison_merged} 为什么不需要垂直校准。
+据此比较第~\bref{ch:fourier_vs_riemann}~章的截断模型与第~\bref{ch:riemann_numerical_approximation}~章的完整显式截断：解释正文为什么说式~(\bref{eq:riemann})「用于展示振荡结构，而非完整的计数逼近」，以及采用第~\bref{ch:riemann_numerical_approximation}~章完整公式 $\pi_{K,M}$ 的图~\bref{fig:pi_comparison_merged} 为什么不需要垂直校准。
 \toHint{18.3}
 
 \Q{18.4}{\lvII}{需要多少个零点才能「看见」一对孪生素数}
@@ -207,8 +210,8 @@
 
 \Q{19.3}{\lvII}{$\vartheta(t)$ 渐近展开中的 $\frac1{48t}$}
 \begin{enumerate}
-  \item 取 Stirling 展开 $\log\Gamma(z)=(z-\frac12)\log z-z+\frac12\log(2\pi)+\frac1{12z}+O(|z|^{-3})$，代入 $z=\frac14+\frac{it}2$，推出式~(\bref{eq:theta_asymp}) 的前四项。
-  \item 在 $t=10$、$100$ 处数值比较 $\vartheta(t)-\bigl(\frac t2\log\frac t{2\pi}-\frac t2-\frac\pi8\bigr)$ 与 $\frac1{48t}$、$\frac1{48t}+\frac7{5760t^3}$。
+  \item 取 Stirling 展开 $\log\Gamma(z)=(z-\frac12)\log z-z+\frac12\log(2\pi)+\frac1{12z}+O(|z|^{-3})$，代入 $z=\frac14+\frac{it}2$，推出式~(\bref{eq:theta_asymp}) 的前四项，并将余项控制到 $O(t^{-3})$。
+  \item 在 $t=10$、$100$ 处数值比较 $\vartheta(t)-\bigl(\frac t2\log\frac t{2\pi}-\frac t2-\frac\pi8\bigr)$ 与 $\frac1{48t}$、$\frac1{48t}+\frac7{5760t^3}$（其中三次项取自正文已知展开式~(\bref{eq:theta_asymp})）。
 \end{enumerate}
 \toHint{19.3}
 
@@ -224,7 +227,7 @@
 以 $t_0=14.13$、$t_1=14.14$ 为初值，用式~(\bref{eq:secant}) 求 $\gamma_1$。
 \begin{enumerate}
   \item 列出前三步迭代值及误差 $e_k=|t_k-\gamma_1|$。
-  \item 验证 $e_{k+1}\approx Ce_ke_{k-1}$，其中 $C=|Z''(\gamma_1)/(2Z'(\gamma_1))|\approx0.0822$，并由此说明收敛阶为 $\frac{1+\sqrt5}2$。
+  \item 结合单根附近的 Taylor 展开（或引用正文割线公式~(\bref{eq:secant}) 前的局部收敛结论）说明为什么 $e_{k+1}\approx Ce_ke_{k-1}$，其中 $C=|Z''(\gamma_1)/(2Z'(\gamma_1))|\approx0.0822$；在 (a) 中检验该关系，并由此说明收敛阶为 $\frac{1+\sqrt5}2$。（进阶说明。）
 \end{enumerate}
 \toHint{19.5}
 
@@ -249,7 +252,7 @@
 按式~(\bref{eq:pi_explicit_full})（$M=10$）编程计算 $\pi_{K,10}(x)$，$K=20,60,200,500$，$x=20.5$ 与 $x=19$。
 \begin{enumerate}
   \item 与 $\pi_0(20.5)=8$、$\pi_0(19)=7.5$ 比较，误差是否随 $K$ 单调减小？
-  \item 写出 $K=500$、$x=20.5$ 时主项、零点项、平凡零点项、常数项四部分的数值，指出哪一项最大、哪一项最小。
+  \item 写出 $K=500$、$x=20.5$ 时实际进入 $\pi_{K,10}(x)$ 的四部分有符号贡献（主项、零点贡献、平凡零点贡献、常数贡献），并分别按绝对值与按有符号数值比较哪一项最大、哪一项最小。
   \item 若误把 \texttt{mpmath.li(x**rho)} 用作 $\li(x^\rho)$（参看第三部分习题 13.3），结果会怎样？
 \end{enumerate}
 \toHint{19.8}
@@ -269,7 +272,7 @@
 \begin{enumerate}
   \item 设 $0<\alpha\le1$，$s\ne1$。证明 $f_\alpha'(s)=0$ 当且仅当 $\zeta'(s)=-(1-\alpha)/\alpha$。
   \item 取 $\alpha=\frac12$。已知 $\zeta'(0)\approx-0.918939$，且 $\sigma\to1^-$ 时 $\zeta'(\sigma)\to-\infty$。证明 $(0,1)$ 中有实数 $\sigma_*$ 使 $f_{1/2}'(\sigma_*)=0$，并数值求出它。
-  \item 数值上 $f_{1/2}''(\sigma_*)=\zeta''(\sigma_*)/2\approx-1.1269\ne0$。在 $\sigma_*$ 附近，$f_{1/2}$ 把过 $\sigma_*$ 的两条正交网格线映成什么样子？
+  \item 数值上 $f_{1/2}''(\sigma_*)=\zeta''(\sigma_*)/2\approx-1.1269\ne0$。在 $\sigma_*$ 附近，$f_{1/2}$ 把过 $\sigma_*$ 的两条正交网格线映成什么样子？（进阶说明。）
 \end{enumerate}
 \toHint{20.2}
 
@@ -285,7 +288,7 @@
 \Q{20.4}{\lvI}{视频 3 中的频率与振幅}
 \begin{enumerate}
   \item 由 $\Ei(\rho\log x/n)\sim nx^{\rho/n}/(\rho\log x)$，写出 Möbius 第 $n$ 项中零点 $\rho_1$ 一对共轭对 $\pi_0$ 的实际贡献（注意整体符号）、振幅与对数频率。
-  \item 在 $x=200$ 处比较 $n=1$ 与 $n=2$ 两项的振幅。为什么画面中主要看到 $n=1$ 的振荡？
+  \item 在 $x=200$ 处比较同一对零点 $\rho_1,\bar\rho_1$ 在 $n=1$ 与 $n=2$ 中的主项振幅。为什么画面中主要看到 $n=1$ 的振荡？
 \end{enumerate}
 \toHint{20.4}
 
@@ -296,7 +299,7 @@
 % ============================================================
 
 \subsection*{第 17 章}
-\Hint{17.1}(a) 合成函数方程与 Schwarz 反射。(b) $\Xi(t)=\xi(\frac12+it)$ 为实值，$\Xi'(t)=i\xi'(\frac12+it)$；切线方向由线性主部 $\xi'(\rho)(s-\rho)$ 决定（也可先做习题 17.2(a)，用其中的一般公式）。(c) 对 $\xi(s)=\xi(1-s)$ 求导；$\xi(s)\approx\xi(\frac12)+\frac12\xi''(\frac12)(s-\frac12)^2$。
+\Hint{17.1}(a) 合成函数方程与 Schwarz 反射。(b) $\Xi(t)=\xi(\frac12+it)$ 为实值，$\Xi'(t)=i\xi'(\frac12+it)$；切线方向由线性主部 $\xi'(\rho)(s-\rho)$ 决定（也可先做习题 17.2(a)，用其中的一般公式）。(c) 对 $\xi(s)=\xi(1-s)$ 求导；$\xi(s)=\xi(\frac12)+\frac12\xi''(\frac12)(s-\frac12)^2+O(|s-\frac12|^4)$，再写成 $\Im\xi=ut\,G(u,t)$。
 
 \Hint{17.2}(a) $s_0$ 附近 $f(s)\approx f'(s_0)(s-s_0)$；$\Re f=0$ 即 $f'(s_0)(s-s_0)\in i\RR$。(c) $\xi'(\rho)=A(\rho)\zeta'(\rho)$。
 
@@ -307,7 +310,7 @@
 
 \Hint{18.2}(a) $\arctan u=\frac\pi2-\arctan\frac1u$。(b) $\cos(\phi-\frac\pi2+\delta)=\sin(\phi+\delta)$，再用和差化积。
 
-\Hint{18.3}$\li(\sqrt{50})\approx4.7935$，$\Li(50)\approx17.4235$，$L_2(50)\approx16.0483$。
+\Hint{18.3}$\li(\sqrt{50})\approx4.7935$，$\Li(50)\approx17.4235$，$L_2(50)\approx16.0482$。
 
 \Hint{18.4}(b) 令 $2\pi x/\gamma\le2$，再用 $\bar N(T)$ 或零点表计数。
 
@@ -316,13 +319,13 @@
 
 \Hint{19.2}(a) $\vartheta(g_n)=n\pi$，$N$ 取整数值。(b) 相邻好 Gram 点之间 $Z$ 变号。
 
-\Hint{19.3}$\log z=\log\frac t2+\frac{i\pi}2+\log\bigl(1-\frac{i}{2t}\bigr)$，展开到 $t^{-2}$；$\Im\frac1{12z}\approx-\frac1{6t}$。
+\Hint{19.3}$\log z=\log\frac t2+\frac{i\pi}2+\log\bigl(1-\frac{i}{2t}\bigr)$，利用实部只含偶次逆幂、虚部只含奇次逆幂控制余项到 $O(t^{-3})$；$\Im\frac1{12z}=-\frac1{6t}+O(t^{-3})$。
 
 \Hint{19.4}(a) 对分子分母分别求导，或令 $p=\frac14+\delta$ 展开到一阶。
 
-\Hint{19.5}割线法误差满足 $e_{k+1}\approx\bigl|\frac{f''}{2f'}\bigr|e_ke_{k-1}$；令 $e_k\approx Ke_{k-1}^{q}$，得 $q^2=q+1$。
+\Hint{19.5}将单根附近 Taylor 展开 $Z(t)=Z'(\gamma_1)(t-\gamma_1)+\frac12Z''(\gamma_1)(t-\gamma_1)^2+\cdots$ 代入割线公式（或结合正文割线公式~(\bref{eq:secant}) 前的局部收敛结论）得 $e_{k+1}\approx\bigl|\frac{Z''(\gamma_1)}{2Z'(\gamma_1)}\bigr|e_ke_{k-1}$；令 $e_k\approx Ke_{k-1}^{q}$，得 $q^2=q+1$。
 
-\Hint{19.6}(a) $\int_a^\infty e^{-u}\frac{\dd u}u\le\frac1a\int_a^\infty e^{-u}\dd u$，再对 $m\ge M+1$ 求几何级数。(c) $t\to1$ 时 $t(t^2-1)\log t\sim2(t-1)^2$。
+\Hint{19.6}(a) $\int_a^\infty e^{-u}\frac{\dd u}u\le\frac1a\int_a^\infty e^{-u}\dd u$，再对 $m\ge M+1$ 求几何级数。(c) 以 $t=2$ 分段，$t\in(1,2]$ 上展开 $[t(t^2-1)\log t]^{-1}=\frac1{2(t-1)^2}+O((t-1)^{-1})$。
 
 \Hint{19.7}(b) $32=2^5$ 是素数幂，$J_0$ 自身在 $32$ 处跳跃 $\frac15$。
 
@@ -350,22 +353,22 @@
 $s=\sigma+it\mapsto1-\bar s=(1-\sigma)+it$ 正是关于临界线的镜面反射，所以 $\Re\xi(1-\sigma+it)=\Re\xi(\sigma+it)$，$\Im\xi(1-\sigma+it)=-\Im\xi(\sigma+it)$。
 在临界线上 $1-\bar s=s$，故 $\Im\xi=-\Im\xi=0$；在实轴上 $\xi$ 取实值。两者都在 $\Im\xi=0$ 中。
 
-(b) $\Xi(t)=\xi(\frac12+it)$ 为实值可微函数，$\Xi'(t)=i\xi'(\frac12+it)\in\RR$，故 $\xi'(\frac12+it)\in i\RR$。由习题 17.2(a)，$\Re\xi=0$ 的切线方向角为 $\frac\pi2-\arg\xi'(\rho)=\frac\pi2\mp\frac\pi2$，即水平方向；$\Im\xi=0$ 的方向角为 $\mp\frac\pi2$，即竖直方向（与临界线一致）。$\xi'(\rho_1)\approx0.0013827i$ 纯虚，相符。
+(b) 由 $\rho$ 为单零点且 $\Xi(t)=\xi(\frac12+it)$ 为实值可微函数，得 $\Xi'(t)=i\xi'(\frac12+it)\in\RR$，故 $\xi'(\rho)\in i\RR\setminus\{0\}$。由线性主部 $\xi'(\rho)(s-\rho)$，得 $\Re\xi'(\rho)(s-\rho)=0\iff s-\rho\in\RR$（切线水平），$\Im\xi'(\rho)(s-\rho)=0\iff s-\rho\in i\RR$（切线竖直，与临界线一致；也与习题 17.2(a) 的一般公式吻合）。$\xi'(\rho_1)\approx0.0013827i$ 纯虚且非零，相符。
 
 (c) 对 $\xi(s)=\xi(1-s)$ 求导得 $\xi'(s)=-\xi'(1-s)$，令 $s=\frac12$ 得 $\xi'(\frac12)=0$。于是
 $\xi(s)=\xi(\frac12)+\frac12\xi''(\frac12)(s-\frac12)^2+O(|s-\frac12|^4)$（奇次项因 $\xi(s)=\xi(1-s)$ 而消失），$\xi(\frac12)$、$\xi''(\frac12)$ 都是实数。主部的虚部为
 $\frac12\xi''(\frac12)\Im(s-\frac12)^2=\xi''(\frac12)(\sigma-\frac12)t$，其零集正是十字 $\{\sigma=\frac12\}\cup\{t=0\}$。
-调和函数 $\Im\xi$ 在其梯度为零的点（这里 $\xi'(\frac12)=0$）可以有多条零迹线交叉；只有在 $f'\neq0$ 处零迹线才是单条光滑曲线。十字交叉点不是零点，因为 $\Re\xi(\frac12)=\xi(\frac12)\approx0.4971\neq0$。
+要进一步严格说明足够小邻域内恰好只有这两条零迹线（单凭二次主部的零集不足以排除近旁额外分支），令 $u=\sigma-\frac12$。由 (a) 知实解析函数 $\Im\xi(\frac12+u+it)$ 在 $u=0$ 与 $t=0$ 上恒为零，因而可分解为 $\Im\xi(\frac12+u+it)=ut\,G(u,t)$，其中 $G$ 光滑且 $G(0,0)=\xi''(\frac12)\approx0.022972\neq0$。由连续性，在 $(\frac12,0)$ 的足够小邻域内 $G\neq0$，故 $\Im\xi=0$ 局部恰好只由 $\{\sigma=\frac12\}$ 与 $\{t=0\}$ 两条线组成。调和函数 $\Im\xi$ 在其梯度为零的点（这里 $\xi'(\frac12)=0$）可以有多条零迹线交叉；只有在 $f'\neq0$ 处隐函数定理才保证零迹线局部是单条光滑曲线。十字交叉点不是零点，因为 $\Re\xi(\frac12)=\xi(\frac12)\approx0.4971\neq0$。
 
 \Sol{17.2}{零迹线在零点处的方向}
 (a) 记 $c=f'(s_0)=|c|e^{i\phi}$。$s_0$ 附近 $f(s)=c(s-s_0)+O(|s-s_0|^2)$，由隐函数定理，零迹线是光滑曲线，其切线由线性部分决定：
 $\Re\bigl(c(s-s_0)\bigr)=0\iff c(s-s_0)\in i\RR\iff\arg(s-s_0)\equiv\frac\pi2-\phi$；
 $\Im\bigl(c(s-s_0)\bigr)=0\iff\arg(s-s_0)\equiv-\phi\pmod\pi$。两方向相差 $\frac\pi2$。
 
-(b) $\arg\zeta'(\rho_1)\approx9.045^\circ$。$\Re\zeta=0$ 的方向角约 $80.95^\circ$（接近竖直），$\Im\zeta=0$ 约 $-9.05^\circ$（接近水平）。$\xi$ 的两族分别为 $0^\circ$ 与 $90^\circ$：若把两族看作不加区分的十字，同一零点处 $\zeta$ 的十字相对 $\xi$ 的十字只转动了约 $9^\circ$，同时实部、虚部两族的角色互换（$\zeta$ 的 $\Re=0$ 近于竖直，$\xi$ 的 $\Re=0$ 是水平的）。若区分两族，则转角约为 $81^\circ$，见 (c)。
+(b) $\arg\zeta'(\rho_1)\approx9.046^\circ$（$\approx9.05^\circ$）。$\Re\zeta=0$ 的方向角约 $80.954^\circ$（约 $80.95^\circ$，接近竖直），$\Im\zeta=0$ 约 $-9.046^\circ$（约 $-9.05^\circ$，接近水平）。$\xi$ 的两族分别为 $0^\circ$ 与 $90^\circ$：若把两族看作不加区分的十字，同一零点处 $\zeta$ 的十字相对 $\xi$ 的十字只转动了约 $9.05^\circ$，同时实部、虚部两族的角色互换（$\zeta$ 的 $\Re=0$ 近于竖直，$\xi$ 的 $\Re=0$ 是水平的）。若区分两族，则转角约为 $80.95^\circ$（或 $99.05^\circ$），见 (c)。
 
 (c) $\xi=A\zeta$，$\zeta(\rho)=0$ 时 $\xi'(\rho)=A(\rho)\zeta'(\rho)$，故 $\arg\xi'(\rho)=\arg A(\rho)+\arg\zeta'(\rho)$；由 (a)，对每一族都有 $\theta_\xi-\theta_\zeta\equiv-\arg A(\rho)\pmod\pi$：从 $\zeta$ 的零迹线转到 $\xi$ 的同族零迹线，方向角改变 $-\arg A(\rho)$。
-$\arg\xi'(\rho_1)=90^\circ$，于是 $\arg A(\rho_1)\equiv90^\circ-9.045^\circ=80.95^\circ\pmod{180^\circ}$。这说明正文所言「乘以复数 $A(s)$ 会改变实部与虚部，两者的零迹线不必重合」，但交点（零点）不变。
+由习题 17.1(b) 知 $\xi'(\rho_1)\approx0.0013827i$，故 $\arg\xi'(\rho_1)\equiv90^\circ\pmod{180^\circ}$，于是 $\arg A(\rho_1)\equiv90^\circ-9.046^\circ=80.954^\circ\pmod{180^\circ}$，方向角改变量为 $-\arg A(\rho_1)\equiv-80.954^\circ\equiv99.046^\circ\pmod{180^\circ}$（取两位小数即为 $99.05^\circ$）。这说明正文所言「乘以复数 $A(s)$ 会改变实部与虚部，两者的零迹线不必重合」，但交点（零点）不变。
 
 \Sol{17.3}{重零点处的零迹线}
 (a) $s^2$：$\Re=\sigma^2-t^2=0$ 是两条对角线 $t=\pm\sigma$，$\Im=2\sigma t=0$ 是两条坐标轴；相邻异族夹角 $45^\circ=\pi/4$，共 $8$ 条半分支。
@@ -373,7 +376,7 @@ $s^3$：$\Re=\sigma(\sigma^2-3t^2)=0$ 给出方向角 $90^\circ,\pm30^\circ$；$
 
 (b) 局部 $\xi\approx c(s-\rho)^2$。由习题 17.1(b) 的推理，$\Xi(t)\approx c\,(i(t-\gamma))^2=-c(t-\gamma)^2$ 为实值，故 $c$ 为实数。于是在 $\rho$ 附近，$\Im\xi=0$ 有两条光滑分支：一条就是临界线（精确的竖直线），另一条在 $\rho$ 处有水平切线，但一般不是直线（高阶项会使它弯曲）；$\Re\xi=0$ 的两条分支在 $\rho$ 处的切线分别与之成 $45^\circ$。零点处共有 $8$ 条半分支。这与第~\bref{ch:zero_geometry}~章的说明一致：直线只出现在局部保角坐标 $w$ 的平面里，回到 $s$ 平面后是光滑曲线。(a) 中的 $s^2$、$s^3$ 是零迹线恰为直线的特例。
 
-(c) $Z$ 与 $\Xi$ 零点相同，$\Xi\approx-c(t-\gamma)^2$ 在 $\gamma$ 两侧同号，$Z$ 不变号。单纯的变号搜索可能漏掉它；与独立的总零点计数 $N(T)$ 比较（第~\bref{subsec:turing-method}~节）可以发现「计数缺口」。只有当 $m$ 个互不相交、端点符号已确认的变号区间与总重数 $N(T)=m$ 相等时，才能推出这些零点全是单零点且都在临界线上；按重数计的 $N_0(T)=N(T)$ 本身并不推出单重性。
+(c) $Z$ 与 $\Xi$ 零点相同，$\Xi\approx-c(t-\gamma)^2$ 在 $\gamma$ 两侧同号，$Z$ 不变号。单纯的变号搜索可能漏掉它；与独立的总零点计数 $N(T)$ 比较（第~\bref{subsec:turing-method}~节）可以发现存在未被变号搜索捕获的零点重数（例如偶重零点，或因采样过稀而未分辨出的邻近零点对，不过单凭这一计数缺口不能直接断定具体漏掉的是哪种情形）。只有当 $m$ 个互不相交、端点符号已确认的变号区间与总重数 $N(T)=m$ 相等时，才能推出这些零点全是单零点且都在临界线上；按重数计的 $N_0(T)=N(T)$ 本身并不推出单重性。
 
 \subsection*{第 18 章}
 
@@ -393,7 +396,7 @@ $\gamma_1$：$\arctan(2\gamma_1)\approx1.5354372$，近似 $\frac\pi2-\frac1{2\g
   \bigl|R(x)-A(x)\sin\phi\bigr|=A(x)\bigl|\sin(\phi+\delta)-\sin\phi\bigr|=2A(x)\Bigl|\cos\Bigl(\phi+\frac\delta2\Bigr)\Bigr|\Bigl|\sin\frac\delta2\Bigr|\le2A(x)\Bigl|\sin\frac\delta2\Bigr| .
 \]
 对 $\gamma_1$，$2|\sin(\delta/2)|\approx0.0353573$，即误差不超过振幅的约 $3.5\%$，且随 $\gamma$ 增大而减小。这是以振幅归一化的误差；$R(x)$ 本身在其零点附近任意小，而近似正弦与它仍有非零差，所以除以函数值的逐点相对误差没有一致的界。
-又 $|\rho|=\gamma\sqrt{1+1/(4\gamma^2)}$，可再把 $|\rho|$ 换成 $\gamma$，得 $R_k\approx\frac{2\sqrt x\sin(\gamma_k\log x)}{\gamma_k\log x}$（第三部分习题 14.5 用到了这种形式）。
+又 $|\rho|=\gamma\sqrt{1+1/(4\gamma^2)}$，在高处进一步把分母的 $|\rho_k|$ 近似为 $\gamma_k$，得 $R_k\approx\frac{2\sqrt x\sin(\gamma_k\log x)}{\gamma_k\log x}$。
 
 \Sol{18.3}{省略项的量级}
 \begin{center}
@@ -411,12 +414,12 @@ $n=2$ 修正 $\frac12\li(\sqrt x)$ & $2.397$ & $3.083$ \\
 \end{tabular}
 \end{center}
 $n=2$ 修正与基准误差都远大于单个零点项的振幅，而且是不随 $N$ 改变的缓变偏移；振幅之和只给上界，实际的和可以因相位抵消而明显减小。按数值从大到小，两处的顺序相同：前 $100$ 项振幅之和、$n=2$ 修正、基准误差、常数修正、单项振幅。所以式~(\bref{eq:riemann}) 只适合展示振荡的形状；第 18 章的图需要以常数 $C$ 作垂直校准，且校准后仍残留缓变偏差。
-第 19 章的 $\pi_{K,M}$ 保留了完整公式规定的各类修正：全部 Möbius 项（主项是截断的 Riemann $R$ 函数）、平凡零点与常数项，因此无需另加人为的垂直校准。但有限的 $K$、$M$ 及反演上限 $\nu(x)$ 的变化仍会产生截断效应（见习题 19.7、19.8）。
+第 19 章的 $\pi_{K,M}$ 保留了完整公式规定的各类修正：全部 Möbius 项（主项是截断的 Riemann $R$ 函数）、平凡零点与常数项，因此无需另加人为的垂直校准；但这并不意味着它没有截断误差——有限的 $K$、$M$ 及反演上限 $\nu(x)$ 的变化仍会产生截断效应（见习题 19.7、19.8）。
 
 \Sol{18.4}{需要多少个零点才能「看见」一对孪生素数}
 (a) $2\pi\cdot17/\gamma_{100}\approx0.452$，$2\pi\cdot31/\gamma_{100}\approx0.824$（$\gamma_{100}\approx236.524$）；相应的局部角频率 $\gamma_{100}/x$ 从约 $13.91$ 降到约 $7.63$，与正文一致。
 
-(b) 令 $2\pi x/\gamma\le2$，$x=30$，得 $\gamma\gtrsim30\pi\approx94.2$。$\bar N(94.2)\approx26.5$，实际 $\gamma_{26}\approx92.49<94.25<\gamma_{27}\approx94.65$，所以要使最高零点达到这一阈值，需取到第 $27$ 个零点；粗略地说，约需二十几个零点。读者可对照图~\bref{fig:pi_comparison_merged} 中 $K=20$ 与 $K=60$ 两幅分图在 $29$、$31$ 附近的差别。
+(b) 令 $2\pi x/\gamma\le2$，$x=30$，得 $\gamma\gtrsim30\pi\approx94.25$。$\bar N(94.25)\approx26.50$，实际 $\gamma_{26}\approx92.49<94.25<\gamma_{27}\approx94.65$，所以要使这里选定的相位尺度阈值 $2\pi x/\gamma\le2$ 成立，需取到第 $27$ 个零点；粗略地说，满足这一阈值约需二十几个零点（这不是实际分辨两个素数跳跃所需的最少零点数）。读者可对照图~\bref{fig:pi_comparison_merged} 中 $K=20$ 与 $K=60$ 两幅分图在 $29$、$31$ 附近的差别。
 
 (c) 「分辨尺度」借用了把相位局部线性化的类比，并未考虑振幅、相位的具体值与 Möbius 高阶项，也没有误差界；它只说明量级，不是充分或必要条件。
 
@@ -437,9 +440,9 @@ $Z(g_n)$ & $-1.532$ & $2.340$ & $-1.457$ & $2.845$ & $-0.925$ & $2.938$ & $-1.78
 \bottomrule
 \end{tabular}
 \end{center}
-各点 $(-1)^nZ(g_n)>0$，都是好 Gram 点，与表~\bref{tab:gram} 一致。
+各点 $(-1)^nZ(g_n)>0$，都是好 Gram 点，与表~\bref{tab:gram} 一致（注：书稿表~\bref{tab:gram} 将 $g_4=35.46718\dots$ 截断写作 $35.4671$）。
 
-(c) $g_{n+1}-g_n\approx\pi/\vartheta'(g_n)\approx\frac{2\pi}{\log(g_n/2\pi)}$，与零点的平均间距 $2\pi/\log(T/2\pi)$ 相同（第三部分习题 11.1(c)）。这就是「每个 Gram 区间平均恰有一个零点」的来源。
+(c) $g_{n+1}-g_n\approx\pi/\vartheta'(g_n)\approx\frac{2\pi}{\log(g_n/2\pi)}$，与零点在高处的平均间距 $2\pi/\log(T/2\pi)$ 具有相同的渐近尺度（第三部分习题 11.1(c)）。这说明在渐近平均意义下单位高度内的 Gram 点数与零点数相匹配，但不表示每个具体的 Gram 区间里都恰有一个零点。
 
 \Sol{19.2}{Gram 法则的首次失效}
 (a) $N(g_n)=1+\vartheta(g_n)/\pi+S(g_n)=n+1+S(g_n)$，$N(g_n)$ 为整数，故 $S(g_n)=N(g_n)-n-1\in\mathbb Z$。
@@ -449,12 +452,20 @@ $Z(g_n)$ & $-1.532$ & $2.340$ & $-1.457$ & $2.845$ & $-0.925$ & $2.938$ & $-1.78
 (c) 不说明。坏 Gram 点只表示 $Z$ 在该点的符号「不合常规」；这里 $\gamma_{127}\approx282.4651$ 紧挨在 $g_{126}\approx282.4547$ 之后，使 $Z(g_{126})$ 尚未变号而取小负值。数值上 $(g_{125},g_{126})$ 内没有零点，$(g_{126},g_{127})$ 内有两个零点 $\gamma_{127}\approx282.465$、$\gamma_{128}\approx283.211$；把 $[g_{125},g_{127}]$ 作为一个「Gram 块」，块内仍有 $2$ 个零点（Rosser 法则的思路）。寻找时应在块内加密采样寻找变号，最后仍以 Turing 方法确认总数。
 
 \Sol{19.3}{$\vartheta(t)$ 渐近展开中的 $\frac1{48t}$}
-(a) $z-\frac12=-\frac14+\frac{it}2$，$\log z=\log\frac t2+\frac{i\pi}2+\log(1-\frac i{2t})=\log\frac t2+\frac{i\pi}2-\frac{i}{2t}+\frac1{8t^2}+O(t^{-3})$。
+(a) $z-\frac12=-\frac14+\frac{it}2$，$\log z=\log\frac t2+\frac{i\pi}2+\log(1-\frac i{2t})$。将 $\log(1-\frac i{2t})=-\sum_{k=1}^\infty\frac1k(\frac i{2t})^k$ 按奇偶次幂拆分，对实数 $t>0$，其实部只含 $t$ 的偶次逆幂（$=\frac1{8t^2}+O(t^{-4})$），虚部只含奇次逆幂（$=-\frac1{2t}+O(t^{-3})$）。于是
 \[
-  \Im\Bigl[(z-\tfrac12)\log z\Bigr]=-\frac14\Bigl(\frac\pi2-\frac1{2t}\Bigr)+\frac t2\log\frac t2+\frac t2\cdot\frac1{8t^2}+O(t^{-2})
-  =\frac t2\log\frac t2-\frac\pi8+\frac1{8t}+\frac1{16t}+O(t^{-2}).
+\begin{aligned}
+  \Im\Bigl[(z-\tfrac12)\log z\Bigr]
+  &=-\frac14\Bigl(\frac\pi2-\frac1{2t}+O(t^{-3})\Bigr)
+   +\frac t2\Bigl(\log\frac t2+\frac1{8t^2}+O(t^{-4})\Bigr) \\
+  &=\frac t2\log\frac t2-\frac\pi8+\frac1{8t}+\frac1{16t}+O(t^{-3}).
+\end{aligned}
 \]
-$\Im(-z)=-\frac t2$，$\Im\frac1{12z}=-\frac{t/2}{12(\frac1{16}+\frac{t^2}4)}=-\frac1{6t}+O(t^{-3})$。合计 $\frac1{8t}+\frac1{16t}-\frac1{6t}=\frac{6+3-8}{48t}=\frac1{48t}$。减去 $\frac t2\log\pi$ 得 $\vartheta(t)=\frac t2\log\frac t{2\pi}-\frac t2-\frac\pi8+\frac1{48t}+O(t^{-2})$；更细的计算表明 $t^{-2}$ 项为零，下一项为 $\frac7{5760t^3}$。
+又 $\Im(-z)=-\frac t2$，$\Im\frac1{12z}=-\frac{t/2}{12(\frac1{16}+\frac{t^2}4)}=-\frac1{6t}+O(t^{-3})$，而 Stirling 展开余项满足 $O(|z|^{-3})=O(t^{-3})$。合并各次项：$\frac1{8t}+\frac1{16t}-\frac1{6t}=\frac{6+3-8}{48t}=\frac1{48t}$，再减去 $\frac t2\log\pi$ 即得
+\[
+  \vartheta(t)=\frac t2\log\frac t{2\pi}-\frac t2-\frac\pi8+\frac1{48t}+O(t^{-3}).
+\]
+若要继续推出三次项 $\frac7{5760t^3}$，须在 Stirling 展开中补入 $-\frac1{360z^3}$ 一项并继续展开（(b) 直接取自正文已知展开式~(\bref{eq:theta_asymp})）。
 
 (b) $t=10$：差值 $\approx0.0020845525$，$\frac1{48t}\approx0.0020833333$，加三次项后 $\approx0.0020845486$；$t=100$：差值 $\approx2.0833455\times10^{-4}$，两近似分别为 $2.0833333\times10^{-4}$ 与 $2.0833455\times10^{-4}$。$t=10$ 时，两项修正与真实差值的绝对差约 $3.9\times10^{-9}$，相对于这个小差值约为 $1.9\times10^{-6}$；若比较的是完整的 $\vartheta(10)\approx-3.067$，相对误差约 $1.3\times10^{-9}$。两种「精度」所指的对象不同。
 
@@ -475,7 +486,7 @@ $5000$ & $28$ & $0.20948$ & $-0.701636$ & $-0.804189$ & $-0.804257$ \\
 \end{tabular}
 \end{center}
 
-(c) 主和的误差分别约为 $0.45$、$0.11$、$0.10$，与 $(2\pi/t)^{1/4}\approx0.50,0.28,0.19$ 同量级（还乘以随 $p$ 变化的因子 $\Psi(p)$），与 $O(t^{-1/4})$ 相容。加入首项修正后误差降到约 $3.3\times10^{-3}$、$1.2\times10^{-4}$、$6.9\times10^{-5}$，比 $t^{-3/4}\approx0.032,0.0056,0.0017$ 还小一个数量级，与 $O(t^{-3/4})$ 相容。这里的顺序是：正文引用的 Riemann--Siegel 余项给出这两个阶，本表的三个样本显示加入首项修正后明显改善，并与之相容；三个样本不能独立确定误差的幂次（误差还随 $p$ 变化）。主和只需 $O(\sqrt t)$ 项（这里 $N_{\mathrm{RS}}$ 仅为 $3$、$12$、$28$），这是该公式的计算优势；与其他方法的精确比较还取决于目标精度与具体实现。
+(c) 主和的误差分别约为 $0.45$、$0.11$、$0.10$，与 $(2\pi/t)^{1/4}\approx0.50,0.28,0.19$ 同量级（还乘以随 $p$ 变化的因子 $\Psi(p)$），与 $O(t^{-1/4})$ 相容。加入首项修正后误差降到约 $3.3\times10^{-3}$、$1.2\times10^{-4}$、$6.8\times10^{-5}$，比 $t^{-3/4}\approx0.032,0.0056,0.0017$ 还小一个数量级，与 $O(t^{-3/4})$ 相容。这里的顺序是：正文引用的 Riemann--Siegel 余项给出这两个阶，本表的三个样本显示加入首项修正后明显改善，并与之相容；三个样本不能独立确定误差的幂次（误差还随 $p$ 变化）。主和只需 $O(\sqrt t)$ 项（这里 $N_{\mathrm{RS}}$ 仅为 $3$、$12$、$28$），这是该公式的计算优势；与其他方法的精确比较还取决于目标精度与具体实现。
 
 \Sol{19.5}{割线法的收敛}
 (a) $Z(14.13)\approx-0.003746$，$Z(14.14)\approx0.004186$。
@@ -492,19 +503,29 @@ $4$ & $14.134725141734693\ldots$ & $1.5\times10^{-16}$ \\
 \end{tabular}
 \end{center}
 
-(b) 初值误差 $e_0\approx4.73\times10^{-3}$（$t_0=14.13$），$e_1\approx5.27\times10^{-3}$（$t_1=14.14$）：
+(b) 先说明误差递推的依据：因 $\gamma_1$ 为 $Z$ 的单零点（$Z'(\gamma_1)\ne0$），在足够小邻域内记有符号误差 $\tilde e_k=t_k-\gamma_1$，将 Taylor 展开 $Z(t_k)=Z'(\gamma_1)\tilde e_k+\frac12Z''(\gamma_1)\tilde e_k^2+O(|\tilde e_k|^3)$ 代入割线公式 $t_{k+1}=t_k-Z(t_k)\frac{t_k-t_{k-1}}{Z(t_k)-Z(t_{k-1})}$，分子与分母消去一阶差后给出
+\[
+  \tilde e_{k+1}=\frac{Z''(\gamma_1)}{2Z'(\gamma_1)}\tilde e_k\tilde e_{k-1}+O\bigl(|\tilde e_k||\tilde e_{k-1}|(|\tilde e_k|+|\tilde e_{k-1}|)\bigr),
+\]
+取绝对值并令 $C=|Z''(\gamma_1)/(2Z'(\gamma_1))|\approx0.082158\approx0.0822$，即得局部递推 $e_{k+1}\approx Ce_ke_{k-1}$（正文割线公式~(\bref{eq:secant}) 前给出了单零点附近割线法局部收敛及黄金分割阶的结论）。
+
+现用 (a) 的前三步数值检验与该递推是否吻合（注：$e_4\approx1.49\times10^{-16}$ 已超出 IEEE-754 双精度在 $14.13$ 附近的舍入极限，表格结果系在更高工作精度如 \texttt{mpmath} 下算得）。初值误差 $e_0\approx4.73\times10^{-3}$（$t_0=14.13$），$e_1\approx5.27\times10^{-3}$（$t_1=14.14$）：
 $Ce_1e_0\approx0.0822\cdot5.27\times10^{-3}\cdot4.73\times10^{-3}\approx2.05\times10^{-6}$；
 $Ce_2e_1\approx0.0822\cdot2.05\times10^{-6}\cdot5.27\times10^{-3}\approx8.9\times10^{-10}$；
-$Ce_3e_2\approx0.0822\cdot8.85\times10^{-10}\cdot2.05\times10^{-6}\approx1.5\times10^{-16}$。三步都吻合。
-设 $e_{k+1}\approx Ke_k^q$，代入 $e_{k+1}\approx Ce_ke_{k-1}$ 得 $q=1+1/q$，$q=\frac{1+\sqrt5}2\approx1.618$；每步有效数字约乘以 $1.618$。这是单根附近的局部渐近，不保证任意初值都收敛。
+$Ce_3e_2\approx0.0822\cdot8.85\times10^{-10}\cdot2.05\times10^{-6}\approx1.49\times10^{-16}$（表中作 $1.5\times10^{-16}$）。三步均与递推相符。三步数值只用于核对局部递推，不能独立证明收敛阶；结合上述递推设 $e_{k+1}\approx Ke_k^q$，代入 $e_{k+1}\approx Ce_ke_{k-1}$ 并比较指数得 $q=1+1/q$，正根为 $q=\frac{1+\sqrt5}2\approx1.618$（每步有效数字约乘以 $1.618$）。这是单根附近的局部渐近，不保证任意初值都收敛。
 
 \Sol{19.6}{平凡零点项的大小与截断}
 (a) $|\Ei(-a)|=\int_a^\infty e^{-u}u^{-1}\dd u\le a^{-1}\int_a^\infty e^{-u}\dd u=e^{-a}/a$。对固定 $n$，$\sum_{m>M}\frac{e^{-a_nm}}{a_nm}\le\frac{1}{a_n(M+1)}\sum_{m\ge M+1}e^{-a_nm}=\frac{e^{-(M+1)a_n}}{a_n(M+1)(1-e^{-a_n})}$，乘以 $|\mu(n)|/n$ 求和即得式~(\bref{eq:ch19-trivial-tail-bound})。
-$x=20.5$：$\nu=4$，$B_{\mathrm{triv}}(20.5,10)\approx4.171\times10^{-12}$。统一上界：$a_n\ge2\log2$，$e^{-11a_n}\le4^{-11}$，$\sum|\mu(n)|/n\le\frac{61}{30}$，得 $\frac{61}{30}\cdot\frac{4^{-11}}{22\log2\cdot\frac34}\approx4.24\times10^{-8}<5\times10^{-8}$。
+$x=20.5$：$\nu=4$，$B_{\mathrm{triv}}(20.5,10)\approx4.171\times10^{-12}$。统一上界：$10\le x\le40$ 时 $\nu(x)\le\nu(40)=5$，故 $a_n\ge2\log2$、$e^{-11a_n}\le4^{-11}$，且 $\sum_{n\le\nu(x)}|\mu(n)|/n\le1+\frac12+\frac13+\frac15=\frac{61}{30}$，得 $\frac{61}{30}\cdot\frac{4^{-11}}{22\log2\cdot\frac34}\approx4.24\times10^{-8}<5\times10^{-8}$。
 
 (b) $h(2)\approx0.14001$，$h(10)\approx1.8397\times10^{-3}$，$h(16)\approx6.0951\times10^{-4}$。$x=10$：$n=2$ 项 $-\frac12h(\sqrt{10})\approx-0.017179$，$n=3$ 项 $-\frac13h(10^{1/3})\approx-0.036365$，与正文一致。$n$ 越大，$x^{1/n}$ 越接近 $2$，$h$ 越大，所以不能只看 $n=1$。
 
-(c) $t\to1^+$ 时 $t\to1$，$t^2-1\sim2(t-1)$，$\log t\sim t-1$，被积函数 $\sim\frac1{2(t-1)^2}$。积分在 $\infty$ 端收敛，近 $1$ 端主部为 $\int_x\frac{\dd t}{2(t-1)^2}=\frac1{2(x-1)}+O(\log\frac1{x-1})$，故 $h(x)\sim\frac1{2(x-1)}$。
+(c) 取固定分界点 $2$（因 $[2,\infty)$ 上积分收敛为常数）。当 $1<t\le2$ 时，$t^2-1=2(t-1)+(t-1)^2$ 且 $\log t=(t-1)+O((t-1)^2)$，故被积函数满足 $\frac1{t(t^2-1)\log t}=\frac1{2(t-1)^2}+O\bigl((t-1)^{-1}\bigr)$。对 $1<x<2$ 分段积分得
+\[
+  h(x)=\int_x^2\Bigl[\frac1{2(t-1)^2}+O\bigl((t-1)^{-1}\bigr)\Bigr]\dd t+\int_2^\infty\frac{\dd t}{t(t^2-1)\log t}
+  =\frac1{2(x-1)}+O\Bigl(\log\frac1{x-1}\Bigr),
+\]
+因此 $x\to1^+$ 时 $h(x)\sim\frac1{2(x-1)}$。
 
 \Sol{19.7}{常数项与 $\nu(x)$ 的变更点}
 (a) $[8,32)$：$\nu\in\{3,4\}$，$\sum\mu(n)/n=1-\frac12-\frac13=\frac16$（$\mu(4)=0$），$C_\nu=-\frac{\log2}6\approx-0.1155$；$[32,64)$：再加 $-\frac15$，和为 $-\frac1{30}$，$C_\nu=\frac{\log2}{30}\approx0.0231$。
@@ -513,7 +534,7 @@ $x=20.5$：$\nu=4$，$B_{\mathrm{triv}}(20.5,10)\approx4.171\times10^{-12}$。�
 
 (c) 跳跃约为 $-0.5136/5\approx-0.1027$（$K=60$）与 $-0.4938/5\approx-0.0988$（$K=500$）。截断后 $n=1$ 项 $J_{K,M}(x)$ 是连续函数，不再提供 $+\frac15$ 的跳跃；而 $n=5$ 项仍按 $\nu(x)$ 突然出现。对每个固定的 $K$，$J_{K,M}$ 在 $2$ 附近连续，$J_{K,M}(2^+)=J_{K,M}(2)$，随 $K\to\infty$ 趋于 $\frac12-\bigl[h(2)-h_M(2)\bigr]$，其中 $h_M(y)=-\sum_{m\le M}\Ei(-2m\log y)$ 是平凡零点项的截断；$M=10$ 时方括号约 $1.9\times10^{-8}$。所以极限在跳跃中值 $J_0(2)=\frac12$ 附近（取尽平凡零点项才精确为 $\frac12$），并不趋于 $0$；这一人为跳跃约为 $-\frac1{10}$，不随 $K$ 消失。
 
-还要注意极限次序：固定 $K$ 时先取 $x=32$ 两侧的极限，与先令 $K\to\infty$ 再取两侧极限，两种次序不必交换。人为跳跃不消失，并不说明精确公式在 $32$ 处有真实跳跃（(b) 已证明它连续），也不否定截断公式的逐点收敛。
+两种极限次序的结果不同。固定 $M$，先取左右极限再令 $K\to\infty$，得到的跳跃量为 $-\frac1{10}+\frac15[h(2)-h_M(2)]$。反之，先令 $K\to\infty$，逐点极限等于 $\pi_0(x)$ 减去 $\sum_{n\le\nu(x)}\frac{\mu(n)}n[h(x^{1/n})-h_M(x^{1/n})]$。此时约 $-\frac1{10}$ 的跳跃不再保留，但由于 $x=32$ 时新增 $n=5$ 项，逐点极限仍有一个小跳跃 $+\frac15[h(2)-h_M(2)]$（$M=10$ 时约为 $3.8\times10^{-9}$）。再令 $M\to\infty$，才恢复在 $32$ 处连续的精确公式。
 
 \Sol{19.8}{复现代表算例}
 (a)
@@ -530,7 +551,18 @@ $\pi_{K,10}(19)$ & $7.52042$ & $7.50239$ & $7.49294$ & $7.49757$ \\
 \end{center}
 （$x=19$ 是素数，目标为中值 $7.5$。）误差并不随 $K$ 单调减小：$x=20.5$ 时 $K=60$ 的误差约 $0.004$，$K=500$ 时反而约 $0.006$；$x=19$ 时 $K=200$ 比 $K=60$ 差。这与正文「不保证每个固定 $x$ 处误差单调减小」一致。
 
-(b) $x=20.5$，$K=500$：主项 $\approx7.76772$，零点和 $\approx-0.36517$（以减号进入，贡献 $+0.36517$），平凡零点和 $\approx0.02353$（以减号进入），常数项 $\approx-0.11552$。按绝对值比较，主项最大，平凡零点项最小，但它仍与常数项同量级，都不能略去。按实际进入 $\pi$ 的有符号贡献看，平凡零点项（$-0.02353$）与常数项（$-0.11552$）都是负的，有符号数值最小的是常数项。
+(b) $x=20.5$、$K=500$ 时，式~(\bref{eq:pi_explicit_full}) 四个括号和的原始数值分别为：主项和 $\approx7.76772$、零点求和 $\approx-0.36517$、平凡零点求和 $\approx0.02353$、常数和 $\approx-0.11552$；按实际进入 $\pi_{500,10}(20.5)$ 的有符号贡献（第二、三两项带前置减号进入公式），四项依次为
+\begin{center}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+项目 & 主项 & 非平凡零点贡献 & 平凡零点贡献 & 常数贡献 \\
+\midrule
+进入 $\pi_{500,10}(20.5)$ 的数值 & $+7.76772$ & $+0.36517$ & $-0.02353$ & $-0.11552$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+四项之和约为 $7.99383$。按绝对值比较，主项最大、平凡零点贡献最小，但它仍与常数项同量级，不能略去；按实际进入 $\pi_{500,10}$ 的有符号数值比较，仍是主项最大，但平凡零点贡献（$-0.02353$）与常数贡献（$-0.11552$）均为负，有符号数值最小的是常数贡献。
 
 (c) 主值对数会把 $\rho\log x/n$ 的虚部折回 $(-\pi,\pi]$，各项算的不是本书指定分支下的值；有限和仍有数值，但已不再是这个截断公式（第三部分习题 13.3(b)）。正确做法是始终以 $\rho\log x/n$ 为 $\Ei$ 的自变量，并按共轭配对取 $2\Re$。
 
@@ -539,29 +571,34 @@ $\pi_{K,10}(19)$ & $7.52042$ & $7.50239$ & $7.49294$ & $7.49757$ \\
 \Sol{20.1}{同伦中的零点标记}
 (a) $f_{0.56}(\rho_1)=0.44\rho_1\approx0.22+6.2193i$；$f_{0.56}(-2)=-0.88$。
 
-(b) $f_\alpha(s)=0\iff\alpha\zeta(s)=-(1-\alpha)s$。$\zeta$ 的零点 $\rho$ 满足它当且仅当 $(1-\alpha)\rho=0$，即只在 $\alpha=1$ 时。所以 $0<\alpha<1$ 时零点标记位于 $(1-\alpha)\rho\neq0$，并不是 $f_\alpha$ 的零点；标记只是「跟踪原零点的像」，而 $f_\alpha$ 自身的零点另有位置，画面没有标出。
+(b) $f_\alpha(s)=0\iff\alpha\zeta(s)=-(1-\alpha)s$。$\zeta$ 的零点 $\rho$ 满足它当且仅当 $(1-\alpha)\rho=0$，即只在 $\alpha=1$ 时。所以 $0<\alpha<1$ 时「零点标记」跟踪的是原零点 $\rho$ 在同伦下的像点 $f_\alpha(\rho)=(1-\alpha)\rho\neq0$，并不是在自变量定义域内求得的方程 $f_\alpha(s)=0$ 的根；$f_\alpha$ 自身的零点另有位置，画面没有标出。
 
 \Sol{20.2}{同伦不是共形的}
 (a) $f_\alpha'(s)=(1-\alpha)+\alpha\zeta'(s)$，$0<\alpha\le1$ 时为零当且仅当 $\zeta'(s)=-(1-\alpha)/\alpha$（$\alpha=0$ 时 $f_0'\equiv1$，不能除以 $\alpha$）。
 
 (b) $\alpha=\frac12$ 时条件为 $\zeta'(\sigma)=-1$。$\zeta'$ 在 $(0,1)$ 上连续，$\zeta'(0^+)=\zeta'(0)\approx-0.9189>-1$，而 $\sigma\to1^-$ 时 $\zeta'(\sigma)\sim-\frac1{(\sigma-1)^2}\to-\infty$，由介值定理存在 $\sigma_*\in(0,1)$。数值上 $\sigma_*\approx0.038113$。
 
-(c) 数值上 $f_{1/2}''(\sigma_*)=\zeta''(\sigma_*)/2\approx-1.12691\ne0$。这是数值检查；严格证明需在包含根的小区间上，证明 $\zeta'+1$ 两端异号，并用区间计算或导数界证明 $\zeta''$ 在整个小区间上不为零。于是 $f(s)-f(s_*)\approx\frac12f''(s_*)(s-s_*)^2$。在这样的二次临界点，普通的保角性不成立：相差 $\frac\pi2$ 的两条入射半分支，其二次主部的像方向相差 $\pi$，两条像支具有同一条切线。这给出同伦并非处处共形的具体数学例子；要在动画中辨认对应的形状，还须核对网格采样与显示截限，画面本身不是证明。
+(c) 数值上 $f_{1/2}''(\sigma_*)=\zeta''(\sigma_*)/2\approx-1.12691\ne0$。这是数值检查；严格证明需在包含根的小区间上，证明 $\zeta'+1$ 两端异号，并用区间计算或导数界证明 $\zeta''$ 在整个小区间上不为零。于是 $f_{1/2}(s)-f_{1/2}(\sigma_*)\approx\frac12f_{1/2}''(\sigma_*)(s-\sigma_*)^2$，且系数 $\frac12f_{1/2}''(\sigma_*)<0$ 为负实数。在这样的二次临界点，普通共形性失效：
+\begin{itemize}
+  \item 对水平网格线 $s=\sigma_*+h$（$h\in\RR$），两条入射半分支（方向角 $0$ 与 $\pi$）经平方并乘以负实数后，都向左折返到实射线 $w\le f_{1/2}(\sigma_*)$；
+  \item 对竖直网格线 $s=\sigma_*+ih$（$h\in\RR$），两条入射半分支（方向角 $\pm\frac\pi2$）都向右折返到实射线 $w\ge f_{1/2}(\sigma_*)$。
+\end{itemize}
+相差 $\frac\pi2$ 的异族入射半分支在像中的方向相差 $\pi$，两条像曲线在像点处共用同一条水平切线、不再保持正交（这只说明切线重合，并不表示两条像曲线本身彼此重合）。这给出同伦并非处处共形的具体数学例子；要在动画中辨认对应的形状，还须核对网格采样与显示截限，画面本身不是证明。
 
 \Sol{20.3}{Hardy 轨迹与 Gram 点}
 (a) $Y(t)=-Z(t)\sin\vartheta(t)$。$Z(t)\neq0$ 时 $Y=0\iff\sin\vartheta(t)=0\iff\vartheta(t)\in\pi\mathbb Z$；在 $t>t_0$ 上这恰是 Gram 点。在 $0\le t<t_0$ 上，$\vartheta$ 从 $0$ 递减到 $\vartheta(t_0)\approx-3.531$，所以 $t=0$ 与 $t\approx3.436$（$\vartheta=-\pi$）处轨迹也与实轴相交，但它们不是通常编号的 Gram 点。此时 $X(g_n)=Z(g_n)\cos(n\pi)=(-1)^nZ(g_n)$。
 
-(b) 在通常编号的 Gram 点处，好 Gram 点 $\iff X(g_n)>0$，即轨迹落在正实半轴上；Gram 法则说「在各 Gram 点处轨迹都落在正实半轴上」，并不涉及 $t<t_0$ 的那两次相交。$g_{126}$ 处 $X=Z(g_{126})\approx-0.0276<0$，轨迹落在原点左侧极近处的负实半轴上。由 $Y'(g_n)=-X(g_n)\vartheta'(g_n)$（因 $\sin\vartheta(g_n)=0$）得 $Y'(g_{126})\approx0.0526>0$，轨迹随 $t$ 增大由下半平面穿到上半平面；紧接着在 $\gamma_{127}$ 经过原点。（启发式地）正半轴偏好与 Dirichlet 级数的首项 $1$ 有关：临界线上 $\zeta$ 的值「平均」偏向 $1$。
+(b) 在通常编号的 Gram 点处，好 Gram 点 $\iff X(g_n)>0$，即轨迹落在正实半轴上；Gram 法则说「在各 Gram 点处轨迹都落在正实半轴上」，并不涉及 $t<t_0$ 的那两次相交。$g_{126}$ 处 $X=Z(g_{126})\approx-0.0276<0$，轨迹落在原点左侧极近处的负实半轴上。由 $Y'(g_n)=-X(g_n)\vartheta'(g_n)$（因 $\sin\vartheta(g_n)=0$）得 $Y'(g_{126})\approx0.0526>0$，轨迹随 $t$ 增大由下半平面穿到上半平面；紧接着在 $\gamma_{127}$ 经过原点。
 
-(c) $21$ 次（$0<\gamma\le80$ 的零点个数，均为单零点且在临界线上）。$\bar N(80)\approx20.54$ 只是光滑主项，二者之差 $0.46$ 即 $S(80)+O(1/80)$；$N(T)$ 取整数值，光滑项不取，二者一般不相等。
+(c) 轨迹在 $21$ 个不同的参数值 $t\in(0,80]$ 处经过原点（对应 $0<\gamma\le80$ 的 $21$ 个零点，均为单零点且在临界线上）。$\bar N(80)\approx20.54$ 是该高度以内的光滑计数主项，二者之差约 $0.46$ 即 $S(80)+O(1/80)$；在该高度下，$N(T)$ 取整数值而光滑项不取，二者一般不相等。
 
 \Sol{20.4}{视频 3 中的频率与振幅}
-(a) 式~(\bref{eq:pi_explicit_full}) 中零点项带前置负号。Möbius 第 $n$ 项中 $\rho_1$ 一对共轭对 $\pi_0$ 的实际贡献约为
+(a) 式~(\bref{eq:pi_explicit_full}) 中零点项带前置负号。Möbius 第 $n$ 项中 $\rho_1$ 这对共轭零点对 $\pi_0$ 的实际贡献约为
 \[
   -\frac{\mu(n)}n\cdot2\Re\frac{nx^{\rho_1/n}}{\rho_1\log x}=-\mu(n)\,\frac{2x^{1/(2n)}}{|\rho_1|\log x}\cos\Bigl(\frac{\gamma_1}n\log x-\arg\rho_1\Bigr).
 \]
 非负振幅为 $|\mu(n)|\frac{2x^{1/(2n)}}{|\rho_1|\log x}$（$\mu(n)=0$ 时该项不存在），对数频率为 $\gamma_1/n$。不带前置负号的那个式子是「零点和」本身，不是进入 $\pi_0$ 的实际贡献，二者不能混用。
 
-(b) $x=200$：$n=1$ 约 $0.377$，$n=2$ 约 $0.100$。$n=2$ 的振幅只有 $x^{1/4}$ 量级，频率减半，在画面尺度下表现为缓慢的小起伏，主要的阶梯刻画来自 $n=1$ 的零点项；但它们仍是精确公式的一部分，程序照常计入。
+(b) $x=200$ 处，对同一对零点 $\rho_1,\bar\rho_1$ 的主项振幅，有 $n=1$ 约 $0.37744$，$n=2$ 约 $0.10037$（即约 $0.377$ 与 $0.100$）。$n=2$ 的振幅只有 $x^{1/4}$ 量级且频率减半，在画面尺度下表现为缓慢的小起伏，主要的阶梯刻画来自 $n=1$ 的零点项。这只是单对零点主项振幅的对比，不是全部 $n=1$ 与 $n=2$ 贡献和的严格比较；高阶 $n\ge2$ 项仍是精确公式的一部分，程序照常计入。
 
 \end{document}
