@@ -1,0 +1,55 @@
+name: 发布网站（GitHub Pages）
+
+# 网站内容来自 main 分支；同行审阅稿不入库，构建时从最新的 Release 下载后一并发布。
+# 触发：推送 main、发布新的 Release，或手动运行。
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 从最新 Release 下载同行审阅稿
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --repo "$GITHUB_REPOSITORY" \
+            --pattern 'PrimeCounting-RH-Review-*' \
+            --dir 'docs/同行审阅' --clobber
+          ls -l 'docs/同行审阅'/PrimeCounting-RH-Review-*
+
+      - name: 用 Jekyll 构建站点
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

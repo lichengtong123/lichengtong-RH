@@ -26,8 +26,15 @@ media/
 学习笔记/检查规则.md
 学习笔记/配图试验说明.md
 
-# 未加密的全书预印版只留本地（公开的只有 docs/同行审阅/ 中的加密稿）
+# 未加密的全书预印版只留本地
 /素数计数与黎曼猜想-预印版.pdf
+
+# 同行审阅稿以 Release 附件发布，不入库；本机存档在 同行审阅发布/，网站构建时下载到 docs/同行审阅/
+/同行审阅发布/
+/docs/同行审阅/PrimeCounting-RH-Review-*
+/docs/同行审阅/*-加密.pdf
+/docs/同行审阅/*-加密.docx
+/docs/同行审阅/*-Encrypted.pdf
 
 # GitHub 双重验证恢复码只留本地，不得提交
 github-recovery-codes*.txt
