@@ -193,6 +193,12 @@ Lean 的 VS Code 插件在编辑器右侧显示 InfoView：光标所在位置的
 
 ![例题 2](截图/S1b_RHStatement-1.png)
 
+**例题 3：归纳步中拆出最后一项。** 第一张光标在 `rw [sum_range_succ, sum_range_succ]` 之前。Tactic state 中 `case succ` 表示正在证明归纳步：已知条件列出 a、b、A、hA0、hA、n，以及归纳假设 `ih`（n 时的公式）；⊢ 后的目标是 n + 1 时的公式，两边各有一个 `∑ k ∈ range (n + 1)`。第二张是执行这一行之后：两个和都写成了 `∑ k ∈ range n` 加上 k = n 的一项，左边多出 `a n * b n`，右边多出 `A (n + 1) * (b (n + 1) - b n)`。此时目标与 ih 只差这两项，下一行 `linear_combination ih - b n * hA n` 用 ih 和部分和递推式 hA n 完成证明（手算见文件开头）。
+
+![例题 3 改写前](截图/S2a_AbelSummation-1.png)
+
+![例题 3 改写后](截图/S2a_AbelSummation-2.png)
+
 **例题 4：3–4–1 不等式的最后一步。** 光标在最后一行末尾的 `hSquare` 上。Tactic state 显示 `No goals`：这一行执行后已没有待证目标。Expected type 列出已知条件 θ 与 `hSquare : 0 ≤ (1 + cos θ)²`，以及光标处这一项应证明的命题 `0 ≤ (1 + cos θ)²`。`mul_nonneg` 说“两个非负数之积非负”，要用它证明 0 ≤ 2·(1 + cos θ)²，需要提供 0 ≤ 2（由 `by norm_num` 给出）和 0 ≤ (1 + cos θ)²，后者正是 `hSquare`。
 
 ![例题 4](截图/S2b_ThreeFourOne-1.png)
