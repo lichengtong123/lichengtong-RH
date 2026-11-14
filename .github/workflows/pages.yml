@@ -31,16 +31,32 @@ jobs:
         run: |
           gh release download --repo "$GITHUB_REPOSITORY" \
             --pattern 'PrimeCounting-RH-Review-*' \
-            --dir 'docs/同行审阅' --clobber
+            --dir '同行审阅' --clobber
           # Release 附件只能用 ASCII 文件名；网站上按书稿原文件名提供下载
-          cd 'docs/同行审阅'
+          cd '同行审阅'
           mv PrimeCounting-RH-Review-zh.pdf  '素数计数与黎曼猜想-预印本-同行审阅-加密.pdf'
           mv PrimeCounting-RH-Review-zh.docx '素数计数与黎曼猜想-预印本-同行审阅-加密.docx'
-          # 兼容旧链接：2026-11-14 前文件名用“预印版”，保留同内容副本
-          cp '素数计数与黎曼猜想-预印本-同行审阅-加密.pdf'  '素数计数与黎曼猜想-预印版-同行审阅-加密.pdf'
-          cp '素数计数与黎曼猜想-预印本-同行审阅-加密.docx' '素数计数与黎曼猜想-预印版-同行审阅-加密.docx'
           mv PrimeCounting-RH-Review-en.pdf  'Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf'
           ls -l *.pdf *.docx
+
+      - name: 兼容旧地址（2026-11-14 前审阅页在 docs/同行审阅/）
+        run: |
+          # 旧地址只在网站上保留，不入库：审阅稿用旧文件名复制一份，审阅页改为自动跳转到新地址
+          old='docs/同行审阅'
+          mkdir -p "$old"
+          cp '同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.pdf'  "$old/素数计数与黎曼猜想-预印版-同行审阅-加密.pdf"
+          cp '同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.docx' "$old/素数计数与黎曼猜想-预印版-同行审阅-加密.docx"
+          cp '同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf' "$old/"
+          for page in index.html index-en.html; do
+            cat > "$old/$page" <<EOF
+          <!doctype html>
+          <meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=../../同行审阅/$page">
+          <title>审阅页已迁移 / Review page moved</title>
+          <p>审阅页已迁移到 <a href="../../同行审阅/$page">新地址</a>。The review page has moved to <a href="../../同行审阅/$page">a new address</a>.</p>
+          EOF
+          done
+          ls -l "$old"
 
       - name: 用 Jekyll 构建站点
         uses: actions/jekyll-build-pages@v1

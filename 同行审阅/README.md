@@ -4,15 +4,15 @@
 
 | 材料 | 文件 | 发布日期 | 页数 |
 |------|------|----------|------|
-| 预印本（加密PDF） | [下载审阅稿](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.pdf) | 2026-11-13 | 336 |
-| 预印本（加密Word） | [下载 Word 版](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.docx) | 2026-11-13 | 约 355 |
-| 英文审阅版（加密PDF） | [Download English review edition](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf) | 2026-11-13 | 390 |
+| 预印本（加密PDF） | [下载审阅稿](https://lichengtong123.github.io/lichengtong-RH/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.pdf) | 2026-11-13 | 336 |
+| 预印本（加密Word） | [下载 Word 版](https://lichengtong123.github.io/lichengtong-RH/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.docx) | 2026-11-13 | 约 355 |
+| 英文审阅版（加密PDF） | [Download English review edition](https://lichengtong123.github.io/lichengtong-RH/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf) | 2026-11-13 | 390 |
 
 审阅稿以仓库 [Releases](https://github.com/lichengtong123/lichengtong-RH/releases) 的附件发布，不进入源码历史；网站发布时自动取用最新 Release 中的文件，上表链接即网站上的副本。以往各版本可在 Releases 页面按日期找到（附件名为 `PrimeCounting-RH-Review-zh.pdf` 等，GitHub 不允许附件用中文文件名）。
 
-**[输入密码在线阅读](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/)**，也可下载上表中的加密 PDF 后阅读。在线阅读页仅显示 PDF；需要修订文字的审阅者请下载上表中的加密 Word 版，用 Word、WPS 或 LibreOffice 打开，密码相同。打开密码由作者通过其他渠道提供，不在仓库中公布。
+**[输入密码在线阅读](https://lichengtong123.github.io/lichengtong-RH/同行审阅/)**，也可下载上表中的加密 PDF 后阅读。在线阅读页仅显示 PDF；需要修订文字的审阅者请下载上表中的加密 Word 版，用 Word、WPS 或 LibreOffice 打开，密码相同。打开密码由作者通过其他渠道提供，不在仓库中公布。
 
-**[Read the English edition online](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/index-en.html)**. The English review edition uses the same opening password as the Chinese edition. The password is supplied separately by the author. Both editions are review drafts, not final publications.
+**[Read the English edition online](https://lichengtong123.github.io/lichengtong-RH/同行审阅/index-en.html)**. The English review edition uses the same opening password as the Chinese edition. The password is supplied separately by the author. Both editions are review drafts, not final publications.
 
 在线阅读页使用本仓库托管的 Mozilla PDF.js，在浏览器内解密并显示书稿（网站发布时自动取用最新 Release 中的文件）；密码不写入网页、网址或浏览器本地存储，也不发送给阅读服务器。浏览器仍需加载加密文件，因此首次打开需要等待。这不是防下载系统：知道密码的读者仍可保存文件或截图。
 
@@ -32,4 +32,4 @@ Word 版由同一书稿的 LaTeX 源文件转换，供需要直接修订文字�
 
 请勿擅自转发审阅稿及密码。加密副本未另行限制打印或添加批注，以便审阅。
 
-[返回仓库首页](../../README.md)
+[返回仓库首页](../README.md)

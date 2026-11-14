@@ -12,7 +12,7 @@ The contents of this repository are licensed by category:
 
    适用于 manim/ 与 mathematica/ 中的程序文件（.py、.wl、.nb），
    videos/ 中的播放页面文件（.html、.css），
-   docs/同行审阅/ 中自编的阅读入口（index.html、reader.css、reader.js），
+   同行审阅/ 中自编的阅读入口（index.html、reader.css、reader.js），
    习题与解答/ 中的脚本（.sh），
    以及 命题的形式化验证-Lean4/ 中的 Lean 程序与配置文件（.lean、.toml）。
    Applies to program files in manim/ and mathematica/ (.py, .wl, .nb),
@@ -31,11 +31,11 @@ The contents of this repository are licensed by category:
 2. Text, figures and videos — Creative Commons
    Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
 
-   适用于 学习笔记/、习题与解答/、docs/（同行审阅稿除外）、关系图下载/
-   中的文档（.md、.tex、.pdf），各 README，以及 videos/ 中的视频文件（.mp4）。
+   适用于 学习笔记/、习题与解答/、关系图下载/、勘误与更新/
+   中的文档（.md、.tex、.pdf），各 README 及其他说明文档（.md），以及 videos/ 中的视频文件（.mp4）。
    命题的形式化验证-Lean4/截图/ 中的截图同样适用本项许可。
    Applies to documents (.md, .tex, .pdf) in 学习笔记/, 习题与解答/,
-   docs/ (except the peer-review preprint), 关系图下载/, all README files,
+   关系图下载/, 勘误与更新/, all README files and other explanatory .md documents,
    and the video files (.mp4) in videos/.
    This category also covers the screenshots in 命题的形式化验证-Lean4/截图/.
 
@@ -57,15 +57,15 @@ The contents of this repository are licensed by category:
        The scan of Riemann's 1859 paper in 黎曼原稿扫描/ (1876 Collected
        Works edition) is in the public domain and is not covered by this
        license; see the README in that directory for its source.
-   (b) docs/同行审阅/ 中的预印本同行审阅稿为书稿本身，保留所有权利，
+   (b) 同行审阅/ 中的预印本同行审阅稿为书稿本身，保留所有权利，
        仅供受邀审阅者阅读，不得转载或传播。
-       The peer-review preprint in docs/同行审阅/ is the manuscript of the
+       The peer-review preprint in 同行审阅/ is the manuscript of the
        book itself. All rights reserved; it is provided to invited reviewers
        only and may not be redistributed.
    (c) 书籍正文（含第 21 章中译稿）的版权不因本仓库的许可而转让。
        Copyright in the book itself (including the Chinese translation in
        Chapter 21) is not licensed by this repository.
-   (d) docs/同行审阅/pdfjs/ 为第三方 PDF.js 组件，适用其附带的
+   (d) 同行审阅/pdfjs/ 为第三方 PDF.js 组件，适用其附带的
        Apache License 2.0 及字体等资源的原始许可，详见该目录的 LICENSE 与 NOTICE.md。
        The third-party PDF.js distribution retains its bundled Apache 2.0
        and resource licenses; see its LICENSE and NOTICE.md.

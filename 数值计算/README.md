@@ -12,6 +12,7 @@
 | `dat/li_real_a.dat`、`dat/li_real_b.dat` | 第 13 章 li 的实部曲线数据 | 第 13 章 |
 | `dat/riemann_data.dat`、`dat/fourier_data.dat` 及 `generate_ch18_*.py` | 第 18 章两幅对照图的数据与生成程序 | 第 18 章 |
 | `dat/riemann_data_{20,60,200,500}.dat`、`dat/ch19-*-rows.tex` | 第 19 章数据图与表格行，由 `reproduce.py` 生成 | 第 19 章 |
+| [函数数值计算的常用软件.md](函数数值计算的常用软件.md) | ζ 函数数值计算可用的软件与库（mpmath、Arb/FLINT、PARI/GP 等） | 第 19 章 |
 
 `dat/` 中另有 `pnt_data*.dat`、`riemann_data_{40,100}.dat`，是早期版本留下的数据，书中现已不用，保留供对照。`numerical/ch19/results/legacy/` 同理。
 

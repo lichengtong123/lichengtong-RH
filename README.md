@@ -4,13 +4,13 @@
 
 书中前言所写地址即本仓库：**https://github.com/lichengtong123/lichengtong-RH**
 
-**For English readers.** The English review edition of the book can be [read online](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/index-en.html) (password required) or [downloaded as an encrypted PDF](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf). The A3 knowledge-genealogy diagram is available in English as [PDF](关系图下载/Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.pdf) and [SVG](关系图下载/Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.svg). Source code for the animations ([Manim](manim/)), the figures ([Mathematica](mathematica/)) and the Lean 4 formal proofs ([命题的形式化验证-Lean4](命题的形式化验证-Lean4/)) is in the corresponding directories; the READMEs and code comments there are in Chinese.
+**For English readers.** The English review edition of the book can be [read online](https://lichengtong123.github.io/lichengtong-RH/同行审阅/index-en.html) (password required) or [downloaded as an encrypted PDF](https://lichengtong123.github.io/lichengtong-RH/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf). The A3 knowledge-genealogy diagram is available in English as [PDF](关系图下载/Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.pdf) and [SVG](关系图下载/Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.svg). Source code for the animations ([Manim](manim/)), the figures ([Mathematica](mathematica/)) and the Lean 4 formal proofs ([命题的形式化验证-Lean4](命题的形式化验证-Lean4/)) is in the corresponding directories; the READMEs and code comments there are in Chinese.
 
 ## 预印本同行审阅
 
-[输入密码在线阅读](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/)，或下载预印本同行审阅稿：[加密 PDF](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.pdf)、[加密 Word](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.docx)。打开密码由作者通过其他渠道单独提供；审阅版本、下载方式及反馈说明见[同行审阅页面](docs/同行审阅/README.md)。
+[输入密码在线阅读](https://lichengtong123.github.io/lichengtong-RH/同行审阅/)，或下载预印本同行审阅稿：[加密 PDF](https://lichengtong123.github.io/lichengtong-RH/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.pdf)、[加密 Word](https://lichengtong123.github.io/lichengtong-RH/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.docx)。打开密码由作者通过其他渠道单独提供；审阅版本、下载方式及反馈说明见[同行审阅页面](同行审阅/README.md)。
 
-英文审阅版：[输入密码在线阅读 / Read online](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/index-en.html)，或[下载加密 PDF / Download](https://lichengtong123.github.io/lichengtong-RH/docs/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf)。使用与中文版相同的打开密码。
+英文审阅版：[输入密码在线阅读 / Read online](https://lichengtong123.github.io/lichengtong-RH/同行审阅/index-en.html)，或[下载加密 PDF / Download](https://lichengtong123.github.io/lichengtong-RH/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf)。使用与中文版相同的打开密码。
 
 ## 勘误与更新
 
@@ -30,7 +30,7 @@
 
 ## 目录
 
-各目录的使用方法见其中的 README。
+各目录的使用方法见其中的 README；运行程序所需的软件与安装步骤见[运行环境建立与程序安装说明](运行环境建立与程序安装说明.md)。
 
 | 目录 | 内容 | 对应章节 |
 |------|------|----------|
@@ -39,7 +39,7 @@
 | [mathematica/](mathematica/README.md) | 书中曲面图与零迹线图的 Mathematica 程序（`.wl`）及可用免费 Wolfram Player 查看的笔记本（`.nb`） | 第 5、7、9、10、13、17 章 |
 | [数值计算/](数值计算/README.md) | 书中数值表格与数据图的源程序、参数与数据：第 19 章可复算的数值实验（含零点区间与核验输出），第 2、13、18 章的数据文件 | 第 2、13、18、19 章 |
 | [AIGC检测/](AIGC检测/README.md) | AI 生成痕迹检测结果：知网全文检测与朱雀逐章检测，附核验图与检测说明；同时说明本书使用生成式 AI 的环节与范围 | 全书 |
-| [docs/](docs/README.md) | [运行环境与安装说明](docs/运行环境建立与程序安装说明.md)、[ζ 函数数值计算的常用软件](docs/函数数值计算的常用软件.md) | 第 19、20 章 |
+| [同行审阅/](同行审阅/README.md) | 预印本同行审阅稿（加密 PDF / Word，中文与英文）的下载、输入密码在线阅读的页面与反馈方式 | 全书 |
 | [关系图下载/](关系图下载/README.md) | A3 版黎曼猜想知识谱系关系图（中文版与英文版；PDF 供查阅与打印，SVG 矢量图可插入文档或幻灯片），概括主体理论（第 1–15 章） | 第 16 章 |
 | [勘误与更新/](勘误与更新/README.md) | 书中勘误，以及第 22 章前沿文献与数值纪录的后续更新（该章文献选取截至 2026 年 10 月 27 日） | 全书；第 22 章 |
 | [黎曼原稿扫描/](黎曼原稿扫描/README.md) | Riemann 1859 年论文德文原文扫描本（1876 年文集版，公有领域），供对照书中译稿 | 第 21 章 |

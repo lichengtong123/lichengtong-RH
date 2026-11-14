@@ -14,7 +14,7 @@
 
 ## 运行
 
-先按 [运行环境建立与程序安装说明](../docs/运行环境建立与程序安装说明.md) 安装依赖，并激活已安装 Manim Community 的 Python 环境。在本目录执行：
+先按 [运行环境建立与程序安装说明](../运行环境建立与程序安装说明.md) 安装依赖，并激活已安装 Manim Community 的 Python 环境。在本目录执行：
 
 ```bash
 RH_RENDER_MODE=video python -m manim "二维 ζ 同伦.py" ZetaConformalMap
