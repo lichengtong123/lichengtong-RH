@@ -11,13 +11,14 @@ The contents of this repository are licensed by category:
 1. Source code — MIT License
 
    适用于 manim/ 与 mathematica/ 中的程序文件（.py、.wl、.nb），
-   videos/ 中的播放页面文件（.html、.css），
+   videos/ 中的播放页面文件（.html、.css）与 videos/black/ 中的渲染程序（.py），
    同行审阅/ 中自编的阅读入口（index.html、reader.css、reader.js），
    习题与解答/ 中的脚本（.sh），
    以及 命题的形式化验证-Lean4/ 中的 Lean 程序与配置文件（.lean、.toml）。
    Applies to program files in manim/ and mathematica/ (.py, .wl, .nb),
-   player pages in videos/ (.html, .css), the authored review reader entry
-   (index.html, reader.css, reader.js), scripts (.sh) in 习题与解答/,
+   player pages in videos/ (.html, .css), render scripts in videos/black/
+   (.py), the authored review reader entry (index.html, reader.css,
+   reader.js), scripts (.sh) in 习题与解答/,
    and Lean source and configuration files (.lean, .toml) in 命题的形式化验证-Lean4/.
 
    例外：命题的形式化验证-Lean4/BookExamples/S3a_VonMangoldt.lean
