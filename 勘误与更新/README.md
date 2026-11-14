@@ -30,4 +30,4 @@
 
 ## 三、反馈
 
-发现错误或有补充材料，请在本仓库 [Issues](https://github.com/lichengtong123/lichengtong-RH/issues) 中提出，或发邮件至 lichengtong-RH@qq.com。请写明书稿版本、页码或章节编号、原文和建议，并尽量附出处。同行审阅期间的意见按[同行审阅页](同行审阅/README.md)所述方式提交。
+发现错误或有补充材料，请在本仓库 [Issues](https://github.com/lichengtong123/lichengtong-RH/issues) 中提出，或发邮件至 lichengtong-RH@qq.com。请写明书稿版本、页码或章节编号、原文和建议，并尽量附出处。同行审阅期间的意见按[同行审阅页](../docs/同行审阅/README.md)所述方式提交。
