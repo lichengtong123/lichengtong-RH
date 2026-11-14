@@ -203,6 +203,18 @@ Lean 的 VS Code 插件在编辑器右侧显示 InfoView：光标所在位置的
 
 ![例题 4](截图/S2b_ThreeFourOne-1.png)
 
+**例题 5：互素乘积的素数幂因子分成两组。** 两张截图都在因子和恒等式的互素乘积情形（`case refine_3`）。第一张是第 77 行 `rw` 执行之前：上一行 `simp only` 已按 Λ 的定义把和改写成只对素数幂因子求和，所以 `ha`、`hb` 和 ⊢ 后的目标都是 `∑ a ∈ … with IsPrimePow a, Real.log ↑a.minFac` 的形式，目标中的因子集是 `(a * b).divisors`。第二张是第 78 行末尾，`rw` 执行之后：由于 a、b 互素，ab 的素数幂因子分成 a 的一组与 b 的一组，且互不相交，目标的左边成了两个和相加，每个和的形式与 `ha`、`hb` 的左边相同。下一行 `rw [ha, hb, …]` 就可以用归纳假设替换它们。这里拆分所依据的两条一般结果（`Nat.mul_divisors_filter_prime_pow` 与 `Nat.disjoint_divisors_filter_isPrimePow`）是从 mathlib 显式引用的。
+
+![例题 5 改写前](截图/S3a_VonMangoldt-1.png)
+
+![例题 5 改写后](截图/S3a_VonMangoldt-2.png)
+
+**例题 6：改写之后留下的附加条件。** 第一张是第 48 行 `rw` 执行之前：目标是 `∑ p ∈ range (n + 1) with Nat.Prime p, Real.log ↑p = Real.log ↑(∏ p ∈ … , p)`，即 θ(n) = log(n#)。第二张是执行之后：`Nat.cast_prod` 与 `Real.log_prod` 把右边的“乘积的对数”改写成“对数之和”，等式两边相同，这个目标自动关闭；但 `Real.log_prod` 要求每个因子非零，这个条件成为新的目标 `case hf`：对集合中每个 x，`↑x ≠ 0`。接下来的几行（`intro p hp` 等）证明的就是这个条件。引用库定理时，它的前提条件也要给出证明。
+
+![例题 6 改写前](截图/S3b_Chebyshev-1.png)
+
+![例题 6 改写后](截图/S3b_Chebyshev-2.png)
+
 **例题 7：用 Λ₀ 改写 Λ。** 第一张是改写之前，目标中是 `completedRiemannZeta s`（即 Λ）；第二张是执行 `rw [completedRiemannZeta_eq]` 之后，Λ 已换成 `completedRiemannZeta₀ s - 1 / s - 1 / (1 - s)`。上方列出的 h0 : s ≠ 0、h1 : s ≠ 1、h1' : 1 − s ≠ 0 是随后 `field_simp` 消去分母所需的条件；第一张中 `1 goal` 表示还剩一个待证目标。
 
 ![例题 7 改写前](截图/S4a_Xi-1.png)
