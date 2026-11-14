@@ -13,7 +13,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from ch20_render import BOOK_MODE, PREVIEW, THEME, configure_render
+from ch20_render import BOOK_MODE, PREVIEW, THEME, configure_render, localized
+from ch20_render import caption_text as Text
 
 configure_render()
 RED, BLUE, GREEN = THEME["zero"], THEME["blue"], THEME["boundary"]
@@ -159,7 +160,8 @@ class ZetaConformalMap(Scene):
         alpha_tracker = ValueTracker(0)
 
         progress = always_redraw(lambda:
-            Text(f"变换进度：{int(alpha_tracker.get_value()*100)}%",
+            Text(localized("变换进度：", "Transformation: ")
+                 + f"{int(alpha_tracker.get_value()*100)}%",
                  font_size=21, color=THEME["muted"])
             .next_to(formula_feq, DOWN, aligned_edge=LEFT, buff=0.35)
         )
@@ -167,8 +169,13 @@ class ZetaConformalMap(Scene):
         self.add(formula, progress)
 
         display_note = Text(
-            "绿色填充仅示意边界形变，并非临界带经当前映射所得的精确区域。\n"
-            "零点标签表示原位置；显示截限 |ζ|≤30。",
+            localized(
+                "绿色填充仅示意边界形变，并非临界带经当前映射所得的精确区域。\n"
+                "零点标签表示原位置；显示截限 |ζ|≤30。",
+                "Green shading illustrates boundary deformation only;\n"
+                "it is not the exact image of the critical strip.\n"
+                "Zero labels give original positions; display cap: |ζ| ≤ 30.",
+            ),
             font_size=15, color=THEME["muted"],
         ).to_corner(DOWN + LEFT, buff=0.35)
         note_background = BackgroundRectangle(

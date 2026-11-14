@@ -35,6 +35,18 @@ export PATH=/Library/TeX/texbin:$PATH
 cd "/Users/lichengtong/lichengtong-RH/manim"
 ```
 
+## 英文版画面
+
+三个程序默认显示中文。设置 `RH_LANGUAGE=en` 可将画面说明和图例切换为英文，数学公式、计算参数和动画过程不变。英文输出单独保存在 `media/en/`，不会覆盖中文版视频或书稿静帧。
+
+```bash
+RH_LANGUAGE=en RH_RENDER_MODE=video python -m manim "二维 ζ 同伦.py" ZetaConformalMap
+RH_LANGUAGE=en RH_RENDER_MODE=video python -m manim "素数计数公式逼近.py" RiemannVisualization1800log2
+RH_LANGUAGE=en RH_RENDER_MODE=video python -m manim "Hardy 轨迹.py" zeta_3D_18H
+```
+
+英文书稿静帧同样设置 `RH_LANGUAGE=en`，再按原有方法选择 `RH_RENDER_MODE=book` 和静帧场景。
+
 ## 修改参数，生成不同的动画
 
 主要参数集中在各程序开头，改后重新运行即可：

@@ -14,7 +14,8 @@ import numpy as np
 from mpmath import mp, zeta, zetazero
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from ch20_render import BOOK_MODE, THEME, configure_render
+from ch20_render import BOOK_MODE, THEME, configure_render, localized
+from ch20_render import caption_text as Text
 
 configure_render()
 T_MAX = 80.0
@@ -150,18 +151,26 @@ class zeta_3D_18H(ThreeDScene):
 
         # Screen-fixed text remains readable instead of rotating with the scene.
         formula = MathTex(
-            r"\zeta(\tfrac12+it)=e^{-i\vartheta(t)}Z(t),\qquad Z(t)\in\mathbb R",
+            r"w(t):=\zeta(\tfrac12+it)=e^{-i\vartheta(t)}Z(t),\qquad Z(t)\in\mathbb R",
             font_size=27, color=foreground,
         ).to_edge(DOWN, buff=0.23)
         legend = VGroup(*[
             Text(text, font_size=18, color=color)
             for text, color in [
-                ("空间轨迹", main_color), ("平面投影", projection_color),
-                ("实部分量", re_color), ("虚部分量", im_color),
+                (localized("空间轨迹", "Spatial trajectory"), main_color),
+                (localized("平面投影", "Planar projection"), projection_color),
+                (localized("实部分量", "Real component"), re_color),
+                (localized("虚部分量", "Imaginary component"), im_color),
             ]
         ]).arrange(RIGHT, buff=0.4).to_edge(UP, buff=0.2)
-        scale_note = Text("横截面振幅 ×2.25；分量曲线平移至辅助平面",
+        if legend.width > 12.6:
+            legend.scale_to_fit_width(12.6).to_edge(UP, buff=0.2)
+        scale_note = Text(localized(
+                          "横截面振幅 ×2.25；分量曲线平移至辅助平面",
+                          "Cross-sectional amplitudes ×2.25; component curves shifted to auxiliary planes"),
                           font_size=16, color=THEME["muted"])
+        if scale_note.width > 12.6:
+            scale_note.scale_to_fit_width(12.6)
         scale_note.next_to(legend, DOWN, buff=0.10)
 
         count_prefix = MathTex(r"N_0(", font_size=25, color=foreground)

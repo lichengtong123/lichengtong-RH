@@ -1,11 +1,23 @@
 """Shared display settings; numerical formulas do not depend on the theme."""
 import os
 
-from manim import config
+from manim import Text, config
 
 
 BOOK_MODE = os.environ.get("RH_RENDER_MODE", "video").lower() == "book"
 PREVIEW = os.environ.get("RH_PREVIEW", "0") == "1"
+ENGLISH = os.environ.get("RH_LANGUAGE", "zh").lower() == "en"
+
+
+def localized(chinese, english):
+    return english if ENGLISH else chinese
+
+
+def caption_text(text, font_size=48, **kwargs):
+    if not ENGLISH:
+        return Text(text, font_size=font_size, **kwargs)
+    # Shape at a larger size to avoid small-font glyph-position quantization.
+    return Text(text, font_size=font_size * 4, **kwargs).scale(0.25)
 
 
 def configure_render():
@@ -16,6 +28,10 @@ def configure_render():
     config.pixel_height = height
     config.frame_rate = 30
     config.background_color = "#FFFFFF"
+    if ENGLISH:
+        config.media_dir = "media/en"
+        # Explicit Latin typography avoids platform-dependent fallback spacing.
+        Text.set_default(font="Arial", disable_ligatures=True)
     if BOOK_MODE:
         config.save_last_frame = True
         config.write_to_movie = False

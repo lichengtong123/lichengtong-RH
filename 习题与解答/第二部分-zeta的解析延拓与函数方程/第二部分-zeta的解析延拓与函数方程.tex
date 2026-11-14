@@ -267,7 +267,7 @@ $\zeta$ 延拓到的 $\CC\setminus\{1\}$ 不是单连通区域。可以使用第
 \Hint{7.4}(b) $\Gamma(\bar s)=\overline{\Gamma(s)}$；$\sin(\pi(\tfrac12+it))=\cosh\pi t$，$\sin(i\pi t)=i\sinh\pi t$；$\Gamma(1-it)=-it\,\Gamma(-it)$。
 
 \subsection*{第 8 章}
-\Hint{8.1}(a) 有限 Abel 求和：$\sum_{n\le N}n^{-s}=N^{1-s}+s\int_1^N\lfloor x\rfloor x^{-s-1}\dd x$。(c) 在零点处 $\zeta(\rho_1)=0$。
+\Hint{8.1}(a) 有限 Abel 求和：$\sum_{n\le N}n^{-s}=N\cdot N^{-s}+s\int_1^N\lfloor x\rfloor x^{-s-1}\dd x$。(c) 在零点处 $\zeta(\rho_1)=0$。
 
 \Hint{8.2}(a) 第 8 章正文已指出：唯一性定理本身不保证沿不同区域链的延拓能拼成整体单值函数；这里的整体相容性来自第 9 章的整体构造。(b) 若 $e^L=\zeta$，$\zeta$ 能取零值吗？绕 $s=1$ 的小圆上，$\frac1{2\pi i}\oint\zeta'/\zeta\,\dd s$ 等于多少？
 
@@ -451,7 +451,7 @@ $1000$ & $0.58909$ & $0.604895$\\
 \[
   \bigl|\eta(\tfrac12)-A_N\bigr|\le\frac{a_{N+1}-a_{N+2}}2=O(N^{-3/2}).
 \]
-（$a_{N+1}-a_{N+2}\approx\frac12N^{-3/2}$，所以误差约不超过 $\frac14N^{-3/2}$，与表中数据相符。）又由 $A_N-P_N=\frac12(-1)^N(N+1)^{-1/2}$，立即得到 $\eta(\tfrac12)-P_N=\frac12(-1)^N(N+1)^{-1/2}+O(N^{-3/2})$，这也严格解释了表中的第一列误差约为 $\pm\frac12N^{-1/2}$。
+由中值定理，$\frac12(a_{N+1}-a_{N+2})\le\frac1{4(N+1)^{3/2}}$，因此这也是相邻平均误差的严格上界。
 
 (b) $\zeta(\tfrac12)=\eta(\tfrac12)/(1-2^{1/2})=0.6048986/(-0.4142136)\approx-1.4603545$。
 

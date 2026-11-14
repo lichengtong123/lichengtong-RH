@@ -24,7 +24,8 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from ch20_render import BOOK_MODE, THEME, configure_render
+from ch20_render import BOOK_MODE, THEME, configure_render, localized
+from ch20_render import caption_text as Text
 
 # ================== Manim Configuration ==================
 configure_render()
@@ -222,15 +223,19 @@ class _Pi0Base(Scene):
 
     def counter(self, k):
         # 显示 K、M 的当前数值，与底部公式中的 K、M 对应
-        k_label = Text("非平凡零点共轭对数", font_size=20, color=WHITE_COLOR)
+        k_label = Text(localized("非平凡零点共轭对数", "Conjugate pairs of nontrivial zeros"),
+                       font_size=20, color=WHITE_COLOR)
         k_sym = MathTex(r"K =", font_size=23, color=WHITE_COLOR)
         k_value = Integer(k, font_size=23, color=WHITE_COLOR)
-        m_label = Text("平凡零点数", font_size=20, color=WHITE_COLOR)
+        m_label = Text(localized("平凡零点数", "Trivial zeros"), font_size=20, color=WHITE_COLOR)
         m_sym = MathTex(r"M =", font_size=23, color=WHITE_COLOR)
         m_value = Integer(self.trivial, font_size=23, color=WHITE_COLOR)
         k_group = VGroup(k_label, k_sym, k_value).arrange(RIGHT, buff=0.12)
         m_group = VGroup(m_label, m_sym, m_value).arrange(RIGHT, buff=0.12)
-        return VGroup(k_group, m_group).arrange(RIGHT, buff=0.5).to_edge(UP, buff=0.2)
+        counter = VGroup(k_group, m_group).arrange(RIGHT, buff=0.5)
+        if counter.width > 12.6:
+            counter.scale_to_fit_width(12.6)
+        return counter.to_edge(UP, buff=0.2)
 
     def curve(self, y_vals):
         pts = [self.axes.coords_to_point(x, y) for x, y in zip(self.x_vals, y_vals)]
