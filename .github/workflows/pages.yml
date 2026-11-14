@@ -34,8 +34,11 @@ jobs:
             --dir 'docs/同行审阅' --clobber
           # Release 附件只能用 ASCII 文件名；网站上按书稿原文件名提供下载
           cd 'docs/同行审阅'
-          mv PrimeCounting-RH-Review-zh.pdf  '素数计数与黎曼猜想-预印版-同行审阅-加密.pdf'
-          mv PrimeCounting-RH-Review-zh.docx '素数计数与黎曼猜想-预印版-同行审阅-加密.docx'
+          mv PrimeCounting-RH-Review-zh.pdf  '素数计数与黎曼猜想-预印本-同行审阅-加密.pdf'
+          mv PrimeCounting-RH-Review-zh.docx '素数计数与黎曼猜想-预印本-同行审阅-加密.docx'
+          # 兼容旧链接：2026-11-14 前文件名用“预印版”，保留同内容副本
+          cp '素数计数与黎曼猜想-预印本-同行审阅-加密.pdf'  '素数计数与黎曼猜想-预印版-同行审阅-加密.pdf'
+          cp '素数计数与黎曼猜想-预印本-同行审阅-加密.docx' '素数计数与黎曼猜想-预印版-同行审阅-加密.docx'
           mv PrimeCounting-RH-Review-en.pdf  'Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf'
           ls -l *.pdf *.docx
 

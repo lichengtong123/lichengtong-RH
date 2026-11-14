@@ -4,7 +4,7 @@ const frame = document.getElementById("reader");
 const english = document.documentElement.lang.startsWith("en");
 const filename = english
   ? "Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf"
-  : "素数计数与黎曼猜想-预印版-同行审阅-加密.pdf";
+  : "素数计数与黎曼猜想-预印本-同行审阅-加密.pdf";
 const manuscript = new URL(filename, window.location.href);
 const viewer = new URL("pdfjs/web/viewer.html", window.location.href);
 viewer.searchParams.set("file", manuscript.href);
