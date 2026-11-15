@@ -4,9 +4,9 @@
 
 | 材料 | 文件 | 发布日期 | 页数 |
 |------|------|----------|------|
-| 预印本（加密PDF） | [下载审阅稿](https://lichengtong123.github.io/lichengtong-RH/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.pdf) | 2026-11-13 | 336 |
-| 预印本（加密Word） | [下载 Word 版](https://lichengtong123.github.io/lichengtong-RH/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.docx) | 2026-11-13 | 约 355 |
-| 英文审阅版（加密PDF） | [Download English review edition](https://lichengtong123.github.io/lichengtong-RH/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf) | 2026-11-13 | 390 |
+| 预印本（加密PDF） | [下载审阅稿](https://lichengtong123.github.io/lichengtong-RH/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.pdf) | 2026-11-15 | 336 |
+| 预印本（加密Word） | [下载 Word 版](https://lichengtong123.github.io/lichengtong-RH/同行审阅/素数计数与黎曼猜想-预印本-同行审阅-加密.docx) | 2026-11-15 | 约 355 |
+| 英文审阅版（加密PDF） | [Download English review edition](https://lichengtong123.github.io/lichengtong-RH/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf) | 2026-11-15 | 390 |
 
 审阅稿以仓库 [Releases](https://github.com/lichengtong123/lichengtong-RH/releases) 的附件发布，不进入源码历史；网站发布时自动取用最新 Release 中的文件，上表链接即网站上的副本。以往各版本可在 Releases 页面按日期找到（附件名为 `PrimeCounting-RH-Review-zh.pdf` 等，GitHub 不允许附件用中文文件名）。
 
