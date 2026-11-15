@@ -1,13 +1,13 @@
 name: 发布网站（GitHub Pages）
 
 # 网站内容来自 main 分支；同行审阅稿不入库，构建时从最新的 Release 下载后一并发布。
-# 触发：推送 main、发布新的 Release，或手动运行。
+# 触发：推送 main，或手动运行（Actions 页面 → 本工作流 → Run workflow）。
+# 发布新的 Release 不会自动触发：由 Release 触发的运行属于标签而非 main，
+# 会被 github-pages 环境的保护规则拒绝部署。发布新审阅稿后，推送 main 或手动运行一次即可。
 
 on:
   push:
     branches: [main]
-  release:
-    types: [published]
   workflow_dispatch:
 
 permissions:
