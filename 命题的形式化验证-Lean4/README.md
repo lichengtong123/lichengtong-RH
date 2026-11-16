@@ -206,6 +206,8 @@ InfoView 下方的 **Messages** 显示检查结果和 `#print`、`#check` 等命
 | [Binomial.lean](ReferenceExamples/Binomial.lean)（125 行） | 不用 mathlib，只用 Lean 核心库：自己递归定义组合数与有限和，证明 6 条辅助引理，再对 n 归纳 | 自然数 | `propext`、`Quot.sound` |
 | [BinomialMathlib.lean](ReferenceExamples/BinomialMathlib.lean)（12 行） | 引用 mathlib 的 `add_pow`，一行完成 | 任意交换半环（含 ℕ、ℤ、ℚ、ℝ、ℂ） | 三条标准公理 |
 
+两个文件的逐行讲解见 [二项式定理验证详解.pdf](ReferenceExamples/二项式定理验证详解.pdf)（20 页）：逐句说明每个定义、引理与策略的作用，以及光标在各行时 InfoView 显示的内容，行号与两个文件一一对应。
+
 两个文件都可以在浏览器中运行（见上文“在浏览器中运行”）：[Binomial.lean](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Flichengtong123%2Flichengtong-RH%2Fmain%2F%25E5%2591%25BD%25E9%25A2%2598%25E7%259A%2584%25E5%25BD%25A2%25E5%25BC%258F%25E5%258C%2596%25E9%25AA%258C%25E8%25AF%2581-Lean4%2FReferenceExamples%2FBinomial.lean)、[BinomialMathlib.lean](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Flichengtong123%2Flichengtong-RH%2Fmain%2F%25E5%2591%25BD%25E9%25A2%2598%25E7%259A%2584%25E5%25BD%25A2%25E5%25BC%258F%25E5%258C%2596%25E9%25AA%258C%25E8%25AF%2581-Lean4%2FReferenceExamples%2FBinomialMathlib.lean)。
 
 归纳步的思路与手算相同：(a + b)ⁿ⁺¹ = (a + b)ⁿ·a + (a + b)ⁿ·b，把前一个和的末项、后一个和的首项拆出，中间各项用杨辉三角 C(n, k) + C(n, k + 1) = C(n + 1, k + 1) 两两合并，再把首末两项拼回。两份文件对照，可以看到 mathlib 替使用者完成了哪些工作；前者没有用到选择公理，后者经 mathlib 的有限和与代数结构而依赖它。
