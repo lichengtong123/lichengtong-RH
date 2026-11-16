@@ -1,6 +1,6 @@
 name = "BookExamples"
 version = "0.1.0"
-defaultTargets = ["BookExamples", "NotesExamples"]
+defaultTargets = ["BookExamples", "NotesExamples", "ReferenceExamples"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -17,3 +17,8 @@ name = "BookExamples"
 
 [[lean_lib]]
 name = "NotesExamples"
+
+# 参考例题：各文件独立构建，不设汇总入口（两个文件中有同名定理）
+[[lean_lib]]
+name = "ReferenceExamples"
+globs = ["ReferenceExamples.+"]

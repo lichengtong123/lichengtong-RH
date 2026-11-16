@@ -181,6 +181,23 @@ InfoView 下方的 **Messages** 显示检查结果和 `#print`、`#check` 等命
 | [ShiftStableSum.lean](NotesExamples/ShiftStableSum.lean) | 对全部实数序列要求“首项分离”求和规则会产生矛盾 | 学习笔记第 11 篇 |
 | [Mersenne61.lean](NotesExamples/Mersenne61.lean) | 以 Lucas–Lehmer 计算证书核验 2^61 − 1 的素性 | 学习笔记第 16 篇 |
 
+## 参考例题：二项式定理的两种证明
+
+这一例不是本书或学习笔记中的命题，供读者对照参考。它用两种方式证明同一条定理
+
+(a + b)ⁿ = ∑_{k=0}^{n} aᵏ bⁿ⁻ᵏ C(n, k)，
+
+放在 [ReferenceExamples](ReferenceExamples/) 中，同样经自动检查：
+
+| 文件 | 做法 | 适用范围 | `#print axioms` 的输出 |
+|---|---|---|---|
+| [Binomial.lean](ReferenceExamples/Binomial.lean)（125 行） | 不用 mathlib，只用 Lean 核心库：自己递归定义组合数与有限和，证明 6 条辅助引理，再对 n 归纳 | 自然数 | `propext`、`Quot.sound` |
+| [BinomialMathlib.lean](ReferenceExamples/BinomialMathlib.lean)（12 行） | 引用 mathlib 的 `add_pow`，一行完成 | 任意交换半环（含 ℕ、ℤ、ℚ、ℝ、ℂ） | 三条标准公理 |
+
+归纳步的思路与手算相同：(a + b)ⁿ⁺¹ = (a + b)ⁿ·a + (a + b)ⁿ·b，把前一个和的末项、后一个和的首项拆出，中间各项用杨辉三角 C(n, k) + C(n, k + 1) = C(n + 1, k + 1) 两两合并，再把首末两项拼回。两份文件对照，可以看到 mathlib 替使用者完成了哪些工作；前者没有用到选择公理，后者经 mathlib 的有限和与代数结构而依赖它。
+
+前一个文件不依赖 mathlib，也可以在本目录之外单独用 `lean Binomial.lean` 检查。两个文件中都有名为 `binomial_theorem` 的定理，所以它们各自构建，不设汇总入口。
+
 ## 在 VS Code 中看到的证明状态
 
 Lean 的 VS Code 插件在编辑器右侧显示 InfoView：光标所在位置的已知条件与待证目标（Tactic state）、定理的检查结果（Messages）。读法见上文“读懂 Lean 代码与 InfoView”。以下截图取自作者本机，Lean 与 mathlib 版本与本目录相同。
