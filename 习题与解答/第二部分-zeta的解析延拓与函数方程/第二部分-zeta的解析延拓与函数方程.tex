@@ -339,6 +339,8 @@ $\Gamma(s)\Gamma(s+\tfrac12)=2^{1-2s}\sqrt\pi\,\Gamma(2s)$。两端是亚纯函�
 即所求。$\sigma=\tfrac12$ 时主项为 $1$。
 
 \Sol{7.4}{Stirling 公式的数值检验}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~7.4 对应单元。
+
 (a)
 \begin{center}
 \begin{tabular}{rrrr}
@@ -428,6 +430,8 @@ $|z|<1$ 时级数绝对收敛，$f$ 解析。取 $\omega=e^{2\pi ip/2^k}$。当 
 \subsection*{第 9 章}
 
 \Sol{9.1}{由 $\eta$ 计算 $\zeta(\tfrac12)$}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~9.1 对应单元。
+
 (a)
 \begin{center}
 \begin{tabular}{rrr}
@@ -482,6 +486,8 @@ $m=0$ 时为 $2\pi i\cdot(-1)\cdot(-\tfrac12)=\pi i$，与正文的 $I(0)$ 一�
 (c) $\zeta(0)=B_1=-\tfrac12$；$\zeta(-1)=-B_2/2=-\tfrac1{12}$；$\zeta(-3)=-B_4/4=\tfrac1{120}$，与习题 9.2 一致。$m=2n\ge2$ 时 $B_{2n+1}=0$（因为 $\frac z{e^z-1}+\frac z2$ 是偶函数，大于 $1$ 的奇数下标 Bernoulli 数都为零），故 $\zeta(-2n)=0$。
 
 \Sol{9.4}{为什么是 3--4--1}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~9.4 对应单元。
+
 (a) 由 $\log|\zeta(\sigma+it)|=\sum\frac{\Lambda(n)}{n^\sigma\log n}\cos(t\log n)$ 与 $1+\cos\theta\ge0$，得 $\zeta(\sigma)|\zeta(\sigma+it)|\ge1$（$\sigma>1$）。若 $1+it$ 是 $m$ 阶零点（$m\ge1$），左端 $\asymp(\sigma-1)^{-1}(\sigma-1)^m=(\sigma-1)^{m-1}$。$m=1$ 时左端趋于 $|\zeta'(1+it)|$，该不等式只迫使 $|\zeta'(1+it)|\ge1$，在没有额外估计时不能排除单零点；只有 $m\ge2$ 才使左端趋于 $0$ 而矛盾。所以这一不等式只能排除重零点，排除不了单零点。
 
 (b) $|\zeta(\sigma+2it)|$ 出现在左端的乘积中，它可能很大也可能很小。论证只需要它在 $\sigma\to1^+$ 时\textbf{有界}：因为 $t\ne0$，$1+2it\ne1$，$\zeta$ 在其附近解析，故有界。于是左端 $=O\bigl((\sigma-1)^{4m-3}\bigr)=O(\sigma-1)\to0$（因 $m\ge1$ 故 $4m-3\ge1$），与 $\ge1$ 矛盾。三角式中各系数 $3,4,1$ 的作用正在于：$\cos\theta$ 的系数 $4$ 大于 $1$ 的系数 $3$，使零点的阶 $4m$ 压过极点的阶 $3$。
@@ -534,6 +540,8 @@ $1=\chi(s)\chi(\bar s)=|\chi(s)|^2$。这比习题 7.3 的渐近结论更强：�
 常数项 $-\tfrac12$ 与式~(\bref{eq:zeta-at-zero}) 一致，一次项系数即 $\zeta'(0)=-\tfrac12\log(2\pi)\approx-0.918939$（数值核对一致）。$\gamma_E$ 在两处出现、恰好相消。
 
 \Sol{9.7}{Riemann 第二法中的对称与极点分离}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~9.7 对应单元。
+
 (a) 把 $s$ 换成 $1-s$：$x^{(1-s)/2-1}=x^{-(s+1)/2}$，$x^{-((1-s)+1)/2}=x^{s/2-1}$，两个幂函数恰好互换，其和不变，故 $H(1-s)=H(s)$。对称函数方程~(\bref{eq:symmetric_fe}) 就是由此直接读出的（极点项 $\frac1{s(s-1)}$ 同样在 $s\mapsto1-s$ 下不变）。
 $s$ 为实数时被积函数为实，$H(s)\in\RR$；$s=\frac12+it$ 时 $x^{s/2-1}=x^{-3/4}x^{it/2}$，$x^{-(s+1)/2}=x^{-3/4}x^{-it/2}$，和为 $2x^{-3/4}\cos(\frac t2\log x)$，也是实数。
 
