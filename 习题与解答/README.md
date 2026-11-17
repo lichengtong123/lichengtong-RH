@@ -4,6 +4,12 @@
 
 ## 当前材料
 
+### 数值习题在线复算
+
+[在 Google Colab 中运行习题数值复算](https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/%E4%B9%A0%E9%A2%98%E4%B8%8E%E8%A7%A3%E7%AD%94/%E4%B9%A0%E9%A2%98%E6%95%B0%E5%80%BC%E5%A4%8D%E7%AE%97.ipynb)（目前收录习题 19.1(a)、(b)）。
+
+打开后点击顶部的「全部运行」，即可依次运行环境设置和复算程序。只运行程序不会修改仓库中的文件。[在 GitHub 查看 Notebook](习题数值复算.ipynb)（仅预览，不能执行）。
+
 ### 参考习题（按部分编排，PDF）
 
 | 部分 | 范围 | 题数 | 阅读文件 | 源码 | 状态 |
