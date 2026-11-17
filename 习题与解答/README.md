@@ -6,9 +6,18 @@
 
 ### 数值习题在线复算
 
-[在 Google Colab 中运行习题数值复算](https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/%E4%B9%A0%E9%A2%98%E4%B8%8E%E8%A7%A3%E7%AD%94/%E4%B9%A0%E9%A2%98%E6%95%B0%E5%80%BC%E5%A4%8D%E7%AE%97.ipynb)（目前收录习题 19.1(a)、(b)）。
+[在 Google Colab 中运行习题数值复算](https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/%E4%B9%A0%E9%A2%98%E4%B8%8E%E8%A7%A3%E7%AD%94/%E4%B9%A0%E9%A2%98%E6%95%B0%E5%80%BC%E5%A4%8D%E7%AE%97.ipynb)（按第一至第五部分编排，单元按题号排列）。
 
-打开后点击顶部的「全部运行」，即可依次运行环境设置和复算程序。只运行程序不会修改仓库中的文件。[在 GitHub 查看 Notebook](习题数值复算.ipynb)（仅预览，不能执行）。
+打开后点击顶部的「全部运行」，即可依次运行环境设置和复算程序；首次运行需要生成前 1000 个零点，全部单元约需数分钟。只运行程序不会修改仓库中的文件。[在 GitHub 查看 Notebook](习题数值复算.ipynb)（仅预览，不能执行）。
+
+**在本机运行**：不用 Colab 时，可下载 [习题数值复算.ipynb](习题数值复算.ipynb)（在 GitHub 文件页面点击下载按钮“Download raw file”；已克隆本仓库的读者可直接使用 `习题与解答/` 中的文件）。安装 Python 3 后，在该文件所在目录的终端中执行：
+
+```
+pip install mpmath jupyter
+jupyter notebook 习题数值复算.ipynb
+```
+
+在打开的浏览器页面中选择菜单 Run → Run All Cells。程序只依赖 `mpmath`；已在本机安装后，Notebook 开头的安装单元可以跳过，运行时不需要联网。Notebook 中的数值用 mpmath 1.3.0 核对，其他版本输出的末几位可能略有不同。
 
 ### 参考习题（按部分编排，PDF）
 

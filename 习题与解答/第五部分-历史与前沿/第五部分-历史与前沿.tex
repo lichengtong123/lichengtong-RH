@@ -328,6 +328,8 @@ $\frac1{2\cos(\pi s/2)\Gamma(s)}=\frac{\sin(\pi s/2)\Gamma(1-s)}{\pi}$，得
 $\zeta(s)=2^s\pi^{s-1}\sin\frac{\pi s}2\Gamma(1-s)\zeta(1-s)$，即式~(\bref{eq:asymmetric_fe_alt})。以上先在 $\Re s<0$ 且避开 $\sin$、$\cos$、$\Gamma$ 因子的零点与极点处约分，再按亚纯恒等式推广到全平面；「全平面」并不表示每个因子在每一点都有限。
 
 \Sol{21.3}{原稿的 $\xi(t)$ 积分表示}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~21.3 对应单元。
+
 (a) 由 $\pi^{-s/2}\Gamma(\frac s2)\zeta(s)=\frac1{s(s-1)}+\int_1^\infty\psi(x)\bigl(x^{s/2-1}+x^{-(1+s)/2}\bigr)\dd x$，乘以 $\frac12s(s-1)$ 得 $\xi(s)=\frac12+\frac12s(s-1)\int_1^\infty(\cdots)$。$s=\frac12+it$ 时 $s(s-1)=-(t^2+\frac14)$，两幂之和为 $x^{-3/4}(x^{it/2}+x^{-it/2})=2x^{-3/4}\cos(\frac t2\log x)$，即得原稿公式。
 
 (b) 分段求积并积分到 $\infty$（$30$ 位工作精度）：$t=0$ 时 $0.497120778188$，$t=10$ 时 $0.037967850311$，与 $\Xi$ 一致；$t=\gamma_1$（高精度零点）时约 $10^{-31}$，在计算精度内为零。
@@ -341,6 +343,8 @@ $\zeta(s)=2^s\pi^{s-1}\sin\frac{\pi s}2\Gamma(1-s)\zeta(1-s)$，即式~(\bref{eq
 (c) 被积函数只通过 $\cos(\frac t2\log x)$ 依赖 $t$，它是 $t$ 的偶函数，前因子 $t^2+\frac14$ 也只含 $t^2$。把余弦展开，第 $k$ 项系数含 $\int_1^\infty\psi(x)x^{-3/4}\frac{(\log x/2)^{2k}}{(2k)!}\dd x$。为说明换序合法，在 $|t|\le R$ 上估计：余弦级数各项绝对值之和不超过 $\cosh(\frac R2\log x)\le x^{R/2}$，而 $\psi(x)x^{-3/4}x^{R/2}\le Ce^{-\pi x}x^{R/2}$ 在 $[1,\infty)$ 上可积。由此可以逐项积分，且所得 $t^2$ 的幂级数在 $|t|\le R$ 上一致收敛；$R$ 任意，故展开对一切复 $t$ 收敛，$\Xi$ 为 $t^2$ 的整函数。只说每个系数积分存在是不够的，需要这样一个统一的可积控制。
 
 \Sol{21.4}{常数修正 $\sum\log(1+\frac1{4\alpha^2})$}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~21.4 对应单元。
+
 (a) $\rho=\frac12+i\alpha$，$1-\rho=\frac12-i\alpha$，
 $\bigl(1-\frac s\rho\bigr)\bigl(1-\frac s{1-\rho}\bigr)=\frac{(\rho-s)(1-\rho-s)}{\rho(1-\rho)}=\frac{\alpha^2+(s-\frac12)^2}{\frac14+\alpha^2}$，
 即所给分解。原稿把 $\log\xi$ 写成以 $s=\frac12$ 为基点的因子 $1+\frac{(s-\frac12)^2}{\alpha^2}$ 与常数 $\log\Xi(0)$；令 $s=0$，$\xi(0)=\Xi(0)\prod\bigl(1+\frac1{4\alpha^2}\bigr)$，先将非实因子与其共轭配对，再对正实的配对积取实对数；尾项为 $O(|\alpha|^{-2})$，故配对后的对数和收敛。
@@ -366,6 +370,8 @@ $1000$ & $0.0055952$ & $0.0057752$ \\
 $J_0$ 完整公式中的常数是 $-\log2$，不是 $\Delta$；$\Delta$ 是从以 $s=\frac12$ 为基点的因子换到以 $s=0$ 为基点的因子时产生的归一化差。若保留旧基点的常数 $\log\xi(\frac12)$ 而漏掉 $\Delta$，$J_0$ 的公式就差一个固定常数 $\Delta$；经有限 Möbius 反演，$\pi_0$ 的公式差 $\Delta\sum_{n\le\nu(x)}\mu(n)/n$。以误用公式减正确公式为差值，上述差均取负号；$\pi_0$ 的偏差只在 $\nu(x)$ 固定的区间内为常数，且不随所取零点个数改变，增加零点无法消除它。显式公式是恒等式，常数必须精确，而不是可调的拟合参数；所以不能因为它小就略去。这里取对数时要沿用书中的分支与共轭配对约定，不能用逐项任意的主值对数代替无穷乘积的解析对数。
 
 \Sol{21.5}{原稿的非周期项与 Gauss 的观察}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~21.5 对应单元。
+
 (a) $m=1,\dots,12$ 的 $\mu(m)$ 依次为 $1,-1,-1,0,-1,1,-1,0,0,1,-1,0$。对无平方因子 $m$，$\mu(m)=(-1)^{\omega(m)}$，正是原稿的 $(-1)^\mu$；有平方因子的 $m$（$4,8,9,12$）不出现。$6=2\cdot3$ 有两个素因子，系数为 $+\frac16$。
 
 (b) $x=10^5$：$\Li-\pi\approx36.8$，$R-\pi\approx-4.6$；$x=10^6$：$\Li-\pi\approx128.5$，$R-\pi\approx29.4$。$R$ 吸收了 $-\frac12\li(\sqrt x)$ 等缓变项，误差明显更小；剩余部分并非单独的零点贡献，还包括 $R$ 与有限主项之差及常数、积分修正。
@@ -398,6 +404,8 @@ $J_0$ 完整公式中的常数是 $-\log2$，不是 $\Delta$；$\Delta$ 是从�
 (b) $\frac{N(\sigma_0,T)}{N(T)}\ll T^{\frac{3(1-\sigma_0)}{2-\sigma_0}-1}(\log T)^4\to0$（指数为负）：实部大于这个固定 $\sigma_0$ 的零点所占比例趋于零。不能再让 $\sigma_0$ 不加控制地趋于 $\frac12$，从而断言全部离线零点都只占零比例。上界本身仍随 $T$ 增长，不排除无穷多个离线零点；RH 要求 $N(\sigma_0,T)=0$。
 
 \Sol{22.3}{Li 系数 $\lambda_1$、$\lambda_2$}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~22.3 对应单元。
+
 (a) $|1-1/\rho|=|\rho-1|/|\rho|=1\iff\rho$ 到 $0$ 与到 $1$ 等距 $\iff\Re\rho=\frac12$。RH 下 $1-1/\bar\rho=\overline{e^{i\theta_\rho}}=e^{-i\theta_\rho}$，一对共轭零点贡献 $(1-e^{in\theta})+(1-e^{-in\theta})=2(1-\cos n\theta)\ge0$。
 
 (b) 按高度对称截断，$\lambda_1=\sum_\rho[1-(1-1/\rho)]=\sum_\rho1/\rho=-b_0\approx0.0230957$。
@@ -416,6 +424,8 @@ $J_0$ 完整公式中的常数是 $-\log2$，不是 $\Delta$；$\Delta$ 是从�
 (d) 本例是一个二次多项式，可以直接算出 $|\alpha_j|=\sqrt5$，这与椭圆曲线的 Hasse 界 $|a|\le2\sqrt q$ 一致（$|{-3}|\le2\sqrt5$）。一般的结构解释来自曲线的几何：$\alpha_j$ 是 Frobenius 在相应上同调上的特征值，其模长由 Weil 定理强制为 $\sqrt q$；理解本例不需要先掌握上同调。经典 $\zeta$ 不是某条有限域曲线的 zeta 函数，没有现成的空间与 Frobenius 作用可以照搬。
 
 \Sol{22.5}{零点的对关联：数值实验}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~22.5 对应单元。
+
 (a) 共 $999$ 个间距，平均值 $\approx0.999$（归一化使平均间距约为 $1$）；最小值 $\approx0.138$。
 
 (b)
@@ -447,6 +457,8 @@ $1$ & $0.553$ & $0.549$ & $1$ \\
 例如 $M_1(100)\approx2.956$，取 $A=10$，$|\zeta|\ge10$ 的点所占比例不超过约 $3.0\%$。所以 $M_1$ 相对于 $A^2$ 很小时，大值点确实只占小比例，这是对「大多数点」的一种单向控制。但一个矩不能确定中位数、分位数或峰值出现的位置：少数大值可以显著抬高均方，所以较大的 $M_1$ 不说明大多数点都大。高阶矩对大值更敏感，各阶矩合起来才更细地刻画分布。
 
 \Sol{22.7}{算术级数中的素数}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~22.7 对应单元。
+
 (a) $\chi_0(n)=1$（$n$ 奇），$0$（$n$ 偶）；$\chi_1(n)=1,-1,0$ 分别对应 $n\equiv1,3$ 与 $n$ 偶。$\psi(x,\chi_0)+\psi(x,\chi_1)=2\psi(x;4,1)$，$\psi(x,\chi_0)-\psi(x,\chi_1)=2\psi(x;4,3)$；由 $\overline{\chi_1(3)}=-1$ 即为所给公式。
 
 (b) 奇素数的平方都 $\equiv1\pmod4$，它们在 $\psi(x;4,1)$ 中合计贡献 $\theta(\sqrt x)-\log2$，其渐近量级为 $\sqrt x$。精确地说，要比较的是对数权重 $\theta$，不能仅由两个 $\pi$ 值推出差额：$\theta(10^5;4,1)\approx49739.695$，$\theta(10^5;4,3)\approx49945.001$，差约 $-205.31$；而 $\psi$ 的差约 $+102.55$。奇素数平方的贡献约 $293.54$，另有更高次幂的贡献，正是它们把 $\theta$ 的负差翻成了 $\psi$ 的正差。去掉素数幂后，$\theta(x;4,3)>\theta(x;4,1)$ 与 $\pi$ 一致。

@@ -622,6 +622,8 @@ $\xi(s)=\xi(0)e^{(b_0+\sum1/\rho)s}\prod_\rho(1-s/\rho)$，乘积绝对收敛。
 (c) 不能。论证只说明零点很多，不涉及零点的位置；即使全部零点都成对地偏离临界线，上述论证也照样成立。临界线上有无穷多零点需要另外的方法，见附录~\bref{app:hardy} 的 Hardy 定理。
 
 \Sol{10.3}{$b_0+\sum_\rho1/\rho=0$ 的数值检验}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~10.3 对应单元。
+
 (a) 设 $Z_T=\{\rho:|\gamma|<T\}$。由于 $\Im(1-\rho)=-\gamma$，$Z_T$ 在 $\rho\mapsto1-\rho$ 下不变（计重数），故 $\sum_{Z_T}\frac1\rho=\sum_{Z_T}\frac1{1-\rho}$，从而
 \[
   \sum_{Z_T}\frac1\rho=\frac12\sum_{Z_T}\Bigl(\frac1\rho+\frac1{1-\rho}\Bigr)=\frac12\sum_{Z_T}\frac1{\rho(1-\rho)} .
@@ -659,6 +661,8 @@ $1000$ & $0.0223761$ & $0.0230960$ & $0.0230957$ \\
 $\Xi(t)$ 含因子 $e^{-\pi t/4}$，$t=50$ 时已小到 $10^{-15}$ 量级，图上几乎是零；$Z(t)$ 去掉了这一指数衰减与无关的正因子，保留了全部实零点与符号，因此更适合作图。
 
 \Sol{10.5}{$t$-乘积的数值收敛}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~10.5 对应单元。
+
 (a) 记 $P_N(t)=\xi(\frac12)\prod_{n\le N}(1-t^2/\gamma_n^2)$：
 \begin{center}
 \small
@@ -680,6 +684,8 @@ $t$ 越大收敛越慢，因为尾部的影响以 $t^2$ 放大。
 \subsection*{第 11 章}
 
 \Sol{11.1}{光滑项与实际计数}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~11.1 对应单元。
+
 (a)
 \begin{center}
 \small
@@ -700,6 +706,8 @@ $N-\bar N$ & $0.58$ & $-0.002$ & $0.38$ & $-0.97$ \\
 (c) 平均间距 $\approx1/\bar N'(T)=\frac{2\pi}{\log(T/2\pi)}$，$T=1000$ 时约为 $1.2393$；随高度增加零点越来越密。
 
 \Sol{11.2}{常数 $\tfrac78$ 的另一种分组}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~11.2 对应单元。
+
 (a) 沿 $L$：$\arg s$ 由 $0$ 连续变到 $\arctan2T$，$\arg(s-1)$ 由 $0$ 连续变到 $\pi-\arctan2T$，合计 $\Delta_L\arg(s(s-1))=\pi$（终点处 $s(s-1)=-(T^2+\frac14)<0$，与此一致）。
 $s=2$ 处 $\pi^{-1}\Gamma(1)>0$。沿 $L$ 有 $\Re(s/2)\ge\frac14>0$，$\Gamma(\frac s2)$ 的连续辐角就是 $\Im\log\Gamma(\frac s2)$（$\log\Gamma$ 取第~\bref{sec:stirling}~节的分支），而 $\arg\pi^{-s/2}=-\frac{\Im s}2\log\pi$，故
 $\Delta_L\arg\bigl(\pi^{-s/2}\Gamma(\frac s2)\bigr)=\Im\log\Gamma(\frac14+\frac{iT}2)-\frac T2\log\pi=\vartheta(T)$。
@@ -716,6 +724,8 @@ $\Im\log\Gamma(z)=b\log|z|+(a-\frac12)\arg z-b+O(\frac1b)$；而 $b\log|z|=b\log
 (c) $\Gamma(\frac s2+1)=\frac s2\Gamma(\frac s2)$，而 $\Delta_L\arg\frac s2=\arctan2T=\frac\pi2+O(\frac1T)$。所以书中分组的 $\Gamma$ 因子比这里多出约 $\frac\pi2$：$\frac{3\pi}8=-\frac\pi8+\frac\pi2$；相应地有理因子从 $s(s-1)$ 的 $\pi$ 变为 $s-1$ 的 $\frac\pi2$。总和都是 $\frac{7\pi}8$。
 
 \Sol{11.3}{第 $n$ 个零点的高度}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~11.3 对应单元。
+
 (a) 由 $N(\gamma_n-0)<n\le N(\gamma_n)$ 与 $N(T)\sim\frac T{2\pi}\log T$ 得 $n\sim\frac{\gamma_n}{2\pi}\log\gamma_n$。取对数，$\log n=\log\gamma_n+\log\log\gamma_n+O(1)\sim\log\gamma_n$，代回得 $\gamma_n\sim2\pi n/\log n$。
 
 (b)(c)
@@ -741,6 +751,8 @@ $1000$ & $1419.4225$ & $909.584$ & $1.56$ & $1419.518$ \\
 (c) RH 蕴含它（RH 下比值恒为 $1$）；反向蕴含尚未建立。单靠比例条件，在逻辑上不能排除数量为 $o(T\log T)$ 的离线零点（比例趋于 $1$ 与这样的零点在逻辑上相容）；这仅说明目前只确立了单向蕴含，并不意味着已经构造出这类离线零点，也不等于已经证明二者不等价。已知的无条件结果是临界线上的零点占正比例（Selberg，第~\bref{sec:kappa_on_line}~节），连比值趋于 $1$ 也尚未证明。
 
 \Sol{11.5}{$\sum1/\gamma$ 的增长}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~11.5 对应单元。
+
 (a) $N(t)=0$（$t<\gamma_1$），Stieltjes 分部：
 $\sum_{0<\gamma\le T}\frac1\gamma=\frac{N(T)}T+\int_{2}^T\frac{N(t)}{t^2}\dd t$。
 代入 $N=\bar N+S+O(1/t)$。对主项，$\bar N(t)/t^2=\frac{\log(t/2\pi)-1}{2\pi t}+\frac7{8t^2}$，
@@ -755,6 +767,8 @@ $\sum_{0<\gamma\le T}\frac1\gamma=\frac{N(T)}T+\int_{2}^T\frac{N(t)}{t^2}\dd t$�
 (c) RH 下 $\sum_{|\gamma|<T}|x^\rho/\rho|=2x^{1/2}\sum_{0<\gamma<T}|\rho|^{-1}\asymp x^{1/2}\log^2T$，取 $T=x^{1/2}$ 后正是 $x^{1/2}\log^2x$ 的量级。所以只要对选定截断范围内的零点项逐项取绝对值来估计，$\log^2x$ 就是这种三角形不等式上界的极限（注意这并非实际振荡误差的下界）；要改进上界只能利用 $x^{i\gamma}$ 的相位抵消。
 
 \Sol{11.6}{到高度 100 的数值核验}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~11.6 对应单元。
+
 (a) 变号 $29$ 次。$Z$ 与 $\Xi$ 零点相同，每次变号对应临界线上一个奇数重零点，故 $N_0(100)\ge29$（步长若太大可能漏掉相距很近的一对零点，所以这只是下界）。
 
 (b) $|\zeta(2+it)-1|\le\sum_{n\ge2}n^{-2}=\zeta(2)-1\approx0.645<1$，故 $\Re\zeta(2+it)>0$。在 $\frac12\le\sigma\le2$ 上取 $301$ 个等距点，$\Re\zeta(\sigma+100i)$ 的最小值约为 $1.19>0$。有限网格上的检查与正性假设一致，但尚不能保证整条水平线段无例外；若整段上 $\Re\zeta(\sigma+100i)>0$ 确已严格认证（所需步骤见 (d)），则沿整条路径 $L$，$\zeta$ 的值都在右半平面，连续辐角始终在 $(-\frac\pi2,\frac\pi2)$ 内，终点的连续辐角才等于主值：$S(100)=\frac1\pi\arg\zeta(\frac12+100i)\approx-0.002410$。
@@ -810,6 +824,8 @@ $\zeta(z+1)$ 在 $\Re z\ge0$ 上除 $z=0$（极点）外无零点；$z=0$ 处 $1
 一般地，仅有积分收敛不足以推出点态渐近（习题 12.1(b) 的 $h(x)=x(1+\sin x)$ 就是反例）；这里起作用的是 $M$ 的系数有界这一额外信息。
 
 \Sol{12.4}{三种形式的收敛速度}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~12.4 对应单元。
+
 (a) 由式~(\bref{eq:li-asymp-real})，$\Li(x)\log x/x=1+\frac1{\log x}+\frac2{\log^2x}+\frac6{\log^3x}+\cdots$，故
 $\frac{\pi(x)\log x}x=\frac{\pi(x)}{\Li(x)}\cdot\frac{\Li(x)\log x}x$，其中第二个因子与 $1$ 只差 $\frac1{\log x}$ 量级的系统修正，在本表区间内下降极慢（这里仅说明本表的数值观察与 $1/\log x$ 修正的来源，不从有限样本推出普遍的收敛速度排序）。$x=10^7$ 时 $\log x\approx16.12$，前四项截断和给出 $1.0712$（乘以 $0.99949$ 约得 $1.0706$）；若计入渐近展开余项，精确的 $\Li(10^7)\log(10^7)/10^7\approx1.07172$，乘以表中 $0.99949$ 得 $1.07117$，与表中数值吻合。
 相比之下，$\psi(x)/x-1$ 与 $\pi/\Li-1$ 没有这种 $1/\log x$ 量级的系统偏差。若 RH 成立，定理~\bref{thm:rh-psi-error} 与定理~\bref{thm:von_koch} 给出它们的相对误差上界分别为 $O(x^{-1/2}\log^2x)$ 与 $O(x^{-1/2}\log^2x)$（后者用 $\Li(x)\sim x/\log x$ 换算）；无条件的素数定理本身不提供这种强度的估计。
@@ -830,6 +846,8 @@ $\mu_1\approx1.448785$，$\mu_2\approx1.451363$，$\mu_3\approx1.4513692348$，�
 逐项求导：$\frac{\dd}{\dd x}\log\log x=\frac1{x\log x}$，$\frac{\dd}{\dd x}\sum\frac{(\log x)^n}{n\cdot n!}=\frac1x\sum_{n\ge1}\frac{(\log x)^{n-1}}{n!}=\frac{x-1}{x\log x}$，相加得 $\frac1{\log x}$。
 
 \Sol{13.2}{$\li(x^\rho)$ 的共轭与大小}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~13.2 对应单元。
+
 (a) 式~(\bref{eq:Ei-horizontal}) 中令 $\zeta=\bar\eta$：
 $\Ei(\bar w)=\int_{-\infty-iv}^{\bar w}\frac{e^\zeta}\zeta\dd\zeta=\overline{\int_{-\infty+iv}^{w}\frac{e^\eta}\eta\dd\eta}=\overline{\Ei(w)}$。
 由 $\bar\rho\log x=\overline{\rho\log x}$ 得 $\li(x^{\bar\rho})=\overline{\li(x^\rho)}$，配对和为 $2\Re\li(x^\rho)$。
@@ -841,6 +859,8 @@ $\Ei(\bar w)=\int_{-\infty-iv}^{\bar w}\frac{e^\zeta}\zeta\dd\zeta=\overline{\in
 (c) 由主项，$2\Re\li(x^\rho)\approx\frac{2x^\beta}{|\rho|\log x}\cos(\gamma\log x-\arg\rho)$。与式~(\bref{eq:zero-pair-cosine}) 相比多出因子 $1/\log x$，这正是从 $\psi$ 的显式公式到 $J$ 的显式公式时 $\dd t/\log t$ 带来的因子。$x=100$ 时配对和 $2\Re\li(x^{\rho_1})\approx0.23287$。
 
 \Sol{13.3}{数值库中的两种陷阱}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~13.3 对应单元。
+
 (a) 差值为 $3.1415927i=i\pi$，对应 \texttt{mpmath.ei} 所采用的分支切割约定（即注记~\bref{rem:Ei-library-branch} 的 $\Ei_{\mathrm{lib}}(w)=\Ei(w)+i\pi\operatorname{sgn}(\Im w)$；不同数值软件对 $\Ei$ 的分支规定不尽相同，不能泛指所有 $\Ei$ 实现）。实部相同，共轭配对和 $2\Re$ 不受影响；但若直接对单个 $\rho$ 求和（例如只取上半平面再乘 $2$ 后取复数值），虚部会错。
 在测试点 $w=(\frac12+i\gamma_1)\log100$ 下，可用如下代码复现 (a)(b) 两项数值：
 \begin{lstlisting}[language=Python]
@@ -917,6 +937,8 @@ $N$ & $10$ & $100$ & $1000$ \\
 控制；不假设 RH 时可用 $\sum_{\gamma>T}2x^2\gamma^{-2}\ll x^2\log T/T$。对固定的 $x$，两者都有 $O_x(\log T/T)$ 的衰减。注意前 $1000$ 个零点在临界线上，并不能让我们对未知的尾部使用 RH 界。绝对收敛使截断误差可以严格估计。
 
 \Sol{14.5}{$\pi(x)$ 与 $\li(x)$ 的偏差}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~14.5 对应单元。
+
 (a) 式~(\bref{eq:explicit_pi}) 主项中 $n=2$ 的一项为 $\frac{\mu(2)}2\li(x^{1/2})=-\frac12\li(\sqrt x)$，而 $\li(\sqrt x)\sim\frac{\sqrt x}{\log\sqrt x}=\frac{2\sqrt x}{\log x}$，故这一项 $\sim-\sqrt x/\log x$。它来自 $J$ 对素数平方的计数：$J(x)=\pi(x)+\frac12\pi(\sqrt x)+\cdots$。
 
 (b) $D(x)$ 减去 $n=2$ 项的贡献，剩余为 $0.63$、$0.19$、$0.08$、$0.56$、$0.55$。按式~(\bref{eq:explicit_pi}) 的分解，这一残差由三部分合并而成：
@@ -934,6 +956,8 @@ $N$ & $10$ & $100$ & $1000$ \\
 所以平方修正只解释了为什么 $\pi(x)<\li(x)$ 在很大范围内成立，并不能保证它永远成立。已知的变号定理与大规模数值结果见第~\bref{subsec:li-prime-crossings}~节。
 
 \Sol{14.6}{$\pi_0(100)$ 的有限展开}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~14.6 对应单元。
+
 (a) $2^6=64\le100<128$，$\nu(100)=6$。$\pi_0(x)=\sum_n\frac{\mu(n)}nJ_0(x^{1/n})$，而 $x^{1/n}<2$ 时 $J_0(x^{1/n})=0$，这些项本来就是零，所以展开是有限和。
 
 (b) 主项：$30.12614-\frac12(6.16560)-\frac13(3.40665)-\frac15(1.68023)+\frac16(1.25667)\approx30.12614-3.08280-1.13555-0.33605+0.20944=25.78119$（$n=4$ 时 $\mu(4)=0$）。

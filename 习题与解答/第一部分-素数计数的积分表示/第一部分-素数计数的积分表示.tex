@@ -469,6 +469,8 @@ $\sum_n(x/n)^c\min\bigl(1,1/(T|\log(x/n)|)\bigr)$ 对照。误差是否随 $T$ �
 \subsection*{第 1 章}
 
 \Sol{1.1}{Legendre 型近似与 $\Li$ 的比较}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~1.1 对应单元。
+
 (a) 数值如下（$\Li$ 按式~(\bref{eq:Li-def-parts}) 取偏移积分）：
 \begin{center}
 \begin{tabular}{rrrrr}
@@ -505,6 +507,8 @@ $10^{18}$ & $\approx-3.53\times10^{13}$ & $\approx-2.19\times10^{7}$\\
 另一方面，由题中给出的前提 $\pi(x)=\Li(x)+O\bigl(x\,e^{-c\sqrt{\log x}}\bigr)$，$\pi(x)-\Li(x)$ 比任意 $x/L^k$ 都小，因而比 $x/L^2$ 小得多。因此只要 $A\ne1$，$L_A$ 的误差最终约为 $|A-1|x/L^2$；即使取 $A=1$，第二项 $-x/L^3$ 仍然存在。在充分大的 $x$ 上，任何 $L_A$ 都不如 $\Li$。有限范围内的拟合效果不能代替渐近比较。
 
 \Sol{1.2}{渐近展开的最优截断}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~1.2 对应单元。
+
 (a) $t_{k+1}/t_k=k/\log x$。故 $k<\log x$ 时项严格递减（$t_{k+1}<t_k$），$k>\log x$ 时项严格递增（$t_{k+1}>t_k$）；若 $\log x$ 不是整数，最小项唯一，位于 $k=\lceil\log x\rceil$ 处；若 $\log x=m$ 为整数，则第 $m$ 项与第 $m+1$ 项并列最小。
 
 (b) $x=10^6$ 时 $\log x\approx13.8155$，$\li(10^6)\approx78627.5492$。部分数值：
@@ -528,6 +532,8 @@ $13$ & $0.7171$ & $-0.326$ & $25$ & $19.21$ & $+50.79$\\
 式~(\bref{eq:Li-asymptotic}) 中的「$\sim$」是渐近展开：对每个\textbf{固定}的 $n$，当 $x\to\infty$ 时余项比最后保留的一项小一个 $1/\log x$ 因子，下限常数可并入 $O(1)$。它不断言对固定 $x$ 令 $n\to\infty$ 时级数收敛（实际上发散）。有限公式（带下限常数与余项）对每个 $n$ 都精确成立，但 $n$ 很大时它在数值上不宜直接使用。渐近展开只确定函数到 $o\bigl(x/(\log x)^n\bigr)$ 为止，因此它区分不开相差常数的 $\Li$ 与 $\li$；本题与 $\li$ 比较，只是因为 (b) 中最优截断的误差已小于 $\li(2)\approx1.045$。
 
 \Sol{1.3}{$\Li(x)>x/\log x$ 的分界点}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~1.3 对应单元。
+
 (a) 由式~(\bref{eq:Li-parts-1})，$D(x)=\int_2^x(\log t)^{-2}\dd t-2/\log2$。当 $x>2$ 时 $D'(x)=(\log x)^{-2}>0$，故 $D$ 在 $[2,+\infty)$ 上严格递增。又 $D(2)=-2/\log2<0$，而 $x\to+\infty$ 时 $D(x)\to+\infty$（被积函数在 $[2,x]$ 上不小于 $(\log x)^{-2}$，积分至少为 $(x-2)/(\log x)^2$），所以 $D$ 在 $(2,+\infty)$ 内恰有一个零点 $x_0$（而在 $1<x\le2$ 上 $\Li(x)\le0$ 且 $x/\log x>0$，故 $D(x)<0$，整个定义域上亦无其他零点）。
 
 (b) 记迭代步为 $x^{(j+1)}=x^{(j)}-D(x^{(j)})(\log x^{(j)})^2$。从 $x^{(0)}=6.5$ 出发，依次得 $x^{(1)}\approx6.579211$（$D\approx-1.46\times10^{-4}$）、$x^{(2)}\approx6.579728$（$D\approx-6.07\times10^{-9}$）、$x^{(3)}\approx6.57972830$。结合 $D(6.57965)\approx-2.21\times10^{-5}<0$ 与 $D(6.57975)\approx+6.11\times10^{-6}>0$ 及 $D$ 的单调性，可确认四位小数结果为 $x_0\approx6.5797$。
@@ -683,6 +689,8 @@ $n\ge1$ 时被积函数在 $0$ 解析，$H(n)=0$。$s=-m$（$m\ge0$）时，$z^{
 对照：第~\bref{ch:gamma_function}~章将证明 $\Gamma$ 在 $s=-m$ 有单极点，留数为 $(-1)^m/m!$。在 $s=-m$ 附近 $e^{2\pi is}-1=2\pi i(s+m)+O\bigl((s+m)^2\bigr)$，故 $(e^{2\pi is}-1)\Gamma(s)\to2\pi i\,(-1)^m/m!$，与 (b) 的结果一致。这正是第~\bref{ch:riemann_zeta_continuation}~章第一法在负整数处取值的机制。
 
 \Sol{3.4}{竖线移动时的水平边}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~3.4 对应单元。
+
 (a) $x^s/s$ 在矩形 $[c_1,c_2]\times[-T,T]$ 上解析（$c_1>0$）。沿其正向边界积分为零：右边自下而上，上边自 $c_2+iT$ 到 $c_1+iT$，左边自上而下，下边自 $c_1-iT$ 到 $c_2-iT$。记 $H_{\mathrm{top}}$、$H_{\mathrm{bot}}$ 为按上述方向、含因子 $1/(2\pi i)$ 的水平边积分，则
 \[
   I(c_2)+H_{\mathrm{top}}-I(c_1)+H_{\mathrm{bot}}=0,\qquad I(c_2)-I(c_1)=-(H_{\mathrm{top}}+H_{\mathrm{bot}}).
@@ -734,6 +742,8 @@ $0<y\le1$ 时向右闭合，右边取 $\Re s=U$。内部无极点；$y<1$ 时估
 数值上 $\gamma\approx0.5772157$。
 
 \Sol{4.3}{模反演的数值意义}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~4.3 对应单元。
+
 (a) $\vartheta(0.1)=1+2\sum_{n\ge1}e^{-\pi n^2/10}$，各项 $2e^{-\pi n^2/10}$（含因子 $2$）依次约为 $1.461$，$0.569$，$0.118$，$0.0131$，$7.8\times10^{-4}$，$2.5\times10^{-5}$，$4.1\times10^{-7}$，$3.7\times10^{-9}$，$1.8\times10^{-11}$，$\dots$。$\vartheta(0.1)\approx3.162$，$10$ 位有效数字要求误差小于约 $5\times10^{-10}$。截到 $n=7$ 时，仅略去的首项 $n=8$ 已约 $3.7\times10^{-9}$，超出允许误差；截到 $n=8$ 时，利用 $n\ge9$ 时 $n^2\ge81+18(n-9)$，可把全部尾和估计为
 \[
   \sum_{n\ge9}2e^{-\pi n^2/10}\le\frac{2e^{-8.1\pi}}{1-e^{-1.8\pi}}\approx1.78\times10^{-11}<5\times10^{-10},
@@ -780,6 +790,8 @@ $\int_0^\infty\sum_ne^{-nx}x^{\sigma-1}\dd x=\sum_nn^{-\sigma}G(\sigma)$，在 $
 $\sigma=1.1$ 时 $\zeta(2.2)\approx1.4905$，$\zeta(1.1)\approx10.584$，下界约为 $0.1408$。（作为对照，用 \texttt{mpmath} 在 $0\le t\le400$ 上以步长 $0.1$ 离散抽样，$|\zeta(1.1+it)|$ 的最小值约为 $0.377$，出现在 $t\approx14.1$ 处。）
 
 \Sol{5.2}{Euler 部分乘积的误差}
+\emph{在线复算：}\href{https://colab.research.google.com/github/lichengtong123/lichengtong-RH/blob/main/\%E4\%B9\%A0\%E9\%A2\%98\%E4\%B8\%8E\%E8\%A7\%A3\%E7\%AD\%94/\%E4\%B9\%A0\%E9\%A2\%98\%E6\%95\%B0\%E5\%80\%BC\%E5\%A4\%8D\%E7\%AE\%97.ipynb}{《习题数值复算》Notebook}，见习题~5.2 对应单元。
+
 \begin{center}
 \begin{tabular}{rrrr}
 \toprule
