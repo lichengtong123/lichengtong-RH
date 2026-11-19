@@ -32,7 +32,7 @@ RH_RENDER_MODE=video python -m manim "素数计数公式逼近.py" RiemannVisual
 ```bash
 conda activate manim-3b1b
 export PATH=/Library/TeX/texbin:$PATH
-cd "/Users/lichengtong/lichengtong-RH/manim"
+cd "<仓库路径>/manim"
 ```
 
 ## 英文版画面

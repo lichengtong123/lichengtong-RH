@@ -4,7 +4,7 @@
 
 书中前言所写地址即本仓库：**https://github.com/lichengtong123/lichengtong-RH**
 
-**For English readers.** The English review edition of the book can be [read online](https://lichengtong123.github.io/lichengtong-RH/同行审阅/index-en.html) (password required) or [downloaded as an encrypted PDF](https://lichengtong123.github.io/lichengtong-RH/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf). The A3 knowledge-genealogy diagram is available in English as [PDF](关系图下载/Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.pdf) and [SVG](关系图下载/Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.svg). Source code for the animations ([Manim](manim/)), the figures ([Mathematica](mathematica/)) and the Lean 4 formal proofs ([命题的形式化验证-Lean4](命题的形式化验证-Lean4/)) is in the corresponding directories; the READMEs and code comments there are in Chinese.
+**For English readers.** The English review edition of the book can be [read online](https://lichengtong123.github.io/lichengtong-RH/同行审阅/index-en.html) (password required) or [downloaded as an encrypted PDF](https://lichengtong123.github.io/lichengtong-RH/同行审阅/Prime-Counting-and-the-Riemann-Hypothesis-Review-Encrypted.pdf). The A3 knowledge-genealogy diagram is available in English as [PDF](关系图下载/Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.pdf) and [SVG](关系图下载/Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.svg). Source code for the animations ([Manim](manim/), supporting English labels and still frames via `RH_LANGUAGE=en`), the figures ([Mathematica](mathematica/)) and the Lean 4 formal proofs ([命题的形式化验证-Lean4](命题的形式化验证-Lean4/)) is in the corresponding directories; the READMEs and code comments there are in Chinese.
 
 ## 预印本同行审阅
 
@@ -32,20 +32,32 @@
 
 各目录的使用方法见其中的 README；运行程序所需的软件与安装步骤见[运行环境建立与程序安装说明](运行环境建立与程序安装说明.md)。
 
+### 一、阅读与拓展学习
+
 | 目录 | 内容 | 对应章节 |
 |------|------|----------|
-| [manim/](manim/README.md) | 第 20 章动画的 Python（Manim）源程序、渲染命令与参数说明 | 第 20 章 |
+| [学习笔记/](学习笔记/README.md) | 专题证明、推导与方法导读，共 29 篇 PDF（2026 年 11 月 17 日更新） | 独立专题 |
+| [习题与解答/](习题与解答/README.md) | 参考习题（题目、提示与完整解答，共 105 题，PDF），第一至五部分均已发布并完成首轮复核；附覆盖全五部分的 Google Colab 在线数值复算笔记本 | 第 1–22 章 |
+| [命题的形式化验证-Lean4/](命题的形式化验证-Lean4/README.md) | 从本书选取 8 个命题，按“自己写多少、借用数学库 mathlib 多少”分四个阶段给出 Lean 4 形式化陈述与证明，附 InfoView 截图；最后说明怎样检查一个形式化证明。另附本书其他命题与 mathlib 定理的对照表，以及学习笔记第 11、16 篇的配套例程。大部分例题不必安装，点链接即可在浏览器中运行 | 第 1、2、5、7、9–11 章，附录 A、B、F |
+| [关系图下载/](关系图下载/README.md) | A3 版黎曼猜想知识谱系关系图（中文版与英文版；PDF 供查阅与打印，SVG 矢量图可插入文档或幻灯片），概括主体理论（第 1–15 章） | 第 16 章 |
+| [黎曼原稿扫描/](黎曼原稿扫描/README.md) | Riemann 1859 年论文德文原文扫描本（1876 年文集版，公有领域），供对照书中译稿 | 第 21 章 |
+
+### 二、动画、图形与数值复算
+
+| 目录 | 内容 | 对应章节 |
+|------|------|----------|
 | [videos/](videos/README.md) | 三个白底书稿对应视频及其黑底辅助版，供观看与下载 | 第 20 章 |
+| [manim/](manim/README.md) | 第 20 章动画的 Python（Manim）源程序、渲染命令与参数说明（支持 `RH_LANGUAGE=en` 英文画面） | 第 20 章 |
 | [mathematica/](mathematica/README.md) | 书中曲面图与零迹线图的 Mathematica 程序（`.wl`）及可用免费 Wolfram Player 查看的笔记本（`.nb`） | 第 5、7、9、10、13、17 章 |
 | [数值计算/](数值计算/README.md) | 书中数值表格与数据图的源程序、参数与数据：第 19 章可复算的数值实验（含零点区间与核验输出），第 2、13、18 章的数据文件 | 第 2、13、18、19 章 |
-| [AIGC检测/](AIGC检测/README.md) | AI 生成痕迹检测结果：知网全文检测与朱雀逐章检测，附核验图与检测说明；同时说明本书使用生成式 AI 的环节与范围 | 全书 |
+
+### 三、审阅、勘误与透明说明
+
+| 目录 | 内容 | 对应章节 |
+|------|------|----------|
 | [同行审阅/](同行审阅/README.md) | 预印本同行审阅稿（加密 PDF / Word，中文与英文）的下载、输入密码在线阅读的页面与反馈方式 | 全书 |
-| [关系图下载/](关系图下载/README.md) | A3 版黎曼猜想知识谱系关系图（中文版与英文版；PDF 供查阅与打印，SVG 矢量图可插入文档或幻灯片），概括主体理论（第 1–15 章） | 第 16 章 |
 | [勘误与更新/](勘误与更新/README.md) | 书中勘误，以及第 22 章前沿文献与数值纪录的后续更新（该章文献选取截至 2026 年 10 月 27 日） | 全书；第 22 章 |
-| [黎曼原稿扫描/](黎曼原稿扫描/README.md) | Riemann 1859 年论文德文原文扫描本（1876 年文集版，公有领域），供对照书中译稿 | 第 21 章 |
-| [学习笔记/](学习笔记/) | 专题证明、推导与说明，提供 PDF（2026 年 11 月 13 日修订） | 独立专题 |
-| [命题的形式化验证-Lean4/](命题的形式化验证-Lean4/README.md) | 从本书选取 8 个命题，按“自己写多少、借用数学库 mathlib 多少”分四个阶段给出 Lean 4 形式化陈述与证明，附 InfoView 截图；最后说明怎样检查一个形式化证明。另附本书其他命题与 mathlib 定理的对照表，以及学习笔记第 11、16 篇的配套例程。大部分例题不必安装，点链接即可在浏览器中运行 | 第 1、2、5、7、9–11 章，附录 A、B、F |
-| [习题与解答/](习题与解答/README.md) | 参考习题（题目、提示与完整解答，PDF），按部分发布；第一至五部分均已发布（2026 年 11 月 13 日修订） | 第 1–22 章 |
+| [AIGC检测/](AIGC检测/README.md) | AI 生成痕迹检测结果：知网全文检测与朱雀逐章检测，附核验图与检测说明；同时说明本书使用生成式 AI 的环节与范围 | 全书 |
 
 ## 使用注意
 
