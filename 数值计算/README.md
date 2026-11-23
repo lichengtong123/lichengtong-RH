@@ -12,6 +12,7 @@
 | `dat/li_real_a.dat`、`dat/li_real_b.dat` | 第 13 章 li 的实部曲线数据 | 第 13 章 |
 | `dat/riemann_data.dat`、`dat/fourier_data.dat` 及 `generate_ch18_*.py` | 第 18 章两幅对照图的数据与生成程序 | 第 18 章 |
 | `dat/riemann_data_{20,60,200,500}.dat`、`dat/ch19-*-rows.tex` | 第 19 章数据图与表格行，由 `reproduce.py` 生成 | 第 19 章 |
+| `numerical/note30/stepanov_check.py`、`结果.txt` | 学习笔记第 30 篇的数值核对：解出 Stepanov 辅助多项式并检验重数，比较点数上界；仅用 Python 标准库 | 学习笔记第 30 篇；附录 H |
 | [函数数值计算的常用软件.md](函数数值计算的常用软件.md) | ζ 函数数值计算可用的软件与库（mpmath、Arb/FLINT、PARI/GP 等） | 第 19 章 |
 
 `dat/` 中另有 `pnt_data*.dat`、`riemann_data_{40,100}.dat`，是早期版本留下的数据，书中现已不用，保留供对照。`numerical/ch19/results/legacy/` 同理。
@@ -28,6 +29,7 @@ python3 numerical/ch19/reproduce.py --verify-artifacts # 核对输出文件的 S
 python3 numerical/ch2/reproduce_comparison.py          # 重算第 2 章对照数据
 python3 dat/generate_ch18_riemann.py                   # 第 18 章（读取 numerical/ch19/results/zeros.json）
 python3 dat/generate_ch18_fourier.py
+python3 numerical/note30/stepanov_check.py           # 学习笔记第 30 篇的数值核对（几秒）
 ```
 
 程序按自身位置解析路径，因此 `dat/` 与 `numerical/` 须保持并列。参数、运行环境与耗时记录在 `numerical/ch19/results/manifest.json` 中。

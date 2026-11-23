@@ -1,0 +1,11 @@
+== 1. 构造辅助多项式 ==
+{'p': 67, 'm': 3, 'l': 4, 'J': 3, 'K': 30, 'unknowns': 186, 'equations': 144, 'R_nonzero': True, 'degR': 187, 'S': 26, 'min_mult': 4, 'bound_deg': 275}
+{'p': 101, 'm': 3, 'l': 5, 'J': 4, 'K': 47, 'unknowns': 384, 'equations': 275, 'R_nonzero': True, 'degR': 330, 'S': 52, 'min_mult': 5, 'bound_deg': 515}
+{'p': 149, 'm': 4, 'l': 5, 'J': 4, 'K': 70, 'unknowns': 568, 'equations': 400, 'R_nonzero': True, 'degR': 477, 'S': 66, 'min_mult': 5, 'bound_deg': 833}
+{'p': 97, 'm': 1, 'l': 6, 'J': 4, 'K': 47, 'unknowns': 384, 'equations': 306, 'R_nonzero': True, 'degR': 297, 'S': 48, 'min_mult': 6, 'bound_deg': 392}
+== 2. 大素数上的比较：f = x^3 + x + 1 ==
+p=10007  |S|=5032  p/2=5003.5  Stepanov上界=6124.9  Σ(f/p)=57  Weil界 2√p=200.1
+p=100003  |S|=50090  p/2=50001.5  Stepanov上界=53540.1  Σ(f/p)=177  Weil界 2√p=632.5
+p=1000003  |S|=500363  p/2=500001.5  Stepanov上界=511184.9  Σ(f/p)=723  Weil界 2√p=2000.0
+== 3. 参数不等式检查（16(m+1) ≤ p ≤ 20000, 1 ≤ m ≤ 8）==
+失败个数： 0
