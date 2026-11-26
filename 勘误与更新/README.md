@@ -10,11 +10,11 @@
 |------|------|------|------|----------|
 | — | — | — | — | — |
 
-截至 2026 年 11 月 23 日，尚无已确认的勘误。
+截至 2026 年 11 月 26 日，尚无已确认的勘误。
 
 ## 二、第 22 章前沿文献与纪录的更新
 
-第 22 章的前沿文献选取截至 **2026 年 10 月 27 日**，另补记 2026 年 11 月 20 日公布的黎曼猜想形式化证明及其核验（状态记录至 11 月 22 日，见第 22.6.3 节），章末表（纪录与预印本一览）中各条以所列版本为准。此后的变化在此补充，包括：
+第 22 章的前沿文献选取截至 **2026 年 10 月 27 日**，另补记 2026 年 11 月 20 日公布的黎曼猜想形式化证明及其核验（状态记录至 11 月 26 日，见第 22.6.3 节），章末表（纪录与预印本一览）中各条以所列版本为准。此后的变化在此补充，包括：
 
 - 数值纪录的更新（零点验证高度、零点比例、零点自由区常数等）；
 - 表中预印本的状态变化（正式发表、修订、撤回，或发现错误）；
@@ -24,7 +24,7 @@
 
 | 日期 | 类别 | 内容与出处 | 书中位置 | 说明 |
 |------|------|------------|----------|------|
-| 2026-11-26 | 对形式化证明的质疑 | J. L. Nielsen（Center for Topological Physics, Lawrence, Kansas）在 PhilArchive 发表 *Invalidity of the Alpoge Proposed Proof of the Riemann Hypothesis*（[PhilArchive](https://philpapers.org/rec/NIEIOT-2)，2026 年 11 月 20–21 日），指出 Lean 代码中的几何谓词 `anyGeometry` 被定义为恒真（`fun _ _ _ => True`），高度等式由定义（`rfl`）成立，据此认为证明无效。一份独立审计（[ArtificialZeng/Riemann-hypothesis-Auditing #1](https://github.com/ArtificialZeng/Riemann-hypothesis-Auditing/pull/1)）核对后认为：上述定义确实存在，但最终定理 `riemannHypothesis` 是不带假设的闭定理，类型为 Mathlib 的 `RiemannHypothesis`，只依赖 `propext`、`Quot.sound`、`Classical.choice`；该几何参数在证明路径上未被使用，填入 `True` 相当于删去，因此推不出证明无效。该审计未经同行评议，未从源码重建全部依赖库，也未审读其中的数学。 | 第 22.6.2、22.6.3 节；后记 | 这一质疑不涉及第 22.6.2 节所列的核验标准（形式陈述是否忠实、有无额外公理、能否通过内核检查），书中“已获形式化证明”的记述暂不改动。它说明代码中部分“几何”构造并不承担论证作用，代码实际走的路线与 Alpöge 说明所述思路之间的关系有待厘清，这属于“理解它为何成立”的问题。据 11 月 23 日前后的报道，尚未见 Alpöge 或 Lean FRO、Mathlib Initiative 的公开回应；有回应后再更新本条。 |
+| 2026-11-26 | 对形式化证明的质疑 | J. L. Nielsen（Center for Topological Physics, Lawrence, Kansas）在 PhilArchive 发表 *Invalidity of the Alpoge Proposed Proof of the Riemann Hypothesis*（[PhilArchive](https://philpapers.org/rec/NIEIOT-2)，2026 年 11 月 20–21 日），指出 Lean 代码中的几何谓词 `anyGeometry` 被定义为恒真（`fun _ _ _ => True`），高度等式由定义（`rfl`）成立，据此认为证明无效。一份独立审计（[ArtificialZeng/Riemann-hypothesis-Auditing #1](https://github.com/ArtificialZeng/Riemann-hypothesis-Auditing/pull/1)）核对后认为：上述定义确实存在，但最终定理 `riemannHypothesis` 是不带假设的闭定理，类型为 Mathlib 的 `RiemannHypothesis`，只依赖 `propext`、`Quot.sound`、`Classical.choice`；该几何参数在证明路径上未被使用，填入 `True` 相当于删去，因此推不出证明无效。该审计未经同行评议，未从源码重建全部依赖库，也未审读其中的数学。 | 第 22.6.2、22.6.3 节；后记 | 该审计认为，上述质疑尚未说明最终定理的陈述或核验存在错误，书中关于黎曼猜想“已有形式化证明”的记述暂不改动。它说明代码中部分“几何”构造并不承担论证作用，代码实际走的路线与 Alpöge 说明所述思路之间的关系有待厘清，这属于“理解它为何成立”的问题。据 11 月 23 日前后的报道，尚未见 Alpöge 或 Lean FRO、Mathlib Initiative 的公开回应；有回应后再更新本条。 |
 
 截至 2026 年 11 月 26 日，共 1 条补充条目。
 

@@ -9,7 +9,7 @@
 | [Knowledge-Genealogy Diagram of the Riemann Hypothesis-A3.pdf](Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.pdf) | English edition, A3 page, for viewing and printing |
 | [Knowledge-Genealogy Diagram of the Riemann Hypothesis-A3.svg](Knowledge-Genealogy%20Diagram%20of%20the%20Riemann%20Hypothesis-A3.svg) | English edition, vector graphic with white background, for documents and slides |
 
-图中节点表示函数或结论，连线表示它们之间的数学关系。实线表示已建立的关系，不区分书内证明与文献引用；虚线和虚框表示已获形式化证明、尚无人类可读证明的命题，即黎曼猜想及其等价表述（等价关系本身已证）；黎曼猜想的证明状态见书中第 22.6.3 节。图例与各条连线对应的证明或引用出处见书中第 16 章及其“证明状态索引”。
+图中节点表示函数或结论，连线表示它们之间的数学关系。实线表示已建立的关系，不区分书内证明与文献引用；虚线和虚框表示本书不作证明的 RH 及其等价命题（等价关系本身已证）；证明状态见书中第 22.6.3 节。图例与各条连线对应的证明或引用出处见书中第 16 章及其“证明状态索引”。
 
 打印时请选择 A3 纸、不缩放。SVG 文件可用浏览器直接打开，或导入 Inkscape、PowerPoint、Keynote 等软件。
 
